@@ -4,6 +4,7 @@ import { PropsWithChildren, createContext, useState } from "react";
 interface AppContextProp {
     user:User
     token:string | null
+    isLoggedId:boolean
     setUser:(user:User) => void
     login: (token: string) => void;
 }
@@ -11,6 +12,7 @@ interface AppContextProp {
 export const AppContext = createContext<AppContextProp>({
     user:new User(),
     token:null,
+    isLoggedId:false,
     setUser:() => {},
     login:() => {}
 })
@@ -23,6 +25,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
     const contextValue:AppContextProp = {
         token:token,
         user:user,
+        isLoggedId:!!token,
         setUser:(user:User) => {
             localStorage.setItem('authUser',JSON.stringify(user))
             setUser(user)
