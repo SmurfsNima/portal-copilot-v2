@@ -17,13 +17,14 @@ const SideMenu:React.FC = () => {
             default:
             return window.location.pathname.replace("/", "");
         }
-    };      
+    };  
+    const navigate = useNavigate()    
     const resolveActiveMenu = () => {
         return menus.filter(menue => menue.name == resolveMenuFromRoute()).length>0 ?menus.filter(menue => menue.name == resolveMenuFromRoute())[0] :menus[0]
     }      
     const [activeMenu,setActiveMenu] = useState(resolveActiveMenu())
     
-    const navigate = useNavigate()
+
     const changeMenu = (menu:any) => {
         setActiveMenu(menu)
         navigate(menu.url)
@@ -54,7 +55,10 @@ const SideMenu:React.FC = () => {
                     <div className={`${theme}-SideMenu-MenuList2-Line-Container`}>
                         <div className={`${theme}-SideMenu-MenuList2-Line`}></div>
                     </div>
-                    <div  className={`${theme}-SideMenu-MenuList2-logOut`}>
+                    <div onClick={() => {
+                        navigate('/login')
+                        localStorage.clear()
+                    }} className={`${theme}-SideMenu-MenuList2-logOut`}>
                         <img className={`${theme}-icons-logOut`}  alt="" />
                     </div>
                 </div>
