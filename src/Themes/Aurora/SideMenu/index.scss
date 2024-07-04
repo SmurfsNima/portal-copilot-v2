@@ -1,0 +1,39 @@
+.Aurora-SideMenu-container{
+    @apply flex h-screen overflow-y-auto 
+}
+.Aurora-SideMenu-nav{
+    @apply w-[80px] fixed z-[41] bg-black-primary  h-screen border-black-fourth border-r 
+}
+.Aurora-SideMenu-logo-container{
+    @apply flex mt-5 w-full justify-center 
+}
+
+.Aurora-SideMenu-MenuList-container{
+    @apply mt-10 
+}
+
+.Aurora-SideMenu-MenuList-menu-container{
+    @apply w-full items-center cursor-pointer h-12 flex justify-center
+}
+.Aurora-SideMenu-MenuList-menu-container[data-mode="active"]{
+    @apply bg-black-fourth border-r-2 border-brand-primary-color
+}
+
+.Aurora-SideMenu-MenuList2-container{
+    @apply absolute w-full bottom-5
+}
+
+.Aurora-SideMenu-MenuList2-Line-Container{
+    @apply w-full flex justify-center
+}
+
+.Aurora-SideMenu-MenuList2-Line{
+    @apply w-full max-w-[50px] h-[1px] bg-black-fourth
+}
+.Aurora-SideMenu-MenuList2-logOut{
+    @apply w-full items-center cursor-pointer h-12 flex justify-center
+}
+
+.Aurora-SideMenu-content{
+    @apply w-full py-[82px] pl-[80px] 
+}

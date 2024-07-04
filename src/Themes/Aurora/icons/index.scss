@@ -1,0 +1,155 @@
+.Aurora-icons-people {
+    mask-image: url(/Themes/Aurora/icons/people.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+.Aurora-icons-people[data-mode = 'active'],
+.Aurora-icons-info-circle[data-mode = 'active'],
+.Aurora-icons-trend-up[data-mode = 'active'],
+.Aurora-icons-message-square[data-mode = 'active']
+ {
+    @apply bg-[#03DAC5];
+}
+
+.Aurora-icons-info-circle {
+    mask-image: url(/Themes/Aurora/icons/info-circle.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+
+.Aurora-icons-trend-up {
+    mask-image: url(/Themes/Aurora/icons/trend-up.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+
+.Aurora-icons-message-square{
+    mask-image: url(/Themes/Aurora/icons/message-square.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+
+.Aurora-icons-logOut{
+    mask-image: url(/Themes/Aurora/icons/logout.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+.Aurora-icons-Search{
+    mask-image: url(/Themes/Aurora/icons/search-normal.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+.Aurora-icons-arrow-left{
+    mask-image: url(/Themes/Aurora/icons/arrow-left.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6 bg-brand-primary-color ;
+}
+.Aurora-icons-Overview{
+    mask-image: url(/Themes/Aurora/icons/overview.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6 bg-[#FFFFFF99] ;
+}
+.Aurora-icons-Biomarker{
+    mask-image: url(/Themes/Aurora/icons/biomarker.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6 bg-[#FFFFFF99] ;
+}
+.Aurora-icons-Diagnosis{
+    mask-image: url(/Themes/Aurora/icons/diagnosis.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+.Aurora-icons-Intervention{
+    mask-image: url(/Themes/Aurora/icons/trend-up.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+.Aurora-icons-Timeline{
+    mask-image: url(/Themes/Aurora/icons/timeline.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+.Aurora-icons-Messages{
+    mask-image: url(/Themes/Aurora/icons/messages.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6  bg-[#FFFFFF99];
+}
+.Aurora-icons-PiChatBold{
+    @apply text-[#03DAC5] w-6 h-6
+}
+
+.Aurora-graphicinfo-patientinfo-Nutrition-icon{
+    mask-image: url(/Themes/Aurora/icons/Nutriton-icon.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6 bg-brand-primary-color
+     ;
+}
+.Aurora-graphicinfo-patientinfo-Nutrition-border{
+    mask-image: url(/Themes/Aurora/icons/Nutriton-icon.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6 bg-brand-primary-color
+     ;
+}
+.Aurora-graphicinfo-patientinfo-Activity-icon{
+    mask-image: url(/Themes/Aurora/icons/Activity-icon.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6 bg-brand-secondary-color;
+     ;
+}
+.Aurora-graphicinfo-patientinfo-Activity-border{
+    mask-image: url(/Themes/Aurora/icons/Activity-border.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6 bg-brand-secondary-color;
+     ;
+}

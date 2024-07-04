@@ -1,0 +1,19 @@
+.Aurora-number-pagination {
+  @apply flex items-center justify-center px-4 h-10 leading-tight bg-[#1e1e1e] text-white border #{!important};
+}
+
+.Aurora-number-pagination-select {
+  @apply bg-[#383838] flex items-center justify-center px-4 h-10 leading-tight text-white border
+}
+
+.Aurora-number-pagination-arrow-container {
+  @apply flex items-center justify-center px-4 h-10 ms-0 leading-tight bg-[#1e1e1e]  border  text-white
+}
+
+.Aurora-number-pagination-arrow-container[data-diraction-arow="right"] {
+  @apply rounded-s-lg
+}
+
+.Aurora-number-pagination-arrow-container[data-diraction-arow="left"] {
+  @apply rounded-e-lg
+}

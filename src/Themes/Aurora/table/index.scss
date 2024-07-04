@@ -1,0 +1,18 @@
+.Aurora-Table-container{
+  @apply overflow-x-auto p-2  bg-[#1E1E1E] rounded-xl text-[#FFFFFF] opacity-85
+}
+.Aurora-Table-header{
+  @apply px-3 pt-4 pb-1 text-xs font-medium cursor-pointer
+}
+.Aurora-Table{
+  @apply  border-collapse table-auto text-sm text-left rtl:text-right
+}
+.Aurora-Table-header-section{
+  @apply flex overflow-hidden  flex-row gap-2 justify-end flex-wrap space-y-0 pb-4
+}
+.Aurora-Table-td{
+  @apply px-3 py-2 text-center text-nowrap text-xs
+}
+.Aurora-Table-search{
+@apply block p-2 ps-10 border-[#FFFFFF] border-opacity-15 text-sm text-gray-900 border rounded-lg w-80 bg-[#121212] focus:ring-blue-500 focus:border-blue-500
+}

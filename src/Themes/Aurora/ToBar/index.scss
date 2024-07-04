@@ -1,0 +1,14 @@
+.Aurora-TopBar-container {
+    @apply absolute h-auto md:h-[84px] w-full pl-20 bg-black-primary border-b border-black-fourth top-0 z-40
+}
+
+.Aurora-TopBar-container-main {
+    @apply flex-wrap gap-4 py-4 md:py-0 md:gap-0 flex justify-between h-full px-10 items-center
+}
+.Aurora-TopBar-container-main-boxLayer {
+    @apply flex items-center
+}
+
+.Aurora-TopBar-Button-layer {
+    @apply w-10 h-10 mr-2 bg-black-fourth rounded-full flex justify-center items-center
+}
