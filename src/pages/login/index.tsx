@@ -1,3 +1,4 @@
+import { Auth } from "@/api"
 import { useApp } from "@/hooks"
 import { useNavigate } from "react-router-dom"
 
@@ -8,8 +9,10 @@ const Login  = () => {
         <>
             <div className="w-full h-screen flex justify-center items-center">
                 <button onClick={() => {
-                    appContext.login("thisisatoken")
-                    navigate('/')
+                    Auth.login().then(res => {
+                        appContext.login(res.data.token)
+                        navigate('/')
+                    })
                 }} className="w-[200px] text-white text-[12px] h-[40px] bg-blue-500">login</button>
             </div>
         </>

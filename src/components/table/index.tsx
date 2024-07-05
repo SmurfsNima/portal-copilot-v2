@@ -52,7 +52,7 @@ const Table = () => {
     console.log("table.getState().pagination.pageIndex + 1",table.getState().pagination.pageIndex + 1,table.getPageCount())
     return (
         <div className={" flex items-center justify-center gap-3 flex-col"}>
-            <div className=" w-full top-0 shadow-md sm:rounded-lg p-4 ">
+            <div className=" w-full top-0 shadow-md sm:rounded-lg py-4 ">
                 <div className={`${theme}-Table-header-section`}>
                     <label htmlFor="table-search" className="sr-only">
                         Search
@@ -68,7 +68,7 @@ const Table = () => {
                         Add Patient{" "}
                     </button>
                 </div>
-                <div className={`${theme}-Table-container`}>
+                <div className={`${theme}-Table-container h-[40vh]`}>
                     <table
                         className={`${theme}-table`}>
                         <thead className="text-xs text-gray-700  ">
