@@ -1,0 +1,18 @@
+[
+    {
+        "key":"Total Enrollment",
+        "value":"180"
+    },
+    {
+        "key":"Critical Patients",
+        "value":"15"
+    },
+    {
+        "key":"At Risk Patients",
+        "value":"20"
+    },
+    {
+        "key":"Normal Patients",
+        "value":"150"
+    }
+]
