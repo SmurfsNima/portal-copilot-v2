@@ -1,3 +1,7 @@
+import Pationt from "./patient";
 import User from "./user";
 
-export {User}
+export {
+    User,
+    Pationt
+}
