@@ -4,8 +4,7 @@ import {RiUserAddLine} from "react-icons/ri";
 import {useSelector} from "react-redux";
 import {SearchBox} from "@/components";
 import {columns} from "./tableTd.tsx"
-import {fakeData} from "@/components/table/fakeData.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {
     flexRender,
     getCoreRowModel,
@@ -15,11 +14,18 @@ import {
     useReactTable
 } from "@tanstack/react-table";
 import {FaSort} from "react-icons/fa";
+import { Pationt } from "@/model/index.ts";
 
+interface TableProps {
+    classData:Array<Pationt>
+}
 
-const Table = () => {
+const Table:React.FC<TableProps> = ({classData}) => {
 
-    const [data] = useState<Array<any>>(fakeData);
+    const [data,setData] = useState<Array<any>>([]);
+    useEffect(() => {
+        setData(classData.map((el) => el.information))
+    },[classData])
     const [columnFilters, setColumnFilters] = useState([]);
 
     const table = useReactTable({
@@ -57,7 +63,7 @@ const Table = () => {
                     <label htmlFor="table-search" className="sr-only">
                         Search
                     </label>
-                    <SearchBox changeHandler={(e: any) => onFilterChange("patient", e.target.value)} theme={theme}
+                    <SearchBox changeHandler={(e: any) => onFilterChange("name", e.target.value)} theme={theme}
                                placeholder="Search for users"></SearchBox>
                     <button className={`${theme}-Button-primary`}>
                         <TbFilterPlus className={"w-5 h-5"}/>

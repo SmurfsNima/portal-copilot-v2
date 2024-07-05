@@ -1,11 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Application } from "@/api";
 import { Table , NumberBox } from "@/components";
+import { useConstructor } from "@/help";
+import { Pationt } from "@/model";
+import { useState } from "react";
 // import NumberBox from "@/components/numberBox/numberBox";
 import { useSelector } from "react-redux";
 import { Outlet } from 'react-router-dom';
 
 const PatientList = () => {
     const theme = useSelector((state: any) => state.theme.value.name)
+    const [patients,setPatients] = useState<Array<Pationt>>([])
+    useConstructor(() => {
+        Application.getPatients().then(res => {
+            console.log(res)
+            const resolved = res.data.map((el:any) => {
+                return new Pationt({...el})
+            })
+            setPatients(resolved)
+        })
+    })
     return (
         <>
         <div className="bg-black-background w-full h-screen px-8" >
@@ -18,7 +32,7 @@ const PatientList = () => {
                     <NumberBox theme={theme}/>
                 </div>
             </div>            
-            <Table></Table>
+            <Table classData={patients}></Table>
             <Outlet /> 
         </div>
         </>
