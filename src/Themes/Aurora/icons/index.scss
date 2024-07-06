@@ -65,6 +65,23 @@
     mask-position: center;
     @apply w-6 h-6 bg-brand-primary-color ;
 }
+.Aurora-icons-arrow-up{
+    mask-image: url(/Themes/Aurora/icons/chevron-up.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-4 h-4 bg-white ;
+}
+.Aurora-icons-arrow-down{
+    mask-image: url(/Themes/Aurora/icons/chevron-down.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-4 h-4 bg-white ;
+}
+
 .Aurora-icons-Overview{
     mask-image: url(/Themes/Aurora/icons/overview.svg);
     mask-size: 100%;
