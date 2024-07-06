@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "@/Themes/index";
 import ProtectedRoute from "./Protected";
-import { Login, PatientList } from "@/pages";
+import { Information, Login, OverView, PatientList } from "@/pages";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +11,17 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<PatientList></PatientList>
-      }
+      },
+      {
+        path:'/information/:id',
+        element:<Information></Information>,
+        children:[
+          {
+            index:true,
+            element:<OverView></OverView>
+          }
+        ]
+      }      
     ],
   },
   {
