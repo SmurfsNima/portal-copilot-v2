@@ -74,9 +74,9 @@ const Table:React.FC<TableProps> = ({classData}) => {
                         Add Patient{" "}
                     </button>
                 </div>
-                <div className={`${theme}-Table-container h-[40vh]`}>
+                <div className={`${theme}-Table-container h-[40vh] ${theme}-scrollBar`}>
                     <table
-                        className={`${theme}-table`}>
+                        className={`${theme}-table  ${theme}-scrollBar`}>
                         <thead className="text-xs text-gray-700  ">
                         {table.getHeaderGroups().map((headerGroup) => {
                             return (
@@ -106,7 +106,7 @@ const Table:React.FC<TableProps> = ({classData}) => {
                             )
                         })}
                         </thead>
-                        <tbody>
+                        <tbody >
                         {table.getRowModel().rows.map((row) => {
                                 return (
                                     <tr className="text-white space-y-7 ">

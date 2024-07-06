@@ -29,7 +29,7 @@ const PatientList = () => {
         <div className="bg-black-background w-full h-screen px-8" >
             <div className={"py-5 space-y-5"}>
                 <h1 className={"text-base text-primary-text font-medium"}>General Report</h1>
-                <div className={"flex  items-center md:gap-0 gap-5 justify-between md:flex-row flex-col"}>
+                <div className={"flex flex-wrap  items-center  gap-5 justify-between md:flex-row flex-col"}>
                     <NumberBox mode="added" value={reports.length>0?reports.filter(el=>el.key =='Total Enrollment')[0].value:0} title="Total Enrollment" theme={theme}/>
                     <NumberBox mode="increase" value={reports.length>0?reports.filter(el=>el.key =='Critical Patients')[0].value:0} title="Critical Patients" theme={theme}/>
                     <NumberBox mode="reduction" value={reports.length>0?reports.filter(el=>el.key =='At Risk Patients')[0].value:0} title="At Risk Patients" theme={theme}/>
