@@ -8,9 +8,9 @@ class User {
 
     constructor(public information?:Information){}
 
-    private syncToLocalStorage () {
-        localStorage.setItem('authUser',JSON.stringify(this))
-    }
+    // private syncToLocalStorage () {
+    //     localStorage.setItem('authUser',JSON.stringify(this))
+    // }
 
 } 
 export default User

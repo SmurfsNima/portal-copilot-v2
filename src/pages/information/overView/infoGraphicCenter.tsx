@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Img from "../../../assets/images/Group.svg";
-// import { InfoGraphicInput } from "./InfoGraphicInput.tsx";
+// import Img from "../../../assets/images/Group.svg";
+import { InfoGraphicInput } from "./InfoGraphicInput.tsx";
 import { patientMainInfo } from "./Data.ts";
 import { PatientInfo } from "./patientInfo.tsx";
 import { useSelector } from "react-redux";
@@ -24,11 +24,11 @@ export const InfoGraphicCenter = () => {
     }
   };
   return (
-    <div className=" flex flex-col gap-4 ">
-      <div className={`${theme}-graphicinfo-center-section `}>
+    <div className=" flex w-[530px] flex-col gap-4 ">
+      <div className={`${theme}-graphicinfo-center-section fixed `}>
         {!isNext ? (
-          <div className="relative flex justify-center w-full pb-3">
-            <img src={Img} className="max-h-[565px]" />
+          <div className="relative grid grid-cols-2 justify-center h-[40vh] xl:h-[45vh] 2xl:h-[50vh] w-full pb-3">
+            {/* <img src={Img} className="max-h-[565px]" /> */}
             {patientMainInfo.map((item , i) => (
               <div key={i}
                 className={` ${theme}-graphicinfo-patientinfo ${theme}-graphicinfo-patientinfo-${item.name}-position`}
@@ -43,7 +43,7 @@ export const InfoGraphicCenter = () => {
             ))}
           </div>
         ) : (
-          <div id="copilot-chat" className="overflow-y-scroll max-h-[562px] py-2">
+          <div id="copilot-chat" className="overflow-y-scroll  h-[40vh] xl:h-[45vh] 2xl:h-[50vh]py-2">
            
             <div className="border border-main-border rounded-xl rounded-t-none bg-black-secondary text-secondary-text py-1 px-5  ">
               <ul className="list-disc leading-6">
@@ -105,7 +105,7 @@ export const InfoGraphicCenter = () => {
           />
         </div>
       </div>
-      {/* <InfoGraphicInput handleSendMessage={handleSendMessage} /> */}
+      <InfoGraphicInput handleSendMessage={handleSendMessage} />
     </div>
   );
 };

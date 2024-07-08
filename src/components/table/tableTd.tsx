@@ -26,7 +26,7 @@ export const columns: ColumnDef<PationtInformation>[] = [
                     <div className="">
                         <div className="font-semibold text-nowrap">{row.original.name}</div>
                     </div>
-                    <Link to={''}>
+                    <Link to={'/information/1'}>
                         <FiExternalLink/>
                     </Link>
                 </div>

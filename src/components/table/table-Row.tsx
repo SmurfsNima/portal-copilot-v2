@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Link} from "react-router-dom";
 import {FiExternalLink} from "react-icons/fi";
-import {Badge} from "../badge";
+import Badge from "../badge";
 import {FC} from "react";
 import {PiChatBold} from "react-icons/pi";
 import {useSelector} from "react-redux";
@@ -41,8 +42,6 @@ export const TableRow: FC<TableRowProps> = ({
                                                 temperature,
                                                 oxygen,
                                                 respiration,
-                                                stateColor,
-                                                lastColor = "none",
                                                 imageSrc,
                                                 last
                                             }) => {
@@ -92,7 +91,7 @@ export const TableRow: FC<TableRowProps> = ({
                     {last}
                 </td>
                 <td className={`${theme}-Table-td`}>
-                    <Badge theme={theme} color={stateColor}>
+                    <Badge theme={theme} status="At-Risk">
                         {state}
                     </Badge>
                 </td>
@@ -114,7 +113,7 @@ export const TableRow: FC<TableRowProps> = ({
                 </td>
                 <td className={`${theme}-Table-td`}>
 
-                        <Badge theme={theme} color={lastColor}>
+                        <Badge theme={theme} status="Normal">
                             {respiration}
                         </Badge>
 

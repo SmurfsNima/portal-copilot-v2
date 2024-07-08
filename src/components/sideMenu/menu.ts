@@ -2,7 +2,7 @@ export const menus = [
     {
         name:'Patient List',
         icon:'people',
-        url:'/patientlist'
+        url:'/'
     },
     {
         name:'message-square',

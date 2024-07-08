@@ -11,16 +11,19 @@ const Information = () => {
     navigate(path);
   };
   return (
-    <div className="bg-black-background max-w-[1440px] overflow--hidden h-[100vh] flex flex-col justify-start items-center">
-      <div className="flex gap-3 my-6 ">
-        <Link to={"/"}>
-          <div className={`${theme}-tab-icon-container`}>
-            <img className={`${theme}-icons-arrow-left`} />
-          </div>
-        </Link>
-        <TabsWrapper TabsInfo={TabsInfo} handleTabClick={handleTabClick}/>
+    <div className="bg-black-background  overflow--hidden h-[100vh] flex flex-col justify-start items-center">
+      <div className="flex fixed z-10 justify-center bg-black-background w-full">
+        <div className="flex gap-3 my-6   ">
+          <Link to={"/"}>
+            <div className={`${theme}-tab-icon-container`}>
+              <img className={`${theme}-icons-arrow-left`} />
+            </div>
+          </Link>
+          <TabsWrapper TabsInfo={TabsInfo} handleTabClick={handleTabClick}/>
+        </div>
+
       </div>
-      <div className="flex justify-start">
+      <div className="flex gap-3 pt-[100px] justify-start w-full">
         <Outlet />
 
       </div>

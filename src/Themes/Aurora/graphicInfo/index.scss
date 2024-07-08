@@ -17,7 +17,7 @@
   @apply w-full bg-black-background h-full max-h-[420px] flex border border-t rounded-xl border-main-border flex-col gap-6 p-6;
 }
 .Aurora-graphicinfo-patientinfo {
-  @apply border-2 p-2  border-main-border rounded-full absolute;
+  @apply border-2 p-2  border-main-border rounded-full w-[130px] h-[130px] flex justify-center items-center self-center justify-self-center;
 }
 .Aurora-graphicinfo-patientinfo-Nutritions-position {
   @apply top-20 left-12;
