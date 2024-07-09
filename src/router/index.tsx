@@ -2,6 +2,7 @@ import { createHashRouter } from "react-router-dom";
 import Layout from "@/Themes/index";
 import ProtectedRoute from "./Protected";
 import { Information, Login, OverView, PatientList } from "@/pages";
+import BioMarker from "@/pages/information/bioMarker";
 
 const router = createHashRouter([
   {
@@ -19,7 +20,11 @@ const router = createHashRouter([
           {
             index:true,
             element:<OverView></OverView>
-          }
+          },
+          {
+            path:'biomarker',
+            element:<BioMarker></BioMarker>
+          }          
         ]
       }      
     ],
