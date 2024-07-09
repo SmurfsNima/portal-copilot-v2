@@ -1,9 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import Layout from "@/Themes/index";
 import ProtectedRoute from "./Protected";
 import { Information, Login, OverView, PatientList } from "@/pages";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <ProtectedRoute Component={Layout}></ProtectedRoute>,
