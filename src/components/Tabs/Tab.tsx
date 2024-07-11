@@ -27,7 +27,7 @@ export const Tab = ({
       data-active={active === text}
       data-islast={isLast}
       data-isfirst={isFirst}
-      className={`${theme}-tab ${text== 'All' ? 'px-[90px] ' : 'px-[49px] '}`}
+      className={`${theme}-tab px-[20px] lg:px-[35px] xl:px-[50px] 2xl:px-[60px] 3xl:px-[75px]`}
       onClick={() => {
         setActive(text);
         handleClick();
@@ -35,8 +35,8 @@ export const Tab = ({
     >
     
     
-      <img data-active={active === text} className={`${theme}-icons-${text} ${!icon && 'hidden'}`} alt="" />
-      <h5 className= {` text-sm font-normal ${active === text ? 'text-black-primary' : 'text-primary-text'}`}>{text}</h5>
+      <img data-active={active === text} className={`${theme}-icons-${text} ${!icon && 'hidden'} w-[16px] h-[16px] xl:w-[24px] xl:h-[24px]`} alt="" />
+      <h5 className= {` text-[10px] xl:text-sm font-normal ${active === text ? 'text-black-primary' : 'text-primary-text'}`}>{text}</h5>
       <div className={`${!number && 'hidden' } ${active===text ? 'bg-black-background' : 'bg-main-border '} rounded-xl px-3 py-2 text-primary-text  text-xs`}>{number}</div>
     </div>
     

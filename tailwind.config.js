@@ -38,6 +38,9 @@ export default {
         'red-background': '#FDE7E7',
         'green-background': '#CFFAF4',
       },
+      screens:{
+        '3xl':'1700px'
+      }
     },
   },
 

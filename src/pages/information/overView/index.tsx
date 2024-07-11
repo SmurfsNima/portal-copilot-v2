@@ -6,7 +6,7 @@ import {InfoGraphicCenter} from './infoGraphicCenter'
 import { OverviewChartCard } from "./chartCard";
 const OverView: React.FC = () => {
   return (
-    <div className="flex justify-center w-full   bg-black-background  gap-5 ">
+    <div className="flex justify-between w-full px-[20px] xl:px-[30px] 2xl:px-[40px] bg-black-background  gap-5 ">
       <div className="flex flex-col gap-2">
        {btnInfo.map((item )=>(
         <>

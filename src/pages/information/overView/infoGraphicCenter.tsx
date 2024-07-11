@@ -24,7 +24,7 @@ export const InfoGraphicCenter = () => {
     }
   };
   return (
-    <div className=" flex w-[530px] flex-col gap-4 ">
+    <div className=" flex w-full flex-col gap-4 ">
       <div className={`${theme}-graphicinfo-center-section fixed `}>
         {!isNext ? (
           <div className="relative grid grid-cols-2 justify-center h-[40vh] xl:h-[45vh] 2xl:h-[50vh] w-full pb-3">

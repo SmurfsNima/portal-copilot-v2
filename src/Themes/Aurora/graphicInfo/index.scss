@@ -32,7 +32,7 @@
   @apply bottom-44 right-12;
 }
 .Aurora-graphicinfo-input-container {
-  @apply w-full min-w-[518px] px-5 py-3 rounded-2xl flex items-center  justify-between gap-3 bg-black-primary border border-main-border;
+  @apply w-full  min-w-[400px] xl:min-w-[550px] 2xl:min-w-[665px] 3xl:min-w-[840px] px-5 py-3 rounded-2xl flex items-center  justify-between gap-3 bg-black-primary border border-main-border;
 }
 .Aurora-graphicinfo-input {
   @apply w-full bg-black-secondary rounded-xl outline-none text-third-text px-3 py-2;
@@ -41,5 +41,5 @@
   @apply bg-black-primary border rounded-xl border-main-border w-full pl-4 pr-2  py-2;
 }
 .Aurora-graphicinfo-center-section {
-  @apply w-full  max-w-[518px] flex flex-col justify-center items-center bg-black-primary px-4 pb-3 rounded-xl border border-main-border;
+  @apply w-full max-w-[400px] xl:max-w-[550px] 2xl:max-w-[665px] 3xl:max-w-[840px] flex flex-col justify-center items-center bg-black-primary px-4 pb-3 rounded-xl border border-main-border;
 }
