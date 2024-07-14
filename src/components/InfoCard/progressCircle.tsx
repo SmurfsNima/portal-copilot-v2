@@ -68,8 +68,8 @@ return (
       </div>
     </div>
     <div className="mt-2 text-center">
-      <div className="text-primary-text text-[8px]  2xl:text-[10px] font-normal">{title}</div>
-      <div className=" text-secondary-text text-[8px] 2xl:text-[10px] text-nowrap">MAE <span className="text-primary-text">{MAE}</span></div>
+      <div className="text-primary-text text-[10px] font-normal">{title}</div>
+      <div className=" text-secondary-text text-[10px] text-nowrap">MAE <span className="text-primary-text">{MAE}</span></div>
     </div>
   </div>
 );
