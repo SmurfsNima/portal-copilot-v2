@@ -65,14 +65,6 @@
     mask-position: center;
     @apply w-6 h-6 bg-brand-primary-color ;
 }
-.Aurora-icons-arrow-right{
-    mask-image: url(/Themes/Aurora/icons/arrow-right.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-5 h-5 bg-black ;
-}
 .Aurora-icons-arrow-up{
     mask-image: url(/Themes/Aurora/icons/chevron-up.svg);
     mask-size: 100%;
@@ -89,9 +81,7 @@
     mask-position: center;
     @apply w-4 h-4 bg-white ;
 }
-.Aurora-icons-Overview[data-active="true"], .Aurora-icons-Biomarker[data-active="true"], .Aurora-icons-Diagnosis[data-active="true"], .Aurora-icons-Intervention[data-active="true"], .Aurora-icons-Intervention[data-active="true"] {
-    @apply bg-black
-}
+
 .Aurora-icons-Overview{
     mask-image: url(/Themes/Aurora/icons/overview.svg);
     mask-size: 100%;
@@ -140,9 +130,6 @@
     mask-position: center;
     @apply w-6 h-6  bg-[#FFFFFF99];
 }
-.Aurora-icons-Overview[data-active="true"], .Aurora-icons-Biomarker[data-active="true"], .Aurora-icons-Diagnosis[data-active="true"], .Aurora-icons-Intervention[data-active="true"], .Aurora-icons-timeline[data-active="true"], .Aurora-icons-Messages[data-active="true"] {
-    @apply bg-black
-}
 .Aurora-icons-PiChatBold{
     @apply text-[#03DAC5] w-6 h-6
 }
@@ -181,104 +168,5 @@
     mask-repeat: no-repeat;
     mask-position: center;
     @apply w-6 h-6 bg-brand-secondary-color;
-     ;
-}
-.Aurora-icons-stars{
-    mask-image: url(/public/Themes/Aurora/icons/stars.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-brand-secondary-color;
-     ;
-}
-.Aurora-icons-Add{
-    mask-image: url(/public/Themes/Aurora/icons/add-square.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-[#FFFFFF99];
-     ;
-}
-.Aurora-icons-logo{
-    mask-image: url(/public/Themes/Aurora/icons/AiLogo.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-[#FFFFFF99];
-     ;
-}
-.Aurora-icons-camera{
-    mask-image: url(/public/Themes/Aurora/icons/camera.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-brand-primary-color;
-     ;
-}
-.Aurora-icons-microphone{
-    mask-image: url(/public/Themes/Aurora/icons/input-microphone.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-brand-primary-color;
-     ;
-}
-.Aurora-icons-Temperature{
-    mask-image: url(/public/Themes/Aurora/icons/temp-icon.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-brand-primary-color;
-     ;
-}
-.Aurora-icons-Temperature{
-    mask-image: url(/public/Themes/Aurora/icons/Temperature.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-brand-primary-color;
-     ;
-}
-.Aurora-icons-HeartRate{
-    mask-image: url(/public/Themes/Aurora/icons/HeartRate.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-brand-primary-color;
-     ;
-}
-.Aurora-icons-BloodPressure{
-    mask-image: url(/public/Themes/Aurora/icons/BloodPressure.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-brand-primary-color;
-     ;
-}
-.Aurora-icons-CBC{
-    mask-image: url(/public/Themes/Aurora/icons/CBC.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-6 h-6 bg-brand-primary-color;
-     ;
-}
-.Aurora-icons-openbook{
-    mask-image: url(/public/Themes/Aurora/icons/open-book.svg);
-    mask-size: 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    @apply w-5 h-5 bg-white;
      ;
 }
