@@ -172,3 +172,46 @@
   mask-position: center;
   @apply w-6 h-6 bg-brand-secondary-color;
 }
+.Aurora-icons-Bell{
+    mask-image: url(/Themes/Aurora/icons/bell-icon.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6 bg-brand-primary-color;
+}
+.Aurora-icons-arrow-down-green{
+  mask-image: url(/Themes/Aurora/icons/chevron-down-green.svg);
+    mask-size: 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    @apply w-6 h-6 bg-brand-primary-color;
+}
+.Aurora-icons-camera{
+  mask-image: url(/Themes/Aurora/icons/camera.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-logo{
+  mask-image: url(/Themes/Aurora/icons/AiLogo.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-[#FFFFFF99];
+   ;
+}
+.Aurora-icons-microphone{
+  mask-image: url(/Themes/Aurora/icons/input-microphone.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-primary-color;
+   ;
+}

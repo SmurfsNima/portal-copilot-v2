@@ -33,9 +33,9 @@ const TabsInfo = [
 const BioMarker = () => {
     return (
         <>
-        <div className="flex flex-col overflow-hidden w-full  items-start gap-4 px-12">
+        <div className="flex flex-col overflow-hidden w-full  items-start gap-4">
             <InfoCard></InfoCard>
-            <div className="flex w-full justify-center">
+            <div className="flex w-full ">
                 <div className=" flex w-full max-w-[1224px]  items-center gap-2">
                     <SearchBox
                     theme="Aurora"
@@ -61,7 +61,7 @@ const BioMarker = () => {
                 </div>            
 
             </div>
-            <div className="flex   ">
+            <div className="flex w-full   ">
                 <TabsWrapper TabsInfo={TabsInfo} />
             </div>
 
