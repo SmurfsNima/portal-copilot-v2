@@ -64,12 +64,12 @@ return (
         />
       </svg>
       <div className='absolute top-[10px] inset-0 flex items-start justify-center'>
-        <img width={22} src={icon} alt="" />
+        <img width={18} src={icon} alt="" />
       </div>
     </div>
     <div className="mt-2 text-center">
-      <div className="text-primary-text text-[10px] font-normal">{title}</div>
-      <div className=" text-secondary-text text-[10px] text-nowrap">MAE <span className="text-primary-text">{MAE}</span></div>
+      <div className="text-primary-text text-[8px] xl:text-[10px] font-normal">{title}</div>
+      <div className=" text-secondary-text text-[8px] xl:text-[10px] text-nowrap">MAE <span className="text-primary-text">{MAE}</span></div>
     </div>
   </div>
 );

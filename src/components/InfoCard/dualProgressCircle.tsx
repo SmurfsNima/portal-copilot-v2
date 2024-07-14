@@ -60,21 +60,21 @@ const DualProgressCircle: React.FC<DualProgressCircleProps> = ({ progress1, prog
         </svg>
 
         <div className="absolute inset-0 top-3 -left-1 flex justify-start items-center gap-2  ">
-          <div className=" ml-6 flex flex-col items-end gap-1">
-            <span className="text-secondary-text text-right text-[10px]">
+          <div className=" ml-[22px] xl:ml-5 flex flex-col items-end gap-1">
+            <span className="text-secondary-text text-right text-[8px] xl:text-[10px]">
               Biological <br /> Age
             </span>
             <div className="h-[1px] w-7 bg-secondary-text" />
-            <span className="text-primary-text text-[16px] font-medium">
+            <span className="text-primary-text text-xs xl:text-sm font-medium">
               {progress1}
             </span>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <span className="text-secondary-text text-right text-[10px] font-medium">
+            <span className="text-secondary-text text-right text-[8px] xl:text-[10px] font-medium">
               Chrono <br /> Age
             </span>
             <div className="h-[1px] w-7 bg-secondary-text" />
-            <span className="text-base text-primary-text">{progress2}</span>
+            <span className="text-xs xl:text-sm text-primary-text">{progress2}</span>
           </div>
         </div>
       </div>
