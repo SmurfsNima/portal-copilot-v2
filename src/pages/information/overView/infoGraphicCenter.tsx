@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import Img from "../../../assets/images/Group.svg";
-import { InfoGraphicInput } from "./InfoGraphicInput.tsx";
+import Img from "../../../assets/images/Group.svg";
+import { Input } from "@/components/index.ts";
 import { patientMainInfo } from "./Data.ts";
 import { PatientInfo } from "./patientInfo.tsx";
 import { useSelector } from "react-redux";
@@ -25,10 +25,11 @@ export const InfoGraphicCenter = () => {
   };
   return (
     <div className=" flex w-full flex-col gap-4 ">
-      <div className={`${theme}-graphicinfo-center-section fixed `}>
+      <div className={`${theme}-graphicinfo-center-section  fixed `}>
         {!isNext ? (
-          <div className="relative grid grid-cols-2 justify-center h-[40vh] xl:h-[45vh] 2xl:h-[50vh] w-full pb-3">
-            {/* <img src={Img} className="max-h-[565px]" /> */}
+          // <div className="relative grid grid-cols-2 justify-center h-[40vh] xl:h-[45vh] 2xl:h-[50vh] w-full pb-3">
+          <div className="relative flex justify-center  w-full pb-3">
+            <img src={Img} className="max-h-[565px]" />
             {patientMainInfo.map((item , i) => (
               <div key={i}
                 className={` ${theme}-graphicinfo-patientinfo ${theme}-graphicinfo-patientinfo-${item.name}-position`}
@@ -105,7 +106,7 @@ export const InfoGraphicCenter = () => {
           />
         </div>
       </div>
-      <InfoGraphicInput handleSendMessage={handleSendMessage} />
+      <Input handleSendMessage={handleSendMessage} ></Input>
     </div>
   );
 };

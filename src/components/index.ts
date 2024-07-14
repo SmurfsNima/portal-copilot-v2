@@ -9,11 +9,13 @@ import SideMenu from "./sideMenu";
 import Table from './table'
 import TabsWrapper from './Tabs';
 import TopBar from "./topBar";
+import { Input } from './input';
 
 export {
     Accordion,
     Appointments,
     InfoCard,
+    Input,
     Badge,
     Card,
     NumberBox,
