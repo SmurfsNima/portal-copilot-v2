@@ -61,7 +61,7 @@ const BioMarker = () => {
                 </div>            
 
             </div>
-            <div className="flex w-full justify-center">
+            <div className="flex   ">
                 <TabsWrapper TabsInfo={TabsInfo} />
             </div>
 

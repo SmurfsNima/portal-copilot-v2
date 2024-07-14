@@ -27,7 +27,7 @@ export const Tab = ({
       data-active={active === text}
       data-islast={isLast}
       data-isfirst={isFirst}
-      className={`${theme}-tab px-[20px] lg:px-[35px] xl:px-[50px] 2xl:px-[60px] 3xl:px-[75px]`}
+      className={`${theme}-tab ${text=== "All" ?'px-[60px] xl:px-[85px] 2xl:px-[100px]' : "px-[30px] lg:px-[41px]  xl:px-[50px] 2xl:px-[65px]  3xl:px-[91px]"} `}
       onClick={() => {
         setActive(text);
         handleClick();
