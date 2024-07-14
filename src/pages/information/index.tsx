@@ -23,7 +23,7 @@ const Information = () => {
         </div>
 
       </div>
-      <div className="flex gap-3 pt-[100px] justify-start w-full">
+      <div className="  flex gap-3 pt-[100px] justify-start w-full">
         <Outlet />
 
       </div>
