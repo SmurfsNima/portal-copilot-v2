@@ -9,7 +9,7 @@ interface CharCardProps {
   active: string | null;
   setActive: Dispatch<SetStateAction<any>>;
 }
-const otherTypes = ['Hb' , 'HCT' , 'WBC' ,'MCHC' , 'MCH' , 'RBC', 'PLT' ]
+// const otherTypes = ['Hb' , 'HCT' , 'WBC' ,'MCHC' , 'MCH' , 'RBC', 'PLT' ]
 export const ChartCard: React.FC<CharCardProps> = ({
   title,
   type = "line",
