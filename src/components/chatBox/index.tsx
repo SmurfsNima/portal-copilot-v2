@@ -1,10 +1,10 @@
 
 import {useSelector} from "react-redux";
 import { useState } from "react";
-interface InfoGraphicInputProps{
+interface ChatBoxProps{
   handleSendMessage: (message:string) => void
 }
-export const Input : React.FC<InfoGraphicInputProps> = ({handleSendMessage}) => {
+export const ChatBox : React.FC<ChatBoxProps> = ({handleSendMessage}) => {
   const theme = useSelector((state: any) => state.theme.value.name)
   const [message, setMessage] = useState("");
 
@@ -21,10 +21,10 @@ export const Input : React.FC<InfoGraphicInputProps> = ({handleSendMessage}) => 
         <img className={`${theme}-icons-logo`} width={24} alt="" />
         <h2 className="text-primary-text text-14 font-medium">AI-Copilot</h2>
       </div>
-      <div className={`${theme}-input-container`}>
+      <div className={`${theme}-chatBox-container`}>
         <img className={`${theme}-icons-stars`} alt="" />
         <input
-          className={`${theme}-input`}
+          className={`${theme}-chatBox`}
           type="text"
           placeholder="Enter a prompt here..."
           value={message}

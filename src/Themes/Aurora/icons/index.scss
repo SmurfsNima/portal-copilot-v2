@@ -215,3 +215,66 @@
   @apply w-6 h-6 bg-brand-primary-color;
    ;
 }
+.Aurora-icons-Temperature{
+  mask-image: url(/Themes/Aurora/icons/Temperature.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-HeartRate{
+  mask-image: url(/Themes/Aurora/icons/HeartRate.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-BloodPressure{
+  mask-image: url(/Themes/Aurora/icons/BloodPressure.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-CBC{
+  mask-image: url(/Themes/Aurora/icons/CBC.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-openbook{
+  mask-image: url(/Themes/Aurora/icons/open-book.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-white;
+   ;
+}
+.Aurora-icons-stars{
+  mask-image: url(/public/Themes/Aurora/icons/stars.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-secondary-color;
+   ;
+}
+.Aurora-icons-Add{
+  mask-image: url(/public/Themes/Aurora/icons/add-square.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-[#FFFFFF99];
+   ;
+}

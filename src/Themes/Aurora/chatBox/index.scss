@@ -1,6 +1,6 @@
-.Aurora-input-container {
+.Aurora-chatBox-container {
     @apply w-full max-w-[1200px]  min-w-[400px] xl:min-w-[550px] 2xl:min-w-[665px] 3xl:min-w-[840px] px-5 py-3 rounded-2xl flex items-center  justify-between gap-3 bg-black-primary border border-main-border;
   }
-  .Aurora-input {
+  .Aurora-chatBox {
     @apply w-full bg-black-secondary rounded-xl outline-none text-third-text px-3 py-2;
   }
