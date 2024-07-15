@@ -90,6 +90,8 @@ const BioMarker = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+  console.log(theme+'secondary');
+  
   return (
     <>
       <div className="flex flex-col w-full  items-start gap-4">
@@ -201,7 +203,7 @@ const BioMarker = () => {
                 patient?
               </h5>
               <div className="flex gap-3 items-center">
-                <Button theme={theme}>
+                <Button  theme={theme+'-secondary'}>
                   <img className={`${theme}-icons-openbook`} alt="" />
                   Learn more
                 </Button>
