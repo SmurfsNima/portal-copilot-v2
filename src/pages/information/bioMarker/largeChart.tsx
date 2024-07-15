@@ -34,7 +34,7 @@ export const LargeChartCard: React.FC<chartCardProps> = ({
           
           <h2 className="text-primary-text font-medium text-xs">{type}</h2>
         </div>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           {!isMeasured && <img className={`${theme}-icons-Bell`} alt="" />}
           <div className="flex flex-col ">
             <h2

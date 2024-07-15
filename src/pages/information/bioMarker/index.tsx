@@ -178,7 +178,7 @@ const BioMarker = () => {
         {active && active !== "chat" ?  <div
           className={` ${
             !active && "hidden"
-          }   w-full h-full max-h-[48vh] flex flex-col justify-between overflow-hidden    gap-3`}
+          }   w-full    flex flex-col gap-5  justify-between max-h-[380px]  2xl:max-h-[600px] 3xl:max-h-full   `}
         >
           <LargeChartCard
             
@@ -188,7 +188,7 @@ const BioMarker = () => {
             status="active"
           />
           
-          <div className={`${theme}-biomarker-Ai-card`}>
+          <div className={`${theme}-biomarker-Ai-card   `}>
             <div className="flex items-center gap-1">
               <img className={`${theme}-icons-logo`} width={24} alt="" />
               <h2 className={`${theme}-biomarker-Ai-card-logo-heading-text`}>

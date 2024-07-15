@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import bellIcon from "/public/Themes/Aurora/icons/bell-icon.svg";
 import arrowDown from '/public/Themes/Aurora/icons/chevron-down-green.svg'
 import { useSelector } from "react-redux";
 import { LineChart } from "@/components/charts";
@@ -38,7 +37,7 @@ export const OverviewChartCard: React.FC<chartCardProps> = ({
           <h2 className="text-primary-text font-medium text-xs">{type}</h2>
         </div>
         <div className="flex gap-2">
-          {!isMeasured && <img width={32} src={bellIcon} alt="" />}
+          {!isMeasured && <img className={`${theme}-iconst-Bell`} alt="" />}
           <div className="flex flex-col ">
             <h2
               className={`${
@@ -86,7 +85,7 @@ export const OverviewChartCard: React.FC<chartCardProps> = ({
           </div>
         </div>
         
-        <LineChart model={type === "CBC" ? "linear" : "line"} active={false}  />
+        <LineChart dashed model={type === "CBC" ? "linear" : "line"} active={false}  />
         
       </div>
     </div>

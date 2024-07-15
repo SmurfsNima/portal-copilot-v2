@@ -64,3 +64,23 @@
  .Aurora-biomarker-Ai-chat-text{
      @apply bg-black-secondary w-full text-secondary-text text-sm p-2 my-2 rounded-xl
  }
+ .Aurora-biomarker-chartCard-container{
+    @apply bg-black-primary xl:px-3 py-3 border border-main-border rounded-2xl flex;
+ }
+ .Aurora-biomarker-chartCard-container[data-active="true"]{
+    @apply bg-brand-primary-color;
+ }
+ .Aurora-biomarker-chartCard-title{
+   @apply text-sm xl:text-base text-primary-text font-medium
+
+ }
+ .Aurora-biomarker-chartCard-title[data-active="true"]{
+    @apply text-black;
+ }
+ .Aurora-biomarker-chartCard-text{
+   @apply text-sm xl:text-lg text-primary-text;
+ }
+ .Aurora-biomarker-chartCard-text[data-active="true"]{
+    @apply text-black;
+ }
+ 

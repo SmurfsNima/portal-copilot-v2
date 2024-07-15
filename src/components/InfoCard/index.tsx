@@ -6,7 +6,7 @@ import ProgressCircle from "./progressCircle";
 
 const InfoCard = () => {
   return (
-    <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-3  border border-main-border rounded-xl  flex ">
+    <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-3  border border-main-border rounded-xl  flex justify-between ">
       <div className=" flex gap-2  xl:gap-4 items-center ">
         <div
           style={{
