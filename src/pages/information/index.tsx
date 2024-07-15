@@ -11,14 +11,17 @@ const Information = () => {
     navigate(path);
   };
   return (
-    <div className="bg-black-background  overflow--hidden h-[100vh] flex flex-col justify-start items-center">
+    <div className=" bg-black-background   h-[100vh] flex flex-col justify-start items-center px-5 ">
       <div className="flex fixed z-10 justify-center bg-black-background w-full">
-        <div className="flex gap-3 my-6   ">
+        <div className=" w-full  flex gap-3 my-6 px-16">
           <Link to={"/"}>
             <div className={`${theme}-tab-icon-container`}>
               <img className={`${theme}-icons-arrow-left`} />
             </div>
           </Link>
+          <div>
+            
+          </div>
           <TabsWrapper TabsInfo={TabsInfo} handleTabClick={handleTabClick}/>
         </div>
 

@@ -9,6 +9,7 @@ import SideMenu from "./sideMenu";
 import Table from './table'
 import TabsWrapper from './Tabs';
 import TopBar from "./topBar";
+import { ChatBox } from './chatBox';
 
 export {
     Accordion,
@@ -21,5 +22,6 @@ export {
     SideMenu,
     Table,
     TabsWrapper,
-    TopBar
+    TopBar,
+    ChatBox
 }
