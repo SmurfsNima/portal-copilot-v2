@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import {
@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 import { DoughnutChart } from "@/components/charts";
 import { ChartCard } from "./chartCard";
-import { OverviewChartCard } from "../overView/chartCard";
+import { RightChartCard } from "./RightChartcard";
  const TabsInfo = [
     {
         text: 'All',
@@ -47,14 +47,14 @@ import { OverviewChartCard } from "../overView/chartCard";
 
     {
        
-        title: 'Heart Rate',
+        title: 'Cholesterol',
         type : 'line',
         Avarage: 99.5 ,
         current:  96,
     },
     {
         
-        title: 'CBC',
+        title: 'Diabetes',
         type : 'linear',
         Avarage: 99.5 ,
         current:  96,
@@ -76,7 +76,7 @@ export const Diagnosis = () => {
     setShowDetails(!showDetails);
   };
   return (
-    <div className=" w-full h-full flex flex-col mx-auto overflow-hidden max-w-[1236px]  gap-3 ">
+    <div className=" w-full h-full flex flex-col  overflow-hidden  gap-3 ">
       <InfoCard></InfoCard>
       <div className=" flex    items-center gap-2">
         <SearchBox
@@ -102,19 +102,19 @@ export const Diagnosis = () => {
         </div>
       </div>
       <TabsWrapper TabsInfo={TabsInfo} />
-      <div className="flex  w-full gap-5">
+      <div className="flex   w-full gap-5">
         <div
           id="charts-container"
           className={`w-full ${
             active
-              ? "grid-cols-1 overflow-y-auto max-w-[292px]  h-full max-h-[556px] "
+              ? "grid-cols-1  max-w-[330px] gap-10 h-full  "
               : " grid-cols-4"
-          } grid  gap-4   `}
+          } grid  gap-3  `}
         >
           <div
             className={`flex  ${
               active ? "flex-row" : "flex-col"
-            }  gap-5 w-full max-w-[292px]`}
+            }  gap-5 w-full max-w-[330px]`}
           >
             <div
               onClick={() => setActive("chat")}
@@ -145,9 +145,9 @@ export const Diagnosis = () => {
               id="custom-border"
               className={`${
                 active ? "px-8 py-4" : "px-12 py-8"
-              } text-nowrap  flex justify-center items-center gap-2 text-white cursor-pointer custom-border`}
+              } text-nowrap w-full  flex justify-center items-center gap-2 text-white cursor-pointer custom-border`}
             >
-              <img className={`${theme}-icons-add`} alt="" />
+              <img className={`${theme}-icons-Add`} alt="" />
               <h2 className="text-xs font-medium text-secondary-text">
                 Add New Biomarker
               </h2>
@@ -167,10 +167,11 @@ export const Diagnosis = () => {
           ))}
         </div>
         {active && (
-            <div className="flex justify-center gap-6 w-full  ">
-          <div className="px-6 pt-6 pb-2 bg-black-primary w-full h-fit max-h-[556px]  max-w-[411px]  rounded-2xl border border-main-border">
+            <div className=" w-full flex flex-col gap-3">
+            <div className="flex  gap-6 w-full justify-between  ">
+          <div className="px-6 pt-6 pb-2 bg-black-primary w-full h-fit max-h-[556px]    rounded-2xl border border-main-border">
             <h4 className="font-medium text-primary-text">Diagnosis Details</h4>
-            <div className="flex gap-3 mt-5">
+            <div className="flex justify-center gap-3 mt-5">
               <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-orange-status ">
                 <div className=" bg-black-primary rounded-2xl px-3 py-1">
                   160mg/dl
@@ -193,8 +194,8 @@ export const Diagnosis = () => {
             <div className="text-secondary-text flex items-center gap-5 my-4">
               Show more details{" "}
               <img
-                src="/public/Themes/Aurora/icons/chevron-up.svg"
-                className={` ${!showDetails && "rotate-180"}`}
+               
+                className={` ${theme}-icons-arrow-up ${!showDetails && "rotate-180"}`}
                 onClick={toggleDetails}
                 width={8}
                 alt=""
@@ -232,33 +233,36 @@ export const Diagnosis = () => {
                     Dr.Jenny Wilson
                   </div>
                 </div>
-                <div className="flex justify-end  w-full ">
+                <div className="flex justify-center  w-full ">
                   <DoughnutChart />
                 </div>
               </div>
             )}
           </div>
-          <div className="px-6 pt-3 pb-2 bg-black-primary w-full  h-full max-w-[465px]   rounded-2xl border border-main-border">
+          <div className="px-6 pt-3 pb-2 bg-black-primary w-full max-w-[492px]  h-full   rounded-2xl border border-main-border">
           <h4 className="font-medium text-primary-text">Related Biomarkers</h4>
           <div id="copilot-chat" className=" w-full  flex  flex-col items-start justify-start mt-4 gap-4 h-full max-h-[500px] overflow-auto  ">
-            <OverviewChartCard  type={active}
+            <RightChartCard  type={active}
             isMeasured={false}
             value={55}
             status="active"/>
-            <OverviewChartCard  type={active}
+            <RightChartCard  type={'Diabetes'}
             isMeasured={false}
             value={55}
             status="active"/>
-            <OverviewChartCard  type={active}
+            <RightChartCard  type={'Blood Pressure'}
             isMeasured={false}
             value={55}
             status="active"/>
           </div>
 
           </div>
-          {/* {
+         
+        
+          </div>
+          {
             active && (
-                <div className="bg-black-primary w-full h-full max-h-[110px] max-w-[917px] flex flex-col  rounded-2xl border border-main-border px-6 pt-3 pb-2 ">
+                <div className="bg-black-primary w-full h-full max-h-[110px]  flex flex-col  rounded-2xl border border-main-border px-6 pt-3 pb-2 ">
                 <div className="flex gap-1">
                   <img className={`${theme}-icons-logo`} width={24} alt="" />
                   <h2 className="text-primary-text text-14 font-medium">
@@ -271,15 +275,14 @@ export const Diagnosis = () => {
                     patient?
                   </h5>
                   <div className="flex gap-3 items-center  ">
-                    <Button>
-                      <img src="/public/Themes/Aurora/icons/open-book.svg" alt="" />
+                    <Button theme={theme+'-secondary'}>
+                      <img className={`${theme}-icons-openbook`} alt="" />
                       Learn more
                     </Button>
-                    <Button onClick={()=>setActive("chat")}>
+                    <Button theme={theme} onClick={()=>setActive("chat")}>
                       Get started
                       <img
-                        src="/public/Themes/Aurora/icons/arrow-right-black.svg"
-                        alt=""
+                       className={`${theme}-icons-arrow-right`}
                       />
                     </Button>
                   </div>
@@ -287,9 +290,10 @@ export const Diagnosis = () => {
               </div>
             )
           }
-         */}
           </div>
+          
         )}
+        
       </div>
 
     </div>

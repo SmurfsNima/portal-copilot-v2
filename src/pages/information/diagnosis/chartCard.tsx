@@ -25,7 +25,7 @@ export const ChartCard: React.FC<CharCardProps> = ({
     <div
       onClick={() => setActive(title)}
     data-active ={active===title}
-    className={`${theme}-biomarker-chartCard-container`}
+    className={`${active===title && 'bg-brand-primary-color'} bg-black-primary px-1 xl:px-6  py-3 border border-main-border rounded-2xl flex`}
     >
       <div className=" w-full  flex   flex-col gap-3  ">
         <div className="flex gap-2 items-center">
@@ -96,9 +96,7 @@ export const ChartCard: React.FC<CharCardProps> = ({
               ? "bpm"
               : title === "CBC"
               ? "%"
-              : title === "Blood Pressure"
-              ? "mm/hg"
-              : ""}
+              : "mm/hg"}
           </span>
           </h2>{" "}
           
@@ -128,9 +126,7 @@ export const ChartCard: React.FC<CharCardProps> = ({
               ? "bpm"
               : title === "CBC"
               ? "%"
-              : title === "Blood Pressure"
-              ? "mm/hg"
-              : ""}
+              :  "mm/hg"}
           </span>
           </h2>{" "}
         

@@ -287,7 +287,25 @@
    ;
 }
 .Aurora-icons-Bell{
-  mask-image: url(/public/Themes/Aurora/icons/bell-icon.svg);
+  mask-image: url(/Themes/Aurora/icons/bell-icon.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-Cholesterol{
+  mask-image: url(/Themes/Aurora/icons/Cholesterol.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-Diabetes{
+  mask-image: url(/Themes/Aurora/icons/Diabetes.svg);
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
