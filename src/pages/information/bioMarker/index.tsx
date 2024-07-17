@@ -90,6 +90,8 @@ const BioMarker = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+  console.log(theme+'secondary');
+  
   return (
     <>
       <div className="flex flex-col w-full  items-start gap-4">
@@ -178,7 +180,7 @@ const BioMarker = () => {
         {active && active !== "chat" ?  <div
           className={` ${
             !active && "hidden"
-          }   w-full h-full max-h-[48vh] flex flex-col justify-between overflow-hidden    gap-3`}
+          }   w-full    flex flex-col gap-5  justify-between max-h-[380px]  2xl:max-h-[600px] 3xl:max-h-full   `}
         >
           <LargeChartCard
             
@@ -188,7 +190,7 @@ const BioMarker = () => {
             status="active"
           />
           
-          <div className={`${theme}-biomarker-Ai-card`}>
+          <div className={`${theme}-biomarker-Ai-card   `}>
             <div className="flex items-center gap-1">
               <img className={`${theme}-icons-logo`} width={24} alt="" />
               <h2 className={`${theme}-biomarker-Ai-card-logo-heading-text`}>
@@ -201,7 +203,7 @@ const BioMarker = () => {
                 patient?
               </h5>
               <div className="flex gap-3 items-center">
-                <Button theme={theme}>
+                <Button  theme={theme+'-secondary'}>
                   <img className={`${theme}-icons-openbook`} alt="" />
                   Learn more
                 </Button>
@@ -233,7 +235,7 @@ const BioMarker = () => {
                 patient?
               </h5>
               <div className="flex gap-3 items-center">
-                <Button theme={theme}>
+                <Button theme={theme+'-secondary'}>
                   <img className={`${theme}-icons-openbook`} alt="" />
                   Learn more{" "}
                 </Button>
@@ -255,7 +257,12 @@ const BioMarker = () => {
            ))}
            <div ref={messagesEndRef} />
            </div>
-           <div className=""><ChatBox handleSendMessage={handleSendMessage} /></div>
+           
+           <ChatBox handleSendMessage={handleSendMessage} />
+          
+          
+           
+           
            
          </div>}
        

@@ -23,9 +23,10 @@ ChartJS.register(
 interface LineChartProps {
   model: string;
   active : boolean;
+  dashed?: boolean
   
 }
- export const LineChart: React.FC<LineChartProps> = ({ model , active }) => {
+ export const LineChart: React.FC<LineChartProps> = ({ model , active  , dashed}) => {
   const chartRef = useRef<ChartJS<"line">>(null);
   const data = useMemo(() => [5, 5.8, 3, 5, 3, 3.3], []);
   const xData = useMemo(
@@ -118,7 +119,10 @@ interface LineChartProps {
                maxRotation: 0,
             minRotation: 0,
             autoSkip: true,
-            maxTicksLimit: 7, // Adjust this
+            maxTicksLimit: 5, // Adjust this
+            font : {
+              size : 10,
+            }
           },
           grid: {
             display: false,
@@ -129,9 +133,12 @@ interface LineChartProps {
         
           ticks: {
             color: active ? "#1E1E1" : "#FFFF",
+            font : {
+              size : 10,
+            }
           },
           grid: {
-            display : true,
+            display : dashed ? true : false,
             color: "#444",
           },
           border: {

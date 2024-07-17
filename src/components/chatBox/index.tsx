@@ -15,16 +15,18 @@ export const ChatBox : React.FC<ChatBoxProps> = ({handleSendMessage}) => {
       setMessage("");
     }
   };
+  
   return (
-    <div className=" w-full">
-      <div className="flex my-4">
-        <img className={`${theme}-icons-logo`} width={24} alt="" />
-        <h2 className="text-primary-text text-14 font-medium">AI-Copilot</h2>
+    <div className="flex w-full flex-col gap-1">
+  
+      <div className="flex  gap-1">
+      <img className={`${theme}-icons-logo`} width={24} alt="" />
+        <h2 className="text-primary-text text-xs xl:text-sm font-medium">AI-Copilot</h2>
       </div>
       <div className={`${theme}-chatBox-container`}>
         <img className={`${theme}-icons-stars`} alt="" />
         <input
-          className={`${theme}-chatBox`}
+          className={`${theme}-chatBox-input`}
           type="text"
           placeholder="Enter a prompt here..."
           value={message}
@@ -32,10 +34,11 @@ export const ChatBox : React.FC<ChatBoxProps> = ({handleSendMessage}) => {
           onKeyDown={handleKeyDown}
         />
         <div className="flex gap-2 items-center">
-          <img className={`${theme}-icons-camera cursor-pointer`} alt="" />
+        <img className={`${theme}-icons-camera cursor-pointer`} alt="" />
           <img className={`${theme}-icons-microphone cursor-pointer`} alt="" />
         </div>
       </div>
     </div>
+    
   );
 };

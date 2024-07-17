@@ -1,3 +1,7 @@
+.Aurora-graphicinfo-center-section {
+  @apply w-full max-w-[400px] xl:max-w-[530px] 2xl:max-w-[665px] 3xl:max-w-[840px] flex flex-col justify-center items-center bg-black-primary px-4 pb-3 rounded-xl border border-main-border;
+}
+
 .Aurora-graphicinfo-btn-container {
   @apply flex justify-between bg-black-primary w-full  min-w-[312px] px-4 py-3 cursor-pointer select-none;
 }
@@ -13,33 +17,27 @@
 .Aurora-graphicinfo-btn-number {
   @apply text-brand-primary-color text-xs font-normal;
 }
+
 .Aurora-graphicinfo-btn-list-container {
   @apply w-full bg-black-background h-full max-h-[420px] flex border border-t rounded-xl border-main-border flex-col gap-6 p-6;
 }
 .Aurora-graphicinfo-patientinfo {
-  @apply border-2 p-2  border-main-border rounded-full w-[130px] h-[130px] flex justify-center items-center self-center justify-self-center;
+  @apply absolute border-2 p-2  border-main-border rounded-full flex justify-center items-center w-[115px] h-[115px]   xl:w-[130px] xl:h-[130px] 2xl:w-[180px] 2xl:h-[180px];
 }
 .Aurora-graphicinfo-patientinfo-Nutritions-position {
-  @apply top-20 left-12;
+  @apply top-5 left-3 xl:top-10 xl:left-10;
 }
 .Aurora-graphicinfo-patientinfo-Activity-position {
-  @apply bottom-44 left-12;
+  @apply bottom-6 left-3 xl:bottom-12 xl:left-10;
 }
 .Aurora-graphicinfo-patientinfo-Sleep-position {
-  @apply top-20 right-12;
+  @apply top-5 right-5  xl:top-10 xl:right-10;
 }
 .Aurora-graphicinfo-patientinfo-Mind-position {
-  @apply bottom-44 right-12;
+  @apply bottom-5 right-5 xl:bottom-10 xl:right-10;
 }
-.Aurora-graphicinfo-input-container {
-  @apply w-full  min-w-[400px] xl:min-w-[550px] 2xl:min-w-[665px] 3xl:min-w-[840px] px-5 py-3 rounded-2xl flex items-center  justify-between gap-3 bg-black-primary border border-main-border;
-}
-.Aurora-graphicinfo-input {
-  @apply w-full bg-black-secondary rounded-xl outline-none text-third-text px-3 py-2;
-}
+
 .Aurora-graphicinfo-chartCard-container {
-  @apply bg-black-primary border rounded-xl border-main-border w-full pl-4 pr-2  py-2;
+  @apply bg-black-primary w-full max-w-[300px] 2xl:max-w-[400px] border rounded-xl border-main-border  px-2  py-1;
 }
-.Aurora-graphicinfo-center-section {
-  @apply w-full max-w-[400px] xl:max-w-[550px] 2xl:max-w-[665px] 3xl:max-w-[840px] flex flex-col justify-center items-center bg-black-primary px-4 pb-3 rounded-xl border border-main-border;
-}
+
