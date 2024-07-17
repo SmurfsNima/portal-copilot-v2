@@ -32,11 +32,11 @@ const router = createHashRouter([
             element : <Diagnosis></Diagnosis>
           },          
 
-          },      
+               
           {
-            path:'timeLine',
-            element:<TimeLine></TimeLine>
-          }                  
+            path:'timeline',
+            element: <TimeLine></TimeLine>
+          },                  
 
         ]
       }      

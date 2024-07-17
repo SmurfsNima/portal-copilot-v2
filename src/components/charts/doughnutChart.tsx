@@ -51,15 +51,15 @@ export const DoughnutChart = () => {
 
   return (
     <div className="relative flex gap-8 items-center">
-      <div style={{ width: '159px', height: '160px' }}>
+      <div style={{ width: '109px', height: '110px' }}>
         <Doughnut data={data} options={options} />
       </div>
-      <div className="mt-12 flex flex-col items-start ">
-        <div className="flex items-centerr justify-center mb-2 gap-3">
+      <div className="mt-12 flex flex-col justify-start items-start ">
+        <div className="flex items-start justify-center mb-2 gap-3">
           <span className="w-3 h-3 bg-brand-secondary-color rounded-full "></span>
           <span className="text-secondary-text text-xs font-normal">Avg Age Group</span>
         </div>
-        <div className="flex items-centerr justify-center mb-2 gap-3">
+        <div className="flex items-center justify-center mb-2 gap-3">
           <span className="w-3 h-3 bg-brand-primary-color rounded-full "></span>
           <span className="text-secondary-text text-xs font-normal">Normal Range</span>
         </div>
