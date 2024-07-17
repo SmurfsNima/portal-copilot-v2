@@ -3,6 +3,7 @@ import Layout from "@/Themes/index";
 import ProtectedRoute from "./Protected";
 import { Information, Login, OverView, PatientList, TimeLine } from "@/pages";
 import BioMarker from "@/pages/information/bioMarker";
+import { Diagnosis } from "@/pages/information/diagnosis";
 
 const router = createHashRouter([
   {
@@ -24,11 +25,19 @@ const router = createHashRouter([
           {
             path:'biomarker',
             element:<BioMarker></BioMarker>
-          },      
+
+          },
           {
-            path:'timeLine',
-            element:<TimeLine></TimeLine>
-          }                  
+            path : 'diagnosis',
+            element : <Diagnosis></Diagnosis>
+          },          
+
+               
+          {
+            path:'timeline',
+            element: <TimeLine></TimeLine>
+          },                  
+
         ]
       }      
     ],
