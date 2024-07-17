@@ -27,7 +27,7 @@ export const LargeChartCard: React.FC<chartCardProps> = ({
   
 
   return (
-    <div className={`${theme}-graphicinfo-chartCard-container`}>
+    <div className={`${theme}-graphicinfo-largechartCard-container`}>
       <div className="flex justify-between items-center">
         <div className="flex items-start gap-2">
           <img className={`${theme}-icons-${type?.replace(/\s+/g, '')}`} alt="" />
@@ -74,7 +74,7 @@ export const LargeChartCard: React.FC<chartCardProps> = ({
         </span>
         {type === "Temperature" ? "oF" : type === "Heart Rate" ? "bpm" : "%"}
       </h2>
-      <div className="bg-black-secondary border border-main-border px-2 pb-8  h-full max-h-[175px] rounded-lg ">
+      <div className="bg-black-secondary border border-main-border px-2 pb-8 w-full  h-full max-h-[175px] rounded-lg ">
         <div className="flex w-full justify-between items-center">
           <span className="text-secondary-text">oF</span>
           <div className="flex items-center gap-2">
@@ -83,7 +83,7 @@ export const LargeChartCard: React.FC<chartCardProps> = ({
           </div>
         </div>
         
-        <LineChart model={type === "CBC" ? "linear" : "line"} active={false}  />
+        <LineChart dashed model={type === "CBC" ? "linear" : "line"} active={false}  />
         
       </div>
     </div>

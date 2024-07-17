@@ -14,7 +14,7 @@
      @apply w-full grid   gap-5   grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
  }
  .Aurora-biomarker-charts-container[data-active ="true"]{
-     @apply grid-cols-1 mr-4  w-full  max-w-[292px] ;
+     @apply grid-cols-1 mr-4  w-full  max-w-[292px]  ;
  }
  .Aurora-biomarker-leftbuttons-container{
      @apply flex flex-col gap-4 ;
@@ -59,13 +59,13 @@
      @apply text-secondary-text text-sm font-normal;
  }
  .Aurora-biomarker-Ai-chat-container{
-    @apply relative flex flex-col xl:h-[400px]    2xl:h-[456px] w-full 
+    @apply relative flex flex-col xl:h-[400px]    2xl:h-[456px] w-full; 
  }
  .Aurora-biomarker-Ai-chat-text{
      @apply bg-black-secondary w-full text-secondary-text text-sm p-2 my-2 rounded-xl
  }
  .Aurora-biomarker-chartCard-container{
-    @apply bg-black-primary xl:px-3 py-3 border border-main-border rounded-2xl flex;
+    @apply bg-black-primary px-1 xl:px-3 py-3 border border-main-border rounded-2xl flex;
  }
  .Aurora-biomarker-chartCard-container[data-active="true"]{
     @apply bg-brand-primary-color;
@@ -83,4 +83,7 @@
  .Aurora-biomarker-chartCard-text[data-active="true"]{
     @apply text-black;
  }
+ .Aurora-graphicinfo-largechartCard-container{
+@apply bg-black-primary w-full  border rounded-xl border-main-border  px-2  py-1;
+ } 
  

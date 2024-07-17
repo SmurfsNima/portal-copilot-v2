@@ -235,7 +235,7 @@ const BioMarker = () => {
                 patient?
               </h5>
               <div className="flex gap-3 items-center">
-                <Button theme={theme}>
+                <Button theme={theme+'-secondary'}>
                   <img className={`${theme}-icons-openbook`} alt="" />
                   Learn more{" "}
                 </Button>
@@ -257,7 +257,12 @@ const BioMarker = () => {
            ))}
            <div ref={messagesEndRef} />
            </div>
-           <div className=""><ChatBox handleSendMessage={handleSendMessage} /></div>
+           
+           <ChatBox handleSendMessage={handleSendMessage} />
+          
+          
+           
+           
            
          </div>}
        

@@ -119,7 +119,10 @@ interface LineChartProps {
                maxRotation: 0,
             minRotation: 0,
             autoSkip: true,
-            maxTicksLimit: 7, // Adjust this
+            maxTicksLimit: 5, // Adjust this
+            font : {
+              size : 10,
+            }
           },
           grid: {
             display: false,
@@ -130,6 +133,9 @@ interface LineChartProps {
         
           ticks: {
             color: active ? "#1E1E1" : "#FFFF",
+            font : {
+              size : 10,
+            }
           },
           grid: {
             display : dashed ? true : false,

@@ -29,15 +29,18 @@ export const OverviewChartCard: React.FC<chartCardProps> = ({
   
 
   return (
-    <div className={`${theme}-graphicinfo-chartCard-container`}>
+    <div className={`${theme}-graphicinfo-chartCard-container  `}>
       <div className="flex justify-between items-center">
-        <div className="flex items-start gap-2">
-          <img className={`${theme}-biomarker-charts-${type?.replace(/\s+/g, '')}`} alt="" />
+        <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center rounded-lg bg-black-background p-1">
+          <img className={`${theme}-icons-${type?.replace(/\s+/g, '')}`} alt="" />
+          </div>
+         
           
           <h2 className="text-primary-text font-medium text-xs">{type}</h2>
         </div>
         <div className="flex gap-2">
-          {!isMeasured && <img className={`${theme}-iconst-Bell`} alt="" />}
+          {!isMeasured && <img className={`${theme}-icons-Bell`} alt="" />}
           <div className="flex flex-col ">
             <h2
               className={`${
@@ -55,7 +58,7 @@ export const OverviewChartCard: React.FC<chartCardProps> = ({
           </div>
         </div>
       </div>
-      <div className="flex  my-1 ">
+      <div className="flex   ">
         {othersTypes?.map((item , i) => (
           <span key={i}
             onClick={() => setActive(item)}
@@ -63,7 +66,7 @@ export const OverviewChartCard: React.FC<chartCardProps> = ({
               active === item
                 ? "text-brand-primary-color   border-brand-primary-color"
                 : "text-secondary-text border-main-border "
-            } border-b cursor-pointer px-2 text-sm`}
+            } border-b cursor-pointer px-2 text-[10px] xl:text-xs`}
           >
             {item}
           </span>
@@ -71,16 +74,16 @@ export const OverviewChartCard: React.FC<chartCardProps> = ({
       </div>
       <h2 className="text-secondary-text  text-[10px] font-normal">
         Average:
-        <span className="mx-1 text-primary-text font-medium text-[14px]">
+        <span className="mx-1 text-primary-text font-medium text-xs">
           {value}
         </span>
         {type === "Temperature" ? "oF" : type === "Heart Rate" ? "bpm" : "%"}
       </h2>
-      <div className="bg-black-secondary border border-main-border px-2 pb-5  h-full max-h-[175px] rounded-lg ">
+      <div className="bg-black-secondary border border-main-border px-2   h-full max-h-[140px] xl:max-h-[162px] 2xl:max-h-[175px] rounded-lg ">
         <div className="flex w-full justify-between items-center">
-          <span className="text-secondary-text">oF</span>
+          <span className="text-secondary-text  text-xs">{type === "Temperature" ? "oF" : type === "Heart Rate" ? "bpm" : "%"}</span>
           <div className="flex items-center gap-2">
-            <h2 className="text-brand-primary-color text-xs">24 May,  2024</h2>
+            <h2 className="text-brand-primary-color text-[10px] 2xl:text-xs">24 May,  2024</h2>
             <img src={arrowDown} alt="" />
           </div>
         </div>

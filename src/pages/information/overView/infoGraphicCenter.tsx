@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// import Img from "../../../assets/images/Group.svg";
-import { InfoGraphicInput } from "./InfoGraphicInput.tsx";
+import Img from "../../../assets/images/Group.svg";
 import { patientMainInfo } from "./Data.ts";
 import { PatientInfo } from "./patientInfo.tsx";
 import { useSelector } from "react-redux";
 import { useState ,} from "react";
 import ArrowRight from "/public/Themes/Aurora/icons/arrowRight.svg";
 import { MixedLinesChart } from "@/components/charts";
+import { ChatBox } from "@/components/index.ts";
 export const InfoGraphicCenter = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const [isNext, setIsNext] = useState(false);
@@ -24,11 +24,15 @@ export const InfoGraphicCenter = () => {
     }
   };
   return (
-    <div className=" flex w-full flex-col gap-4 ">
+    <div className=" flex w-full flex-col items-center  gap-4 ">
       <div className={`${theme}-graphicinfo-center-section fixed `}>
         {!isNext ? (
-          <div className="relative grid grid-cols-2 justify-center h-[40vh] xl:h-[45vh] 2xl:h-[50vh] w-full pb-3">
-            {/* <img src={Img} className="max-h-[565px]" /> */}
+          <div className=" w-full relative  h-[40vh] xl:h-[45vh] 2xl:h-[50vh]  pb-3">
+            <div className="w-full flex justify-center h-[40vh] xl:h-[45vh] 2xl:h-[50vh]">
+            <img src={Img}  />
+            </div>
+             
+           
             {patientMainInfo.map((item , i) => (
               <div key={i}
                 className={` ${theme}-graphicinfo-patientinfo ${theme}-graphicinfo-patientinfo-${item.name}-position`}
@@ -104,8 +108,12 @@ export const InfoGraphicCenter = () => {
             alt=""
           />
         </div>
+        
       </div>
-      <InfoGraphicInput handleSendMessage={handleSendMessage} />
+      <div className="fixed bottom-4">
+      <ChatBox handleSendMessage={handleSendMessage}/>
+      </div>
+      
     </div>
   );
 };
