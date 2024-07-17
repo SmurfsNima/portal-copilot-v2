@@ -22,19 +22,19 @@
   @apply w-full bg-black-background h-full max-h-[420px] flex border border-t rounded-xl border-main-border flex-col gap-6 p-6;
 }
 .Aurora-graphicinfo-patientinfo {
-  @apply absolute border-2 p-2  border-main-border rounded-full flex justify-center items-center w-[115px] h-[115px]   xl:w-[130px] xl:h-[130px] 2xl:w-[180px] 2xl:h-[180px];
+  @apply absolute border-2 p-2  border-main-border rounded-full flex justify-center items-center w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]   xl:w-[115px] xl:h-[115px] 2xl:w-[130px] 2xl:h-[130px];
 }
 .Aurora-graphicinfo-patientinfo-Nutritions-position {
-  @apply top-5 left-3 xl:top-10 xl:left-10;
+  @apply top-2 left-2 xl:top-5 xl:left-10;
 }
 .Aurora-graphicinfo-patientinfo-Activity-position {
-  @apply bottom-6 left-3 xl:bottom-12 xl:left-10;
+  @apply bottom-4 left-3 xl:bottom-5 xl:left-10;
 }
 .Aurora-graphicinfo-patientinfo-Sleep-position {
-  @apply top-5 right-5  xl:top-10 xl:right-10;
+  @apply top-5 right-5  xl:top-5 xl:right-10;
 }
 .Aurora-graphicinfo-patientinfo-Mind-position {
-  @apply bottom-5 right-5 xl:bottom-10 xl:right-10;
+  @apply bottom-5 right-5 xl:bottom-5 xl:right-10;
 }
 
 .Aurora-graphicinfo-chartCard-container {

@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-table";
 import {FaSort} from "react-icons/fa";
 import { Pationt } from "@/model/index.ts";
+import { Button } from "symphony-ui";
 
 interface TableProps {
     classData:Array<Pationt>
@@ -65,14 +66,14 @@ const Table:React.FC<TableProps> = ({classData}) => {
                     </label>
                     <SearchBox changeHandler={(e: any) => onFilterChange("name", e.target.value)} theme={theme}
                                placeholder="Search for users"></SearchBox>
-                    <button className={`${theme}-Button-primary`}>
+                    <Button theme={theme}>
                         <TbFilterPlus className={"w-5 h-5"}/>
                         Apply Filter
-                    </button>
-                    <button className={`${theme}-Button-primary`}>
+                    </Button>
+                    <Button theme={theme}>
                         <RiUserAddLine className={"w-5 h-5"}/>
                         Add Patient{" "}
-                    </button>
+                    </Button>
                 </div>
                 <div className={`${theme}-Table-container h-[40vh] ${theme}-scrollBar`}>
                     <table
