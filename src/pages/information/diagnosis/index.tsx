@@ -10,8 +10,8 @@ import { Button } from "symphony-ui";
 import { Link } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 import { DoughnutChart } from "@/components/charts";
-import { ChartCard } from "./chartCard";
 import { RightChartCard } from "./RightChartcard";
+import { SmallChartCard } from "@/components/chartCard/smallChartCard";
  const TabsInfo = [
     {
         text: 'All',
@@ -155,7 +155,7 @@ export const Diagnosis = () => {
           </div>
 
           {ChartInfo.map((item, i) => (
-            <ChartCard
+            <SmallChartCard
               active={active}
               setActive={setActive}
               key={i}
@@ -239,9 +239,9 @@ export const Diagnosis = () => {
               </div>
             )}
           </div>
-          <div className="px-6 pt-3 pb-2 bg-black-primary w-full max-w-[492px]  h-full   rounded-2xl border border-main-border">
+          <div className="px-6 pt-3 pb-2 bg-black-primary w-full max-w-[492px]  max-h-[502px]   rounded-2xl border border-main-border">
           <h4 className="font-medium text-primary-text">Related Biomarkers</h4>
-          <div id="copilot-chat" className=" w-full  flex  flex-col items-start justify-start mt-4 gap-4 h-full max-h-[500px] overflow-auto  ">
+          <div id="copilot-chat" className=" w-full  flex  flex-col items-start justify-start mt-4 gap-4 h-full max-h-[445px] overflow-auto  ">
             <RightChartCard  type={active}
             isMeasured={false}
             value={55}

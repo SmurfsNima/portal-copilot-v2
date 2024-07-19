@@ -1,0 +1,38 @@
+.Aurora-smallChartCard-container{
+    @apply  bg-black-primary px-1 xl:px-6  py-3 border border-main-border rounded-2xl flex;
+}
+.Aurora-smallChartCard-container[data-active="true"]{
+   @apply bg-brand-primary-color;
+}
+
+ .Aurora-smallChartCard-title{
+   @apply text-sm xl:text-base text-primary-text font-medium;
+
+ }
+ .Aurora-smallChartCard-title[data-active="true"]{
+    @apply text-black;
+ }
+ .Aurora-smallChartCard-text{
+   @apply text-sm xl:text-lg text-secondary-text;
+ }
+ .Aurora-smallChartCard-text[data-active="true"]{
+    @apply text-black;
+ }
+ .Aurora-normalChartCard-container{
+    @apply bg-black-primary w-full  border rounded-xl border-main-border  px-2  py-1;
+ }
+ .Aurora-normalChartCard-title{
+    @apply text-primary-text font-medium text-xs;
+ }
+ .Aurora-normalChartCard-isMeasured{
+    @apply font-medium text-xs text-red-status;
+ }
+ .Aurora-normalChartCard-isMeasured[data-isMeasured="true"]{
+    @apply  text-brand-primary-color;
+ }
+ .Aurora-normalChartCard-otherTypes-item{
+    @apply border-b cursor-pointer px-2 text-[10px] xl:text-xs text-secondary-text border-main-border ;
+ }
+ .Aurora-normalChartCard-otherTypes-item[data-Active="true"]{
+    @apply text-brand-primary-color   border-brand-primary-color
+ }

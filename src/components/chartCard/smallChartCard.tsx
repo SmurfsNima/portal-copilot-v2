@@ -10,7 +10,7 @@ interface CharCardProps {
   setActive: Dispatch<SetStateAction<any>>;
 }
 // const otherTypes = ['Hb' , 'HCT' , 'WBC' ,'MCHC' , 'MCH' , 'RBC', 'PLT' ]
-export const ChartCard: React.FC<CharCardProps> = ({
+export const SmallChartCard: React.FC<CharCardProps> = ({
   title,
   type = "line",
   Avarage,
@@ -25,7 +25,7 @@ export const ChartCard: React.FC<CharCardProps> = ({
     <div
       onClick={() => setActive(title)}
     data-active ={active===title}
-    className={`${active===title && 'bg-brand-primary-color'} bg-black-primary px-1 xl:px-6  py-3 border border-main-border rounded-2xl flex`}
+    className={`${theme}-smallChartCard-container`}
     >
       <div className=" w-full  flex   flex-col gap-3  ">
         <div className="flex gap-2 items-center">
@@ -38,7 +38,7 @@ export const ChartCard: React.FC<CharCardProps> = ({
 
           <h2
           data-active={active===title}
-           className={`${theme}-biomarker-chartCard-title`}
+           className={`${theme}-smallChartCard-title`}
           >
             {title}
           </h2>
@@ -74,21 +74,21 @@ export const ChartCard: React.FC<CharCardProps> = ({
         <div className="flex flex-col text-center ">
           <h2
              data-active={active===title}
-             className={` ml-[2px] text-secondary-text  ${
-                theme}-biomarker-chartCard-text text-xs`}
+             className={` ml-[2px]  ${
+                theme}-smallChartCard-text text-xs`}
           >
             Avg
           </h2>
           <h2
           data-active={active===title}
             className={` ml-[2px]  ${
-                theme}-biomarker-chartCard-text text-lg`}
+                theme}-smallChartCard-text text-primary-text text-sm 2xl:text-lg`}
           >
             {Avarage}
             <span
           data-active={active===title}
             className={` ml-[2px]  ${
-             theme}-biomarker-chartCard-text text-[10px] text-secondary-text`}
+             theme}-smallChartCard-text text-[10px]`}
           >
             {title === "Temperature"
               ? "oF"
@@ -104,21 +104,21 @@ export const ChartCard: React.FC<CharCardProps> = ({
         <div className="flex  text-center  flex-col">
           <h2
            data-active={active===title}
-             className={` ml-[2px] text-secondary-text  ${
-                theme}-biomarker-chartCard-text text-xs`}
+             className={` ml-[2px] ${
+                theme}-smallChartCard-text text-xs`}
           >
             Current
           </h2>
           <h2
            data-active={active===title}
             className={` ml-[2px]  ${
-                theme}-biomarker-chartCard-text  text-lg`}
+                theme}-smallChartCard-text text-primary-text  text-lg`}
           >
             {current}
             <span
            data-active={active===title}
-            className={` ml-[2px] text-secondary-text  ${
-                theme}-biomarker-chartCard-text text-[10px]`}
+            className={` ml-[2px]   ${
+                theme}-smallChartCard-text text-[10px]`}
           >
             {title === "Temperature"
               ? "oF"

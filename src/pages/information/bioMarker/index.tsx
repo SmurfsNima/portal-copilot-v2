@@ -1,9 +1,9 @@
 import { ChatBox, InfoCard, SearchBox, TabsWrapper } from "@/components";
 import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { ChartCard } from "./chartCard";
-import { LargeChartCard } from "./largeChart";
+import { SmallChartCard } from "@/components/chartCard/smallChartCard";
 import { Button } from "symphony-ui";
+import { NormalChartCard } from "@/components/chartCard/normalChartCard";
 const TabsInfo = [
   {
     text: "All",
@@ -165,7 +165,7 @@ const BioMarker = () => {
           </div>
 
           {ChartInfo.map((item, i) => (
-            <ChartCard
+            <SmallChartCard
               active={active}
               setActive={setActive}
               key={i}
@@ -182,7 +182,7 @@ const BioMarker = () => {
             !active && "hidden"
           }   w-full    flex flex-col gap-5  justify-between max-h-[380px]  2xl:max-h-[600px] 3xl:max-h-full   `}
         >
-          <LargeChartCard
+          <NormalChartCard
             
             type={active}
             isMeasured={false}

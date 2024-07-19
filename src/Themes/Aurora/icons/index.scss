@@ -88,6 +88,10 @@
   mask-position: center;
   @apply w-4 h-4 bg-white;
 }
+.Aurora-icons-arrow-down[data-color= 'green']{
+
+  @apply  bg-brand-primary-color;
+}
 
 .Aurora-icons-Overview {
   mask-image: url(/Themes/Aurora/icons/overview.svg);
