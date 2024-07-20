@@ -4,6 +4,7 @@ import ProtectedRoute from "./Protected";
 import { Information, Login, OverView, PatientList, TimeLine } from "@/pages";
 import BioMarker from "@/pages/information/bioMarker";
 import { Diagnosis } from "@/pages/information/diagnosis";
+import { Intervention } from "@/pages/information/intervention";
 
 const router = createHashRouter([
   {
@@ -30,6 +31,10 @@ const router = createHashRouter([
           {
             path : 'diagnosis',
             element : <Diagnosis></Diagnosis>
+          },
+          {
+            path : 'intervention',
+            element : <Intervention></Intervention>
           },          
 
                
