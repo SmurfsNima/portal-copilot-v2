@@ -88,6 +88,10 @@
   mask-position: center;
   @apply w-4 h-4 bg-white;
 }
+.Aurora-icons-arrow-down[data-color= 'green']{
+
+  @apply  bg-brand-primary-color;
+}
 
 .Aurora-icons-Overview {
   mask-image: url(/Themes/Aurora/icons/overview.svg);
@@ -311,5 +315,68 @@
   mask-repeat: no-repeat;
   mask-position: center;
   @apply w-6 h-6 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-antioxidants{
+  mask-image: url(Themes/Aurora/icons/antioxidants.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-water{
+  mask-image: url(Themes/Aurora/icons/water.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-alcohol{
+  mask-image: url(Themes/Aurora/icons/alcohol.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-exercise{
+  mask-image: url(/Themes/Aurora/icons/exercise.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-yoga{
+  mask-image: url(Themes/Aurora/icons/yoga.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-moon{
+  mask-image: url(Themes/Aurora/icons/moon.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-diet{
+  mask-image: url(Themes/Aurora/icons/diet.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
    ;
 }

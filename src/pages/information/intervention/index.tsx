@@ -10,8 +10,8 @@ import { Button } from "symphony-ui";
 import { Link } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 import { DoughnutChart } from "@/components/charts";
-import { RightChartCard } from "./RightChartcard";
-import { SmallChartCard } from "@/components/chartCard/smallChartCard";
+import { RightChartCard } from "../diagnosis/RightChartcard";
+import { InterventionCard } from "./interventionCard";
  const TabsInfo = [
     {
         text: 'All',
@@ -43,31 +43,64 @@ import { SmallChartCard } from "@/components/chartCard/smallChartCard";
         number: 1
     }
  ]
- const ChartInfo = [
+ const InterventionCardInfo = [
 
     {
        
-        title: 'Cholesterol',
-        type : 'line',
-        Avarage: 99.5 ,
-        current:  96,
+       icon : 'diet' ,
+       title : 'Embrace a Diet Rich in Fiber',
+       text :'Embrace a diet rich in fiber, such as       fruits, vegetables, and whole grains while avoiding simple sugars and       high glycemic index foods. Opt for low-fat dairy and lean meat.' ,
+       buttons : [ 'Diabetes' , 'Blood Pressure']
     },
     {
-        
-        title: 'Diabetes',
-        type : 'linear',
-        Avarage: 99.5 ,
-        current:  96,
-    },
-    {
-        
-        title: 'Blood Pressure',
        
-        Avarage: 99.5 ,
-        current:  96,
+       icon : 'yoga' ,
+       title : 'Practice Yoga or Meditation',
+       text :"Practice stress-reduction techniques       such as yoga or meditation, which can help reduce cortisol levels and       improve insulin resistance.",
+       buttons : [ 'Diabetes' , 'Blood Pressure']
+    
     },
+    {
+       
+       icon : 'moon' ,
+       title : 'Sleep of 7-9 Hours per Night',
+       text :'Ensure adequate sleep of 7-9 hours per night, as poor sleep can disrupt hormones and worsen insulin resistance.' ,
+       buttons : [ 'Diabetes' , 'Blood Pressure']
+
+    },
+    {
+       
+       icon : 'exercise' ,
+       title : 'Exercise Aerobic',
+       text :'Engage in regular aerobic exercises such       as jogging, swimming, or biking, which can help improve lipid profiles by       increasing HDL and lowering LDL cholesterol.' ,
+       buttons : [ 'Cholesterol' ]
+
+    },
+    {
+       
+        icon : 'alcohol' ,
+        title : 'Avoid Alcohol and Heavy Meals',
+        text :'Try to avoid alcohol and heavy meals       close to bedtime, as they can interfere with sleep quality and       potentially influence lipid metabolism negatively.' ,
+        buttons : [ 'Diabetes' , 'Cholesterol']
+     },
+    {
+       
+       icon : 'water' ,
+       title : 'Remember to Drink Water',
+       text :'Increase your water intake to at least 8 glasses daily. Proper hydration is essential for maintaining stable blood pressure and overall health. ' ,
+       buttons : [ 'Diabetes' , 'Cholesterol']
+    },
+    {
+       
+       icon : 'antioxidants' ,
+       title : 'Add Antioxidants to Your Diet',
+       text :'Consume foods high in antioxidants, such as a variety of berries, nuts, and green leafy vegetables. Including these foods in your diet helps protect your cells from damage.' ,
+       buttons : [ 'Diabetes' , 'Blood Pressure']
+    },
+   
+  
  ]
-export const Diagnosis = () => {
+export const Intervention = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const [active, setActive] = useState<string | null>(null);
   const [showDetails, setShowDetails] = useState(true);
@@ -149,21 +182,13 @@ export const Diagnosis = () => {
             >
               <img className={`${theme}-icons-Add`} alt="" />
               <h2 className="text-xs font-medium text-secondary-text">
-                Add New Biomarker
+                Add New Intervention
               </h2>
             </div>
           </div>
 
-          {ChartInfo.map((item, i) => (
-            <SmallChartCard
-              active={active}
-              setActive={setActive}
-              key={i}
-              title={item.title}
-              type={item.type}
-              Avarage={item.Avarage}
-              current={item.current}
-            />
+          {InterventionCardInfo.map((item, i) => (
+           <InterventionCard key={i} icon={item.icon} title={item.title} text={item.text} buttons={item.buttons} active={active} setActive={setActive}  />
           ))}
         </div>
         {active && (
