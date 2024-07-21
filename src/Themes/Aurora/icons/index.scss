@@ -380,3 +380,12 @@
   @apply w-5 h-5 bg-brand-primary-color;
    ;
 }
+.Aurora-icons-tick-circle{
+  mask-image: url(Themes/Aurora/icons/tick-circle.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-primary-color;
+   ;
+}

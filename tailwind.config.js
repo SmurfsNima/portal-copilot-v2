@@ -16,7 +16,7 @@ export default {
         'black-background': '#121212',
         'black-primary': '#1E1E1E',
         'black-secondary': '#272727',
-        'black-third': '#272F2F',
+        'black-third': '#2F2F2F',
         'black-fourth': '#333333',
         // Border
         'main-border': '#353535',
