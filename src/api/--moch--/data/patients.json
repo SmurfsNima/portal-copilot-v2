@@ -1,110 +1,260 @@
 [
     {
-        "id":"1",
-        "name":"Michael Brown",
-        "memberId":"021548461651",
-        "photo":"https://randomuser.me/api/portraits/women/86.jpg",
-        "age":48,
-        "sex":"Male",
-        "weight":56.3,
-        "enroll":"04/25/2024",
-        "state":"Normal",
-        "followUp":"08/09/2024",
-        "heartRate":"51",
-        "pressure":"113/62",
-        "temperature":"36.9",
-        "oxygen":"92",
-        "respiration":"92",
-        "last":"string"        
+        "member_id": 1234,
+        "status": "normal",
+        "name": "Sara",
+        "photo": "https://randomuser.me/api/portraits/women/2.jpg",
+        "age": 30,
+        "sex": "female",
+        "enroll_date": "2024-01-16",
+        "last_followup": "2024-05-11",
+        "biomarkers": {
+            "blood_oxygen": [
+                {
+                    "date": "2024-05-11",
+                    "value": {
+                        "value": 94,
+                        "status": "low"
+                    }
+                }
+            ],
+            "blood_pressure": [
+                {
+                    "date": "2024-05-10",
+                    "value": {
+                        "Low": 62,
+                        "High": 113,
+                        "status": "normal"
+                    }
+                }
+            ],
+            "heart_rate": [
+                {
+                    "date": "2024-05-11",
+                    "value": {
+                        "value": 90,
+                        "status": "high"
+                    }
+                }
+            ],
+            "tempreture": [
+                {
+                    "date": "2024-05-11",
+                    "value": {
+                        "value": 38.2,
+                        "status": "high"
+                    }
+                }
+            ]
+        }
     },
     {
-        "id":"2",
-        "name":"Michael Brown",
-        "memberId":"021548461652",
-        "photo":"https://randomuser.me/api/portraits/women/86.jpg",
-        "age":48,
-        "sex":"Male",
-        "weight":56.3,
-        "enroll":"04/25/2024",
-        "state":"Normal",
-        "followUp":"08/09/2024",
-        "heartRate":"51",
-        "pressure":"113/62",
-        "temperature":"36.9",
-        "oxygen":"92",
-        "respiration":"92",
-        "last":"string"        
+        "member_id": 1235,
+        "status": "normal",
+        "name": "Bob",
+        "photo": "https://randomuser.me/api/portraits/men/1.jpg",
+        "age": 31,
+        "sex": "male",
+        "enroll_date": "2024-02-10",
+        "last_followup": "2024-04-13",
+        "biomarkers": {
+            "blood_oxygen": [
+                {
+                    "date": "2024-04-11",
+                    "value": {
+                        "value": 92,
+                        "status": "low"
+                    }
+                }
+            ],
+            "heart_rate": [
+                {
+                    "date": "2024-04-11",
+                    "value": {
+                        "value": 51,
+                        "status": "low"
+                    }
+                }
+            ],
+            "respiration_rate": [
+                {
+                    "date": "2024-04-13",
+                    "value": {
+                        "value": 54,
+                        "status": "low"
+                    }
+                }
+            ],
+            "tempreture": [
+                {
+                    "date": "2024-04-13",
+                    "value": {
+                        "value": 37.5,
+                        "status": "high"
+                    }
+                }
+            ]
+        }
     },
     {
-        "id":"3",
-        "name":"Michael Brown",
-        "memberId":"021548461653",
-        "photo":"https://randomuser.me/api/portraits/women/86.jpg",
-        "age":48,
-        "sex":"Male",
-        "weight":56.3,
-        "enroll":"04/25/2024",
-        "state":"Normal",
-        "followUp":"08/09/2024",
-        "heartRate":"51",
-        "pressure":"113/62",
-        "temperature":"36.9",
-        "oxygen":"92",
-        "respiration":"92",
-        "last":"string"        
+        "member_id": 1236,
+        "status": "critical",
+        "name": "Lily",
+        "photo": "https://randomuser.me/api/portraits/women/4.jpg",
+
+        "age": 25,
+        "sex": "female",
+        "enroll_date": "2024-01-20",
+        "last_followup": "2024-04-12",
+        "biomarkers": {
+            "blood_oxygen": [
+                {
+                    "date": "2024-02-12",
+                    "value": {
+                        "value": 90,
+                        "status": "low"
+                    }
+                }
+            ],
+            "blood_pressure": [
+                {
+                    "date": "2024-02-12",
+                    "value": {
+                        "Low": 61,
+                        "High": 90,
+                        "status": "normal"
+                    }
+                }
+            ],
+            "respiration_rate": [
+                {
+                    "date": "2024-02-11",
+                    "value": {
+                        "value": 15,
+                        "status": "normal"
+                    }
+                }
+            ],
+            "tempreture": [
+                {
+                    "date": "2024-04-12",
+                    "value": {
+                        "value": 11,
+                        "status": "low"
+                    }
+                }
+            ]
+        }
     },
     {
-        "id":"4",
-        "name":"Michael Brown",
-        "memberId":"021548461654",
-        "photo":"https://randomuser.me/api/portraits/women/86.jpg",
-        "age":48,
-        "sex":"Male",
-        "weight":56.3,
-        "enroll":"04/25/2024",
-        "state":"Normal",
-        "followUp":"08/09/2024",
-        "heartRate":"51",
-        "pressure":"113/62",
-        "temperature":"36.9",
-        "oxygen":"92",
-        "respiration":"92",
-        "last":"string"        
+        "member_id": 1237,
+        "status": "at-risk",
+        "name": "Ross",
+        "photo": "https://randomuser.me/api/portraits/men/5.jpg",
+
+        "age": 35,
+        "sex": "male",
+        "enroll_date": "2024-02-01",
+        "last_followup": "2024-06-12",
+        "biomarkers": {
+            "blood_oxygen": [
+                {
+                    "date": "2024-06-10",
+                    "value": {
+                        "value": 98,
+                        "status": "high"
+                    }
+                }
+            ],
+            "blood_pressure": [
+                {
+                    "date": "2024-06-12",
+                    "value": {
+                        "Low": 70,
+                        "High": 107,
+                        "status": "normal"
+                    }
+                }
+            ],
+            "heart_rate": [
+                {
+                    "date": "2024-06-12",
+                    "value": {
+                        "value": 54,
+                        "status": "low"
+                    }
+                }
+            ],
+            "tempreture": [
+                {
+                    "date": "2024-06-11",
+                    "value": {
+                        "value": 36.2,
+                        "status": "low"
+                    }
+                }
+            ]
+        }
     },
     {
-        "id":"5",
-        "name":"Michael Brown",
-        "memberId":"021548461655",
-        "photo":"https://randomuser.me/api/portraits/women/86.jpg",
-        "age":48,
-        "sex":"Male",
-        "weight":56.3,
-        "enroll":"04/25/2024",
-        "state":"Normal",
-        "followUp":"08/09/2024",
-        "heartRate":"51",
-        "pressure":"113/62",
-        "temperature":"36.9",
-        "oxygen":"92",
-        "respiration":"92",
-        "last":"string"        
+        "member_id": 3947,
+        "status": "at_risk",
+        "name": "Kevin",
+        "photo": "https://randomuser.me/api/portraits/men/6.jpg",
+        "age": 32,
+        "sex": "male",
+        "enroll_date": "2024-07-09",
+        "last_followup": "2024-07-09",
+        "biomarkers": {
+            "Tempreture": [
+                {
+                    "date": "2024-07-09",
+                    "value": {
+                        "value": 37.5
+                    }
+                }
+            ]
+        }
     },
     {
-        "id":"6",
-        "name":"Michael Brown",
-        "memberId":"021548461656",
-        "photo":"https://randomuser.me/api/portraits/women/86.jpg",
-        "age":48,
-        "sex":"Male",
-        "weight":56.3,
-        "enroll":"04/25/2024",
-        "state":"Normal",
-        "followUp":"08/09/2024",
-        "heartRate":"51",
-        "pressure":"113/62",
-        "temperature":"36.9",
-        "oxygen":"92",
-        "respiration":"92",
-        "last":"string"        
-    }                    
+        "member_id": 3948,
+        "status": "at_risk",
+        "name": "Kevin",
+        "photo": "https://randomuser.me/api/portraits/men/6.jpg",
+        "age": 32,
+        "sex": "male",
+        "enroll_date": "2024-07-09",
+        "last_followup": "2024-07-09",
+        "biomarkers": {
+            "Tempreture": [
+                {
+                    "date": "2024-07-09",
+                    "value": {
+                        "value": 37.5
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "member_id": 3949,
+        "status": "at_risk",
+        "name": "Kevin",
+        "photo": "https://randomuser.me/api/portraits/men/6.jpg",
+        "age": 32,
+        "sex": "male",
+        "enroll_date": "2024-07-09",
+        "last_followup": "2024-07-09",
+        "biomarkers": {
+            "Tempreture": [
+                {
+                    "date": "2024-07-09",
+                    "value": {
+                        "value": 37.5
+                    }
+                }
+            ]
+        }
+    }
+
 ]
