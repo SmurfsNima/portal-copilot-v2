@@ -6,42 +6,37 @@ import {
   InfoCard,
   SearchBox
 } from "@/components";
-import { Button } from "symphony-ui";
 import { Link } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
-import { DoughnutChart } from "@/components/charts";
 import { RightChartCard } from "../diagnosis/RightChartcard";
 import { InterventionCard } from "./interventionCard";
+import ProgressCircle from "./progressCircle";
  const TabsInfo = [
     {
         text: 'All',
         path : '',
     },
     {
-        text: 'Genomics',
-        path : '',
-        number: 4,
-    },
-    {
-        text: 'Epigenomics',
-        path : '',
-        number: 0
-    },
-    {
-        text : 'Proteomics',
-        path : '',
-        number : 1
-    },
-    {
-        text: 'Metabolomics',
+        text: 'Nutrition',
         path : '',
         number: 2,
     },
     {
-        text: 'Microbiomics' ,
+        text: 'Mind',
         path : '',
         number: 1
-    }
+    },
+    {
+        text : 'Activity',
+        path : '',
+        number : 1
+    },
+    {
+        text: 'Sleep',
+        path : '',
+        number: 1,
+    },
+  
  ]
  const InterventionCardInfo = [
 
@@ -114,25 +109,9 @@ export const Intervention = () => {
       <div className=" flex    items-center gap-2">
         <SearchBox
           theme="Aurora"
-          placeholder="Quick alphabetical search for biomarkers"
+          placeholder="Quick alphabetical search for interventions"
         />
-        <div className="rounded-xl bg-black-primary border border-main-border flex text-xs text-primary-text">
-          <div className="border-r border-main-border px-4 py-1">
-            <div className="bg-black-secondary py-[10px] px-6 rounded-2xl">
-              Critical
-            </div>
-          </div>
-          <div className="border-r border-main-border px-4 py-1">
-            <div className="bg-black-secondary rounded-2xl py-[10px] px-6">
-              Low
-            </div>
-          </div>
-          <div className="px-4 py-1">
-            <div className="bg-black-secondary rounded-2xl py-[10px] px-6">
-              Medium
-            </div>
-          </div>
-        </div>
+        
       </div>
       <TabsWrapper TabsInfo={TabsInfo} />
       <div className="flex   w-full gap-5">
@@ -141,7 +120,7 @@ export const Intervention = () => {
           className={`w-full ${
             active
               ? "grid-cols-1  max-w-[330px] gap-10 h-full  "
-              : " grid-cols-4"
+              : " grid-cols-3  xl:grid-cols-4"
           } grid  gap-3  `}
         >
           <div
@@ -150,7 +129,7 @@ export const Intervention = () => {
             }  gap-5 w-full `}
           >
             <div
-              onClick={() => setActive("chat")}
+              
               className={` ${
                 active && "hidden"
               } cursor-pointer flex justify-center items-center gap-2 bg-brand-primary-color rounded-xl text-sm font-medium px-8 py-4`}
@@ -167,7 +146,7 @@ export const Intervention = () => {
 
             <div
               onClick={() => setActive(null)}
-              className={` bg-black-primary rounded-xl flex items-center justify-center px-5  ${
+              className={` bg-black-primary cursor-pointer rounded-xl flex items-center justify-center px-5  ${
                 active ? "" : "hidden"
               }`}
             >
@@ -194,27 +173,39 @@ export const Intervention = () => {
         {active && (
             <div className=" w-full flex flex-col gap-3">
             <div className="flex  gap-6 w-full justify-between  ">
-          <div className="px-6 pt-6 pb-2 bg-black-primary w-full h-fit max-h-[556px]    rounded-2xl border border-main-border">
-            <h4 className="font-medium text-primary-text">Diagnosis Details</h4>
-            <div className="flex justify-center gap-3 mt-5">
-              <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-orange-status ">
-                <div className=" bg-black-primary rounded-2xl px-3 py-1">
-                  160mg/dl
+          <div className="px-6 pt-6 pb-2 bg-black-primary w-full h-fit    rounded-2xl border border-main-border">
+            <h4 className="font-medium text-primary-text">Intervention Details</h4>
+            <div className="flex justify-center  gap-3 mt-5">
+              <div className="flex flex-col items-center justify-between px-2 py-4 gap-2 rounded-lg bg-black-third text-orange-status ">
+                <div className=" bg-black-primary text-sm rounded-2xl px-4 py-2">
+                  Nutrition
                 </div>
-                <h6 className="text-xs font-medium">Patient Value</h6>
+                <h6 className="text-xs font-medium">Category</h6>
               </div>
-              <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-brand-primary-color ">
-                <div className=" bg-black-primary rounded-2xl px-3 py-1">
-                  160mg/dl
+              <div className="flex flex-col items-center justify-between text-sm  px-2 py-4 gap-2 rounded-lg bg-black-third text-brand-primary-color ">
+                <div className=" bg-black-primary rounded-2xl  px-4 py-2">
+                  Diabetes
                 </div>
-                <h6 className="text-xs font-medium">Patient Value</h6>
-              </div>
-              <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-brand-secondary-color ">
-                <div className=" bg-black-primary rounded-2xl px-3 py-1">
-                  160mg/dl
+                <div className=" bg-black-primary rounded-2xl px-3 py-2 text-nowrap">
+                  Blood Pressure
                 </div>
-                <h6 className="text-xs font-medium">Patient Value</h6>
+                <h6 className="text-xs font-medium">Affecting Risks</h6>
               </div>
+              <div className="flex flex-col text-sm items-center justify-between px-2 py-4 gap-2 rounded-lg bg-black-third text-brand-secondary-color ">
+                <div className=" bg-black-primary rounded-2xl px-3 py-2">
+                Microbiome
+                </div>
+                <div className=" bg-black-primary rounded-2xl px-5 py-[6px]">
+                Chrono
+                </div>
+                <h6 className="text-xs font-medium">Affecting Aging</h6>
+              </div>
+            </div>
+            <div className="mt-4  bg-black-third rounded-2xl border text-primary-text border-main-border p-3">
+                <h5 className="text-sm font-medium">Description</h5>
+                <p className="mt-4 text-xs font-normal">Use at least 500 gr fruits, vegetables in a day</p>
+
+
             </div>
             <div className="text-secondary-text flex items-center gap-5 my-4">
               Show more details{" "}
@@ -230,26 +221,22 @@ export const Intervention = () => {
               <div className="flex flex-col gap-4 text-primary-text">
                 <div className="w-full h-[1px] rounded-full bg-secondary-text" />
                 <div className="w-full flex justify-between  items-center">
-                  Diagnosis Type{" "}
-                  <div className="bg-brand-primary-color px-3 py-1 rounded-2xl text-black-background text-xs font-normal">
-                    Metabolomics
-                  </div>
-                </div>
-                <div className="w-full flex justify-between  items-center">
-                  Diagnosis Severity{" "}
-                  <div className="bg-red-status px-3 py-1 rounded-2xl text-black-background text-xs font-normal">
-                    Critical
-                  </div>
-                </div>
-                <div className="w-full flex justify-between  items-center">
-                  Date of Diagnosis{" "}
-                  <div className="bg-black-third px-3 py-1 rounded-2xl text-primary-text text-xs font-normal">
+                 Created on
+                 <div className="bg-black-third px-3 py-1 rounded-2xl text-primary-text text-xs font-normal">
                     17 May, 2024
                   </div>
+                 
                 </div>
                 <div className="w-full flex justify-between  items-center">
+                 TimeLeft
+                 <div className="bg-black-third px-3 py-1 rounded-2xl text-primary-text text-xs font-normal">
+                    1 Day
+                  </div>                  
+                </div>
+                
+                <div className="w-full flex justify-between  items-center">
                   <div className="flex items-center gap-4">
-                    Diagnosis Severity{" "}
+                  The diagnostician
                     <Link to="">
                       <FiExternalLink></FiExternalLink>
                     </Link>{" "}
@@ -258,26 +245,26 @@ export const Intervention = () => {
                     Dr.Jenny Wilson
                   </div>
                 </div>
-                <div className="flex justify-center  w-full ">
-                  <DoughnutChart />
+                <div className="flex justify-center  w-full text-white ">
+                  <ProgressCircle progress={89}></ProgressCircle>
                 </div>
               </div>
             )}
           </div>
-          <div className="px-6 pt-3 pb-2 bg-black-primary w-full max-w-[492px]  max-h-[502px]   rounded-2xl border border-main-border">
-          <h4 className="font-medium text-primary-text">Related Biomarkers</h4>
-          <div id="copilot-chat" className=" w-full  flex  flex-col items-start justify-start mt-4 gap-4 h-full max-h-[445px] overflow-auto  ">
-            <RightChartCard  type={active}
+          <div className="px-6 pt-3 pb-2 bg-black-primary w-full max-w-[492px]     rounded-2xl border border-main-border">
+          <h4 className="font-medium text-primary-text">Related Diagnosis</h4>
+          <div id="copilot-chat" className=" w-full  flex  flex-col items-start justify-start mt-4 gap-4 h-full max-h-[570px] overflow-auto  ">
+            <RightChartCard  type={'Heart Rate'}
             isMeasured={false}
             value={55}
             status="active"/>
             <RightChartCard  type={'Diabetes'}
             isMeasured={false}
-            value={55}
+            value={25}
             status="active"/>
             <RightChartCard  type={'Blood Pressure'}
             isMeasured={false}
-            value={55}
+            value={43}
             status="active"/>
           </div>
 
@@ -294,23 +281,11 @@ export const Intervention = () => {
                     AI-Copilot
                   </h2>
                 </div>
-                <div className=" mt-6 flex w-full justify-between items-center  ">
-                  <h5 className="text-secondary-text text-sm font-normal">
-                    5 Biomarkers need updated information. Send notification to
-                    patient?
-                  </h5>
-                  <div className="flex gap-3 items-center  ">
-                    <Button theme={theme+'-secondary'}>
-                      <img className={`${theme}-icons-openbook`} alt="" />
-                      Learn more
-                    </Button>
-                    <Button theme={theme} onClick={()=>setActive("chat")}>
-                      Get started
-                      <img
-                       className={`${theme}-icons-arrow-right`}
-                      />
-                    </Button>
-                  </div>
+                <div className=" mt-6 flex w-full gap-1 items-center text-sm font-normal text-secondary-text  ">
+                    <img className={`${theme}-icons-tick-circle`} alt="" />
+
+                 There is nothing to assist!
+                  
                 </div>
               </div>
             )

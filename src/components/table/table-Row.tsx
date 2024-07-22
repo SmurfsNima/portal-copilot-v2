@@ -51,15 +51,16 @@ export const TableRow: FC<TableRowProps> = ({
             <tr className="text-white space-y-7 ">
 
                 <td
-                    className={`${theme}-Table-td text-xs flex items-center gap-3 py-2 pl-2 pr-10 text-white`}>
+                    className={`${theme}-Table-td`}>
                     <img className="w-10 h-10 border rounded-full" src={imageSrc}
                          alt="Jese image"/>
-                    <div className="">
-                        <div className="font-semibold text-nowrap">{patient}</div>
-                    </div>
-                    <Link to='infoGraphic'>
-                        <FiExternalLink/>
+                    <div className="flex items-center">
+                       {patient}
+                        <Link  to={`/information`}>
+                        <FiExternalLink></FiExternalLink>
                     </Link>
+                    </div>
+                  
                 </td>
                 <td className={`${theme}-Table-td`}>
                     {memberId}

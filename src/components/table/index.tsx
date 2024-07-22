@@ -77,7 +77,7 @@ const Table:React.FC<TableProps> = ({classData}) => {
                 </div>
                 <div className={`${theme}-Table-container h-[40vh] ${theme}-scrollBar`}>
                     <table
-                        className={`${theme}-table  ${theme}-scrollBar`}>
+                        className={`${theme}-table  ${theme}-scrollBar w-full`}>
                         <thead className="text-xs text-gray-700  ">
                         {table.getHeaderGroups().map((headerGroup) => {
                             return (
