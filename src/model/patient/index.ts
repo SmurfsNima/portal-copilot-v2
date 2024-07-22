@@ -1,11 +1,11 @@
-import { PationtInformation, Biomarkers } from "@/types";
+import { PationtInformation, biomarker} from "@/types";
 
 class Pationt {
-    private biomarkers: Biomarkers = {}
+    private biomarkers: biomarker[] = []
     constructor(public information:PationtInformation){
 
     }
-    public setBiomarkers(biomarkers:Biomarkers){
+    public setBiomarkers(biomarkers:biomarker[]){
         this.biomarkers = biomarkers
     }
     public getBiomarkers(){

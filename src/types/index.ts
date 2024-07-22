@@ -8,7 +8,7 @@ interface PationtInformation {
   status: "critical" | "normal" | "at-risk";
   enroll_date: string;
   last_followup: string;
-  biomarkers: Biomarkers;
+  biomarkers: biomarker[];
   // status:'normal'|'low'|'high'
 
   // heart_rate:string
@@ -23,15 +23,15 @@ interface MeasurementValue {
   Low?: number;
   High?: number;
 }
-interface Measurement {
+interface biomarker {
   date: string;
   value: MeasurementValue;
 }
-interface Biomarkers {
-  blood_oxygen?: Measurement[];
-  blood_pressure?: Measurement[];
-  heart_rate?: Measurement[];
-  temperature?: Measurement[];
-}
+// interface Biomarkers {
+//   blood_oxygen?: Measurement[];
+//   blood_pressure?: Measurement[];
+//   heart_rate?: Measurement[];
+//   temperature?: Measurement[];
+// }
 
-export type { PationtInformation, Biomarkers };
+export type { PationtInformation, biomarker };

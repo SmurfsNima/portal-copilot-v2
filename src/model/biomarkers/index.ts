@@ -1,9 +1,9 @@
-import {  Biomarkers } from "@/types";
+import {  biomarker } from "@/types";
 
 class Biomarker  {
 
 
-  constructor( public data: Biomarkers) {
+  constructor( public information: biomarker) {
   }
 }
 
