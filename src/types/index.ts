@@ -17,15 +17,17 @@ interface PationtInformation {
   // oxygen:string
   // respiration_rate:string
 }
-interface MeasurementValue {
-  value: number;
+export interface Measurement {
+  date: string;
+  value: number | {
+    value?:number
   status?: "low" | "normal" | "high";
   Low?: number;
   High?: number;
+  }
 }
 interface biomarker {
-  date: string;
-  value: MeasurementValue;
+  [key: string]: Measurement[];
 }
 // interface Biomarkers {
 //   blood_oxygen?: Measurement[];

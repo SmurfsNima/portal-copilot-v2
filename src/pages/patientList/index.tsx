@@ -5,7 +5,7 @@ import { useConstructor } from "@/help";
 import { Pationt } from "@/model";
 import Biomarker from "@/model/biomarkers";
 // import Biomarker from "@/model/biomarkers";
-import {  biomarker} from "@/types";
+import { biomarker } from "@/types";
 import { useState } from "react";
 // import NumberBox from "@/components/numberBox/numberBox";
 import { useSelector } from "react-redux";
@@ -19,16 +19,17 @@ const PatientList = () => {
     Application.getPatients().then((res) => {
       console.log(res);
       const resolved = res.data.map((el: any) => {
-        const biomarkers = el.biomarkers.map((bio:biomarker)=>{
-            return new Biomarker(bio)
-        })
+        const biomarkers = el.biomarkers.map((bio: biomarker) => {
+          return new Biomarker(bio);
+        });
 
         const patient = new Pationt({
-       ...el
+          ...el,
         });
 
         patient.setBiomarkers(biomarkers);
         console.log(patient);
+
         return patient;
       });
       setPatients(resolved);
