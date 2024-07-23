@@ -2,7 +2,7 @@ import {FC} from "react";
 
 interface BadgeProps {
     // color: string;
-    status:'Normal'|'At-Risk'|'Critical'
+    status:'normal'|'at-risk'|'critical' | undefined
     theme:string;
     children?: React.ReactNode;
 }

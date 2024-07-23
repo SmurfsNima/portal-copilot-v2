@@ -1,12 +1,12 @@
-.Aurora-Badge-container{
-  @apply text-center rounded-xl py-1 px-3 text-xs w-fit text-white text-nowrap w-full
+.Aurora-Badge-container {
+  @apply text-center rounded-xl py-1 px-3 text-xs w-fit text-black text-nowrap w-full;
 }
-.Aurora-Badge-container[data-status="At-Risk"]{
-  @apply bg-[#FBAD37]
+.Aurora-Badge-container[data-status="at_risk"] {
+  @apply bg-[#FBAD37];
 }
-.Aurora-Badge-container[data-status="Normal"]{
-  @apply bg-[#06C78D]
+.Aurora-Badge-container[data-status="normal"] {
+  @apply bg-[#06C78D];
 }
-.Aurora-Badge-container[data-status="Critical"]{
-  @apply bg-[#FC5474]
+.Aurora-Badge-container[data-status="critical"] {
+  @apply bg-[#FC5474];
 }
