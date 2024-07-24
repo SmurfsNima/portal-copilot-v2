@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import border from "../../assets/images/profile-img-border.svg";
-import profille from "../../assets/images/profile-img.svg";
 import { BiologicalCardInfo, MolecularCardInfo } from "./Data";
 import DualProgressCircle from "./dualProgressCircle";
 import ProgressCircle from "./progressCircle";
