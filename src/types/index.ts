@@ -1,7 +1,7 @@
 interface PationtInformation {
   name: string;
   photo: string;
-  member_id: string;
+  member_id: number;
   age: number;
   sex: "male" | "female";
   // weight : number ,
