@@ -14,14 +14,17 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { FaSort } from "react-icons/fa";
-import { Pationt } from "@/model/index.ts";
+// import { Pationt } from "@/model/index.ts";
 import { Button } from "symphony-ui";
 import { useEffect, useState } from "react";
+import { Pationt } from "@/model/index.ts";
 interface TableProps {
   classData: Array<Pationt>;
 }
 
 const Table: React.FC<TableProps> = ({ classData }) => {
+  
+  
   const [data, setData] = useState(classData);
   useEffect(() => {
     setData(classData);
@@ -55,7 +58,6 @@ const Table: React.FC<TableProps> = ({ classData }) => {
           value,
         })
     );
-  console.log(data);
 
   return (
     <div className={" flex items-center justify-center gap-3 flex-col"}>

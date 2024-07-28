@@ -64,7 +64,7 @@ export const SmallChartCard: React.FC<CharCardProps> = ({
        
         <div className=" w-[180px] h-[100px]">
           {title === "Blood Pressure" ? (
-            <MixedLinesChart active={active === title} />
+            <MixedLinesChart  active={active === title} />
           ) : (
             <LineChart active={active === title} model={type} />
           )}

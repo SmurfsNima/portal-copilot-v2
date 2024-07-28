@@ -1,15 +1,15 @@
 const resolveRespiration = (respiration:string) => {
     const respirationValue = Number(respiration)
     if(respirationValue> 50){
-        return 'Normal'
+        return 'normal'
     }
     if(respirationValue>30 && respirationValue<=50){
-        return 'At-Risk'
+        return 'at-risk'
     }
     if(respirationValue<=30){
-        return 'Critical'
+        return 'critical'
     }    
-    return 'Critical'
+    return 'critical'
 }
 
 export {resolveRespiration}
