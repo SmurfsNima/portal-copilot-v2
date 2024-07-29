@@ -21,7 +21,7 @@ ChartJS.register(
   annotationPlugin
 );
 interface LineChartProps {
-  model: string;
+  model?: string;
   active ?: boolean;
   dashed?: boolean
    ChartData: {

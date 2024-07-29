@@ -23,6 +23,8 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
   status,
   chartData,
 }) => {
+  console.log(chartData);
+  
   const [active, setActive] = useState("HCT");
   const theme = useSelector((state: any) => state.theme.value.name);
   if (type === "Blood Pressure") {

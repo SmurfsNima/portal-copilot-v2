@@ -6,14 +6,14 @@ import { Pationt } from "@/model";
 import Biomarker from "@/model/biomarkers";
 // import Biomarker from "@/model/biomarkers";
 import { biomarker } from "@/types";
-import { useState } from "react";
+import { useState , useContext } from "react";
 // import NumberBox from "@/components/numberBox/numberBox";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-
+import { AppContext } from "@/store/app";
 const PatientList = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
-  const [patients, setPatients] = useState<Array<Pationt>>([]);
+  const { patients, addPatient, savePatientList } = useContext(AppContext);
   const [reports, setReports] = useState<Array<any>>([]);
   useConstructor(() => {
     Application.getPatients().then((res) => {
@@ -29,10 +29,11 @@ const PatientList = () => {
 
         patient.setBiomarkers(biomarkers);
         console.log(patient);
+        addPatient(patient);
 
         return patient;
       });
-      setPatients(resolved);
+      savePatientList(resolved);
     });
 
     Application.getReports().then((res) => {
