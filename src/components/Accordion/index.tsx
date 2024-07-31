@@ -43,7 +43,7 @@ const Accordion:React.FC<AccordionProps> = ({title,children}) => {
     const contentRef = useRef<HTMLDivElement | null>(null);
     return (
         <>
-            <div data-isActive={isActive} onClick={handleClick} className={`${theme}-Accordion-container`}>
+            <div data-isActive={isActive} onClick={handleClick} className={`${theme}-Accordion-container `}>
                 <div className="flex items-center gap-1">
                 <h2 className={`${theme}-Accordion-text`}>{title}</h2>
                 {/* <span className={`${theme}-graphicinfo-btn-number ${!number && "hidden"}`}>
@@ -55,12 +55,17 @@ const Accordion:React.FC<AccordionProps> = ({title,children}) => {
             <div
                 ref={contentRef}
                 style={{ height }}
-                className="overflow-hidden transition-height duration-500 ease-in-out"
+                className=" transition-height duration-500 ease-in-out"
                 onTransitionEnd={handleTransitionEnd}
             >
-                <div className={`${theme}-Accordion-list-container`}>
-                    {children}
-                </div>
+                {
+                    isActive && (
+                        <div className={`${theme}-Accordion-list-container `}>
+                        {children}
+                    </div>
+                    )
+                }
+               
             </div>            
         </>
     )

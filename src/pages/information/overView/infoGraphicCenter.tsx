@@ -5,7 +5,6 @@ import { PatientInfo } from "./patientInfo.tsx";
 import { useSelector } from "react-redux";
 import { useState ,} from "react";
 import ArrowRight from "/public/Themes/Aurora/icons/arrowRight.svg";
-import { MixedLinesChart } from "@/components/charts";
 import { ChatBox } from "@/components/index.ts";
 export const InfoGraphicCenter = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -84,9 +83,9 @@ export const InfoGraphicCenter = () => {
               changes, and appropriate medical interventions are key to reducing
               the risks and maintaining overall health.
             </div>
-            <div className=" my-3  rounded-xl bg-black-secondary border border-main-border px-3 py-2 w-full max-h-[300px]">
+            {/* <div className=" my-3  rounded-xl bg-black-secondary border border-main-border px-3 py-2 w-full max-h-[300px]">
               <MixedLinesChart active={false} />
-            </div>
+            </div> */}
             {messages.map((message , index)=>(
               <div key={index} className="bg-black-secondary text-secondary-text p-2 mb-2 rounded-xl">
                 {message.content}

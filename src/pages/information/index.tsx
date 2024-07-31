@@ -11,7 +11,7 @@ const Information = () => {
     navigate(path);
   };
   return (
-    <div className=" bg-black-background  h-fit min-h-[100vh] flex flex-col justify-start items-center px-5 ">
+    <div className=" bg-black-background  h-fit min-h-[100vh] overflow-hidden flex flex-col justify-start items-center px-5 ">
       <div className="flex fixed z-10 justify-center bg-black-background w-full">
         <div className=" w-full  flex gap-3 my-6 px-16">
           <Link to={"/"}>

@@ -255,17 +255,21 @@ export const Intervention = () => {
           <h4 className="font-medium text-primary-text">Related Diagnosis</h4>
           <div id="copilot-chat" className=" w-full  flex  flex-col items-start justify-start mt-4 gap-4 h-full max-h-[570px] overflow-auto  ">
             <RightChartCard  type={'Heart Rate'}
-            isMeasured={false}
-            value={55}
-            status="active"/>
+             chartData={{
+              dates : ["4am" , "6am" , "8am"],
+              values : [78,82,76,]
+            }}
+            />
             <RightChartCard  type={'Diabetes'}
-            isMeasured={false}
-            value={25}
-            status="active"/>
-            <RightChartCard  type={'Blood Pressure'}
-            isMeasured={false}
-            value={43}
-            status="active"/>
+              chartData={{
+                dates : ["4am" , "6am" , "8am"],
+                values : [78,82,76,]
+              }}/>
+            <RightChartCard  type={'Cholesterol'}
+          chartData={{
+            dates : ["4am" , "6am" , "8am"],
+            values : [78,82,76,]
+          }}/>
           </div>
 
           </div>

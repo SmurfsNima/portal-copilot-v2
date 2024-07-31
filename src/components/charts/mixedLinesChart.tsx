@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef , useMemo} from "react";
 import { Line } from "react-chartjs-2";
 import annotationPlugin from "chartjs-plugin-annotation";
 
@@ -26,17 +26,27 @@ ChartJS.register(
   annotationPlugin
 );
 interface MixedLinesChartProps{
-  active : boolean;
+  active?: boolean;
+  ChartData: {
+    dates: string[];
+    lowValues: number[];
+    highValues: number[];
+  };
 }
- export const MixedLinesChart : React.FC<MixedLinesChartProps> = ({active}) => {
+ export const MixedLinesChart : React.FC<MixedLinesChartProps> = ({active , ChartData}) => {
   const chartRef = useRef<ChartJS<"line">>(null);
+  console.log(ChartData);
+  const flattenArray = (arr: any[]) => arr.reduce((acc, val) => acc.concat(val), []);
 
+  const flattenedDates = useMemo(() => flattenArray(ChartData.dates), [ChartData.dates]);
+  const flattenedLowValues = useMemo(() => flattenArray(ChartData.lowValues), [ChartData.lowValues]);
+  const flattenedHighValues = useMemo(() => flattenArray(ChartData.highValues), [ChartData.highValues]);
   const data = {
-    labels: ["2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10 ", "11 "],
+    labels: flattenedDates,
     datasets: [
       {
         label: "SPB",
-        data: [140, 130, 135, 145, 138, 130, 135, 140, 130, 140],
+        data: flattenedLowValues,
         borderColor: "blue",
         borderWidth: 1.5,
         pointBackgroundColor: "blue",
@@ -50,7 +60,7 @@ interface MixedLinesChartProps{
       },
       {
         label: "DPB",
-        data: [90, 85, 88, 92, 90, 85, 88, 90, 85, 88],
+        data: flattenedHighValues,
         borderColor: "red",
         borderWidth: 1.5,
         pointBackgroundColor: "red",

@@ -21,24 +21,30 @@ ChartJS.register(
   annotationPlugin
 );
 interface LineChartProps {
-  model: string;
-  active : boolean;
+  model?: string;
+  active ?: boolean;
   dashed?: boolean
+   ChartData: {
+    dates: string[];
+    values: number[];
+  };
   
 }
- export const LineChart: React.FC<LineChartProps> = ({ model , active  , dashed}) => {
+ export const LineChart: React.FC<LineChartProps> = ({ model , active  , dashed , ChartData}) => {
   const chartRef = useRef<ChartJS<"line">>(null);
-  const data = useMemo(() => [5, 5.8, 3, 5, 3, 3.3], []);
-  const xData = useMemo(
-    () => ["01am", "02am", "03am", "04am", "05am", "06am"],
-    []
-  );
-  const chartData = useMemo(
+
+  const flattenArray = (arr: any[]) => [].concat(...arr);
+  const data = useMemo(() => flattenArray(ChartData.values), [ChartData.values]);
+  const xData = useMemo(() => flattenArray(ChartData.dates), [ChartData.dates]);
+
+  
+  
+  const formattedChartData = useMemo(
     () => ({
       labels: xData,
       datasets: [
         {
-          label: "bpm",
+          label: "",
           data: data,
           borderColor: active ? "#1E1E1" : "#00FFFF",
           borderWidth: 2,
@@ -57,9 +63,8 @@ interface LineChartProps {
         },
       ],
     }),
-    [data, xData, model , active]
+    [data, xData, model, active]
   );
-
   useEffect(() => {
     if (model === "linear" || model === "area") {
       const chart = chartRef.current;
@@ -79,7 +84,7 @@ interface LineChartProps {
         }
       }
     }
-  }, [chartData, model]);
+  }, [formattedChartData, model]);
 
   const lineChartOptions: ChartOptions<"line"> = useMemo(() => {
     const plugins: ChartOptions<"line">["plugins"] = {
@@ -119,7 +124,7 @@ interface LineChartProps {
                maxRotation: 0,
             minRotation: 0,
             autoSkip: true,
-            maxTicksLimit: 5, // Adjust this
+            maxTicksLimit: 5,
             font : {
               size : 10,
             }
@@ -151,10 +156,11 @@ interface LineChartProps {
     };
   }, [model , active]);
 
+
   return (
     
   <div className="w-full h-full">
-     <Line ref={chartRef} data={chartData} options={lineChartOptions} />
+     <Line ref={chartRef} data={formattedChartData} options={lineChartOptions} />
    </div>
      
   )

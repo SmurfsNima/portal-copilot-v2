@@ -1,4 +1,4 @@
-import {  biomarker } from "@/types";
+import{ biomarker } from "@/types";
 
 class Biomarker  {
 

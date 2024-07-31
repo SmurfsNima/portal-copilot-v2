@@ -16,6 +16,11 @@ interface TableRowProps {
   status: "critical" | "normal" | "at-risk";
   enroll_date: string;
   last_followup: string;
+  heart_rate: number;
+  blood_pressure: number;
+  temperatue: number;
+  blood_oxygen: number;
+  respiration_rate: string;
   biomarkers: biomarker[];
 }
 export const TableRow: FC<TableRowProps> = ({
