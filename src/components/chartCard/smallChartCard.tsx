@@ -7,8 +7,8 @@ interface ChartData {
   values: number[] | { Low: number[]; High: number[] };
 }
 interface ChartCardProps {
-  type: null | string;
-  isMeasured: boolean;
+  type: string | null;
+  isMeasured?: boolean;
   status?: string;
   othersTypes?: string[];
   chartData: ChartData;
@@ -24,6 +24,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
   chartData
   
 }) => {
+console.log(chartData);
 
   
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -159,7 +160,7 @@ console.log(lowHighValues);
             className={` ml-[2px]  ${
                 theme}-smallChartCard-text text-primary-text text-sm 2xl:text-lg`}
           >
-            {averageValue}
+            {Number(averageValue).toFixed()}
             <span
           data-active={active===type}
             className={` ml-[2px]  ${

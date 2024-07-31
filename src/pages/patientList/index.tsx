@@ -5,12 +5,13 @@ import { useConstructor } from "@/help";
 import { Pationt } from "@/model";
 import Biomarker from "@/model/biomarkers";
 // import Biomarker from "@/model/biomarkers";
-import { biomarker } from "@/types";
+import { biomarker, diagnosis } from "@/types";
 import { useState , useContext } from "react";
 // import NumberBox from "@/components/numberBox/numberBox";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "@/store/app";
+import Diagnosis from "@/model/diagnosis";
 const PatientList = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const { patients, addPatient, savePatientList } = useContext(AppContext);
@@ -22,12 +23,16 @@ const PatientList = () => {
         const biomarkers = el.biomarkers.map((bio: biomarker) => {
           return new Biomarker(bio);
         });
+        const diagnosis = el.diagnosis.map((diagnosis: diagnosis)=>{
+          return new Diagnosis(diagnosis)
+        })
 
         const patient = new Pationt({
           ...el,
         });
 
         patient.setBiomarkers(biomarkers);
+        patient.setDiagnosis(diagnosis)
         console.log(patient);
         addPatient(patient);
 

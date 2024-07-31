@@ -5,7 +5,6 @@ import { PatientInfo } from "./patientInfo.tsx";
 import { useSelector } from "react-redux";
 import { useState ,} from "react";
 import ArrowRight from "/public/Themes/Aurora/icons/arrowRight.svg";
-import { MixedLinesChart } from "@/components/charts";
 import { ChatBox } from "@/components/index.ts";
 export const InfoGraphicCenter = () => {
   const theme = useSelector((state: any) => state.theme.value.name);

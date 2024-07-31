@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect , useContext } from "react";
 import { useSelector } from "react-redux";
 
 import {
@@ -7,11 +7,13 @@ import {
   SearchBox
 } from "@/components";
 import { Button } from "symphony-ui";
-import { Link } from "react-router-dom";
-import { FiExternalLink } from "react-icons/fi";
+import { useParams } from "react-router-dom";
 import { DoughnutChart } from "@/components/charts";
 import { RightChartCard } from "./RightChartcard";
 import { SmallChartCard } from "@/components/chartCard/smallChartCard";
+import { Pationt } from "@/model";
+import { AppContext } from "@/store/app";
+
  const TabsInfo = [
     {
         text: 'All',
@@ -43,38 +45,25 @@ import { SmallChartCard } from "@/components/chartCard/smallChartCard";
         number: 1
     }
  ]
- const ChartInfo = [
-
-    {
-       
-        title: 'Cholesterol',
-        type : 'line',
-        Avarage: 99.5 ,
-        current:  96,
-    },
-    {
-        
-        title: 'Diabetes',
-        type : 'linear',
-        Avarage: 99.5 ,
-        current:  96,
-    },
-    {
-        
-        title: 'Blood Pressure',
-       
-        Avarage: 99.5 ,
-        current:  96,
-    },
- ]
+ 
 export const Diagnosis = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
+  const { id } = useParams<{ id: string }>();
+  const [patient, setPatient] = useState<Pationt | undefined>(undefined);
+const {  getPatientById } = useContext(AppContext);
+useEffect(() => {
+  const patient = getPatientById(Number(id));
+  setPatient(patient);
+}, [id]);
   const [active, setActive] = useState<string | null>(null);
   const [showDetails, setShowDetails] = useState(true);
 
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
+  const activeDiagnosis = patient?.information.diagnosis.find(diagnosis => diagnosis.name === active);
+  const relatedDiagnoses = patient?.information.diagnosis.filter(diagnosis => diagnosis.name !== active);
+
   return (
     <div className=" w-full h-full flex flex-col  overflow-hidden  gap-3 ">
       <InfoCard></InfoCard>
@@ -154,17 +143,25 @@ export const Diagnosis = () => {
             </div>
           </div>
 
-          {ChartInfo.map((item, i) => (
+          {patient?.information.diagnosis.map((item, i) => {
+            console.log({  dates : item.data.date,
+              values : item.data.value.value});
+            
+            return(
             <SmallChartCard
               active={active}
               setActive={setActive}
               key={i}
-              title={item.title}
-              type={item.type}
-              Avarage={item.Avarage}
-              current={item.current}
+              type={item.name}
+              
+              chartData={{
+                dates : item.data.date,
+                values : item.data.value.value
+              }}
+             
             />
-          ))}
+            )
+})}
         </div>
         {active && (
             <div className=" w-full flex flex-col gap-3">
@@ -174,21 +171,21 @@ export const Diagnosis = () => {
             <div className="flex justify-center gap-3 mt-5">
               <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-orange-status ">
                 <div className=" bg-black-primary rounded-2xl px-3 py-1">
-                  160mg/dl
+                  {activeDiagnosis?.data.patient_value}mg/dl
                 </div>
                 <h6 className="text-xs font-medium">Patient Value</h6>
               </div>
               <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-brand-primary-color ">
-                <div className=" bg-black-primary rounded-2xl px-3 py-1">
-                  160mg/dl
+                <div className=" bg-black-primary rounded-2xl px-3 py-1 text-sm text-nowrap">
+                  {`${activeDiagnosis?.data.normal_range[0]}-${activeDiagnosis?.data.normal_range[1]}`} mg/dl
                 </div>
-                <h6 className="text-xs font-medium">Patient Value</h6>
+                <h6 className="text-xs font-medium">Normal Range</h6>
               </div>
               <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-brand-secondary-color ">
                 <div className=" bg-black-primary rounded-2xl px-3 py-1">
-                  160mg/dl
+                  {activeDiagnosis?.data.avg_age_group_value}mg/dl
                 </div>
-                <h6 className="text-xs font-medium">Patient Value</h6>
+                <h6 className="text-xs font-medium">Avg Age Group</h6>
               </div>
             </div>
             <div className="text-secondary-text flex items-center gap-5 my-4">
@@ -207,53 +204,43 @@ export const Diagnosis = () => {
                 <div className="w-full flex justify-between  items-center">
                   Diagnosis Type{" "}
                   <div className="bg-brand-primary-color px-3 py-1 rounded-2xl text-black-background text-xs font-normal">
-                    Metabolomics
+                  {activeDiagnosis?.data.type}
                   </div>
                 </div>
                 <div className="w-full flex justify-between  items-center">
                   Diagnosis Severity{" "}
                   <div className="bg-red-status px-3 py-1 rounded-2xl text-black-background text-xs font-normal">
-                    Critical
+                    {activeDiagnosis?.data.severity}
                   </div>
                 </div>
                 <div className="w-full flex justify-between  items-center">
                   Date of Diagnosis{" "}
                   <div className="bg-black-third px-3 py-1 rounded-2xl text-primary-text text-xs font-normal">
-                    17 May, 2024
+                   {activeDiagnosis?.data.diagnosis_date}
                   </div>
                 </div>
-                <div className="w-full flex justify-between  items-center">
-                  <div className="flex items-center gap-4">
-                    Diagnosis Severity{" "}
-                    <Link to="">
-                      <FiExternalLink></FiExternalLink>
-                    </Link>{" "}
-                  </div>
-                  <div className="bg-black-third px-3 py-1 rounded-2xl text-primary-text text-xs font-normal">
-                    Dr.Jenny Wilson
-                  </div>
-                </div>
+              
                 <div className="flex justify-center  w-full ">
-                  <DoughnutChart />
-                </div>
+                  <DoughnutChart patientValue={activeDiagnosis?.data.patient_value} normalRange={activeDiagnosis?.data.normal_range} avgAgeGroupValue={activeDiagnosis?.data.avg_age_group_value} />
+                </div> 
               </div>
             )}
           </div>
           <div className="px-6 pt-3 pb-2 bg-black-primary w-full max-w-[492px]  max-h-[502px]   rounded-2xl border border-main-border">
           <h4 className="font-medium text-primary-text">Related Biomarkers</h4>
           <div id="copilot-chat" className=" w-full  flex  flex-col items-start justify-start mt-4 gap-4 h-full max-h-[445px] overflow-auto  ">
-            <RightChartCard  type={active}
-            isMeasured={false}
-            value={55}
-            status="active"/>
-            <RightChartCard  type={'Diabetes'}
-            isMeasured={false}
-            value={55}
-            status="active"/>
-            <RightChartCard  type={'Blood Pressure'}
-            isMeasured={false}
-            value={55}
-            status="active"/>
+            {
+              relatedDiagnoses?.map((diagnosis)=>(
+                <RightChartCard  type={diagnosis.name}
+                chartData={{
+                  dates : diagnosis.data.date,
+                  values : diagnosis.data.value.value
+                }}
+               
+                />
+              ))
+            }
+          
           </div>
 
           </div>

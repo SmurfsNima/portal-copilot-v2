@@ -78,7 +78,7 @@ interface MixedLinesChartProps{
     plugins: { annotation: { annotations: any } };
   } = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     scales: {
       x: {
         ticks: {

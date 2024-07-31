@@ -15,6 +15,7 @@ interface PationtInformation {
   respiration_rate: string;
 
   biomarkers: biomarker[];
+  diagnosis : diagnosis[]
   // status:'normal'|'low'|'high'
 }
 interface Measurement {
@@ -45,5 +46,25 @@ interface biomarker {
 //   heart_rate?: Measurement[];
 //   temperature?: Measurement[];
 // }
+interface DiagnosisData {
+  date: string[];
+  value: {
+    value: number[];
+    status: "low" | "normal" | "high";
+  };
+  type: string;
+  severity: "low" | "medium" | "high" | "critical";
+  diagnosis_date: string;
+  patient_value: number;
+  normal_range: number[];
+  avg_age_group_value: number;
+}
 
-export type { PationtInformation, Measurement, biomarker };
+
+interface diagnosis {
+  name: string,
+  data: DiagnosisData
+
+}
+
+export type { PationtInformation, Measurement, biomarker , DiagnosisData , diagnosis };

@@ -60,6 +60,40 @@
           }
         ]
       }
+    ],
+    "diagnosis": [
+      {
+        "name": "Diabetes",
+        "data": {
+          "type": "Metabolomics",
+          "severity": "Critical",
+          "diagnosis_date": "2024-05-17",
+          "patient_value": 140,
+          "normal_range": [100,200],
+          "avg_age_group_value": 95,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [160, 150, 140],
+            "status": "high"
+          }
+        }
+      },
+      {
+        "name": "Cholesterol",
+        "data": {
+          "type": "Lipidomics",
+          "severity": "High",
+          "diagnosis_date": "2024-04-10",
+          "patient_value": 240,
+          "normal_range": [100,200],
+          "avg_age_group_value": 180,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [240, 230, 220],
+            "status": "high"
+          }
+        }
+      }
     ]
   },
   {
@@ -122,6 +156,40 @@
             }
           }
         ]
+      }
+    ],
+    "diagnosis": [
+      {
+        "name": "Diabetes",
+        "data": {
+          "type": "Metabolomics",
+          "severity": "Critical",
+          "diagnosis_date": "2024-05-17",
+          "patient_value": 160,
+          "normal_range": [100,200],
+          "avg_age_group_value": 95,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [160, 150, 140],
+            "status": "high"
+          }
+        }
+      },
+      {
+        "name": "Cholesterol",
+        "data": {
+          "type": "Lipidomics",
+          "severity": "High",
+          "diagnosis_date": "2024-04-10",
+          "patient_value": 240,
+          "normal_range": [100,200],
+          "avg_age_group_value": 180,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [240, 230, 220],
+            "status": "high"
+          }
+        }
       }
     ]
   },
@@ -187,6 +255,40 @@
           }
         ]
       }
+    ],
+    "diagnosis": [
+      {
+        "name": "Diabetes",
+        "data": {
+          "type": "Metabolomics",
+          "severity": "Critical",
+          "diagnosis_date": "2024-05-17",
+          "patient_value": 160,
+          "normal_range": "70-100 mg/dl",
+          "avg_age_group_value": 95,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [160, 150, 140],
+            "status": "high"
+          }
+        }
+      },
+      {
+        "name": "Cholesterol",
+        "data": {
+          "type": "Lipidomics",
+          "severity": "High",
+          "diagnosis_date": "2024-04-10",
+          "patient_value": 240,
+          "normal_range": [100,200],
+          "avg_age_group_value": 180,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [240, 230, 220],
+            "status": "high"
+          }
+        }
+      }
     ]
   },
   {
@@ -251,6 +353,40 @@
           }
         ]
       }
+    ],
+    "diagnosis": [
+      {
+        "name": "Diabetes",
+        "data": {
+          "type": "Metabolomics",
+          "severity": "Critical",
+          "diagnosis_date": "2024-05-17",
+          "patient_value": 160,
+          "normal_range": [100,200],
+          "avg_age_group_value": 95,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [160, 150, 140],
+            "status": "high"
+          }
+        }
+      },
+      {
+        "name": "Cholesterol",
+        "data": {
+          "type": "Lipidomics",
+          "severity": "High",
+          "diagnosis_date": "2024-04-10",
+          "patient_value": 240,
+          "normal_range": [100,200],
+          "avg_age_group_value": 180,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [240, 230, 220],
+            "status": "high"
+          }
+        }
+      }
     ]
   },
   {
@@ -314,6 +450,40 @@
             }
           }
         ]
+      }
+    ],
+    "diagnosis": [
+      {
+        "name": "Diabetes",
+        "data": {
+          "type": "Metabolomics",
+          "severity": "Critical",
+          "diagnosis_date": "2024-05-17",
+          "patient_value": 160,
+          "normal_range": [100,200],
+          "avg_age_group_value": 95,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [160, 150, 140],
+            "status": "high"
+          }
+        }
+      },
+      {
+        "name": "Cholesterol",
+        "data": {
+          "type": "Lipidomics",
+          "severity": "High",
+          "diagnosis_date": "2024-04-10",
+          "patient_value": 240,
+          "normal_range": [100,200],
+          "avg_age_group_value": 180,
+          "date": ["4am", "6am", "8am"],
+          "value": {
+            "value": [240, 230, 220],
+            "status": "high"
+          }
+        }
       }
     ]
   }
