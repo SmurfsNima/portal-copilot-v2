@@ -1,6 +1,7 @@
 interface PationtInformation {
   name: string;
-  photo: string;
+  picture: string;
+  patinet_id : number
   member_id: number;
   age: number;
   sex: "male" | "female";
@@ -8,14 +9,14 @@ interface PationtInformation {
   status: "critical" | "normal" | "at-risk";
   enroll_date: string;
   last_followup: string;
-  heart_rate: number;
-  blood_pressure: number;
-  temperatue: number;
-  blood_oxygen: number;
-  respiration_rate: string;
+  // heart_rate: number;
+  // blood_pressure: number;
+  // temperatue: number;
+  // blood_oxygen: number;
+  // respiration_rate: string;
 
-  biomarkers: biomarker[];
-  diagnosis : diagnosis[]
+  // biomarkers: biomarker[];
+  // diagnosis : diagnosis[]
   // status:'normal'|'low'|'high'
 }
 interface Measurement {
@@ -38,7 +39,7 @@ interface Measurement {
 // }
 
 interface biomarker {
-  [key: string]: Measurement[];
+  [key: string]: Measurement;
 }
 // interface Biomarkers {
 //   blood_oxygen?: Measurement[];

@@ -6,7 +6,7 @@ import { Pationt } from "@/model";
 import Biomarker from "@/model/biomarkers";
 // import Biomarker from "@/model/biomarkers";
 import { biomarker, diagnosis } from "@/types";
-import { useState , useContext } from "react";
+import { useState , useContext , useEffect } from "react";
 // import NumberBox from "@/components/numberBox/numberBox";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
@@ -14,37 +14,91 @@ import { AppContext } from "@/store/app";
 import Diagnosis from "@/model/diagnosis";
 const PatientList = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
-  const { patients, addPatient, savePatientList } = useContext(AppContext);
+  const [patients , setPatients] = useState<Array<Pationt>>([])
+  // const {  addPatient, savePatientList , getBiomarkers } = useContext(AppContext);
   const [reports, setReports] = useState<Array<any>>([]);
-  useConstructor(() => {
-    Application.getPatients().then((res) => {
-      console.log(res);
-      const resolved = res.data.map((el: any) => {
-        const biomarkers = el.biomarkers.map((bio: biomarker) => {
-          return new Biomarker(bio);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const patientResponse = await Application.getPatients();
+        const biomarkerResponse = await Application.getBiomarkers();
+
+        console.log(patientResponse);
+        console.log(biomarkerResponse);
+        
+        const biomarkersByPatientId = biomarkerResponse.data;
+        console.log(biomarkersByPatientId);
+        
+
+        const resolvedPatients = patientResponse.data.map((el: any) => {
+          const biomarkers = (biomarkersByPatientId[el.patient_id]?.biomarkers || []).map((bio: biomarker) => {
+
+            return new Biomarker(bio);
+          });
+
+          // const diagnosis = el.diagnosis.map((diagnosis: diagnosis) => {
+          //   return new Diagnosis(diagnosis);
+          // });
+
+          const patient = new Pationt({
+            ...el,
+          });
+
+          patient.setBiomarkers(biomarkers);
+          // patient.setDiagnosis(diagnosis);
+
+          return patient;
         });
-        const diagnosis = el.diagnosis.map((diagnosis: diagnosis)=>{
-          return new Diagnosis(diagnosis)
-        })
 
-        const patient = new Pationt({
-          ...el,
-        });
+        setPatients(resolvedPatients);
+              // savePatientList(resolvedPatients);
 
-        patient.setBiomarkers(biomarkers);
-        patient.setDiagnosis(diagnosis)
-        console.log(patient);
-        addPatient(patient);
+      } catch (error) {
+        console.error("Failed to fetch data:", error);
+      }
 
-        return patient;
-      });
-      savePatientList(resolved);
-    });
+      try {
+        const reportsResponse = await Application.getReports();
+        setReports(reportsResponse.data);
+      } catch (error) {
+        console.error("Failed to fetch reports:", error);
+      }
+    };
 
-    Application.getReports().then((res) => {
-      setReports(res.data);
-    });
-  });
+    fetchData();
+  }, []);
+
+  // useConstructor(() => {
+  //   Application.getPatients().then((res) => {
+  //     console.log(res);
+  //     const resolved = res.data.map((el: any) => {
+  //       const biomarkers = el.biomarkers.map((bio: biomarker) => {
+  //         return new Biomarker(bio);
+  //       });
+  //       const diagnosis = el.diagnosis.map((diagnosis: diagnosis)=>{
+  //         return new Diagnosis(diagnosis)
+  //       })
+
+  //       const patient = new Pationt({
+  //         ...el,
+  //       });
+
+  //       patient.setBiomarkers(biomarkers);
+  //       patient.setDiagnosis(diagnosis)
+  //       console.log(patient);
+  //       // addPatient(patient);
+
+  //       return patient;
+  //     });
+  //     setPatients(resolved)
+  //     // savePatientList(resolved);
+  //   });
+
+  //   Application.getReports().then((res) => {
+  //     setReports(res.data);
+  //   });
+  // });
   return (
     <>
       <div className="bg-black-background w-full h-screen px-8">

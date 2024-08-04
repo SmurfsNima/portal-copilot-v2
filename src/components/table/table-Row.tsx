@@ -9,27 +9,27 @@ import { biomarker } from "@/types";
 
 interface TableRowProps {
   name: string;
-  photo: string;
+  picture: string;
+  patinet_id : string,
   member_id: string;
   age: number;
   sex: "male" | "female";
   status: "critical" | "normal" | "at-risk";
   enroll_date: string;
   last_followup: string;
-  heart_rate: number;
-  blood_pressure: number;
-  temperatue: number;
-  blood_oxygen: number;
-  respiration_rate: string;
+  // heart_rate: number;
+  // blood_pressure: number;
+  // temperatue: number;
+  // blood_oxygen: number;
+  // respiration_rate: string;
   biomarkers: biomarker[];
 }
 export const TableRow: FC<TableRowProps> = ({
   member_id,
   name,
-  photo,
+  picture,
   age,
   sex,
-
   enroll_date,
   status,
   last_followup,
@@ -41,7 +41,7 @@ export const TableRow: FC<TableRowProps> = ({
         <td className={`${theme}-Table-td`}>
           <img
             className="w-10 h-10 border rounded-full"
-            src={photo}
+            src={picture}
             alt="Jese image"
           />
           <div className="flex items-center">
