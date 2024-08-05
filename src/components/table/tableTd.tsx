@@ -1,27 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ColumnDef  , createColumnHelper} from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 import { Badge } from "@/components";
 import { PiChatBold } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { Pationt } from "@/model";
-import Biomarker from "@/model/biomarkers";
-import { biomarker } from "@/types";
+
 import { resolveRespiration } from "@/utils/status";
 const Theme = () => {
   return useSelector((state: any) => state.theme.value.name);
 };
-const columnHelper = createColumnHelper<Pationt>();
-
-
 
 export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "name",
     header: "Patient Name",
     cell: ({ row }) => {
- 
       return (
         <Link to={`/information/${row.original.information.member_id}`}>
           <div className="flex items-center justify-start gap-4">
@@ -83,15 +78,19 @@ export const columns: ColumnDef<Pationt>[] = [
       );
     },
   },
+  {
+    accessorKey: "information.heart_rate",
+    header: "Heart Rate",
+  },
   // {
   //   accessorKey : 'information.heart_rate',
   //   header: "Heart Rate",
   //   cell: ({ row }) => {
   //     console.log(row.original.getBiomarkers());
-      
+
   //     const biomarker = row.original.getBiomarkers().find((bio: any) => Object.keys(bio)[0] === "Heart Rate");
   //     console.log(biomarker);
-  
+
   //     let value = "N/A";
   //     if (biomarker) {
   //       const nestedValue = Object.values(biomarker)[0].value;
@@ -100,36 +99,36 @@ export const columns: ColumnDef<Pationt>[] = [
   //     return <div className="flex items-center justify-center">{value}</div>;
   //   },
   // },
-  
-  // {
-  //   accessorKey: "information.blood_pressure",
-  //   header: "Blood Pressure",
-  // },
-  // {
-  //   accessorKey: "information.temperature",
-  //   header: "Temperature",
-  // },
-  // {
-  //   accessorKey: "information.blood_oxygen",
-  //   header: "Blood Oxygen",
-  // },
 
-  // {
-  //   accessorKey: "infomation.respiration_rate",
-  //   header: "respiration",
-  //   filterFn: "includesString",
-  //   cell: ({ row }) => {
-  //     return (
-  //       <Badge
-  //         theme={Theme()}
-  //         status={resolveRespiration(row.original.information.respiration_rate)}
-  //       >
-  //         {row.original.information.respiration_rate}
-  //       </Badge>
-  //     );
-  //   },
-  // },
-  
+  {
+    accessorKey: "information.blood_pressure",
+    header: "Blood Pressure",
+  },
+  {
+    accessorKey: "information.temperature",
+    header: "Temperature",
+  },
+  {
+    accessorKey: "information.blood_oxygen",
+    header: "Blood Oxygen",
+  },
+
+  {
+    accessorKey: "infomation.respiration_rate",
+    header: "respiration",
+    filterFn: "includesString",
+    cell: ({ row }) => {
+      return (
+        <Badge
+          theme={Theme()}
+          status={resolveRespiration(row.original.information.respiration_rate)}
+        >
+          {row.original.information.respiration_rate}
+        </Badge>
+      );
+    },
+  },
+
   {
     accessorKey: "information.action",
     header: "Action",

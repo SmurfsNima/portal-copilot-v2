@@ -1,7 +1,7 @@
 .Aurora-Badge-container {
   @apply text-center rounded-xl py-1 px-3 text-xs w-fit text-black text-nowrap w-full;
 }
-.Aurora-Badge-container[data-status="at_risk"] {
+.Aurora-Badge-container[data-status="at-risk"] {
   @apply bg-[#FBAD37];
 }
 .Aurora-Badge-container[data-status="normal"] {

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Application } from "@/api";
 import { Table, NumberBox } from "@/components";
-import { useConstructor } from "@/help";
+// import { useConstructor } from "@/help";
 import { Pationt } from "@/model";
 import Biomarker from "@/model/biomarkers";
 // import Biomarker from "@/model/biomarkers";
 import { biomarker, diagnosis } from "@/types";
-import { useState , useContext , useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 // import NumberBox from "@/components/numberBox/numberBox";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
@@ -14,7 +14,7 @@ import { AppContext } from "@/store/app";
 import Diagnosis from "@/model/diagnosis";
 const PatientList = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
-  const [patients , setPatients] = useState<Array<Pationt>>([])
+  const [patients, setPatients] = useState<Array<Pationt>>([]);
   // const {  addPatient, savePatientList , getBiomarkers } = useContext(AppContext);
   const [reports, setReports] = useState<Array<any>>([]);
 
@@ -26,23 +26,27 @@ const PatientList = () => {
 
         console.log(patientResponse);
         console.log(biomarkerResponse);
-        
-        const biomarkersByPatientId = biomarkerResponse.data;
-        console.log(biomarkersByPatientId);
-        
+
+        const biomarkersByPatientId: { [key: number]: biomarker[] } = {};
+        biomarkerResponse.data.forEach((item: any) => {
+          biomarkersByPatientId[item.patient_id] = item.biomarkers.map(
+            (bio: any) => new Biomarker(bio)
+          );
+        });
 
         const resolvedPatients = patientResponse.data.map((el: any) => {
-          const biomarkers = (biomarkersByPatientId[el.patient_id]?.biomarkers || []).map((bio: biomarker) => {
-
-            return new Biomarker(bio);
-          });
-
+          const biomarkers = biomarkersByPatientId[el.patient_id] || [];
           // const diagnosis = el.diagnosis.map((diagnosis: diagnosis) => {
           //   return new Diagnosis(diagnosis);
           // });
 
           const patient = new Pationt({
             ...el,
+            heart_rate: 0,
+            blood_pressure: 0,
+            temperatue: 0,
+            blood_oxygen: 0,
+            respiration_rate: "",
           });
 
           patient.setBiomarkers(biomarkers);
@@ -52,8 +56,7 @@ const PatientList = () => {
         });
 
         setPatients(resolvedPatients);
-              // savePatientList(resolvedPatients);
-
+        // savePatientList(resolvedPatients);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }

@@ -1,60 +1,60 @@
-{
-    "1": {
+[
+     {
         "patient_id": 1,
         "biomarkers": [
             {
                 "Blood Pressure": {
-                    "date": "2024-07-20T13:34:56",
+                   
                     "value": {
                         "value": {
                             "Low": 66,
                             "High": 114
                         }
-                    },
-                    "status": "low"
+                    }
+                   
                 }
             },
             {
                 "Heart Rate": {
-                    "date": "2024-07-21T08:34:56",
+                  
                     "value": {
                         "value": {
                             "value": 93
                         }
-                    },
-                    "status": "high"
+                    }
+                 
                 }
             },
             {
                 "Oxygen Saturation": {
-                    "date": "2024-07-30T09:34:56",
+                  
                     "value": {
                         "value": {
                             "value": 98
                         }
-                    },
-                    "status": "normal"
+                    }
+                   
                 }
             }
         ]
     },
-    "2": {
+     {
         "patient_id": 2,
         "biomarkers": [
             {
                 "Heart Rate": {
-                    "date": "2024-04-10T00:00:00",
+                 
                     "value": {
                         "value": {
                             "value": 50
                         }
-                    },
-                    "status": "low"
+                    }
+                   
                 }
             },
             {
                 "Oxygen Saturation": {
-                    "date": "2024-04-10T00:00:00",
+                    
                     "value": {
                         "value": {
                             "value": 91
@@ -65,7 +65,7 @@
             },
             {
                 "Respiration Rate": {
-                    "date": "2024-04-12T00:00:00",
+                
                     "value": {
                         "value": {
                             "value": 53
@@ -76,35 +76,35 @@
             }
         ]
     },
-    "3": {
+    {
         "patient_id": 3,
         "biomarkers": [
             {
                 "Blood Pressure": {
-                    "date": "2024-02-11T00:00:00",
+                  
                     "value": {
                         "value": {
                             "Low": 60,
                             "High": 92
                         }
-                    },
-                    "status": "normal"
+                    }
+                   
                 }
             },
             {
                 "Oxygen Saturation": {
-                    "date": "2024-02-11T00:00:00",
+                    
                     "value": {
                         "value": {
                             "value": 90
                         }
-                    },
-                    "status": "low"
+                    }
+               
                 }
             },
             {
                 "Respiration Rate": {
-                    "date": "2024-02-10T00:00:00",
+             
                     "value": {
                         "value": {
                             "value": 14
@@ -115,12 +115,12 @@
             }
         ]
     },
-    "4": {
+     {
         "patient_id": 4,
         "biomarkers": [
             {
                 "Blood Pressure": {
-                    "date": "2024-06-11T00:00:00",
+                    
                     "value": {
                         "value": {
                             "Low": 69,
@@ -132,7 +132,7 @@
             },
             {
                 "Heart Rate": {
-                    "date": "2024-06-11T00:00:00",
+                   
                     "value": {
                         "value": {
                             "value": 53
@@ -143,7 +143,85 @@
             },
             {
                 "Oxygen Saturation": {
-                    "date": "2024-06-09T00:00:00",
+                    
+                    "value": {
+                        "value": {
+                            "value": 97
+                        }
+                    },
+                    "status": "high"
+                }
+            }
+        ]
+    },
+     {
+        "patient_id": 5,
+        "biomarkers": [
+            {
+                "Blood Pressure": {
+                    
+                    "value": {
+                        "value": {
+                            "Low": 69,
+                            "High": 110
+                        }
+                    },
+                    "status": "normal"
+                }
+            },
+            {
+                "Heart Rate": {
+                   
+                    "value": {
+                        "value": {
+                            "value": 53
+                        }
+                    },
+                    "status": "low"
+                }
+            },
+            {
+                "Oxygen Saturation": {
+                    
+                    "value": {
+                        "value": {
+                            "value": 97
+                        }
+                    },
+                    "status": "high"
+                }
+            }
+        ]
+    },
+     {
+        "patient_id": 6,
+        "biomarkers": [
+            {
+                "Blood Pressure": {
+                    
+                    "value": {
+                        "value": {
+                            "Low": 69,
+                            "High": 110
+                        }
+                    },
+                    "status": "normal"
+                }
+            },
+            {
+                "Heart Rate": {
+                   
+                    "value": {
+                        "value": {
+                            "value": 53
+                        }
+                    },
+                    "status": "low"
+                }
+            },
+            {
+                "Oxygen Saturation": {
+                    
                     "value": {
                         "value": {
                             "value": 97
@@ -154,4 +232,4 @@
             }
         ]
     }
-}
+]
