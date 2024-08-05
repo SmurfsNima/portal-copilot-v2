@@ -1,6 +1,7 @@
 interface PationtInformation {
   name: string;
-  photo: string;
+  picture: string;
+  patinet_id : number
   member_id: number;
   age: number;
   sex: "male" | "female";
@@ -14,21 +15,21 @@ interface PationtInformation {
   blood_oxygen: number;
   respiration_rate: string;
 
-  biomarkers: biomarker[];
-  diagnosis : diagnosis[]
+  // biomarkers: biomarker[];
+  // diagnosis : diagnosis[]
   // status:'normal'|'low'|'high'
 }
-interface Measurement {
-  date: string;
-  value:
-    | number
-    | {
-        value?: number;
-        status?: "low" | "normal" | "high";
-        Low?: number;
-        High?: number;
-      };
-}
+// interface Measurement {
+//   date: string;
+//   value:
+//     | number
+//     | {
+//         value?: number;
+//         status?: "low" | "normal" | "high";
+//         Low?: number;
+//         High?: number;
+//       };
+// }
 // interface Biomarkers {
 //   blood_oxygen?: Measurement[];
 //   blood_pressure?: Measurement[];
@@ -36,9 +37,16 @@ interface Measurement {
 //   temperature?: Measurement[];
 //   respiration_rate?: Measurement[];
 // }
-
-interface biomarker {
-  [key: string]: Measurement[];
+ interface BiomarkerValue {
+  value: number | { value: number } | { Low: number; High: number };
+}
+ interface biomarker {
+  information: {
+    [key: string]: {
+      status: string;
+      value: BiomarkerValue;
+    };
+  };
 }
 // interface Biomarkers {
 //   blood_oxygen?: Measurement[];
@@ -67,4 +75,4 @@ interface diagnosis {
 
 }
 
-export type { PationtInformation, Measurement, biomarker , DiagnosisData , diagnosis };
+export type { PationtInformation, BiomarkerValue, biomarker , DiagnosisData , diagnosis };

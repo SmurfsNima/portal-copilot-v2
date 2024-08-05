@@ -29,6 +29,8 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   useEffect(() => {
     setData(classData);
   }, [classData]);
+  console.log( "class data : " ,data);
+  
   const [columnFilters, setColumnFilters] = useState([]);
 
   const table = useReactTable({

@@ -6,6 +6,7 @@ import { Badge } from "@/components";
 import { PiChatBold } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { Pationt } from "@/model";
+
 import { resolveRespiration } from "@/utils/status";
 const Theme = () => {
   return useSelector((state: any) => state.theme.value.name);
@@ -17,21 +18,21 @@ export const columns: ColumnDef<Pationt>[] = [
     header: "Patient Name",
     cell: ({ row }) => {
       return (
-        <div className="flex items-center justify-start gap-4">
-          <img
-            className="w-10 h-10 border rounded-full"
-            src={row.original.information.photo}
-            alt={`${row.original.information.name} image`}
-          />
-          <div className="">
-            <div className="font-semibold text-nowrap">
-              {row.original.information.name}
+        <Link to={`/information/${row.original.information.member_id}`}>
+          <div className="flex items-center justify-start gap-4">
+            <img
+              className="w-10 h-10 border rounded-full"
+              src={row.original.information.picture}
+              alt={`${row.original.information.name} image`}
+            />
+            <div className="">
+              <div className="font-semibold text-nowrap">
+                {row.original.information.name}
+              </div>
             </div>
-          </div>
-          <Link to={`/information/${row.original.information.member_id}`}>
             <FiExternalLink />
-          </Link>
-        </div>
+          </div>
+        </Link>
       );
     },
   },
@@ -51,7 +52,11 @@ export const columns: ColumnDef<Pationt>[] = [
     accessorKey: "information.weight",
     header: "Weight",
     cell: ({ row }) => {
-      return <div className="flex items-center justify-center">{row.original.information.weight}</div>;
+      return (
+        <div className="flex items-center justify-center">
+          {row.original.information.weight}
+        </div>
+      );
     },
   },
   {
@@ -77,6 +82,24 @@ export const columns: ColumnDef<Pationt>[] = [
     accessorKey: "information.heart_rate",
     header: "Heart Rate",
   },
+  // {
+  //   accessorKey : 'information.heart_rate',
+  //   header: "Heart Rate",
+  //   cell: ({ row }) => {
+  //     console.log(row.original.getBiomarkers());
+
+  //     const biomarker = row.original.getBiomarkers().find((bio: any) => Object.keys(bio)[0] === "Heart Rate");
+  //     console.log(biomarker);
+
+  //     let value = "N/A";
+  //     if (biomarker) {
+  //       const nestedValue = Object.values(biomarker)[0].value;
+  //       value = typeof nestedValue === "object" ? nestedValue.value?.value ?? "N/A" : nestedValue;
+  //     }
+  //     return <div className="flex items-center justify-center">{value}</div>;
+  //   },
+  // },
+
   {
     accessorKey: "information.blood_pressure",
     header: "Blood Pressure",
@@ -90,18 +113,22 @@ export const columns: ColumnDef<Pationt>[] = [
     header: "Blood Oxygen",
   },
 
-    {
-      accessorKey: 'infomation.respiration_rate',
-      header: 'respiration',
-      filterFn: "includesString",
-      cell: ({row})=>{
-          return(
-              <Badge theme={Theme()} status={resolveRespiration(row.original.information.respiration_rate)}>
-                  {row.original.information.respiration_rate}
-              </Badge>
-          )
-      }
+  {
+    accessorKey: "infomation.respiration_rate",
+    header: "respiration",
+    filterFn: "includesString",
+    cell: ({ row }) => {
+      return (
+        <Badge
+          theme={Theme()}
+          status={resolveRespiration(row.original.information.respiration_rate)}
+        >
+          {row.original.information.respiration_rate}
+        </Badge>
+      );
+    },
   },
+
   {
     accessorKey: "information.action",
     header: "Action",

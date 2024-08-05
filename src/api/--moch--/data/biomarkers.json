@@ -1,0 +1,235 @@
+[
+     {
+        "patient_id": 1,
+        "biomarkers": [
+            {
+                "Blood Pressure": {
+                   
+                    "value": {
+                        "value": {
+                            "Low": 66,
+                            "High": 114
+                        }
+                    }
+                   
+                }
+            },
+            {
+                "Heart Rate": {
+                  
+                    "value": {
+                        "value": {
+                            "value": 93
+                        }
+                    }
+                 
+                }
+            },
+            {
+                "Oxygen Saturation": {
+                  
+                    "value": {
+                        "value": {
+                            "value": 98
+                        }
+                    }
+                   
+                }
+            }
+        ]
+    },
+     {
+        "patient_id": 2,
+        "biomarkers": [
+            {
+                "Heart Rate": {
+                 
+                    "value": {
+                        "value": {
+                            "value": 50
+                        }
+                    }
+                   
+                }
+            },
+            {
+                "Oxygen Saturation": {
+                    
+                    "value": {
+                        "value": {
+                            "value": 91
+                        }
+                    },
+                    "status": "low"
+                }
+            },
+            {
+                "Respiration Rate": {
+                
+                    "value": {
+                        "value": {
+                            "value": 53
+                        }
+                    },
+                    "status": "low"
+                }
+            }
+        ]
+    },
+    {
+        "patient_id": 3,
+        "biomarkers": [
+            {
+                "Blood Pressure": {
+                  
+                    "value": {
+                        "value": {
+                            "Low": 60,
+                            "High": 92
+                        }
+                    }
+                   
+                }
+            },
+            {
+                "Oxygen Saturation": {
+                    
+                    "value": {
+                        "value": {
+                            "value": 90
+                        }
+                    }
+               
+                }
+            },
+            {
+                "Respiration Rate": {
+             
+                    "value": {
+                        "value": {
+                            "value": 14
+                        }
+                    },
+                    "status": "normal"
+                }
+            }
+        ]
+    },
+     {
+        "patient_id": 4,
+        "biomarkers": [
+            {
+                "Blood Pressure": {
+                    
+                    "value": {
+                        "value": {
+                            "Low": 69,
+                            "High": 110
+                        }
+                    },
+                    "status": "normal"
+                }
+            },
+            {
+                "Heart Rate": {
+                   
+                    "value": {
+                        "value": {
+                            "value": 53
+                        }
+                    },
+                    "status": "low"
+                }
+            },
+            {
+                "Oxygen Saturation": {
+                    
+                    "value": {
+                        "value": {
+                            "value": 97
+                        }
+                    },
+                    "status": "high"
+                }
+            }
+        ]
+    },
+     {
+        "patient_id": 5,
+        "biomarkers": [
+            {
+                "Blood Pressure": {
+                    
+                    "value": {
+                        "value": {
+                            "Low": 69,
+                            "High": 110
+                        }
+                    },
+                    "status": "normal"
+                }
+            },
+            {
+                "Heart Rate": {
+                   
+                    "value": {
+                        "value": {
+                            "value": 53
+                        }
+                    },
+                    "status": "low"
+                }
+            },
+            {
+                "Oxygen Saturation": {
+                    
+                    "value": {
+                        "value": {
+                            "value": 97
+                        }
+                    },
+                    "status": "high"
+                }
+            }
+        ]
+    },
+     {
+        "patient_id": 6,
+        "biomarkers": [
+            {
+                "Blood Pressure": {
+                    
+                    "value": {
+                        "value": {
+                            "Low": 69,
+                            "High": 110
+                        }
+                    },
+                    "status": "normal"
+                }
+            },
+            {
+                "Heart Rate": {
+                   
+                    "value": {
+                        "value": {
+                            "value": 53
+                        }
+                    },
+                    "status": "low"
+                }
+            },
+            {
+                "Oxygen Saturation": {
+                    
+                    "value": {
+                        "value": {
+                            "value": 97
+                        }
+                    },
+                    "status": "high"
+                }
+            }
+        ]
+    }
+]
