@@ -17,20 +17,23 @@ export const columns: ColumnDef<Pationt>[] = [
     accessorKey: "name",
     header: "Patient Name",
     cell: ({ row }) => {
+      
+      
       return (
-        <Link to={`/information/${row.original.information.member_id}`}>
+        <Link to={`/information/${row.original.information.patient_id}`}>
           <div className="flex items-center justify-start gap-4">
             <img
               className="w-10 h-10 border rounded-full"
               src={row.original.information.picture}
               alt={`${row.original.information.name} image`}
             />
-            <div className="">
-              <div className="font-semibold text-nowrap">
+            
+              <div className="font-semibold text-nowrap flex items-center gap-3">
                 {row.original.information.name}
+                <FiExternalLink />
               </div>
-            </div>
-            <FiExternalLink />
+            
+            
           </div>
         </Link>
       );
@@ -105,7 +108,7 @@ export const columns: ColumnDef<Pationt>[] = [
     header: "Blood Pressure",
   },
   {
-    accessorKey: "information.temperature",
+    accessorKey: "information.temperatue",
     header: "Temperature",
   },
   {

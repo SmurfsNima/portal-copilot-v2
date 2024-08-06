@@ -78,7 +78,7 @@ interface MixedLinesChartProps{
     plugins: { annotation: { annotations: any } };
   } = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         ticks: {
@@ -133,7 +133,7 @@ interface MixedLinesChartProps{
   // };
   // ChartJS.register(backgroundColorPlugin);
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full max-h-[160px] pb-6">
       <div className="flex items-center gap-2 justify-end">
         <div className="flex items-center gap-1"> 
           <div className="w-2 h-1 bg-blue-600" />

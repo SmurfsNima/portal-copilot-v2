@@ -1,7 +1,7 @@
 interface PationtInformation {
   name: string;
   picture: string;
-  patinet_id : number
+  patient_id : number
   member_id: number;
   age: number;
   sex: "male" | "female";
@@ -37,9 +37,8 @@ interface PationtInformation {
 //   temperature?: Measurement[];
 //   respiration_rate?: Measurement[];
 // }
- interface BiomarkerValue {
-  value: number | { value: number } | { Low: number; High: number };
-}
+
+
  interface biomarker {
   information: {
     [key: string]: {
@@ -48,31 +47,62 @@ interface PationtInformation {
     };
   };
 }
+interface BiomarkerValue {
+  high?: number[];
+  low?: number[];
+  value?: number[];
+  status: string;
+}
 // interface Biomarkers {
 //   blood_oxygen?: Measurement[];
 //   blood_pressure?: Measurement[];
 //   heart_rate?: Measurement[];
 //   temperature?: Measurement[];
 // }
-interface DiagnosisData {
-  date: string[];
-  value: {
-    value: number[];
-    status: "low" | "normal" | "high";
-  };
+interface ChartDataItem {
   type: string;
-  severity: "low" | "medium" | "high" | "critical";
-  diagnosis_date: string;
-  patient_value: number;
-  normal_range: number[];
-  avg_age_group_value: number;
+  value: number;
+  isMeasured: boolean;
+  status: string;
+  otherTypes: string[];
+  chartData: {
+    dates: string[];
+    values: number[] | { Low: number[]; High: number[] };
+  };
+}
+interface BiomarkerEntry {
+  value: BiomarkerValue;
+  date: string[];
+  activity: boolean[];
+}
+interface BiomarkerCategory {
+  [key: string]: BiomarkerEntry[];
 }
 
+interface DiagnosisItem{
+  name : string,
+  status: string,
+  chartData: {
+    dates: string[];
+    values: number[] | { Low: number[]; High: number[] };
+  };
+
+}
 
 interface diagnosis {
-  name: string,
-  data: DiagnosisData
-
+  name: string;
+  data: {
+    date: string[];
+    value: {
+      value: number[];
+    };
+    patient_value: number;
+    normal_range: [number, number];
+    avg_age_group_value: number;
+    type: string;
+    severity: string;
+    diagnosis_date: string;
+  };
 }
 
-export type { PationtInformation, BiomarkerValue, biomarker , DiagnosisData , diagnosis };
+export type { PationtInformation, BiomarkerValue, biomarker , BiomarkerEntry  , BiomarkerCategory ,  ChartDataItem  , DiagnosisItem, diagnosis };

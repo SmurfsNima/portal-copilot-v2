@@ -23,7 +23,7 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
   status,
   chartData,
 }) => {
-  console.log(chartData);
+  console.log("chart data" , chartData);
   
   const [active, setActive] = useState("HCT");
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -137,7 +137,7 @@ console.log(lowHighValues);
         </span>
         {type === "Temperature" ? "oF" : type === "Heart Rate" ? "bpm" : "%"}
       </h2>
-      <div className="bg-black-secondary border border-main-border px-2    h-full max-h-[140px] xl:max-h-[162px] 2xl:max-h-[175px] rounded-lg ">
+      <div className="bg-black-secondary border border-main-border px-2 w-full     h-full max-h-[140px] xl:max-h-[182px] 2xl:max-h-[175px] rounded-lg ">
         <div className="flex w-full justify-between items-center">
           <span className="text-secondary-text  text-xs">
             {type === "Temperature"

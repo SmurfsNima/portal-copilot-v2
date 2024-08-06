@@ -1,24 +1,12 @@
 import { ChatBox, InfoCard, SearchBox, TabsWrapper } from "@/components";
-import { useEffect, useState, useRef , useContext  } from "react";
+import { useEffect, useState, useRef   } from "react";
 import { useSelector } from "react-redux";
 import { SmallChartCard } from "@/components/chartCard/smallChartCard";
 import { Button } from "symphony-ui";
 import { NormalChartCard } from "@/components/chartCard/normalChartCard";
-import { useParams } from "react-router-dom";
-import { AppContext } from "@/store/app";
-import { Pationt } from "@/model";
-import { Measurement, biomarker } from "@/types";
-interface ChartDataItem {
-  type: string;
-  value: number;
-  isMeasured: boolean;
-  status: string;
-  otherTypes: string[];
-  chartData: {
-    dates: string[];
-    values: number[] | { Low: number[]; High: number[] };
-  };
-}
+import { useBiomarkers } from "@/hooks";
+import { prepareChartData } from "@/utils/status";
+
 const TabsInfo = [
   {
     text: "All",
@@ -55,95 +43,9 @@ const TabsInfo = [
 
 const BioMarker = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
-  const { id } = useParams<{ id: string }>();
-  const [patient, setPatient] = useState<Pationt | undefined>(undefined);
-const {  getPatientById } = useContext(AppContext);
-useEffect(() => {
-  const patient = getPatientById(Number(id));
-  setPatient(patient);
-}, [id]);
-
-const extractBiomarkerData = (
-  biomarker?: Measurement[]
-): {
-  dates: string[];
-  values: number[] | { Low: number[]; High: number[] };
-  status: string;
-} => {
-  if (!Array.isArray(biomarker)) return { dates: [], values: [], status: "" };
-
-  const dates = biomarker.map((measurement) => measurement.date);
-
-  let values: number[] | { Low: number[]; High: number[] } = [];
-  if (
-    biomarker.some(
-      (measurement) =>
-        typeof measurement.value === "object" &&
-        measurement.value !== null &&
-        "Low" in measurement.value &&
-        "High" in measurement.value
-    )
-  ) {
-    const Low = biomarker.map(
-      (measurement) => (measurement.value as { Low: number }).Low
-    );
-    const High = biomarker.map(
-      (measurement) => (measurement.value as { High: number }).High
-    );
-    values = { Low, High };
-  } else {
-    values = biomarker.map((measurement) => {
-      if (typeof measurement.value === "number") {
-        return measurement.value;
-      } else if (measurement.value.value !== undefined) {
-        return measurement.value.value;
-      }
-      return 0;
-    });
-  }
-
-  const status = biomarker.length
-    ? typeof biomarker[0].value === "object" && "status" in biomarker[0].value
-      ? biomarker[0].value.status || ""
-      : ""
-    : "";
-  return { dates, values, status };
-};
-
-const chartData: ChartDataItem[] =
-  patient?.information.biomarkers.flatMap(
-    (biomarkerObject: Partial<biomarker>) => {
-      return Object.entries(biomarkerObject).map(([key, biomarkerData]) => {
-        const formattedData = extractBiomarkerData(
-          biomarkerData as Measurement[]
-        );
-
-        return {
-          type: key
-            .replace("_", " ")
-            .replace(/\b\w/g, (l) => l.toUpperCase()),
-          value: Array.isArray(formattedData.values)
-            ? formattedData.values.length
-              ? formattedData.values.reduce((a, b) => a + b) /
-                formattedData.values.length
-              : 0
-            : (formattedData.values.Low.length +
-                formattedData.values.High.length) /
-              2,
-          isMeasured: Array.isArray(formattedData.values)
-            ? formattedData.values.length > 0
-            : formattedData.values.Low.length > 0 &&
-              formattedData.values.High.length > 0,
-          status: formattedData.status,
-          otherTypes: [],
-          chartData: {
-            dates: formattedData.dates,
-            values: formattedData.values,
-          },
-        };
-      });
-    }
-  ) ?? [];
+  const biomarkers = useBiomarkers();
+  const chartData = prepareChartData(biomarkers);
+  
   const [messages, setMessages] = useState([
     {
       type: "text",
@@ -171,7 +73,7 @@ const chartData: ChartDataItem[] =
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-  console.log(theme+'secondary');
+ 
   console.log(active);
   const activeChartData = chartData.find((data) => data.type === active);
 
