@@ -14,7 +14,7 @@ class Pationt {
   public setDiagnosis(diagnosis: diagnosis[]) {
     this.diagnosis = diagnosis;
   }
-  public getDiagnosis() {
+  public getDiagnosis(): diagnosis[] {
     return this.diagnosis;
   }
 

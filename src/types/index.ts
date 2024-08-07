@@ -78,31 +78,26 @@ interface BiomarkerEntry {
 interface BiomarkerCategory {
   [key: string]: BiomarkerEntry[];
 }
-
-interface DiagnosisItem{
-  name : string,
-  status: string,
-  chartData: {
-    dates: string[];
-    values: number[] | { Low: number[]; High: number[] };
+interface Data {
+  type: string;
+  severity: string;
+  diagnosis_date: string;
+  patient_value: number;
+  normal_range: number[];
+  avg_age_group_value: number;
+  date: string[];
+  value: {
+    value : number[],
+    status : string;
   };
-
 }
 
 interface diagnosis {
-  name: string;
-  data: {
-    date: string[];
-    value: {
-      value: number[];
-    };
-    patient_value: number;
-    normal_range: [number, number];
-    avg_age_group_value: number;
-    type: string;
-    severity: string;
-    diagnosis_date: string;
-  };
+  information:{
+    name: string;
+    data: Data;
+  }
+
 }
 
-export type { PationtInformation, BiomarkerValue, biomarker , BiomarkerEntry  , BiomarkerCategory ,  ChartDataItem  , DiagnosisItem, diagnosis };
+export type { PationtInformation, BiomarkerValue, biomarker , BiomarkerEntry  , BiomarkerCategory ,  ChartDataItem  , diagnosis };

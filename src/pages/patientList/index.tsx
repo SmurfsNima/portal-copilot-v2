@@ -14,8 +14,7 @@ import { AppContext } from "@/store/app";
 import Diagnosis from "@/model/diagnosis";
 const PatientList = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
-  const [patients, setPatients] = useState<Array<Pationt>>([]);
-  const { savePatientList } = useContext(AppContext);
+  const { patients ,savePatientList } = useContext(AppContext);
   const [reports, setReports] = useState<Array<any>>([]);
 
   useEffect(() => {
@@ -57,7 +56,7 @@ const PatientList = () => {
             blood_oxygen: 0,
             respiration_rate: "",
           });
-          console.log(patient);
+          
           
           patient.setBiomarkers(biomarkers);
           patient.setDiagnosis(Diagnosis);
@@ -66,9 +65,10 @@ const PatientList = () => {
         });
         
         
-        setPatients(resolvedPatients);
        
         savePatientList(resolvedPatients);
+        console.log(patients);
+        
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -83,8 +83,7 @@ const PatientList = () => {
 
     fetchData();
   }, []);
-  useEffect(()=> console.log(patients)  , [patients]);
-  
+
 
   // useConstructor(() => {
   //   Application.getPatients().then((res) => {

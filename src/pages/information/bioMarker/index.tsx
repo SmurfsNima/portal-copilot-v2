@@ -6,7 +6,7 @@ import { Button } from "symphony-ui";
 import { NormalChartCard } from "@/components/chartCard/normalChartCard";
 import { useBiomarkers } from "@/hooks";
 import { prepareChartData } from "@/utils/status";
-
+import { getStatusBgColorClass } from "@/utils/status";
 const TabsInfo = [
   {
     text: "All",
@@ -75,7 +75,8 @@ const BioMarker = () => {
   }, [messages]);
  
   console.log(active);
-  const activeChartData = chartData.find((data) => data.type === active);
+  const activeChartData = chartData.find((data) => data.type === active);  
+  const activeStatus = activeChartData?.status || "";
 
   return (
     <>
@@ -88,22 +89,37 @@ const BioMarker = () => {
               placeholder="Quick alphabetical search for biomarkers"
             />
             <div className="rounded-xl bg-black-primary border border-main-border flex text-xs text-primary-text">
-              <div className="border-r border-main-border px-4 py-1">
-                <div className="bg-black-secondary py-[10px] px-6 rounded-2xl">
-                  Critical
-                </div>
-              </div>
-              <div className="border-r border-main-border px-4 py-1">
-                <div className="bg-black-secondary rounded-2xl py-[10px] px-6">
-                  Low
-                </div>
-              </div>
-              <div className="px-4 py-1">
-                <div className="bg-black-secondary rounded-2xl py-[10px] px-6">
-                  Medium
-                </div>
-              </div>
+          <div className="border-r border-main-border px-4 py-1">
+            <div
+              className={` ${getStatusBgColorClass(
+                activeStatus,
+                "low"
+              )} py-[10px] px-6 rounded-2xl`}
+            >
+              low
             </div>
+          </div>
+          <div className="border-r border-main-border px-4 py-1">
+            <div
+              className={` ${getStatusBgColorClass(
+                activeStatus,
+                "medium"
+              )} py-[10px] px-6 rounded-2xl`}
+            >
+              Medium
+            </div>
+          </div>
+          <div className="px-4 py-1">
+            <div
+              className={` ${getStatusBgColorClass(
+                activeStatus,
+                "high"
+              )} py-[10px] px-6 rounded-2xl`}
+            >
+              Critical
+            </div>
+          </div>
+        </div>
           </div>
         </div>
         <TabsWrapper TabsInfo={TabsInfo} />

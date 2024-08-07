@@ -13,6 +13,24 @@ const resolveRespiration = (respiration:string) => {
     }    
     return 'critical'
 }
+const getStatusBgColorClass = (
+  status: string,
+  currentStatus: string
+): string => {
+  if (status.toLowerCase() === currentStatus.toLowerCase()) {
+    switch (status.toLowerCase()) {
+      case "high":
+        return "bg-red-status text-black";
+      case "low":
+        return "bg-brand-primary-color text-black";
+      case "medium":
+        return "bg-orange-status  text-black";
+      default:
+        return "bg-black-secondary";
+    }
+  }
+  return "bg-black-secondary";
+};
 const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-GB', {
@@ -57,7 +75,7 @@ const formatDate = (dateString: string): string => {
       })
     );
   };
-  export const prepareDiagnosisData = (diagnosis: diagnosis[]): diagnosis[] => {
+  export const prepareDiagnosisData = (diagnosis: diagnosis[])=> {
     return diagnosis.map(diag => {
 
    
@@ -67,4 +85,4 @@ const formatDate = (dateString: string): string => {
       };
     });
   };
-export {resolveRespiration , prepareChartData}
+export {resolveRespiration , getStatusBgColorClass , prepareChartData}

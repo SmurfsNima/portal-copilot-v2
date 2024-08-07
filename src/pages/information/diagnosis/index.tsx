@@ -1,14 +1,13 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-
 import { TabsWrapper, InfoCard, SearchBox } from "@/components";
 import { Button } from "symphony-ui";
 import { DoughnutChart } from "@/components/charts";
 import { RightChartCard } from "./RightChartcard";
 import { SmallChartCard } from "@/components/chartCard/smallChartCard";
-
 import { useDiagnosis } from "@/hooks";
 import { prepareDiagnosisData } from "@/utils/status";
+import { getStatusBgColorClass } from "@/utils/status";
 const TabsInfo = [
   {
     text: "All",
@@ -40,7 +39,6 @@ const TabsInfo = [
     number: 1,
   },
 ];
-
 export const Diagnosis = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const diagnosis = useDiagnosis();
@@ -52,36 +50,53 @@ export const Diagnosis = () => {
   const toggleDetails = () => {
     setShowDetails(!showDetails);
   };
+  console.log(diagnosis);
 
-  const activeDiagnosis = preparedDiagnosis.find(
-    (diag) => diag.name === active
+  const activeDiagnosis = diagnosis?.find(
+    (diag) => diag.information.name === active
   );
-  const relatedDiagnoses = preparedDiagnosis.filter(
-    (diag) => diag.name !== active
+  const relatedDiagnoses = diagnosis?.filter(
+    (diag) => diag.information.name !== active
   );
-
+  const activeStatus = activeDiagnosis?.information.data.value.status || "";
+ 
   return (
     <div className=" w-full h-full flex flex-col  overflow-hidden  gap-3 ">
       <InfoCard></InfoCard>
-      <div className=" flex    items-center gap-2">
+      <div className=" flex     items-center gap-2">
         <SearchBox
           theme="Aurora"
           placeholder="Quick alphabetical search for biomarkers"
         />
         <div className="rounded-xl bg-black-primary border border-main-border flex text-xs text-primary-text">
           <div className="border-r border-main-border px-4 py-1">
-            <div className="bg-black-secondary py-[10px] px-6 rounded-2xl">
-              Critical
+            <div
+              className={` ${getStatusBgColorClass(
+                activeStatus,
+                "low"
+              )} py-[10px] px-6 rounded-2xl`}
+            >
+              low
             </div>
           </div>
           <div className="border-r border-main-border px-4 py-1">
-            <div className="bg-black-secondary rounded-2xl py-[10px] px-6">
-              Low
+            <div
+              className={` ${getStatusBgColorClass(
+                activeStatus,
+                "medium"
+              )} py-[10px] px-6 rounded-2xl`}
+            >
+              Medium
             </div>
           </div>
           <div className="px-4 py-1">
-            <div className="bg-black-secondary rounded-2xl py-[10px] px-6">
-              Medium
+            <div
+              className={` ${getStatusBgColorClass(
+                activeStatus,
+                "high"
+              )} py-[10px] px-6 rounded-2xl`}
+            >
+              Critical
             </div>
           </div>
         </div>
@@ -139,18 +154,18 @@ export const Diagnosis = () => {
             </div>
           </div>
 
-          {preparedDiagnosis.map((item, i) => {
-            console.log(item.name);
+          {preparedDiagnosis?.map((item, i) => {
+            console.log(item);
 
             return (
               <SmallChartCard
                 active={active}
                 setActive={setActive}
                 key={i}
-                type={item.name}
+                type={item.information.name}
                 chartData={{
-                  dates: ["3am", "2am", "5a,"],
-                  values: [44, 32, 4],
+                  dates: item.information.data.date,
+                  values: item.information.data.value.value,
                 }}
               />
             );
@@ -166,20 +181,21 @@ export const Diagnosis = () => {
                 <div className="flex justify-center gap-3 mt-5">
                   <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-orange-status ">
                     <div className=" bg-black-primary rounded-2xl px-3 py-1">
-                      {activeDiagnosis?.data.patient_value}mg/dl
+                      {activeDiagnosis?.information.data.patient_value}mg/dl
                     </div>
                     <h6 className="text-xs font-medium">Patient Value</h6>
                   </div>
                   <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-brand-primary-color ">
                     <div className=" bg-black-primary rounded-2xl px-3 py-1 text-sm text-nowrap">
-                      {`${activeDiagnosis?.data.normal_range[0]}-${activeDiagnosis?.data.normal_range[1]}`}{" "}
+                      {`${activeDiagnosis?.information.data.normal_range[0]}-${activeDiagnosis?.information.data.normal_range[1]}`}{" "}
                       mg/dl
                     </div>
                     <h6 className="text-xs font-medium">Normal Range</h6>
                   </div>
                   <div className="flex flex-col items-center justify-center p-3 gap-2 rounded-lg bg-black-third text-brand-secondary-color ">
                     <div className=" bg-black-primary rounded-2xl px-3 py-1">
-                      {activeDiagnosis?.data.avg_age_group_value}mg/dl
+                      {activeDiagnosis?.information.data.avg_age_group_value}
+                      mg/dl
                     </div>
                     <h6 className="text-xs font-medium">Avg Age Group</h6>
                   </div>
@@ -201,35 +217,39 @@ export const Diagnosis = () => {
                     <div className="w-full flex justify-between  items-center">
                       Diagnosis Type{" "}
                       <div className="bg-brand-primary-color px-3 py-1 rounded-2xl text-black-background text-xs font-normal">
-                        {activeDiagnosis?.data.type}
+                        {activeDiagnosis?.information.data.type}
                       </div>
                     </div>
                     <div className="w-full flex justify-between  items-center">
                       Diagnosis Severity{" "}
                       <div className="bg-red-status px-3 py-1 rounded-2xl text-black-background text-xs font-normal">
-                        {activeDiagnosis?.data.severity}
+                        {activeDiagnosis?.information.data.severity}
                       </div>
                     </div>
                     <div className="w-full flex justify-between  items-center">
                       Date of Diagnosis{" "}
                       <div className="bg-black-third px-3 py-1 rounded-2xl text-primary-text text-xs font-normal">
-                        {activeDiagnosis?.data.diagnosis_date}
+                        {activeDiagnosis?.information.data.diagnosis_date}
                       </div>
                     </div>
 
                     <div className="flex justify-center  w-full ">
                       <DoughnutChart
-                        patientValue={activeDiagnosis?.data.patient_value}
-                        normalRange={activeDiagnosis?.data.normal_range}
+                        patientValue={
+                          activeDiagnosis?.information.data.patient_value
+                        }
+                        normalRange={
+                          activeDiagnosis?.information.data.normal_range
+                        }
                         avgAgeGroupValue={
-                          activeDiagnosis?.data.avg_age_group_value
+                          activeDiagnosis?.information.data.avg_age_group_value
                         }
                       />
                     </div>
                   </div>
                 )}
               </div>
-              <div className="px-6 pt-3 pb-2 bg-black-primary w-full max-w-[492px]  max-h-[502px]   rounded-2xl border border-main-border">
+              <div className="px-6 pt-3 pb-2 bg-black-primary w-full max-w-[492px] h-fit  max-h-[502px]   rounded-2xl border border-main-border">
                 <h4 className="font-medium text-primary-text">
                   Related Biomarkers
                 </h4>
@@ -239,10 +259,10 @@ export const Diagnosis = () => {
                 >
                   {relatedDiagnoses.map((diagnosis) => (
                     <RightChartCard
-                      type={diagnosis.name}
+                      type={diagnosis.information.name}
                       chartData={{
-                        dates: diagnosis.data.date,
-                        values: diagnosis.data.value.value,
+                        dates: diagnosis.information.data.date,
+                        values: diagnosis.information.data.value.value,
                       }}
                     />
                   ))}
