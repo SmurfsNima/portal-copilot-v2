@@ -5,6 +5,7 @@ import { Information, Login, OverView, PatientList, TimeLine } from "@/pages";
 import BioMarker from "@/pages/information/bioMarker";
 import { Diagnosis } from "@/pages/information/diagnosis";
 import { Intervention } from "@/pages/information/intervention";
+import { AiStudio } from "@/pages/aiStudio";
 
 const router = createHashRouter([
   {
@@ -12,8 +13,11 @@ const router = createHashRouter([
     element: <ProtectedRoute Component={Layout}></ProtectedRoute>,
     children: [
       {
-        path:'/',
-        element:<PatientList></PatientList>
+        path:'/patient-list',
+        element:<PatientList></PatientList>,
+        children : [
+
+        ]
       },
       {
         path:'/information/:id',
@@ -44,9 +48,14 @@ const router = createHashRouter([
           },                  
 
         ]
-      }      
+      }, 
+      {
+        path : '/ai-studio',
+        element : <AiStudio></AiStudio>
+       },    
     ],
   },
+ 
   {
     path:'/login',
     element:<Login></Login>

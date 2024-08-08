@@ -389,3 +389,12 @@
   @apply w-6 h-6 bg-brand-primary-color;
    ;
 }
+.Aurora-icons-tick-square{
+  mask-image: url(Themes/Aurora/icons/tick-square.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-black;
+   ;
+}
