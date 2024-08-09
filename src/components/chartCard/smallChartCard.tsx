@@ -24,7 +24,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
   chartData
   
 }) => {
-console.log(chartData);
+  console.log(type);
 
   
   const theme = useSelector((state: any) => state.theme.value.name);

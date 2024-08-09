@@ -14,8 +14,7 @@ import { AppContext } from "@/store/app";
 import Diagnosis from "@/model/diagnosis";
 const PatientList = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
-  const [patients, setPatients] = useState<Array<Pationt>>([]);
-  // const {  addPatient, savePatientList , getBiomarkers } = useContext(AppContext);
+  const { patients ,savePatientList } = useContext(AppContext);
   const [reports, setReports] = useState<Array<any>>([]);
 
   useEffect(() => {
@@ -23,9 +22,11 @@ const PatientList = () => {
       try {
         const patientResponse = await Application.getPatients();
         const biomarkerResponse = await Application.getBiomarkers();
+        const DiagnosisResponse = await Application.getDiagnosis();
 
         console.log(patientResponse);
         console.log(biomarkerResponse);
+        console.log("diagnosis" , DiagnosisResponse);
 
         const biomarkersByPatientId: { [key: number]: biomarker[] } = {};
         biomarkerResponse.data.forEach((item: any) => {
@@ -33,9 +34,16 @@ const PatientList = () => {
             (bio: any) => new Biomarker(bio)
           );
         });
+        const DiagnosisByPatientId: { [key: number]: diagnosis[] } = {};
+        DiagnosisResponse.data.forEach((item: any) => {
+          DiagnosisByPatientId[item.patient_id] = item.diagnosis.map(
+            (bio: any) => new Diagnosis(bio)
+          );
+        });
 
         const resolvedPatients = patientResponse.data.map((el: any) => {
           const biomarkers = biomarkersByPatientId[el.patient_id] || [];
+          const Diagnosis = DiagnosisByPatientId[el.patient_id] || [];
           // const diagnosis = el.diagnosis.map((diagnosis: diagnosis) => {
           //   return new Diagnosis(diagnosis);
           // });
@@ -48,15 +56,19 @@ const PatientList = () => {
             blood_oxygen: 0,
             respiration_rate: "",
           });
-
+          
+          
           patient.setBiomarkers(biomarkers);
-          // patient.setDiagnosis(diagnosis);
+          patient.setDiagnosis(Diagnosis);
 
           return patient;
         });
-
-        setPatients(resolvedPatients);
-        // savePatientList(resolvedPatients);
+        
+        
+       
+        savePatientList(resolvedPatients);
+        console.log(patients);
+        
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -71,6 +83,7 @@ const PatientList = () => {
 
     fetchData();
   }, []);
+
 
   // useConstructor(() => {
   //   Application.getPatients().then((res) => {

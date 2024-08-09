@@ -117,7 +117,7 @@ export const Intervention = () => {
       <div className="flex   w-full gap-5">
         <div
           id="charts-container"
-          className={`w-full ${
+          className={`w-full max-h-[750px] overflow-auto ${
             active
               ? "grid-cols-1  max-w-[330px] gap-10 h-full  "
               : " grid-cols-3  xl:grid-cols-4"

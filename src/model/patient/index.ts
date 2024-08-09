@@ -2,7 +2,7 @@ import { PationtInformation, biomarker, diagnosis } from "@/types";
 
 class Pationt {
   private biomarkers: biomarker[] = [];
-  private diagnosis: diagnosis[] = [];
+  public diagnosis: diagnosis[] = [];
   constructor(public information: PationtInformation) {}
   public setBiomarkers(biomarkers: biomarker[]) {
     this.biomarkers = biomarkers;
@@ -14,7 +14,7 @@ class Pationt {
   public setDiagnosis(diagnosis: diagnosis[]) {
     this.diagnosis = diagnosis;
   }
-  public getDiagnosis() {
+  public getDiagnosis(): diagnosis[] {
     return this.diagnosis;
   }
 

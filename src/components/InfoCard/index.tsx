@@ -1,42 +1,19 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import border from "../../assets/images/profile-img-border.svg";
 import { BiologicalCardInfo, MolecularCardInfo } from "./Data";
 import DualProgressCircle from "./dualProgressCircle";
 import ProgressCircle from "./progressCircle";
-import { Application } from "@/api";
 import { useParams } from "react-router-dom";
-interface Patient {
-  member_id: number;
-  name: string;
-  age?: number;
-  sex?: string;
-  photo: string;
-  status: string;
-  enroll_date?: string;
-  last_followup?: string;
-}
+import { AppContext } from "@/store/app";
+import { Pationt } from "@/model";
+
 const InfoCard = () => {
-  const [patient, setPatient] = useState<Patient | null>(null);
+  const [patient , setPatient]  = useState<Pationt>()
+  const { getPatientById} = useContext(AppContext)
 
   const { id } = useParams<{ id: string }>();
   useEffect(() => {
-    if (id) {
-      const patientId = parseInt(id, 10);
-      if (!isNaN(patientId)) {
-        Application.getPatients().then((res) => {
-          const resolved: Patient[] = res.data;
-          if (Array.isArray(resolved)) {
-            const foundPatient = resolved.find((p) => {
-              if (p && typeof p === "object" && "member_id" in p) {
-                return p.member_id === patientId;
-              }
-              return false;
-            });
-            setPatient(foundPatient || null);
-          }
-        });
-      }
-    }
+    setPatient(getPatientById(Number(id)))
   }, [id]);
   console.log(patient);
   return (
@@ -55,21 +32,21 @@ const InfoCard = () => {
           >
             <img
               className="absolute top-[4px] left-[4px] xl:top-[6px] xl:left-[6px] w-[72px] h-[72px] rounded-full  xl:h-[115px] xl:w-[115px] object-cover"
-              src={patient?.photo}
+              src={patient?.information.picture}
               alt=""
             />
           </div>
         </div>
         <div className="flex flex-col  gap-2 text-nowrap">
           <h2 className="text-secondary-text  lg:text-[8px] xl:text-sm font-medium">
-            {patient?.name}
+            {patient?.information.name}
           </h2>
           <div className="flex -ml-2 text-[8px] xl:text-sm">
             <h2 className="text-primary-text border-r border-x-secondary-text  px-2 lg:text-[8px] xl:text-sm ">
-            {patient?.age} Years
+            {patient?.information.age} Years
             </h2>
             <h2 className="text-primary-text border-r border-x-secondary-text  px-2 lg:text-[8px] xl:text-sm ">
-            {patient?.sex}
+            {patient?.information.sex}
             </h2>
             <h2 className="text-primary-text px-2 lg:text-[8px] xl:text-sm ">
               P1245

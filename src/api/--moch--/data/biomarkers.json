@@ -10,7 +10,9 @@
                             "Low": 66,
                             "High": 114
                         }
-                    }
+                    },
+                    "status" : "normal"
+                    
                    
                 }
             },
@@ -21,7 +23,8 @@
                         "value": {
                             "value": 93
                         }
-                    }
+                    },
+                    "status" : "normal"
                  
                 }
             },
@@ -32,8 +35,30 @@
                         "value": {
                             "value": 98
                         }
-                    }
+                    },
+                    "status" : "normal"
                    
+                }
+            },
+            {
+                "Temperature": {
+                    "value": {
+                        "value":{
+                            "value" : 37
+                        }
+                    },
+                    "status" : "low"
+                }
+            },
+            {
+                "Respiration Rate": {
+                
+                    "value": {
+                        "value": {
+                            "value": 51
+                        }
+                    },
+                    "status": "low"
                 }
             }
         ]
@@ -42,13 +67,28 @@
         "patient_id": 2,
         "biomarkers": [
             {
+                "Blood Pressure": {
+                   
+                    "value": {
+                        "value": {
+                            "Low": 72,
+                            "High": 110
+                        }
+                    },
+                    "status" : "normal"
+                    
+                   
+                }
+            },
+            {
                 "Heart Rate": {
                  
                     "value": {
                         "value": {
                             "value": 50
                         }
-                    }
+                    },
+                    "status" : "normal"
                    
                 }
             },
@@ -73,6 +113,16 @@
                     },
                     "status": "low"
                 }
+            },
+            {
+                "Temperature": {
+                    "value": {
+                        "value":{
+                            "value" : 37
+                        }
+                    },
+                    "status" : "low"
+                }
             }
         ]
     },
@@ -87,7 +137,21 @@
                             "Low": 60,
                             "High": 92
                         }
-                    }
+                    
+                },
+                "status" : "normal"
+                   
+                }
+            },
+            {
+                "Heart Rate": {
+                 
+                    "value": {
+                        "value": {
+                            "value": 77
+                        }
+                    },
+                    "status" : "normal"
                    
                 }
             },
@@ -98,7 +162,8 @@
                         "value": {
                             "value": 90
                         }
-                    }
+                    },
+                    "status" : "normal"
                
                 }
             },
@@ -111,6 +176,16 @@
                         }
                     },
                     "status": "normal"
+                }
+            },
+            {
+                "Temperature": {
+                    "value": {
+                        "value":{
+                            "value" : 36
+                        }
+                    },
+                    "status" : "low"
                 }
             }
         ]
@@ -151,6 +226,27 @@
                     },
                     "status": "high"
                 }
+            },
+            {
+                "Temperature": {
+                    "value": {
+                        "value":{
+                            "value" : 37
+                        }
+                    },
+                    "status" : "low"
+                }
+            },
+            {
+                "Respiration Rate": {
+                
+                    "value": {
+                        "value": {
+                            "value": 49
+                        }
+                    },
+                    "status": "low"
+                }
             }
         ]
     },
@@ -190,6 +286,27 @@
                     },
                     "status": "high"
                 }
+            },
+            {
+                "Temperature": {
+                    "value": {
+                        "value":{
+                            "value" : 38
+                        }
+                    },
+                    "status" : "low"
+                }
+            },
+            {
+                "Respiration Rate": {
+                
+                    "value": {
+                        "value": {
+                            "value": 51
+                        }
+                    },
+                    "status": "low"
+                }
             }
         ]
     },
@@ -228,6 +345,27 @@
                         }
                     },
                     "status": "high"
+                }
+            },
+            {
+                "Temperature": {
+                    "value": {
+                        "value":{
+                            "value" : 36
+                        }
+                    },
+                    "status" : "low"
+                }
+            },
+            {
+                "Respiration Rate": {
+                
+                    "value": {
+                        "value": {
+                            "value": 54
+                        }
+                    },
+                    "status": "low"
                 }
             }
         ]
