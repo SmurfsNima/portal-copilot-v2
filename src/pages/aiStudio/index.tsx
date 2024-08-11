@@ -19,7 +19,7 @@ export const AiStudio = () => {
   const toggleEngagementSection = () => setIsEngagementOpen(!isEngagementOpen);
 
   return (
-    <div className="bg-black-background w-full h-screen overflow-hidden px-8 pt-5 flex items-start  gap-3 ">
+    <div className="bg-black-background w-full h-screen overflow-hidden px-5 pt-5 flex items-start  gap-3 ">
       <div className="w-full flex flex-col gap-3">
         <div className=" w-full flex gap-2 justify-center items-center">
           <div
@@ -116,7 +116,7 @@ export const AiStudio = () => {
                   </div>
                   <img
                     className="cursor-pointer"
-                    src="../../../public/Themes/Aurora/icons/edit.svg"
+                    src="/public/Themes/Aurora/icons/edit.svg"
                     alt=""
                   />
                 </li>
@@ -130,9 +130,8 @@ export const AiStudio = () => {
                     <span className="text-gray-400">29 July - 4 August</span>
                   </div>
                   <img
-                    className="cursor-pointer"
-                    src="/public/Themes/Aurora/icons/edit.svg"
-                    alt=""
+                    className={`cursor-pointer ${theme}-icons-edit `}
+                    
                   />
                 </li>
               </ul>
@@ -176,7 +175,7 @@ export const AiStudio = () => {
           </div>
         </div>
       </div>
-      <div className=" flex flex-col  justify-start">
+      <div className=" flex flex-col  justify-start w-[35%]">
         <SearchBox theme="Aurora" placeholder="Search for client..." />
         <div className="flex flex-col pr-[6px] max-h-[670px] overflow-auto">
           {
