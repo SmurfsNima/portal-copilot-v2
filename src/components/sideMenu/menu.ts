@@ -2,12 +2,12 @@ export const menus = [
     {
         name:'Patient List',
         icon:'people',
-        url:'/'
+        url:'/patient-list'
     },
     {
-        name:'message-square',
+        name:'Ai Studio',
         icon:'message-square',
-        url:'/'
+        url:'/ai-studio'
     },
     {
         name:'trend-up',

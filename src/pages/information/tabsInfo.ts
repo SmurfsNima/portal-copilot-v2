@@ -6,23 +6,28 @@ export const TabsInfo = [
     icon : true
   },
   {
-    text: "Biomarker",
-    path : 'biomarker',
+    text: "Analysis",
+    path : 'Analysis',
     icon : true
   },
   {
-    text: "Diagnosis",
-    path : 'diagnosis',
+    text: "Treatment Plan",
+    path : 'treatment-plan',
     icon : true
   },
   {
-    text: "Intervention",
-    path : 'intervention',
+    text: "Action Plan",
+    path : 'action-plan',
     icon : true
   },
   {
     text: "Timeline",
     path : 'timeline',
+    icon : true
+  },
+  {
+    text: "Calender",
+    path: "calender",
     icon : true
   },
   {

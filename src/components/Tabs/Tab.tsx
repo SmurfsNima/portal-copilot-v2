@@ -34,7 +34,7 @@ export const Tab = ({
     >
       <img
         data-active={active === text}
-        className={`${theme}-icons-${text} ${
+        className={`${theme}-icons-${text.replace(/\s+/g, '')} ${
           !icon && "hidden"
         } w-[16px] h-[16px] xl:w-[24px] xl:h-[24px]`}
         alt=""
