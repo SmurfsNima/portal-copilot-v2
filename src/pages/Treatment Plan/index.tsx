@@ -89,7 +89,7 @@ export const TreatmentPlan = () => {
         <img src="/public/Themes/Aurora/icons/send.svg" alt="" />
       </div>
       <div className="w-full flex gap-2">
-        <div className="bg-black-primary text-primary-text p-3 rounded-lg space-y-3 border border-main-border">
+        <div className="bg-black-primary text-primary-text w-full p-3 rounded-lg space-y-3 border border-main-border">
           <div className="flex justify-between items-center pb-4">
             <h2 className="text-xl font-semibold">Treatment Plan 012</h2>
             <div className="  flex items-center space-x-4">
@@ -121,36 +121,38 @@ export const TreatmentPlan = () => {
             Description
             <div className="h-[1px] w-full bg-secondary-text" />
           </div>
-
-          <div className="w-full space-y-4">
-            <p className="mt-4 text-primary-text">
-              This patient has high blood sugar and cholesterol, insomnia at
-              night, and sometimes migraine headaches. By referring to the
-              mentioned authority, the following plan is considered for this
-              patient.
-            </p>
-            <div>
-              Concerning Results:{" "}
-              <span className="underline text-brand-primary-color">
-                Detail{" "}
-              </span>
-            </div>
-            <ul className="list-disc ml-6 mt-4 text-primary-text">
-              <li>Sex Hormones</li>
-              <li>Growth/IGF-I Hormones</li>
-              <li>Free Testosterone</li>
-              <li>Major Essential Minerals</li>
-              <li>Liver Function</li>
-            </ul>
-            <div className="w-full flex items-center justify-between mt-4 border-b border-main-border pb-2">
-              <input
-                className="w-full bg-black-primary text-primary-text pl-2"
-                type="text"
-                placeholder="your comment..."
-              />
-              <Button theme={theme}>Send</Button>
-            </div>
-          </div>
+{isDescription && (
+  <div className="w-full space-y-4">
+  <p className="mt-4 text-primary-text">
+    This patient has high blood sugar and cholesterol, insomnia at
+    night, and sometimes migraine headaches. By referring to the
+    mentioned authority, the following plan is considered for this
+    patient.
+  </p>
+  <div>
+    Concerning Results:{" "}
+    <span className="underline text-brand-primary-color">
+      Detail{" "}
+    </span>
+  </div>
+  <ul className="list-disc ml-6 mt-4 text-primary-text">
+    <li>Sex Hormones</li>
+    <li>Growth/IGF-I Hormones</li>
+    <li>Free Testosterone</li>
+    <li>Major Essential Minerals</li>
+    <li>Liver Function</li>
+  </ul>
+  <div className="w-full flex items-center justify-between mt-4 border-b border-main-border pb-2">
+    <input
+      className="w-full bg-black-primary text-primary-text pl-2"
+      type="text"
+      placeholder="your comment..."
+    />
+    <Button theme={theme}>Send</Button>
+  </div>
+</div>
+)}
+        
 
           <div
             className="flex items-center gap-2 cursor-pointer"
@@ -159,9 +161,9 @@ export const TreatmentPlan = () => {
             <img
               className={` ${theme}-icons-arrow-down ${
                 isDetailsOpen ? "rotate-180" : ""
-              } transition-transform`}
+              } transition-transform w-6`}
             />
-            <span className="text-lg font-semibold">Details</span>
+            <span className="text-lg font-medium">Details</span>
             <div className="h-[1px] w-full bg-secondary-text" />
           </div>
           {isDetailsOpen && (
