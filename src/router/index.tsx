@@ -6,8 +6,8 @@ import BioMarker from "@/pages/information/bioMarker";
 import { Diagnosis } from "@/pages/information/diagnosis";
 import { Intervention } from "@/pages/information/intervention";
 import { AiStudio } from "@/pages/aiStudio";
-import { TreatmentPlan } from "@/pages/Treatment Plan";
-
+import { TreatmentPlan } from "@/pages/information/Treatment Plan";
+import { ActionPlan } from "@/pages/information/ActionPlan";
 const router = createHashRouter([
   {
     path: "/",
@@ -41,6 +41,10 @@ const router = createHashRouter([
           {
             path: "treatment-plan",
             element: <TreatmentPlan></TreatmentPlan>,
+          },
+          {
+            path: "action-plan",
+            element: <ActionPlan></ActionPlan>,
           },
 
           {
