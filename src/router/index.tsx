@@ -8,6 +8,7 @@ import { Intervention } from "@/pages/information/intervention";
 import { AiStudio } from "@/pages/aiStudio";
 import { TreatmentPlan } from "@/pages/information/Treatment Plan";
 import { ActionPlan } from "@/pages/information/ActionPlan";
+import { Calender } from "@/pages/information/calender";
 const router = createHashRouter([
   {
     path: "/",
@@ -45,6 +46,10 @@ const router = createHashRouter([
           {
             path: "action-plan",
             element: <ActionPlan></ActionPlan>,
+          },
+          {
+            path: "calender",
+            element: <Calender></Calender>,
           },
 
           {
