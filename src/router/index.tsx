@@ -9,6 +9,7 @@ import { AiStudio } from "@/pages/aiStudio";
 import { TreatmentPlan } from "@/pages/information/Treatment Plan";
 import { ActionPlan } from "@/pages/information/ActionPlan";
 import { Calender } from "@/pages/information/calender";
+import { Messages } from "@/pages/messages";
 const router = createHashRouter([
   {
     path: "/",
@@ -55,6 +56,10 @@ const router = createHashRouter([
           {
             path: "timeline",
             element: <TimeLine></TimeLine>,
+          },
+          {
+            path: "messages",
+            element: <Messages></Messages>,
           },
         ],
       },

@@ -1,10 +1,8 @@
 import { InfoCard } from "@/components";
-import React from "react";
 import { useSelector } from "react-redux";
 
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-// Define the days in the month, including those that are not part of the current month
 const daysInMonth = [
   { date: "29", activities: [], inCurrentMonth: false },
   { date: "30", activities: [], inCurrentMonth: false },
@@ -54,7 +52,6 @@ export const Calender = () => {
         <h2 className="text-sm font-semibold">July 2024</h2>
         <img className={`${theme}-icons-arrow-down`} alt="" />
       </div>
-      {/* Render the days of the week */}
       <div className="grid grid-cols-7 gap-2 mt-3 mb-2">
         {daysOfWeek.map((day, index) => (
           <div key={index} className=" text-sm text-center text-primary-text">

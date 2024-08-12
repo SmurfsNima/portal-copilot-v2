@@ -1,7 +1,9 @@
 import { InfoCard } from "@/components"
 import { useState } from "react"
+import { useSelector } from "react-redux";
 
 const TimeLine = () => {
+    const theme = useSelector((state: any) => state.theme.value.name);
     const [activities] = useState([
         {
         date:'July 2nd, 2024',
@@ -35,7 +37,7 @@ const TimeLine = () => {
                 <div className="bg-black-primary overflow-hidden relative w-full lg:px-2 xl:px-3 2xl:px-4 py-3 min-h-[47vh] border border-main-border rounded-xl  flex ">
                     <div className="absolute gap-4 top-4 left-5 flex justify-start">
                         <div className="flex justify-start items-center gap-1">
-                            <img src="./Themes/Aurora/icons/tick-square.svg" alt="" />
+                            <img className={`${theme}-icons-tick-square bg-brand-primary-color`} alt="" />
                             <div className="text-[#FFFFFFDE] text-[12px]">Done</div>
                         </div>
                         <div className="flex justify-start items-center gap-1">
@@ -63,7 +65,7 @@ const TimeLine = () => {
                                         alt="Midone Tailwind HTML Admin Template"
                                         src={fakerData[9].photos[0]}
                                         /> */}
-                                        <img className="w-6 h-6" src="./Themes/Aurora/icons/tick-square.svg" alt="" />
+                            <img className={`${theme}-icons-tick-square bg-brand-primary-color`} alt="" />
                                     </div>
                                     </div>
                                     <div className="flex-1 px-5 py-3 ml-4 border-[#383838] w-[auto] border bg-[#272727] rounded-[16px]  ">

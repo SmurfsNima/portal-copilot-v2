@@ -26,7 +26,7 @@ export const Tab = ({
       data-active={active === text}
       data-islast={isLast}
       data-isfirst={isFirst}
-      className={`${theme}-tab   `}
+      className={`${theme}-tab`}
       onClick={() => {
         setActive(text);
         handleClick();
@@ -36,16 +36,11 @@ export const Tab = ({
         data-active={active === text}
         className={`${theme}-icons-${text.replace(/\s+/g, '')} ${
           !icon && "hidden"
-        } w-[16px] h-[16px] xl:w-[24px] xl:h-[24px]`}
+        } w-[16px] h-[16px]`}
         alt=""
       />
-      <h5
-        className={` text-[10px] xl:text-sm font-normal ${
-          active === text ? "text-black-primary" : "text-primary-text"
-        }`}
-      >
+   
         {text}
-      </h5>
       <div
         className={`${!number && "hidden"} ${
           active === text ? "bg-black-background" : "bg-main-border "
