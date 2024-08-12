@@ -15,7 +15,7 @@ const router = createHashRouter([
     element: <ProtectedRoute Component={Layout}></ProtectedRoute>,
     children: [
       {
-        path: "/patient-list",
+        path: "/client-list",
         element: <PatientList></PatientList>,
         children: [],
       },

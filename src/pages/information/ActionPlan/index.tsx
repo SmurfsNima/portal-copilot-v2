@@ -82,7 +82,7 @@ export const ActionPlan = () => {
       <InfoCard></InfoCard>
       <div className="w-full bg-black-primary border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
         <input
-          className="w-full border border-main-border bg-black-secondary rounded-md outline-none text-sm pl-2 py-1 text-primary-text"
+          className="w-full border border-main-border bg-black-secondary rounded-md outline-none  pl-2 py-1 text-xs text-primary-text"
           type="text"
           placeholder="Write here..."
         />
@@ -91,12 +91,12 @@ export const ActionPlan = () => {
       <div className="w-full flex gap-2">
         <div className="bg-black-primary text-primary-text w-full p-3 rounded-lg space-y-3 border border-main-border">
           <div className="flex justify-between items-center pb-4">
-            <h2 className="text-xl font-semibold">Action Plan 012</h2>
+            <h2 className="text-sm font-semibold">Action Plan 012</h2>
             <div className="  flex items-center space-x-4">
               {!showHistory && (
                 <button
                   onClick={() => setShowHistory(true)}
-                  className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-sm `}
+                  className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img className={`${theme}-icons-history`} alt="" />
                   Show History
@@ -110,7 +110,7 @@ export const ActionPlan = () => {
             </div>
           </div>
 
-          <div className=" w-full flex items-center gap-2 cursor-pointer">
+          <div className=" w-full flex items-center gap-2 cursor-pointer text-sm">
             <img
               onClick={() => setIsDescription(!isDescription)}
               className={` transition-transform ${
@@ -122,7 +122,7 @@ export const ActionPlan = () => {
             <div className="h-[1px] w-full bg-secondary-text" />
           </div>
           {isDescription && (
-            <div className="w-full space-y-4">
+            <div className="w-full space-y-2 text-xs">
               <p className="mt-4 text-primary-text">
                 This patient has high blood sugar and cholesterol, insomnia at
                 night, and sometimes migraine headaches. By referring to the
@@ -154,7 +154,7 @@ export const ActionPlan = () => {
           )}
 
           <div
-            className="flex items-center gap-2 cursor-pointer"
+            className="flex items-center gap-2 cursor-pointer text-sm"
             onClick={toggleDetailsSection}
           >
             <img
@@ -162,14 +162,14 @@ export const ActionPlan = () => {
                 isDetailsOpen ? "rotate-180" : ""
               } transition-transform w-6`}
             />
-            <span className="text-lg font-medium">Details</span>
+            <span className="text-sm font-medium">Details</span>
             <div className="h-[1px] w-full bg-secondary-text" />
           </div>
           {isDetailsOpen && (
-            <div className="mt-4 space-y-12">
-              <div className="space-y-6">
+            <div className="mt-4 space-y-4 text-xs">
+              <div className="space-y-3">
                 <div className=" w-full text-lg font-semibold text-gray-300 flex justify-between  items-center gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 text-xs">
                     {" "}
                     <div className="bg-black-third rounded-lg p-1">
                       <img className={`${theme}-icons-nutrition`} alt="" />
@@ -179,9 +179,9 @@ export const ActionPlan = () => {
 
                   <img className={`${theme}-icons-edit`} alt="" />
                 </div>
-                <ul className=" ml-6 list-disc space-y-5 text-primary-text">
+                <ul className=" ml-6 list-disc space-y-2 text-primary-text">
                   <li>
-                    <div className="flex w-full gap-3">
+                    <div className="flex items-center w-full gap-3">
                       <div className="">
                         {" "}
                         Omeprazole (Oral Pill) 40 MG/
@@ -291,7 +291,7 @@ export const ActionPlan = () => {
               </div>
               <div className="space-y-6">
                 <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 text-xs">
                     <div className="bg-black-third rounded-lg p-1">
                       <img className={`${theme}-icons-mind `} alt="" />
                     </div>
@@ -299,7 +299,7 @@ export const ActionPlan = () => {
                   </div>
                   <img className={`${theme}-icons-edit`} alt="" />
                 </div>
-                <ul className=" ml-6 list-disc space-y-5 text-primary-text">
+                <ul className=" ml-6 list-disc space-y-1 text-primary-text">
                   <li>
                     <div className="flex w-full gap-3">
                       <div className="">
@@ -358,7 +358,7 @@ export const ActionPlan = () => {
               </div>
               <div className="space-y-6">
                 <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 text-xs">
                     <div className="bg-black-third rounded-lg p-1">
                       <img className={`${theme}-icons-activity`} alt="" />
                     </div>
@@ -366,7 +366,7 @@ export const ActionPlan = () => {
                   </div>
                   <img className={`${theme}-icons-edit`} alt="" />
                 </div>
-                <ul className=" ml-6 list-disc space-y-5 text-primary-text">
+                <ul className=" ml-6 list-disc space-y-1 text-primary-text">
                   <li>
                     <div className="flex w-full justify-between">
                         <div className="flex gap-1">
@@ -426,7 +426,7 @@ export const ActionPlan = () => {
               </div>
               <div className="space-y-6">
                 <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 text-xs">
                     <div className="bg-black-third rounded-lg p-1">
                       <img className={`${theme}-icons-sleep`} alt="" />
                     </div>
@@ -434,7 +434,7 @@ export const ActionPlan = () => {
                   </div>
                   <img className={`${theme}-icons-edit`} alt="" />
                 </div>
-                <ul className=" ml-6 list-disc space-y-5 text-primary-text">
+                <ul className=" ml-6 list-disc space-y-1 text-primary-text">
                   <li>
                     <div className="flex justify-between w-full gap-3">
                       <div className="flex">
@@ -479,7 +479,7 @@ export const ActionPlan = () => {
         </div>
         {showHistory && (
           <div className="bg-black-primary text-primary-text p-2 rounded-lg space-y-2 border border-main-border w-[35%] ">
-            <div className="flex justify-between items-center font-medium">
+            <div className="flex justify-between items-center font-medium text-lg">
               Action Plan History
               <button
                 onClick={() => setShowHistory(false)}

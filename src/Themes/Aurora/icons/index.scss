@@ -157,13 +157,7 @@
   mask-position: center;
   @apply w-6 h-6  bg-[#FFFFFF99];
 }
-.Aurora-icons-Overview[data-active="true"],
-.Aurora-icons-Biomarker[data-active="true"],
-.Aurora-icons-Diagnosis[data-active="true"],
-.Aurora-icons-Intervention[data-active="true"],
-.Aurora-icons-Intervention[data-active="true"] {
-  @apply bg-black;
-}
+
 .Aurora-icons-PiChatBold {
   @apply text-[#03DAC5] w-6 h-6;
 }

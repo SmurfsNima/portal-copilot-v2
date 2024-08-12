@@ -1,8 +1,8 @@
 export const menus = [
     {
-        name:'Patient List',
+        name:'Client List',
         icon:'people',
-        url:'/patient-list'
+        url:'/client-list'
     },
     {
         name:'Ai Studio',
@@ -10,7 +10,7 @@ export const menus = [
         url:'/ai-studio'
     },
     {
-        name:'trend-up',
+        name:'Ai knowledge',
         icon:'trend-up',
         url:'/'
     },      

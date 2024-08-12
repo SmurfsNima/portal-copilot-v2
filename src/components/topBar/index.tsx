@@ -19,7 +19,7 @@ const TopBar:React.FC = () => {
                             <img src={clinic} alt="" />
                         </div>
                         <div>
-                            <div className={`${theme}-Text-sm`}>Clinic Longevity 1</div>
+                            <div className={`${theme}-Text-xs`}>Clinic Longevity 1</div>
                             <div className={`${theme}-Text-xs`}>Clinic-Longevity-1@gmail.com</div>
                         </div>
                     </div>

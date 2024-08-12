@@ -19,12 +19,12 @@ export const AiStudio = () => {
   const toggleEngagementSection = () => setIsEngagementOpen(!isEngagementOpen);
 
   return (
-    <div className="bg-black-background w-full h-screen overflow-hidden px-5 pt-5 flex items-start  gap-3 ">
-      <div className="w-full flex flex-col gap-3">
+    <div className="bg-black-background h-fit w-full  overflow-hidden px-5 flex items-start  gap-2 ">
+      <div className="w-full flex flex-col gap-2">
         <div className=" w-full flex gap-2 justify-center items-center">
           <div
             onClick={() => setNavActive("Copilot")}
-            className={` cursor-pointer px-4 py-3 rounded-md ${
+            className={` cursor-pointer px-4 py-2 rounded-md text-xs ${
               navActive === "Copilot"
                 ? "bg-black-third text-primary-text"
                 : "text-secondary-text"
@@ -34,7 +34,7 @@ export const AiStudio = () => {
           </div>
           <div
             onClick={() => setNavActive("Overview")}
-            className={` cursor-pointer px-4 py-3 rounded-md  ${
+            className={` cursor-pointer px-4 py-2 rounded-md text-xs  ${
               navActive === "Overview"
                 ? "bg-black-third text-primary-text"
                 : "text-secondary-text"
@@ -44,15 +44,15 @@ export const AiStudio = () => {
           </div>
         </div>
 
-        <div className="w-full bg-black-primary border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
+        <div className="w-full bg-black-primary border border-main-border px-[6px] py-[2px] flex items-center gap-3 rounded-md">
           <input
-            className="w-full border border-main-border bg-black-secondary rounded-md outline-none text-primary-text"
+            className="w-full border border-main-border bg-black-secondary py-1 rounded-md outline-none text-[10px] text-primary-text"
             type="text"
           />
           <img src="/public/Themes/Aurora/icons/send.svg" alt="" />
         </div>
-        <div className="bg-black-primary text-white p-4 rounded-lg space-y-5">
-          <div className="flex items-center gap-2 text-lg font-semibold ">
+        <div className="bg-black-primary text-primary-text p-4 rounded-lg space-y-5">
+          <div className="flex items-center gap-1 text-sm font-semibold ">
             <img
               onClick={toggleStateSection}
               className={` transition-transform ${
@@ -64,8 +64,8 @@ export const AiStudio = () => {
             <div className="h-[1px] w-full bg-primary-text" />
           </div>
           {isStateOpen && (
-            <div>
-              <div className=" max-w-[130px] mt-4 flex items-center gap-1 bg-brand-secondary-color text-black px-3 py-1 rounded-full text-sm font-medium">
+            <div className="text-xs">
+              <div className=" max-w-[130px] mt-4 flex items-center gap-1 bg-brand-secondary-color text-black px-3 py-[2px] rounded-full text-xs font-medium">
                 <img src="/public/Themes/Aurora/icons/tag.svg" alt="" />
                 Re-planning
               </div>
@@ -91,7 +91,7 @@ export const AiStudio = () => {
             </div>
           )}
 
-          <div className="text-lg font-semibold flex gap-2 items-center">
+          <div className="text-sm font-semibold flex gap-2 items-center">
             <img
               onClick={toggleRecommendationSection}
               className={` transition-transform ${
@@ -104,7 +104,7 @@ export const AiStudio = () => {
           </div>
           {isRecommendationOpen && (
             <div>
-              <ul className="mt-4 space-y-5">
+              <ul className="mt-4 space-y-5 text-xs">
                 <li className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <span>•</span>
@@ -138,7 +138,7 @@ export const AiStudio = () => {
             </div>
           )}
           <div>
-            <div className="text-lg font-semibold flex gap-2 items-center">
+            <div className="text-sm font-semibold flex gap-2 items-center">
               <img
                 onClick={toggleAlertSection}
                 className={` ${theme}-icons-arrow-up transition-transform ${
@@ -152,7 +152,7 @@ export const AiStudio = () => {
           </div>
 
           <div>
-            <div className="text-lg font-semibold flex gap-2 items-center">
+            <div className="text-sm font-semibold flex gap-2 items-center">
               <img
                 onClick={toggleEngagementSection}
                 className={` ${theme}-icons-arrow-up  transition-transform ${
@@ -177,7 +177,7 @@ export const AiStudio = () => {
       </div>
       <div className=" flex flex-col  justify-start w-[35%]">
         <SearchBox theme="Aurora" placeholder="Search for client..." />
-        <div className="flex flex-col pr-[6px] max-h-[670px] overflow-auto">
+        <div className="flex flex-col pr-[6px] max-h-[540px] overflow-auto">
           {
             ClientInfo.map((client)=>(
               <ClientCard key={client.name} name={client.name} city={client.city} picture={client.picture} height={client.height} weight={client.weight} blood={client.blood} age={client.age} status={client.status} cardActive={cardActive} setCardActive={setcardActive}></ClientCard>
