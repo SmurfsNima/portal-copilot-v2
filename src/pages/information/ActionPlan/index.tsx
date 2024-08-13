@@ -86,7 +86,7 @@ export const ActionPlan = () => {
           type="text"
           placeholder="Write here..."
         />
-        <img src="/public/Themes/Aurora/icons/send.svg" alt="" />
+        <img className={`${theme}-icons-send`} alt="" />
       </div>
       <div className="w-full flex gap-2">
         <div className="bg-black-primary text-primary-text w-full p-3 rounded-lg space-y-3 border border-main-border">

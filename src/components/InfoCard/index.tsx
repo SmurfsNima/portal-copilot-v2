@@ -1,5 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import border from "../../assets/images/profile-img-border.svg";
+import score from '../../assets/images/score.svg'
+import progress from '../../assets/images/progress.svg'
+import plan from '../../assets/images/planprogress.svg'
 import { BiologicalCardInfo, MolecularCardInfo} from "./Data";
 import DualProgressCircle from "./dualProgressCircle";
 import { useParams } from "react-router-dom";
@@ -110,17 +113,17 @@ const InfoCard = () => {
         <div className="flex w-full  gap-20 ">
         <div className="text-sm text-primary-text flex flex-col gap-2 items-center">
           Progress
-         <img src="/src/assets/images/progress.svg" alt="" />
+         <img src={progress} alt="" />
           
         </div>
         <div className="text-sm text-primary-text flex flex-col gap-2 items-center">
           Score
-         <img src="/src/assets/images/score.svg" alt="" />
+         <img src={score} alt="" />
           
         </div>
         <div className="text-sm text-primary-text flex flex-col gap-2 items-center">
          
-         <img src="/src/assets/images/planprogress.svg" alt="" />
+         <img src={plan} alt="" />
           
         </div>
         </div>
