@@ -2,7 +2,7 @@ export const menus = [
     {
         name:'Client List',
         icon:'people',
-        url:'/client-list'
+        url:'/'
     },
     {
         name:'Ai Studio',
