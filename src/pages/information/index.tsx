@@ -14,7 +14,7 @@ const Information = () => {
     <div className=" bg-black-background  h-fit  overflow-hidden flex flex-col justify-start items-center px-5 ">
       <div className="flex  py-2 z-10 justify-center bg-black-background w-full">
         <div className=" w-full flex items-center gap-3 ">
-          <Link to={"/client-list"}>
+          <Link to={"/"}>
             <div className={`${theme}-tab-icon-container`}>
               <img className={`${theme}-icons-arrow-left`} />
             </div>
