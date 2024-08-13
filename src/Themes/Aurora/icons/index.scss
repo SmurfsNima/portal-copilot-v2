@@ -405,7 +405,7 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-5 h-5 bg-black;
+  @apply w-5 h-5 bg-brand-primary-color;
    ;
 }
 .Aurora-icons-history{
@@ -436,7 +436,7 @@
    ;
 }
 .Aurora-icons-nutrition{
-  mask-image: url(/public/Themes/Aurora/icons/apple.svg);
+  mask-image: url(Themes/Aurora/icons/apple.svg);
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -445,7 +445,7 @@
    ;
 }
 .Aurora-icons-mind{
-  mask-image: url(/public/Themes/Aurora/icons/mind.svg);
+  mask-image: url(/Themes/Aurora/icons/mind.svg);
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -454,7 +454,7 @@
    ;
 }
 .Aurora-icons-activity{
-  mask-image: url(/public/Themes/Aurora/icons/weight.svg);
+  mask-image: url(Themes/Aurora/icons/weight.svg);
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -463,7 +463,7 @@
    ;
 }
 .Aurora-icons-sleep{
-  mask-image: url(/public/Themes/Aurora/icons/moon.svg);
+  mask-image: url(/Themes/Aurora/icons/moon.svg);
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -472,11 +472,38 @@
    ;
 }
 .Aurora-icons-export{
-  mask-image: url(/public/Themes/Aurora/icons/export.svg);
+  mask-image: url(Themes/Aurora/icons/export.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-4 h-4 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-more{
+  mask-image: url(Themes/Aurora/icons/more-square.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-4 h-4 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-send{
+  mask-image: url(Themes/Aurora/icons/send.svg);
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
   @apply w-6 h-6 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-tag{
+  mask-image: url(Themes/Aurora/icons/tag.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-black-background;
    ;
 }
