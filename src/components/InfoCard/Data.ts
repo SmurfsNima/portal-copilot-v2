@@ -51,6 +51,24 @@ export const BiologicalCardInfo = [
         otherStyles : 'top-12'
     },
  ]
+ export const progressInfo = [
+    {
+        name : 'Nutrition',
+        value : 63,
+    },
+    {
+        name : 'Mind',
+        value : 32,
+    },
+    {
+        name : 'Activity',
+        value :21,
+    },
+    {
+        name : 'Sleep',
+        value : 58,
+    },
+ ]
  export const TabsInfo = [
     {
         text: 'All',

@@ -1,52 +1,52 @@
 import { useContext, useEffect, useState } from "react";
 import border from "../../assets/images/profile-img-border.svg";
-import { BiologicalCardInfo, MolecularCardInfo } from "./Data";
+import { BiologicalCardInfo, MolecularCardInfo} from "./Data";
 import DualProgressCircle from "./dualProgressCircle";
-import ProgressCircle from "./progressCircle";
 import { useParams } from "react-router-dom";
 import { AppContext } from "@/store/app";
 import { Pationt } from "@/model";
+import ProgressCircle from "./progressCircle";
 
 const InfoCard = () => {
-  const [patient , setPatient]  = useState<Pationt>()
-  const { getPatientById} = useContext(AppContext)
+  const [patient, setPatient] = useState<Pationt>();
+  const { getPatientById } = useContext(AppContext);
 
   const { id } = useParams<{ id: string }>();
   useEffect(() => {
-    setPatient(getPatientById(Number(id)))
+    setPatient(getPatientById(Number(id)));
   }, [id]);
-  console.log(patient);
+  const [active, setActive] = useState("Progress");
   return (
-    <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-3  border border-main-border rounded-xl  flex justify-between ">
-      <div className=" flex gap-2  xl:gap-4 items-center ">
+    <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-4 border border-main-border rounded-xl  flex items gap-10 relative ">
+      <div className=" flex gap-10  xl:gap-12  ">
         <div
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(3,218,197,1) 0%, rgba(31,74,75,1) 53%)",
-          }}
-          className="relative w-20 rounded-full bg-cover bg-center h-20 xl:w-32 xl:h-32 "
+          // style={{
+          //   backgroundImage:
+          //     "radial-gradient(circle, rgba(3,218,197,1) 0%, rgba(31,74,75,1) 53%)",
+          // }}
+          className="relative w-20 rounded-full bg-cover  bg-center h-20 xl:w-[115] xl:h-[115] "
         >
           <div
             style={{ backgroundImage: `url(${border})` }}
-            className="relative w-20 xl:w-32 h-20 xl:h-32 bg-cover bg-center"
+            className="relative w-20  h-20  xl:w-[115px]  xl:h-[115px] bg-cover bg-center"
           >
             <img
-              className="absolute top-[4px] left-[4px] xl:top-[6px] xl:left-[6px] w-[72px] h-[72px] rounded-full  xl:h-[115px] xl:w-[115px] object-cover"
+              className="absolute top-[4px] left-[4px] xl:top-[6px] xl:left-[6px] w-[78px] h-[88px] rounded-full  xl:h-[105px] xl:w-[105px] object-cover"
               src={patient?.information.picture}
               alt=""
             />
           </div>
         </div>
-        <div className="flex flex-col  gap-2 text-nowrap">
+        <div className="flex flex-col   gap-2 text-nowrap">
           <h2 className="text-secondary-text  lg:text-[8px] xl:text-sm font-medium">
             {patient?.information.name}
           </h2>
           <div className="flex -ml-2 text-[8px] xl:text-sm">
             <h2 className="text-primary-text border-r border-x-secondary-text  px-2 lg:text-[8px] xl:text-sm ">
-            {patient?.information.age} Years
+              {patient?.information.age} Years
             </h2>
             <h2 className="text-primary-text border-r border-x-secondary-text  px-2 lg:text-[8px] xl:text-sm ">
-            {patient?.information.sex}
+              {patient?.information.sex}
             </h2>
             <h2 className="text-primary-text px-2 lg:text-[8px] xl:text-sm ">
               P1245
@@ -59,50 +59,94 @@ const InfoCard = () => {
           </div>
         </div>
       </div>
+      {active === "Aging" ? (
+        <div className="flex gap-10">
+          <div className="flex items-center -ml-6 mb-10 relative  ">
+            {BiologicalCardInfo.map((item, i) => (
+              <ProgressCircle
+                key={i}
+                size={35}
+                progress={85}
+                title={item.title}
+                MAE={item.MAE}
+                icon={item.icon}
+                otherStyles={item.otherStyles}
+                border="text-brand-secondary-color"
+              />
+            ))}
+          </div>
+          <div className="flex items-center gap-3 -ml-6 xl:-ml-16">
+            <div className="flex  items-center ">
+              <h2 className="text-secondary-text text-xs xl:text-sm text-nowrap -rotate-90 ">
+                Digital Clocks
+              </h2>
+              <div className="w-[1px] h-36 bg-secondary-color -ml-6 " />
+            </div>
 
-      <div className="flex  relative  ">
-        {BiologicalCardInfo.map((item, i) => (
-          <ProgressCircle
-            key={i}
-            size={35}
-            progress={85}
-            title={item.title}
-            MAE={item.MAE}
-            icon={item.icon}
-            otherStyles={item.otherStyles}
-            border="text-brand-secondary-color"
-          />
-        ))}
-      </div>
-      <div className="flex items-center gap-3 -ml-6 xl:-ml-4">
-        <div className="flex  items-center ">
-          <h2 className="text-secondary-text text-xs xl:text-sm text-nowrap -rotate-90 ">
-            Digital Clocks
-          </h2>
-          <div className="w-[1px] h-36 bg-secondary-color -ml-6 " />
+            <DualProgressCircle size={120} progress1={48} progress2={39} />
+            <div className="flex justify-center items-center gap-3">
+              <div className="w-[1px] h-[140px] bg-secondary-color " />
+              <h2 className="text-secondary-text text-xs xl:text-sm text-nowrap -rotate-90 -ml-10 ">
+                Molcular Clocks
+              </h2>
+            </div>
+          </div>
+          <div className="flex items-center mb-6  -ml-[70px]  relative  ">
+            {MolecularCardInfo.map((item, i) => (
+              <ProgressCircle
+                key={i}
+                size={35}
+                progress={45}
+                title={item.title}
+                MAE={item.MAE}
+                icon={item.icon}
+                otherStyles={item.otherStyles}
+                border="green"
+              />
+            ))}
+          </div>
         </div>
+      ) : (
+        <div className="flex w-full  gap-20 ">
+        <div className="text-sm text-primary-text flex flex-col gap-2 items-center">
+          Progress
+         <img src="/src/assets/images/progress.svg" alt="" />
+          
+        </div>
+        <div className="text-sm text-primary-text flex flex-col gap-2 items-center">
+          Score
+         <img src="/src/assets/images/score.svg" alt="" />
+          
+        </div>
+        <div className="text-sm text-primary-text flex flex-col gap-2 items-center">
+         
+         <img src="/src/assets/images/planprogress.svg" alt="" />
+          
+        </div>
+        </div>
+      )}
 
-        <DualProgressCircle size={120} progress1={48} progress2={39} />
-        <div className="flex justify-center items-center gap-3">
-          <div className="w-[1px] h-[140px] bg-secondary-color " />
-          <h2 className="text-secondary-text text-xs xl:text-sm text-nowrap -rotate-90 -ml-10 ">
-            Molcular Clocks
-          </h2>
+      <div className=" absolute top-2 right-2 flex  gap-1 text-xs ">
+        <div
+          onClick={() => setActive("Progress")}
+          className={`rounded-lg px-3 py-2 cursor-pointer ${
+            active === "Progress"
+              ? "text-primary-text bg-black-third "
+              : "text-secondary-text"
+          }`}
+        >
+          Progress
         </div>
-      </div>
-      <div className="flex  -ml-7  relative  ">
-        {MolecularCardInfo.map((item, i) => (
-          <ProgressCircle
-            key={i}
-            size={35}
-            progress={45}
-            title={item.title}
-            MAE={item.MAE}
-            icon={item.icon}
-            otherStyles={item.otherStyles}
-            border="green"
-          />
-        ))}
+        <div
+          onClick={() => setActive("Aging")}
+          className={`rounded-lg px-3 py-2 cursor-pointer ${
+            active === "Aging"
+              ? "text-primary-text bg-black-third "
+              : "text-secondary-text"
+          }`}
+        >
+          Aging
+        </div>
       </div>
     </div>
   );

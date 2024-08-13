@@ -1,5 +1,5 @@
 .Aurora-Button-container {
-  @apply bg-brand-primary-color w-fit  disabled:bg-[rgba(0,0,0,0.5)] py-2 gap-2 px-3 text-[14px] border rounded-xl border-black text-[#121212] disabled:opacity-50 flex items-center justify-between;
+  @apply bg-brand-primary-color w-fit  disabled:bg-[rgba(0,0,0,0.5)] py-2 gap-2 px-3 text-[12px] border rounded-xl border-black text-[#121212] disabled:opacity-50 flex items-center justify-between;
 }
 
 .Aurora-Button-container-disabled {

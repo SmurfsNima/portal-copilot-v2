@@ -6,15 +6,17 @@ import BioMarker from "@/pages/information/bioMarker";
 import { Diagnosis } from "@/pages/information/diagnosis";
 import { Intervention } from "@/pages/information/intervention";
 import { AiStudio } from "@/pages/aiStudio";
-import { TreatmentPlan } from "@/pages/Treatment Plan";
-
+import { TreatmentPlan } from "@/pages/information/Treatment Plan";
+import { ActionPlan } from "@/pages/information/ActionPlan";
+import { Calender } from "@/pages/information/calender";
+import { Messages } from "@/pages/messages";
 const router = createHashRouter([
   {
     path: "/",
     element: <ProtectedRoute Component={Layout}></ProtectedRoute>,
     children: [
       {
-        path: "/patient-list",
+        path: "/client-list",
         element: <PatientList></PatientList>,
         children: [],
       },
@@ -42,10 +44,22 @@ const router = createHashRouter([
             path: "treatment-plan",
             element: <TreatmentPlan></TreatmentPlan>,
           },
+          {
+            path: "action-plan",
+            element: <ActionPlan></ActionPlan>,
+          },
+          {
+            path: "calender",
+            element: <Calender></Calender>,
+          },
 
           {
             path: "timeline",
             element: <TimeLine></TimeLine>,
+          },
+          {
+            path: "messages",
+            element: <Messages></Messages>,
           },
         ],
       },

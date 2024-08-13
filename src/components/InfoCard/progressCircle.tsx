@@ -1,11 +1,11 @@
 
 interface ProgressCircleProps {
   title: string,
-  MAE: string,
-  icon: string,
+  MAE?: string,
+  icon?: string,
   progress: number,
   size: number,
-  otherStyles: string,
+  otherStyles?: string,
   border: string,
 }
 

@@ -82,7 +82,7 @@ export const TreatmentPlan = () => {
       <InfoCard></InfoCard>
       <div className="w-full bg-black-primary border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
         <input
-          className="w-full border border-main-border bg-black-secondary rounded-md outline-none text-sm pl-2 py-1 text-primary-text"
+          className="w-full border text-[10px] border-main-border bg-black-secondary rounded-md outline-none text-xs pl-2 py-1 text-primary-text"
           type="text"
           placeholder="Write here..."
         />
@@ -91,12 +91,12 @@ export const TreatmentPlan = () => {
       <div className="w-full flex gap-2">
         <div className="bg-black-primary text-primary-text w-full p-3 rounded-lg space-y-3 border border-main-border">
           <div className="flex justify-between items-center pb-4">
-            <h2 className="text-xl font-semibold">Treatment Plan 012</h2>
+            <h2 className="text-sm font-semibold">Treatment Plan 012</h2>
             <div className="  flex items-center space-x-4">
               {!showHistory && (
                 <button
                   onClick={() => setShowHistory(true)}
-                  className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-sm `}
+                  className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img className={`${theme}-icons-history`} alt="" />
                   Show History
@@ -110,7 +110,7 @@ export const TreatmentPlan = () => {
             </div>
           </div>
 
-          <div className=" w-full flex items-center gap-2 cursor-pointer">
+          <div className=" w-full flex items-center gap-2 cursor-pointer text-sm">
             <img
               onClick={() => setIsDescription(!isDescription)}
               className={` transition-transform ${
@@ -122,8 +122,8 @@ export const TreatmentPlan = () => {
             <div className="h-[1px] w-full bg-secondary-text" />
           </div>
 {isDescription && (
-  <div className="w-full space-y-4">
-  <p className="mt-4 text-primary-text">
+  <div className="w-full space-y-2 text-xs">
+  <p className="mt-4 text-primary-text ">
     This patient has high blood sugar and cholesterol, insomnia at
     night, and sometimes migraine headaches. By referring to the
     mentioned authority, the following plan is considered for this
@@ -163,13 +163,13 @@ export const TreatmentPlan = () => {
                 isDetailsOpen ? "rotate-180" : ""
               } transition-transform w-6`}
             />
-            <span className="text-lg font-medium">Details</span>
+            <span className="text-sm font-medium">Details</span>
             <div className="h-[1px] w-full bg-secondary-text" />
           </div>
           {isDetailsOpen && (
-            <div className="mt-4 space-y-12">
-              <div className="space-y-6">
-                <div className=" w-full text-lg font-semibold text-gray-300 flex justify-between  items-center gap-2">
+            <div className="mt-4 space-y-6 text-xs">
+              <div className="space-y-2">
+                <div className=" w-full text-sm font-semibold text-gray-300 flex justify-between  items-center gap-2">
                   <div className="flex items-center gap-2">
                     {" "}
                     <div className="bg-black-third rounded-lg p-1">
@@ -183,7 +183,7 @@ export const TreatmentPlan = () => {
 
                   <img className={`${theme}-icons-edit`} alt="" />
                 </div>
-                <ul className=" ml-6 list-disc space-y-5 text-primary-text">
+                <ul className=" ml-6 list-disc space-y-2 text-primary-text">
                   <li>
                     <div className="flex w-full justify-between">
                       Eat a balanced diet rich in whole grains, lean proteins,
@@ -226,8 +226,8 @@ export const TreatmentPlan = () => {
                   </li>
                 </ul>
               </div>
-              <div className="space-y-6">
-                <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
+              <div className="space-y-2">
+                <div className="text-sm font-semibold text-primary-text w-full flex justify-between items-center gap-2">
                     <div className="flex items-center gap-2">
                   <div className="bg-black-third rounded-lg p-1">
                   <img
@@ -239,7 +239,7 @@ export const TreatmentPlan = () => {
                   </div>
                   <img className={ `${theme}-icons-edit`} alt="" />
                 </div>
-                <ul className=" ml-6 list-disc space-y-5 text-primary-text">
+                <ul className=" ml-6 list-disc space-y-2 text-primary-text">
                   <li>
                     <div className="flex w-full justify-between">
                     Practice stress-reduction techniques like meditation, deep breathing, or yoga daily.
@@ -291,8 +291,8 @@ export const TreatmentPlan = () => {
                   </li>
                 </ul>
               </div>
-              <div className="space-y-6">
-                <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
+              <div className="space-y-2">
+                <div className="text-sm font-semibold text-primary-text w-full flex justify-between items-center gap-2">
                     <div className="flex items-center gap-2">
                     <div className="bg-black-third rounded-lg p-1">
                     <img
@@ -305,7 +305,7 @@ export const TreatmentPlan = () => {
                  <img className={`${theme}-icons-edit`} alt="" />
                  
                 </div>
-                <ul className=" ml-6 list-disc space-y-5 text-primary-text">
+                <ul className=" ml-6 list-disc space-y-2 text-primary-text">
                   <li>
                     <div className="flex w-full justify-between">
                     Engage in at least 150 minutes of moderate-intensity aerobic exercise per week (e.g., walking, cycling).
@@ -340,7 +340,7 @@ export const TreatmentPlan = () => {
                 </ul>
               </div>
               <div className="space-y-6">
-                <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
+                <div className="text-sm font-semibold text-primary-text w-full flex justify-between items-center gap-2">
                     <div className="flex items-center gap-2">
                     <div className="bg-black-third rounded-lg p-1">
                     <img

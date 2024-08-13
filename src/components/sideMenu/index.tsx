@@ -44,6 +44,7 @@ const SideMenu:React.FC = () => {
                             <>
                                 <div onClick={() => changeMenu(menu)} data-mode={activeMenu.name == menu.name?'active':''} className={`${theme}-SideMenu-MenuList-menu-container`}>
                                     <img data-mode={activeMenu.name == menu.name?'active':''} className={`${theme}-icons-${menu.icon}`}  alt="" />
+                                    { activeMenu.name === menu.name && menu.name}
                                 </div>
                             </>
                         )

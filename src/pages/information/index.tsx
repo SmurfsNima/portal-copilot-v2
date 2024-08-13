@@ -11,10 +11,10 @@ const Information = () => {
     navigate(path);
   };
   return (
-    <div className=" bg-black-background  h-fit min-h-[100vh] overflow-hidden flex flex-col justify-start items-center px-5 ">
-      <div className="flex fixed z-10 justify-center bg-black-background w-full">
-        <div className=" w-full  flex gap-3 my-6 px-16">
-          <Link to={"/"}>
+    <div className=" bg-black-background  h-fit  overflow-hidden flex flex-col justify-start items-center px-5 ">
+      <div className="flex  py-2 z-10 justify-center bg-black-background w-full">
+        <div className=" w-full flex items-center gap-3 ">
+          <Link to={"/client-list"}>
             <div className={`${theme}-tab-icon-container`}>
               <img className={`${theme}-icons-arrow-left`} />
             </div>
@@ -26,7 +26,7 @@ const Information = () => {
         </div>
 
       </div>
-      <div className="  flex gap-3 pt-[100px] justify-start w-full">
+      <div className="  flex gap-3 pt-[25px] justify-start w-full">
         <Outlet />
 
       </div>

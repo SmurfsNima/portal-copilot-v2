@@ -34,7 +34,7 @@ function Main() {
   }, []);
 
   return (
-    <div className="bg-black-primary w-full  h-screen">
+    <div className="bg-black-background w-full  h-screen">
       <Component />
     </div>
   );

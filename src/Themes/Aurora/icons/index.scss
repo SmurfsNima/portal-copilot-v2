@@ -157,13 +157,7 @@
   mask-position: center;
   @apply w-6 h-6  bg-[#FFFFFF99];
 }
-.Aurora-icons-Overview[data-active="true"],
-.Aurora-icons-Biomarker[data-active="true"],
-.Aurora-icons-Diagnosis[data-active="true"],
-.Aurora-icons-Intervention[data-active="true"],
-.Aurora-icons-Intervention[data-active="true"] {
-  @apply bg-black;
-}
+
 .Aurora-icons-PiChatBold {
   @apply text-[#03DAC5] w-6 h-6;
 }
@@ -411,7 +405,7 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-6 h-6 bg-black;
+  @apply w-5 h-5 bg-black;
    ;
 }
 .Aurora-icons-history{
@@ -475,5 +469,14 @@
   mask-repeat: no-repeat;
   mask-position: center;
   @apply w-6 h-6 bg-brand-secondary-color;
+   ;
+}
+.Aurora-icons-export{
+  mask-image: url(/public/Themes/Aurora/icons/export.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-primary-color;
    ;
 }
