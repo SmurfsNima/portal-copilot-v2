@@ -7,7 +7,7 @@ import { PiChatBold } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { Pationt } from "@/model";
 
-import { resolveRespiration } from "@/utils/status";
+import CircularProgressBar from "../charts/CircularProgressBar";
 const Theme = () => {
   return useSelector((state: any) => state.theme.value.name);
 };
@@ -82,9 +82,30 @@ export const columns: ColumnDef<Pationt>[] = [
     },
   },
   {
-    accessorKey: "information.heart_rate",
-    header: "Heart Rate",
+    accessorKey: "information.score",
+    header: "Score",
+    cell: ({ row }) => {
+      return (
+       <div>
+        {row.original.information.score} <span className="text-secondary-text">/10</span>
+       </div>
+      );
+    },
   },
+  {
+    accessorKey: "information.progress",
+    header: "Progress",
+    cell: ({ row }) => {
+      return (
+       <div>
+<CircularProgressBar percentage={row.original.information.progress}></CircularProgressBar>       </div>
+      );
+    },
+  },
+  // {
+  //   accessorKey: "information.heart_rate",
+  //   header: "Heart Rate",
+  // },
   // {
   //   accessorKey : 'information.heart_rate',
   //   header: "Heart Rate",
@@ -103,34 +124,34 @@ export const columns: ColumnDef<Pationt>[] = [
   //   },
   // },
 
-  {
-    accessorKey: "information.blood_pressure",
-    header: "Blood Pressure",
-  },
-  {
-    accessorKey: "information.temperatue",
-    header: "Temperature",
-  },
-  {
-    accessorKey: "information.blood_oxygen",
-    header: "Blood Oxygen",
-  },
+  // {
+  //   accessorKey: "information.blood_pressure",
+  //   header: "Blood Pressure",
+  // },
+  // {
+  //   accessorKey: "information.temperatue",
+  //   header: "Temperature",
+  // },
+  // {
+  //   accessorKey: "information.blood_oxygen",
+  //   header: "Blood Oxygen",
+  // },
 
-  {
-    accessorKey: "infomation.respiration_rate",
-    header: "respiration",
-    filterFn: "includesString",
-    cell: ({ row }) => {
-      return (
-        <Badge
-          theme={Theme()}
-          status={resolveRespiration(row.original.information.respiration_rate)}
-        >
-          {row.original.information.respiration_rate}
-        </Badge>
-      );
-    },
-  },
+  // {
+  //   accessorKey: "infomation.respiration_rate",
+  //   header: "respiration",
+  //   filterFn: "includesString",
+  //   cell: ({ row }) => {
+  //     return (
+  //       <Badge
+  //         theme={Theme()}
+  //         status={resolveRespiration(row.original.information.respiration_rate)}
+  //       >
+  //         {row.original.information.respiration_rate}
+  //       </Badge>
+  //     );
+  //   },
+  // },
 
   {
     accessorKey: "information.action",

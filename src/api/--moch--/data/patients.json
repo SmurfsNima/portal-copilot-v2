@@ -6,16 +6,17 @@
     "status": "normal",
     "name": "Sara",
     "age": 30,
-    "weight" : 62,
+    "weight": 62,
     "sex": "female",
     "enroll_date": "2024-01-16",
-    "last_followup": "2024-05-11"
-    
+    "last_followup": "2024-05-11",
+    "score" : 8.2,
+    "progress": 80
   },
   {
     "patient_id": 2,
     "member_id": 1235,
-    "weight" : 75,
+    "weight": 75,
 
     "status": "normal",
     "name": "Bob",
@@ -23,11 +24,14 @@
     "sex": "male",
     "enroll_date": "2024-02-10",
     "last_followup": "2024-04-13",
-    "picture": "https://randomuser.me/api/portraits/men/4.jpg"  },
+    "picture": "https://randomuser.me/api/portraits/men/4.jpg",
+    "score" : 7.8,
+    "progress": 75
+  },
   {
     "patient_id": 3,
     "member_id": 1236,
-    "weight" : 56,
+    "weight": 56,
 
     "status": "critical",
     "name": "Lily",
@@ -35,11 +39,14 @@
     "sex": "female",
     "enroll_date": "2024-01-20",
     "last_followup": "2024-04-12",
-    "picture": "https://randomuser.me/api/portraits/women/4.jpg"  },
+    "picture": "https://randomuser.me/api/portraits/women/4.jpg",
+    "score" : 8.28,
+    "progress": 91
+  },
   {
     "patient_id": 4,
     "member_id": 1237,
-    "weight" : 80,
+    "weight": 80,
 
     "status": "at-risk",
     "name": "Ross",
@@ -47,11 +54,14 @@
     "sex": "male",
     "enroll_date": "2024-02-01",
     "last_followup": "2024-06-12",
-    "picture": "https://randomuser.me/api/portraits/men/3.jpg"  },
+    "picture": "https://randomuser.me/api/portraits/men/3.jpg",
+    "score" : 8,
+    "progress": 81
+  },
   {
     "patient_id": 5,
     "member_id": 1237,
-    "weight" : 68,
+    "weight": 68,
 
     "status": "at-risk",
     "name": "Mike",
@@ -59,11 +69,14 @@
     "sex": "male",
     "enroll_date": "2024-02-01",
     "last_followup": "2024-06-12",
-    "picture": "https://randomuser.me/api/portraits/men/2.jpg"  },
+    "picture": "https://randomuser.me/api/portraits/men/2.jpg",
+    "score" : 9.3,
+    "progress": 95
+  },
   {
     "patient_id": 6,
     "member_id": 1237,
-    "weight" : 76,
+    "weight": 76,
 
     "status": "at-risk",
     "name": "Kevin",
@@ -71,5 +84,8 @@
     "sex": "male",
     "enroll_date": "2024-02-01",
     "last_followup": "2024-06-12",
-    "picture": "https://randomuser.me/api/portraits/men/1.jpg"  }
+    "picture": "https://randomuser.me/api/portraits/men/1.jpg",
+    "score" : 8.2,
+    "progress": 87
+  }
 ]

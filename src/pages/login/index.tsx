@@ -12,7 +12,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         appContext.login(res.data.access_token);
-        navigate("/client-list");
+        navigate("/");
       })
       .catch((err) => {
         console.error(err);
