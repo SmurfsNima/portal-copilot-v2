@@ -169,7 +169,7 @@ export const AiStudio = () => {
             <Button theme="Aurora">
               {" "}
               <img src="" alt="" />{" "}
-              <img className={`${theme}-icons-tick-square`} alt="" /> Approve
+              <div className={`${theme}-icons-tick-square`} /> Approve
               All
             </Button>
           </div>
