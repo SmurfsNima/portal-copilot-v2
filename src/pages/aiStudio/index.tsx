@@ -11,7 +11,7 @@ export const AiStudio = () => {
   const [isRecommendationOpen, setIsRecommendationOpen] = useState(true);
   const [isAlertOpen, setIsAlertOpen] = useState(true);
   const [isEngagementOpen, setIsEngagementOpen] = useState(true);
-  const [cardActive, setcardActive] = useState('Davide Kemp')
+  const [cardActive, setcardActive] = useState("Davide Kemp");
   const toggleStateSection = () => setIsStateOpen(!isStateOpen);
   const toggleRecommendationSection = () =>
     setIsRecommendationOpen(!isRecommendationOpen);
@@ -20,7 +20,7 @@ export const AiStudio = () => {
 
   return (
     <div className="bg-black-background h-fit w-full  overflow-hidden px-5 flex items-start  gap-2 ">
-      <div className="w-full flex flex-col gap-2">
+      <div className="w-full flex flex-col  gap-3">
         <div className=" w-full flex gap-2 justify-center items-center">
           <div
             onClick={() => setNavActive("Copilot")}
@@ -49,15 +49,22 @@ export const AiStudio = () => {
             className="w-full border border-main-border bg-black-secondary py-1 rounded-md outline-none text-[10px] text-primary-text"
             type="text"
           />
-          <img className={`${theme}-iconst-send`} alt="" />
+          <img
+            className="cursor-pointer"
+            src="/Themes/Aurora/icons/send.svg"
+            alt=""
+          />
         </div>
         <div className="bg-black-primary text-primary-text p-4 rounded-lg space-y-5">
-          <div className="flex items-center gap-1 text-sm font-semibold ">
+          <div
+            onClick={toggleStateSection}
+            className="flex items-center cursor-pointer gap-2 text-sm font-medium "
+          >
             <img
-              onClick={toggleStateSection}
+              src="/Themes/Aurora/icons/chevron-up.svg"
               className={` transition-transform ${
                 !isStateOpen && "rotate-180"
-              } ${theme}-icons-arrow-up`}
+              }`}
               alt=""
             />
             State
@@ -65,8 +72,8 @@ export const AiStudio = () => {
           </div>
           {isStateOpen && (
             <div className="text-xs">
-              <div className=" max-w-[130px] mt-4 flex items-center gap-1 bg-brand-secondary-color text-black px-3 py-[2px] rounded-full text-xs font-medium">
-                <img className={`${theme}-icons-tag`} alt="" />
+              <div className=" max-w-[120px] mt-4 flex justify-center items-center gap-1 bg-brand-secondary-color text-black  py-[2px] rounded-full text-xs font-medium">
+                <img src="/Themes/Aurora/icons/tag.svg" alt="" />
                 Re-planning
               </div>
               <p className="mt-4 text-secondary-text">
@@ -91,12 +98,15 @@ export const AiStudio = () => {
             </div>
           )}
 
-          <div className="text-sm font-semibold flex gap-2 items-center">
+          <div
+            onClick={toggleRecommendationSection}
+            className="text-sm cursor-pointer font-medium flex gap-2 items-center"
+          >
             <img
-              onClick={toggleRecommendationSection}
+              src="/Themes/Aurora/icons/chevron-up.svg"
               className={` transition-transform ${
                 !isRecommendationOpen && "rotate-180"
-              } w-[24px] ${theme}-icons-arrow-up`}
+              } `}
               alt=""
             />{" "}
             Recommendation
@@ -115,8 +125,8 @@ export const AiStudio = () => {
                     <span className="text-gray-400">29 July - 4 August</span>
                   </div>
                   <img
-                    className={`${theme}-icons-edit cursor-pointer`}
-                   
+                    src="/Themes/Aurora/icons/edit.svg"
+                    className={` cursor-pointer`}
                     alt=""
                   />
                 </li>
@@ -130,18 +140,21 @@ export const AiStudio = () => {
                     <span className="text-gray-400">29 July - 4 August</span>
                   </div>
                   <img
-                    className={`cursor-pointer ${theme}-icons-edit `}
-                    
+                    src="/Themes/Aurora/icons/edit.svg"
+                    className={`cursor-pointer  `}
                   />
                 </li>
               </ul>
             </div>
           )}
           <div>
-            <div className="text-sm font-semibold flex gap-2 items-center">
+            <div
+              onClick={toggleAlertSection}
+              className="text-sm font-medium cursor-pointer  flex gap-2 items-center"
+            >
               <img
-                onClick={toggleAlertSection}
-                className={` ${theme}-icons-arrow-up transition-transform ${
+                src="/Themes/Aurora/icons/chevron-up.svg"
+                className={`  transition-transform ${
                   !isAlertOpen && "rotate-180"
                 } `}
                 alt=""
@@ -152,10 +165,13 @@ export const AiStudio = () => {
           </div>
 
           <div>
-            <div className="text-sm font-semibold flex gap-2 items-center">
+            <div
+              onClick={toggleEngagementSection}
+              className="text-sm font-medium cursor-pointer  flex gap-2 items-center"
+            >
               <img
-                onClick={toggleEngagementSection}
-                className={` ${theme}-icons-arrow-up  transition-transform ${
+                src="/Themes/Aurora/icons/chevron-up.svg"
+                className={`  transition-transform ${
                   !isEngagementOpen && "rotate-180"
                 } `}
                 alt=""
@@ -167,24 +183,31 @@ export const AiStudio = () => {
 
           <div className="w-full flex justify-end">
             <Button theme="Aurora">
-              {" "}
-              <img src="" alt="" />{" "}
-              <div className={`${theme}-icons-tick-square`} /> Approve
+              <img src="/Themes/Aurora/icons/tick-square.svg" alt="" /> Approve
               All
             </Button>
           </div>
         </div>
       </div>
-      <div className=" flex flex-col  justify-start w-[35%]">
+      <div className=" flex flex-col gap-1  justify-start w-[22%]">
         <SearchBox theme="Aurora" placeholder="Search for client..." />
-        <div className="flex flex-col pr-[6px] max-h-[540px] overflow-auto">
-          {
-            ClientInfo.map((client)=>(
-              <ClientCard key={client.name} name={client.name} city={client.city} picture={client.picture} height={client.height} weight={client.weight} blood={client.blood} age={client.age} status={client.status} cardActive={cardActive} setCardActive={setcardActive}></ClientCard>
-            ))
-          }
+        <div className="flex flex-col pr-1 max-h-[531px] overflow-auto">
+          {ClientInfo.map((client) => (
+            <ClientCard
+              key={client.name}
+              name={client.name}
+              city={client.city}
+              picture={client.picture}
+              height={client.height}
+              weight={client.weight}
+              blood={client.blood}
+              age={client.age}
+              status={client.status}
+              cardActive={cardActive}
+              setCardActive={setcardActive}
+            ></ClientCard>
+          ))}
         </div>
-       
       </div>
     </div>
   );

@@ -96,6 +96,8 @@ export const columns: ColumnDef<Pationt>[] = [
     accessorKey: "information.progress",
     header: "Progress",
     cell: ({ row }) => {
+      console.log(row.original.information.progress);
+      
       return (
        <div>
 <CircularProgressBar percentage={row.original.information.progress}></CircularProgressBar>       </div>
