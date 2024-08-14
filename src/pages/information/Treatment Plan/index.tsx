@@ -86,7 +86,7 @@ export const TreatmentPlan = () => {
           type="text"
           placeholder="Write here..."
         />
-        <img className={`${theme}-icons-send`} alt="" />
+        <img src="/Themes/Aurora/icons/send.svg" alt="" />
       </div>
       <div className="w-full flex gap-2">
         <div className="bg-black-primary text-primary-text w-full p-3 rounded-lg space-y-3 border border-main-border">
@@ -98,24 +98,25 @@ export const TreatmentPlan = () => {
                   onClick={() => setShowHistory(true)}
                   className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
-                  <img className={`${theme}-icons-history`} alt="" />
+                  <img src="/Themes/Aurora/icons/clock.svg" alt="" />
                   Show History
                 </button>
               )}
 
               <Button theme={theme}>
-                <img className={`${theme}-icons-update`} alt="" />
+                <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
                 Re-Generate
               </Button>
             </div>
           </div>
 
-          <div className=" w-full flex items-center gap-2 cursor-pointer text-sm">
+          <div               onClick={() => setIsDescription(!isDescription)}
+ className=" w-full flex items-center gap-2 cursor-pointer text-sm">
             <img
-              onClick={() => setIsDescription(!isDescription)}
+            src="/Themes/Aurora/icons/chevron-down.svg"
               className={` transition-transform ${
                 isDescription && "rotate-180"
-              }  w-6 ${theme}-icons-arrow-down`}
+              } `}
               alt=""
             />
             Description
@@ -159,9 +160,10 @@ export const TreatmentPlan = () => {
             onClick={toggleDetailsSection}
           >
             <img
-              className={` ${theme}-icons-arrow-down ${
+            src="/Themes/Aurora/icons/chevron-down.svg"
+              className={` ${
                 isDetailsOpen ? "rotate-180" : ""
-              } transition-transform w-6`}
+              } transition-transform`}
             />
             <span className="text-sm font-medium">Details</span>
             <div className="h-[1px] w-full bg-secondary-text" />
@@ -172,16 +174,16 @@ export const TreatmentPlan = () => {
                 <div className=" w-full text-sm font-semibold text-gray-300 flex justify-between  items-center gap-2">
                   <div className="flex items-center gap-2">
                     {" "}
-                    <div className="bg-black-third rounded-lg p-1">
+                    <div className="bg-black-third rounded-lg p-[6px]">
                     <img
-                     className={`${theme}-icons-nutrition`}
+                     src="/Themes/Aurora/icons/apple.svg"
                       alt=""
                     />
                     </div>
                     Nutrition
                   </div>
 
-                  <img className={`${theme}-icons-edit`} alt="" />
+                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
                 </div>
                 <ul className=" ml-6 list-disc space-y-2 text-primary-text">
                   <li>
@@ -229,15 +231,16 @@ export const TreatmentPlan = () => {
               <div className="space-y-2">
                 <div className="text-sm font-semibold text-primary-text w-full flex justify-between items-center gap-2">
                     <div className="flex items-center gap-2">
-                  <div className="bg-black-third rounded-lg p-1">
+                  <div className="bg-black-third rounded-lg p-[6px]">
                   <img
-                     className={`${theme}-icons-mind `}
+                 
+                     src="/Themes/Aurora/icons/mind.svg"
                       alt=""
                     />
                   </div>
                   Mind
                   </div>
-                  <img className={ `${theme}-icons-edit`} alt="" />
+                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
                 </div>
                 <ul className=" ml-6 list-disc space-y-2 text-primary-text">
                   <li>
@@ -294,15 +297,16 @@ export const TreatmentPlan = () => {
               <div className="space-y-2">
                 <div className="text-sm font-semibold text-primary-text w-full flex justify-between items-center gap-2">
                     <div className="flex items-center gap-2">
-                    <div className="bg-black-third rounded-lg p-1">
+                    <div className="bg-black-third rounded-lg p-[6px]">
                     <img
-                     className={`${theme}-icons-activity`}
+                    src="/Themes/Aurora/icons/weight.svg"
+                    
                       alt=""
                     />
                   </div>
                   Activity
                     </div>
-                 <img className={`${theme}-icons-edit`} alt="" />
+                    <img src="/Themes/Aurora/icons/edit.svg" alt="" />
                  
                 </div>
                 <ul className=" ml-6 list-disc space-y-2 text-primary-text">
@@ -342,15 +346,15 @@ export const TreatmentPlan = () => {
               <div className="space-y-6">
                 <div className="text-sm font-semibold text-primary-text w-full flex justify-between items-center gap-2">
                     <div className="flex items-center gap-2">
-                    <div className="bg-black-third rounded-lg p-1">
+                    <div className="bg-black-third rounded-lg p-[6px]">
                     <img
-                     className={`${theme}-icons-sleep`}
+                     src="/Themes/Aurora/icons/moon.svg"
                       alt=""
                     />
                   </div>
                   Sleep
                     </div>
-                 <img className={`${theme}-icons-edit`} alt="" />
+                    <img src="/Themes/Aurora/icons/edit.svg" alt="" />
                  
                 </div>
                 <ul className=" ml-6 list-disc space-y-5 text-primary-text">

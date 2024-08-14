@@ -37,16 +37,16 @@ const TimeLine = () => {
                 <div className="bg-black-primary overflow-hidden relative w-full lg:px-2 xl:px-3 2xl:px-4 py-3 min-h-[47vh] border border-main-border rounded-xl  flex ">
                     <div className="absolute gap-4 top-4 left-5 flex justify-start">
                         <div className="flex justify-start items-center gap-1">
-                            <img className={`${theme}-icons-tick-square bg-brand-primary-color`} alt="" />
+                            <img src="/Themes/Aurora/icons/tick-square2.svg" alt="" />
                             <div className="text-[#FFFFFFDE] text-[12px]">Done</div>
                         </div>
                         <div className="flex justify-start items-center gap-1">
-                            <img src="./Themes/Aurora/icons/inprogress.svg" alt="" />
+                            <img src="/Themes/Aurora/icons/inprogress.svg" alt="" />
                             <div className="text-[#FFFFFFDE] text-[12px]">In progress</div>
                         </div>
 
                         <div className="flex justify-start items-center gap-1">
-                            <img src="./Themes/Aurora/icons/more-square2.svg" alt="" />
+                            <img src="/Themes/Aurora/icons/more-square2.svg" alt="" />
                             <div className="text-[#FFFFFFDE] text-[12px]">Up-coming</div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@ const TimeLine = () => {
                                         alt="Midone Tailwind HTML Admin Template"
                                         src={fakerData[9].photos[0]}
                                         /> */}
-                            <img className={`${theme}-icons-tick-square bg-brand-primary-color`} alt="" />
+                            <img src="/Themes/Aurora/icons/tick-square2.svg" alt="" />
                                     </div>
                                     </div>
                                     <div className="flex-1 px-5 py-3 ml-4 border-[#383838] w-[auto] border bg-[#272727] rounded-[16px]  ">
@@ -73,8 +73,8 @@ const TimeLine = () => {
                                         <div className="font-medium text-[#FFFFFFDE]">
                                         {activity.date}
                                         </div>
-                                        <div className="ml-auto flex items-center gap-2 text-xs text-[#FFFFFFDE]">
-                                        <img src="./clock.svg" alt="" />
+                                        <div className="ml-auto flex items-center gap-1 text-xs text-[#FFFFFFDE]">
+                                        <img src="/public/Themes/Aurora/icons/clock.svg" alt="" />
                                         {activity.time}
                                         </div>
                                     </div>
