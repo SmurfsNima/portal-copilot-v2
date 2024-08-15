@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 interface ClientCardProps {
   picture: string;
   name: string;
@@ -25,7 +25,7 @@ export const ClientCard: React.FC<ClientCardProps> = ({
   setCardActive,
 }) => {
 
-  const theme = useSelector((state: any) => state.theme.value.name);
+  // const theme = useSelector((state: any) => state.theme.value.name);
 
   return (
     <div

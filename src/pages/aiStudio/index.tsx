@@ -1,11 +1,11 @@
 import { SearchBox } from "@/components";
 import { useState } from "react";
 import { Button } from "symphony-ui";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { ClientCard } from "./ClientCard";
 import { ClientInfo } from "./ClientsInfo";
 export const AiStudio = () => {
-  const theme = useSelector((state: any) => state.theme.value.name);
+  // const theme = useSelector((state: any) => state.theme.value.name);
   const [navActive, setNavActive] = useState("Copilot");
   const [isStateOpen, setIsStateOpen] = useState(true);
   const [isRecommendationOpen, setIsRecommendationOpen] = useState(true);

@@ -1,9 +1,9 @@
 import { InfoCard } from "@/components"
 import { useState } from "react"
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const TimeLine = () => {
-    const theme = useSelector((state: any) => state.theme.value.name);
+    // const theme = useSelector((state: any) => state.theme.value.name);
     const [activities] = useState([
         {
         date:'July 2nd, 2024',
