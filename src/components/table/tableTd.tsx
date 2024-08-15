@@ -15,7 +15,7 @@ const Theme = () => {
 export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "name",
-    header: "Patient Name",
+    header: "Client Name",
     cell: ({ row }) => {
       
       

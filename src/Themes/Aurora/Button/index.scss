@@ -6,5 +6,5 @@
   @apply opacity-[50%]  #{!important};
 }
 .Aurora-secondary-Button-container{
-  @apply bg-main-border  w-fit py-2 gap-2 px-3 text-[14px] border rounded-xl border-black text-white disabled:opacity-50 flex items-center justify-between
+  @apply bg-main-border  w-fit py-2 gap-2 px-3 text-[12px] border rounded-xl border-black text-primary-text disabled:opacity-50 flex items-center justify-between
 }

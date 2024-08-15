@@ -1,14 +1,14 @@
 .Aurora-Table-container{
-  @apply overflow-x-auto p-2  bg-[#1E1E1E] rounded-xl text-[#FFFFFF] opacity-85
+  @apply overflow-x-auto border border-main-border -mt-2   bg-black-primary rounded-xl text-primary-text opacity-85
 }
 .Aurora-Table-header{
-  @apply px-3 pt-4 pb-1 text-xs font-medium cursor-pointer
+  @apply px-3 pt-3 pb-1 text-xs font-medium cursor-pointer
 }
 .Aurora-Table{
   @apply  border-collapse table-auto text-sm text-left rtl:text-right
 }
 .Aurora-Table-header-section{
-  @apply flex overflow-hidden  flex-row gap-2 justify-end flex-wrap space-y-0 pb-4
+  @apply flex overflow-hidden  flex-row gap-2 justify-between flex-wrap space-y-0 pb-4
 }
 .Aurora-Table-td{
   @apply px-6 py-2 text-center text-nowrap text-xs

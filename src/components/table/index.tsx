@@ -18,6 +18,7 @@ import { FaSort } from "react-icons/fa";
 import { Button } from "symphony-ui";
 import { useEffect, useState } from "react";
 import { Pationt } from "@/model/index.ts";
+import AddClientModal from "@/pages/patientList/addClientModal.tsx";
 interface TableProps {
   classData: Array<Pationt>;
 }
@@ -60,27 +61,48 @@ const Table: React.FC<TableProps> = ({ classData }) => {
           value,
         })
     );
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const handleOpenModal = () => {
+      setIsModalOpen(true);
+    };
+  
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+    };
+  
+    const handleAddClient = (clientData : any) => {
+      console.log('Client Added:', clientData);
+    };
   return (
-    <div className={" flex items-center justify-center gap-3 flex-col"}>
-      <div className=" w-full top-0 shadow-md sm:rounded-lg py-4 ">
+    <div className={" flex items-center justify-center  flex-col"}>
+      <div className=" w-full top-0 shadow-md sm:rounded-lg py-1 ">
         <div className={`${theme}-Table-header-section`}>
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
+          <h5 className="text-primary-text text-sm font-medium py-2">Client List</h5>
+          <div className="flex items-center gap-1">
           <SearchBox
             changeHandler={(e: any) => onFilterChange("name", e.target.value)}
             theme={theme}
             placeholder="Search for users"
           ></SearchBox>
-          <Button theme={theme}>
+          <Button  theme={theme+'-secondary'}>
+         
             <TbFilterPlus className={"w-5 h-5"} />
             Apply Filter
           </Button>
-          <Button theme={theme}>
+          <Button onClick={handleOpenModal} theme={theme}>
             <RiUserAddLine className={"w-5 h-5"} />
             Add Patient{" "}
           </Button>
+          </div>
+          <AddClientModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onSubmit={handleAddClient}
+      />
         </div>
         <div className={`${theme}-Table-container h-[40vh] ${theme}-scrollBar`}>
           <table className={`${theme}-table  ${theme}-scrollBar w-full`}>
