@@ -10,7 +10,7 @@ const SearchBox:React.FC<SearchBoxProps> = ({theme,placeholder,changeHandler}) =
         <>
             <div className={`${theme}-SearchBox-container`}>
                 <input type="text" placeholder={placeholder} className={`${theme}-SearchBox-input`} onChange={changeHandler} />
-                <img className={`${theme}-icons-Search ${theme}-SearchBox-input-icon`} alt="" />
+                <img className={ `w-5 h-5 ${theme}-icons-Search ${theme}-SearchBox-input-icon`} alt="" />
             </div>        
         </>
     )

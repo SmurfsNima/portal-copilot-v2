@@ -117,14 +117,14 @@ const PatientList = () => {
   // });
   return (
     <>
-      <div className="bg-black-background w-full h-screen px-8">
-        <div className={"py-5 space-y-5"}>
-          <h1 className={"text-base text-primary-text font-medium"}>
+      <div className="bg-black-background w-full -mt-4  px-5">
+        <div className={""}>
+          <h1 className={"text-sm text-primary-text font-medium"}>
             General Report
           </h1>
           <div
             className={
-              "flex flex-wrap  items-center  gap-5 justify-between md:flex-row flex-col"
+              "grid grid-cols-3 xl:grid-cols-4  gap-2 "
             }
           >
             <NumberBox

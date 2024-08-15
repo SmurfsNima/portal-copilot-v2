@@ -29,7 +29,7 @@ export default {
 
         // Brand
         'brand-primary-color': '#03DAC5',
-        'brand-secondary-color': '#7705FB',
+        'brand-secondary-color': '#7F39FB',
 
         // Status
         'red-status': '#FC5474',

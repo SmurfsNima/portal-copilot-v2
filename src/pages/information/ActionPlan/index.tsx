@@ -86,7 +86,7 @@ export const ActionPlan = () => {
           type="text"
           placeholder="Write here..."
         />
-        <img className={`${theme}-icons-send`} alt="" />
+        <img src="/Themes/Aurora/icons/send.svg" alt="" />
       </div>
       <div className="w-full flex gap-2">
         <div className="bg-black-primary text-primary-text w-full p-3 rounded-lg space-y-3 border border-main-border">
@@ -98,24 +98,27 @@ export const ActionPlan = () => {
                   onClick={() => setShowHistory(true)}
                   className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
-                  <img className={`${theme}-icons-history`} alt="" />
+                  <img src="/Themes/Aurora/icons/clock.svg" alt="" />
                   Show History
                 </button>
               )}
 
               <Button theme={theme}>
-                <img className={`${theme}-icons-update`} alt="" />
+                <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
                 Re-Generate
               </Button>
             </div>
           </div>
 
-          <div className=" w-full flex items-center gap-2 cursor-pointer text-sm">
+          <div
+            onClick={() => setIsDescription(!isDescription)}
+            className=" w-full flex items-center gap-2 cursor-pointer text-sm"
+          >
             <img
-              onClick={() => setIsDescription(!isDescription)}
+              src="/Themes/Aurora/icons/chevron-down.svg"
               className={` transition-transform ${
                 isDescription && "rotate-180"
-              }  w-6 ${theme}-icons-arrow-down`}
+              } `}
               alt=""
             />
             Description
@@ -158,9 +161,10 @@ export const ActionPlan = () => {
             onClick={toggleDetailsSection}
           >
             <img
-              className={` ${theme}-icons-arrow-down ${
+              src="/Themes/Aurora/icons/chevron-down.svg"
+              className={`${
                 isDetailsOpen ? "rotate-180" : ""
-              } transition-transform w-6`}
+              } transition-transform `}
             />
             <span className="text-sm font-medium">Details</span>
             <div className="h-[1px] w-full bg-secondary-text" />
@@ -172,12 +176,12 @@ export const ActionPlan = () => {
                   <div className="flex items-center gap-2 text-xs">
                     {" "}
                     <div className="bg-black-third rounded-lg p-1">
-                      <img className={`${theme}-icons-nutrition`} alt="" />
+                      <img src="/Themes/Aurora/icons/apple.svg" alt="" />{" "}
                     </div>
                     Nutrition
                   </div>
 
-                  <img className={`${theme}-icons-edit`} alt="" />
+                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
                 </div>
                 <ul className=" ml-6 list-disc space-y-2 text-primary-text">
                   <li>
@@ -229,7 +233,7 @@ export const ActionPlan = () => {
                         </span>{" "}
                         <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
                           TelomerAge
-                          <img className={`${theme}-icons-export`} alt="" />
+                          <img src="/Themes/Aurora/icons/export.svg" alt="" />
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
@@ -253,7 +257,7 @@ export const ActionPlan = () => {
                         </span>{" "}
                         <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
                           Estradiol{" "}
-                          <img className={`${theme}-icons-export`} alt="" />
+                          <img src="/Themes/Aurora/icons/export.svg" alt="" />
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
@@ -276,7 +280,7 @@ export const ActionPlan = () => {
                         </span>{" "}
                         <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
                           : LDL Cholesterol{" "}
-                          <img className={`${theme}-icons-export`} alt="" />
+                          <img src="/Themes/Aurora/icons/export.svg" alt="" />
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
@@ -293,11 +297,14 @@ export const ActionPlan = () => {
                 <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
                   <div className="flex items-center gap-2 text-xs">
                     <div className="bg-black-third rounded-lg p-1">
-                      <img className={`${theme}-icons-mind `} alt="" />
-                    </div>
+                    <img
+                 
+                 src="/Themes/Aurora/icons/mind.svg"
+                  alt=""
+                />                    </div>
                     Mind
                   </div>
-                  <img className={`${theme}-icons-edit`} alt="" />
+                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
                 </div>
                 <ul className=" ml-6 list-disc space-y-1 text-primary-text">
                   <li>
@@ -314,8 +321,8 @@ export const ActionPlan = () => {
                             Based on your:
                           </span>{" "}
                           <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
-                             Augmentation Pressure{" "}
-                            <img className={`${theme}-icons-export`} alt="" />
+                            Augmentation Pressure{" "}
+                            <img src="/Themes/Aurora/icons/export.svg" alt="" />
                           </div>
                         </div>
                       </div>
@@ -339,8 +346,8 @@ export const ActionPlan = () => {
                             Based on your:
                           </span>{" "}
                           <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
-                             FEV1 Percent Predicted{" "}
-                            <img className={`${theme}-icons-export`} alt="" />
+                            FEV1 Percent Predicted{" "}
+                            <img src="/Themes/Aurora/icons/export.svg" alt="" />
                           </div>
                         </div>
                       </div>
@@ -360,22 +367,26 @@ export const ActionPlan = () => {
                 <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
                   <div className="flex items-center gap-2 text-xs">
                     <div className="bg-black-third rounded-lg p-1">
-                      <img className={`${theme}-icons-activity`} alt="" />
-                    </div>
+                    <img
+                    src="/Themes/Aurora/icons/weight.svg"
+                    
+                      alt=""
+                    />                    </div>
                     Activity
                   </div>
-                  <img className={`${theme}-icons-edit`} alt="" />
+                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
                 </div>
                 <ul className=" ml-6 list-disc space-y-1 text-primary-text">
                   <li>
                     <div className="flex w-full justify-between">
-                        <div className="flex gap-1">
-                      Follow HIIT program for 4 weeks/
-                      <div className="text-secondary-text flex gap-1">
-                        Based on your:
-                        <div className="flex items-center gap-2 text-brand-primary-color">
-                            Body Mass Index <img className={`${theme}-icons-export`} alt="" />
-                        </div>
+                      <div className="flex gap-1">
+                        Follow HIIT program for 4 weeks/
+                        <div className="text-secondary-text flex gap-1">
+                          Based on your:
+                          <div className="flex items-center gap-2 text-brand-primary-color">
+                            Body Mass Index{" "}
+                            <img src="/Themes/Aurora/icons/export.svg" alt="" />
+                          </div>
                         </div>
                       </div>
                       <span className="bg-[#FBAD37] text-black-background px-4 py-1 rounded-full text-xs font-medium">
@@ -389,22 +400,21 @@ export const ActionPlan = () => {
                         {" "}
                         Metabolic Overdrive HIIT /
                         <span className="text-secondary-text">
-                        Instructions:
+                          Instructions:
                         </span>{" "}
                         Three times a week/
                         <div className="text-secondary-text flex gap-1">
-                        Based on your:
-                        <div className="flex items-center gap-1 text-brand-primary-color">
+                          Based on your:
+                          <div className="flex items-center gap-1 text-brand-primary-color">
                             CardioAge
                             <img className={`${theme}-icons-export`} alt="" />
+                          </div>
                         </div>
-                        </div>
-                       
                       </div>
 
                       <span className="bg-[#FBAD37] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Exercise
-                        </span>
+                        Exercise
+                      </span>
                     </div>
                   </li>
                   <li>
@@ -428,11 +438,13 @@ export const ActionPlan = () => {
                 <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
                   <div className="flex items-center gap-2 text-xs">
                     <div className="bg-black-third rounded-lg p-1">
-                      <img className={`${theme}-icons-sleep`} alt="" />
-                    </div>
+                    <img
+                     src="/Themes/Aurora/icons/moon.svg"
+                      alt=""
+                    />                    </div>
                     Sleep
                   </div>
-                  <img className={`${theme}-icons-edit`} alt="" />
+                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
                 </div>
                 <ul className=" ml-6 list-disc space-y-1 text-primary-text">
                   <li>
@@ -445,7 +457,7 @@ export const ActionPlan = () => {
                           </span>{" "}
                           <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
                             Insomnia
-                            <img className={`${theme}-icons-export`} alt="" />
+                            <img src="/Themes/Aurora/icons/export.svg" alt="" />
                           </div>
                         </div>
                       </div>

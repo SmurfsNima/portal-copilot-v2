@@ -72,7 +72,7 @@ export const Calender = () => {
               <ul >
                 {day.activities.map((activity, i) => (
                   <li key={i} className="flex items-center space-x-2">
-                    <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+                    <span className="w-[10px] h-[10px] rounded-full border border-brand-primary-color"></span>
                     <span className="text-[8px]">{activity}</span>
                   </li>
                 ))}

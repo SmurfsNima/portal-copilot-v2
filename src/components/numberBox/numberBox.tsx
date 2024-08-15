@@ -31,16 +31,16 @@ const NumberBox:React.FC<numberBoxProps> = ({theme,mode,title,value}) => {
     return (
         <Card theme={theme}>
             <div className={"text-primary-text flex items-start justify-center flex-col  gap-2"}>
-                <div className={"flex items-center justify-between w-full text-4xl"}>
-                    <h1 className={"font-medium text-4xl text-white"}>{value}</h1>
-                    <div className={"flex justify-center items-center p-2 rounded-full bg-black"}>
+                <div className={"flex items-center justify-between w-full"}>
+                    <h1 className={"font-medium text-2xl text-primary-text"}>{value} </h1>
+                    <div className={"flex justify-center items-center p-1 rounded-full bg-black"}>
                         <RiUserFill className={"text-brand-primary-color w-5 h-5"}/>
                     </div>
                 </div>
-                <h1 className={"text-[14px] font-medium"}>{title}</h1>
+                <h1 className={"text-xs font-medium"}>{title} </h1>
                 <div className="flex justify-start items-center">
                     <img src={'./Themes/Aurora/icons/'+resolveIcon()} alt="" />
-                    <div className={"text-xs font-medium ml-1"}>{resolveModeText()}</div>
+                    <div className={"text-[10px] font-medium ml-1"}>{resolveModeText()}</div>
                 </div>
             </div>
         </Card>
