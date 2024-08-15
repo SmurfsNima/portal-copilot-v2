@@ -19,6 +19,7 @@ import { Button } from "symphony-ui";
 import { useEffect, useState } from "react";
 import { Pationt } from "@/model/index.ts";
 import AddClientModal from "@/pages/patientList/addClientModal.tsx";
+import Pagination from "../pagination/index.tsx";
 interface TableProps {
   classData: Array<Pationt>;
 }
@@ -74,6 +75,12 @@ const Table: React.FC<TableProps> = ({ classData }) => {
     const handleAddClient = (clientData : any) => {
       console.log('Client Added:', clientData);
     };
+    const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 100;
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
   return (
     <div className={" flex items-center justify-center  flex-col"}>
       <div className=" w-full top-0 shadow-md sm:rounded-lg py-1 ">
@@ -158,7 +165,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
           </table>
         </div>
       </div>
-      {/* <Pagination table={table} theme={theme}/> */}
+      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />      {/* <Pagination table={table} theme={theme}/> */}
     </div>
   );
 };

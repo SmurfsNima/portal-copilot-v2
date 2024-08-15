@@ -54,7 +54,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
             <input
               type="text"
               id="fullName"
-              className="w-full p-2  bg-black-background text-secondary-text outline-none rounded-md"
+              className="w-full p-2 pl-4  bg-black-background placeholder:text-secondary-text text-primary-text outline-none rounded-md"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Enter your first and last name..."
@@ -68,7 +68,8 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
             <input
               type="email"
               id="email"
-              className="w-full p-2  bg-black-background text-secondary-text outline-none rounded-md"              value={email}
+              className="w-full p-2 pl-4  bg-black-background placeholder:text-secondary-text text-primary-text outline-none rounded-md"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email address..."
               required
@@ -83,7 +84,8 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
             </label>
             <select
               id="wearableDevice"
-              className="w-full p-2  bg-black-background text-secondary-text outline-none rounded-md"              value={wearableDevice}
+              className="w-full p-2 pl-4  bg-black-background text-secondary-text outline-none rounded-md"
+              value={wearableDevice}
               onChange={(e) => setWearableDevice(e.target.value)}
               required
             >
