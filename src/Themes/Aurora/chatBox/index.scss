@@ -1,6 +1,6 @@
 .Aurora-chatBox-container {
-    @apply  max-w-[1200px]  min-w-[400px] xl:min-w-[530px] 2xl:min-w-[665px] 3xl:min-w-[840px] px-5 py-3 rounded-2xl flex items-center  justify-between gap-3 bg-black-primary border border-main-border;
+    @apply  max-w-[1200px]  min-w-[400px] xl:min-w-[530px] 2xl:min-w-[665px] 3xl:min-w-[840px] px-3 py-1  rounded-md flex items-center  justify-between gap-3 bg-black-primary border border-main-border;
   }
   .Aurora-chatBox-input {
-    @apply w-full bg-black-secondary rounded-xl outline-none text-third-text px-3 py-2;
+    @apply w-full bg-black-secondary rounded-lg outline-none border border-main-border text-secondary-text text-xs px-3 py-2;
   }

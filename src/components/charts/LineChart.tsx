@@ -46,10 +46,10 @@ interface LineChartProps {
         {
           label: "",
           data: data,
-          borderColor: active ? "#1E1E1" : "#00FFFF",
+          borderColor:  "#00FFFF",
           borderWidth: 2,
           pointBackgroundColor: model === "linear" ? "#00FFFF" : "#1e1e1e",
-          pointBorderColor: active ? "#1E1E1" : "#00FFFF",
+          pointBorderColor:  "#00FFFF",
           pointRadius:
             model === "area"
               ? 0
@@ -102,12 +102,12 @@ interface LineChartProps {
             xMax: "04am",
             yMin: 0,
             yMax: 10,
-            borderColor: active ? "#1E1E1" : "rgba(0, 255, 255, 0.8)",
+            borderColor:  "rgba(0, 255, 255, 0.8)",
             borderWidth: 1,
             label: {
               content: "Separation Line",
               position: "center",
-              color :active ? "#1E1E1" : "rgba(0, 255, 255, 0.8)"
+              color :"rgba(0, 255, 255, 0.8)"
             },
           },
         },
@@ -120,7 +120,7 @@ interface LineChartProps {
       scales: {
         x: {
           ticks: {
-            color: active ? "#1E1E1" : "#FFF",
+            color: "#FFF",
                maxRotation: 0,
             minRotation: 0,
             autoSkip: true,
@@ -137,7 +137,7 @@ interface LineChartProps {
           
         
           ticks: {
-            color: active ? "#1E1E1" : "#FFFF",
+            color: "#FFFF",
             font : {
               size : 10,
             }

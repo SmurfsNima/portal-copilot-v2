@@ -145,7 +145,7 @@ export const TreatmentPlan = () => {
   </ul>
   <div className="w-full flex items-center justify-between mt-4 border-b border-main-border pb-2">
     <input
-      className="w-full bg-black-primary text-primary-text pl-2"
+      className="w-full bg-black-primary outline-none text-primary-text pl-2"
       type="text"
       placeholder="your comment..."
     />

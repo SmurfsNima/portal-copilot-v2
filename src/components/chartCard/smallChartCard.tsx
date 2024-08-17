@@ -101,7 +101,7 @@ console.log(lowHighValues);
     <div
       onClick={() => setActive(type)}
     data-active ={active===type}
-    className={`${theme}-smallChartCard-container`}
+    className={`${theme}-smallChartCard-container cursor-pointer`}
     >
       <div className=" w-full  flex   flex-col gap-3  ">
         <div className="flex gap-2 items-center">

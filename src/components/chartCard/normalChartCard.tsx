@@ -23,7 +23,7 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
   status,
   chartData,
 }) => {
-  console.log("chart data" , chartData);
+
   
   const [active, setActive] = useState("HCT");
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -130,14 +130,14 @@ console.log(lowHighValues);
           </span>
         ))}
       </div>
-      <h2 className="text-secondary-text  text-[10px] font-normal">
+      <h2 className="text-secondary-text my-2  text-xs font-normal">
         Average:
-        <span className="mx-1 text-primary-text font-medium text-xs">
+        <span className="mx-1 text-primary-text font-medium text-sm">
           {averageValue.toFixed(2)}
         </span>
         {type === "Temperature" ? "oF" : type === "Heart Rate" ? "bpm" : "%"}
       </h2>
-      <div className="bg-black-secondary border border-main-border px-2 w-full     h-full max-h-[140px] xl:max-h-[182px] 2xl:max-h-[175px] rounded-lg ">
+      <div className="bg-black-secondary border  border-main-border px-2 w-full pt-1 pb-4     h-full max-h-[140px] xl:max-h-[223px]  rounded-md ">
         <div className="flex w-full justify-between items-center">
           <span className="text-secondary-text  text-xs">
             {type === "Temperature"
@@ -147,7 +147,7 @@ console.log(lowHighValues);
               : "%"}
           </span>
           <div className="flex items-center gap-2">
-            <h2 className="text-brand-primary-color text-[10px] 2xl:text-xs">
+            <h2 className="text-brand-primary-color text-xs">
               24 May, 2024
             </h2>
             <img

@@ -111,7 +111,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
         onSubmit={handleAddClient}
       />
         </div>
-        <div className={`${theme}-Table-container h-[40vh] ${theme}-scrollBar`}>
+        <div className={`${theme}-Table-container h-[50vh] ${theme}-scrollBar`}>
           <table className={`${theme}-table  ${theme}-scrollBar w-full`}>
             <thead className="text-xs text-gray-700  ">
               {table.getHeaderGroups().map((headerGroup) => {

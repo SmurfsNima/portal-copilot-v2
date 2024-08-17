@@ -17,11 +17,11 @@ export const ChatBox : React.FC<ChatBoxProps> = ({handleSendMessage}) => {
   };
   
   return (
-    <div className="flex w-full flex-col gap-1">
+    <div className="flex w-full flex-col gap-2">
   
-      <div className="flex  gap-1">
-      <img className={`${theme}-icons-logo`} width={24} alt="" />
-        <h2 className="text-primary-text text-xs xl:text-sm font-medium">AI-Copilot</h2>
+      <div className="flex items-center  gap-2">
+      <img src="/public/Themes/Aurora/icons/AiLogo.svg" width={24} alt="" />
+        <h2 className="text-primary-text text-xs font-medium">AI-Copilot</h2>
       </div>
       <div className={`${theme}-chatBox-container`}>
         <img className={`${theme}-icons-stars`} alt="" />
