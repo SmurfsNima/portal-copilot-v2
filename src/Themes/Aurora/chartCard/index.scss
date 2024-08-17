@@ -1,25 +1,21 @@
 .Aurora-smallChartCard-container{
-    @apply  bg-black-primary px-3  py-3 border border-main-border rounded-2xl flex;
+    @apply  bg-black-primary px-3  py-2 border border-main-border rounded-md flex;
 }
 .Aurora-smallChartCard-container[data-active="true"]{
-   @apply bg-brand-primary-color;
+   @apply border-brand-primary-color bg-black-secondary;
 }
 
  .Aurora-smallChartCard-title{
-   @apply text-sm xl:text-base text-primary-text font-medium;
+   @apply text-sm  text-primary-text font-medium;
 
  }
- .Aurora-smallChartCard-title[data-active="true"]{
-    @apply text-black;
- }
+
  .Aurora-smallChartCard-text{
    @apply text-sm xl:text-lg text-secondary-text;
  }
- .Aurora-smallChartCard-text[data-active="true"]{
-    @apply text-black;
- }
+
  .Aurora-normalChartCard-container{
-    @apply bg-black-primary w-full  border rounded-xl border-main-border  px-2  py-1;
+    @apply bg-black-primary w-full  border rounded-md border-main-border  px-5  py-1;
  }
  .Aurora-normalChartCard-title{
     @apply text-primary-text font-medium text-xs;

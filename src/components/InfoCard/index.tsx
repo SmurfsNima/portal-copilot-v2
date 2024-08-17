@@ -20,8 +20,8 @@ const InfoCard = () => {
   }, [id]);
   const [active, setActive] = useState("Progress");
   return (
-    <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-4 border border-main-border rounded-xl  flex items gap-10 relative ">
-      <div className=" flex gap-10  xl:gap-12  ">
+    <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-main-border rounded-xl  flex items gap-10 relative max-h-[166px] ">
+      <div className=" mt-5 flex gap-10  xl:gap-12  ">
         <div
           // style={{
           //   backgroundImage:

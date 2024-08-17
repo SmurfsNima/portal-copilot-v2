@@ -33,7 +33,7 @@ interface MixedLinesChartProps{
     highValues: number[];
   };
 }
- export const MixedLinesChart : React.FC<MixedLinesChartProps> = ({active , ChartData}) => {
+ export const MixedLinesChart : React.FC<MixedLinesChartProps> = ({ ChartData}) => {
   const chartRef = useRef<ChartJS<"line">>(null);
   console.log(ChartData);
   const flattenArray = (arr: any[]) => arr.reduce((acc, val) => acc.concat(val), []);
@@ -82,7 +82,7 @@ interface MixedLinesChartProps{
     scales: {
       x: {
         ticks: {
-          color: active ? "#1E1E1" : "#FFF",
+          color: "#FFF",
         },
         grid: {
           display: false,
@@ -91,14 +91,19 @@ interface MixedLinesChartProps{
       },
       y: {
         ticks: {
-          color: active ? "#1E1E1" : "#FFF",
+          color:  "#FFF",
           callback: function (value) {
             return value;
           },
         },
         grid: {
-          display: false,
+          
+          display: true,
           color: "#444",
+        },
+        border: {
+          dash: [3, 3],
+          display: true,
         },
       },
     },
@@ -133,15 +138,15 @@ interface MixedLinesChartProps{
   // };
   // ChartJS.register(backgroundColorPlugin);
   return (
-    <div className="w-full h-full max-h-[160px] pb-6">
-      <div className="flex items-center gap-2 justify-end">
+    <div className="w-full h-full  pb-6">
+      <div className="my-2 flex items-center gap-2 justify-end">
         <div className="flex items-center gap-1"> 
           <div className="w-2 h-1 bg-blue-600" />
-          <span className={`text-[8px] ${active ? 'text-black' : 'text-secondary-text'}`}>SPB</span>
+          <span className={`text-[8px]  text-secondary-text`}>SPB</span>
         </div>
         <div className="flex items-center gap-1"> 
           <div className="w-2 h-1 bg-red-600" />
-          <span className={`text-[8px] ${active ? 'text-black' : 'text-secondary-text'}`}>DPB</span>
+          <span className={`text-[8px] text-secondary-text`}>DPB</span>
         </div>
       </div>
       <Line ref={chartRef} data={data} options={options} />

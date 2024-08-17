@@ -11,19 +11,19 @@
      @apply bg-black-secondary py-[10px] px-6 rounded-2xl;
  }
  .Aurora-biomarker-charts-container{
-     @apply w-full grid   gap-5   grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+     @apply w-full grid pr-2   gap-5   grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
  }
  .Aurora-biomarker-charts-container[data-active ="true"]{
      @apply grid-cols-1 mr-4  w-full  max-w-[292px]  ;
  }
  .Aurora-biomarker-leftbuttons-container{
-     @apply flex flex-col gap-4 ;
+     @apply flex flex-col gap-5 ;
  }
  .Aurora-biomarker-leftbuttons-container[data-active="true"]{
      @apply flex-row;
  }
  .Aurora-biomarker-analyze-button{
-     @apply cursor-pointer flex justify-center items-center gap-2 bg-brand-primary-color rounded-xl  font-medium py-1 md:py-2 lg:py-3;
+     @apply cursor-pointer flex justify-center items-center gap-2 bg-brand-primary-color rounded-xl  font-medium ;
  
  }
  .Aurora-biomarker-analyze-button[data-active="true"]{
@@ -40,29 +40,29 @@
      @apply flex;
  }
  .Aurora-biomarker-Addbiomarker-button{
-     @apply text-nowrap text-[8px]  md:text-[10px] lg:text-xs w-full  flex justify-center items-center gap-2 text-white cursor-pointer py-8 ;
+     @apply text-nowrap text-xs w-full  flex justify-center items-center gap-1 text-white cursor-pointer  h-[100px] ;
  
  }
  .Aurora-biomarker-Addbiomarker-button[data-active="true"]{
-     @apply py-4;
+     @apply h-[40px];
  }
  .Aurora-biomarker-Addbiomarker-button-text{
      @apply text-xs font-medium text-secondary-text;
  }
  .Aurora-biomarker-Ai-card{
-     @apply bg-black-primary w-full    flex flex-col  rounded-2xl border border-main-border px-6 py-2
+     @apply bg-black-primary w-full    flex flex-col  rounded-md border border-main-border px-6 py-2
  }
  .Aurora-biomarker-Ai-card-logo-heading-text{
-     @apply text-primary-text text-sm font-medium;
+     @apply text-primary-text text-xs font-medium;
  }
  .Aurora-biomarker-Ai-card-text{
-     @apply text-secondary-text text-sm font-normal;
+     @apply text-secondary-text text-xs font-normal;
  }
  .Aurora-biomarker-Ai-chat-container{
     @apply relative flex flex-col xl:h-[400px]    2xl:h-[456px] w-full; 
  }
  .Aurora-biomarker-Ai-chat-text{
-     @apply bg-black-secondary w-full text-secondary-text text-sm p-2 my-2 rounded-xl
+     @apply bg-black-primary w-full text-secondary-text text-sm p-2 my-2 rounded-xl
  }
  .Aurora-biomarker-chartCard-container{
     @apply bg-black-primary px-1 xl:px-3 py-3 border border-main-border rounded-2xl flex;
