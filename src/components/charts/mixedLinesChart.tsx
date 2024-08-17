@@ -33,7 +33,7 @@ interface MixedLinesChartProps{
     highValues: number[];
   };
 }
- export const MixedLinesChart : React.FC<MixedLinesChartProps> = ({active , ChartData}) => {
+ export const MixedLinesChart : React.FC<MixedLinesChartProps> = ({ ChartData}) => {
   const chartRef = useRef<ChartJS<"line">>(null);
   console.log(ChartData);
   const flattenArray = (arr: any[]) => arr.reduce((acc, val) => acc.concat(val), []);
