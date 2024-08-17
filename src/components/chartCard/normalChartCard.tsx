@@ -88,7 +88,7 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
 console.log(lowHighValues);
 
   return (
-    <div className={`${theme}-normalChartCard-container  `}>
+    <div className={`${theme}-normalChartCard-container py-3 `}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="flex items-center justify-center rounded-lg bg-black-background p-1">
@@ -137,7 +137,7 @@ console.log(lowHighValues);
         </span>
         {type === "Temperature" ? "oF" : type === "Heart Rate" ? "bpm" : "%"}
       </h2>
-      <div className="bg-black-secondary border  border-main-border px-2 w-full pt-1 pb-4     h-full max-h-[140px] xl:max-h-[223px]  rounded-md ">
+      <div className="bg-black-secondary border h-auto  border-main-border px-2 w-full pt-1 pb-4   max-h-[140px] xl:max-h-[223px]  rounded-md ">
         <div className="flex w-full justify-between items-center">
           <span className="text-secondary-text  text-xs">
             {type === "Temperature"

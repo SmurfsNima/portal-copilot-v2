@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef , useMemo} from "react";
 import { Line } from "react-chartjs-2";
 import annotationPlugin from "chartjs-plugin-annotation";
@@ -138,7 +139,7 @@ interface MixedLinesChartProps{
   // };
   // ChartJS.register(backgroundColorPlugin);
   return (
-    <div className="w-full h-full  pb-6">
+    <div className="w-full h-[100px] pb-6">
       <div className="my-2 flex items-center gap-2 justify-end">
         <div className="flex items-center gap-1"> 
           <div className="w-2 h-1 bg-blue-600" />

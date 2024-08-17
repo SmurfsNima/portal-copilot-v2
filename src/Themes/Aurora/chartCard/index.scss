@@ -15,7 +15,7 @@
  }
 
  .Aurora-normalChartCard-container{
-    @apply bg-black-primary w-full  border rounded-md border-main-border  px-5  py-1;
+    @apply bg-black-primary w-full h-auto  border rounded-md border-main-border  px-5  py-1;
  }
  .Aurora-normalChartCard-title{
     @apply text-primary-text font-medium text-xs;

@@ -1,5 +1,5 @@
 .Aurora-biomarker-container{
-    @apply  flex flex-col overflow-hidden px-4  2xl:px-8     w-full gap-1 lg:gap-2 xl:gap-3 2xl:gap-4
+    @apply  flex flex-col h-[64px] overflow-hidden px-4  2xl:px-8     w-full gap-1 lg:gap-2 xl:gap-3 2xl:gap-4
  }
  .Aurora-filterbox-container{
      @apply rounded-xl bg-black-primary border border-main-border flex text-xs text-primary-text;

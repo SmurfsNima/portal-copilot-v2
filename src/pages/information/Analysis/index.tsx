@@ -174,7 +174,7 @@ const Analysis = () => {
             <div
               className={` ${
                 !active && "hidden"
-              }   w-full h-full    flex flex-col gap-5  justify-between max-h-[400px]  2xl:max-h-[600px] 3xl:max-h-full   `}
+              }   w-full h-full    flex flex-col gap-5  justify-start max-h-[400px]  2xl:max-h-[600px] 3xl:max-h-full   `}
             >
               {activeChartData && (
                 <NormalChartCard
