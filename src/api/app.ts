@@ -3,7 +3,7 @@ import allBiomarkers from './--moch--/data/Allbiomarkers.json';
 
 class Application extends Api {
   static getPatients() {
-    const response = this.post("/getPatient", {});
+    const response = this.get("/patients");
     return response;
   }
 
@@ -12,7 +12,7 @@ class Application extends Api {
     return response;
   }
   static getBiomarkers() {
-    const response = this.post("/getBiomarkers", {}); 
+    const response = this.get("/patients/allbiomarkers"); 
     return response;
   }
   static getDiagnosis() {

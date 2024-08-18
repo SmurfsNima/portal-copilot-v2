@@ -60,9 +60,9 @@ const InfoCard = () => {
           <div>
             <h2 className="text-secondary-text text-xs font-medium">Conditions: </h2>
           
-          {patient?.information.conditions.map((condition , index)=>(
+          {/* {patient?.information?.conditions.map((condition , index)=>(
             <div className="text-xs font-normal text-primary-text">{index+1}. {condition}</div>
-          ))}
+          ))} */}
           </div>
         </div>
       </div>
