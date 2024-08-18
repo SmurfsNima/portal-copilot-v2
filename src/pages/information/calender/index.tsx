@@ -63,7 +63,7 @@ export const Calender = () => {
         {daysInMonth.map((day, index) => (
           <div
             key={index}
-            className={`px-4 py-1  rounded-lg  ${
+            className={`px-4 py-1 min-h-[59px]  rounded-lg  ${
               day.inCurrentMonth ? "bg-black-secondary" : "bg-black-third"
             }`}
           >
