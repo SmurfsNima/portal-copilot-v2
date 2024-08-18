@@ -46,7 +46,7 @@ interface MixedLinesChartProps{
     labels: flattenedDates,
     datasets: [
       {
-        label: "SPB",
+        label: "SBP",
         data: flattenedLowValues,
         borderColor: "blue",
         borderWidth: 1.5,
@@ -60,7 +60,7 @@ interface MixedLinesChartProps{
         pointStyle: "rect",
       },
       {
-        label: "DPB",
+        label: "DBP",
         data: flattenedHighValues,
         borderColor: "red",
         borderWidth: 1.5,
@@ -143,11 +143,11 @@ interface MixedLinesChartProps{
       <div className="my-2 flex items-center gap-2 justify-end">
         <div className="flex items-center gap-1"> 
           <div className="w-2 h-1 bg-blue-600" />
-          <span className={`text-[8px]  text-secondary-text`}>SPB</span>
+          <span className={`text-[8px]  text-secondary-text`}>SBP</span>
         </div>
         <div className="flex items-center gap-1"> 
           <div className="w-2 h-1 bg-red-600" />
-          <span className={`text-[8px] text-secondary-text`}>DPB</span>
+          <span className={`text-[8px] text-secondary-text`}>DBP</span>
         </div>
       </div>
       <Line ref={chartRef} data={data} options={options} />
