@@ -183,8 +183,10 @@ export const GraphDefault: React.FC<GraphDefaultProps> = ({exeNods}) => {
         if (hoveredNode) {
           if (node === hoveredNode || graph.neighbors(hoveredNode).includes(node)) {
             newData.highlighted = true;
+            newData.labelColor = '#fff'; 
           } else {
-            newData.color = "#E2E2E2";
+            newData.labelColor = '#fff';
+            newData.color = "#FFFFFF";
             newData.highlighted = false;
           }
         }
