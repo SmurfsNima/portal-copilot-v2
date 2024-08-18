@@ -60,7 +60,7 @@
   },
   {
     "patient_id": 5,
-    "member_id": 1237,
+    "member_id": 1238,
     "weight": 68,
 
     "status": "at-risk",
@@ -75,7 +75,7 @@
   },
   {
     "patient_id": 6,
-    "member_id": 1237,
+    "member_id": 1239,
     "weight": 76,
 
     "status": "at-risk",

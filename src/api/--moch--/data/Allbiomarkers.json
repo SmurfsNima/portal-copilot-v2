@@ -21,7 +21,7 @@
         "Heart Rate": [
           {
             "value": {
-              "value": [92, 93, 88],
+              "value": [70, 93, 88],
               "status": "high"
             },
             "date": [
@@ -70,7 +70,7 @@
         "Heart Rate": [
           {
             "value": {
-              "value": [50, 59, 63],
+              "value": [65, 72, 63],
               "status": "low"
             },
             "date": [
@@ -98,7 +98,7 @@
         "Respiration Rate": [
           {
             "value": {
-              "value": [53, 55, 42],
+              "value": [13, 16, 14],
               "status": "low"
             },
             "date": [
@@ -162,7 +162,7 @@
         "Respiration Rate": [
           {
             "value": {
-              "value": [14, 16, 24],
+              "value": [14, 16, 15],
               "status": "normal"
             },
             "date": [
@@ -253,5 +253,133 @@
         ]
       }
     ]
-  }
+  },
+  {
+    "patient_id": 5,
+    "biomarkers": [
+      {
+        "Blood Pressure": [
+          {
+            "value": {
+              "high": [110, 115, 116],
+              "low": [69, 72, 72],
+              "status": "normal"
+            },
+            "date": [
+              "2024-02-11T00:00:00",
+              "2024-02-12T00:00:00",
+              "2024-02-13T00:00:00"
+            ],
+            "activity": [true]
+          }
+        ],
+        "Heart Rate": [
+          {
+            "value": {
+              "value": [73, 70, 82],
+              "status": "low"
+            },
+            "date": [
+              "2024-02-11T00:00:00",
+              "2024-02-12T00:00:00",
+              "2024-02-13T00:00:00"
+            ],
+            "activity": [true]
+          }
+        ],
+        "Oxygen Saturation": [
+          {
+            "value": {
+              "value": [97],
+              "status": "high"
+            },
+            "date": [
+              "2024-02-11T00:00:00",
+              "2024-02-12T00:00:00",
+              "2024-02-13T00:00:00"
+            ],
+            "activity": [true]
+          }
+        ],
+        "Temperature": [
+          {
+            "value": {
+              "value": [36, 36.5, 37],
+              "status": "low"
+            },
+            "date": [
+              "2024-02-11T00:00:00",
+              "2024-02-12T00:00:00",
+              "2024-02-13T00:00:00"
+            ],
+            "activity": [true]
+          }
+        ]
+      }
+    ]
+  } ,
+  {
+    "patient_id": 6,
+    "biomarkers": [
+      {
+        "Blood Pressure": [
+          {
+            "value": {
+              "high": [110, 115, 116],
+              "low": [69, 72, 72],
+              "status": "normal"
+            },
+            "date": [
+              "2024-02-11T00:00:00",
+              "2024-02-12T00:00:00",
+              "2024-02-13T00:00:00"
+            ],
+            "activity": [true]
+          }
+        ],
+        "Heart Rate": [
+          {
+            "value": {
+              "value": [85, 86, 95],
+              "status": "low"
+            },
+            "date": [
+              "2024-02-11T00:00:00",
+              "2024-02-12T00:00:00",
+              "2024-02-13T00:00:00"
+            ],
+            "activity": [true]
+          }
+        ],
+        "Oxygen Saturation": [
+          {
+            "value": {
+              "value": [97],
+              "status": "high"
+            },
+            "date": [
+              "2024-02-11T00:00:00",
+              "2024-02-12T00:00:00",
+              "2024-02-13T00:00:00"
+            ],
+            "activity": [true]
+          }
+        ],
+        "Temperature": [
+          {
+            "value": {
+              "value": [36, 36.5, 37],
+              "status": "low"
+            },
+            "date": [
+              "2024-02-11T00:00:00",
+              "2024-02-12T00:00:00",
+              "2024-02-13T00:00:00"
+            ],
+            "activity": [true]
+          }
+        ]
+      }
+    ]
+  }    
 ]
