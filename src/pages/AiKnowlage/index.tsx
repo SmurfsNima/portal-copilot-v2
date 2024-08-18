@@ -77,7 +77,7 @@ const AiKnowlage = () => {
         </SigmaContainer> <>
         <div className="fixed right-5 top-[15%]  w-64 text-primary-text bg-black-primary border border-main-border flex flex-col p-4 rounded-md">
       <button className="mb-4 flex justify-center gap-2 text-secondary-text border border-main-border border-dashed py-2 rounded-lg">
-        <img src="/public/Themes/Aurora/icons/add-square.svg" alt="Add" />
+        <img src="/Themes/Aurora/icons/add-square.svg" alt="Add" />
         Add New Document
       </button>
       <div className="overflow-y-auto">
