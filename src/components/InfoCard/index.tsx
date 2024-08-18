@@ -19,6 +19,8 @@ const InfoCard = () => {
     setPatient(getPatientById(Number(id)));
   }, [id]);
   const [active, setActive] = useState("Progress");
+  console.log(patient);
+  
   return (
     <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-main-border rounded-xl  flex items gap-10 relative overflow-hidden h-[166px] ">
       <div className=" mt-5 flex gap-10  xl:gap-12  ">
@@ -55,10 +57,12 @@ const InfoCard = () => {
               P1245
             </h2>
           </div>
-          <div className=" text-[8px] xl:text-[10px]">
-            <h2 className="text-secondary-text">Conditions: </h2>
-            <p className="text-primary-text">1. High Blood Pressure</p>
-            <p className="text-primary-text">2. Diabetes</p>
+          <div>
+            <h2 className="text-secondary-text text-xs font-medium">Conditions: </h2>
+          
+          {patient?.information.conditions.map((condition , index)=>(
+            <div className="text-xs font-normal text-primary-text">{index+1}. {condition}</div>
+          ))}
           </div>
         </div>
       </div>

@@ -45,14 +45,14 @@ const daysInMonth = [
 export const Calender = () => {
     const theme = useSelector((state: any) => state.theme.value.name);
   return (
-    <div className="w-full flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-1">
     <InfoCard />
-    <div className="w-full bg-black-primary border border-main-border text-primary-text px-4 py-3 rounded-lg max-h-[550px] overflow-auto">
+    <div className="w-full bg-black-primary border border-main-border text-primary-text px-4 py-2 rounded-lg max-h-[550px] overflow-auto">
       <div className="flex items-center gap-2">
         <h2 className="text-sm font-semibold">July 2024</h2>
         <img className={`${theme}-icons-arrow-down`} alt="" />
       </div>
-      <div className="grid grid-cols-7 gap-2 mt-3 mb-2">
+      <div className="grid grid-cols-7 gap-2 mmt-1">
         {daysOfWeek.map((day, index) => (
           <div key={index} className=" text-sm text-center text-primary-text">
             {day}
@@ -63,7 +63,7 @@ export const Calender = () => {
         {daysInMonth.map((day, index) => (
           <div
             key={index}
-            className={`px-4 py-2  rounded-lg  ${
+            className={`px-4 py-1  rounded-lg  ${
               day.inCurrentMonth ? "bg-black-secondary" : "bg-black-third"
             }`}
           >
