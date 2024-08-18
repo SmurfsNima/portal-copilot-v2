@@ -10,7 +10,8 @@ import Table from './table'
 import TabsWrapper from './Tabs';
 import TopBar from "./topBar";
 import { ChatBox } from './chatBox';
-
+import HistoryBox from './HistoryBox';
+import ChatHistoryBox from './HistoryChat';
 export {
     Accordion,
     Appointments,
@@ -23,5 +24,7 @@ export {
     Table,
     TabsWrapper,
     TopBar,
-    ChatBox
+    ChatBox,
+    HistoryBox,
+    ChatHistoryBox
 }
