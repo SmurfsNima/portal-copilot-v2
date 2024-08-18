@@ -12,7 +12,7 @@ export const menus = [
     {
         name:'Ai knowledge',
         icon:'trend-up',
-        url:'/'
+        url:'/ai-knowlage'
     },      
     {
         name:'info-circle',
