@@ -28,3 +28,13 @@
 .hidden-scrollBar::-webkit-scrollbar{
   display: none;
 }
+/* index.css or custom.css */
+.custom-checkbox {
+
+accent-color: #7F39FB;
+
+display: inline-block;
+position: relative;
+cursor: pointer;
+}
+.custom-checkbox:
