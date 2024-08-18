@@ -10,8 +10,9 @@
     "sex": "female",
     "enroll_date": "2024-01-16",
     "last_followup": "2024-05-11",
-    "score" : 8.2,
-    "progress": 80
+    "score": 8.2,
+    "progress": 80,
+    "conditions": [" Fever", "High heart rate"]
   },
   {
     "patient_id": 2,
@@ -25,8 +26,9 @@
     "enroll_date": "2024-02-10",
     "last_followup": "2024-04-13",
     "picture": "https://randomuser.me/api/portraits/men/4.jpg",
-    "score" : 7.8,
-    "progress": 75
+    "score": 7.8,
+    "progress": 75,
+    "conditions": [" High heart rate", "High blood pressure"]
   },
   {
     "patient_id": 3,
@@ -40,8 +42,9 @@
     "enroll_date": "2024-01-20",
     "last_followup": "2024-04-12",
     "picture": "https://randomuser.me/api/portraits/women/4.jpg",
-    "score" : 8.28,
-    "progress": 91
+    "score": 8.28,
+    "progress": 91,
+    "conditions": ["Fever"]
   },
   {
     "patient_id": 4,
@@ -55,8 +58,9 @@
     "enroll_date": "2024-02-01",
     "last_followup": "2024-06-12",
     "picture": "https://randomuser.me/api/portraits/men/3.jpg",
-    "score" : 8,
-    "progress": 81
+    "score": 8,
+    "progress": 81,
+    "conditions": [" High blood pressure"]
   },
   {
     "patient_id": 5,
@@ -70,8 +74,9 @@
     "enroll_date": "2024-02-01",
     "last_followup": "2024-06-12",
     "picture": "https://randomuser.me/api/portraits/men/2.jpg",
-    "score" : 9.3,
-    "progress": 95
+    "score": 9.3,
+    "progress": 95,
+    "conditions": [" Diabetes"]
   },
   {
     "patient_id": 6,
@@ -85,7 +90,8 @@
     "enroll_date": "2024-02-01",
     "last_followup": "2024-06-12",
     "picture": "https://randomuser.me/api/portraits/men/1.jpg",
-    "score" : 8.2,
-    "progress": 87
+    "score": 8.2,
+    "progress": 87,
+    "conditions": [" Diabetes", "High heart rate"]
   }
 ]

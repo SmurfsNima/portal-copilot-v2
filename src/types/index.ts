@@ -15,7 +15,8 @@ interface PationtInformation {
   blood_oxygen: number;
   respiration_rate: string;
   score: number,
-  progress: number
+  progress: number,
+  conditions : string[]
 
   // biomarkers: biomarker[];
   // diagnosis : diagnosis[]
