@@ -89,7 +89,7 @@ export const TreatmentPlan = () => {
         <img src="/Themes/Aurora/icons/send.svg" alt="" />
       </div>
       <div className="w-full flex gap-2">
-        <div className="bg-black-primary text-primary-text w-full p-3 rounded-lg space-y-3 border border-main-border">
+        <div className="bg-black-primary text-primary-text w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border">
           <div className="flex justify-between items-center pb-4">
             <h2 className="text-sm font-semibold">Treatment Plan 012</h2>
             <div className="  flex items-center space-x-4">

@@ -26,8 +26,8 @@ export const InfoGraphicCenter = () => {
     <div className=" flex w-full flex-col items-center  gap-4 ">
       <div className={`${theme}-graphicinfo-center-section fixed `}>
         {!isNext ? (
-          <div className=" w-full relative  h-[40vh] xl:h-[45vh] 2xl:h-[50vh]  pb-3">
-            <div className="w-full flex justify-center h-[40vh] xl:h-[45vh] 2xl:h-[50vh]">
+          <div className=" w-full relative  h-[40vh] xl:h-[45vh] 2xl:h-[450px]  pb-3">
+            <div className="w-full flex justify-center h-[40vh] xl:h-[45vh] 2xl:h-[446px]">
             <img src={Img}  />
             </div>
              
@@ -46,7 +46,7 @@ export const InfoGraphicCenter = () => {
             ))}
           </div>
         ) : (
-          <div id="copilot-chat" className="overflow-y-scroll  h-[40vh] xl:h-[45vh] 2xl:h-[50vh]py-2">
+          <div id="copilot-chat" className="overflow-y-scroll  h-[40vh] xl:h-[45vh] 2xl:h-[450px] py-2">
            
             <div className="border border-main-border rounded-xl rounded-t-none bg-black-secondary text-secondary-text py-1 px-5  ">
               <ul className="list-disc leading-6">

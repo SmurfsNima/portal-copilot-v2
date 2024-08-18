@@ -10,7 +10,7 @@ const OverView: React.FC = () => {
   const chartData = prepareChartData(biomarkers);
   return (
     <div className="flex justify-between o  w-full  bg-black-background gap-5 ">
-      <div className="flex   flex-col gap-2 min-w-[312px] max-h-[700px] overflow-auto ">
+      <div className="flex   flex-col gap-1 min-w-[340px] max-h-[700px] overflow-auto hidden-scrollBar pb-[200px] ">
         {btnInfo.map((item) => (
           <>
             <Accordion title={item.text}>
@@ -21,7 +21,7 @@ const OverView: React.FC = () => {
       </div>
       <InfoGraphicCenter />
       <div>
-        <div className="flex flex-col gap-2 max-w-[300px] 2xl:max-w-[400px] max-h-[700px] overflow-auto">
+        <div className="flex flex-col gap-2 max-w-[300px] 2xl:max-w-[400px] max-h-[700px] overflow-auto hidden-scrollBar pb-[200px] ">
           {chartData.map((item, i) => (
             <div key={i}>
               <NormalChartCard

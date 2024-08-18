@@ -1,5 +1,5 @@
 .Aurora-SideMenu-container{
-    @apply flex h-screen overflow-y-auto 
+    @apply flex h-screen   overflow-hidden
 }
 .Aurora-SideMenu-nav{
     @apply w-[84px] fixed z-[41] bg-black-primary  h-screen border-black-fourth border-r 
