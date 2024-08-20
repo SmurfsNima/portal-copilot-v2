@@ -12,8 +12,8 @@ class Api {
     const response = mock.onPost(this.base_url + url, body).reply(200, reply);
     return response;
   }
-  public static get(url: string ) {
-    const response = mock.onGet(this.base_url + url)
+  public static get(url: string ,reply: any) {
+    const response = mock.onGet(this.base_url + url).reply(200,reply)
     return response;
   }
 }
