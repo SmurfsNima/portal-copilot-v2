@@ -10,10 +10,11 @@ const useMoch = () => {
     Api.post("/auth/token",{
         access_token:"ebdsjcdkosoqe3r4gnfvnwoe2g94nvsjka23f0vslvnsk39jsncje239"
     })
-    Api.post("/patients",patients)    
+    // Api.post("/patients",patients)
+    Api.get("/patients",patients)     
 
     Api.post("/getreports",reports)
-    Api.post("/getBiomarkers" , biomarkers)
+    Api.get("/patients/allbiomarkers" , biomarkers)
     Api.post("/getAllBiomarkers" , Allbiomarkers)
     Api.post("/getDiagnosis" , diagnosis)
     Api.post("/graphData" , graphData)

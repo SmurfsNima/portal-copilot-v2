@@ -39,7 +39,11 @@ export const Messages = () => {
         <div className="w-[329px] h-[400px] flex items-start flex-col">
           <div className="w-[329px] h-[32px] rounded-md border border-[#383838] px-[12px] flex justify-between items-center">
             <div
-              className={TabBar === 1 ? "bg-[#03DAC5]  w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] top-[214px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]" : "w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] top-[214px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"}
+              className={
+                TabBar === 1
+                  ? "bg-[#03DAC5] w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
+                  : "w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
+              }
               onClick={() => setTabBar(1)}
             >
               Chat History
@@ -51,6 +55,7 @@ export const Messages = () => {
               Notification History
             </div>
           </div>
+         
 
           <div className="w-full flex items-start flex-col overflow-auto">
             {/* <div className="w-[328px] h-[36.33px] rounded-md border border-[#383838] mt-[10px] mb-[15px] overflow-hidden flex items-center justify-center">
