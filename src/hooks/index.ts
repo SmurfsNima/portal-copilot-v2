@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { BiomarkerCategory , diagnosis } from "@/types";
 import { Application } from "@/api";
+import { useMemo } from "react";
+import { faker } from "@faker-js/faker";
 export function useApp() {
   const context = useContext(AppContext);
   if (context === undefined) throw new Error("AuthContext was used outside of the AuthContextProvider");
@@ -45,4 +47,13 @@ export const useDiagnosis = () => {
   }, [id, getPatientById]);
 
   return diagnosis;
+};
+
+
+export const useRandom = () => {
+  const randomColor = useMemo(() => {
+    return () => `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+  }, []);
+
+  return { faker, randomColor };
 };
