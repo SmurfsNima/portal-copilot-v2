@@ -340,7 +340,7 @@ const HistoryBox: React.FC<HistoryBoxProps> = ({ changeHandler }) => {
             )}
             <div
               onClick={() => changeHandler && changeHandler(notification)}
-              className="w-[328px] h-[64px] bg-[#1E1E1E] rounded-md border border-[#383838] text-[#ffffffb0] flex items-center justify-center flex-col mb-[5px] cursor-pointer hover:bg-[#03DAC5] hover:text-black"
+              className="w-full h-[64px] bg-[#1E1E1E] rounded-md border border-[#383838] text-[#ffffffb0] flex items-center justify-center flex-col mb-[5px] cursor-pointer hover:bg-[#03DAC5] hover:text-black"
             >
               <div className="w-[296px] h-1/2 flex items-center justify-between">
                 <svg

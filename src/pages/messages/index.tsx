@@ -57,7 +57,10 @@ export const Messages = () => {
           </div>
          
 
-          <div className="scrollbar-hidden w-full flex items-start flex-col overflow-auto ">
+          <div className=" w-full flex items-start flex-col overflow-auto hidden-scrollBar
+
+
+">
             {TabBar === 1 ? (
               <div className="w-full">
                 <ChatHistoryBox
