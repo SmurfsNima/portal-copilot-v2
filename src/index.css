@@ -37,4 +37,11 @@ display: inline-block;
 position: relative;
 cursor: pointer;
 }
-.custom-checkbox:
+.sigma-node-label {
+  background-color: transparent; /* Default label background */
+}
+
+.sigma-node-label.highlighted {
+  background-color: black; /* Change to black when highlighted */
+  color: white; /* Ensure text is visible */
+}
