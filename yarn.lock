@@ -1270,7 +1270,7 @@ graphemer@^1.4.0:
   resolved "https://registry.npmjs.org/graphemer/-/graphemer-1.4.0.tgz"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
-graphology-layout@0.6.1:
+graphology-layout@^0.6.1, graphology-layout@0.6.1:
   version "0.6.1"
   resolved "https://registry.npmjs.org/graphology-layout/-/graphology-layout-0.6.1.tgz"
   integrity sha512-m9aMvbd0uDPffUCFPng5ibRkb2pmfNvdKjQWeZrf71RS1aOoat5874+DcyNfMeCT4aQguKC7Lj9eCbqZj/h8Ag==

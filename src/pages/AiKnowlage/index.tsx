@@ -116,7 +116,7 @@ const AiKnowledge = () => {
   settings={{
     allowInvalidContainer: true,
     renderLabels: true,
-    // labelColor: { color:  "#fff"},
+    // labelColor: { color:  "fff"},
    
   }}
   id="sigma-container"
