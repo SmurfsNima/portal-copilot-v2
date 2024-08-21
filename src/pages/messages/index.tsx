@@ -32,13 +32,13 @@ export const Messages = () => {
     <div className="flex flex-col gap-5 w-full">
       <InfoCard />
       <div className="flex justify-between gap-4">
-        <div className="  w-[329px] h-[400px] flex items-start flex-col">
+        <div className="w-[329px] h-[400px] flex items-start flex-col">
           <div className="w-[329px] h-[32px] rounded-md border border-[#383838] px-[12px] flex justify-between items-center">
             <div
               className={
                 TabBar === 1
-                  ? "bg-[#03DAC5]  w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] top-[214px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
-                  : "w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] top-[214px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
+                  ? "bg-[#03DAC5] w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
+                  : "w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
               }
               onClick={() => setTabBar(1)}
             >
@@ -47,17 +47,17 @@ export const Messages = () => {
             <div
               className={
                 TabBar === 2
-                  ? "bg-[#03DAC5]  w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] top-[214px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
-                  : "w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] top-[214px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
+                  ? "bg-[#03DAC5] w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
+                  : "w-[144px] h-[24px] rounded-md text-[#FFFFFF] text-[12px] flex items-center justify-center gap-[8px] cursor-pointer hover:bg-[#03DAC5] hover:text-[#383838]"
               }
               onClick={() => setTabBar(2)}
             >
               Notification History
             </div>
           </div>
+         
 
-          <div className="scrollbar-hidden w-full flex items-start flex-col overflow-auto overflow-x-hidden	 " style={{}}>
-
+          <div className="scrollbar-hidden w-full flex items-start flex-col overflow-auto ">
             {TabBar === 1 ? (
               <div className="w-full">
                 <ChatHistoryBox
@@ -68,8 +68,12 @@ export const Messages = () => {
               </div>
             ) : null}
             {TabBar === 2 ? (
-              <div className="w-full ">
-                <HistoryBox theme={theme} placeholder="Search chat history" changeHandler={(notification) => setSelectedNotification(notification)} />
+              <div className="w-full">
+                <HistoryBox
+                  theme={theme}
+                  placeholder="Search chat history"
+                  changeHandler={(notification) => setSelectedNotification(notification)}
+                />
               </div>
             ) : null}
           </div>
@@ -93,70 +97,77 @@ export const Messages = () => {
           <div className="w-full text-xs text-[#ffffff77] h-[2rem] flex items-center justify-center mb-4">
             {selectedNotification?.date || ''}
           </div>
-          <div className="w-full h-[77%] overflow-auto flex items-start flex-col  pb-[7rem]">
+          <div className="w-full h-[77%] overflow-auto flex items-start flex-col pb-[7rem]">
             {selectedNotification ? (
-              <div
-                key={selectedNotification.id}
-                className={`w-full p-[1rem] flex ${
-                  selectedNotification.status === 1 ? "justify-end" : "justify-start"
-                } relative`}
-              >
+              selectedNotification.messages.map((message: any, index: number) => (
                 <div
-                  className={`w-[35rem] flex items-start`}
-                  style={{
-                    direction: selectedNotification.status === 1 ? "ltr" : "rtl",
-                    justifyContent: selectedNotification.status === 2 ? "left" : "right"
-                  }}
+                  key={index}
+                  className={`w-full p-[1rem] flex ${
+                    message.role === "assistant" ? "justify-end" : "justify-start"
+                  } relative`}
                 >
-                  <div className="w-10 h-10 mt-8 relative flex items-center justify-center text-white/85">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                      onClick={handleMenuClick(selectedNotification.id)}
-                      className="w-5 mb-4.5 cursor-pointer"
-                    >
-                      <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
-                    </svg>
-                    {openMenuId === selectedNotification.id ? (
-                      <div
-                        className={`w-32 absolute bg-[#272727] top-0 ${
-                          selectedNotification.status === 1 ? 'right-0' : 'left-0'
-                        } rounded-md border border-[#383838] flex flex-col items-start p-1`}
-                      >
-                        <button className="w-full text-xs border-b border-[#383838] py-1.5 rounded-md hover:bg-[#03DAC5] hover:text-[#383838] last:border-none">
-                          Copy
-                        </button>
-                        <button className="w-full text-xs border-b border-[#383838] py-1.5 rounded-md hover:bg-[#03DAC5] hover:text-[#383838] last:border-none">
-                          Copy
-                        </button>
-                        <button className="w-full text-xs border-b border-[#383838] py-1.5 rounded-md hover:bg-[#03DAC5] hover:text-[#383838] last:border-none">
-                          Copy
-                        </button>
-                      </div>
-                    ) : null}
-                  </div>
                   <div
-                    className="flex items-start flex-col relative"
-                    style={{ justifyContent: "right" }}
+                    className={`w-[35rem] flex items-start  ${
+                      message.role === "assistant" ? "justify-start" : "justify-end"
+                    }`}
+                    style={{
+                      direction: message.role === "assistant" ? "rtl" : "rtl",
+                    }}
                   >
-                    <p className="w-full text-[#ffffff66] mb-1.5 text-right">
-                      {selectedNotification.time}
-                    </p>
-                    <div className="bg-[#272727] w-[400px] p-4 rounded-[20px_0_20px_20px] border border-[#383838]">
-                      <p
-                        className="text-xs text-[#ffffffd8] text-left"
-                        style={{ direction: 'ltr' }}
+                    <div className=" w-10 h-10 mt-8 relative flex items-center justify-center text-white/85 ">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                        onClick={handleMenuClick(message.id)}
+                        className="w-5 mb-4.5 cursor-pointer"
                       >
-                        {selectedNotification.message}
+                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                      </svg>
+                      {openMenuId === message.id ? (
+                        <div
+                          className={`w-32 absolute top-0 bg-[#272727] ${
+                            message.role === "assistant" ? 'right-0' : 'left-0'
+                          } rounded-md border border-[#383838] flex flex-col items-start p-1`}
+                        >
+                          <button className="w-full text-xs border-b border-[#383838] py-1.5 rounded-md hover:bg-[#03DAC5] hover:text-[#383838] last:border-none">
+                            Copy
+                          </button>
+                          <button className="w-full text-xs border-b border-[#383838] py-1.5 rounded-md hover:bg-[#03DAC5] hover:text-[#383838] last:border-none">
+                            Copy
+                          </button>
+                          
+                          <button className="w-full text-xs border-b border-[#383838] py-1.5 rounded-md hover:bg-[#03DAC5] hover:text-[#383838] last:border-none">
+                            Copy
+                          </button>
+                        </div>
+                      ) : null}
+                    </div>
+                    <div
+                      className="flex items-start flex-col relative max-w-[80%]"
+                      style={{ justifyContent: message.role === "assistant" ? "right" : "left" }}
+                    >
+                      <p className="w-full text-[#ffffff66] mb-1.5 text-right">
+                        {selectedNotification.time}
                       </p>
+                      <div className="bg-[#272727]  p-4 rounded-[20px_0_20px_20px] border border-[#383838]">
+                        <p
+                        className={`text-xs text-[#ffffffd8] text-left  ${
+                          message.role === "assistant" ? "text-right" : "text-left"
+                        }`}
+                         
+                          style={{ direction: 'ltr' }}
+                        >
+                          {message.content}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="rounded-full w-[40px] h-[40px] flex items-center justify-center ml-4">
+                      <img src={Clinic} alt="Clinic" className="w-[40px]" />
                     </div>
                   </div>
-                  <div className="rounded-full w-[40px] h-[40px] bg-[#383838] flex items-center justify-center ml-4">
-                    <img src={Clinic} alt="Clinic" className="w-[42px]" />
-                  </div>
                 </div>
-              </div>
+              ))
             ) : (
               <div className="w-full h-full flex items-center justify-center text-[#ffffff66]">
                 Select a notification to view details
@@ -168,3 +179,6 @@ export const Messages = () => {
     </div>
   );
 };
+
+
+
