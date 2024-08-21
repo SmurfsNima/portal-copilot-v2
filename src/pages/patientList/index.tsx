@@ -5,13 +5,13 @@ import { Table, NumberBox } from "@/components";
 import { Pationt } from "@/model";
 import Biomarker from "@/model/biomarkers";
 // import Biomarker from "@/model/biomarkers";
-import { biomarker, diagnosis } from "@/types";
+import { biomarker } from "@/types";
 import { useState, useContext, useEffect } from "react";
 // import NumberBox from "@/components/numberBox/numberBox";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "@/store/app";
-import Diagnosis from "@/model/diagnosis";
+// import Diagnosis from "@/model/diagnosis";
 const PatientList = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const { patients ,savePatientList } = useContext(AppContext);
@@ -34,16 +34,16 @@ const PatientList = () => {
             (bio: any) => new Biomarker(bio)
           );
         });
-        const DiagnosisByPatientId: { [key: number]: diagnosis[] } = {};
-        DiagnosisResponse.data.forEach((item: any) => {
-          DiagnosisByPatientId[item.patient_id] = item.diagnosis.map(
-            (bio: any) => new Diagnosis(bio)
-          );
-        });
+        // const DiagnosisByPatientId: { [key: number]: diagnosis[] } = {};
+        // DiagnosisResponse.data.forEach((item: any) => {
+        //   DiagnosisByPatientId[item.patient_id] = item.diagnosis.map(
+        //     (bio: any) => new Diagnosis(bio)
+        //   );
+        // });
 
         const resolvedPatients = patientResponse.data.map((el: any) => {
           const biomarkers = biomarkersByPatientId[el.patient_id] || [];
-          const Diagnosis = DiagnosisByPatientId[el.patient_id] || [];
+          // const Diagnosis = DiagnosisByPatientId[el.patient_id] || [];
           // const diagnosis = el.diagnosis.map((diagnosis: diagnosis) => {
           //   return new Diagnosis(diagnosis);
           // });
@@ -59,7 +59,7 @@ const PatientList = () => {
           
           
           patient.setBiomarkers(biomarkers);
-          patient.setDiagnosis(Diagnosis);
+          // patient.setDiagnosis(Diagnosis);
 
           return patient;
         });
