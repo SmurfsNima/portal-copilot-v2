@@ -12,6 +12,7 @@ import TopBar from "./topBar";
 import { ChatBox } from './chatBox';
 import HistoryBox from './HistoryBox';
 import ChatHistoryBox from './HistoryChat';
+import PopUp from './popup';
 export {
     Accordion,
     Appointments,
@@ -26,5 +27,6 @@ export {
     TopBar,
     ChatBox,
     HistoryBox,
-    ChatHistoryBox
+    ChatHistoryBox,
+    PopUp
 }
