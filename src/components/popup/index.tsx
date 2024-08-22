@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface PopUpProps {
   isOpen: boolean;
@@ -17,6 +17,7 @@ interface ConcerningResult {
 const PopUp = ({ isOpen, onClose }: PopUpProps) => {
   if (!isOpen) return null;
   const [sortConfig, setSortConfig] = useState<{ key: keyof ConcerningResult; direction: 'asc' | 'desc' }>({ key: 'Name', direction: 'asc' });
+  const popupRef = useRef<HTMLDivElement>(null);
 
 
   const ConcerningResults: ConcerningResult[] = [    {
@@ -107,16 +108,36 @@ const PopUp = ({ isOpen, onClose }: PopUpProps) => {
     }));
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
   return (
     <div className="fixed inset-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center z-[1000]">
-      <div className="bg-[#272727] p-5 rounded-md w-[85%] max-w-[90%] relative flex items-center justify-center flex-col text-white text-sm">
+      <div 
+        ref={popupRef}
+        className="bg-[#272727] p-5 rounded-md w-[85%] max-w-[90%] relative flex items-center justify-center flex-col text-white text-sm"
+      >
         <div className="w-full flex items-center justify-between px-4 mb-[10px]">
           <p>Concerning Results</p>
           <button onClick={onClose} className="text-[1.5rem] cursor-pointer">✕</button>
         </div>
         <div className="w-full px-4 flex items-center justify-center">
           <table className="w-full text-left text-xs text-white/70">
-          <thead>
+            <thead>
               <tr className="h-[30px]">
                 <th>Name</th>
                 <th onClick={() => handleSort('Result')} style={{ cursor: 'pointer' }}>
