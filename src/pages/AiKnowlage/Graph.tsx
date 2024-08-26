@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Graph from "graphology";
 import chroma from "chroma-js";
 import { Application } from "@/api";
-import { useLayoutCircular } from "@react-sigma/layout-circular"; // Import the circular layout
+import { useLayoutCircular } from "@react-sigma/layout-circular";
 export const GraphEvents = () => {
     const registerEvents = useRegisterEvents();
     const sigma = useSigma();

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { SigmaContainer } from "@react-sigma/core";
-import { LoadGraph, GraphEvents } from "./graph";
-
+import { LoadGraph , GraphEvents } from "@/pages/AiKnowlage/graph";
 const AiKnowledge = () => {
   const [isContractsOpen, setIsContractsOpen] = useState(true);
   const [isAgreementsOpen, setIsAgreementsOpen] = useState(true);
