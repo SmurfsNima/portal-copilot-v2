@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import border from "../../assets/images/profile-img-border.svg";
-import { BiologicalCardInfo, MolecularCardInfo, Progress ,Score , Plan_Progress} from "./Data";
-import DualProgressCircle from "./dualProgressCircle";
+import { Progress ,Score , Plan_Progress} from "./Data";
 import { useParams } from "react-router-dom";
 import { AppContext } from "@/store/app";
 import { Pationt } from "@/model";
