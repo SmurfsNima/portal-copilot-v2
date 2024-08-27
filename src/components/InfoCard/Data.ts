@@ -54,11 +54,11 @@ export const BiologicalCardInfo = [
  export const progressInfo = [
     {
         name : 'Nutrition',
-        value : 63,
+        value : 8,
     },
     {
         name : 'Mind',
-        value : 32,
+        value : 22,
     },
     {
         name : 'Activity',
@@ -129,4 +129,60 @@ export const BiologicalCardInfo = [
         Avarage: 99.5 ,
         current:  96,
     },
+ ]
+ export const Progress = [
+    {
+        ID:1,
+        title: 'Nutrition',
+        Percentage : 73,
+    },
+    {
+        ID:2,
+        title: 'Mind',
+        Percentage : 92,
+
+    },
+    {
+        ID:3,
+        title: 'Activity',
+        Percentage : 35,
+
+    },
+    {
+        ID:4, 
+        title: 'Sleep',
+        Percentage : 54,
+
+    },
+ ]
+ export const Score = [
+    {
+        ID:1,
+        title: 'Nutrition',
+        Percentage : 4.6,
+    },
+    {
+        ID:2,
+        title: 'Mind',
+        Percentage : 8,
+
+    },
+    {
+        ID:3,
+        title: 'Activity',
+        Percentage : 7.3,
+
+    },
+    {
+        ID:4, 
+        title: 'Sleep',
+        Percentage : 6.6,
+
+    },
+ ]
+ export const Plan_Progress = [
+    {
+        ID:1,
+        Percentage : 55,
+    }
  ]
