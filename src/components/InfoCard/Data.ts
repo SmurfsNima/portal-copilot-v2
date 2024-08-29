@@ -3,7 +3,7 @@ export const BiologicalCardInfo = [
     {
         icon:'./Themes/Aurora/icons/camera-purple.svg',
         title: 'Photo Aging ',
-        MAE: '2-5 years',
+        MAE: '3-5 years',
         otherStyles : 'top-0'
     },
     {

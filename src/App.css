@@ -4,5 +4,8 @@
     flex-wrap: wrap;
 
     font-size: 10px;
-    color: #ffffff5e;
+    color: #ffffffc3;
+    cursor: pointer;
+    border: 1px solid #333333;
+    border-radius: 6px;
 }

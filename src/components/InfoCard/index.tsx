@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import border from "../../assets/images/profile-img-border.svg";
-import { Progress ,Score , Plan_Progress} from "./Data";
+import { BiologicalCardInfo, MolecularCardInfo, Progress ,Score , Plan_Progress} from "./Data";
 import { useParams } from "react-router-dom";
 import { AppContext } from "@/store/app";
 import { Pationt } from "@/model";
 import CircularProgressBar from "./CircularProgressBar";
 import HalfCycle from "./HalfCycle";
+import DualProgressCircle from "./dualProgressCircle";
+import ProgressCircle from "./progressCircle";
+
 
 const InfoCard = () => {
   const [patient, setPatient] = useState<Pationt>();
@@ -72,7 +75,50 @@ const InfoCard = () => {
       {/* Content based on active state */}
       {active === "Aging" ? (
         <div className="flex gap-10">
-          {/* Your Aging content */}
+           <div className="flex items-center -ml-6 mb-10 relative  ">
+            {BiologicalCardInfo.map((item, i) => (
+              <ProgressCircle
+                key={i}
+                size={35}
+                progress={85}
+                title={item.title}
+                MAE={item.MAE}
+                icon={item.icon}
+                otherStyles={item.otherStyles}
+                border="text-brand-secondary-color"
+              />
+            ))}
+          </div>
+          <div className="flex items-center gap-3 -ml-6 xl:-ml-16">
+            <div className="flex  items-center ">
+              <h2 className="text-secondary-text text-xs xl:text-sm text-nowrap -rotate-90 ">
+                Digital Clocks
+              </h2>
+              <div className="w-[1px] h-36 bg-secondary-color -ml-6 " />
+            </div>
+
+            <DualProgressCircle size={120} progress1={48} progress2={39} />
+            <div className="flex justify-center items-center gap-3">
+              <div className="w-[1px] h-[140px] bg-secondary-color " />
+              <h2 className="text-secondary-text text-xs xl:text-sm text-nowrap -rotate-90 -ml-10 ">
+                Molcular Clocks
+              </h2>
+            </div>
+          </div>
+          <div className="flex items-center mb-6  -ml-[70px]  relative  ">
+            {MolecularCardInfo.map((item, i) => (
+              <ProgressCircle
+                key={i}
+                size={35}
+                progress={45}
+                title={item.title}
+                MAE={item.MAE}
+                icon={item.icon}
+                otherStyles={item.otherStyles}
+                border="green"
+              />
+            ))}
+          </div>
         </div>
       ) : (
         <div className="flex w-full gap-20">
