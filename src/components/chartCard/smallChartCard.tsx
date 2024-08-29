@@ -24,7 +24,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
   chartData
   
 }) => {
-  console.log(type);
+
 
   
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -96,7 +96,6 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
     }
     return { dates: [], values: [] };
   }, [chartData, type]);
-console.log(lowHighValues);
   return (
     <div
       onClick={() => setActive(type)}

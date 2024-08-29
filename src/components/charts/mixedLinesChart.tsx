@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef , useMemo} from "react";
+import React, { useRef , useEffect, useMemo} from "react";
 import { Line } from "react-chartjs-2";
 import annotationPlugin from "chartjs-plugin-annotation";
 
@@ -36,7 +36,13 @@ interface MixedLinesChartProps{
 }
  export const MixedLinesChart : React.FC<MixedLinesChartProps> = ({ ChartData}) => {
   const chartRef = useRef<ChartJS<"line">>(null);
-  console.log(ChartData);
+  useEffect(() => {
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+      }
+    };
+  }, []);
   const flattenArray = (arr: any[]) => arr.reduce((acc, val) => acc.concat(val), []);
 
   const flattenedDates = useMemo(() => flattenArray(ChartData.dates), [ChartData.dates]);

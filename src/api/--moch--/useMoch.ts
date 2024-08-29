@@ -4,6 +4,7 @@ import patients from  './data/patients.json'
 import reports from './data/reports.json'
 import biomarkers from './data/biomarkers.json'
 import Allbiomarkers from './data/Allbiomarkers.json'
+import AllBloodtests from './data/AllBloodtests.json'
 import diagnosis from './data/diagnosis.json'
 import graphData from './data/graphData.json'
 const useMoch = () => {
@@ -16,6 +17,7 @@ const useMoch = () => {
     Api.post("/getreports",reports)
     Api.get("/patients/allbiomarkers" , biomarkers)
     Api.post("/getAllBiomarkers" , Allbiomarkers)
+    Api.post("/getAllBloodtests" , AllBloodtests)
     Api.post("/getDiagnosis" , diagnosis)
     Api.post("/graphData" , graphData)
 };
