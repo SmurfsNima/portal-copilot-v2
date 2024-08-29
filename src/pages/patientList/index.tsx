@@ -154,11 +154,11 @@ const PatientList = () => {
               mode="increase"
               value={
                 reports.length > 0
-                  ? reports.filter((el) => el.key == "Critical Clients")[0]
+                  ? reports.filter((el) => el.key == "Critical Patients")[0]
                       .value
                   : 0
               }
-              title="Critical Clients"
+              title="Critical Patients"
               theme={theme}
               icon={Icon3}
 
