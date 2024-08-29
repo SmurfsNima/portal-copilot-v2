@@ -12,6 +12,11 @@ import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "@/store/app";
 // import Diagnosis from "@/model/diagnosis";
+import Icon1 from '../../assets/images/profile-tick.png';
+import Icon2 from '../../assets/images/profile-tick2.png';
+import Icon4 from '../../assets/images/profile-tick3.png';
+import Icon3 from '../../assets/images/profile-delete.png';
+
 const PatientList = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const { patients ,savePatientList } = useContext(AppContext);
@@ -119,9 +124,15 @@ const PatientList = () => {
     <>
       <div className="bg-black-background w-full -mt-4  px-5">
         <div className={""}>
-          <h1 className={"text-sm text-primary-text font-medium"}>
+          <div className="w-full flex items-center justify-between text-[#ffffffc3] mb-[10px]">
+
+          <h1 className={"text-sm"}>
             General Report
           </h1>
+          <h1 className="flex text-[12px] cursor-pointer"><span className="mr-[5px] "><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" fill="none">
+<path d="M18.3333 10.0001C18.3333 14.6001 14.6 18.3334 9.99996 18.3334C5.39996 18.3334 2.59163 13.7001 2.59163 13.7001M2.59163 13.7001H6.35829M2.59163 13.7001V17.8667M1.66663 10.0001C1.66663 5.40008 5.36663 1.66675 9.99996 1.66675C15.5583 1.66675 18.3333 6.30008 18.3333 6.30008M18.3333 6.30008V2.13341M18.3333 6.30008H14.6333" stroke="white" stroke-opacity="0.87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>Reload Data</h1>
+          </div>
           <div
             className={
               "grid grid-cols-3 xl:grid-cols-4  gap-2 w-full"
@@ -131,23 +142,26 @@ const PatientList = () => {
               mode="added"
               value={
                 reports.length > 0
-                  ? reports.filter((el) => el.key == "Total Enrollment")[0]
-                      .value
+                  ? reports.filter((el) => el.key == "Total Enrollment")[0].value
                   : 0
               }
               title="Total Enrollment"
               theme={theme}
+              icon={Icon2}
+
             />
             <NumberBox
               mode="increase"
               value={
                 reports.length > 0
-                  ? reports.filter((el) => el.key == "Critical Patients")[0]
+                  ? reports.filter((el) => el.key == "Critical Clients")[0]
                       .value
                   : 0
               }
-              title="Critical Patients"
+              title="Critical Clients"
               theme={theme}
+              icon={Icon3}
+
             />
             <NumberBox
               mode="reduction"
@@ -159,6 +173,7 @@ const PatientList = () => {
               }
               title="At Risk Patients"
               theme={theme}
+              icon={Icon1}
             />
             <NumberBox
               mode="increase"
@@ -169,6 +184,8 @@ const PatientList = () => {
               }
               title="Normal Patients"
               theme={theme}
+              icon={Icon4}
+
             />
           </div>
         </div>

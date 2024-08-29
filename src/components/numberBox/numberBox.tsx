@@ -1,15 +1,15 @@
-import {RiUserFill} from "react-icons/ri";
 import {Card} from "@/components";
 import React from "react";
 
 interface numberBoxProps {
     theme:string
     title:string
+    icon:string
     value:number
     mode:'increase'|'reduction'|'added'
 }
 
-const NumberBox:React.FC<numberBoxProps> = ({theme,mode,title,value}) => {
+const NumberBox:React.FC<numberBoxProps> = ({theme,mode,title,value,icon}) => {
     const resolveModeText = () => {
         if(mode == 'added'){
             return '2 new patient added!'
@@ -33,8 +33,8 @@ const NumberBox:React.FC<numberBoxProps> = ({theme,mode,title,value}) => {
             <div className={"text-primary-text flex items-start justify-center flex-col  gap-2"}>
                 <div className={"flex items-center justify-between w-full"}>
                     <h1 className={"font-medium text-2xl text-primary-text"}>{value} </h1>
-                    <div className={"flex justify-center items-center p-1 rounded-full bg-black"}>
-                        <RiUserFill className={"text-brand-primary-color w-5 h-5"}/>
+                    <div className={"flex justify-center items-center p-[6px] rounded-full bg-[#121212]"}>
+                        <img src={icon} alt="icon"  className={"text-brand-primary-color w-5 h-5"}/>
                     </div>
                 </div>
                 <h1 className={"text-xs font-medium"}>{title} </h1>
