@@ -33,12 +33,12 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
           <button
             key={index}
             onClick={() => onPageChange(page)}
-            className={`  px-3 border-x border-x-main-border py-1 text-primary-text ${page === currentPage ? 'bg-main-border ' : 'bg-black-primary'}`}
+            className={`   px-3 border-x text-[12px] border-x-main-border py-1 text-primary-text ${page === currentPage ? 'bg-main-border ' : 'bg-black-primary'}`}
           >
             {page}
           </button>
         ) : (
-          <span key={index} className="px-3 py-1 text-secondary-text">
+          <span key={index} className="px-3 py-1 text-secondary-text ">
             {page}
           </span>
         )
@@ -46,7 +46,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="text-primary-text disabled:opacity-50 px-3"
+        className="text-primary-text disabled:opacity-50 px-3 "
       >
         &gt;
       </button>

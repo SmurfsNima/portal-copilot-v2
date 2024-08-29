@@ -16,6 +16,8 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "name",
     header: "Client Name",
+    enableSorting: false,
+
     cell: ({ row }) => {
       
       
@@ -41,7 +43,7 @@ export const columns: ColumnDef<Pationt>[] = [
   },
   {
     accessorKey: "information.member_id",
-    header: "MemberId",
+    header: "Member ID",
   },
   {
     accessorKey: "information.age",
@@ -50,6 +52,7 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "information.sex",
     header: "Sex",
+    enableSorting: false,
   },
   {
     accessorKey: "information.weight",
@@ -68,16 +71,20 @@ export const columns: ColumnDef<Pationt>[] = [
   },
   {
     accessorKey: "information.last_followup",
-    header: "FollowUp",
+    header: "Last Follow-Up",
   },
   {
     accessorKey: "information.status",
-    header: "State",
+    header: "Status",
+    enableSorting: false,
+
     cell: ({ row }) => {
       return (
+        <div className="items-center justify-center flex ">
         <Badge theme={Theme()} status={row.original.information.status}>
           {row.original.information.status}
         </Badge>
+        </div>
       );
     },
   },
@@ -158,8 +165,10 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "information.action",
     header: "Action",
+    enableSorting: false,
+
     cell: () => {
-      return <PiChatBold className={`${Theme()}-icons-PiChatBold`} />;
+      return <PiChatBold className={`${Theme()}-icons-PiChatBold w-full`} />;
     },
   },
 ];

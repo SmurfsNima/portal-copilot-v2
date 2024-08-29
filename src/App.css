@@ -1,11 +1,4 @@
 .ss{
     position: relative;
-    background-color: #9191915e;
-    flex-wrap: wrap;
-
-    font-size: 10px;
-    color: #ffffffc3;
-    cursor: pointer;
-    border: 1px solid #333333;
-    border-radius: 6px;
+    
 }

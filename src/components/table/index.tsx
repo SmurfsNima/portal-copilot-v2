@@ -81,6 +81,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+  
   return (
     <div className={" flex items-center justify-center  flex-col"}>
       <div className=" w-full top-0 shadow-md sm:rounded-lg py-1 ">
@@ -122,37 +123,34 @@ const Table: React.FC<TableProps> = ({ classData }) => {
         </div>
         <div className={`${theme}-Table-container h-[50vh] ${theme}-scrollBar`}>
           <table className={`${theme}-table  ${theme}-scrollBar w-full`}>
-            <thead className="text-xs text-gray-700  ">
-              {table.getHeaderGroups().map((headerGroup) => {
-                return (
-                  <tr
-                    key={headerGroup.id}
-                    className={"text-nowrap text-[#FFFFFF]"}
-                  >
-                    {headerGroup.headers.map((header) => {
-                      return (
-                        <th className={`${theme}-Table-header`}>
-                          <div className={"flex items-center justify-center"}>
-                            <>{header.column.columnDef.header}</>
-                            {header.column.getCanSort() && (
-                              <FaSort
-                                onClick={header.column.getToggleSortingHandler()}
-                              />
-                            )}
-                            {
-                              // {
-                              //     asc: " 🔼",
-                              //     desc: " 🔽 ",
-                              // }[header.column.getIsSorted()]
-                            }
-                          </div>
-                        </th>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-            </thead>
+          <thead className="text-xs text-gray-700">
+  {table.getHeaderGroups().map((headerGroup) => (
+    <tr key={headerGroup.id} className="text-nowrap text-[#FFFFFF]">
+      {headerGroup.headers.map((header) => (
+        <th key={header.id} className={`${theme}-Table-header`}>
+          <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center" onClick={header.column.getToggleSortingHandler()}>
+
+            {/* Render header as ReactNode */}
+            {flexRender(header.column.columnDef.header, header.getContext())}
+            {/* Show FaSort only when not sorted */}
+            {header.column.getCanSort() && header.column.getIsSorted() === false && (
+              <FaSort
+                
+                className="cursor-pointer"
+              />
+            )}
+            {/* Show sort icons based on sort state */}
+            {header.column.getIsSorted() === "asc" && " 🔼"}
+            {header.column.getIsSorted() === "desc" && " 🔽"}
+            </div>
+          </div>
+        </th>
+      ))}
+    </tr>
+  ))}
+</thead>
+
             <tbody>
               {table.getRowModel().rows.map((row) => {
                 return (
