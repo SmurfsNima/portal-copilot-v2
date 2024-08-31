@@ -14,7 +14,7 @@ const Theme = () => {
 
 export const columns: ColumnDef<Pationt>[] = [
   {
-    accessorKey: "name",
+    accessorKey: "information.name",
     header: "Client Name",
     enableSorting: false,
 
