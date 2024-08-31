@@ -89,12 +89,12 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   return (
     <div className="flex items-center justify-center flex-col">
       <div className="w-full top-0 shadow-md sm:rounded-lg py-1">
-        <div className={`${theme}-Table-header-section`}>
+        <div className={`${theme}-Table-header-section `}>
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
           <h5 className=" text-sm font-medium py-2 text-[#ffffffc3]">Client List</h5>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1  ">
             <SearchBox
               changeHandler={(e: any) => setGlobalFilter(e.target.value)} // Update global filter on input change
               theme={theme}
