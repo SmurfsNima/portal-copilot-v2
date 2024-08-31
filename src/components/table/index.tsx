@@ -93,7 +93,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
-          <h5 className="text-primary-text text-sm font-medium py-2">Client List</h5>
+          <h5 className=" text-sm font-medium py-2 text-[#ffffffc3]">Client List</h5>
           <div className="flex items-center gap-1">
             <SearchBox
               changeHandler={(e: any) => setGlobalFilter(e.target.value)} // Update global filter on input change
