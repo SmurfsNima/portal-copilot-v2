@@ -8,6 +8,7 @@ import { useBiomarkers, useBloodtest } from "@/hooks";
 import { prepareChartData } from "@/utils/status";
 import { getStatusBgColorClass } from "@/utils/status";
 import MethylationChart from "@/components/charts/MethylationChart";
+import { ActivityCard } from "./activityCard";
 
 const Analysis = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -47,8 +48,59 @@ const Analysis = () => {
 
   const activeChartData = chartData.find((data) => data.type === active);
   const activeStatus = activeChartData?.status || "";
-  useEffect(() =>{ console.log(active)
-   console.log(activeMode)}, [activeMode , active]);
+  useEffect(() => {
+    console.log(active);
+    console.log(activeMode);
+  }, [activeMode, active]);
+  const renderChartCards = (data: any) =>
+    data.map((item: any, i: number) => (
+      <SmallChartCard
+        key={i}
+        active={active}
+        setActive={setActive}
+        isMeasured={item.isMeasured}
+        chartData={item.chartData}
+        type={item.type}
+      />
+    ));
+  const testData = [
+    {
+      name: "Pharmaceutical",
+      score: 5.6,
+      percentage: 33,
+    },
+    {
+      name: "Lifestyle",
+      score: 6.3 / 10,
+      percentage: 68,
+    },
+    {
+      name: "Supplements",
+      score: 4.5,
+      percentage: 17,
+    },
+    {
+      name: "Exercise",
+      score: 8.2,
+      percentage: 97,
+    },
+    {
+      name: "General Instructions",
+      score: 5.9,
+      percentage: 52,
+    },
+    {
+      name: "Diet",
+      score: 7.1,
+      percentage: 77,
+    },
+    {
+      name: "Further Testing",
+      score: 5.0,
+      percentage: 58,
+    },
+  ];
+
   return (
     <>
       <div className="flex flex-col w-full  items-start gap-2">
@@ -56,7 +108,10 @@ const Analysis = () => {
         <div className="flex w-full justify-between ">
           <div className="flex  gap-1 text-primary-text text-xs ">
             <div
-              onClick={() => { setActive(null); setActiveMode("Vital")}}
+              onClick={() => {
+                setActive(null);
+                setActiveMode("Vital");
+              }}
               className={` ${
                 activeMode === "Vital" && "bg-black-third"
               } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer   `}
@@ -64,7 +119,10 @@ const Analysis = () => {
               Vital
             </div>
             <div
-              onClick={() => { setActive(null); setActiveMode("Blood Test")}}
+              onClick={() => {
+                setActive(null);
+                setActiveMode("Blood Test");
+              }}
               className={` ${
                 activeMode === "Blood Test" && "bg-black-third"
               } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer  `}
@@ -72,7 +130,7 @@ const Analysis = () => {
               Blood Test
             </div>
             <div
-              onClick={() => { setActive(null); setActiveMode("Activity")}}
+              onClick={() => { setActive(""); setActiveMode("Activity")}}
               className={` ${
                 activeMode === "Activity" && "bg-black-third"
               } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer `}
@@ -124,11 +182,15 @@ const Analysis = () => {
           <div
             id="charts-container"
             data-active={active && true}
-            className={`${theme}-biomarker-charts-container h-full max-h-[400px] overflow-auto  `}
+            className={` 
+            
+            } ${theme}-biomarker-charts-container  ${activeMode=== "Activity" && 'hidden'} w-full h-full max-h-[400px] overflow-auto  `}
           >
             <div
               data-active={active && true}
-              className={`${theme}-biomarker-leftbuttons-container`}
+              className={` ${
+                activeMode === "Activity" && "hidden"
+              } ${theme}-biomarker-leftbuttons-container`}
             >
               <div
                 onClick={() => setActive("chat")}
@@ -160,38 +222,23 @@ const Analysis = () => {
                 </h2>
               </div>
             </div>
-
-            {activeMode === "Blood Test"
-              ? BloodtestsChartData &&
-                BloodtestsChartData.map((item, i) => (
-                  <SmallChartCard
-                    active={active}
-                    setActive={setActive}
-                    isMeasured={item.isMeasured}
-                    key={i}
-                    chartData={item.chartData}
-                    type={item.type}
-                  />
-                ))
-              : activeMode === "Vital" &&
-                chartData &&
-                chartData.map((item, i) => (
-                  <SmallChartCard
-                    active={active}
-                    setActive={setActive}
-                    isMeasured={item.isMeasured}
-                    key={i}
-                    chartData={item.chartData}
-                    type={item.type}
-                  />
-                ))}
+            {activeMode === "Blood Test" &&
+              renderChartCards(BloodtestsChartData)}
+            {activeMode === "Vital" && renderChartCards(chartData)}
+           
+           
           </div>
-          <div className={`flex flex-col  w-full gap-2 ${active === null && 'hidden'} `}>
-            {active === "chat" &&   (
-              <div className={`${theme}-biomarker-Ai-chat-container h-full `}>
+          
+          <div
+            className={`flex flex-col  w-full gap-2 ${
+              active === null &&  "hidden"
+            } `}
+          >
+            {active === "chat" &&  (
+              <div className={`${theme}-biomarker-Ai-chat-container min-h-full`}>
                 <div
                   id="copilot-chat"
-                  className="max-h-[406px] h-full overflow-y-scroll"
+                  className="max-h-[506px] h-full overflow-y-scroll"
                 >
                   <div className={`${theme}-biomarker-Ai-card px-4`}>
                     <div className="flex gap-1">
@@ -241,7 +288,7 @@ const Analysis = () => {
                 <ChatBox handleSendMessage={handleSendMessage} />
               </div>
             )}
-            { activeMode === "Blood Test" && active !== "chat" && (
+            {activeMode === "Blood Test" && active !== "chat" && (
               <div className="w-full  bg-black-primary border border-main-border px-12 py-5  flex flex-col gap-3 text-primary-text rounded-lg">
                 <div className="flex  items-start gap-4">
                   <div className="bg-black-background  rounded-lg flex items-center justify-center p-1">
@@ -292,7 +339,21 @@ const Analysis = () => {
                 )}
               </div>
             )}
-            <div className={`${theme}-biomarker-Ai-card  ${active === "chat" && 'hidden'}  `}>
+             {activeMode === "Activity" && ( <div className=" w-full  grid grid-cols-3  xl:grid-cols-4  gap-x-5 gap-y-3">
+              {testData.map((test, i) => (
+                <ActivityCard
+                  key={i}
+                  name={test.name}
+                  score={test.score}
+                  percentage={test.percentage}
+                />
+              ))}
+            </div>)}
+{activeMode !== "Activity" && (  <div
+              className={`${theme}-biomarker-Ai-card  ${
+                active === "chat" &&  "hidden"
+              }  `}
+            >
               <div className="flex items-center gap-2">
                 <img className={`${theme}-icons-logo`} width={24} alt="" />
                 <h2 className={`${theme}-biomarker-Ai-card-logo-heading-text`}>
@@ -316,6 +377,9 @@ const Analysis = () => {
                 </div>
               </div>
             </div>
+
+)}
+          
           </div>
         </div>
       </div>

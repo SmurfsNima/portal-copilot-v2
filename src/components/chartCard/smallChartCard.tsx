@@ -139,7 +139,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
        
         <div className=" w-[180px] h-[100px]">
           {type === "Blood Pressure" ? (
-            <MixedLinesChart  ChartData={lowHighValues}  active={active === type} />
+            <MixedLinesChart   ChartData={lowHighValues}  active={active === type} />
           ) : (
             <LineChart     ChartData={lineChartData} active={active === type} model={"line"} />
           )}
