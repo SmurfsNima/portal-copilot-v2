@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef , useMemo} from "react";
+import React, { useRef, useEffect, useMemo } from "react";
 import { Line } from "react-chartjs-2";
 import annotationPlugin from "chartjs-plugin-annotation";
 
@@ -26,22 +26,42 @@ ChartJS.register(
   Title,
   annotationPlugin
 );
-interface MixedLinesChartProps{
+interface MixedLinesChartProps {
   active?: boolean;
+  dashed?: boolean;
   ChartData: {
     dates: string[];
     lowValues: number[];
     highValues: number[];
   };
 }
- export const MixedLinesChart : React.FC<MixedLinesChartProps> = ({ ChartData}) => {
+export const MixedLinesChart: React.FC<MixedLinesChartProps> = ({
+  ChartData,
+  dashed,
+}) => {
   const chartRef = useRef<ChartJS<"line">>(null);
-  console.log(ChartData);
-  const flattenArray = (arr: any[]) => arr.reduce((acc, val) => acc.concat(val), []);
+  useEffect(() => {
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+      }
+    };
+  }, []);
+  const flattenArray = (arr: any[]) =>
+    arr.reduce((acc, val) => acc.concat(val), []);
 
-  const flattenedDates = useMemo(() => flattenArray(ChartData.dates), [ChartData.dates]);
-  const flattenedLowValues = useMemo(() => flattenArray(ChartData.lowValues), [ChartData.lowValues]);
-  const flattenedHighValues = useMemo(() => flattenArray(ChartData.highValues), [ChartData.highValues]);
+  const flattenedDates = useMemo(
+    () => flattenArray(ChartData.dates),
+    [ChartData.dates]
+  );
+  const flattenedLowValues = useMemo(
+    () => flattenArray(ChartData.lowValues),
+    [ChartData.lowValues]
+  );
+  const flattenedHighValues = useMemo(
+    () => flattenArray(ChartData.highValues),
+    [ChartData.highValues]
+  );
   const data = {
     labels: flattenedDates,
     datasets: [
@@ -92,14 +112,13 @@ interface MixedLinesChartProps{
       },
       y: {
         ticks: {
-          color:  "#FFF",
+          color: "#FFF",
           callback: function (value) {
             return value;
           },
         },
         grid: {
-          
-          display: true,
+          display: dashed ? true : false,
           color: "#444",
         },
         border: {
@@ -141,11 +160,11 @@ interface MixedLinesChartProps{
   return (
     <div className="w-full h-[100px] pb-6">
       <div className="my-2 flex items-center gap-2 justify-end">
-        <div className="flex items-center gap-1"> 
+        <div className="flex items-center gap-1">
           <div className="w-2 h-1 bg-blue-600" />
           <span className={`text-[8px]  text-secondary-text`}>SBP</span>
         </div>
-        <div className="flex items-center gap-1"> 
+        <div className="flex items-center gap-1">
           <div className="w-2 h-1 bg-red-600" />
           <span className={`text-[8px] text-secondary-text`}>DBP</span>
         </div>

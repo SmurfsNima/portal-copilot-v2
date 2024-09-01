@@ -1,34 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet, useNavigate  , useLocation} from "react-router-dom"
 import icon from '@/assets/images/icon.png';
 import { menus } from "./menu";
 import { useSelector } from "react-redux";
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import TopBar from "../topBar";
 
 const SideMenu:React.FC = () => {
-    const theme = useSelector((state:any) => state.theme.value.name)
-    const resolveMenuFromRoute = () => {
-        switch (window.location.pathname) {
-            case "":
-            return "Patient List";
-            case "/patientlist":
-            return "Patient List";
-            default:
-            return window.location.pathname.replace("/", "");
-        }
-    };  
-    const navigate = useNavigate()    
-    const resolveActiveMenu = () => {
-        return menus.filter(menue => menue.name == resolveMenuFromRoute()).length>0 ?menus.filter(menue => menue.name == resolveMenuFromRoute())[0] :menus[0]
-    }      
-    const [activeMenu,setActiveMenu] = useState(resolveActiveMenu())
-    
+    const theme = useSelector((state: any) => state.theme.value.name);
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const changeMenu = (menu:any) => {
-        setActiveMenu(menu)
-        navigate(menu.url)
-    } 
+    const resolveActiveMenu = () => {
+        return menus.find(menu => menu.url === location.pathname) || menus[0];
+    };
+
+    const [activeMenu, setActiveMenu] = useState(resolveActiveMenu());
+
+    useEffect(() => {
+        const currentActiveMenu = resolveActiveMenu();
+        if (currentActiveMenu.name !== activeMenu.name) {
+            setActiveMenu(currentActiveMenu);
+        }
+    }, [location.pathname, activeMenu]);
+
+    const changeMenu = (menu: any) => {
+        setActiveMenu(menu);
+        navigate(menu.url);
+    };
 
     return (
         <>

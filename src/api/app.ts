@@ -1,6 +1,6 @@
 import Api from "./api";
 import allBiomarkers from './--moch--/data/Allbiomarkers.json';
-
+import AllBloodtests from './--moch--/data/AllBloodtests.json'
 class Application extends Api {
   static getPatients() {
     const response = this.get("/patients");
@@ -23,6 +23,10 @@ class Application extends Api {
     const response = this.post("/getAllBiomarkers", {});
     return response;
   }
+  static getBloodTest() {
+    const response = this.post("/getBloodTest", {});
+    return response;
+  }
   static getgraphData() {
     const response = this.post("/graphData", {});
     return response;
@@ -31,6 +35,14 @@ class Application extends Api {
     const patient = allBiomarkers.find(p => p.patient_id === patient_id);
     if (patient) {
       return { data: patient.biomarkers };
+    } else {
+      return { data: [] };
+    }
+  }
+  static getBloodTestByPatientId(patient_id: number) {
+    const patient = AllBloodtests.find(p => p.patient_id === patient_id);
+    if (patient) {
+      return { data: patient.bloodTests };
     } else {
       return { data: [] };
     }

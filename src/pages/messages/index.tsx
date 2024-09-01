@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard, HistoryBox, ChatHistoryBox } from "@/components";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";

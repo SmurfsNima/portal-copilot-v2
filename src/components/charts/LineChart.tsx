@@ -32,7 +32,13 @@ interface LineChartProps {
 }
  export const LineChart: React.FC<LineChartProps> = ({ model , active  , dashed , ChartData}) => {
   const chartRef = useRef<ChartJS<"line">>(null);
-
+  useEffect(() => {
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+      }
+    };
+  }, []);
   const flattenArray = (arr: any[]) => [].concat(...arr);
   const data = useMemo(() => flattenArray(ChartData.values), [ChartData.values]);
   const xData = useMemo(() => flattenArray(ChartData.dates), [ChartData.dates]);

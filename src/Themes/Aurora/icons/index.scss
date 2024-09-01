@@ -327,6 +327,24 @@
   @apply w-6 h-6 bg-brand-primary-color;
    ;
 }
+.Aurora-icons-DnaMethylation{
+  mask-image: url(/Themes/Aurora/icons/Temperature.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-MetaboliteLevels{
+  mask-image: url(/Themes/Aurora/icons/Temperature.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-primary-color;
+   ;
+}
 .Aurora-icons-antioxidants{
   mask-image: url(Themes/Aurora/icons/antioxidants.svg);
   mask-size: 100%;
@@ -354,8 +372,8 @@
   @apply w-5 h-5 bg-brand-primary-color;
    ;
 }
-.Aurora-icons-exercise{
-  mask-image: url(/Themes/Aurora/icons/exercise.svg);
+.Aurora-icons-Exercise{
+  mask-image: url(/Themes/Aurora/icons/weight.svg);
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -505,5 +523,68 @@
   mask-repeat: no-repeat;
   mask-position: center;
   @apply w-6 h-6 bg-black-background;
+   ;
+}
+.Aurora-icons-FurtherTesting{
+  mask-image: url(/public/Themes/Aurora/icons/Further-Testing.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-Supplements{
+  mask-image: url(/public/Themes/Aurora/icons/Supplements.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-GeneralInstructions{
+  mask-image: url(/public/Themes/Aurora/icons/General-Instructions.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-Pharmaceutical{
+  mask-image: url(/public/Themes/Aurora/icons/Pharmaceutical.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-Pharmaceutical{
+  mask-image: url(/public/Themes/Aurora/icons/Pharmaceutical.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-Diet{
+  mask-image: url(/public/Themes/Aurora/icons/apple.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-Lifestyle{
+  mask-image: url(/public/Themes/Aurora/icons/LifeStyle.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-primary-color;
    ;
 }

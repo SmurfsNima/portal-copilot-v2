@@ -85,7 +85,6 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
     }
     return { dates: [], values: [] };
   }, [chartData, type]);
-console.log(lowHighValues);
 
   return (
     <div className={`${theme}-normalChartCard-container py-3 `}>

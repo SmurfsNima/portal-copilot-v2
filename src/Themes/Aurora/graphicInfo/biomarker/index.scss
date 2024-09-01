@@ -17,7 +17,7 @@
      @apply grid-cols-1 mr-4  w-full  max-w-[292px]  ;
  }
  .Aurora-biomarker-leftbuttons-container{
-     @apply flex flex-col gap-5 ;
+     @apply flex flex-col gap-4 ;
  }
  .Aurora-biomarker-leftbuttons-container[data-active="true"]{
      @apply flex-row;
@@ -33,7 +33,7 @@
      @apply text-xs md:text-sm font-medium text-black-primary;
  }
  .Aurora-biomarker-back-button{
-     @apply hidden bg-black-primary rounded-xl  items-center cursor-pointer justify-center px-4;
+     @apply hidden bg-black-primary rounded-xl  items-center cursor-pointer justify-center px-4 max-h-[40px];
  
  }
  .Aurora-biomarker-back-button[data-active="true"]{

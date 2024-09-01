@@ -24,7 +24,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
   chartData
   
 }) => {
-  console.log(type);
+
 
   
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -96,7 +96,6 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
     }
     return { dates: [], values: [] };
   }, [chartData, type]);
-console.log(lowHighValues);
   return (
     <div
       onClick={() => setActive(type)}
@@ -140,7 +139,7 @@ console.log(lowHighValues);
        
         <div className=" w-[180px] h-[100px]">
           {type === "Blood Pressure" ? (
-            <MixedLinesChart  ChartData={lowHighValues}  active={active === type} />
+            <MixedLinesChart   ChartData={lowHighValues}  active={active === type} />
           ) : (
             <LineChart     ChartData={lineChartData} active={active === type} model={"line"} />
           )}
