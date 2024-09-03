@@ -1,8 +1,9 @@
 import { InfoCard , PopUp } from "@/components";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
-
+import { actionPlan } from "@/types";
+import { Application } from "@/api";
 const treatmentHistory = [
   {
     date: "July 17th, 2024",
