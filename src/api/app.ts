@@ -31,6 +31,10 @@ class Application extends Api {
     const response = this.post("/graphData", {});
     return response;
   }
+  static getActionPLan() {
+    const response = this.post("/actionplan", {});
+    return response;
+  }
   static getBiomarkersByPatientId(patient_id: number) {
     const patient = allBiomarkers.find(p => p.patient_id === patient_id);
     if (patient) {

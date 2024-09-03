@@ -28,10 +28,52 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
   }, [isOpen, onClose]);
   if (!isOpen) return null;
 
-  const handleSubmit = (e : any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ fullName, email, wearableDevice });
+    const clientData = { fullName, email, wearableDevice };
+    onSubmit(clientData);
+console.log(clientData);
+
+    // Send invitation email
+    await sendInvitationEmail(clientData);
+
     onClose();
+  };
+  const sendInvitationEmail = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
+    console.log(email);
+    
+    try {
+      const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.REACT_APP_SENDGRID_API_KEY}`,
+        },
+        body: JSON.stringify({
+          personalizations: [
+            {
+              to: [{ email: clientData.email }],
+              subject: 'Welcome to Our Service',
+            },
+          ],
+          from: { email: 'your-email@example.com' },
+          content: [
+            {
+              type: 'text/plain',
+              value: `Hello ${clientData.fullName}, welcome to our service! Your device: ${clientData.wearableDevice}.`,
+            },
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error sending email');
+      }
+
+      console.log('Email sent successfully');
+    } catch (error) {
+      console.error('Failed to send email:', error);
+    }
   };
 
   return (
