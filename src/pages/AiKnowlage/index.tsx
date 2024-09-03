@@ -81,7 +81,7 @@ const LoadGraph: React.FC<LoadGraphProps> = ({ activeFilters, graphData, isIniti
       if (nodeSet.has(edge.source) && nodeSet.has(edge.target)) {
         graph.addEdgeWithKey(`edge-${index}`, edge.source, edge.target, {
           weight: edge.weight,
-          color: chroma.random().hex(),
+          color: "#fff",
         });
       } else {
         console.warn(`Missing nodes for edge: ${edge.source} -> ${edge.target}`);
@@ -136,7 +136,7 @@ const AiKnowledge = () => {
   };
   return (
     <div className="relative text-primary-text flex justify-center w-full">
-      <div className="w-64 text-primary-text text-xs text-nowrap flex flex-col px-5 pt-[55px]">
+      <div className=" absolute left-0 w-64 text-primary-text text-xs text-nowrap flex flex-col px-5 pt-[55px]">
       {categories.map((category) => (
           <button
             key={category}
@@ -149,7 +149,7 @@ const AiKnowledge = () => {
           </button>
         ))}
       </div>
-
+<div className="w-full h-full flex items-center justify-center">
       <SigmaContainer
         settings={{
           allowInvalidContainer: true,
@@ -166,11 +166,12 @@ const AiKnowledge = () => {
           },
         }}
         id="sigma-container"
-        style={{ height: window.innerHeight, width: window.innerWidth, backgroundColor: "#121212" }}
+        style={{ height: "500px", width: "500px", backgroundColor: "#121212" }}
       >
         <LoadGraph graphData={graphData}  activeFilters={activeFilters} isInitialLoad={isInitialLoad} />
         <GraphEvents />
       </SigmaContainer>
+      </div>
 
       <div className="fixed right-5 top-[15%] w-64 text-primary-text bg-black-primary border border-main-border flex flex-col p-4 rounded-md">
         <button className="mb-4 flex justify-center gap-2 text-secondary-text border border-main-border border-dashed py-2 rounded-lg">

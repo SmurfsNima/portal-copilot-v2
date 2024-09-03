@@ -16,7 +16,8 @@ import {
 import { FaSort } from "react-icons/fa";
 // import { Pationt } from "@/model/index.ts";
 import { Button } from "symphony-ui";
-import { useEffect, useState } from "react";
+import { useEffect, useState , useContext } from "react";
+import { AppContext } from "@/store/app.tsx";
 import { Pationt } from "@/model/index.ts";
 import AddClientModal from "@/pages/patientList/addClientModal.tsx";
 import Pagination from "../pagination/index.tsx";
@@ -28,6 +29,8 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   
   
   const [data, setData] = useState(classData);
+  const { savePatientList } = useContext(AppContext);
+
   useEffect(() => {
     setData(classData);
   }, [classData]);
@@ -47,7 +50,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
     getSortedRowModel: getSortedRowModel(),
     initialState: {
       pagination: {
-        pageSize: 6, //custom default page size
+        pageSize: 10, //custom default page size
       },
     },
   });
@@ -74,6 +77,10 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   
     const handleAddClient = (clientData : any) => {
       console.log('Client Added:', clientData);
+    // setData((prevData) => [...prevData, clientData]);
+    console.log(data);
+    
+    savePatientList(data)
     };
     const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 100;
@@ -102,7 +109,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
           </Button>
           <Button onClick={handleOpenModal} theme={theme}>
             <RiUserAddLine className={"w-5 h-5"} />
-            Add Patient{" "}
+            Add Client{" "}
           </Button>
           </div>
           <AddClientModal
