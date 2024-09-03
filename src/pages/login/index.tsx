@@ -12,7 +12,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         appContext.login(res.data.access_token);
-        navigate("/");
+        navigate("/#/");
       })
       .catch((err) => {
         console.error(err);
@@ -64,7 +64,7 @@ const Login = () => {
 </div>
 <div className="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
   <h1 className="text-2xl text-primary-text font-semibold mb-4">Login</h1>
-  <form action="#" method="POST">
+
     <div className="mb-4">
       <label htmlFor="username" className="block text-secondary-text">Username</label>
       <input  value={username}
@@ -84,8 +84,7 @@ const Login = () => {
     <div className="mb-6 text-brand-primary-color">
       <a href="#" className="hover:underline">Forgot Password?</a>
     </div>
-    <button onClick={handleSubmit} type="submit" className="bg-brand-primary-color text-black font-semibold rounded-md py-2 px-4 w-full">Login</button>
-  </form>
+    <button onClick={handleSubmit} className="bg-brand-primary-color text-black font-semibold rounded-md py-2 px-4 w-full">Login</button>
   <div className="mt-6 text-brand-primary-color text-center">
     <a href="#" className="hover:underline">Sign up Here</a>
   </div>

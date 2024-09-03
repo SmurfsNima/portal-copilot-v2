@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard , PopUp } from "@/components";
 import { useState , useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import { actionPlan } from "@/types";
-import { Application } from "@/api";
+import { ApplicationMock } from "@/api";
 const treatmentHistory = [
   {
     date: "July 17th, 2024",
@@ -86,7 +87,7 @@ export const ActionPlan = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await Application.getActionPLan();
+        const response = await ApplicationMock.getActionPLan();
         setActionPlans(response.data);
       } catch (err) {
         console.error(err);

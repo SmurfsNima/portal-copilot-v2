@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SigmaContainer } from "@react-sigma/core";
 import { useLoadGraph, useRegisterEvents, useSigma } from "@react-sigma/core";
 import "@react-sigma/core/lib/react-sigma.min.css";
 import { useEffect, useState } from "react";
 import Graph from "graphology";
 import chroma from "chroma-js";
-import { Application } from "@/api";
+import { ApplicationMock } from "@/api";
 import { useLayoutCircular } from "@react-sigma/layout-circular";
 const GraphEvents = () => {
   const registerEvents = useRegisterEvents();
@@ -117,7 +118,7 @@ const AiKnowledge = () => {
   useEffect(() => {
     const fetchGraphData = async () => {
       try {
-        const response = await Application.getgraphData();
+        const response = await ApplicationMock.getgraphData();
         setGraphData(response.data);
       } catch (error) {
         console.error("Error fetching graph data:", error);
