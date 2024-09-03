@@ -1,10 +1,10 @@
 .Aurora-Button-container {
-  @apply bg-brand-primary-color w-fit  disabled:bg-[rgba(0,0,0,0.5)] py-2 gap-2 px-3 text-[12px] border rounded-xl border-black text-[#121212] disabled:opacity-50 flex items-center justify-between;
+  @apply bg-brand-primary-color w-fit  h-[32px] disabled:bg-[rgba(0,0,0,0.5)] py-2 gap-2 px-3 text-[12px] border rounded-[6px] border-black text-[#121212] disabled:opacity-50 flex items-center justify-between;
 }
 
 .Aurora-Button-container-disabled {
   @apply opacity-[50%]  #{!important};
 }
 .Aurora-secondary-Button-container{
-  @apply bg-main-border  w-fit py-2 gap-2 px-3 text-[12px] border rounded-xl border-black text-primary-text disabled:opacity-50 flex items-center justify-between
+  @apply bg-[#272727]  w-fit h-[32px] py-2 gap-2 px-3 text-[12px]  rounded-[6px] border border-[#333333] text-primary-text disabled:opacity-50 flex items-center justify-between
 }

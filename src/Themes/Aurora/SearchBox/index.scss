@@ -1,9 +1,9 @@
 .Aurora-SearchBox-container {
-  @apply h-full  flex items-center relative;
+  @apply h-full  flex items-center relative ;
 }
 
 .Aurora-SearchBox-input {
-  @apply pl-10 w-full    text-[12px] relative text-secondary-text bg-black-primary outline-none border border-[#333333] md:w-[360px] h-[32px] rounded-md;
+  @apply pl-10 w-full  text-[12px] relative text-secondary-text bg-black-primary outline-none border border-[#333333] md:w-[360px] h-[32px] rounded-md;
 }
 
 .Aurora-SearchBox-input-icon {

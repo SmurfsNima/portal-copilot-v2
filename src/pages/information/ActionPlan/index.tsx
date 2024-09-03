@@ -1,7 +1,5 @@
-import { Application } from "@/api";
-import { InfoCard } from "@/components";
-import { actionPlan } from "@/types";
-import { useEffect, useState } from "react";
+import { InfoCard , PopUp } from "@/components";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 
@@ -73,6 +71,7 @@ const treatmentHistory = [
   },
   // Add more entries as needed
 ];
+
 export const ActionPlan = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const [actionPlans, setActionPlans] = useState<actionPlan[]>([]);
@@ -80,6 +79,8 @@ export const ActionPlan = () => {
   const [treatmentActive, setTreatmentActive] = useState(0);
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
   const [isDescription, setIsDescription] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
   useEffect(() => {
     const fetchData = async () => {
@@ -92,7 +93,11 @@ export const ActionPlan = () => {
     };
     fetchData();
   }, []);
+  const openPopup = () => setIsPopupOpen(true);
+  const closePopup = () => setIsPopupOpen(false);
   return (
+    <>
+      <PopUp isOpen={isPopupOpen} onClose={closePopup} />
     <div className="flex flex-col gap-3 w-full">
       <InfoCard />
       <div className="w-full bg-black-primary border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
@@ -149,9 +154,12 @@ export const ActionPlan = () => {
               </p>
               <div>
                 Concerning Results:{" "}
-                <span className="underline text-brand-primary-color">
-                  Detail
-                </span>
+                <span
+                    className="underline text-brand-primary-color cursor-pointer"
+                    onClick={openPopup} // Open PopUp on click
+                  >
+                    Detail
+                  </span>
               </div>
               <ul className="list-disc ml-6 mt-4 text-primary-text">
                 <li>Sex Hormones</li>
@@ -300,5 +308,6 @@ export const ActionPlan = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
