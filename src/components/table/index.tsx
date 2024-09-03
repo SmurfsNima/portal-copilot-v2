@@ -18,8 +18,7 @@ import {
 } from "@tanstack/react-table";
 import { FaSort } from "react-icons/fa";
 import { Button } from "symphony-ui";
-import { useEffect, useState , useContext } from "react";
-import { AppContext } from "@/store/app.tsx";
+import { useEffect, useState  } from "react";
 import { Pationt } from "@/model/index.ts";
 import AddClientModal from "@/pages/patientList/addClientModal.tsx";
 import Pagination from "../pagination/index.tsx";
