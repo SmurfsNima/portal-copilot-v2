@@ -8,6 +8,7 @@ interface TabItem {
   path: string;
   icon?: boolean;
   number?: number;
+  isVisible?:boolean
 }
 
 interface TabsWrapperProps {
@@ -49,6 +50,7 @@ const TabsWrapper: React.FC<TabsWrapperProps> = ({ TabsInfo, handleTabClick }) =
           handleClick={() => handleTabClickInternal(item.path, item.text)}
           theme={theme}
           key={item.text}
+          isVisible={item.isVisible}
           text={item.text}
           icon={item.icon}
           number={item.number}

@@ -101,6 +101,24 @@
   mask-position: center;
   @apply w-6 h-6 bg-[#FFFFFF99];
 }
+
+.Aurora-icons-Summary {
+  mask-image: url(/Themes/Aurora/icons/dataEntry.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-[#FFFFFF99];
+}
+
+.Aurora-icons-DataEntry {
+  mask-image: url(/Themes/Aurora/icons/health.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-[#FFFFFF99];
+}
 // .Aurora-icons-Analysis {
 //   mask-image: url(/Themes/Aurora/icons/biomarker.svg);
 //   mask-size: 100%;

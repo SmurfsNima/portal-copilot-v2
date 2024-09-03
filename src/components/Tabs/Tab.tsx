@@ -3,7 +3,7 @@ interface TabProps {
   icon?: boolean;
   number?: number;
   active: string;
-
+  isVisible?:boolean;
   setActive: React.Dispatch<React.SetStateAction<string>>;
   isFirst?: boolean;
   isLast?: boolean;
@@ -17,6 +17,7 @@ export const Tab = ({
   setActive,
   number,
   isFirst,
+  isVisible,
   isLast,
   theme,
   handleClick,
@@ -26,7 +27,7 @@ export const Tab = ({
       data-active={active === text}
       data-islast={isLast}
       data-isfirst={isFirst}
-      className={`${theme}-tab`}
+      className={`${theme}-tab ${isVisible == false &&'invisible'}`}
       onClick={() => {
         setActive(text);
         handleClick();
