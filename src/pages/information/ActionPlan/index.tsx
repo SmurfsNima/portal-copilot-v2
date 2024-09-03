@@ -1,7 +1,10 @@
+import { Application } from "@/api";
 import { InfoCard } from "@/components";
-import { useState } from "react";
+import { actionPlan } from "@/types";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
+
 const treatmentHistory = [
   {
     date: "July 17th, 2024",
@@ -72,17 +75,29 @@ const treatmentHistory = [
 ];
 export const ActionPlan = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
+  const [actionPlans, setActionPlans] = useState<actionPlan[]>([]);
   const [showHistory, setShowHistory] = useState(false);
   const [treatmentActive, setTreatmentActive] = useState(0);
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
   const [isDescription, setIsDescription] = useState(true);
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await Application.getActionPLan();
+        setActionPlans(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div className="flex flex-col gap-3 w-full">
-      <InfoCard></InfoCard>
+      <InfoCard />
       <div className="w-full bg-black-primary border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
         <input
-          className="w-full border border-main-border bg-black-secondary rounded-md outline-none  pl-2 py-1 text-xs text-primary-text"
+          className="w-full border border-main-border bg-black-secondary rounded-md outline-none pl-2 py-1 text-xs text-primary-text"
           type="text"
           placeholder="Write here..."
         />
@@ -92,17 +107,16 @@ export const ActionPlan = () => {
         <div className="bg-black-primary text-primary-text w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border">
           <div className="flex justify-between items-center pb-4">
             <h2 className="text-sm font-semibold">Action Plan 012</h2>
-            <div className="  flex items-center space-x-4">
+            <div className="flex items-center space-x-4">
               {!showHistory && (
                 <button
                   onClick={() => setShowHistory(true)}
-                  className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+                  className="flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs"
                 >
                   <img src="/Themes/Aurora/icons/clock.svg" alt="" />
                   Show History
                 </button>
               )}
-
               <Button theme={theme}>
                 <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
                 Re-Generate
@@ -112,18 +126,19 @@ export const ActionPlan = () => {
 
           <div
             onClick={() => setIsDescription(!isDescription)}
-            className=" w-full flex items-center gap-2 cursor-pointer text-sm"
+            className="w-full flex items-center gap-2 cursor-pointer text-sm"
           >
             <img
               src="/Themes/Aurora/icons/chevron-down.svg"
-              className={` transition-transform ${
+              className={`transition-transform ${
                 isDescription && "rotate-180"
-              } `}
+              }`}
               alt=""
             />
             Description
             <div className="h-[1px] w-full bg-secondary-text" />
           </div>
+
           {isDescription && (
             <div className="w-full space-y-2 text-xs">
               <p className="mt-4 text-primary-text">
@@ -135,7 +150,7 @@ export const ActionPlan = () => {
               <div>
                 Concerning Results:{" "}
                 <span className="underline text-brand-primary-color">
-                  Detail{" "}
+                  Detail
                 </span>
               </div>
               <ul className="list-disc ml-6 mt-4 text-primary-text">
@@ -164,333 +179,89 @@ export const ActionPlan = () => {
               src="/Themes/Aurora/icons/chevron-down.svg"
               className={`${
                 isDetailsOpen ? "rotate-180" : ""
-              } transition-transform `}
+              } transition-transform`}
             />
             <span className="text-sm font-medium">Details</span>
             <div className="h-[1px] w-full bg-secondary-text" />
           </div>
+
           {isDetailsOpen && (
             <div className="mt-4 space-y-4 text-xs">
-              <div className="space-y-3">
-                <div className=" w-full text-lg font-semibold text-gray-300 flex justify-between  items-center gap-2">
-                  <div className="flex items-center gap-2 text-xs">
-                    {" "}
-                    <div className="bg-black-third rounded-lg p-1">
-                      <img src="/Themes/Aurora/icons/apple.svg" alt="" />{" "}
-                    </div>
-                    Nutrition
-                  </div>
-
-                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
-                </div>
-                <ul className=" ml-6 list-disc space-y-2 text-primary-text">
-                  <li>
-                    <div className="flex items-center w-full gap-3">
-                      <div className="">
-                        {" "}
-                        Omeprazole (Oral Pill) 40 MG/
-                        <span className="text-secondary-text">
-                          Ingredient:
-                        </span>{" "}
-                        omeprazole/{" "}
-                        <span className="text-secondary-text">
-                          Instructions:{" "}
-                        </span>
-                        1am
-                      </div>
-
-                      <span className="bg-green-status text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                        Supplement
-                      </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex w-full gap-3">
-                      <div>
-                        {" "}
-                        Vitamin C 500 mg
-                        <span className="text-secondary-text">
-                          Instructions:
-                        </span>{" "}
-                        Take two a day first thing in the morning/
-                      </div>
-
-                      <span className="bg-green-status text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                        Supplement
-                      </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex w-full gap-3">
-                      <div className="flex">
-                        TA-65 500 IU/{" "}
-                        <span className="text-secondary-text">
-                          Instructions:
-                        </span>{" "}
-                        Take two a day first thing in the morning/{" "}
-                        <span className="text-secondary-text ">
-                          Based on your:
-                        </span>{" "}
-                        <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
-                          TelomerAge
-                          <img src="/Themes/Aurora/icons/export.svg" alt="" />
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {" "}
-                        <span className="bg-[#FDC0A6] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Diet
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex w-full gap-3">
-                      <div className="flex">
-                        stradiol 6 mg/ml cream 30 ml Topi-pump/
-                        <span className="text-secondary-text">
-                          Instructions:
-                        </span>{" "}
-                        Apply 2 pumps daily after showering/
-                        <span className="text-secondary-text ">
-                          Based on your:
-                        </span>{" "}
-                        <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
-                          Estradiol{" "}
-                          <img src="/Themes/Aurora/icons/export.svg" alt="" />
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {" "}
-                        <span className="bg-[#9381FF] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Hormone Optimization
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex w-full gap-3">
-                      <div className="flex">
-                        Continue 5.2 diet /
-                        <span className="text-secondary-text">Notes:</span> Try
-                        also to substitute healthy fats such as avocado and fish
-                        for meat and dairy fats/
-                        <span className="text-secondary-text ">
-                          Based on your:
-                        </span>{" "}
-                        <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
-                          : LDL Cholesterol{" "}
-                          <img src="/Themes/Aurora/icons/export.svg" alt="" />
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {" "}
-                        <span className="bg-[#FDC0A6] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Diet
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="space-y-6">
-                <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
-                  <div className="flex items-center gap-2 text-xs">
-                    <div className="bg-black-third rounded-lg p-1">
-                    <img
-                 
-                 src="/Themes/Aurora/icons/mind.svg"
-                  alt=""
-                />                    </div>
-                    Mind
-                  </div>
-                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
-                </div>
-                <ul className=" ml-6 list-disc space-y-1 text-primary-text">
-                  <li>
-                    <div className="flex w-full gap-3">
-                      <div className="">
-                        Paced breathing with Inner Balance or Muse/
-                        <span className="text-secondary-text">Notes:</span>{" "}
-                        While your BP and arterial stiffness are improved since
-                        restarting the lisinopril, you could gradually reduce
-                        the need for medication with 3-5 times per week
-                        breathing exercises and-or meditation/
-                        <div className="flex">
-                          <span className="text-secondary-text ">
-                            Based on your:
-                          </span>{" "}
-                          <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
-                            Augmentation Pressure{" "}
-                            <img src="/Themes/Aurora/icons/export.svg" alt="" />
+              {actionPlans.map((plan, planIndex) =>
+                plan.plan_info.monthly_plan.weekly_plan.map((week, weekIndex) =>
+                  week.categories.map((category, categoryIndex) => (
+                    <div
+                      key={`${planIndex}-${weekIndex}-${categoryIndex}`}
+                      className="space-y-3"
+                    >
+                      <div className="w-full text-lg font-semibold text-gray-300 flex justify-between items-center gap-2">
+                        <div className="flex items-center gap-3 text-xs">
+                          <div className="bg-black-third rounded-lg p-1">
+                            <div
+                              className={`${theme}-icons-${category.category_name}`}
+                            />
                           </div>
+                          {category.category_name}
                         </div>
+                        <img src="/Themes/Aurora/icons/edit.svg" alt="" />
                       </div>
-                      <div className="flex items-center gap-2">
-                        {" "}
-                        <span className="bg-[#86D8E8] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Lifestyle
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex justify-between w-full gap-3">
-                      <div className="">
-                        Continue smoking abstinence/
-                        <span className="text-secondary-text">Notes:</span>{" "}
-                        Since you quit smoking, your FEV1 has continued to
-                        improve/
-                        <div className="flex">
-                          <span className="text-secondary-text ">
-                            Based on your:
-                          </span>{" "}
-                          <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
-                            FEV1 Percent Predicted{" "}
-                            <img src="/Themes/Aurora/icons/export.svg" alt="" />
-                          </div>
-                        </div>
-                      </div>
-                      <div className=" flex items-center gap-2">
-                        <span className="bg-red-status text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Don’t
-                        </span>
-                        <span className="bg-[#86D8E8] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Lifestyle
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="space-y-6">
-                <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
-                  <div className="flex items-center gap-2 text-xs">
-                    <div className="bg-black-third rounded-lg p-1">
-                    <img
-                    src="/Themes/Aurora/icons/weight.svg"
-                    
-                      alt=""
-                    />                    </div>
-                    Activity
-                  </div>
-                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
-                </div>
-                <ul className=" ml-6 list-disc space-y-1 text-primary-text">
-                  <li>
-                    <div className="flex w-full justify-between">
-                      <div className="flex gap-1">
-                        Follow HIIT program for 4 weeks/
-                        <div className="text-secondary-text flex gap-1">
-                          Based on your:
-                          <div className="flex items-center gap-2 text-brand-primary-color">
-                            Body Mass Index{" "}
-                            <img src="/Themes/Aurora/icons/export.svg" alt="" />
-                          </div>
-                        </div>
-                      </div>
-                      <span className="bg-[#FBAD37] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                        Exercise
-                      </span>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="flex w-full justify-between gap-3">
-                      <div className="flex gap-1">
-                        {" "}
-                        Metabolic Overdrive HIIT /
-                        <span className="text-secondary-text">
-                          Instructions:
-                        </span>{" "}
-                        Three times a week/
-                        <div className="text-secondary-text flex gap-1">
-                          Based on your:
-                          <div className="flex items-center gap-1 text-brand-primary-color">
-                            CardioAge
-                            <img className={`${theme}-icons-export`} alt="" />
-                          </div>
-                        </div>
-                      </div>
+                      <ul className="ml-6 list-disc space-y-2 text-primary-text">
+                        {category.tasks.map((task) => (
+                          <li key={task.task_id}>
+                            <div className="flex items-center w-full gap-1">
+                              <div className="">
+                                {" "}
+                                {task.description}{" "}
+                                <span className="text-secondary-text">
+                                  / Instructions:{" "}
+                                </span>
+                                {task.how}
+                                <span className="text-secondary-text">
+                                  /Based on your :
+                                </span>
+                                <div className="text-brand-primary-color text-xs inline-flex gap-1 items-center cursor-pointer">
+                                  {" "}
+                                  {task.biomarker}
+                                  <img
+                                    className="w-4 h-4"
+                                    src="/Themes/Aurora/icons/export.svg"
+                                    alt=""
+                                  />
+                                </div>
+                              </div>
 
-                      <span className="bg-[#FBAD37] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                        Exercise
-                      </span>
+                              {task.tags.map((tag, index) => (
+                                <span
+                                  key={index}
+                                  className={` ${
+                                    tag === "antioxidants"
+                                      ? "bg-[#9381FF]"
+                                      : tag === "lung health"
+                                      ? "bg-[#06C78D] "
+                                      : tag === "oxygenation"
+                                      ? "bg-[#FDC0A6]"
+                                      : tag === "mindfulness"
+                                      ? "bg-[#86D8E8]"
+                                      : "bg-[#FBAD37]"
+                                  } text-nowrap text-black-background px-4 py-1 rounded-full text-xs font-medium`}
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                  </li>
-                  <li>
-                    <div className="flex w-full justify-between">
-                      Don’t lead a sedentary lifestyle; try to incorporate
-                      movement throughout the day.
-                      <div className="flex items-center gap-2">
-                        {" "}
-                        <span className="bg-[#FBAD37] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Exercise
-                        </span>
-                        <span className="bg-red-status text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Don`t
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="space-y-6">
-                <div className="text-lg font-semibold text-primary-text w-full flex justify-between items-center gap-2">
-                  <div className="flex items-center gap-2 text-xs">
-                    <div className="bg-black-third rounded-lg p-1">
-                    <img
-                     src="/Themes/Aurora/icons/moon.svg"
-                      alt=""
-                    />                    </div>
-                    Sleep
-                  </div>
-                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
-                </div>
-                <ul className=" ml-6 list-disc space-y-1 text-primary-text">
-                  <li>
-                    <div className="flex justify-between w-full gap-3">
-                      <div className="flex">
-                        Do not sleep during the day/
-                        <div className="flex">
-                          <span className="text-secondary-text ">
-                            Based on your:
-                          </span>{" "}
-                          <div className="ml-1 flex items-center gap-2 text-brand-primary-color">
-                            Insomnia
-                            <img src="/Themes/Aurora/icons/export.svg" alt="" />
-                          </div>
-                        </div>
-                      </div>
-                      <div className=" flex items-center gap-2">
-                        <span className="bg-red-status text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Don’t
-                        </span>
-                        <span className="bg-[#B8B8FF] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                          Relaxation
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li>
-                    <div className="w-full flex items-center justify-between">
-                      <div className="flex w-full">
-                        6-8 hours of sleep during the night/{" "}
-                        <span className="text-secondary-text">Note:</span>Take a
-                        shower and drink a glass of water before going to bed
-                      </div>
-                      <span className="bg-[#B8B8FF] text-black-background px-4 py-1 rounded-full text-xs font-medium">
-                        Relaxation
-                      </span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+                  ))
+                )
+              )}
             </div>
           )}
         </div>
+
         {showHistory && (
-          <div className="bg-black-primary text-primary-text p-2 rounded-lg space-y-2 border border-main-border w-[35%] ">
+          <div className="bg-black-primary text-primary-text p-2 rounded-lg space-y-2 border border-main-border w-[35%]">
             <div className="flex justify-between items-center font-medium text-lg">
               Action Plan History
               <button
@@ -501,26 +272,24 @@ export const ActionPlan = () => {
               </button>
             </div>
 
-            <div className="space-y-2  ">
-              <h3 className=" text-sm text-secondary-text font-medium">
+            <div className="space-y-2">
+              <h3 className="text-sm text-secondary-text font-medium">
                 Last Week
               </h3>
               {treatmentHistory.map((entry, index) => (
                 <div
                   onClick={() => setTreatmentActive(index)}
                   key={index}
-                  className={` ${
+                  className={`${
                     treatmentActive === index && "bg-black-third"
-                  }  rounded-lg p-2 cursor-pointer space-y-3`}
+                  } rounded-lg p-2 cursor-pointer space-y-3`}
                 >
                   <div className="w-full flex justify-between items-center">
-                    {" "}
-                    <p className=" text-primary-text text-sm font-semibold">
+                    <p className="text-primary-text text-sm font-semibold">
                       {entry.date}
                     </p>
                     <p className="text-secondary-text text-sm">{entry.time}</p>
                   </div>
-
                   <p className="text-secondary-text text-xs w-full">
                     {entry.description}
                   </p>

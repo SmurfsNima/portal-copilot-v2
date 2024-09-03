@@ -15,7 +15,7 @@ interface ChartCardProps {
   active: string | null;
   setActive: Dispatch<SetStateAction<any>>;
 }
-// const otherTypes = ['Hb' , 'HCT' , 'WBC' ,'MCHC' , 'MCH' , 'RBC', 'PLT' ]
+const otherTypes = ['Hb' , 'HCT' , 'WBC' ,'MCHC' , 'MCH' , 'RBC', 'PLT' ]
 export const SmallChartCard: React.FC<ChartCardProps> = ({
 
   type ,
@@ -118,9 +118,9 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
             {type}
           </h2>
         </div>
-        {/* {
-            title === "CBC" &&(
-                <div className="flex  my-1 ">
+        {
+            type === "CBC" &&(
+                <div className=" w-full flex  my-1 ">
                 { otherTypes.map((item , i) => (
                   <span key={i}
                     onClick={() => setActive(item)}
@@ -128,14 +128,14 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
                       active === item
                         ? "text-brand-primary-color   border-brand-primary-color"
                         : "text-secondary-text border-main-border "
-                    } border-b cursor-pointer px-2 text-sm`}
+                    } border-b cursor-pointer px-2 text-[8px]`}
                   >
                     {item}
                   </span>
                 ))}
               </div>
             )
-        } */}
+        }
        
         <div className=" w-[180px] h-[100px]">
           {type === "Blood Pressure" ? (
@@ -146,7 +146,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
         </div>
       </div>
       <div className="flex flex-col items-end justify-between w-full ">
-        <div className="flex flex-col text-center ">
+        <div className="flex flex-col text-center  ">
           <h2
              data-active={active===type}
              className={` ml-[2px]  ${
@@ -176,7 +176,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
           </h2>{" "}
           
         </div>
-        <div className="flex  text-center  flex-col">
+        <div className={` ${type==="CBC" && 'hidden'} flex  text-center  flex-col`}>
           <h2
            data-active={active===type}
              className={` ml-[2px] ${

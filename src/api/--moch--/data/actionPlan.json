@@ -1,0 +1,186 @@
+[
+    {
+      "a_id": 1,
+      "a_p_name": "plan_01",
+      "a_p_start_date": "2024-08-28",
+      "a_p_end_date": "2024-09-28",
+      "checkin": [
+        {
+          "date": "2024-08-28",
+          "status": true
+        },
+        {
+          "date": "2024-08-29",
+          "status": true
+        },
+        {
+          "date": "2024-08-30",
+          "status": false
+        },
+        {
+          "date": "2024-08-31",
+          "status": false
+        },
+        {
+          "date": "2024-09-01",
+          "status": true
+        },
+        {
+          "date": "2024-09-02",
+          "status": true
+        }
+      ],
+      "plan_info": {
+        "monthly_plan": {
+          "weekly_plan": [
+            {
+              "categories": [
+                {
+                  "tasks": [
+                    {
+                      "how": "Prepare meals that include berries for breakfast, leafy greens for lunch, and nuts as a snack.",
+                      "why": "Antioxidants help reduce oxidative stress, improving lung function and oxygenation.",
+                      "tags": [
+                        "antioxidants",
+                        "lung health",
+                        "oxygenation"
+                      ],
+                      "notes": "Focus on organic options when available.",
+                      "status": "pending",
+                      "task_id": "NUTR01",
+                      "end_date": "2024-09-03",
+                      "biomarker": "Oxygen Saturation",
+                      "task_name": "Incorporate Antioxidant-Rich Foods",
+                      "start_date": "2024-08-27",
+                      "description": "Add foods high in antioxidants like berries, leafy greens, and nuts to the diet.",
+                      "time_of_day": "08:00",
+                      "alternatives": [
+                        "Smoothies with mixed berries and leafy greens"
+                      ],
+                      "scheduled_days": [
+                        1,
+                        3,
+                        5
+                      ],
+                      "duration_minutes": 30,
+                      "priority_actions": "Focus on increasing the intake of these foods during main meals.",
+                      "frequency_per_week": 3
+                    }
+                  ],
+                  "category_name": "Nutrition"
+                },
+                {
+                  "tasks": [
+                    {
+                      "how": "Set aside a quiet space and time to focus on deep, mindful breathing or guided meditation.",
+                      "why": "These practices reduce stress and anxiety, which can improve breathing and oxygen levels.",
+                      "tags": [
+                        "mindfulness",
+                        "stress reduction",
+                        "breathing"
+                      ],
+                      "notes": "Track stress levels before and after each session.",
+                      "status": "pending",
+                      "task_id": "MIND01",
+                      "end_date": "2024-09-03",
+                      "biomarker": "Respiration Rate",
+                      "task_name": "Practice Mindfulness and Relaxation",
+                      "start_date": "2024-08-27",
+                      "description": "Engage in mindfulness or relaxation techniques such as deep breathing or meditation.",
+                      "time_of_day": "18:00",
+                      "alternatives": [
+                        "Guided meditation apps"
+                      ],
+                      "scheduled_days": [
+                        2,
+                        4
+                      ],
+                      "duration_minutes": 20,
+                      "priority_actions": "Dedicate time to practice these techniques daily.",
+                      "frequency_per_week": 2
+                    }
+                  ],
+                  "category_name": "Mind"
+                },
+                {
+                  "tasks": [
+                    {
+                      "how": "Lie on your back, place one hand on your chest and the other on your abdomen. Breathe in deeply through your nose, allowing your abdomen to rise, then exhale slowly through pursed lips.",
+                      "why": "This exercise helps improve oxygen saturation and strengthens respiratory muscles.",
+                      "tags": [
+                        "diaphragmatic breathing",
+                        "oxygen saturation",
+                        "respiratory strength"
+                      ],
+                      "notes": "Monitor breathing ease before and after the exercise.",
+                      "status": "pending",
+                      "task_id": "ACT01",
+                      "end_date": "2024-09-03",
+                      "biomarker": "Respiration Rate",
+                      "task_name": "Practice Diaphragmatic Breathing",
+                      "start_date": "2024-08-27",
+                      "description": "Daily practice of diaphragmatic breathing to strengthen the diaphragm and improve breathing efficiency.",
+                      "time_of_day": "07:00",
+                      "alternatives": [
+                        "Sitting position for diaphragmatic breathing"
+                      ],
+                      "scheduled_days": [
+                        1,
+                        3,
+                        5
+                      ],
+                      "duration_minutes": 15,
+                      "priority_actions": "Perform diaphragmatic breathing exercises every morning.",
+                      "frequency_per_week": 3
+                    }
+                  ],
+                  "category_name": "Activity"
+                },
+                {
+                  "tasks": [
+                    {
+                      "how": "Use pillows to elevate the upper body and open windows or use a fan to improve air circulation.",
+                      "why": "Improves breathing and oxygen levels during sleep.",
+                      "tags": [
+                        "sleep position",
+                        "breathing",
+                        "oxygen levels"
+                      ],
+                      "notes": "Evaluate sleep quality each morning.",
+                      "status": "pending",
+                      "task_id": "SLEEP01",
+                      "end_date": "2024-09-03",
+                      "biomarker": "Oxygen Saturation",
+                      "task_name": "Optimize Sleep Environment",
+                      "start_date": "2024-08-27",
+                      "description": "Ensure a well-ventilated room and elevate the head of the bed slightly.",
+                      "time_of_day": "22:00",
+                      "alternatives": [
+                        "Use of a wedge pillow"
+                      ],
+                      "scheduled_days": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6
+                      ],
+                      "duration_minutes": 480,
+                      "priority_actions": "Adjust bed elevation and check room ventilation nightly.",
+                      "frequency_per_week": 7
+                    }
+                  ],
+                  "category_name": "Sleep"
+                }
+              ],
+              "week_number": 1
+            }
+          ],
+          "high_level_summary": "The plan focuses on improving lung function, enhancing oxygenation, and managing respiration rate through a combination of dietary, exercise, supplement, sleep, and mental health strategies.",
+          "key_areas_of_focus": "Nutrition, Breathing Exercises, Supplementation, Sleep Quality, Stress Management"
+        }
+      }
+    }
+  ]

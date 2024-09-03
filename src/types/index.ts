@@ -102,5 +102,58 @@ interface diagnosis {
   }
 
 }
+interface Checkin {
+  date: string;
+  status: boolean;
+}
 
-export type { PationtInformation, BiomarkerValue, biomarker , BiomarkerEntry  , BiomarkerCategory ,  ChartDataItem  , diagnosis };
+interface Task {
+  how: string;
+  why: string;
+  tags: string[];
+  notes: string;
+  status: string;
+  task_id: string;
+  end_date: string;
+  biomarker: string;
+  task_name: string;
+  start_date: string;
+  description: string;
+  time_of_day: string;
+  alternatives: string[];
+  scheduled_days: number[];
+  duration_minutes: number;
+  priority_actions: string;
+  frequency_per_week: number;
+}
+
+interface Category {
+  tasks: Task[];
+  category_name: string;
+}
+
+interface WeeklyPlan {
+  categories: Category[];
+  week_number: number;
+}
+
+interface MonthlyPlan {
+  weekly_plan: WeeklyPlan[];
+  high_level_summary: string;
+  key_areas_of_focus: string;
+}
+
+interface PlanInfo {
+  monthly_plan: MonthlyPlan;
+}
+
+ interface actionPlan {
+  a_id: number;
+  a_p_name: string;
+  a_p_start_date: string;
+  a_p_end_date: string;
+  checkin: Checkin[];
+  plan_info: PlanInfo;
+}
+
+export type { PationtInformation, BiomarkerValue, biomarker , BiomarkerEntry  , BiomarkerCategory ,  ChartDataItem  , diagnosis , actionPlan  };

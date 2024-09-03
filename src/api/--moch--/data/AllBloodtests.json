@@ -1,55 +1,256 @@
 [
-    {
-        "patient_id" : 1,
-        "bloodTests":[
-            {
-                "Dna Methylation":[
+  {
+      "patient_id": 1,
+      "bloodTests": [
+          {
+              "Dna Methylation": [
                   {
-                    "value":{
-                        "value" : [3.5,3.6,4],
-                        "status": "high"
-                    },
-                    "date": [
-                        "2024-05-09T00:00:00",
-                        "2024-05-10T00:00:00",
-                        "2024-05-11T00:00:00"
+                      "value": {
+                          "value": [3.5, 3.6, 4],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-05-09T00:00:00",
+                          "2024-05-10T00:00:00",
+                          "2024-05-11T00:00:00"
                       ],
                       "activity": [true, true]
                   }
-                ]
-            },
-            {
-                "CBC":[
+              ]
+          },
+          {
+              "CBC": [
                   {
-                    "value":{
-                        "value" : [3.5,3.6,4],
-                        "status": "high"
-                    },
-                    "date": [
-                        "2024-05-09T00:00:00",
-                        "2024-05-10T00:00:00",
-                        "2024-05-11T00:00:00"
+                      "value": {
+                          "value": [3.5, 3.6, 4],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-05-09T00:00:00",
+                          "2024-05-10T00:00:00",
+                          "2024-05-11T00:00:00"
                       ],
                       "activity": [true, true]
                   }
-                ]
-            },
-            {
-                "CBC":[
+              ]
+          }
+      ]
+  },
+  {
+      "patient_id": 2,
+      "bloodTests": [
+          {
+              "Dna Methylation": [
                   {
-                    "value":{
-                        "value" : [3.5,3.6,4],
-                        "status": "high"
-                    },
-                    "date": [
-                        "2024-05-09T00:00:00",
-                        "2024-05-10T00:00:00",
-                        "2024-05-11T00:00:00"
+                      "value": {
+                          "value": [3.5, 3.6, 4],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-05-09T00:00:00",
+                          "2024-05-10T00:00:00",
+                          "2024-05-11T00:00:00"
                       ],
                       "activity": [true, true]
                   }
-                ]
-            }
-        ]
-    }
+              ]
+          },
+          {
+              "CBC": [
+                  {
+                      "value": {
+                          "value": [3.5, 3.6, 4],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-05-09T00:00:00",
+                          "2024-05-10T00:00:00",
+                          "2024-05-11T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          }
+      ]
+  },
+  {
+      "patient_id": 3,
+      "bloodTests": [
+          {
+              "Dna Methylation": [
+                  {
+                      "value": {
+                          "value": [3.5, 3.6, 4],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-05-09T00:00:00",
+                          "2024-05-10T00:00:00",
+                          "2024-05-11T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          },
+          {
+              "Chromatin": [
+                  {
+                      "value": {
+                          "value": [67, 54, 48],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-05-09T00:00:00",
+                          "2024-05-10T00:00:00",
+                          "2024-05-11T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          },
+          {
+              "Metabolite Levels": [
+                  {
+                      "value": {
+                          "value": [800, 810, 815],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-05-09T00:00:00",
+                          "2024-05-10T00:00:00",
+                          "2024-05-11T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          }
+      ]
+  },
+  {
+      "patient_id": 4,
+      "bloodTests": [
+          {
+              "Dna Methylation": [
+                  {
+                      "value": {
+                          "value": [3.8, 3.9, 4.1],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-06-01T00:00:00",
+                          "2024-06-02T00:00:00",
+                          "2024-06-03T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          },
+          {
+              "CBC": [
+                  {
+                      "value": {
+                          "value": [3.8, 3.9, 4.1],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-06-01T00:00:00",
+                          "2024-06-02T00:00:00",
+                          "2024-06-03T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          }
+      ]
+  },
+  {
+      "patient_id": 5,
+      "bloodTests": [
+          {
+              "Dna Methylation": [
+                  {
+                      "value": {
+                          "value": [3.7, 3.8, 4.2],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-06-04T00:00:00",
+                          "2024-06-05T00:00:00",
+                          "2024-06-06T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          },
+          {
+              "CBC": [
+                  {
+                      "value": {
+                          "value": [3.7, 3.8, 4.2],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-06-04T00:00:00",
+                          "2024-06-05T00:00:00",
+                          "2024-06-06T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          }
+      ]
+  },
+  {
+      "patient_id": 6,
+      "bloodTests": [
+          {
+              "Dna Methylation": [
+                  {
+                      "value": {
+                          "value": [3.9, 4, 4.2],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-06-07T00:00:00",
+                          "2024-06-08T00:00:00",
+                          "2024-06-09T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          },
+          {
+              "Chromatin": [
+                  {
+                      "value": {
+                          "value": [70, 60, 50],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-06-07T00:00:00",
+                          "2024-06-08T00:00:00",
+                          "2024-06-09T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          },
+          {
+              "Metabolite Levels": [
+                  {
+                      "value": {
+                          "value": [820, 825, 830],
+                          "status": "high"
+                      },
+                      "date": [
+                          "2024-06-07T00:00:00",
+                          "2024-06-08T00:00:00",
+                          "2024-06-09T00:00:00"
+                      ],
+                      "activity": [true, true]
+                  }
+              ]
+          }
+      ]
+  }
 ]

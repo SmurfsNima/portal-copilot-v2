@@ -44,65 +44,53 @@ const GraphEvents = () => {
 
 interface LoadGraphProps {
   activeFilters: string[];
+  graphData: any; // Use the appropriate type based on your data structure
   isInitialLoad: boolean;
 }
 
-
-
-export const LoadGraph: React.FC<LoadGraphProps> = ({ activeFilters, isInitialLoad }) => {
+const LoadGraph: React.FC<LoadGraphProps> = ({ activeFilters, graphData, isInitialLoad }) => {
   const loadGraph = useLoadGraph();
-  const { assign } = useLayoutCircular(); 
+  const { assign } = useLayoutCircular();
 
   useEffect(() => {
+    if (!graphData) return; // Ensure graphData is available
+
     const graph = new Graph();
 
-    const fetchGraphData = async () => {
-      try {
-        const response = await Application.getgraphData();
-        const graphData = response.data;
+    const nodesToAdd = isInitialLoad
+      ? graphData.nodes
+      : graphData.nodes.filter(
+          (node: any) =>
+            activeFilters.includes(node.category1) || activeFilters.includes(node.category2)
+        );
 
-        const nodesToAdd = isInitialLoad
-          ? graphData.nodes
-          : graphData.nodes.filter(
-              (node: any) =>
-                activeFilters.includes(node.category1) || activeFilters.includes(node.category2)
-            );
+    const nodeSet = new Set(nodesToAdd.map((node: any) => node.id));
 
-        const nodeSet = new Set(nodesToAdd.map((node: any) => node.id));
+    nodesToAdd.forEach((node: any) => {
+      const randomColor = chroma.random().hex();
+      graph.addNode(node.id, {
+        label: node.label,
+        size: node.size,
+        color: randomColor,
+        x: Math.random(),
+        y: Math.random(),
+      });
+    });
 
-        nodesToAdd.forEach((node: any) => {
-          const randomColor = chroma.random().hex();
-          graph.addNode(node.id, {
-            label: node.label,
-            size: node.size,
-            color: randomColor,
-            x: Math.random(),
-            y: Math.random(), 
-          });
+    graphData.edges.forEach((edge: any, index: number) => {
+      if (nodeSet.has(edge.source) && nodeSet.has(edge.target)) {
+        graph.addEdgeWithKey(`edge-${index}`, edge.source, edge.target, {
+          weight: edge.weight,
+          color: chroma.random().hex(),
         });
-
-        graphData.edges.forEach((edge: any, index: number) => {
-          if (nodeSet.has(edge.source) && nodeSet.has(edge.target)) {
-            graph.addEdgeWithKey(`edge-${index}`, edge.source, edge.target, {
-              weight: edge.weight,
-              color: chroma.random().hex(),
-            });
-          }
-          else{
-              console.warn(`Missing nodes for edge: ${edge.source} -> ${edge.target}`);
-
-          }
-        });
-
-        loadGraph(graph);
-        assign();
-      } catch (error) {
-        console.error("Error fetching graph data:", error);
+      } else {
+        console.warn(`Missing nodes for edge: ${edge.source} -> ${edge.target}`);
       }
-    };
+    });
 
-    fetchGraphData();
-  }, [activeFilters, isInitialLoad, loadGraph, assign]);
+    loadGraph(graph);
+    assign();
+  }, [activeFilters, graphData, isInitialLoad, loadGraph, assign]);
 
   return null;
 };
@@ -112,6 +100,8 @@ const AiKnowledge = () => {
   const [isReportsOpen, setIsReportsOpen] = useState(true);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [graphData, setGraphData] = useState<any>(null); // Adjust the type as needed
+
   const categories = [
     "Health",
     "Fitness",
@@ -124,6 +114,18 @@ const AiKnowledge = () => {
     "Nutrition",
     "Strength"
   ];
+  useEffect(() => {
+    const fetchGraphData = async () => {
+      try {
+        const response = await Application.getgraphData();
+        setGraphData(response.data);
+      } catch (error) {
+        console.error("Error fetching graph data:", error);
+      }
+    };
+
+    fetchGraphData();
+  }, []);
   const handleButtonClick = (category: string) => {
     setIsInitialLoad(false);
     setActiveFilters((prevFilters) =>
@@ -166,7 +168,7 @@ const AiKnowledge = () => {
         id="sigma-container"
         style={{ height: window.innerHeight, width: window.innerWidth, backgroundColor: "#121212" }}
       >
-        <LoadGraph activeFilters={activeFilters} isInitialLoad={isInitialLoad} />
+        <LoadGraph graphData={graphData}  activeFilters={activeFilters} isInitialLoad={isInitialLoad} />
         <GraphEvents />
       </SigmaContainer>
 
