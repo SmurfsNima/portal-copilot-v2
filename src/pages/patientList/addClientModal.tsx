@@ -84,19 +84,21 @@ console.log(clientData);
         </button>
         <div className=" mb-6 w-full flex justify-between items-center">
           {" "}
-          <h2 className="text-2xl font-bold  ">Add Client</h2>
-          <button onClick={onClose} className="text-lg">X</button>
+          <h2 className="text-[14px] font-medium ">Add Client</h2>
+          <button onClick={onClose} className="text-lg">
+            <img src={"Themes/Aurora/icons/close.svg"}></img>
+          </button>
         </div>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="fullName" className="block  mb-2">
+            <label htmlFor="fullName" className="block text-[12px] mb-2">
               Full Name
             </label>
             <input
               type="text"
               id="fullName"
-              className="w-full p-2 pl-4  bg-black-background placeholder:text-secondary-text text-primary-text outline-none rounded-md"
+              className="w-full p-2 pl-4  text-[12px] bg-black-background placeholder:text-secondary-text text-primary-text outline-none rounded-md"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Enter your first and last name..."
@@ -104,13 +106,13 @@ console.log(clientData);
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block  mb-2">
+            <label htmlFor="email" className="block text-[12px] mb-2">
               Email Address
             </label>
             <input
               type="email"
               id="email"
-              className="w-full p-2 pl-4  bg-black-background placeholder:text-secondary-text text-primary-text outline-none rounded-md"
+              className="w-full p-2 pl-4 text-[12px]  bg-black-background placeholder:text-secondary-text text-primary-text outline-none rounded-md"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email address..."
@@ -120,13 +122,13 @@ console.log(clientData);
           <div className="mb-4">
             <label
               htmlFor="wearableDevice"
-              className="block  mb-2"
+              className="block text-[12px] mb-2"
             >
               Wearable Devices
             </label>
             <select
               id="wearableDevice"
-              className="w-full p-2 pl-4  bg-black-background text-secondary-text outline-none rounded-md"
+              className="w-full p-2 px-4 text-[12px] bg-black-background text-secondary-text outline-none rounded-md"
               value={wearableDevice}
               onChange={(e) => setWearableDevice(e.target.value)}
               required
@@ -141,7 +143,7 @@ console.log(clientData);
           </div>
           <button
             type="submit"
-            className="w-full bg-brand-primary-color text-black p-2 rounded hover:bg-teal-500"
+            className="w-full text-[14px] bg-brand-primary-color text-black p-2 rounded hover:bg-teal-500"
           >
            Add Client & Send Invitation
           </button>

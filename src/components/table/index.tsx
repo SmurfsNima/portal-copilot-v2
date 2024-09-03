@@ -114,7 +114,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
             </Button>
             <Button onClick={handleOpenModal} theme={theme}>
               <RiUserAddLine className="w-5 h-5" />
-              Add Patient{" "}
+              Add Client{" "}
             </Button>
           </div>
           <AddClientModal
