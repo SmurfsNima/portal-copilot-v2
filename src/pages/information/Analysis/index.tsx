@@ -128,7 +128,7 @@ const Analysis = () => {
     },
     {
       title: 'Third',
-      category: 'Supplement',
+      category: 'Supplements',
       subCategories: [
         { name: 'Supplement', isActive: true },
       ],
