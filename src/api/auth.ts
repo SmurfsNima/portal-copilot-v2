@@ -28,11 +28,7 @@ class Auth extends Api {
       client_secret: "",
     };
 
-    return this.post("/auth/token", data, {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
+    return this.post("/auth/token", data);
   }
 }
 
