@@ -22,7 +22,7 @@ const PatientList = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const { patients ,savePatientList } = useContext(AppContext);
   const [reports, setReports] = useState<Array<any>>([]);
-
+  const [reloadData,setReloadData] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -66,7 +66,7 @@ const PatientList = () => {
           
           patient.setBiomarkers(biomarkers);
           // patient.setDiagnosis(Diagnosis);
-
+          setReloadData(false)
           return patient;
         });
         
@@ -86,7 +86,9 @@ const PatientList = () => {
         console.error("Failed to fetch reports:", error);
       }
     };
-
+    if(reloadData){
+      fetchData()
+    }
     fetchData();
   }, []);
 
@@ -130,9 +132,11 @@ const PatientList = () => {
           <h1 className={"text-sm"}>
             General Report
           </h1>
-          <h1 className="flex text-[12px] cursor-pointer"><span className="mr-[5px] "><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" fill="none">
-<path d="M18.3333 10.0001C18.3333 14.6001 14.6 18.3334 9.99996 18.3334C5.39996 18.3334 2.59163 13.7001 2.59163 13.7001M2.59163 13.7001H6.35829M2.59163 13.7001V17.8667M1.66663 10.0001C1.66663 5.40008 5.36663 1.66675 9.99996 1.66675C15.5583 1.66675 18.3333 6.30008 18.3333 6.30008M18.3333 6.30008V2.13341M18.3333 6.30008H14.6333" stroke="white" stroke-opacity="0.87" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></span>Reload Data</h1>
+          <h1 onClick={() => {
+            setReloadData(true)
+          }} className="flex text-[12px] cursor-pointer"><span className="mr-[5px] ">
+            <img className={reloadData?"animate-spin":''} src="./Themes/Aurora/icons/reload.svg" alt="" />
+          </span>Reload Data</h1>
           </div>
           <div
             className={

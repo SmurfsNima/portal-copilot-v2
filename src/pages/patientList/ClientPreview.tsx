@@ -10,6 +10,11 @@ interface ClientPreviewProps{
     onClose: () => void;
     onSubmit: () => void;
 }
+interface FileData {
+  name: string;
+  base64: string;
+}
+
 const ClientPreview:React.FC<ClientPreviewProps> = ({
     isOpen,
     onClose
@@ -58,6 +63,32 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
             isVisible:false
         },                                                   
     ]
+    const [files, setFiles] = useState<FileData[]>([])
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFiles = Array.from(event.target.files || []);
+        const filesWithBase64 = selectedFiles.map((file) => {
+        return new Promise<FileData>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+            if (reader.result) {
+                resolve({
+                name: file.name,
+                base64: (reader.result as string).split(',')[1],
+                });
+            }
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+        });
+
+        Promise.all(filesWithBase64).then((results) => {
+        setFiles(results);
+        });
+    }
+    const handleDeleteFile = (index: number) => {
+        setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+    };
     const [menu,setMenu] = useState('Summary')
     const accordians = [
         {
@@ -94,8 +125,8 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
     return (
         <>
         <div className="fixed inset-0 z-10  flex items-center justify-center bg-black-background bg-opacity-50">
-            <div ref={modalRef} className="bg-black-secondary h-[476px] overflow-hidden relative text-primary-text p-6 rounded-lg w-[1012px] shadow-lg ">
-                <button onClick={() => {}} className="text-lg absolute top-3 right-3">
+            <div ref={modalRef} className="bg-black-secondary min-h-[476px] overflow-hidden relative text-primary-text p-6 rounded-lg w-[1012px] shadow-lg ">
+                <button onClick={() => {onClose()}} className="text-lg absolute top-3 right-3">
                     <img src={"Themes/Aurora/icons/close.svg"}></img>
                 </button>
                 <TabsWrapper isNotNavigate TabsInfo={tabs} handleTabClick={(path) =>{
@@ -216,12 +247,32 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
                                             <div className="text-[#FFFFFF61] text-[12px]">CSV</div>
                                         </div>
                                         
-                                        <input id="fileUploader" type="file" className="absolute invisible top-0 left-0 cursor-pointer w-full h-full" />
+                                        <input id="fileUploader" type="file" className="absolute invisible top-0 left-0 cursor-pointer w-full h-full" accept=".csv" multiple onChange={handleFileChange}  />
                                     </div>
-                                    
+                                    <div className="max-h-[120px] overflow-y-scroll">
+                                        {
+                                            files.map((el,index) => {
+                                                return (
+                                                    <>
+                                                        <div className="bg-black-primary flex justify-between py-2 items-center px-6 mt-2 h-[28px] rounded-[6px] w-full">
+                                                            <div className="flex items-center">
+                                                                <i className="fas fa-file-csv" style={{ marginRight: '8px' }}></i>
+                                                                <div className="text-[12px]">{el.name}</div>
+                                                            </div>
+                                                            <img onClick={() => {
+                                                                handleDeleteFile(index)
+                                                            }} className="cursor-pointer" src="./Themes/Aurora/icons/trash.svg" alt="" />
+                                                        </div>
+                                                    </>
+                                                )
+                                            })
+                                        }
+
+                                    </div>
                                     <div className="flex mt-8 justify-center w-full">
                                         <Button onClick={() => {
                                             onClose()
+                                            setFiles([])
                                         }} theme={theme}>
                                             <div className="text-[#1E1E1E] px-8">
                                                 Save Changes

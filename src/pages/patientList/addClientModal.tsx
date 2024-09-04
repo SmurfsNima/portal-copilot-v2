@@ -31,6 +31,11 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, onClose]);
+  useEffect(() => {
+    if(!isOpen){
+      setStep("AddCient")
+    }
+  },[isOpen])
   // if (!isOpen) return setStep("AddCient")
   if (!isOpen) return null;
 
@@ -84,7 +89,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
   
   return (
     <div className="fixed inset-0 z-10 flex items-center justify-center bg-black-background bg-opacity-50">
-      <div ref={modalRef} className="bg-black-secondary relative text-primary-text p-6 rounded-lg shadow-lg  w-[570px]">
+      <div ref={modalRef} className={`bg-black-secondary relative text-primary-text p-6 rounded-lg shadow-lg ${step=='AddCient' ?'w-[428px]':'w-[570px]'} `}>
 
         {/* <button className=" absolute top-2 right-2" onClick={onClose}>
           &times;
@@ -154,9 +159,13 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
             <Button
               type="submit"
               theme={theme}
+              data-width="full"
               // className="w-full text-[14px] bg-brand-primary-color text-black p-2 rounded hover:bg-teal-500"
             >
-            Add Client & Send Invitation
+              <div className=''>
+                Add Client & Send Invitation
+
+              </div>
             </Button>
             </div>
           </form>
