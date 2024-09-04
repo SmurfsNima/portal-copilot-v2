@@ -13,6 +13,7 @@ import ProgressCircle from "./progressCircle";
 const InfoCard = () => {
   const [patient, setPatient] = useState<Pationt>();
   const { getPatientById } = useContext(AppContext);
+  console.log(patient);
 
   const { id } = useParams<{ id: string }>();
   useEffect(() => {
@@ -26,6 +27,7 @@ const InfoCard = () => {
     3: "#FBAD37", // Activity
     4: "#7F39FB"  // Sleep
   };
+
 
   return (
     <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-main-border rounded-xl flex items gap-10 relative overflow-hidden h-[166px]">
@@ -63,11 +65,11 @@ const InfoCard = () => {
               Conditions:
             </h2>
             {/* Uncomment and map through conditions */}
-            {/* {patient?.information?.conditions.map((condition, index) => (
+            {patient?.information?.conditions.map((condition, index) => (
               <div className="text-xs font-normal text-primary-text">
                 {index + 1}. {condition}
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
       </div>
