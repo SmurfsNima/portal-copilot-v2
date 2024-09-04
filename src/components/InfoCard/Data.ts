@@ -133,7 +133,7 @@ export const BiologicalCardInfo = [
  export const Progress = [
     {
         ID:1,
-        title: 'Nutrition',
+        title: 'Diet',
         Percentage : 73,
     },
     {
@@ -150,7 +150,7 @@ export const BiologicalCardInfo = [
     },
     {
         ID:4, 
-        title: 'Sleep',
+        title: 'Supplement',
         Percentage : 54,
 
     },
@@ -158,7 +158,7 @@ export const BiologicalCardInfo = [
  export const Score = [
     {
         ID:1,
-        title: 'Nutrition',
+        title: 'Diet',
         Percentage : 4.6,
     },
     {
@@ -175,7 +175,7 @@ export const BiologicalCardInfo = [
     },
     {
         ID:4, 
-        title: 'Sleep',
+        title: 'Supplement',
         Percentage : 6.6,
 
     },

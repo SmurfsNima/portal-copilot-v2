@@ -26,11 +26,9 @@
      @apply cursor-pointer flex justify-center items-center gap-2 bg-brand-primary-color rounded-xl  font-medium ;
  
  }
- .Aurora-biomarker-analyze-button[data-active="true"]{
-     @apply hidden;
- }
+
  .Aurora-biomarker-analyze-button-text{
-     @apply text-xs md:text-sm font-medium text-black-primary;
+     @apply text-xs  font-medium text-black-primary;
  }
  .Aurora-biomarker-back-button{
      @apply hidden bg-black-primary rounded-xl  items-center cursor-pointer justify-center px-4 max-h-[40px];
