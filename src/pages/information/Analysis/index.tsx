@@ -9,6 +9,7 @@ import { prepareChartData } from "@/utils/status";
 import { getStatusBgColorClass } from "@/utils/status";
 import MethylationChart from "@/components/charts/MethylationChart";
 import { ActivityCard } from "./activityCard";
+import PlanManagerModal from "./planModal";
 
 const Analysis = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -31,7 +32,7 @@ const Analysis = () => {
   ]);
   const [active, setActive] = useState<string | null>(null);
   const [activeMode, setActiveMode] = useState("Vital");
-  const [buttonState, setButtonState] = useState('initial'); 
+  const [buttonState, setButtonState] = useState("initial");
 
   const handleSendMessage = (message: string) => {
     if (message.trim()) {
@@ -86,18 +87,60 @@ const Analysis = () => {
       score: 8.2,
       percentage: 97,
     },
-   
   ];
   const handleClick = () => {
-   
-    setButtonState('loading');
+    setButtonState("loading");
 
     setTimeout(() => {
-      setButtonState('completed');
+      setButtonState("completed");
     }, 3000);
   };
-  useEffect(()=> console.log(buttonState) , [buttonState]
-  )
+  useEffect(() => console.log(buttonState), [buttonState]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+  const priorities = [
+    {
+      title: 'First',
+      category: 'Activity',
+      subCategories: [
+        { name: 'Daily Activity', isActive: true },
+        { name: 'Stability', isActive: true },
+        { name: 'Mobility', isActive: true },
+        { name: 'Flexibility', isActive: false },
+        { name: 'Cardiovascular fitness', isActive: false },
+        { name: 'Power', isActive: false },
+        { name: 'Bodyweight max strength', isActive: false },
+      ],
+    },
+    {
+      title: 'Second',
+      category: 'Diet',
+      subCategories: [
+        { name: 'Nutrition', isActive: true },
+      ],
+    },
+    {
+      title: 'Third',
+      category: 'Supplements',
+      subCategories: [
+        { name: 'Supplement', isActive: true },
+      ],
+    },
+    {
+      title: 'Fourth',
+      category: 'Mind',
+      subCategories: [
+        { name: 'Emotional Fitness', isActive: true },
+      ],
+    },
+  ];
   return (
     <>
       <div className="flex flex-col w-full  items-start gap-2">
@@ -127,7 +170,10 @@ const Analysis = () => {
               Blood Test
             </div>
             <div
-              onClick={() => { setActive(""); setActiveMode("Activity")}}
+              onClick={() => {
+                setActive("");
+                setActiveMode("Activity");
+              }}
               className={` ${
                 activeMode === "Activity" && "bg-black-third"
               } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer `}
@@ -172,6 +218,15 @@ const Analysis = () => {
                 </div>
               </div>
             </div>
+            <div>
+              <div
+                className="bg-black-primary border border-main-border w-8 h-8 flex items-center justify-center cursor-pointer"
+                onClick={handleOpenModal}
+              >
+                <img src="/Themes/Aurora/icons/setting-2.svg" alt="Settings" />
+              </div>
+              <PlanManagerModal isOpen={isModalOpen} onClose={handleCloseModal} priorities={priorities} />
+            </div>
           </div>
         </div>
 
@@ -181,43 +236,46 @@ const Analysis = () => {
             data-active={active && true}
             className={` 
             
-            } ${theme}-biomarker-charts-container  ${activeMode=== "Activity" && 'hidden'} w-full h-full max-h-[400px] overflow-auto  `}
+            } ${theme}-biomarker-charts-container  ${
+              activeMode === "Activity" && "hidden"
+            } w-full h-full max-h-[400px] overflow-auto  `}
           >
             <div
               data-active={active && true}
               className={` ${
-                activeMode === "Activity" && "hidden" 
+                activeMode === "Activity" && "hidden"
               }  ${theme}-biomarker-leftbuttons-container`}
             >
-            <div
-      onClick={handleClick}
-     
-      className={`${theme}-biomarker-analyze-button ${active && 'hidden'} h-[40px] flex items-center justify-center`}
-    >
-      {buttonState === 'initial' && (
-        <>
-          <div className={`${theme}-icons-stars`}  />
-          <h2 className={`${theme}-biomarker-analyze-button-text`}>
-            Analyze by AI-Copilot
-          </h2>
-        </>
-      )}
-      {buttonState === 'loading' && (
-        <div className="flex space-x-2">
-          <span className="animate-ping">•</span>
-          <span className="animate-ping">•</span>
-          <span className="animate-ping">•</span>
-        </div>
-      )}
-      {buttonState === 'completed' && (
-        <>
-          <div className={`${theme}-icons-check`}  />
-          <h2 className={`${theme}-biomarker-analyze-button-text`}>
-            Analyze by AI-Copilot completed
-          </h2>
-        </>
-      )}
-    </div>
+              <div
+                onClick={handleClick}
+                className={`${theme}-biomarker-analyze-button ${
+                  active && "hidden"
+                } h-[40px] flex items-center justify-center`}
+              >
+                {buttonState === "initial" && (
+                  <>
+                    <div className={`${theme}-icons-stars`} />
+                    <h2 className={`${theme}-biomarker-analyze-button-text`}>
+                      Analyze by AI-Copilot
+                    </h2>
+                  </>
+                )}
+                {buttonState === "loading" && (
+                  <div className="flex space-x-2">
+                    <span className="animate-ping">•</span>
+                    <span className="animate-ping">•</span>
+                    <span className="animate-ping">•</span>
+                  </div>
+                )}
+                {buttonState === "completed" && (
+                  <>
+                    <div className={`${theme}-icons-check`} />
+                    <h2 className={`${theme}-biomarker-analyze-button-text`}>
+                      Analyze by AI-Copilot completed
+                    </h2>
+                  </>
+                )}
+              </div>
 
               <div
                 onClick={() => setActive(null)}
@@ -241,17 +299,17 @@ const Analysis = () => {
             {activeMode === "Blood Test" &&
               renderChartCards(BloodtestsChartData)}
             {activeMode === "Vital" && renderChartCards(chartData)}
-           
-           
           </div>
-          
+
           <div
             className={`flex flex-col  w-full gap-2 ${
-              active === null &&  "hidden"
+              active === null && "hidden"
             } `}
           >
-            {active === "chat" &&  (
-              <div className={`${theme}-biomarker-Ai-chat-container min-h-full`}>
+            {active === "chat" && (
+              <div
+                className={`${theme}-biomarker-Ai-chat-container min-h-full`}
+              >
                 <div
                   id="copilot-chat"
                   className="max-h-[506px] h-full overflow-y-scroll"
@@ -345,7 +403,6 @@ const Analysis = () => {
                   !active && "hidden"
                 }   w-full h-full    flex flex-col gap-5  justify-start max-h-[400px]  2xl:max-h-[600px] 3xl:max-h-full   `}
               >
-               
                 {activeChartData && (
                   <NormalChartCard
                     type={activeChartData.type}
@@ -356,47 +413,50 @@ const Analysis = () => {
                 )}
               </div>
             )}
-             {activeMode === "Activity" && ( <div className=" w-full  grid grid-cols-3  xl:grid-cols-4  gap-x-5 gap-y-3">
-              {testData.map((test, i) => (
-                <ActivityCard
-                  key={i}
-                  name={test.name}
-                  score={test.score}
-                  percentage={test.percentage}
-                />
-              ))}
-            </div>)}
-{activeMode !== "Activity" && (  <div
-              className={`${theme}-biomarker-Ai-card  ${
-                active === "chat" &&  "hidden"
-              }  `}
-            >
-              <div className="flex items-center gap-2">
-                <img className={`${theme}-icons-logo`} width={24} alt="" />
-                <h2 className={`${theme}-biomarker-Ai-card-logo-heading-text`}>
-                  AI-Copilot
-                </h2>
+            {activeMode === "Activity" && (
+              <div className=" w-full  grid grid-cols-3  xl:grid-cols-4  gap-x-5 gap-y-3">
+                {testData.map((test, i) => (
+                  <ActivityCard
+                    key={i}
+                    name={test.name}
+                    score={test.score}
+                    percentage={test.percentage}
+                  />
+                ))}
               </div>
-              <div className=" flex w-full justify-between items-center ">
-                <h5 className={`${theme}-biomarker-Ai-card-text`}>
-                  5 Biomarkers need updated information. Send notification to
-                  patient?
-                </h5>
-                <div className="flex gap-2 items-center">
-                  <Button theme={theme + "-secondary"}>
-                    <img className={`${theme}-icons-openbook`} alt="" />
-                    Learn more
-                  </Button>
-                  <Button theme={theme} onClick={() => setActive("chat")}>
-                    Get started
-                    <img className={`${theme}-icons-arrow-right`} alt="" />
-                  </Button>
+            )}
+            {activeMode !== "Activity" && (
+              <div
+                className={`${theme}-biomarker-Ai-card  ${
+                  active === "chat" && "hidden"
+                }  `}
+              >
+                <div className="flex items-center gap-2">
+                  <img className={`${theme}-icons-logo`} width={24} alt="" />
+                  <h2
+                    className={`${theme}-biomarker-Ai-card-logo-heading-text`}
+                  >
+                    AI-Copilot
+                  </h2>
+                </div>
+                <div className=" flex w-full justify-between items-center ">
+                  <h5 className={`${theme}-biomarker-Ai-card-text`}>
+                    5 Biomarkers need updated information. Send notification to
+                    patient?
+                  </h5>
+                  <div className="flex gap-2 items-center">
+                    <Button theme={theme + "-secondary"}>
+                      <img className={`${theme}-icons-openbook`} alt="" />
+                      Learn more
+                    </Button>
+                    <Button theme={theme} onClick={() => setActive("chat")}>
+                      Get started
+                      <img className={`${theme}-icons-arrow-right`} alt="" />
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-
-)}
-          
+            )}
           </div>
         </div>
       </div>
