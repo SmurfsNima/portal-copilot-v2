@@ -606,3 +606,12 @@
   @apply w-5 h-5 bg-brand-primary-color;
    ;
 }
+.Aurora-icons-check{
+  mask-image: url(/public/Themes/Aurora/icons/Circle-Loader.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-brand-secondary-color;
+   ;
+}

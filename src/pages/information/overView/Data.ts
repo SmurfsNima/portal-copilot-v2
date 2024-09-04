@@ -6,7 +6,7 @@ import SleepIcon from "/public/Themes/Aurora/icons/Sleep-icon.svg";
 import MindIcon from "/public/Themes/Aurora/icons/Mind-icon.svg";
 export const btnInfo =[
     {
-        text : 'Patient Info',
+        text : 'Client Info',
       
     },
     {
@@ -43,7 +43,7 @@ export const appointments = [
   ];
  export const patientMainInfo = [
     {
-        name :  "Nutritions",
+        name :  "Diet",
         value : 74,
         border : NutritionBorder,
         icon : NutritionIcon,
@@ -55,7 +55,7 @@ export const appointments = [
         icon : ActivityIcon,
     },
     {
-        name : "Sleep",
+        name : "Supplement",
         value: 99,
         border : Border,
         icon : SleepIcon,

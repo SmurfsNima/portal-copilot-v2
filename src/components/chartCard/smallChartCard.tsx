@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { LineChart, MixedLinesChart } from "@/components/charts/index";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
+import VerticalBarChart from "../charts/BarChart";
 interface ChartData {
   dates: string[];
   values: number[] | { Low: number[]; High: number[] };
@@ -15,7 +16,7 @@ interface ChartCardProps {
   active: string | null;
   setActive: Dispatch<SetStateAction<any>>;
 }
-const otherTypes = ['Hb' , 'HCT' , 'WBC' ,'MCHC' , 'MCH' , 'RBC', 'PLT' ]
+// const otherTypes = ['Hb' , 'HCT' , 'WBC' ,'MCHC' , 'MCH' , 'RBC', 'PLT' ]
 export const SmallChartCard: React.FC<ChartCardProps> = ({
 
   type ,
@@ -100,16 +101,16 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
     <div
       onClick={() => setActive(type)}
     data-active ={active===type}
-    className={`${theme}-smallChartCard-container cursor-pointer`}
+    className={`${theme}-smallChartCard-container relative cursor-pointer`}
     >
       <div className=" w-full  flex   flex-col gap-3  ">
         <div className="flex gap-2 items-center">
-          <div className="bg-black-background flex items-center justify-center rounded-lg p-1">
+          {/* <div className="bg-black-background flex items-center justify-center rounded-lg p-1">
             <img
               className={`${theme}-icons-${type?.replace(/\s+/g, "")}`}
               alt=""
             />
-          </div>
+          </div> */}
 
           <h2
           data-active={active===type}
@@ -118,7 +119,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
             {type}
           </h2>
         </div>
-        {
+        {/* {
             type === "CBC" &&(
                 <div className=" w-full flex  my-1 ">
                 { otherTypes.map((item , i) => (
@@ -135,17 +136,18 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
                 ))}
               </div>
             )
-        }
+        } */}
        
-        <div className=" w-[180px] h-[100px]">
+        <div className=" relative w-[180px] h-[100px]">
           {type === "Blood Pressure" ? (
             <MixedLinesChart   ChartData={lowHighValues}  active={active === type} />
-          ) : (
+          )
+           : type=== "Left Leg Stand Duration" ? (<VerticalBarChart performane={lastValue}/>) : (
             <LineChart     ChartData={lineChartData} active={active === type} model={"line"} />
-          )}
+          ) }
         </div>
       </div>
-      <div className="flex flex-col items-end justify-between w-full ">
+      <div className={` ${type=== "Left Leg Stand Duration" ? 'flex-row absolute top-[50%] left-6 gap-5' : 'flex-col justify-between'} flex  items-end w-full `}>
         <div className="flex flex-col text-center  ">
           <h2
              data-active={active===type}
@@ -171,12 +173,12 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
               ? "bpm"
               : type === "CBC"
               ? "%"
-              : "mm/hg"}
+              : type === "Left Leg Stand Duration" ? "seconds" : "mm/hg"}
           </span>
           </h2>{" "}
           
         </div>
-        <div className={` ${type==="CBC" && 'hidden'} flex  text-center  flex-col`}>
+        <div className={` flex  text-center  flex-col`}>
           <h2
            data-active={active===type}
              className={` ml-[2px] ${
@@ -187,7 +189,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
           <h2
            data-active={active===type}
             className={` ml-[2px]  ${
-                theme}-smallChartCard-text text-primary-text  text-lg`}
+                theme}-smallChartCard-text text-primary-text  text-sm 2xl:text-lg`}
           >
             {lastValue}
             <span
@@ -195,13 +197,13 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
             className={` ml-[2px]   ${
                 theme}-smallChartCard-text text-[10px]`}
           >
-            {type === "Temperature"
+           {type === "Temperature"
               ? "oF"
               : type === "Heart Rate"
               ? "bpm"
               : type === "CBC"
               ? "%"
-              :  "mm/hg"}
+              : type === "Left Leg Stand Duration" ? "seconds" : "mm/hg"}
           </span>
           </h2>{" "}
         

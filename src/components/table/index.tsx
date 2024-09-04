@@ -82,6 +82,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
 
   const handleAddClient = (clientData: any) => {
     console.log("Client Added:", clientData);
+    setisProfileClientOpen(true)
   };
 
   const handlePageChange = (page: number) => {

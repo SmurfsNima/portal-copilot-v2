@@ -20,7 +20,7 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
         <div className="flex items-center gap-2 text-sm font-medium text-center text-nowrap">
           <div className="h-8 w-8 bg-black-background rounded-lg flex items-center justify-center">
             {" "}
-            <img   className={`${theme}-icons-${name.replace(/\s+/g, "")}`} alt="" />
+            <img   className={ ` bg-brand-primary-color ${theme}-icons-${name.replace(/\s+/g, "")}`} alt="" />
           </div>
 
           {name}
