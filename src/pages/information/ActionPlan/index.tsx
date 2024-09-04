@@ -115,31 +115,38 @@ export const ActionPlan = () => {
           <div className="flex justify-between items-center pb-4">
             <h2 className="text-sm font-semibold">Action Plan 012</h2>
             <div className="flex items-center space-x-4">
-              {!showHistory && (
-                <button
+              <button
                   onClick={() => setShowHistory(true)}
-                  className="flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs"
-                >
-                  <img src="/Themes/Aurora/icons/clock.svg" alt="" />
-                  Show History
-                </button>
+                  className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+              >
+                <img src="/Themes/Aurora/icons/document-download.svg" alt=""/>
+                Download Report
+              </button>
+              {!showHistory && (
+                  <button
+                      onClick={() => setShowHistory(true)}
+                      className="flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs"
+                  >
+                    <img src="/Themes/Aurora/icons/clock.svg" alt=""/>
+                    Show History
+                  </button>
               )}
-              <Button onClick={()=>fetchData()} theme={theme}>
-                <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
+              <Button onClick={() => fetchData()} theme={theme}>
+                <img src="/Themes/Aurora/icons/refresh-2.svg" alt=""/>
                 Re-Generate
               </Button>
             </div>
           </div>
 
           <div
-            onClick={() => setIsDescription(!isDescription)}
-            className="w-full flex items-center gap-2 cursor-pointer text-sm"
+              onClick={() => setIsDescription(!isDescription)}
+              className="w-full flex items-center gap-2 cursor-pointer text-sm"
           >
             <img
-              src="/Themes/Aurora/icons/chevron-down.svg"
-              className={`transition-transform ${
-                isDescription && "rotate-180"
-              }`}
+                src="/Themes/Aurora/icons/chevron-down.svg"
+                className={`transition-transform ${
+                    isDescription && "rotate-180"
+                }`}
               alt=""
             />
             Description

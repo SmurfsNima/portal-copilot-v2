@@ -96,6 +96,13 @@ export const TreatmentPlan = () => {
           <div className="flex justify-between items-center pb-4">
             <h2 className="text-sm font-semibold">Treatment Plan 012</h2>
             <div className="  flex items-center space-x-4">
+              <button
+                  onClick={() => setShowHistory(true)}
+                  className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+              >
+                <img src="/Themes/Aurora/icons/document-download.svg" alt="" />
+                Download Report
+              </button>
               {!showHistory && (
                 <button
                   onClick={() => setShowHistory(true)}
