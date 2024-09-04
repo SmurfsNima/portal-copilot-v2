@@ -40,7 +40,10 @@ export default {
       },
       screens:{
         '3xl':'1700px'
-      }
+      },
+      animation: {
+        'spin-slow': 'spin 1s linear infinite',
+      },
     },
   },
 

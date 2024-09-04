@@ -82,15 +82,20 @@ export const ActionPlan = () => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
   const [isDescription, setIsDescription] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
   const fetchData = async () => {
+    setIsLoading(true); // Start loading
     try {
       const response = await ApplicationMock.getActionPLan();
       setActionPlans(response.data);
+      setIsLoading(false); // Stop loading
       console.log(response.data)
     } catch (err) {
       console.error(err);
+      setIsLoading(false); // Stop loading
+
     }
   };
 
@@ -132,7 +137,7 @@ export const ActionPlan = () => {
                   </button>
               )}
               <Button onClick={() => fetchData()} theme={theme}>
-                <img src="/Themes/Aurora/icons/refresh-2.svg" alt=""/>
+                <img src="/Themes/Aurora/icons/refresh-2.svg" alt=""  className={`${isLoading ? 'animate-spin-slow' : ''}`}/>
                 Re-Generate
               </Button>
             </div>
