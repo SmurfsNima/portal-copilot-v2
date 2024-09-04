@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SigmaContainer } from "@react-sigma/core";
 import { useLoadGraph, useRegisterEvents, useSigma } from "@react-sigma/core";
 import "@react-sigma/core/lib/react-sigma.min.css";
 import { useEffect, useState } from "react";
 import Graph from "graphology";
 import chroma from "chroma-js";
-import { Application } from "@/api";
+import { ApplicationMock } from "@/api";
 import { useLayoutCircular } from "@react-sigma/layout-circular";
 const GraphEvents = () => {
   const registerEvents = useRegisterEvents();
@@ -44,65 +45,53 @@ const GraphEvents = () => {
 
 interface LoadGraphProps {
   activeFilters: string[];
+  graphData: any; // Use the appropriate type based on your data structure
   isInitialLoad: boolean;
 }
 
-
-
-export const LoadGraph: React.FC<LoadGraphProps> = ({ activeFilters, isInitialLoad }) => {
+const LoadGraph: React.FC<LoadGraphProps> = ({ activeFilters, graphData, isInitialLoad }) => {
   const loadGraph = useLoadGraph();
-  const { assign } = useLayoutCircular(); 
+  const { assign } = useLayoutCircular();
 
   useEffect(() => {
+    if (!graphData) return; // Ensure graphData is available
+
     const graph = new Graph();
 
-    const fetchGraphData = async () => {
-      try {
-        const response = await Application.getgraphData();
-        const graphData = response.data;
+    const nodesToAdd = isInitialLoad
+      ? graphData.nodes
+      : graphData.nodes.filter(
+          (node: any) =>
+            activeFilters.includes(node.category1) || activeFilters.includes(node.category2)
+        );
 
-        const nodesToAdd = isInitialLoad
-          ? graphData.nodes
-          : graphData.nodes.filter(
-              (node: any) =>
-                activeFilters.includes(node.category1) || activeFilters.includes(node.category2)
-            );
+    const nodeSet = new Set(nodesToAdd.map((node: any) => node.id));
 
-        const nodeSet = new Set(nodesToAdd.map((node: any) => node.id));
+    nodesToAdd.forEach((node: any) => {
+      const randomColor = chroma.random().hex();
+      graph.addNode(node.id, {
+        label: node.label,
+        size: node.size,
+        color: randomColor,
+        x: Math.random(),
+        y: Math.random(),
+      });
+    });
 
-        nodesToAdd.forEach((node: any) => {
-          const randomColor = chroma.random().hex();
-          graph.addNode(node.id, {
-            label: node.label,
-            size: node.size,
-            color: randomColor,
-            x: Math.random(),
-            y: Math.random(), 
-          });
+    graphData.edges.forEach((edge: any, index: number) => {
+      if (nodeSet.has(edge.source) && nodeSet.has(edge.target)) {
+        graph.addEdgeWithKey(`edge-${index}`, edge.source, edge.target, {
+          weight: edge.weight,
+          color: "#fff",
         });
-
-        graphData.edges.forEach((edge: any, index: number) => {
-          if (nodeSet.has(edge.source) && nodeSet.has(edge.target)) {
-            graph.addEdgeWithKey(`edge-${index}`, edge.source, edge.target, {
-              weight: edge.weight,
-              color: chroma.random().hex(),
-            });
-          }
-          else{
-              console.warn(`Missing nodes for edge: ${edge.source} -> ${edge.target}`);
-
-          }
-        });
-
-        loadGraph(graph);
-        assign();
-      } catch (error) {
-        console.error("Error fetching graph data:", error);
+      } else {
+        console.warn(`Missing nodes for edge: ${edge.source} -> ${edge.target}`);
       }
-    };
+    });
 
-    fetchGraphData();
-  }, [activeFilters, isInitialLoad, loadGraph, assign]);
+    loadGraph(graph);
+    assign();
+  }, [activeFilters, graphData, isInitialLoad, loadGraph, assign]);
 
   return null;
 };
@@ -112,6 +101,8 @@ const AiKnowledge = () => {
   const [isReportsOpen, setIsReportsOpen] = useState(true);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [graphData, setGraphData] = useState<any>(null); // Adjust the type as needed
+
   const categories = [
     "Health",
     "Fitness",
@@ -124,6 +115,18 @@ const AiKnowledge = () => {
     "Nutrition",
     "Strength"
   ];
+  useEffect(() => {
+    const fetchGraphData = async () => {
+      try {
+        const response = await ApplicationMock.getgraphData();
+        setGraphData(response.data);
+      } catch (error) {
+        console.error("Error fetching graph data:", error);
+      }
+    };
+
+    fetchGraphData();
+  }, []);
   const handleButtonClick = (category: string) => {
     setIsInitialLoad(false);
     setActiveFilters((prevFilters) =>
@@ -134,7 +137,7 @@ const AiKnowledge = () => {
   };
   return (
     <div className="relative text-primary-text flex justify-center w-full">
-      <div className="w-64 text-primary-text text-xs text-nowrap flex flex-col px-5 pt-[55px]">
+      <div className=" absolute left-0 w-64 text-primary-text text-xs text-nowrap flex flex-col px-5 pt-[55px]">
       {categories.map((category) => (
           <button
             key={category}
@@ -147,7 +150,7 @@ const AiKnowledge = () => {
           </button>
         ))}
       </div>
-
+<div className="w-full h-full flex items-center justify-center">
       <SigmaContainer
         settings={{
           allowInvalidContainer: true,
@@ -164,11 +167,12 @@ const AiKnowledge = () => {
           },
         }}
         id="sigma-container"
-        style={{ height: window.innerHeight, width: window.innerWidth, backgroundColor: "#121212" }}
+        style={{ height: "500px", width: "500px", backgroundColor: "#121212" }}
       >
-        <LoadGraph activeFilters={activeFilters} isInitialLoad={isInitialLoad} />
+        <LoadGraph graphData={graphData}  activeFilters={activeFilters} isInitialLoad={isInitialLoad} />
         <GraphEvents />
       </SigmaContainer>
+      </div>
 
       <div className="fixed right-5 top-[15%] w-64 text-primary-text bg-black-primary border border-main-border flex flex-col p-4 rounded-md">
         <button className="mb-4 flex justify-center gap-2 text-secondary-text border border-main-border border-dashed py-2 rounded-lg">

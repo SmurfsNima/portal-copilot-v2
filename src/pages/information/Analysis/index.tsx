@@ -289,7 +289,7 @@ const Analysis = () => {
               </div>
             )}
             {activeMode === "Blood Test" && active !== "chat" && (
-              <div className="w-full  bg-black-primary border border-main-border px-12 py-5  flex flex-col gap-3 text-primary-text rounded-lg">
+              <div className="w-full max-h-[400px]  2xl:max-h-[600px]   bg-black-primary border border-main-border px-12 py-3  flex flex-col gap-3 text-primary-text rounded-lg">
                 <div className="flex  items-start gap-4">
                   <div className="bg-black-background  rounded-lg flex items-center justify-center p-1">
                     {" "}
@@ -314,8 +314,8 @@ const Analysis = () => {
                         <span className="text-primary-text text-lg">50%</span>
                       </div>
                       <div className="text-secondary-text text-xs">
-                        Avarage value{" "}
-                        <span className="text-primary-text text-lg">50%</span>
+                        Current value{" "}
+                        <span className="text-primary-text text-lg">60%</span>
                       </div>
                     </div>
                   </div>

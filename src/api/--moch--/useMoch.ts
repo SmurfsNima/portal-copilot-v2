@@ -7,6 +7,7 @@ import Allbiomarkers from './data/Allbiomarkers.json'
 import AllBloodtests from './data/AllBloodtests.json'
 import diagnosis from './data/diagnosis.json'
 import graphData from './data/graphData.json'
+import actionPlan  from "./data/actionPlan.json"
 const useMoch = () => {
     Api.post("/auth/token",{
         access_token:"ebdsjcdkosoqe3r4gnfvnwoe2g94nvsjka23f0vslvnsk39jsncje239"
@@ -20,6 +21,7 @@ const useMoch = () => {
     Api.post("/getAllBloodtests" , AllBloodtests)
     Api.post("/getDiagnosis" , diagnosis)
     Api.post("/graphData" , graphData)
+    Api.post("/actionplan" , actionPlan)
 };
 
 

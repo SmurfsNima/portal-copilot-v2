@@ -90,7 +90,7 @@ const MethylationChart: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-black-secondary border border-main-border p-6 rounded-lg shadow-md max-w-[872px] max-h-[223px]">
+    <div className=" w-full bg-black-secondary border border-main-border p-4 rounded-lg shadow-md max-w-[872px] max-h-[223px]">
       <canvas ref={chartRef} />
     </div>
   );

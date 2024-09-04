@@ -18,10 +18,11 @@ import {
 } from "@tanstack/react-table";
 import { FaSort } from "react-icons/fa";
 import { Button } from "symphony-ui";
-import { useEffect, useState } from "react";
+import { useEffect, useState  } from "react";
 import { Pationt } from "@/model/index.ts";
 import AddClientModal from "@/pages/patientList/addClientModal.tsx";
 import Pagination from "../pagination/index.tsx";
+import ClientPreview from "@/pages/patientList/ClientPreview.tsx";
 
 interface TableProps {
   classData: Array<Pationt>;
@@ -42,6 +43,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const [data, setData] = useState(classData);
   const [globalFilter, setGlobalFilter] = useState(""); // State for global filter
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isProfileClientOpen, setisProfileClientOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 100;
 
@@ -114,7 +116,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
             </Button>
             <Button onClick={handleOpenModal} theme={theme}>
               <RiUserAddLine className="w-5 h-5" />
-              Add Patient{" "}
+              Add Client{" "}
             </Button>
           </div>
           <AddClientModal
@@ -122,6 +124,11 @@ const Table: React.FC<TableProps> = ({ classData }) => {
             onClose={handleCloseModal}
             onSubmit={handleAddClient}
           />
+          <ClientPreview
+            isOpen={isProfileClientOpen}
+            onClose={() => setisProfileClientOpen(false)}    
+            onSubmit={() =>{}}      
+          ></ClientPreview>
         </div>
         <div className={`${theme}-Table-container h-[50vh] ${theme}-scrollBar`}>
           {table.getRowModel().rows.length > 0 ? (

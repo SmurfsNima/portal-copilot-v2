@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Application } from "@/api";
+import  ApplicationMock  from "@/api/appMock";
 import { Table, NumberBox } from "@/components";
 // import { useConstructor } from "@/help";
 import { Pationt } from "@/model";
@@ -79,7 +80,7 @@ const PatientList = () => {
       }
 
       try {
-        const reportsResponse = await Application.getReports();
+        const reportsResponse = await ApplicationMock.getReports();
         setReports(reportsResponse.data);
       } catch (error) {
         console.error("Failed to fetch reports:", error);
