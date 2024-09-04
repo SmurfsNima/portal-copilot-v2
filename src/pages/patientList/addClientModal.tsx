@@ -1,4 +1,6 @@
 import  React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { Button } from 'symphony-ui';
 interface AddClientModalProps{
     isOpen: boolean;
     onClose: () => void;
@@ -7,6 +9,7 @@ interface AddClientModalProps{
 const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const theme = useSelector((state: any) => state.theme.value.name);
   const [wearableDevice, setWearableDevice] = useState("");
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -38,6 +41,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
 
     onClose();
   };
+  
   const sendInvitationEmail = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
     console.log(email);
     
@@ -140,12 +144,15 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
               <option value="device3">Device 3</option>
             </select>
           </div>
-          <button
+          <div className='flex justify-center'>
+          <Button
             type="submit"
-            className="w-full text-[14px] bg-brand-primary-color text-black p-2 rounded hover:bg-teal-500"
+            theme={theme}
+            // className="w-full text-[14px] bg-brand-primary-color text-black p-2 rounded hover:bg-teal-500"
           >
            Add Client & Send Invitation
-          </button>
+          </Button>
+          </div>
         </form>
       </div>
     </div>

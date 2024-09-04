@@ -31,7 +31,7 @@ const TabsWrapper: React.FC<TabsWrapperProps> = ({ TabsInfo, handleTabClick,isNo
     const matchingTab = TabsInfo.find(tab => lastSegment === tab.path);
     return matchingTab ? matchingTab.text : null;
   };
-  const [active, setActive] = useState(getActiveTab(location.pathname) || "Overview");
+  const [active, setActive] = useState(getActiveTab(location.pathname) || "Overview"||"Summary");
 
   useEffect(() => {
     setActive(getActiveTab(location.pathname) || "Overview");

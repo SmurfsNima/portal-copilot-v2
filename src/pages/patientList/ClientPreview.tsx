@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Accordion, TabsWrapper } from "@/components";
 import { useEffect, useRef, useState } from "react";
 import border from "../../assets/images/profile-img-border.svg";
 import NullPage from '../../assets/images/Group.png';
+import { Button } from "symphony-ui";
+import { useSelector } from "react-redux";
 interface ClientPreviewProps{
     isOpen: boolean;
     onClose: () => void;
@@ -12,6 +15,7 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
     onClose
 }) => {
     const modalRef = useRef<HTMLDivElement>(null);
+    const theme = useSelector((state: any) => state.theme.value.name);
     const tabs =[
         {
             text: "Summary",
@@ -194,9 +198,38 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
                         :
                         <>
                             <div className=" flex w-full justify-center">
-                                <div className="text-[12px] text-[#FFFFFFDE]">
-                                    <div>. Once your file is selected, click the "Upload" button.</div>
-                                    <div className="mt-[8px]"><div className="w-[8px] h-[8px]"></div> Wait for the upload to complete and check for a confirmation message indicating success.</div>
+                                <div>
+                                    <div className="text-[12px]  text-center mt-10 text-[#FFFFFFDE]">
+                                        <div className="mt-[4px] flex justify-start items-center"><div className="w-[3px] mr-2 h-[3px] bg-white rounded-full"></div>Once your file is selected, click the "Upload" button.</div>
+                                        <div className="mt-[4px] flex justify-start items-center"><div className="w-[3px] mr-2 h-[3px] bg-white rounded-full"></div> Wait for the upload to complete and check for a confirmation message indicating success.</div>
+                                    </div>
+
+                                    <div className="bg-black-primary relative mt-8 flex justify-center items-center rounded-[12px] w-[536px] h-[193px]">
+                                        <div onClick={() => {
+                                            document.getElementById("fileUploader")?.click()
+                                        }} className="text-center ">
+                                            <div className="flex justify-center">
+                                                <img src="./Themes/Aurora/icons/csvUpload.svg" alt="" />
+
+                                            </div>
+                                            <div className="text-[12px] mt-3">Drag and drop a file here or <span className="text-[#03DAC5]">upload a file</span></div>
+                                            <div className="text-[#FFFFFF61] text-[12px]">CSV</div>
+                                        </div>
+                                        
+                                        <input id="fileUploader" type="file" className="absolute invisible top-0 left-0 cursor-pointer w-full h-full" />
+                                    </div>
+                                    
+                                    <div className="flex mt-8 justify-center w-full">
+                                        <Button onClick={() => {
+                                            onClose()
+                                        }} theme={theme}>
+                                            <div className="text-[#1E1E1E] px-8">
+                                                Save Changes
+
+                                            </div>
+                                            </Button>
+
+                                    </div>
 
                                 </div>
                             </div>
