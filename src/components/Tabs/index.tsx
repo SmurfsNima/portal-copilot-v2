@@ -14,9 +14,10 @@ interface TabItem {
 interface TabsWrapperProps {
   TabsInfo: TabItem[];
   handleTabClick?: (path: string) => void;
+  isNotNavigate?:boolean
 }
 
-const TabsWrapper: React.FC<TabsWrapperProps> = ({ TabsInfo, handleTabClick }) => {
+const TabsWrapper: React.FC<TabsWrapperProps> = ({ TabsInfo, handleTabClick,isNotNavigate }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -38,7 +39,9 @@ const TabsWrapper: React.FC<TabsWrapperProps> = ({ TabsInfo, handleTabClick }) =
 
   const handleTabClickInternal = (path: string, tab: string) => {
     setActive(tab);
-    navigate(path);
+    if(!isNotNavigate){
+      navigate(path);
+    }
     handleTabClick?.(path);
 
   };

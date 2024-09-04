@@ -32,7 +32,6 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
     e.preventDefault();
     const clientData = { fullName, email, wearableDevice };
     onSubmit(clientData);
-console.log(clientData);
 
     // Send invitation email
     await sendInvitationEmail(clientData);
