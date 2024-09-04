@@ -76,6 +76,8 @@ export const TreatmentPlan = () => {
   const [treatmentActive, setTreatmentActive] = useState(0);
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
   const [isDescription, setIsDescription] = useState(true);
+  const [treatmentPlanDataApi, setTreatmentPlanDataApi] = useState<string[]>([]);
+
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
   return (
     <div className="flex flex-col gap-3 w-full">
@@ -88,6 +90,7 @@ export const TreatmentPlan = () => {
         />
         <img src="/Themes/Aurora/icons/send.svg" alt="" />
       </div>
+      {treatmentPlanDataApi.length>0?
       <div className="w-full flex gap-2">
         <div className="bg-black-primary text-primary-text w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border">
           <div className="flex justify-between items-center pb-4">
@@ -434,6 +437,16 @@ export const TreatmentPlan = () => {
           </div>
         )}
       </div>
-    </div>
+    :
+          (<div className={"flex flex-col items-center justify-center bg-black-primary text-primary-text w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border"}>
+            <img src={"/images/EmptyState.png"}/>
+            <h1>Nothing to Show</h1>
+            <Button onClick={()=>setTreatmentPlanDataApi((prv)=>[...prv,"hi"])} theme={theme}>
+              <img src="/Themes/Aurora/icons/add-square-fill.svg" alt="" />
+              Generate
+            </Button>
+          </div>)
+      }
+      </div>
   );
 };

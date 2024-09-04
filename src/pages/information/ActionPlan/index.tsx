@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard , PopUp } from "@/components";
-import { useState , useEffect } from "react";
+import { useState  } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import { actionPlan } from "@/types";
