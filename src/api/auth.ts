@@ -4,11 +4,11 @@ interface AuthResponse {
     access_token: string;
   };
 }
-const mockUser = {
-  username: "codie",
-  password: "codie#123",
-  accessToken: "mockAccessToken123"
-};
+// const mockUser = {
+//   username: "codie",
+//   password: "codie#123",
+//   accessToken: "mockAccessToken123"
+// };
 class Auth extends Api {
   static login(username: string, password: string): Promise<AuthResponse> {
     // return new Promise((resolve, reject) => {
