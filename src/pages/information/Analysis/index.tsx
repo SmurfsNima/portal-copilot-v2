@@ -31,6 +31,8 @@ const Analysis = () => {
   ]);
   const [active, setActive] = useState<string | null>(null);
   const [activeMode, setActiveMode] = useState("Vital");
+  const [buttonState, setButtonState] = useState('initial'); 
+
   const handleSendMessage = (message: string) => {
     if (message.trim()) {
       setMessages([...messages, { type: "text", content: message }]);
@@ -65,12 +67,12 @@ const Analysis = () => {
     ));
   const testData = [
     {
-      name: "Pharmaceutical",
+      name: "Diet",
       score: 5.6,
       percentage: 33,
     },
     {
-      name: "Lifestyle",
+      name: "Activity",
       score: 6.3 / 10,
       percentage: 68,
     },
@@ -80,27 +82,22 @@ const Analysis = () => {
       percentage: 17,
     },
     {
-      name: "Exercise",
+      name: "Mind",
       score: 8.2,
       percentage: 97,
     },
-    {
-      name: "General Instructions",
-      score: 5.9,
-      percentage: 52,
-    },
-    {
-      name: "Diet",
-      score: 7.1,
-      percentage: 77,
-    },
-    {
-      name: "Further Testing",
-      score: 5.0,
-      percentage: 58,
-    },
+   
   ];
+  const handleClick = () => {
+   
+    setButtonState('loading');
 
+    setTimeout(() => {
+      setButtonState('completed');
+    }, 3000);
+  };
+  useEffect(()=> console.log(buttonState) , [buttonState]
+  )
   return (
     <>
       <div className="flex flex-col w-full  items-start gap-2">
@@ -189,19 +186,38 @@ const Analysis = () => {
             <div
               data-active={active && true}
               className={` ${
-                activeMode === "Activity" && "hidden"
-              } ${theme}-biomarker-leftbuttons-container`}
+                activeMode === "Activity" && "hidden" 
+              }  ${theme}-biomarker-leftbuttons-container`}
             >
-              <div
-                onClick={() => setActive("chat")}
-                data-active={active && true}
-                className={`${theme}-biomarker-analyze-button h-[40px]`}
-              >
-                <img className={`${theme}-icons-stars`} alt="" />{" "}
-                <h2 className={`${theme}-biomarker-analyze-button-text`}>
-                  Analyze by AI-Copilot
-                </h2>
-              </div>
+            <div
+      onClick={handleClick}
+     
+      className={`${theme}-biomarker-analyze-button ${active && 'hidden'} h-[40px] flex items-center justify-center`}
+    >
+      {buttonState === 'initial' && (
+        <>
+          <div className={`${theme}-icons-stars`}  />
+          <h2 className={`${theme}-biomarker-analyze-button-text`}>
+            Analyze by AI-Copilot
+          </h2>
+        </>
+      )}
+      {buttonState === 'loading' && (
+        <div className="flex space-x-2">
+          <span className="animate-ping">•</span>
+          <span className="animate-ping">•</span>
+          <span className="animate-ping">•</span>
+        </div>
+      )}
+      {buttonState === 'completed' && (
+        <>
+          <div className={`${theme}-icons-check`}  />
+          <h2 className={`${theme}-biomarker-analyze-button-text`}>
+            Analyze by AI-Copilot completed
+          </h2>
+        </>
+      )}
+    </div>
 
               <div
                 onClick={() => setActive(null)}
@@ -329,6 +345,7 @@ const Analysis = () => {
                   !active && "hidden"
                 }   w-full h-full    flex flex-col gap-5  justify-start max-h-[400px]  2xl:max-h-[600px] 3xl:max-h-full   `}
               >
+               
                 {activeChartData && (
                   <NormalChartCard
                     type={activeChartData.type}

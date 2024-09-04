@@ -24,13 +24,13 @@
 .Aurora-graphicinfo-patientinfo {
   @apply absolute border-2 p-2  border-main-border rounded-full flex justify-center items-center w-[80px] h-[80px] lg:w-[100px] lg:h-[100px]   xl:w-[115px] xl:h-[115px] 2xl:w-[130px] 2xl:h-[130px];
 }
-.Aurora-graphicinfo-patientinfo-Nutritions-position {
+.Aurora-graphicinfo-patientinfo-Diet-position {
   @apply top-2 left-2 xl:top-5 xl:left-10;
 }
 .Aurora-graphicinfo-patientinfo-Activity-position {
   @apply bottom-4 left-3 xl:bottom-5 xl:left-10;
 }
-.Aurora-graphicinfo-patientinfo-Sleep-position {
+.Aurora-graphicinfo-patientinfo-Supplement-position {
   @apply top-5 right-5  xl:top-5 xl:right-10;
 }
 .Aurora-graphicinfo-patientinfo-Mind-position {

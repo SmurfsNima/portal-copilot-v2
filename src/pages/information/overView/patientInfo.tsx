@@ -13,10 +13,10 @@ export const PatientInfo: React.FC<patientInfoProps> = ({ name, value , icon , b
       <img className="absolute w-full h-full object-cover" src={border} alt="" />
       <div className="flex flex-col  items-center justify-center gap-1">
         <img className="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px]" src={icon} alt="" />
-        <h2 className={`${name === "Nutritions" ? 'text-primary-color' : 'text-brand-secondary-color'}  font-bold text-[8px] lg:text-xs xl:text-lg 2xl:text-[20px]`}>
+        <h2 className={`${name === "Diet" ? 'text-primary-color' : 'text-brand-secondary-color'}  font-bold text-[8px] lg:text-xs xl:text-lg 2xl:text-[20px]`}>
           {value}%
         </h2>
-        <p className="text-third-text text-[8px] lg:text-[10px] xl:text-xs 2xl:text-[12px] font-normal">{name}</p>
+        <p className="mb-2  text-third-text text-[8px] lg:text-[10px] xl:text-xs  font-normal">{name}</p>
       </div>
     </div>
   );
