@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard , PopUp } from "@/components";
-import { useState , useEffect } from "react";
+import { useState  } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import { actionPlan } from "@/types";
@@ -82,19 +82,23 @@ export const ActionPlan = () => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
   const [isDescription, setIsDescription] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await ApplicationMock.getActionPLan();
-        setActionPlans(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    setIsLoading(true); // Start loading
+    try {
+      const response = await ApplicationMock.getActionPLan();
+      setActionPlans(response.data);
+      setIsLoading(false); // Stop loading
+      console.log(response.data)
+    } catch (err) {
+      console.error(err);
+      setIsLoading(false); // Stop loading
+
+    }
+  };
+
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
   return (
@@ -110,36 +114,44 @@ export const ActionPlan = () => {
         />
         <img src="/Themes/Aurora/icons/send.svg" alt="" />
       </div>
+      {actionPlans.length>0?
       <div className="w-full flex gap-2">
         <div className="bg-black-primary text-primary-text w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border">
           <div className="flex justify-between items-center pb-4">
             <h2 className="text-sm font-semibold">Action Plan 012</h2>
             <div className="flex items-center space-x-4">
-              {!showHistory && (
-                <button
+              <button
                   onClick={() => setShowHistory(true)}
-                  className="flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs"
-                >
-                  <img src="/Themes/Aurora/icons/clock.svg" alt="" />
-                  Show History
-                </button>
+                  className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+              >
+                <img src="/Themes/Aurora/icons/document-download.svg" alt=""/>
+                Download Report
+              </button>
+              {!showHistory && (
+                  <button
+                      onClick={() => setShowHistory(true)}
+                      className="flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs"
+                  >
+                    <img src="/Themes/Aurora/icons/clock.svg" alt=""/>
+                    Show History
+                  </button>
               )}
-              <Button theme={theme}>
-                <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
+              <Button onClick={() => fetchData()} theme={theme}>
+                <img src="/Themes/Aurora/icons/refresh-2.svg" alt=""  className={`${isLoading ? 'animate-spin-slow' : ''}`}/>
                 Re-Generate
               </Button>
             </div>
           </div>
 
           <div
-            onClick={() => setIsDescription(!isDescription)}
-            className="w-full flex items-center gap-2 cursor-pointer text-sm"
+              onClick={() => setIsDescription(!isDescription)}
+              className="w-full flex items-center gap-2 cursor-pointer text-sm"
           >
             <img
-              src="/Themes/Aurora/icons/chevron-down.svg"
-              className={`transition-transform ${
-                isDescription && "rotate-180"
-              }`}
+                src="/Themes/Aurora/icons/chevron-down.svg"
+                className={`transition-transform ${
+                    isDescription && "rotate-180"
+                }`}
               alt=""
             />
             Description
@@ -199,71 +211,77 @@ export const ActionPlan = () => {
             <div className="mt-4 space-y-4 text-xs">
               {actionPlans.map((plan, planIndex) =>
                 plan.plan_info.monthly_plan.weekly_plan.map((week, weekIndex) =>
-                  week.categories.map((category, categoryIndex) => (
-                    <div
-                      key={`${planIndex}-${weekIndex}-${categoryIndex}`}
-                      className="space-y-3"
-                    >
-                      <div className="w-full text-lg font-semibold text-gray-300 flex justify-between items-center gap-2">
-                        <div className="flex items-center gap-3 text-xs">
-                          <div className="bg-black-third rounded-lg p-1">
-                            <div
-                              className={`${theme}-icons-${category.category_name}`}
-                            />
-                          </div>
-                          {category.category_name}
-                        </div>
-                        <img src="/Themes/Aurora/icons/edit.svg" alt="" />
-                      </div>
-                      <ul className="ml-6 list-disc space-y-2 text-primary-text">
-                        {category.tasks.map((task) => (
-                          <li key={task.task_id}>
-                            <div className="flex items-center w-full gap-1">
-                              <div className="">
-                                {" "}
-                                {task.description}{" "}
-                                <span className="text-secondary-text">
+                    {
+                      console.log("week:",week)
+                      return(
+                          week.categories.map((category, categoryIndex) => (
+                              <div
+                                  key={`${planIndex}-${weekIndex}-${categoryIndex}`}
+                                  className="space-y-3"
+                              >
+                                <div className="w-full text-lg font-semibold text-gray-300 flex justify-between items-center gap-2">
+                                  <div className="flex items-center gap-3 text-xs">
+                                    <div className="bg-black-third rounded-lg p-1">
+                                      <div
+                                          className={`${theme}-icons-${category.category_name}`}
+                                      />
+                                    </div>
+                                    {category.category_name}
+                                  </div>
+                                  <img src="/Themes/Aurora/icons/edit.svg" alt="" />
+                                </div>
+                                <ul className="ml-6 list-disc space-y-2 text-primary-text">
+                                  {category.tasks.map((task) => (
+                                      <li key={task.task_id}>
+                                        <div className="flex items-center w-full gap-1">
+                                          <div className="">
+                                            {" "}
+                                            {task.description}{" "}
+                                            <span className="text-secondary-text">
                                   / Instructions:{" "}
                                 </span>
-                                {task.how}
-                                <span className="text-secondary-text">
+                                            {task.how}
+                                            <span className="text-secondary-text">
                                   /Based on your :
                                 </span>
-                                <div className="text-brand-primary-color text-xs inline-flex gap-1 items-center cursor-pointer">
-                                  {" "}
-                                  {task.biomarker}
-                                  <img
-                                    className="w-4 h-4"
-                                    src="/Themes/Aurora/icons/export.svg"
-                                    alt=""
-                                  />
-                                </div>
-                              </div>
+                                            <div className="text-brand-primary-color text-xs inline-flex gap-1 items-center cursor-pointer">
+                                              {" "}
+                                              {task.biomarker}
+                                              <img
+                                                  className="w-4 h-4"
+                                                  src="/Themes/Aurora/icons/export.svg"
+                                                  alt=""
+                                              />
+                                            </div>
+                                          </div>
 
-                              {task.tags.map((tag, index) => (
-                                <span
-                                  key={index}
-                                  className={` ${
-                                    tag === "antioxidants"
-                                      ? "bg-[#9381FF]"
-                                      : tag === "lung health"
-                                      ? "bg-[#06C78D] "
-                                      : tag === "oxygenation"
-                                      ? "bg-[#FDC0A6]"
-                                      : tag === "mindfulness"
-                                      ? "bg-[#86D8E8]"
-                                      : "bg-[#FBAD37]"
-                                  } text-nowrap text-black-background px-4 py-1 rounded-full text-xs font-medium`}
-                                >
+                                          {task.tags.map((tag, index) => (
+                                              <span
+                                                  key={index}
+                                                  className={` ${
+                                                      tag === "antioxidants"
+                                                          ? "bg-[#9381FF]"
+                                                          : tag === "lung health"
+                                                              ? "bg-[#06C78D] "
+                                                              : tag === "oxygenation"
+                                                                  ? "bg-[#FDC0A6]"
+                                                                  : tag === "mindfulness"
+                                                                      ? "bg-[#86D8E8]"
+                                                                      : "bg-[#FBAD37]"
+                                                  } text-nowrap text-black-background px-4 py-1 rounded-full text-xs font-medium`}
+                                              >
                                   {tag}
                                 </span>
-                              ))}
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))
+                                          ))}
+                                        </div>
+                                      </li>
+                                  ))}
+                                </ul>
+                              </div>
+                          ))
+
+                      )
+                    }
                 )
               )}
             </div>
@@ -309,6 +327,16 @@ export const ActionPlan = () => {
           </div>
         )}
       </div>
+  :
+          (<div className={"flex flex-col items-center justify-center bg-black-primary text-primary-text w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border"}>
+            <img src={"/images/EmptyState.png"}/>
+            <h1>Nothing to Show</h1>
+            <Button onClick={()=>fetchData()} theme={theme}>
+              <img src="/Themes/Aurora/icons/add-square-fill.svg" alt="" />
+              Generate
+            </Button>
+          </div>)
+      }
     </div>
     </>
   );
