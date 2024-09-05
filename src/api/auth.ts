@@ -23,12 +23,13 @@ class Auth extends Api {
     const data = {
       username: username,
       password: password,
-      scope: "",
-      client_id: "",
-      client_secret: "",
     };
 
-    return this.post("/auth/token", data);
+    return this.post("/auth/token", data,{
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },      
+    });
   }
 }
 

@@ -5,6 +5,7 @@ import { Button } from 'symphony-ui';
 interface AddClientModalProps{
     isOpen: boolean;
     onClose: () => void;
+
     onSubmit: (data: { fullName: string; email: string; wearableDevice: string }) => void;
 }
 const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSubmit }) => {
@@ -31,6 +32,11 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, onClose]);
+  useEffect(() => {
+    if(!isOpen){
+      setStep("AddCient")
+    }
+  },[isOpen])
   // if (!isOpen) return setStep("AddCient")
   if (!isOpen) return null;
 
@@ -84,7 +90,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
   
   return (
     <div className="fixed inset-0 z-10 flex items-center justify-center bg-black-background bg-opacity-50">
-      <div ref={modalRef} className="bg-black-secondary relative text-primary-text p-6 rounded-lg shadow-lg  w-[570px]">
+      <div ref={modalRef} className={`bg-black-secondary relative text-primary-text p-6 rounded-lg shadow-lg ${step=='AddCient' ?'w-[428px]':'w-[570px]'} `}>
 
         {/* <button className=" absolute top-2 right-2" onClick={onClose}>
           &times;
@@ -154,9 +160,13 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
             <Button
               type="submit"
               theme={theme}
+              data-width="full"
               // className="w-full text-[14px] bg-brand-primary-color text-black p-2 rounded hover:bg-teal-500"
             >
-            Add Client & Send Invitation
+              <div className=''>
+                Add Client & Send Invitation
+
+              </div>
             </Button>
             </div>
           </form>
@@ -180,6 +190,8 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
           <div className='w-full flex gap-4 mt-4 justify-center items-center'>
             <Button onClick={() => {
                 const clientData = { fullName, email, wearableDevice };
+                setEmail("")
+                setFullName("")
                 onSubmit(clientData);
             }} theme="Aurora-secondary">
                 <img src="./Themes/Aurora/icons/shareE.svg" alt="" />
