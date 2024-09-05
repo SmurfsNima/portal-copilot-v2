@@ -4,8 +4,9 @@ import { useLoadGraph, useRegisterEvents, useSigma } from "@react-sigma/core";
 import "@react-sigma/core/lib/react-sigma.min.css";
 import { useEffect, useState } from "react";
 import Graph from "graphology";
+import  graphDataMock from '../../api/--moch--/data/graphData.json';
 import chroma from "chroma-js";
-import { ApplicationMock } from "@/api";
+// import { ApplicationMock } from "@/api";
 import { useLayoutCircular } from "@react-sigma/layout-circular";
 const GraphEvents = () => {
   const registerEvents = useRegisterEvents();
@@ -118,8 +119,8 @@ const AiKnowledge = () => {
   useEffect(() => {
     const fetchGraphData = async () => {
       try {
-        const response = await ApplicationMock.getgraphData();
-        setGraphData(response.data);
+        // const response = await ApplicationMock.getgraphData();
+        setGraphData(graphDataMock);
       } catch (error) {
         console.error("Error fetching graph data:", error);
       }
