@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Outlet, useNavigate  , useLocation} from "react-router-dom"
-import icon from '@/assets/images/icon.png';
+
 import { menus } from "./menu";
 import { useSelector } from "react-redux";
 import React, { useState , useEffect } from "react";
@@ -35,7 +35,7 @@ const SideMenu:React.FC = () => {
             <TopBar></TopBar>
             <nav className={`${theme}-SideMenu-nav`}>
                 <div className={`${theme}-SideMenu-logo-container`}>
-                    <img src={icon} alt="" />
+                    <img src="/public/images/main-logo (1).svg" alt="" />
                 </div>
                 <div className={`${theme}-SideMenu-MenuList-container`}>
                     {menus.map((menu) => {
@@ -60,6 +60,9 @@ const SideMenu:React.FC = () => {
                         localStorage.clear()
                     }} className={`${theme}-SideMenu-MenuList2-logOut`}>
                         <img className={`${theme}-icons-logOut`}  alt="" />
+                    </div>
+                    <div className="text-[8px] text-secondary-text w-full justify-center flex gap-1 items-center ">
+                        Powered by <img src="/public/images/sidebar-logo.svg" alt="" />
                     </div>
                 </div>
             </nav>   
