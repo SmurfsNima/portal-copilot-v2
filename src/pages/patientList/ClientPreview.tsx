@@ -277,9 +277,11 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
                                     <div className="flex mt-8 justify-center w-full">
                                         <Button onClick={() => {
                                             Application.addClient({
-                                                name:name,
-                                                p_email:email,
-                                                csvfile:files.map(e =>e.base64)
+                                                personal_info:{
+                                                    name:name,
+                                                    p_email:email,
+                                                },
+                                                csv_information:files.map(e =>e.base64)
                                             })
                                             onClose()
                                             setFiles([])
