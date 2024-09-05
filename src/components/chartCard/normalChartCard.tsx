@@ -90,12 +90,12 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
     <div className={`${theme}-normalChartCard-container py-3 `}>
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <div className="flex items-center justify-center rounded-lg bg-black-background p-1">
+          {/* <div className="flex items-center justify-center rounded-lg bg-black-background p-1">
             <img
               className={`${theme}-icons-${type?.replace(/\s+/g, "")}`}
               alt=""
             />
-          </div>
+          </div> */}
 
           <h2 className={`${theme}-normalChartCard-title`}>{type}</h2>
         </div>
@@ -134,16 +134,24 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
         <span className="mx-1 text-primary-text font-medium text-sm">
           {averageValue.toFixed(2)}
         </span>
-        {type === "Temperature" ? "oF" : type === "Heart Rate" ? "bpm" : "%"}
+        {type === "Temperature"
+              ? "oF"
+              : type === "Heart Rate"
+              ? "bpm"
+              : type === "CBC"
+              ? "%"
+              : type === "Left Leg Stand Duration" ? "seconds" : type === "Weight" ? "kg" : "mm/hg"}
       </h2>
       <div className="bg-black-secondary border h-auto  border-main-border px-2 w-full pt-1 pb-4   max-h-[140px] xl:max-h-[223px]  rounded-md ">
         <div className="flex w-full justify-between items-center">
           <span className="text-secondary-text  text-xs">
-            {type === "Temperature"
+          {type === "Temperature"
               ? "oF"
               : type === "Heart Rate"
               ? "bpm"
-              : "%"}
+              : type === "CBC"
+              ? "%"
+              : type === "Left Leg Stand Duration" ? "seconds" : type === "Weight" ? "kg" : "mm/hg"}
           </span>
           <div className="flex items-center gap-2">
             <h2 className="text-brand-primary-color text-xs">
