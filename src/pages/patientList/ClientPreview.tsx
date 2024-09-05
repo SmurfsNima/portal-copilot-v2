@@ -15,7 +15,7 @@ interface ClientPreviewProps{
 }
 interface FileData {
   name: string;
-  base64: string;
+  base64: any;
 }
 
 const ClientPreview:React.FC<ClientPreviewProps> = ({
@@ -78,7 +78,7 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
             if (reader.result) {
                 resolve({
                 name: file.name,
-                base64: (reader.result as string).split(',')[1],
+                base64: reader.result ,
                 });
             }
             };
