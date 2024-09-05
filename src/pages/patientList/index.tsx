@@ -4,7 +4,7 @@ import  ApplicationMock  from "@/api/appMock";
 import { Table, NumberBox } from "@/components";
 // import { useConstructor } from "@/help";
 import { Pationt } from "@/model";
-import Biomarker from "@/model/biomarkers";
+// import Biomarker from "@/model/biomarkers";
 // import Biomarker from "@/model/biomarkers";
 import { biomarker } from "@/types";
 import { useState, useContext, useEffect } from "react";
@@ -35,11 +35,11 @@ const PatientList = () => {
         console.log("diagnosis" , DiagnosisResponse);
 
         const biomarkersByPatientId: { [key: number]: biomarker[] } = {};
-        biomarkerResponse.data.forEach((item: any) => {
-          biomarkersByPatientId[item.patient_id] = item.biomarkers.map(
-            (bio: any) => new Biomarker(bio)
-          );
-        });
+        // biomarkerResponse.data.forEach((item: any) => {
+        //   biomarkersByPatientId[item.patient_id] = item.biomarkers.map(
+        //     (bio: any) => new Biomarker(bio)
+        //   );
+        // });
         // const DiagnosisByPatientId: { [key: number]: diagnosis[] } = {};
         // DiagnosisResponse.data.forEach((item: any) => {
         //   DiagnosisByPatientId[item.patient_id] = item.diagnosis.map(
