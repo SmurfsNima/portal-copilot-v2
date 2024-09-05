@@ -37,12 +37,14 @@ class Application extends Api {
     return response;
   }
   static getBiomarkersByPatientId(patient_id: number) {
-    const patient = allBiomarkers.find(p => p.patient_id === patient_id);
-    if (patient) {
-      return { data: patient.biomarkers };
-    } else {
-      return { data: [] };
-    }
+    const response = Api.get('/patients/'+patient_id+'/biomarkers')
+    return response
+    // const patient = allBiomarkers.find(p => p.patient_id === patient_id);
+    // if (patient) {
+    //   return { data: patient.biomarkers };
+    // } else {
+    //   return { data: [] };
+    // }
   }
   static getBloodTestByPatientId(patient_id: number) {
     const patient = AllBloodtests.find(p => p.patient_id === patient_id);
