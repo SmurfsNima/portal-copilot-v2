@@ -147,7 +147,7 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
                                         <img src={border} className="w-[71px] h-[71px]" alt="" />
                                         <div className="absolute text-[#FFFFFF61] text-[38px]">LA</div>
                                     </div>
-                                    <div className="text-[#FFFFFFDE] opacity-[60%] mt-6 text-center text-[20px]">Leslie Alexander</div>
+                                    <div className="text-[#FFFFFFDE] opacity-[60%] mt-6 text-center text-[20px]">{name}</div>
                                     <div className="px-5 flex flex-col gap-4 mt-6">
                                         <div className="flex w-full items-center justify-between">
                                             <div className="flex items-center gap-1">

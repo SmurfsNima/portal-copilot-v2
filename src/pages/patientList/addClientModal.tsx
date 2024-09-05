@@ -183,7 +183,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
             <img src="./images/tick-circle.png" alt="" />
 
           </div>
-          <div className='text-[14px] text-white text-center mt-3'>An invitation has been sent to Simon.alex@gmail.com</div>
+          <div className='text-[14px] text-white text-center mt-3'>An invitation has been sent to {email}</div>
           <div className='text-[12px] text-white text-center my-3'>Alex has no fitness content. Start setting up their account.</div>
           <div className='text-[12px] text-white text-center ' style={{lineHeight:'24px'}}>To setup or review client’s progress, always open the client account to look into it. Build a new training program for them, or subscribe them one you have already built. You can also prescribe habits or a meal plan.</div>
 

@@ -70,6 +70,7 @@ const treatmentHistory = [
   },
   // Add more entries as needed
 ];
+
 export const TreatmentPlan = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const [showHistory, setShowHistory] = useState(false);
@@ -77,7 +78,24 @@ export const TreatmentPlan = () => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
   const [isDescription, setIsDescription] = useState(true);
   const [treatmentPlanDataApi, setTreatmentPlanDataApi] = useState<string[]>([]);
-
+  const onButtonClick = () => {
+  
+      // using Java Script method to get PDF file
+      fetch("Benchmark Assessment Report Template (2).pdf").then((response) => {
+          response.blob().then((blob) => {
+          
+              // Creating new object of PDF file
+              const fileURL =
+                  window.URL.createObjectURL(blob);
+                  
+              // Setting various property values
+              let alink = document.createElement("a");
+              alink.href = fileURL;
+              alink.download = "Benchmark Assessment Report Template.pdf";
+              alink.click();
+          });
+      });
+  };
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
   return (
     <div className="flex flex-col gap-3 w-full">
@@ -97,7 +115,7 @@ export const TreatmentPlan = () => {
             <h2 className="text-sm font-semibold">Treatment Plan 012</h2>
             <div className="  flex items-center space-x-4">
               <button
-                  onClick={() => setShowHistory(true)}
+                  onClick={() => onButtonClick()}
                   className={`flex items-center gap-1 bg-black-secondary  px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
               >
                 <img src="/Themes/Aurora/icons/document-download.svg" alt="" />
