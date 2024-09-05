@@ -167,13 +167,13 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
             className={` ml-[2px]  ${
              theme}-smallChartCard-text text-[10px]`}
           >
-            {type === "Temperature"
+          {type === "Temperature"
               ? "oF"
               : type === "Heart Rate"
               ? "bpm"
               : type === "CBC"
               ? "%"
-              : type === "Left Leg Stand Duration" ? "seconds" : "mm/hg"}
+              : type === "Left Leg Stand Duration" ? "seconds" : type === "Weight" ? "kg" : "mm/hg"}
           </span>
           </h2>{" "}
           
@@ -203,7 +203,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
               ? "bpm"
               : type === "CBC"
               ? "%"
-              : type === "Left Leg Stand Duration" ? "seconds" : "mm/hg"}
+              : type === "Left Leg Stand Duration" ? "seconds" : type === "Weight" ? "kg" : "mm/hg"}
           </span>
           </h2>{" "}
         
