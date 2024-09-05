@@ -5,10 +5,13 @@ import border from "../../assets/images/profile-img-border.svg";
 import NullPage from '../../assets/images/Group.png';
 import { Button } from "symphony-ui";
 import { useSelector } from "react-redux";
+import { Application } from "@/api";
 interface ClientPreviewProps{
     isOpen: boolean;
     onClose: () => void;
     onSubmit: () => void;
+    name:string,
+    email:string
 }
 interface FileData {
   name: string;
@@ -17,7 +20,9 @@ interface FileData {
 
 const ClientPreview:React.FC<ClientPreviewProps> = ({
     isOpen,
-    onClose
+    onClose,
+    name,
+    email
 }) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const theme = useSelector((state: any) => state.theme.value.name);
@@ -271,6 +276,11 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
                                     </div>
                                     <div className="flex mt-8 justify-center w-full">
                                         <Button onClick={() => {
+                                            Application.addClient({
+                                                name:name,
+                                                p_email:email,
+                                                csvfile:files.map(e =>e.base64)
+                                            })
                                             onClose()
                                             setFiles([])
                                         }} theme={theme}>

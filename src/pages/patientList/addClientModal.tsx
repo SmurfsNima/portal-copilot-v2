@@ -5,6 +5,7 @@ import { Button } from 'symphony-ui';
 interface AddClientModalProps{
     isOpen: boolean;
     onClose: () => void;
+
     onSubmit: (data: { fullName: string; email: string; wearableDevice: string }) => void;
 }
 const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSubmit }) => {
@@ -189,6 +190,8 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
           <div className='w-full flex gap-4 mt-4 justify-center items-center'>
             <Button onClick={() => {
                 const clientData = { fullName, email, wearableDevice };
+                setEmail("")
+                setFullName("")
                 onSubmit(clientData);
             }} theme="Aurora-secondary">
                 <img src="./Themes/Aurora/icons/shareE.svg" alt="" />

@@ -79,9 +79,12 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
+  const [email,setEmail]= useState('')
+  const [name,setName] = useState("")
   const handleAddClient = (clientData: any) => {
     console.log("Client Added:", clientData);
+    setEmail(clientData.email)
+    setName(clientData.fullName)
     setisProfileClientOpen(true)
   };
 
@@ -127,6 +130,8 @@ const Table: React.FC<TableProps> = ({ classData }) => {
           />
           <ClientPreview
             isOpen={isProfileClientOpen}
+            email={email}
+            name={name}
             onClose={() => setisProfileClientOpen(false)}    
             onSubmit={() =>{}}      
           ></ClientPreview>
