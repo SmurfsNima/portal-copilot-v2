@@ -107,7 +107,7 @@ const Analysis = () => {
   };
   const priorities = [
     {
-      title: 'First',
+     
       category: 'Activity',
       subCategories: [
         { name: 'Daily Activity', isActive: true },
@@ -120,21 +120,21 @@ const Analysis = () => {
       ],
     },
     {
-      title: 'Second',
+     
       category: 'Diet',
       subCategories: [
         { name: 'Nutrition', isActive: true },
       ],
     },
     {
-      title: 'Third',
+     
       category: 'Supplements',
       subCategories: [
         { name: 'Supplement', isActive: true },
       ],
     },
     {
-      title: 'Fourth',
+    
       category: 'Mind',
       subCategories: [
         { name: 'Emotional Fitness', isActive: true },
@@ -238,7 +238,7 @@ const Analysis = () => {
             
             } ${theme}-biomarker-charts-container  ${
               activeMode === "Activity" && "hidden"
-            } w-full h-full max-h-[400px] overflow-auto  `}
+            } w-full h-full max-h-[360px] overflow-auto  `}
           >
             <div
               data-active={active && true}
@@ -401,7 +401,7 @@ const Analysis = () => {
               <div
                 className={` ${
                   !active && "hidden"
-                }   w-full h-full    flex flex-col gap-5  justify-start max-h-[400px]  2xl:max-h-[600px] 3xl:max-h-full   `}
+                }   w-full h-full    flex flex-col   justify-start max-h-[400px]  2xl:max-h-[600px] 3xl:max-h-full   `}
               >
                 {activeChartData && (
                   <NormalChartCard
