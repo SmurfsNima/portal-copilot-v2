@@ -51,8 +51,8 @@ interface PationtInformation {
   };
 }
 interface BiomarkerValue {
-  high?: number[];
-  low?: number[];
+  diastolic?: number[];
+  systolic?: number[];
   value?: number[];
   status: string;
 }
@@ -64,19 +64,23 @@ interface BiomarkerValue {
 // }
 interface ChartDataItem {
   type: string;
+  chart: string,
   value: number;
   isMeasured: boolean;
   status: string;
   otherTypes: string[];
   chartData: {
     dates: string[];
-    values: number[] | { Low: number[]; High: number[] };
+    values: number[] | { diastolic: number[]; systolic
+      : number[] };
   };
 }
 interface BiomarkerEntry {
   value: BiomarkerValue;
   date: string[];
   activity: boolean[];
+  type? : string,
+  chart? : string,
 }
 interface BiomarkerCategory {
   [key: string]: BiomarkerEntry[];
@@ -155,5 +159,9 @@ interface PlanInfo {
   checkin: Checkin[];
   plan_info: PlanInfo;
 }
-
-export type { PationtInformation, BiomarkerValue, biomarker , BiomarkerEntry  , BiomarkerCategory ,  ChartDataItem  , diagnosis , actionPlan  };
+interface Activity {
+  category: string;
+  score: number;
+  value: number;
+}
+export type { PationtInformation, BiomarkerValue, biomarker , BiomarkerEntry  , BiomarkerCategory ,  ChartDataItem  , diagnosis , actionPlan , Activity };

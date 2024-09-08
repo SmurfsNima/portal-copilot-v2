@@ -40,37 +40,41 @@ const formatDate = (dateString: string): string => {
   };
   const extractBiomarkerData = (biomarker: BiomarkerEntry[]): {
     dates: string[];
-    values: number[] | { Low: number[]; High: number[] };
+    values: number[] | { systolic: number[]; diastolic: number[] };
     status: string;
+    chart:string,
   } => {
     const dates = biomarker.flatMap(entry => entry.date.map(formatDate));
-    const hasHighLow = biomarker.some(entry => entry.value.high && entry.value.low);
+    const hasHighLow = biomarker.some(entry => entry.value.diastolic && entry.value.systolic);
   
     const values = hasHighLow
       ? {
-          Low: biomarker.flatMap(entry => entry.value.low || []),
-          High: biomarker.flatMap(entry => entry.value.high || [])
+        systolic: biomarker.flatMap(entry => entry.value.systolic || []),
+          diastolic: biomarker.flatMap(entry => entry.value.diastolic || [])
         }
       : biomarker.flatMap(entry => entry.value.value || []);
   
     const status = biomarker[0]?.value.status || "";
-  
-    return { dates, values, status };
+    const chart = biomarker[0]?.chart || "line";
+    return { dates, values, status, chart  };
   };
   
-   const prepareChartData = (biomarkers: BiomarkerCategory[]): ChartDataItem[] => {
+  const prepareChartData = (biomarkers: BiomarkerCategory[]): ChartDataItem[] => {
     return biomarkers.flatMap(biomarkerObject =>
       Object.entries(biomarkerObject).map(([key, biomarkerData]) => {
-        const { dates, values, status } = extractBiomarkerData(biomarkerData);
-        const avgValue = Array.isArray(values) ? (values.reduce((a, b) => a + b, 0) / values.length) : (values.Low.length + values.High.length) / 2;
+        const { dates, values, status, chart } = extractBiomarkerData(biomarkerData);
+        const avgValue = Array.isArray(values)
+          ? values.reduce((a, b) => a + b, 0) / values.length
+          : (values.systolic.length + values.diastolic.length) / 2;
   
         return {
           type: key.replace("_", " ").replace(/\b\w/g, l => l.toUpperCase()),
           value: avgValue,
-          isMeasured: Array.isArray(values) ? values.length > 0 : values.Low.length > 0 && values.High.length > 0,
+          isMeasured: Array.isArray(values) ? values.length > 0 : values.systolic.length > 0 && values.diastolic.length > 0,
           status,
           otherTypes: [],
-          chartData: { dates, values }
+          chartData: { dates, values },
+          chart, // Include the chart field here
         };
       })
     );

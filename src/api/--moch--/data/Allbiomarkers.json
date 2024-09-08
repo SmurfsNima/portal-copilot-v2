@@ -6,8 +6,8 @@
         "Blood Pressure": [
           {
             "value": {
-              "high": [115, 114, 105],
-              "low": [65, 66, 57],
+              "diastolic": [115, 114, 105],
+              "systolic": [65, 66, 57],
               "status": "low"
             },
             "date": [
@@ -15,7 +15,9 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "mix"
           }
         ],
         "Heart Rate": [
@@ -29,7 +31,9 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "linear"
           }
         ],
         "Oxygen Saturation": [
@@ -43,7 +47,9 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Temperature": [
@@ -57,7 +63,9 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Left Leg Stand Duration": [
@@ -71,7 +79,25 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "bar"
+          }
+        ],
+        "CBC": [
+          {
+            "value": {
+              "value": [38, 37, 38],
+              "status": "high"
+            },
+            "date": [
+              "2024-05-09T00:00:00",
+              "2024-05-10T00:00:00",
+              "2024-05-11T00:00:00"
+            ],
+            "activity": [true, true],
+            "type": "blood_test",
+            "chart": "line"
           }
         ]
       }
@@ -92,7 +118,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "linear"
           }
         ],
         "Oxygen Saturation": [
@@ -106,7 +134,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Respiration Rate": [
@@ -120,7 +150,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Temperature": [
@@ -134,7 +166,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Left Leg Stand Duration": [
@@ -148,7 +182,9 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "bar"
           }
         ]
       }
@@ -161,8 +197,8 @@
         "Blood Pressure": [
           {
             "value": {
-              "high": [92, 94, 93],
-              "low": [60, 61, 59],
+              "diastolic": [92, 94, 93],
+              "systolic": [60, 61, 59],
               "status": "normal"
             },
             "date": [
@@ -170,7 +206,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "mix"
           }
         ],
         "Oxygen Saturation": [
@@ -184,7 +222,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Respiration Rate": [
@@ -198,7 +238,9 @@
               "2024-02-14T00:00:00",
               "2024-02-14T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Temperature": [
@@ -212,7 +254,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Left Leg Stand Duration": [
@@ -226,7 +270,9 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "bar"
           }
         ]
       }
@@ -239,8 +285,8 @@
         "Blood Pressure": [
           {
             "value": {
-              "high": [110, 115, 116],
-              "low": [69, 72, 72],
+              "diastolic": [110, 115, 116],
+              "systolic": [69, 72, 72],
               "status": "normal"
             },
             "date": [
@@ -248,7 +294,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "mix"
           }
         ],
         "Heart Rate": [
@@ -262,7 +310,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "linear"
           }
         ],
         "Oxygen Saturation": [
@@ -276,7 +326,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Temperature": [
@@ -290,7 +342,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Left Leg Stand Duration": [
@@ -304,7 +358,9 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "bar"
           }
         ]
       }
@@ -317,8 +373,8 @@
         "Blood Pressure": [
           {
             "value": {
-              "high": [110, 115, 116],
-              "low": [69, 72, 72],
+              "diastolic": [110, 115, 116],
+              "systolic": [69, 72, 72],
               "status": "normal"
             },
             "date": [
@@ -326,7 +382,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "mix"
           }
         ],
         "Heart Rate": [
@@ -340,7 +398,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "linear"
           }
         ],
         "Oxygen Saturation": [
@@ -354,7 +414,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Temperature": [
@@ -368,7 +430,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Left Leg Stand Duration": [
@@ -382,7 +446,9 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "bar"
           }
         ]
       }
@@ -404,7 +470,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "mix"
           }
         ],
         "Heart Rate": [
@@ -418,7 +486,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "linear"
           }
         ],
         "Oxygen Saturation": [
@@ -432,7 +502,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Temperature": [
@@ -446,7 +518,9 @@
               "2024-02-12T00:00:00",
               "2024-02-13T00:00:00"
             ],
-            "activity": [true]
+            "activity": [true],
+            "type": "vital",
+            "chart": "line"
           }
         ],
         "Left Leg Stand Duration": [
@@ -460,7 +534,9 @@
               "2024-05-10T00:00:00",
               "2024-05-11T00:00:00"
             ],
-            "activity": [true, true]
+            "activity": [true, true],
+            "type": "vital",
+            "chart": "bar"
           }
         ]
       }

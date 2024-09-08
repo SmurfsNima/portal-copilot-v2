@@ -5,7 +5,7 @@ import { LineChart, MixedLinesChart } from "@/components/charts";
 
 interface ChartData {
   dates: string[];
-  values: number[] | { Low: number[]; High: number[] };
+  values: number[] | { systolic: number[]; diastolic: number[] };
 }
 
 interface ChartCardProps {
@@ -23,8 +23,6 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
   status,
   chartData,
 }) => {
-
-  
   const [active, setActive] = useState("HCT");
   const theme = useSelector((state: any) => state.theme.value.name);
   if (type === "Blood Pressure") {
@@ -33,34 +31,44 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
 
   const isBloodPressureValues = (
     values: any
-  ): values is { Low: number[]; High: number[] } => {
+  ): values is { systolic: number[]; diastolic: number[] } => {
     return (
       values &&
       typeof values === "object" &&
-      'Low' in values &&
-      'High' in values &&
-      Array.isArray(values.Low) &&
-      Array.isArray(values.High)
+      'systolic' in values &&
+      'diastolic' in values &&
+      Array.isArray(values.systolic) &&
+      Array.isArray(values.diastolic)
     );
   };
-  const flattenArray = (arr: any[]) => arr.reduce((acc, val) => acc.concat(val), []);
+  const flattenArray = (arr: any[]) =>
+    arr.reduce((acc, val) => acc.concat(val), []);
 
   const averageValue = useMemo(() => {
     const { values } = chartData;
 
     if (type === "Blood Pressure" && isBloodPressureValues(values)) {
-      const { Low, High } = values;
-      const flattenedLow = flattenArray(Low);
-      const flattenedHigh = flattenArray(High);
-      const sumLow = flattenedLow.reduce((acc: number, val: number) => acc + val, 0);
-      const sumHigh = flattenedHigh.reduce((acc: number, val: number) => acc + val, 0);
+      const { systolic, diastolic } = values;
+      const flattenedLow = flattenArray(systolic);
+      const flattenedHigh = flattenArray(diastolic);
+      const sumLow = flattenedLow.reduce(
+        (acc: number, val: number) => acc + val,
+        0
+      );
+      const sumHigh = flattenedHigh.reduce(
+        (acc: number, val: number) => acc + val,
+        0
+      );
       const avgLow = sumLow / flattenedLow.length;
       const avgHigh = sumHigh / flattenedHigh.length;
       return (avgLow + avgHigh) / 2;
     } else if (Array.isArray(values)) {
       const flattenedValues = flattenArray(values);
       if (flattenedValues.length === 0) return 0;
-      const sum = flattenedValues.reduce((acc: number, val: number) => acc + val, 0);
+      const sum = flattenedValues.reduce(
+        (acc: number, val: number) => acc + val,
+        0
+      );
       return sum / flattenedValues.length;
     }
     return 0;
@@ -70,8 +78,8 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
     const { values, dates } = chartData;
     if (type === "Blood Pressure" && isBloodPressureValues(values)) {
       return {
-        lowValues: values.Low,
-        highValues: values.High,
+        lowValues: values.systolic,
+        highValues: values.diastolic,
         dates: dates,
       };
     }
@@ -135,28 +143,34 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
           {averageValue.toFixed(2)}
         </span>
         {type === "Temperature"
-              ? "oF"
-              : type === "Heart Rate"
-              ? "bpm"
-              : type === "CBC"
-              ? "%"
-              : type === "Left Leg Stand Duration" ? "seconds" : type === "Weight" ? "kg" : "mm/hg"}
+          ? "oF"
+          : type === "Heart Rate"
+          ? "bpm"
+          : type === "CBC"
+          ? "%"
+          : type === "Left Leg Stand Duration"
+          ? "seconds"
+          : type === "Weight"
+          ? "kg"
+          : "mm/hg"}
       </h2>
       <div className="bg-black-secondary border h-auto  border-main-border px-2 w-full pt-1 pb-4   max-h-[140px] xl:max-h-[223px]  rounded-md ">
         <div className="flex w-full justify-between items-center">
           <span className="text-secondary-text  text-xs">
-          {type === "Temperature"
+            {type === "Temperature"
               ? "oF"
               : type === "Heart Rate"
               ? "bpm"
               : type === "CBC"
               ? "%"
-              : type === "Left Leg Stand Duration" ? "seconds" : type === "Weight" ? "kg" : "mm/hg"}
+              : type === "Left Leg Stand Duration"
+              ? "seconds"
+              : type === "Weight"
+              ? "kg"
+              : "mm/hg"}
           </span>
           <div className="flex items-center gap-2">
-            <h2 className="text-brand-primary-color text-xs">
-              24 May, 2024
-            </h2>
+            <h2 className="text-brand-primary-color text-xs">24 May, 2024</h2>
             <img
               data-color="green"
               className={`${theme}-icons-arrow-down`}
