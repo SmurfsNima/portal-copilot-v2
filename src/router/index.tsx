@@ -74,10 +74,10 @@ const router = createHashRouter([
     ],
   },
 
-  // {
-  //   path: "/login",
-  //   element: <Login></Login>,
-  // },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
 ]);
 
 export default router;
