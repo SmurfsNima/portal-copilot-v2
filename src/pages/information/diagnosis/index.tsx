@@ -4,9 +4,9 @@ import { TabsWrapper, InfoCard, SearchBox } from "@/components";
 import { Button } from "symphony-ui";
 import { DoughnutChart } from "@/components/charts";
 import { RightChartCard } from "./RightChartcard";
-import { SmallChartCard } from "@/components/chartCard/smallChartCard";
+// import { SmallChartCard } from "@/components/chartCard/smallChartCard";
 import { useDiagnosis } from "@/hooks";
-import { prepareDiagnosisData } from "@/utils/status";
+// import { prepareDiagnosisData } from "@/utils/status";
 import { getStatusBgColorClass } from "@/utils/status";
 const TabsInfo = [
   {
@@ -42,7 +42,7 @@ const TabsInfo = [
 export const Diagnosis = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const diagnosis = useDiagnosis();
-  const preparedDiagnosis = prepareDiagnosisData(diagnosis);
+  // const preparedDiagnosis = prepareDiagnosisData(diagnosis);
 
   const [active, setActive] = useState<string | null>(null);
   const [showDetails, setShowDetails] = useState(true);
@@ -154,7 +154,7 @@ export const Diagnosis = () => {
             </div>
           </div>
 
-          {preparedDiagnosis?.map((item, i) => {
+          {/* {preparedDiagnosis?.map((item, i) => {
             console.log(item);
 
             return (
@@ -166,10 +166,11 @@ export const Diagnosis = () => {
                 chartData={{
                   dates: item.information.data.date,
                   values: item.information.data.value.value,
+                  chart: item.information.data.
                 }}
               />
             );
-          })}
+          })} */}
         </div>
         {active && (
           <div className=" w-full flex flex-col gap-3">

@@ -6,7 +6,6 @@ import VerticalBarChart from "../charts/BarChart";
 interface ChartData {
   dates: string[];
   values: number[] | { systolic: number[]; diastolic: number[] };
-  chart : string,
 }
 interface ChartCardProps {
   type: string | null;
