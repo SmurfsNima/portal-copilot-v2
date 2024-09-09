@@ -39,6 +39,8 @@ export const MixedLinesChart: React.FC<MixedLinesChartProps> = ({
   ChartData,
   dashed,
 }) => {
+  console.log(ChartData);
+  
   const chartRef = useRef<ChartJS<"line">>(null);
   useEffect(() => {
     return () => {
@@ -104,11 +106,19 @@ export const MixedLinesChart: React.FC<MixedLinesChartProps> = ({
       x: {
         ticks: {
           color: "#FFF",
+             maxRotation: 0,
+          minRotation: 0,
+          autoSkip: true,
+          maxTicksLimit: 5,
+          font : {
+            size : 10,
+          }
         },
         grid: {
           display: false,
           color: "#444",
         },
+       
       },
       y: {
         ticks: {
@@ -158,8 +168,8 @@ export const MixedLinesChart: React.FC<MixedLinesChartProps> = ({
   // };
   // ChartJS.register(backgroundColorPlugin);
   return (
-    <div className="w-full h-[100px] pb-6">
-      <div className="my-2 flex items-center gap-2 justify-end">
+    <div className="w-full h-[110px] -mt-4">
+      <div className=" flex items-start gap-2 justify-end">
         <div className="flex items-center gap-1">
           <div className="w-2 h-1 bg-blue-600" />
           <span className={`text-[8px]  text-secondary-text`}>SBP</span>

@@ -1,23 +1,57 @@
 import { ChatBox, InfoCard, SearchBox } from "@/components";
 import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { SmallChartCard } from "@/components/chartCard/smallChartCard";
 import { Button } from "symphony-ui";
 import { NormalChartCard } from "@/components/chartCard/normalChartCard";
-import { useBiomarkers, useBloodtest } from "@/hooks";
+import { useBiomarkers} from "@/hooks";
 import { prepareChartData } from "@/utils/status";
 import { getStatusBgColorClass } from "@/utils/status";
 import MethylationChart from "@/components/charts/MethylationChart";
 import { ActivityCard } from "./activityCard";
 import PlanManagerModal from "./planModal";
+import { Activity, BiomarkerCategory } from "@/types";
+import { Application } from "@/api";
 
 const Analysis = () => {
+  const { id } = useParams<{ id: string }>();
   const theme = useSelector((state: any) => state.theme.value.name);
   const biomarkers = useBiomarkers();
-  const Bloodtests = useBloodtest();
-  const BloodtestsChartData = prepareChartData(Bloodtests);
-  const chartData = prepareChartData(biomarkers);
-  useEffect(() => console.log(Bloodtests), [Bloodtests]);
+  const [Vitals, setVitals] = useState<BiomarkerCategory[]>([])
+const [bloodTests, setBloodTests] = useState<BiomarkerCategory[]>([])
+const [activitis , setActivitis] = useState<Activity[]>([])
+useEffect(() => {
+  const fetchActivities = async () => {
+    try {
+      const response = await Application.getActivityByPatientId(Number(id));
+      console.log(response);
+      setActivitis(response.data);
+    } catch (error) {
+      console.error("Failed to fetch activities:", error);
+    }
+  };
+
+  fetchActivities();
+}, [id]);
+useEffect(()=>console.log(activitis) , [activitis]
+)
+const filterBiomarkersByType = (type: string): BiomarkerCategory[] => {
+  if (!biomarkers || biomarkers.length === 0) return [];
+  return biomarkers.flatMap((biomarker) =>
+    Object.entries(biomarker)
+      .filter(([, value]) => value.some((entry) => entry.type === type))
+      .map(([key, value]) => ({ [key]: value }))
+  );
+};
+useEffect(() => {
+  setVitals(filterBiomarkersByType("vital"));
+  setBloodTests(filterBiomarkersByType("blood_test"));
+}, [biomarkers]);
+  const BloodtestsChartData = prepareChartData(bloodTests);
+  const VitalschartData = prepareChartData(Vitals);
+  
+  useEffect(() => console.log(bloodTests), [bloodTests]);
   const [messages, setMessages] = useState([
     {
       type: "text",
@@ -49,14 +83,17 @@ const Analysis = () => {
     scrollToBottom();
   }, [messages]);
 
-  const activeChartData = chartData.find((data) => data.type === active);
+  const activeChartData = VitalschartData.find((data) => data.type === active);
   const activeStatus = activeChartData?.status || "";
   useEffect(() => {
     console.log(active);
     console.log(activeMode);
   }, [activeMode, active]);
   const renderChartCards = (data: any) =>
-    data.map((item: any, i: number) => (
+    data.map((item: any, i: number) => {
+      
+      
+      return(
       <SmallChartCard
         key={i}
         active={active}
@@ -64,30 +101,10 @@ const Analysis = () => {
         isMeasured={item.isMeasured}
         chartData={item.chartData}
         type={item.type}
+        chartType={item.chart}
       />
-    ));
-  const testData = [
-    {
-      name: "Diet",
-      score: 5.6,
-      percentage: 33,
-    },
-    {
-      name: "Activity",
-      score: 6.3 / 10,
-      percentage: 68,
-    },
-    {
-      name: "Supplements",
-      score: 4.5,
-      percentage: 17,
-    },
-    {
-      name: "Mind",
-      score: 8.2,
-      percentage: 97,
-    },
-  ];
+      )
+});
   const handleClick = () => {
     setButtonState("loading");
 
@@ -298,7 +315,7 @@ const Analysis = () => {
             </div>
             {activeMode === "Blood Test" &&
               renderChartCards(BloodtestsChartData)}
-            {activeMode === "Vital" && renderChartCards(chartData)}
+            {activeMode === "Vital" && renderChartCards(VitalschartData)}
           </div>
 
           <div
@@ -415,12 +432,12 @@ const Analysis = () => {
             )}
             {activeMode === "Activity" && (
               <div className=" w-full  grid grid-cols-3  xl:grid-cols-4  gap-x-5 gap-y-3">
-                {testData.map((test, i) => (
+                {activitis.map((activity, i) => (
                   <ActivityCard
                     key={i}
-                    name={test.name}
-                    score={test.score}
-                    percentage={test.percentage}
+                    name={activity.category}
+                    score={activity.score}
+                    percentage={activity.value}
                   />
                 ))}
               </div>

@@ -5,7 +5,7 @@ import { useMemo } from "react";
 import VerticalBarChart from "../charts/BarChart";
 interface ChartData {
   dates: string[];
-  values: number[] | { Low: number[]; High: number[] };
+  values: number[] | { systolic: number[]; diastolic: number[] };
 }
 interface ChartCardProps {
   type: string | null;
@@ -13,6 +13,7 @@ interface ChartCardProps {
   status?: string;
   othersTypes?: string[];
   chartData: ChartData;
+  chartType : string,
   active: string | null;
   setActive: Dispatch<SetStateAction<any>>;
 }
@@ -22,33 +23,38 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
   type ,
   active,
   setActive,
-  chartData
+  chartData,
+   chartType
   
 }) => {
+
 
 
   
   const theme = useSelector((state: any) => state.theme.value.name);
   const isBloodPressureValues = (
     values: any
-  ): values is { Low: number[]; High: number[] } => {
+  ): values is { systolic: number[]; diastolic: number[] } => {
     return (
       values &&
       typeof values === "object" &&
-      'Low' in values &&
-      'High' in values &&
-      Array.isArray(values.Low) &&
-      Array.isArray(values.High)
+      'systolic' in values &&
+      'diastolic' in values &&
+      Array.isArray(values.systolic) &&
+      Array.isArray(values.diastolic)
     );
   };
+  
   const flattenArray = (arr: any[]) => arr.reduce((acc, val) => acc.concat(val), []);
 
   const averageValue = useMemo(() => {
     const { values } = chartData;
     if (type === "Blood Pressure" && isBloodPressureValues(values)) {
-      const { Low, High } = values;
-      const flattenedLow = flattenArray(Low);
-      const flattenedHigh = flattenArray(High);
+      console.log(values);
+      
+      const { systolic, diastolic } = values;
+      const flattenedLow = flattenArray(systolic);
+      const flattenedHigh = flattenArray(diastolic);
       const sumLow = flattenedLow.reduce((acc: number, val: number) => acc + val, 0);
       const sumHigh = flattenedHigh.reduce((acc: number, val: number) => acc + val, 0);
       const avgLow = sumLow / flattenedLow.length;
@@ -66,8 +72,8 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
   const lastValue = useMemo(() => {
     const { values } = chartData;
     if (type === "Blood Pressure" && isBloodPressureValues(values)) {
-      const flattenedLow = flattenArray(values.Low);
-      const flattenedHigh = flattenArray(values.High);
+      const flattenedLow = flattenArray(values.systolic);
+      const flattenedHigh = flattenArray(values.diastolic);
       const lastLow = flattenedLow[flattenedLow.length - 1];
       const lastHigh = flattenedHigh[flattenedHigh.length - 1];
       return (lastLow + lastHigh) / 2;
@@ -80,10 +86,11 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
 
   const lowHighValues = useMemo(() => {
     const { values, dates } = chartData;
+    
     if (type === "Blood Pressure" && isBloodPressureValues(values)) {
       return {
-        lowValues: values.Low,
-        highValues: values.High,
+        lowValues: values.systolic,
+        highValues: values.diastolic,
         dates: dates,
       };
     }
@@ -97,6 +104,9 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
     }
     return { dates: [], values: [] };
   }, [chartData, type]);
+  // const chartType = useMemo(() => chartData.chart, [chartData.chart]);
+  console.log(chartType);
+  
   return (
     <div
       onClick={() => setActive(type)}
@@ -139,11 +149,11 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
         } */}
        
         <div className=" relative w-[180px] h-[100px]">
-          {type === "Blood Pressure" ? (
+          {chartType === "mix" ? (
             <MixedLinesChart   ChartData={lowHighValues}  active={active === type} />
           )
-           : type=== "Left Leg Stand Duration" ? (<VerticalBarChart performane={lastValue}/>) : (
-            <LineChart     ChartData={lineChartData} active={active === type} model={"line"} />
+           : chartType=== "bar" ? (<VerticalBarChart performane={lastValue}/>) : (
+            <LineChart     ChartData={lineChartData} active={active === type} model={chartType} />
           ) }
         </div>
       </div>

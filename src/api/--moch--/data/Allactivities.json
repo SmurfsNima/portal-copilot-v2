@@ -1,0 +1,152 @@
+[
+    {
+        "patient_id": 1,
+        "activities": [
+            {
+                "category": "Diet",
+                "score": 7.5,
+                "value": 70
+            },
+            {
+                "category": "Activity",
+                "score": 8.0,
+                "value": 75
+            },
+            {
+                "category": "Supplements",
+                "score": 6.5,
+                "value": 65
+            },
+            {
+                "category": "tMind",
+                "score": 6.8,
+                "value": 68
+            }
+        ]
+    },
+    {
+        "patient_id": 2,
+        "activities": [
+            {
+                "category": "Diet",
+                "score": 5.2,
+                "value": 60
+            },
+            {
+                "category": "Activity",
+                "score": 7.0,
+                "value": 72
+            },
+            {
+                "category": "Supplements",
+                "score": 7.5,
+                "value": 74
+            },
+            {
+                "category": "tMind",
+                "score": 6.0,
+                "value": 67
+            }
+        ]
+    },
+    {
+        "patient_id": 3,
+        "activities": [
+            {
+                "category": "Diet",
+                "score": 6.0,
+                "value": 62
+            },
+            {
+                "category": "Activity",
+                "score": 7.2,
+                "value": 73
+            },
+            {
+                "category": "Supplements",
+                "score": 6.8,
+                "value": 70
+            },
+            {
+                "category": "tMind",
+                "score": 7.1,
+                "value": 71
+            }
+        ]
+    },
+    {
+        "patient_id": 4,
+        "activities": [
+            {
+                "category": "Diet",
+                "score": 5.5,
+                "value": 58
+            },
+            {
+                "category": "Activity",
+                "score": 6.7,
+                "value": 69
+            },
+            {
+                "category": "Supplements",
+                "score": 6.0,
+                "value": 64
+            },
+            {
+                "category": "tMind",
+                "score": 7.3,
+                "value": 72
+            }
+        ]
+    },
+    {
+        "patient_id": 5,
+        "activities": [
+            {
+                "category": "Diet",
+                "score": 4.8,
+                "value": 55
+            },
+            {
+                "category": "Activity",
+                "score": 7.5,
+                "value": 74
+            },
+            {
+                "category": "Supplements",
+                "score": 7.0,
+                "value": 71
+            },
+            {
+                "category": "tMind",
+                "score": 6.6,
+                "value": 66
+            }
+        ]
+    },
+    {
+        "patient_id": 6,
+        "activities": [
+            {
+                "category": "Diet",
+                "score": 5.9,
+                "value": 61
+            },
+            {
+                "category": "Activity",
+                "score": 8.2,
+                "value": 78
+            },
+            {
+                "category": "Supplements",
+                "score": 7.8,
+                "value": 75
+            },
+            {
+                "category": "tMind",
+                "score": 7.0,
+                "value": 70
+            }
+        ]
+    }
+]
