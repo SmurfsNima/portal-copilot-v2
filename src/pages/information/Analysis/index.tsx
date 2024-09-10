@@ -18,6 +18,8 @@ const Analysis = () => {
   const { id } = useParams<{ id: string }>();
   const theme = useSelector((state: any) => state.theme.value.name);
   const biomarkers = useBiomarkers();
+  console.log(biomarkers);
+  
   const [Vitals, setVitals] = useState<BiomarkerCategory[]>([])
 const [bloodTests, setBloodTests] = useState<BiomarkerCategory[]>([])
 const [activitis , setActivitis] = useState<Activity[]>([])
