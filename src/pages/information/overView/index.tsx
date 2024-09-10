@@ -14,7 +14,7 @@ const OverView: React.FC = () => {
         {btnInfo.map((item) => (
           <>
             <Accordion title={item.text}>
-              <Appointments></Appointments>
+              {item.text === "Appointments History" &&<Appointments></Appointments> } 
             </Accordion>
           </>
         ))}

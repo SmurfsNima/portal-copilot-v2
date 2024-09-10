@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Application } from '@/api';
 import  React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Button } from 'symphony-ui';
@@ -44,11 +45,24 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
     e.preventDefault();
     const clientData = { fullName, email, wearableDevice };
     // onSubmit(clientData);
-
+ await sendClientData(clientData)
     // Send invitation email
     await sendInvitationEmail(clientData);
     setStep("success")
     // onClose();
+  };
+  const sendClientData = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
+    try {
+     const response = await  Application.addClient(clientData)
+
+     if (response.status !== 200) {
+      throw new Error('Error sending client data');
+      }
+
+      console.log('Client data sent successfully');
+    } catch (error) {
+      console.error('Failed to send client data:', error);
+    }
   };
   
   const sendInvitationEmail = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {

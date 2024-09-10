@@ -59,7 +59,7 @@ const Accordion:React.FC<AccordionProps> = ({title,children,themes}) => {
             <div
                 ref={contentRef}
                 style={{ height }}
-                className=" transition-height duration-500 ease-in-out"
+                className=" transition-height duration-500 ease-in-out "
                 onTransitionEnd={handleTransitionEnd}
             >
                 {

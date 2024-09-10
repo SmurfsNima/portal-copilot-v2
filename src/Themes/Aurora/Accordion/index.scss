@@ -16,5 +16,5 @@
   @apply text-brand-primary-color text-xs font-normal;
 }
 .Aurora-Accordion-list-container {
-  @apply w-full bg-black-background h-full max-h-[420px] flex border border-t rounded-xl border-main-border flex-col gap-4 p-6;
+  @apply w-full bg-black-background h-full max-h-[420px] overflow-auto flex border border-t rounded-xl border-main-border flex-col gap-4 p-6;
 }
