@@ -42,39 +42,59 @@ const formatDate = (dateString: string): string => {
     dates: string[];
     values: number[] | { systolic: number[]; diastolic: number[] };
     status: string;
-    chart:string,
+    chart: string;
+    average?: string;
+    current?: string;
   } => {
-    const dates = biomarker.flatMap(entry => entry.date.map(formatDate));
+    const dates = biomarker.flatMap(entry => {
+      if (Array.isArray(entry.date)) {
+        return entry.date.map(formatDate);
+      } else {
+        return [formatDate(entry.date)];
+      }
+    });
+  
     const hasHighLow = biomarker.some(entry => entry.value.diastolic && entry.value.systolic);
+    const hasStringValue = biomarker.some(entry => typeof entry.value.current === 'string' && typeof entry.value.average === 'string');
   
     const values = hasHighLow
       ? {
-        systolic: biomarker.flatMap(entry => entry.value.systolic || []),
+          systolic: biomarker.flatMap(entry => entry.value.systolic || []),
           diastolic: biomarker.flatMap(entry => entry.value.diastolic || [])
         }
-      : biomarker.flatMap(entry => entry.value.value || []);
+      : biomarker.flatMap(entry => entry.value.value || []).filter(v => typeof v === 'number');
   
     const status = biomarker[0]?.value.status || "";
     const chart = biomarker[0]?.chart || "line";
-    return { dates, values, status, chart  };
-  };
+    const average = hasStringValue ? biomarker[0]?.value.average : undefined;
+    const current = hasStringValue ? biomarker[0]?.value.current : undefined;
   
+    return { dates, values, status, chart, average, current };
+  };
   const prepareChartData = (biomarkers: BiomarkerCategory[]): ChartDataItem[] => {
     return biomarkers.flatMap(biomarkerObject =>
       Object.entries(biomarkerObject).map(([key, biomarkerData]) => {
-        const { dates, values, status, chart } = extractBiomarkerData(biomarkerData);
-        const avgValue = Array.isArray(values)
-          ? values.reduce((a, b) => a + b, 0) / values.length
-          : (values.systolic.length + values.diastolic.length) / 2;
+        const { dates, values, status, chart, average, current } = extractBiomarkerData(biomarkerData);
+  
+        let compatibleValues: number[] | { systolic: number[]; diastolic: number[] };
+  
+        if (Array.isArray(values)) {
+          // Convert strings to numbers if necessary, or filter them out
+          compatibleValues = values.map(v => (typeof v === 'string' ? parseFloat(v) : v)).filter(v => !isNaN(v));
+        } else {
+          compatibleValues = values;
+        }
   
         return {
           type: key.replace("_", " ").replace(/\b\w/g, l => l.toUpperCase()),
-          value: avgValue,
-          isMeasured: Array.isArray(values) ? values.length > 0 : values.systolic.length > 0 && values.diastolic.length > 0,
+          value: average || '',
+          isMeasured: Array.isArray(values) ? values.length > 0 : (!!values.systolic?.length && !!values.diastolic?.length),
           status,
           otherTypes: [],
-          chartData: { dates, values },
-          chart, // Include the chart field here
+          chartData: { dates, values: compatibleValues },
+          chart,
+          average,
+          current,
         };
       })
     );

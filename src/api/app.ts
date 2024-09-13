@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Api from "./api";
-// import allBiomarkers from './--moch--/data/Allbiomarkers.json';
+import allBiomarkers from './--moch--/data/Allbiomarkers.json';
 import AllBloodtests from './--moch--/data/AllBloodtests.json'
 import Allactivities from './--moch--/data/Allactivities.json'
 class Application extends Api {
@@ -38,14 +38,14 @@ class Application extends Api {
     return response;
   }
   static getBiomarkersByPatientId(patient_id: number) {
-    const response = Api.get('/patients/'+patient_id+'/biomarkers')
-    return response
-    // const patient = allBiomarkers.find(p => p.patient_id === patient_id);
-    // if (patient) {
-    //   return { data: patient.biomarkers };
-    // } else {
-    //   return { data: [] };
-    // }
+    // const response = Api.get('/patients/'+patient_id+'/biomarkers')
+    // return response
+    const patient = allBiomarkers.find(p => p.patient_id === patient_id);
+    if (patient) {
+      return { data: patient.biomarkers };
+    } else {
+      return { data: [] };
+    }
   }
   static getActivityByPatientId(patient_id: number) {
     // const response = Api.get('/patients/'+patient_id+'/biomarkers')

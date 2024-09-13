@@ -13,6 +13,7 @@ import { ActivityCard } from "./activityCard";
 import PlanManagerModal from "./planModal";
 import { Activity, BiomarkerCategory } from "@/types";
 import { Application } from "@/api";
+import BarChart from "./barChart";
 
 const Analysis = () => {
   const { id } = useParams<{ id: string }>();
@@ -36,23 +37,24 @@ useEffect(() => {
 
   fetchActivities();
 }, [id]);
-useEffect(()=>console.log(activitis) , [activitis]
-)
-const filterBiomarkersByType = (type: string): BiomarkerCategory[] => {
+
+
+const filterBiomarkersByCartAndType = (cartNumber: number, type: string): BiomarkerCategory[] => {
   if (!biomarkers || biomarkers.length === 0) return [];
   return biomarkers.flatMap((biomarker) =>
     Object.entries(biomarker)
-      .filter(([, value]) => value.some((entry) => entry.type === type))
+      .filter(([, value]) =>
+        value.some((entry) => entry.cart === cartNumber && entry.type === type))
       .map(([key, value]) => ({ [key]: value }))
   );
 };
 useEffect(() => {
-  setVitals(filterBiomarkersByType("vital"));
-  setBloodTests(filterBiomarkersByType("blood_test"));
+  setVitals(filterBiomarkersByCartAndType(1, "vital"));
+  setBloodTests(filterBiomarkersByCartAndType(1, "blood_test"));
 }, [biomarkers]);
   const BloodtestsChartData = prepareChartData(bloodTests);
   const VitalschartData = prepareChartData(Vitals);
-  
+
   useEffect(() => console.log(bloodTests), [bloodTests]);
   const [messages, setMessages] = useState([
     {
@@ -85,12 +87,7 @@ useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  const activeChartData = VitalschartData.find((data) => data.type === active);
-  const activeStatus = activeChartData?.status || "";
-  useEffect(() => {
-    console.log(active);
-    console.log(activeMode);
-  }, [activeMode, active]);
+
   const renderChartCards = (data: any) =>
     data.map((item: any, i: number) => {
       
@@ -107,6 +104,29 @@ useEffect(() => {
       />
       )
 });
+const cart2Biomarkers = filterBiomarkersByCartAndType(2, "vital");
+console.log(cart2Biomarkers);
+const type2BiomarkersData = prepareChartData(cart2Biomarkers)
+const activeChartData = VitalschartData.find((data) => data.type === active) || type2BiomarkersData.find((data) => data.type === active);
+
+const activeStatus = activeChartData?.status || "";
+const renderCart2Components = () => {
+  return type2BiomarkersData.map((biomarker, index) => 
+    {
+      console.log(biomarker);
+      return(  <BarChart
+        key={index}
+        active={active}
+        setActive={setActive}
+        type={biomarker.type || 'Unknown Type'}
+        average={biomarker.average || 'N/A'}
+        current={biomarker.current || 'N/A'}
+        status={biomarker.status || 'Unknown Status'}
+      />)
+    }
+   
+  );
+};
   const handleClick = () => {
     setButtonState("loading");
 
@@ -160,6 +180,7 @@ useEffect(() => {
       ],
     },
   ];
+
   return (
     <>
       <div className="flex flex-col w-full  items-start gap-2">
@@ -315,9 +336,9 @@ useEffect(() => {
                 </h2>
               </div>
             </div>
-            {activeMode === "Blood Test" &&
-              renderChartCards(BloodtestsChartData)}
-            {activeMode === "Vital" && renderChartCards(VitalschartData)}
+            {activeMode === "Blood Test" && renderChartCards(BloodtestsChartData)}
+      {activeMode === "Vital" && renderChartCards(VitalschartData)}
+      { activeMode=== "Vital" && renderCart2Components()}
           </div>
 
           <div

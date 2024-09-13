@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction } from "react";
 import { LineChart, MixedLinesChart } from "@/components/charts/index";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
-import VerticalBarChart from "../charts/BarChart";
 interface ChartData {
   dates: string[];
   values: number[] | { systolic: number[]; diastolic: number[] };
@@ -152,12 +151,13 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
           {chartType === "mix" ? (
             <MixedLinesChart   ChartData={lowHighValues}  active={active === type} />
           )
-           : chartType=== "bar" ? (<VerticalBarChart performane={lastValue}/>) : (
+          //  : chartType=== "bar" ? (<VerticalBarChart performane={lastValue}/>) 
+          : (
             <LineChart     ChartData={lineChartData} active={active === type} model={chartType} />
           ) }
         </div>
       </div>
-      <div className={` ${type=== "Left Leg Stand Duration" ? 'flex-row absolute top-[50%] left-6 gap-5' : 'flex-col justify-between'} flex  items-end w-full `}>
+      <div className={`flex-col justify-between flex  items-end w-full `}>
         <div className="flex flex-col text-center  ">
           <h2
              data-active={active===type}
