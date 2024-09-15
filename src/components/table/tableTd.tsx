@@ -22,7 +22,7 @@ export const columns: ColumnDef<Pationt>[] = [
       
       
       return (
-        <Link to={`/information/${row.original.information.patient_id}`}>
+        <Link to={`/information/${row.original.information.member_id}`}>
           <div className="flex items-center justify-start gap-4">
             <img
               className="w-10 h-10 border rounded-full"

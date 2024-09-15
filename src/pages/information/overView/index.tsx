@@ -8,6 +8,8 @@ import { prepareChartData } from "@/utils/status";
 const OverView: React.FC = () => {
   const biomarkers = useBiomarkers();
   const chartData = prepareChartData(biomarkers);
+  console.log(chartData);
+  
   return (
     <div className="flex justify-between o  w-full  bg-black-background gap-5 ">
       <div className="flex   flex-col gap-1 min-w-[340px] max-h-[700px] overflow-auto hidden-scrollBar pb-[200px] ">

@@ -47,7 +47,7 @@ const PatientList = () => {
         //   );
         // });
 
-        const resolvedPatients = patientResponse.data.map((el: any) => {
+        const resolvedPatients = patientResponse.data.patients_list_data.map((el: any) => {
           const biomarkers = biomarkersByPatientId[el.patient_id] || [];
           // const Diagnosis = DiagnosisByPatientId[el.patient_id] || [];
           // const diagnosis = el.diagnosis.map((diagnosis: diagnosis) => {

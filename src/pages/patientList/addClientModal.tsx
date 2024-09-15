@@ -1,21 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Application } from '@/api';
 import  React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Button } from 'symphony-ui';
 interface AddClientModalProps{
     isOpen: boolean;
     onClose: () => void;
-
+  sendCLientData : (clientData:any)=> void;
     onSubmit: (data: { fullName: string; email: string; wearableDevice: string }) => void;
 }
-const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSubmit }) => {
+const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSubmit , sendCLientData }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const theme = useSelector((state: any) => state.theme.value.name);
   const [wearableDevice, setWearableDevice] = useState("");
   const modalRef = useRef<HTMLDivElement>(null);
   const [step,setStep] = useState('AddCient')
+  useEffect(()=>console.log(step) , [step]
+  )
+// const [memberID, setMemberID] = useState()
   useEffect(() => {
     const handleClickOutside = (event : MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -40,30 +42,42 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
   },[isOpen])
   // if (!isOpen) return setStep("AddCient")
   if (!isOpen) return null;
-
+  const clientData = { fullName, email, wearableDevice };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const clientData = { fullName, email, wearableDevice };
+
     // onSubmit(clientData);
- await sendClientData(clientData)
+
     // Send invitation email
     await sendInvitationEmail(clientData);
     setStep("success")
     // onClose();
   };
-  const sendClientData = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
-    try {
-     const response = await  Application.addClient(clientData)
 
-     if (response.status !== 200) {
-      throw new Error('Error sending client data');
-      }
+  
+  // const sendClientData = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
+  //   const dataToSend = {
+  //     personal_info: {
+  //       name: clientData.fullName,
+  //       email: clientData.email,
+  //       picture: "", // Assuming picture is optional or to be filled later
+  //       wearable_devices: [clientData.wearableDevice] // Assuming this is an array
+  //     }
+  //   };
+  //   try {
+  //    const response = await  Application.addClient(dataToSend)
+  //     console.log(response);
+      
+  //    if (response.status !== 200) {
+  //     throw new Error('Error sending client data');
+  //     }
 
-      console.log('Client data sent successfully');
-    } catch (error) {
-      console.error('Failed to send client data:', error);
-    }
-  };
+  //     console.log('Client data sent successfully');
+  //     setMemberID(response.data.member_id)
+  //   } catch (error) {
+  //     console.error('Failed to send client data:', error);
+  //   }
+  // };
   
   const sendInvitationEmail = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
     console.log(email);
@@ -211,8 +225,13 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
                 <img src="./Themes/Aurora/icons/shareE.svg" alt="" />
                 Open Client Account
               </Button>
-            <Button onClick={() => {
+            <Button onClick={async() => {
               setStep("AddCient")
+              setEmail("")
+              setFullName("")
+              await sendCLientData(clientData)
+           
+        
             }} theme="Aurora">
               <img src="./Themes/Aurora/icons/user-add.svg" alt="" />
               Add Another Client</Button>
