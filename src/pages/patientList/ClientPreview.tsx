@@ -11,7 +11,8 @@ interface ClientPreviewProps{
     onClose: () => void;
     onSubmit: () => void;
     name:string,
-    email:string
+    email:string,
+    memberID: undefined | number
 }
 interface FileData {
   name: string;
@@ -22,7 +23,8 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
     isOpen,
     onClose,
     name,
-    email
+    email,
+    memberID
 }) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const theme = useSelector((state: any) => state.theme.value.name);
@@ -134,7 +136,7 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
                 <button onClick={() => {onClose()}} className="text-lg absolute top-3 right-3">
                     <img src={"Themes/Aurora/icons/close.svg"}></img>
                 </button>
-                <TabsWrapper isNotNavigate TabsInfo={tabs} handleTabClick={(path) =>{
+                <TabsWrapper defaultActiveTab="Summary" isNotNavigate TabsInfo={tabs} handleTabClick={(path) =>{
                     setMenu(path)
                 }}/>
                 <div className="mt-2">

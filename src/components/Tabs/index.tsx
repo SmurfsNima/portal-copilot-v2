@@ -8,16 +8,22 @@ interface TabItem {
   path: string;
   icon?: boolean;
   number?: number;
-  isVisible?:boolean
+  isVisible?: boolean;
 }
 
 interface TabsWrapperProps {
   TabsInfo: TabItem[];
   handleTabClick?: (path: string) => void;
-  isNotNavigate?:boolean
+  isNotNavigate?: boolean;
+  defaultActiveTab?: string; // New prop for default active tab
 }
 
-const TabsWrapper: React.FC<TabsWrapperProps> = ({ TabsInfo, handleTabClick,isNotNavigate }) => {
+const TabsWrapper: React.FC<TabsWrapperProps> = ({
+  TabsInfo,
+  handleTabClick,
+  isNotNavigate,
+  defaultActiveTab = "Overview", // Default to "Summary" if not provided
+}) => {
   const location = useLocation();
   const navigate = useNavigate();
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -26,25 +32,30 @@ const TabsWrapper: React.FC<TabsWrapperProps> = ({ TabsInfo, handleTabClick,isNo
     const segments = path.split("/");
     return segments[segments.length - 1];
   };
+
   const getActiveTab = (path: string) => {
     const lastSegment = getLastPathSegment(path);
-    const matchingTab = TabsInfo.find(tab => lastSegment === tab.path);
-    return matchingTab ? matchingTab.text : null;
+    const matchingTab = TabsInfo.find((tab) => lastSegment === tab.path && tab.isVisible !== false);
+    return matchingTab ? matchingTab.text : defaultActiveTab;
   };
-  const [active, setActive] = useState(getActiveTab(location.pathname) || "Overview"||"Summary");
+
+  const [active, setActive] = useState(() => getActiveTab(location.pathname));
 
   useEffect(() => {
-    setActive(getActiveTab(location.pathname) || "Overview");
+    setActive(getActiveTab(location.pathname));
   }, [location.pathname]);
 
   const handleTabClickInternal = (path: string, tab: string) => {
     setActive(tab);
-    if(!isNotNavigate){
+    if (!isNotNavigate) {
       navigate(path);
     }
     handleTabClick?.(path);
-
   };
+
+  useEffect(() => {
+    console.log("Active tab:", active);
+  }, [active]);
 
   return (
     <div className={`${theme}-tab-container`}>

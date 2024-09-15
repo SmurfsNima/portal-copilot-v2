@@ -1,7 +1,7 @@
 interface PationtInformation {
   name: string;
   picture: string;
-  patient_id : number
+  // patient_id : number
   member_id: number;
   age: number;
   sex: "male" | "female";

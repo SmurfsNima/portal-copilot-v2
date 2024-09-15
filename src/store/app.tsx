@@ -64,7 +64,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
       };
     
       const getPatientById = (id: number): Pationt | undefined => {
-        return patients.find((patient) => patient.information.patient_id === id);
+        return patients.find((patient) => patient.information.member_id === id);
       };
     
       const getBiomarkers = (id: number): biomarker[] | undefined => {

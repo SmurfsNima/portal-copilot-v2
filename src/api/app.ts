@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Api from "./api";
-import allBiomarkers from './--moch--/data/Allbiomarkers.json';
+// import allBiomarkers from './--moch--/data/Allbiomarkers.json';
 import AllBloodtests from './--moch--/data/AllBloodtests.json'
 import Allactivities from './--moch--/data/Allactivities.json'
 class Application extends Api {
@@ -37,15 +37,15 @@ class Application extends Api {
     const response = this.post("/actionplan", {});
     return response;
   }
-  static getBiomarkersByPatientId(patient_id: number) {
-    // const response = Api.get('/patients/'+patient_id+'/biomarkers')
-    // return response
-    const patient = allBiomarkers.find(p => p.patient_id === patient_id);
-    if (patient) {
-      return { data: patient.biomarkers };
-    } else {
-      return { data: [] };
-    }
+  static getBiomarkersByPatientId(member_id: number) {
+    const response = Api.get('/patients/'+member_id+'/biomarkers')
+    return response
+    // const patient = allBiomarkers.find(p => p.patient_id === patient_id);
+    // if (patient) {
+    //   return { data: patient.biomarkers };
+    // } else {
+    //   return { data: [] };
+    // }
   }
   static getActivityByPatientId(patient_id: number) {
     // const response = Api.get('/patients/'+patient_id+'/biomarkers')
@@ -72,6 +72,10 @@ class Application extends Api {
   }
 static getAppoinments(patient_id: number){
   const response =  this.get(`/patients/`+patient_id+`/overview/appointments`)
+  return response
+}
+static getSummary(member_id: number){
+  const response =  this.get(`/summary/${member_id}`)
   return response
 }
 }

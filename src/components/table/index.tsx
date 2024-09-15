@@ -23,7 +23,7 @@ import { Pationt } from "@/model/index.ts";
 import AddClientModal from "@/pages/patientList/addClientModal.tsx";
 import Pagination from "../pagination/index.tsx";
 import ClientPreview from "@/pages/patientList/ClientPreview.tsx";
-
+import Application from "@/api/app.ts";
 interface TableProps {
   classData: Array<Pationt>;
 }
@@ -45,6 +45,8 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfileClientOpen, setisProfileClientOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [memberID, setMemberID] = useState()
+
   const totalPages = 100;
 
   useEffect(() => {
@@ -91,7 +93,29 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+  const sendClientData = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
+    const dataToSend = {
+      personal_info: {
+        name: clientData.fullName,
+        email: clientData.email,
+        picture: "", // Assuming picture is optional or to be filled later
+        wearable_devices: [clientData.wearableDevice] // Assuming this is an array
+      }
+    };
+    try {
+     const response = await  Application.addClient(dataToSend)
+      console.log(response);
+      
+     if (response.status !== 200) {
+      throw new Error('Error sending client data');
+      }
 
+      console.log('Client data sent successfully');
+      setMemberID(response.data.member_id)
+    } catch (error) {
+      console.error('Failed to send client data:', error);
+    }
+  };
   return (
     <div className="flex items-center justify-center flex-col">
       <div className="w-full top-0 shadow-md sm:rounded-lg py-1">
@@ -127,11 +151,13 @@ const Table: React.FC<TableProps> = ({ classData }) => {
             isOpen={isModalOpen}
             onClose={handleCloseModal}
             onSubmit={handleAddClient}
+            sendCLientData={sendClientData}
           />
           <ClientPreview
             isOpen={isProfileClientOpen}
             email={email}
             name={name}
+            memberID={memberID}
             onClose={() => setisProfileClientOpen(false)}    
             onSubmit={() =>{}}      
           ></ClientPreview>
