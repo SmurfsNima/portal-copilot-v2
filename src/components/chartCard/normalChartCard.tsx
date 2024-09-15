@@ -5,7 +5,7 @@ import { LineChart, MixedLinesChart } from "@/components/charts";
 
 interface ChartData {
   dates: string[];
-  values: number[] | { systolic: number[]; diastolic: number[] };
+  values: number[] | string[] | { systolic: number[]; diastolic: number[] };
 }
 
 interface ChartCardProps {

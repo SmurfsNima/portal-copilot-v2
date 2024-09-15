@@ -51,10 +51,12 @@ interface PationtInformation {
   };
 }
 interface BiomarkerValue {
-  diastolic?: number[];
-  systolic?: number[];
-  value?: number[];
+  current?: string;
+  average?: string;
   status: string;
+  value?: number[]; // For numeric values like temperature
+  systolic?: number[];
+  diastolic?: number[];
 }
 // interface Biomarkers {
 //   blood_oxygen?: Measurement[];
@@ -64,23 +66,22 @@ interface BiomarkerValue {
 // }
 interface ChartDataItem {
   type: string;
-  chart: string,
-  value: number;
+  value: number | string;
   isMeasured: boolean;
   status: string;
-  otherTypes: string[];
-  chartData: {
-    dates: string[];
-    values: number[] | { diastolic: number[]; systolic
-      : number[] };
-  };
+  otherTypes: any[];
+  chartData: { dates: string[]; values: number[] | string[] | { systolic: number[]; diastolic: number[] } };
+  chart: string;
+  average?: string;
+  current?: string;
 }
 interface BiomarkerEntry {
+  activity: boolean;
+  cart: number;
+  date: string | string[];
+  type: string;
   value: BiomarkerValue;
-  date: string[];
-  activity: boolean[];
-  type? : string,
-  chart? : string,
+  chart: string;
 }
 interface BiomarkerCategory {
   [key: string]: BiomarkerEntry[];

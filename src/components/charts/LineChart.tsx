@@ -26,7 +26,7 @@ interface LineChartProps {
   dashed?: boolean
    ChartData: {
     dates: string[];
-    values: number[];
+    values: number[] | string[];
   };
   
 }
