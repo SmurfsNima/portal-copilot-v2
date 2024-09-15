@@ -28,6 +28,8 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
 }) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const theme = useSelector((state: any) => state.theme.value.name);
+    console.log(memberID);
+    
     const tabs =[
         {
             text: "Summary",
