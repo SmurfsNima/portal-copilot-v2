@@ -1,11 +1,11 @@
 import { ChatBox, InfoCard, SearchBox } from "@/components";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef , useContext } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { SmallChartCard } from "@/components/chartCard/smallChartCard";
 import { Button } from "symphony-ui";
 import { NormalChartCard } from "@/components/chartCard/normalChartCard";
-import { useBiomarkers} from "@/hooks";
+// import { useBiomarkers} from "@/hooks";
 import { prepareChartData } from "@/utils/status";
 import { getStatusBgColorClass } from "@/utils/status";
 import MethylationChart from "@/components/charts/MethylationChart";
@@ -14,13 +14,19 @@ import PlanManagerModal from "./planModal";
 import { Activity, BiomarkerCategory } from "@/types";
 import { Application } from "@/api";
 import BarChart from "./barChart";
-
+import { AppContext } from "@/store/app";
 const Analysis = () => {
   const { id } = useParams<{ id: string }>();
   const theme = useSelector((state: any) => state.theme.value.name);
-  const biomarkers = useBiomarkers();
+  // const biomarkers = useBiomarkers();
+  const { biomarkers, fetchBiomarkers } = useContext(AppContext);
+
   console.log(biomarkers);
-  
+  useEffect(() => {
+    if (id) {
+      fetchBiomarkers(Number(id));  // Fetch biomarkers once using context
+    }
+  }, [id, fetchBiomarkers]);
   const [Vitals, setVitals] = useState<BiomarkerCategory[]>([])
 const [bloodTests, setBloodTests] = useState<BiomarkerCategory[]>([])
 const [activitis , setActivitis] = useState<Activity[]>([])
