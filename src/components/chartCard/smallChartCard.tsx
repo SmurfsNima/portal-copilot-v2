@@ -31,6 +31,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
 
   
   const theme = useSelector((state: any) => state.theme.value.name);
+  
   const isBloodPressureValues = (
     values: any
   ): values is { systolic: number[]; diastolic: number[] } => {
@@ -104,7 +105,7 @@ export const SmallChartCard: React.FC<ChartCardProps> = ({
     return { dates: [], values: [] };
   }, [chartData, type]);
   // const chartType = useMemo(() => chartData.chart, [chartData.chart]);
-  console.log(chartType);
+ 
   
   return (
     <div

@@ -32,6 +32,7 @@ const OverView: React.FC = () => {
                 othersTypes={item.otherTypes}
                 status={item.status}
                 chartData={item.chartData}
+                chartType={item.chart}
               />
             </div>
           ))}

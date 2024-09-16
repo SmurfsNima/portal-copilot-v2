@@ -1,63 +1,63 @@
 import { ChatBox, InfoCard, SearchBox } from "@/components";
-import { useEffect, useState, useRef , useContext } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { SmallChartCard } from "@/components/chartCard/smallChartCard";
 import { Button } from "symphony-ui";
 import { NormalChartCard } from "@/components/chartCard/normalChartCard";
-// import { useBiomarkers} from "@/hooks";
+import { useBiomarkers } from "@/hooks";
 import { prepareChartData } from "@/utils/status";
 import { getStatusBgColorClass } from "@/utils/status";
-import MethylationChart from "@/components/charts/MethylationChart";
+// import MethylationChart from "@/components/charts/MethylationChart";
 import { ActivityCard } from "./activityCard";
 import PlanManagerModal from "./planModal";
 import { Activity, BiomarkerCategory } from "@/types";
 import { Application } from "@/api";
 import BarChart from "./barChart";
-import { AppContext } from "@/store/app";
 const Analysis = () => {
   const { id } = useParams<{ id: string }>();
   const theme = useSelector((state: any) => state.theme.value.name);
-  // const biomarkers = useBiomarkers();
-  const { biomarkers, fetchBiomarkers } = useContext(AppContext);
-
+  const biomarkers = useBiomarkers();
   console.log(biomarkers);
+
+  const [Vitals, setVitals] = useState<BiomarkerCategory[]>([]);
+  const [bloodTests, setBloodTests] = useState<BiomarkerCategory[]>([]);
+  const [activitis, setActivitis] = useState<Activity[]>([]);
   useEffect(() => {
-    if (id) {
-      fetchBiomarkers(Number(id));  // Fetch biomarkers once using context
-    }
-  }, [id, fetchBiomarkers]);
-  const [Vitals, setVitals] = useState<BiomarkerCategory[]>([])
-const [bloodTests, setBloodTests] = useState<BiomarkerCategory[]>([])
-const [activitis , setActivitis] = useState<Activity[]>([])
-useEffect(() => {
-  const fetchActivities = async () => {
-    try {
-      const response = await Application.getActivityByPatientId(Number(id));
-      console.log(response);
-      setActivitis(response.data);
-    } catch (error) {
-      console.error("Failed to fetch activities:", error);
-    }
+    const fetchActivities = async () => {
+      try {
+        const response = await Application.getActivityByPatientId(Number(id));
+        console.log(response);
+        setActivitis(response.data.activities);
+
+        
+      } catch (error) {
+        console.error("Failed to fetch activities:", error);
+      }
+    };
+
+    fetchActivities();
+  }, [id]);
+
+  const filterBiomarkersByCartAndType = (
+    cartNumber: number,
+    type: string
+  ): BiomarkerCategory[] => {
+    if (!biomarkers || biomarkers.length === 0) return [];
+    return biomarkers.flatMap((biomarker) =>
+      Object.entries(biomarker)
+        .filter(([, value]) =>
+          value.some(
+            (entry) => entry.cart === cartNumber && entry.type === type
+          )
+        )
+        .map(([key, value]) => ({ [key]: value }))
+    );
   };
-
-  fetchActivities();
-}, [id]);
-
-
-const filterBiomarkersByCartAndType = (cartNumber: number, type: string): BiomarkerCategory[] => {
-  if (!biomarkers || biomarkers.length === 0) return [];
-  return biomarkers.flatMap((biomarker) =>
-    Object.entries(biomarker)
-      .filter(([, value]) =>
-        value.some((entry) => entry.cart === cartNumber && entry.type === type))
-      .map(([key, value]) => ({ [key]: value }))
-  );
-};
-useEffect(() => {
-  setVitals(filterBiomarkersByCartAndType(1, "vital"));
-  setBloodTests(filterBiomarkersByCartAndType(1, "blood_test"));
-}, [biomarkers]);
+  useEffect(() => {
+    setVitals(filterBiomarkersByCartAndType(1, "vital"));
+    setBloodTests(filterBiomarkersByCartAndType(1, "blood test"));
+  }, [biomarkers]);
   const BloodtestsChartData = prepareChartData(bloodTests);
   const VitalschartData = prepareChartData(Vitals);
 
@@ -93,46 +93,45 @@ useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-
   const renderChartCards = (data: any) =>
     data.map((item: any, i: number) => {
-      
-      
-      return(
-      <SmallChartCard
-        key={i}
-        active={active}
-        setActive={setActive}
-        isMeasured={item.isMeasured}
-        chartData={item.chartData}
-        type={item.type}
-        chartType={item.chart}
-      />
-      )
-});
-const cart2Biomarkers = filterBiomarkersByCartAndType(2, "vital");
-console.log(cart2Biomarkers);
-const type2BiomarkersData = prepareChartData(cart2Biomarkers)
-const activeChartData = VitalschartData.find((data) => data.type === active) || type2BiomarkersData.find((data) => data.type === active);
+      return (
+        <SmallChartCard
+          key={i}
+          active={active}
+          setActive={setActive}
+          isMeasured={item.isMeasured}
+          chartData={item.chartData}
+          type={item.type}
+          chartType={item.chart}
+        />
+      );
+    });
+  const cart2Biomarkers = filterBiomarkersByCartAndType(2, "vital");
+  console.log(cart2Biomarkers);
+  const type2BiomarkersData = prepareChartData(cart2Biomarkers);
+  const activeChartData =
+    VitalschartData.find((data) => data.type === active) ||
+    BloodtestsChartData.find((data)=>data.type === active) ||
+    type2BiomarkersData.find((data) => data.type === active);
 
-const activeStatus = activeChartData?.status || "";
-const renderCart2Components = () => {
-  return type2BiomarkersData.map((biomarker, index) => 
-    {
+  const activeStatus = activeChartData?.status || "";
+  const renderCart2Components = () => {
+    return type2BiomarkersData.map((biomarker, index) => {
       console.log(biomarker);
-      return(  <BarChart
-        key={index}
-        active={active}
-        setActive={setActive}
-        type={biomarker.type || 'Unknown Type'}
-        average={biomarker.average || 'N/A'}
-        current={biomarker.current || 'N/A'}
-        status={biomarker.status || 'Unknown Status'}
-      />)
-    }
-   
-  );
-};
+      return (
+        <BarChart
+          key={index}
+          active={active}
+          setActive={setActive}
+          type={biomarker.type || "Unknown Type"}
+          average={biomarker.average || "N/A"}
+          current={biomarker.current || "N/A"}
+          status={biomarker.status || "Unknown Status"}
+        />
+      );
+    });
+  };
   const handleClick = () => {
     setButtonState("loading");
 
@@ -152,41 +151,32 @@ const renderCart2Components = () => {
   };
   const priorities = [
     {
-     
-      category: 'Activity',
+      category: "Activity",
       subCategories: [
-        { name: 'Daily Activity', isActive: true },
-        { name: 'Stability', isActive: true },
-        { name: 'Mobility', isActive: true },
-        { name: 'Flexibility', isActive: false },
-        { name: 'Cardiovascular fitness', isActive: false },
-        { name: 'Power', isActive: false },
-        { name: 'Bodyweight max strength', isActive: false },
+        { name: "Daily Activity", isActive: true },
+        { name: "Stability", isActive: true },
+        { name: "Mobility", isActive: true },
+        { name: "Flexibility", isActive: false },
+        { name: "Cardiovascular fitness", isActive: false },
+        { name: "Power", isActive: false },
+        { name: "Bodyweight max strength", isActive: false },
       ],
     },
     {
-     
-      category: 'Diet',
-      subCategories: [
-        { name: 'Nutrition', isActive: true },
-      ],
+      category: "Diet",
+      subCategories: [{ name: "Nutrition", isActive: true }],
     },
     {
-     
-      category: 'Supplements',
-      subCategories: [
-        { name: 'Supplement', isActive: true },
-      ],
+      category: "Supplements",
+      subCategories: [{ name: "Supplement", isActive: true }],
     },
     {
-    
-      category: 'Mind',
-      subCategories: [
-        { name: 'Emotional Fitness', isActive: true },
-      ],
+      category: "Mind",
+      subCategories: [{ name: "Emotional Fitness", isActive: true }],
     },
   ];
-
+  useEffect(() => console.log(activeChartData), [activeChartData]);
+  console.log(activeChartData)
   return (
     <>
       <div className="flex flex-col w-full  items-start gap-2">
@@ -271,7 +261,11 @@ const renderCart2Components = () => {
               >
                 <img src="/Themes/Aurora/icons/setting-2.svg" alt="Settings" />
               </div>
-              <PlanManagerModal isOpen={isModalOpen} onClose={handleCloseModal} priorities={priorities} />
+              <PlanManagerModal
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                priorities={priorities}
+              />
             </div>
           </div>
         </div>
@@ -342,9 +336,10 @@ const renderCart2Components = () => {
                 </h2>
               </div>
             </div>
-            {activeMode === "Blood Test" && renderChartCards(BloodtestsChartData)}
-      {activeMode === "Vital" && renderChartCards(VitalschartData)}
-      { activeMode=== "Vital" && renderCart2Components()}
+            {activeMode === "Blood Test" &&
+              renderChartCards(BloodtestsChartData)}
+            {activeMode === "Vital" && renderChartCards(VitalschartData)}
+            {activeMode === "Vital" && renderCart2Components()}
           </div>
 
           <div
@@ -354,7 +349,7 @@ const renderCart2Components = () => {
           >
             {active === "chat" && (
               <div
-                className={`${theme}-biomarker-Ai-chat-container min-h-full`}
+                className={`${theme}-biomarker-Ai-chat-container min-h-full max-h-[360px]`}
               >
                 <div
                   id="copilot-chat"
@@ -408,7 +403,7 @@ const renderCart2Components = () => {
                 <ChatBox handleSendMessage={handleSendMessage} />
               </div>
             )}
-            {activeMode === "Blood Test" && active !== "chat" && (
+            {/* {activeMode === "Blood Test" && active !== "chat" && (
               <div className="w-full max-h-[400px]  2xl:max-h-[600px]   bg-black-primary border border-main-border px-12 py-3  flex flex-col gap-3 text-primary-text rounded-lg">
                 <div className="flex  items-start gap-4">
                   <div className="bg-black-background  rounded-lg flex items-center justify-center p-1">
@@ -442,8 +437,8 @@ const renderCart2Components = () => {
                 </div>
                 <MethylationChart />
               </div>
-            )}
-            {activeMode === "Vital" && (
+            )} */}
+            {activeChartData && (
               <div
                 className={` ${
                   !active && "hidden"
@@ -455,6 +450,7 @@ const renderCart2Components = () => {
                     isMeasured={activeChartData.isMeasured}
                     status={activeChartData.status}
                     chartData={activeChartData.chartData}
+                    chartType = {activeChartData.chart}
                   />
                 )}
               </div>

@@ -14,6 +14,7 @@ interface ChartCardProps {
   status?: string;
   othersTypes?: string[];
   chartData: ChartData;
+  chartType: string
 }
 
 export const NormalChartCard: React.FC<ChartCardProps> = ({
@@ -22,11 +23,12 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
   othersTypes,
   status,
   chartData,
+  chartType
 }) => {
   const [active, setActive] = useState("HCT");
   const theme = useSelector((state: any) => state.theme.value.name);
   if (type === "Blood Pressure") {
-    console.log(chartData);
+    console.log(chartType);
   }
 
   const isBloodPressureValues = (
@@ -169,7 +171,7 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
               ? "kg"
               : "mm/hg"}
           </span>
-          <div className="flex items-center gap-2">
+          <div className={` ${chartType=== "mix" && 'hidden'} flex items-center gap-2 `}>
             <h2 className="text-brand-primary-color text-xs">24 May, 2024</h2>
             <img
               data-color="green"
@@ -178,13 +180,13 @@ export const NormalChartCard: React.FC<ChartCardProps> = ({
             />
           </div>
         </div>
-        {type === "Blood Pressure" ? (
+        {chartType === "mix" ? (
           <MixedLinesChart ChartData={lowHighValues} />
         ) : (
           <LineChart
             ChartData={lineChartData}
             dashed
-            model={type === "CBC" ? "linear" : "line"}
+            model={chartType}
           />
         )}
       </div>
