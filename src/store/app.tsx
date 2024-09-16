@@ -1,6 +1,6 @@
 import { Pationt, User } from "@/model";
-import { PropsWithChildren, createContext, useState , useEffect  , useRef} from "react";
-import {  biomarker, diagnosis , BiomarkerCategory } from "@/types";
+import { PropsWithChildren, createContext, useState , useEffect } from "react";
+import {  biomarker, diagnosis  } from "@/types";
 import { Application } from "@/api";
 
 interface AppContextProp {
@@ -18,8 +18,7 @@ interface AppContextProp {
     getDiagnosis: (id: number) => diagnosis[] | undefined;
     getAllBiomarkersById : () => undefined;
 
-    biomarkers: BiomarkerCategory[];
-    fetchBiomarkers: (id: number) => void;
+
 }
 
 export const AppContext = createContext<AppContextProp>({
@@ -36,8 +35,7 @@ export const AppContext = createContext<AppContextProp>({
     getBiomarkers : ()=> undefined,
     getDiagnosis : ()=> undefined,
     getAllBiomarkersById : ()=> undefined,
-    biomarkers: [],
-    fetchBiomarkers: () => {},
+
 })
 
 const AppContextProvider =({children}:PropsWithChildren) => {
@@ -49,11 +47,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
         const storedPatients = localStorage.getItem("patients");
         return storedPatients ? JSON.parse(storedPatients) : [];
       });
-      const [biomarkers, setBiomarkers] = useState<BiomarkerCategory[]>();
-      const biomarkersCache = useRef<Map<number, BiomarkerCategory[]>>(new Map());
-    useEffect(()=>    console.log(biomarkers),[biomarkers]
-  )
-    
+
       useEffect(() => {
         localStorage.setItem("patients", JSON.stringify(patients));
       }, [patients]);
@@ -89,21 +83,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
           
          
       }
-      const fetchBiomarkers = async (id: number) => {
-        if (!biomarkersCache.current.has(id)) {
-          try {
-            const response = await Application.getBiomarkersByPatientId(id);
-            console.log(response);
-            
-            biomarkersCache.current.set(id, response.data);
-            setBiomarkers(response.data);
-          } catch (error) {
-            console.error("Failed to fetch biomarkers:", error);
-          }
-        } else {
-          setBiomarkers(biomarkersCache.current.get(id) || []);
-        }
-      };
+
     const contextValue:AppContextProp = {
         token:token,
         user:user,
@@ -124,8 +104,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
         getBiomarkers,
         getDiagnosis,
         getAllBiomarkersById,
-        biomarkers,
-        fetchBiomarkers,
+
 
         
     }

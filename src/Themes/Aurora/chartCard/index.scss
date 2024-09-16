@@ -1,5 +1,5 @@
 .Aurora-smallChartCard-container{
-    @apply  bg-black-primary px-3  py-2 border border-main-border rounded-md flex;
+    @apply  bg-black-primary px-3  py-2 border border-main-border rounded-md flex  self-start;
 }
 .Aurora-smallChartCard-container[data-active="true"]{
    @apply border-brand-primary-color bg-black-secondary;

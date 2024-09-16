@@ -2,7 +2,7 @@
 import Api from "./api";
 // import allBiomarkers from './--moch--/data/Allbiomarkers.json';
 import AllBloodtests from './--moch--/data/AllBloodtests.json'
-import Allactivities from './--moch--/data/Allactivities.json'
+// import Allactivities from './--moch--/data/Allactivities.json'
 class Application extends Api {
   static getPatients() {
     const response = this.get("/patients");
@@ -47,15 +47,15 @@ class Application extends Api {
     //   return { data: [] };
     // }
   }
-  static getActivityByPatientId(patient_id: number) {
-    // const response = Api.get('/patients/'+patient_id+'/biomarkers')
-    // return response
-    const patient = Allactivities.find(p => p.patient_id === patient_id);
-    if (patient) {
-      return { data: patient.activities };
-    } else {
-      return { data: [] };
-    }
+  static getActivityByPatientId(member_id: number) {
+    const response = Api.get('/patients/'+member_id+'/analysis/activity')
+    return response
+    // const patient = Allactivities.find(p => p.patient_id === patient_id);
+    // if (patient) {
+    //   return { data: patient.activities };
+    // } else {
+    //   return { data: [] };
+    // }
   }
   static getBloodTestByPatientId(patient_id: number) {
     const patient = AllBloodtests.find(p => p.patient_id === patient_id);

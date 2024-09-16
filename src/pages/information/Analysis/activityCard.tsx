@@ -1,6 +1,6 @@
 import CircularProgressBar from "@/components/charts/CircularProgressBar";
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 interface ActivityCardProps {
   name: string;
@@ -12,16 +12,16 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
   score,
   percentage,
 }) => {
-  const theme = useSelector((state: any) => state.theme.value.name);
+  // const theme = useSelector((state: any) => state.theme.value.name);
 
   return (
     <div className="bg-black-primary text-primary-text rounded-2xl cursor-pointer flex justify-between w-[315px]  px-5 py-3">
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2 text-sm font-medium text-center text-nowrap">
-          <div className="h-8 w-8 bg-black-background rounded-lg flex items-center justify-center">
+          {/* <div className="h-8 w-8 bg-black-background rounded-lg flex items-center justify-center">
             {" "}
             <img   className={ `bg-brand-secondary-color ${theme}-icons-${name.replace(/\s+/g, "")}`} alt="" />
-          </div>
+          </div> */}
 
           {name}
         </div>
