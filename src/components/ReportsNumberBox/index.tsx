@@ -6,8 +6,19 @@ import Icon2 from '../../assets/images/profile-tick2.png';
 import Icon4 from '../../assets/images/profile-tick3.png';
 import Icon3 from '../../assets/images/profile-delete.png';
 
-const ReportNumberBox = () => {
+interface ReportNumberBoxProps {
+  reports:Array<any>
+}
+
+const ReportNumberBox:React.FC<ReportNumberBoxProps> = ({reports}) => {
     const theme = useSelector((state: any) => state.theme.value.name);
+
+    const resolveValue =(key:string) => {
+      if(reports.length > 0){
+        return reports.filter((e) => e.key == key)[0].value
+      }
+      return 0
+    }
     return (
         <>
           <div
@@ -17,7 +28,7 @@ const ReportNumberBox = () => {
           >
             <NumberBox
               mode="added"
-              value={0}
+              value={resolveValue("Total Enrollment")}
               title="Total Enrollment"
               theme={theme}
               icon={Icon2}
@@ -25,7 +36,7 @@ const ReportNumberBox = () => {
             />
             <NumberBox
               mode="increase"
-              value={0}
+              value={resolveValue("Critical Patients")}
               title="Critical Patients"
               theme={theme}
               icon={Icon3}
@@ -33,14 +44,14 @@ const ReportNumberBox = () => {
             />
             <NumberBox
               mode="reduction"
-              value={0}
+              value={resolveValue("At Risk Patients")}
               title="At Risk Patients"
               theme={theme}
               icon={Icon1}
             />
             <NumberBox
               mode="increase"
-              value={0}
+              value={resolveValue("Normal Patients")}
               title="Normal Patients"
               theme={theme}
               icon={Icon4}

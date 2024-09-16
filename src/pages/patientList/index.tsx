@@ -18,7 +18,7 @@ import ReportNumberBox from "@/components/ReportsNumberBox";
 const PatientList = () => {
   // const theme = useSelector((state: any) => state.theme.value.name);
   const { patients ,savePatientList } = useContext(AppContext);
-  // const [ setReports] = useState<Array<any>>([]);
+  const [reports,setReports] = useState<Array<any>>([]);
   const [reloadData,setReloadData] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +43,8 @@ const PatientList = () => {
         //     (bio: any) => new Diagnosis(bio)
         //   );
         // });
-
+        setReports(patientResponse.data.general_report)
+        console.log(patientResponse.data.general_report)
         const resolvedPatients = patientResponse.data.patients_list_data.map((el: any) => {
           const biomarkers = biomarkersByPatientId[el.patient_id] || [];
           // const Diagnosis = DiagnosisByPatientId[el.patient_id] || [];
@@ -105,7 +106,7 @@ const PatientList = () => {
             <img className={reloadData?"animate-spin":''} src="./Themes/Aurora/icons/reload.svg" alt="" />
           </span>Reload Data</h1>
           </div>
-          <ReportNumberBox></ReportNumberBox>
+          <ReportNumberBox reports={reports}></ReportNumberBox>
         </div>
         <Table classData={patients}></Table>
         <Outlet />
