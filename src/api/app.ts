@@ -9,6 +9,10 @@ class Application extends Api {
     return response;
   }
 
+  static addDataEntery(data:any) {
+    return this.post('/data_entry/',data)
+  }
+
   static getReports() {
     const response = this.post("/getreports", {});
     return response;

@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Application } from '@/api';
 import  React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Button } from 'symphony-ui';
 interface AddClientModalProps{
     isOpen: boolean;
     onClose: () => void;
-  sendCLientData : (clientData:any)=> void;
+    sendCLientData : (clientData:any)=> void;
     onSubmit: (data: { fullName: string; email: string; wearableDevice: string }) => void;
 }
 const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSubmit , sendCLientData }) => {
@@ -42,15 +43,32 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
   },[isOpen])
   // if (!isOpen) return setStep("AddCient")
   if (!isOpen) return null;
-  const clientData = { fullName, email, wearableDevice };
+  // const clientData = { fullName, email, wearableDevice };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // onSubmit(clientData);
 
     // Send invitation email
-    await sendInvitationEmail(clientData);
-    setStep("success")
+    Application.addClient({
+      personal_info:{
+        name:fullName,
+        email: email,
+        picture:'',
+        wearable_devices:[wearableDevice]
+      }
+    }).then((res) => {
+      if(res.data.member_id){
+        setStep("success")
+        sendCLientData({
+          fullName: fullName,
+          email: email,
+          wearableDevice: wearableDevice,
+          memberId:res.data.member_id
+        })
+      }
+    })
+    // await sendInvitationEmail(clientData);
     // onClose();
   };
 
@@ -79,42 +97,42 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
   //   }
   // };
   
-  const sendInvitationEmail = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
-    console.log(email);
+  // const sendInvitationEmail = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
+  //   console.log(email);
     
-    try {
-      const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.REACT_APP_SENDGRID_API_KEY}`,
-        },
-        body: JSON.stringify({
-          personalizations: [
-            {
-              to: [{ email: clientData.email }],
-              subject: 'Welcome to Our Service',
-            },
-          ],
-          from: { email: 'your-email@example.com' },
-          content: [
-            {
-              type: 'text/plain',
-              value: `Hello ${clientData.fullName}, welcome to our service! Your device: ${clientData.wearableDevice}.`,
-            },
-          ],
-        }),
-      });
+  //   try {
+  //     const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${process.env.REACT_APP_SENDGRID_API_KEY}`,
+  //       },
+  //       body: JSON.stringify({
+  //         personalizations: [
+  //           {
+  //             to: [{ email: clientData.email }],
+  //             subject: 'Welcome to Our Service',
+  //           },
+  //         ],
+  //         from: { email: 'your-email@example.com' },
+  //         content: [
+  //           {
+  //             type: 'text/plain',
+  //             value: `Hello ${clientData.fullName}, welcome to our service! Your device: ${clientData.wearableDevice}.`,
+  //           },
+  //         ],
+  //       }),
+  //     });
 
-      if (!response.ok) {
-        throw new Error('Error sending email');
-      }
+  //     if (!response.ok) {
+  //       throw new Error('Error sending email');
+  //     }
 
-      console.log('Email sent successfully');
-    } catch (error) {
-      console.error('Failed to send email:', error);
-    }
-  };
+  //     console.log('Email sent successfully');
+  //   } catch (error) {
+  //     console.error('Failed to send email:', error);
+  //   }
+  // };
   
   return (
     <div className="fixed inset-0 z-10 flex items-center justify-center bg-black-background bg-opacity-50">
@@ -229,7 +247,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
               setStep("AddCient")
               setEmail("")
               setFullName("")
-              await sendCLientData(clientData)
+              // await sendCLientData(clientData)
            
         
             }} theme="Aurora">

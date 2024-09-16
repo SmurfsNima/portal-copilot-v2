@@ -20,7 +20,12 @@ const useFetchData = (fetchFunction : any) => {
       if (id) {
         try {
           const response = await fetchFunction(Number(id));
-          setData(response.data);
+          // console.log(response)
+          if(response.data!='Internal Server Error'){
+            setData(response.data);
+          }else{
+            setData([])
+          }
         } catch (error) {
           console.error("Failed to fetch data:", error);
         }
