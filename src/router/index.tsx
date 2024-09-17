@@ -1,7 +1,7 @@
 import { createHashRouter } from "react-router-dom";
 import Layout from "@/Themes/index";
 import ProtectedRoute from "./Protected";
-import { AiKnowlage, Information, Login, OverView, PatientList, TimeLine } from "@/pages";
+import { AiKnowlage, Information, Login, OverView, PatientList, TimeLine, Setting } from "@/pages";
 import BioMarker from "@/pages/information/Analysis";
 import { Diagnosis } from "@/pages/information/diagnosis";
 import { Intervention } from "@/pages/information/intervention";
@@ -70,7 +70,11 @@ const router = createHashRouter([
       {
         path: "/ai-knowlage",
         element: <AiKnowlage></AiKnowlage>,
-      },      
+      }, 
+      {
+        path: "/setting",
+        element: <Setting></Setting>,
+      }     
     ],
   },
 
@@ -78,6 +82,7 @@ const router = createHashRouter([
     path: "/login",
     element: <Login></Login>,
   },
+ 
 ]);
 
 export default router;
