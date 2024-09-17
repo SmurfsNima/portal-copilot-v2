@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useContext, useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "@/store/app";
@@ -20,7 +21,12 @@ const useFetchData = (fetchFunction : any) => {
       if (id) {
         try {
           const response = await fetchFunction(Number(id));
-          setData(response.data);
+          // console.log(response)
+          if(response.data!='Internal Server Error'){
+            setData(response.data);
+          }else{
+            setData([])
+          }
         } catch (error) {
           console.error("Failed to fetch data:", error);
         }

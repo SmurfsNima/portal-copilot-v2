@@ -196,7 +196,7 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
                                                 {/* <img className="Aurora-icons-DataEntry w-[15px]" alt="" /> */}
                                                 <div className="text-[12px] font-medium text-[#FFFFFFDE]">E-mail:</div>
                                             </div>
-                                            <div className="text-[#FFFFFF99] text-[12px]">Lesliealexander@gmail.com</div>
+                                            <div className="text-[#FFFFFF99] text-[12px]">{email}</div>
                                         </div>                                                                                                                                                                                                       
                                     </div>
                                 </div>
@@ -280,10 +280,16 @@ const ClientPreview:React.FC<ClientPreviewProps> = ({
                                     </div>
                                     <div className="flex mt-8 justify-center w-full">
                                         <Button onClick={() => {
-                                            Application.addClient({
-                                                name:name,
-                                                p_email:email,
-                                                csvfile:files.map(e =>e.base64)
+                                            // Application.addClient({
+                                            //     personal_info:{
+                                            //         name:name,
+                                            //         p_email:email,
+                                            //     },
+                                            //     csv_information:files.map(e =>e.base64)
+                                            // })
+                                            Application.addDataEntery({
+                                                member_id: memberID,
+                                                base64_strings: files.map(e =>e.base64)                                               
                                             })
                                             onClose()
                                             setFiles([])

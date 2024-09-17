@@ -23,7 +23,7 @@ import { Pationt } from "@/model/index.ts";
 import AddClientModal from "@/pages/patientList/addClientModal.tsx";
 import Pagination from "../pagination/index.tsx";
 import ClientPreview from "@/pages/patientList/ClientPreview.tsx";
-import Application from "@/api/app.ts";
+// import Application from "@/api/app.ts";
 interface TableProps {
   classData: Array<Pationt>;
 }
@@ -45,7 +45,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfileClientOpen, setisProfileClientOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [memberID, setMemberID] = useState()
+  const [memberID, setMemberID] = useState<number>()
 
   const totalPages = 100;
 
@@ -93,28 +93,8 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
-  const sendClientData = async (clientData: { fullName: string; email: string; wearableDevice: string }) => {
-    const dataToSend = {
-      personal_info: {
-        name: clientData.fullName,
-        email: clientData.email,
-        picture: "", // Assuming picture is optional or to be filled later
-        wearable_devices: [clientData.wearableDevice] // Assuming this is an array
-      }
-    };
-    try {
-     const response = await  Application.addClient(dataToSend)
-      console.log(response);
-      
-     if (response.status !== 200) {
-      throw new Error('Error sending client data');
-      }
-
-      console.log('Client data sent successfully');
-      setMemberID(response.data.member_id)
-    } catch (error) {
-      console.error('Failed to send client data:', error);
-    }
+  const sendClientData = async (clientData: { fullName: string; email: string; wearableDevice: string,memberId:number }) => {
+    setMemberID(clientData.memberId)
   };
   return (
     <div className="flex items-center justify-center flex-col">

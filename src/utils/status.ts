@@ -72,7 +72,7 @@ const formatDate = (dateString: string): string => {
     return { dates, values, status, chart, average, current };
   };
   const prepareChartData = (biomarkers: BiomarkerCategory[]): ChartDataItem[] => {
-    return biomarkers.flatMap(biomarkerObject =>
+    return biomarkers?.flatMap(biomarkerObject =>
       Object.entries(biomarkerObject).map(([key, biomarkerData]) => {
         const { dates, values, status, chart, average, current } = extractBiomarkerData(biomarkerData);
   
