@@ -480,22 +480,22 @@
   @apply w-6 h-6 bg-brand-secondary-color;
    ;
 }
-.Aurora-icons-Mind{
+.Aurora-icons-Emotional{
   mask-image: url(/Themes/Aurora/icons/mind.svg);
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-6 h-6 bg-brand-secondary-color;
+  @apply w-5 h-5 bg-brand-secondary-color;
    ;
 }
-.Aurora-icons-Activity{
+.Aurora-icons-Fitness{
   mask-image: url(Themes/Aurora/icons/weight.svg);
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-6 h-6 bg-brand-secondary-color;
+  @apply w-5 h-5 bg-brand-secondary-color;
    ;
 }
 .Aurora-icons-Sleep{
@@ -604,6 +604,15 @@
   mask-repeat: no-repeat;
   mask-position: center;
   @apply w-5 h-5 bg-brand-primary-color;
+   ;
+}
+.Aurora-icons-Physiological{
+  mask-image: url(/public/Themes/Aurora/icons/human-body-silhouette-with-focus-on-respiratory-system-svgrepo-com\ 1.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-brand-secondary-color;
    ;
 }
 .Aurora-icons-check{

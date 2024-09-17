@@ -71,7 +71,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ priorities }) => {
             <div className="flex px-3 pb-1 justify-between items-center border-b border-main-border w-full">
               <span className="flex items-center gap-2 text-xs font-medium">
                 <div className="bg-black-background rounded-lg p-1 flex items-center justify-center">
-                  <div className={`${theme}-icons-Activity bg-brand-secondary-color`}></div>
+                  <div className={`${theme}-icons-${priority.category} w-4 h-4 bg-brand-secondary-color`}></div>
                 </div>
                 {priority.category}
               </span>

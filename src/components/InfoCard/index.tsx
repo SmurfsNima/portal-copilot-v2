@@ -126,7 +126,7 @@ const InfoCard = () => {
         <div className="flex w-full gap-20">
           <div className="text-sm text-primary-text flex items-center justify-center flex-col">
             <h3 className="mb-[10px]">Progress</h3>
-            <div className=" w-[120px] h-[110px] flex items-center justify-center flex-wrap gap-3">
+            <div className="  flex items-center justify-center  gap-3">
             {Progress.map((item) => (
                 <CircularProgressBar
                   key={item.ID}
@@ -143,7 +143,7 @@ const InfoCard = () => {
           </div>
           <div className="text-sm text-primary-text flex items-center justify-center flex-col">
             <h3 className="mb-[10px]">Score</h3>
-            <div className=" w-[120px] h-[110px] flex items-center justify-center flex-wrap gap-3">
+            <div className=" flex items-center justify-center  gap-3">
               {Score.map((item, index) => (
                 <CircularProgressBar
                   key={index}
