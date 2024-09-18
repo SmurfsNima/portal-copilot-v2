@@ -30,6 +30,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [buttonState, setButtonState] = useState("initial");
   const [allData,setAllData] = useState(data)
+  const [categories,setCategories] = useState<Array<string>>([])
   useEffect(() => {
     setAllData(data)
   },[data])
@@ -72,7 +73,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
   //   }));
   // };
   const handleCheckboxChange = (areaIndex:number, benchmarkIndex:number,topLevelKey:string,state:boolean) => {
-    console.log(topLevelKey)
+
     setAllData((prevState) => {
       const updatedData = { ...prevState }; // Clone the current state
 
@@ -101,6 +102,21 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
     });
   };  
 
+  const handleCheckBoxChangeParent = (areaIndex:number,topLevelKey:string,state:boolean) => {
+    setAllData((prevState) => {
+      const updatedData = { ...prevState }; // Clone the current state
+
+      // Access the specific benchmark using the dynamic key
+
+      // Toggle the "checked" state
+      updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks.map(element => {
+        element.checked = state
+      })
+
+      return updatedData; // Return the updated state
+    });
+  }
+
   const SendToApi = () => {
     Application.updatePlanPriorities(allData).then(() => {
       setButtonState("finish")
@@ -118,8 +134,18 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
               <span className="flex items-center gap-2 text-xs font-medium">
                 <div className="bg-black-background rounded-lg p-1 flex items-center justify-center">
                   <div
-                    className={`${theme}-icons-${categoryName} w-4 h-4 bg-brand-secondary-color`}
-                  ></div>
+                    className={`w-4 h-4 `}
+                  >
+                    {categoryName =='Fitness' &&
+                      <img src={'./Themes/Aurora/icons/weight.svg'} alt="" /> 
+                    }
+                    {categoryName =='Emotional' &&
+                      <img src={'./Themes/Aurora/icons/mind.svg'} alt="" /> 
+                    }        
+                    {categoryName =='Physiological' &&
+                      <img src={'./Themes/Aurora/icons/human-body-silhouette-with-focus-on-respiratory-system-svgrepo-com 1.svg'} alt="" /> 
+                    }                                  
+                  </div>
                 </div>
                 {categoryName}
               </span>
@@ -142,7 +168,15 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
                     <label className="flex gap-1 items-center justify-start cursor-pointer text-xs font-normal text-secondary-text">
                       <input
                         type="checkbox"
-                        checked={area.checked}
+                        checked={categories.includes(area.Name as string) }
+                        onChange={() => {
+                          if(!categories.includes(area.Name as string)){
+                            setCategories([...categories,area.Name])
+                          }else {
+                            setCategories([...categories.filter(item => item !== area.Name)])
+                          }
+                          handleCheckBoxChangeParent(areaIndex,categoryName,!categories.includes(area.Name as string))                          
+                        }}
                         className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center"
                       />
                      
