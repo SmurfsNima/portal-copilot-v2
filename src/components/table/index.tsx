@@ -44,7 +44,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const [globalFilter, setGlobalFilter] = useState(""); // State for global filter
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProfileClientOpen, setisProfileClientOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [memberID, setMemberID] = useState<number>()
 
   const pageSize = 6;
@@ -68,6 +68,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
     getSortedRowModel: getSortedRowModel(),
     initialState: {
       pagination: {
+        pageIndex:0,
         pageSize
       },
     },
@@ -94,7 +95,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   };
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page-1);
+    setCurrentPage(page - 1);
   };
   const sendClientData = async (clientData: { fullName: string; email: string; wearableDevice: string,memberId:number }) => {
     setMemberID(clientData.memberId)
@@ -192,7 +193,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
           )}
         </div>
       </div>
-      <Pagination currentPage={currentPage + 1}  totalPages={Math.ceil(data.length / 6)} onPageChange={handlePageChange} />
+      <Pagination currentPage={currentPage + 1}  totalPages={Math.ceil(data.length / pageSize)} onPageChange={handlePageChange} />
     </div>
   );
   

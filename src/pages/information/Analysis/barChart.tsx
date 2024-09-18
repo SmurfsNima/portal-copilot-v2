@@ -14,17 +14,18 @@ interface BarChartProps {
 
 const BarChart: React.FC<BarChartProps> = ({ type, active, setActive, average, current, status }) => {
   const theme = useSelector((state: any) => state.theme.value.name);
-  type StatusType = 'Excellent' | 'Good' | 'Ok' | 'Need Focus';
+  type StatusType = 'Excellent' | 'Good' | 'Ok' | 'Needs Focus';
 
   // Determine the position of the circle based on the status
   const statusPosition: Record<StatusType, string> = {
     "Excellent": '0',
     "Good": '25%',
     "Ok": '50%',
-    "Need Focus": '75%'
+    "Needs Focus": '75%'
   };
 
-  const circlePosition = statusPosition[status as StatusType] || '0';
+  const circlePosition = statusPosition[status as StatusType] || '50';
+;
 
   return (
     <div

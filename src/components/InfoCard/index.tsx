@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import border from "../../assets/images/profile-img-border.svg";
-import { BiologicalCardInfo, MolecularCardInfo, Progress ,Score , Plan_Progress} from "./Data";
+import { BiologicalCardInfo, MolecularCardInfo, Plan_Progress} from "./Data";
 import { useParams } from "react-router-dom";
 import { AppContext } from "@/store/app";
 import { Pationt } from "@/model";
@@ -8,8 +8,13 @@ import CircularProgressBar from "./CircularProgressBar";
 import HalfCycle from "./HalfCycle";
 import DualProgressCircle from "./dualProgressCircle";
 import ProgressCircle from "./progressCircle";
+import { Application } from "@/api";
 
-
+interface Activity {
+  category: string;
+  score: number;
+  value: number;
+}
 const InfoCard = () => {
   const [patient, setPatient] = useState<Pationt>();
   const { getPatientById } = useContext(AppContext);
@@ -27,8 +32,84 @@ const InfoCard = () => {
     3: "#FBAD37", // Activity
     4: "#7F39FB"  // Sleep
   };
+  const [Physiologicalprogress, setPhysiologicalprogress] = useState<number>();
+  const [Emotionalprogress, setEmotionalprogress] = useState<number>();
+  const [Fitnessprogress, setFitnessprogress] = useState<number>();
+  const [Physiologicalscore, setPhysiologicalscore] = useState<number>();
+  const [Emotionalscore, setEmotionalscore] = useState<number>();
+  const [Fitnessscore, setFitnessscore] = useState<number>();
+  useEffect(() => {
+    const fetchActivities = async () => {
+      try {
+        const response = await Application.getActivityByPatientId(Number(id));
+        console.log(response);
+  
+        response.data.activities.forEach((activity:Activity) => {
+          switch (activity.category) {
+            case 'Fitness':
+              setFitnessprogress(activity.value);
+              setFitnessscore(activity.score);
+              break;
+            case 'Physiological':
+              setPhysiologicalprogress(activity.value);
+              setPhysiologicalscore(activity.score);
+              break;
+            case 'Emotional':
+              setEmotionalprogress(activity.value);
+              setEmotionalscore(activity.score);
+              break;
+            default:
+              console.warn('Unknown category:', activity.category);
+          }
+        });
+  
+      } catch (error) {
+        console.error("Failed to fetch activities:", error);
+      }
+    };
+  
+    fetchActivities();
+  }, [id]);
+   const Progress = [
+    {
+        ID:1,
+        title: 'Physiological',
+        Percentage : Physiologicalprogress,
+    },
+    {
+        ID:2,
+        title: 'Emotional',
+        Percentage : Emotionalprogress,
 
+    },
+    {
+        ID:3,
+        title: 'Fitness',
+        Percentage : Fitnessprogress,
 
+    },
+
+ ]
+ const Score = [
+    {
+        ID:1,
+        title: 'Physiological',
+        Percentage : Physiologicalscore,
+    },
+    {
+        ID:2,
+        title: 'Emotional',
+        Percentage : Emotionalscore,
+
+    },
+    {
+        ID:3,
+        title: 'Fitness',
+        Percentage : Fitnessscore,
+
+    },
+    
+ ]
   return (
     <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-main-border rounded-xl flex items gap-10 relative overflow-hidden h-[166px]">
       <div className="mt-5 flex gap-10 xl:gap-12">
@@ -148,7 +229,7 @@ const InfoCard = () => {
                 <CircularProgressBar
                   key={index}
                   size={50}
-                  percentage={item.Percentage * 10} 
+                  percentage={(item.Percentage ?? 0) * 10}
                   percentageNum={200}
                   progressColor={colorMap[item.ID as keyof typeof colorMap]}
                   speed={20}
