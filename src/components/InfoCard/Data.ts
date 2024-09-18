@@ -133,52 +133,42 @@ export const BiologicalCardInfo = [
  export const Progress = [
     {
         ID:1,
-        title: 'Diet',
+        title: 'Physiological',
         Percentage : 73,
     },
     {
         ID:2,
-        title: 'Mind',
+        title: 'Emotional',
         Percentage : 92,
 
     },
     {
         ID:3,
-        title: 'Activity',
+        title: 'Fitness',
         Percentage : 35,
 
     },
-    {
-        ID:4, 
-        title: 'Supplement',
-        Percentage : 54,
 
-    },
  ]
  export const Score = [
     {
         ID:1,
-        title: 'Diet',
+        title: 'Physiological',
         Percentage : 4.6,
     },
     {
         ID:2,
-        title: 'Mind',
+        title: 'Emotional',
         Percentage : 8,
 
     },
     {
         ID:3,
-        title: 'Activity',
+        title: 'Fitness',
         Percentage : 7.3,
 
     },
-    {
-        ID:4, 
-        title: 'Supplement',
-        Percentage : 6.6,
-
-    },
+    
  ]
  export const Plan_Progress = [
     {
