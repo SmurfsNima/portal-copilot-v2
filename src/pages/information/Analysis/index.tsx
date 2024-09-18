@@ -254,17 +254,17 @@ const Analysis = () => {
             
             } ${theme}-biomarker-charts-container  ${
               activeMode === "Activity" && "hidden"
-            } w-full h-full max-h-[360px] overflow-auto  `}
+            } w-full h-full max-h-[360px] overflow-auto flex flex-wrap justify-between hidden-scrollBar  `}
           >
             <div
               data-active={active && true}
               className={` ${
                 activeMode === "Activity" && "hidden"
-              }  ${theme}-biomarker-leftbuttons-container`}
+              }  ${theme}-biomarker-leftbuttons-container w-[316px]`}
             >
               <div
                 onClick={handleClick}
-                className={`${theme}-biomarker-analyze-button ${
+                className={`${theme}-biomarker-analyze-button  ${
                   active && "hidden"
                 } h-[40px] flex items-center justify-center`}
               >
