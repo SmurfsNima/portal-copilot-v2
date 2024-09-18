@@ -433,7 +433,7 @@ const Analysis = () => {
             )}
             {activeMode === "Activity" && (
               <div className=" w-full  grid grid-cols-3  xl:grid-cols-4  gap-x-5 gap-y-3">
-                {activitis.map((activity, i) => (
+                { activitis &&  activitis.map((activity, i) => (
                   <ActivityCard
                     key={i}
                     name={activity.category}
