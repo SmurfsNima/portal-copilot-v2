@@ -47,8 +47,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [memberID, setMemberID] = useState<number>()
 
-  const totalPages = 100;
-
+  const pageSize = 6;
   useEffect(() => {
     setData(classData);
   }, [classData]);
@@ -58,6 +57,10 @@ const Table: React.FC<TableProps> = ({ classData }) => {
     columns,
     state: {
       globalFilter, 
+      pagination: {
+        pageIndex: currentPage,
+        pageSize // Link page index to currentPage
+      },
     },
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -65,7 +68,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
     getSortedRowModel: getSortedRowModel(),
     initialState: {
       pagination: {
-        pageSize: 6,
+        pageSize
       },
     },
     globalFilterFn: nestedFilter, 
@@ -91,7 +94,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   };
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    setCurrentPage(page-1);
   };
   const sendClientData = async (clientData: { fullName: string; email: string; wearableDevice: string,memberId:number }) => {
     setMemberID(clientData.memberId)
@@ -189,7 +192,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
           )}
         </div>
       </div>
-      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+      <Pagination currentPage={currentPage + 1}  totalPages={Math.ceil(data.length / 6)} onPageChange={handlePageChange} />
     </div>
   );
   

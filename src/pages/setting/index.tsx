@@ -1,5 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PlanManagerModal } from "@/components";
+import { Application } from "@/api";
+interface Benchmark {
+  Benchmark: string;
+  Value: number;
+  checked: boolean;
+}
+
+interface BenchmarkArea {
+  Name: string;
+  Benchmarks: Benchmark[];
+  checked: boolean;
+}
+
+interface Category {
+  BenchmarkAreas: BenchmarkArea[];
+}
+
+type PrioritiesType = Record<string, Category>;
 export const Setting = () => {
   const subMenus = [
     {
@@ -19,62 +37,21 @@ export const Setting = () => {
       text: "Change Password",
     },
   ];
-  const priorities = [
-    {
-      category: "Physiological",
-      subCategories: [
-        {
-          name: "Recovery",
-          isActive: true,
-         
-          subMenus: [
-            { name: "Sleep Quality", isActive: true, level: 1 },
-            { name: "Heart Rate Variability", isActive: false, level: 2 },
-            { name: "Time Spent Outside", isActive: true, level: 3 },
-          ],
-        },
-        { name: "Time Priorities", isActive: false, level: 2 },
-        { name: "Metabolic Function", isActive: true, level: 2 },
-        { name: "Nutrition", isActive: false, level: 1 },
-        { name: "Cardiovascular Health", isActive: false, level: 1 },
-        { name: "Body Composition", isActive: false, level: 1 },
-      ],
-    },
-    {
-      category: "Fitness",
-      subCategories: [
-        { name: "Daily Activity", isActive: true, level: 1 },
-        { name: "Stability", isActive: true, level: 1 },
-        {
-          name: "Mobility",
-          isActive: true,
-          
-          subMenus: [
-            { name: "Lower Body", isActive: true, level: 1 },
-            { name: "Upper Body", isActive: false, level: 2 },
-          ],
-        },
-        {
-          name: "Flexibility",
-          isActive: false,
-          
-          subMenus: [
-            { name: "Cardiovascular Fitness", isActive: false, level: 1 },
-            { name: "Power", isActive: false, level: 1 },
-            { name: "Bodyweight Max Strength", isActive: false, level: 1 },
-            { name: "Weighted Max Strength", isActive: false, level: 1 },
-            { name: "Functional Strength", isActive: false, level: 1 },
-          ],
-        },
-      ],
-    },
-    {
-      category: "Emotional",
-      subCategories: [
-        { name: "Emotional Fitness", isActive: true },
-      ],
-    },
-  ];
+  const [Priorities, setPriorities] = useState<PrioritiesType>({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await Application.showPlanPriorities();
+        console.log(response);
+        setPriorities(response.data)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
   const [active, setActive] = useState(0);
   return (
     <div className=" w-full h-[80vh] bg-black-background px-6 flex gap-4">
@@ -88,7 +65,7 @@ export const Setting = () => {
       </div>
       {
         active === 0 &&(
-            <PlanManagerModal priorities={priorities}></PlanManagerModal>
+            <PlanManagerModal data={Priorities}></PlanManagerModal>
 
         )
       }

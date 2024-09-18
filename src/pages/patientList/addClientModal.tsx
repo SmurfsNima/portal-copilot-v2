@@ -135,7 +135,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
   // };
   
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black-background bg-opacity-50">
+    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black-background bg-opacity-80">
       <div ref={modalRef} className={`bg-black-secondary relative text-primary-text p-6 rounded-lg shadow-lg ${step=='AddCient' ?'w-[428px]':'w-[570px]'} `}>
 
         {/* <button className=" absolute top-2 right-2" onClick={onClose}>
