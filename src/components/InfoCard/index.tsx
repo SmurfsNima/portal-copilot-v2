@@ -212,8 +212,7 @@ const InfoCard = () => {
                 <CircularProgressBar
                   key={item.ID}
                   size={50}
-                  percentage={item.Percentage}
-                  percentageNum={item.Percentage}
+                  percentage={Number(item.Percentage?.toFixed(0))}                  percentageNum={item.Percentage}
                   progressColor={colorMap[item.ID as keyof typeof colorMap]}
                   speed={20}
                   titleC={item.title}
