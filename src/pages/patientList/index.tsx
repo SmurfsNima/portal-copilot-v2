@@ -88,7 +88,7 @@ const PatientList = () => {
       fetchData()
     }
     fetchData();
-  }, []);
+  }, [reloadData]);
 
 
   return (
