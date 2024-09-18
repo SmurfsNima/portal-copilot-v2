@@ -22,7 +22,8 @@ export const menus = [
     {
         name:'Setting',
         icon:'setting',
-        url:'/setting'
+        url:'/setting',
+        iconSrc:'./Themes/Aurora/icons/setting-2.svg'
     }       
 ]
 
