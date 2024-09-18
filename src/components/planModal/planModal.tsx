@@ -95,7 +95,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ priorities }) => {
                     <label className="flex gap-1 items-center justify-start cursor-pointer text-xs font-normal text-secondary-text">
                       {subCategory.subMenus && (
                         <img
-                          src="/public/Themes/Aurora/icons/chevron-up.svg"
+                          src="./Themes/Aurora/icons/chevron-up.svg"
                           onClick={() =>
                             toggleExpand(priority.category, subIndex)
                           }
