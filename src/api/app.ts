@@ -82,6 +82,26 @@ static getSummary(member_id: number){
   const response =  this.get(`/summary/${member_id}`)
   return response
 }
+static generateTreatmentPlan(member_id: number){
+  const response =  this.get(`/patients/generate_treatment_plan/${member_id}`)
+  return response
+}
+static getTreatmentPlanDescriptions(member_id: number){
+  const response =  this.get(`/patients/show-tplan-description/${member_id}`)
+  return response
+}
+static getTreatmentPlanDetails(member_id: number){
+  const response =  this.get(`/patients/show-benchmarks-details/${member_id}`)
+  return response
+}
+static getTreatmentPlanModalData(member_id: number){
+  const response =  this.get(`/patients/show-benchmarks-details/${member_id}`)
+  return response
+}
+static showPlanPriorities(){
+  const response =  this.get(`/clinic/show-plan-priorities/`)
+  return response
+}
 }
 
 
