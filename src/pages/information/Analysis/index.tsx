@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChatBox, InfoCard, SearchBox } from "@/components";
 import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
@@ -10,7 +11,7 @@ import { prepareChartData } from "@/utils/status";
 import { getStatusBgColorClass } from "@/utils/status";
 // import MethylationChart from "@/components/charts/MethylationChart";
 import { ActivityCard } from "./activityCard";
-import PlanManagerModal from "./planModal";
+// import PlanManagerModal from "./planModal";
 import { Activity, BiomarkerCategory } from "@/types";
 import { Application } from "@/api";
 import BarChart from "./barChart";
@@ -140,15 +141,15 @@ const Analysis = () => {
     }, 3000);
   };
   useEffect(() => console.log(buttonState), [buttonState]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
+  // const handleOpenModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  // const handleCloseModal = () => {
+  //   setIsModalOpen(false);
+  // };
   
   useEffect(() => console.log(activeChartData), [activeChartData]);
   console.log(activeChartData)
