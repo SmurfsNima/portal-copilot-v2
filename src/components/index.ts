@@ -13,6 +13,7 @@ import { ChatBox } from './chatBox';
 import HistoryBox from './HistoryBox';
 import ChatHistoryBox from './HistoryChat';
 import PopUp from './popup';
+import PlanManagerModal from './planModal/planModal';
 export {
     Accordion,
     Appointments,
@@ -28,5 +29,6 @@ export {
     ChatBox,
     HistoryBox,
     ChatHistoryBox,
-    PopUp
+    PopUp,
+    PlanManagerModal
 }

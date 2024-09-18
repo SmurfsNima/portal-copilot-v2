@@ -615,3 +615,15 @@
   @apply w-6 h-6 bg-brand-secondary-color;
    ;
 }
+.Aurora-icons-setting{
+  mask-image: url(/Themes/Aurora/icons/setting-2.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-6 h-6 bg-[#FFFFFF99];
+   ;
+}
+.Aurora-icons-setting[data-mode="active"] {
+  @apply bg-[#03DAC5];
+}

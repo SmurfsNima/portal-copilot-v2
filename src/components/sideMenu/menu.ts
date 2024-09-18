@@ -18,6 +18,11 @@ export const menus = [
         name:'info-circle',
         icon:'info-circle',
         url:'/'
+    },     
+    {
+        name:'Setting',
+        icon:'setting',
+        url:'/setting'
     }       
 ]
 

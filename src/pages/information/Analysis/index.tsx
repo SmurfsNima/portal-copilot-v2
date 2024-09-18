@@ -149,32 +149,7 @@ const Analysis = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-  const priorities = [
-    {
-      category: "Activity",
-      subCategories: [
-        { name: "Daily Activity", isActive: true },
-        { name: "Stability", isActive: true },
-        { name: "Mobility", isActive: true },
-        { name: "Flexibility", isActive: false },
-        { name: "Cardiovascular fitness", isActive: false },
-        { name: "Power", isActive: false },
-        { name: "Bodyweight max strength", isActive: false },
-      ],
-    },
-    {
-      category: "Diet",
-      subCategories: [{ name: "Nutrition", isActive: true }],
-    },
-    {
-      category: "Supplements",
-      subCategories: [{ name: "Supplement", isActive: true }],
-    },
-    {
-      category: "Mind",
-      subCategories: [{ name: "Emotional Fitness", isActive: true }],
-    },
-  ];
+  
   useEffect(() => console.log(activeChartData), [activeChartData]);
   console.log(activeChartData)
   return (
@@ -254,7 +229,7 @@ const Analysis = () => {
                 </div>
               </div>
             </div>
-            <div>
+            {/* <div>
               <div
                 className="bg-black-primary border border-main-border w-8 h-8 flex items-center justify-center cursor-pointer"
                 onClick={handleOpenModal}
@@ -266,7 +241,7 @@ const Analysis = () => {
                 onClose={handleCloseModal}
                 priorities={priorities}
               />
-            </div>
+            </div> */}
           </div>
         </div>
 
