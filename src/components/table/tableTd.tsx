@@ -26,7 +26,7 @@ export const columns: ColumnDef<Pationt>[] = [
           <div className="flex items-center justify-start gap-4">
             <img
               className="w-10 h-10 border rounded-full"
-              src={row.original.information.picture}
+              src={row.original.information.picture!= ''?row.original.information.picture:`https://ui-avatars.com/api/?name=${row.original.information.name}`}
               alt={`${row.original.information.name} image`}
             />
             

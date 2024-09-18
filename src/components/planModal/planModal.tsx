@@ -123,7 +123,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
     })
   }
   return (
-    <div className="bg-black-secondary text-primary-text p-4 rounded-md border border-main-border shadow-lg w-full h-[85%]">
+    <div className="bg-black-secondary text-primary-text p-4 rounded-md border border-main-border shadow-lg w-full h-[580px]">
       <div className="w-full flex justify-between gap-3">
         {Object.entries(allData).map(([categoryName, category], categoryIndex) => (
           <div

@@ -42,7 +42,17 @@ const SideMenu:React.FC = () => {
                         return (
                             <>
                                 <div onClick={() => changeMenu(menu)} data-mode={activeMenu.name == menu.name?'active':''} className={`${theme}-SideMenu-MenuList-menu-container`}>
-                                    <img data-mode={activeMenu.name == menu.name?'active':''}  className={`${theme}-icons-${menu.icon}`}  alt="" />
+                                    {menu.name != 'Setting' ?
+                                     <img data-mode={activeMenu.name == menu.name?'active':''}  className={`${theme}-icons-${menu.icon}`}  alt="" />
+                                    :
+                                    <>
+                                    {menu.name == activeMenu.name ?
+                                         <img src={'./Themes/Aurora/icons/setting-2.svg'}   alt="" />
+                                         :
+                                         <img src={'./Themes/Aurora/icons/setting-wite-2.svg'}   alt="" />
+                                    }
+                                    </>
+                                    }
                                     { activeMenu.name === menu.name && menu.name}
                                 </div>
                             </>
