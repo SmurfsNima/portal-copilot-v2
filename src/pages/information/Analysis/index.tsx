@@ -254,7 +254,7 @@ const Analysis = () => {
             
             } ${theme}-biomarker-charts-container  ${
               activeMode === "Activity" && "hidden"
-            } w-full h-full max-h-[360px] overflow-auto flex flex-wrap justify-between hidden-scrollBar  `}
+            } w-full h-full max-h-[360px] overflow-auto flex flex-wrap justify-start gap-x-[50px]  hidden-scrollBar  `}
           >
             <div
               data-active={active && true}
