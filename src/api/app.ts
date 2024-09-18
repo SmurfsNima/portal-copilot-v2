@@ -102,6 +102,10 @@ static showPlanPriorities(){
   const response =  this.get(`/clinic/show-plan-priorities/`)
   return response
 }
+static downloadReport(data:any){
+  const response =  this.post(`/patients/download_report` , data)
+  return response
+}
 }
 
 

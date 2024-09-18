@@ -1,5 +1,5 @@
 import { InfoCard } from "@/components";
-import {  useState } from "react";
+import {  useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
@@ -93,7 +93,7 @@ export const TreatmentPlan = () => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
   const [isDescription, setIsDescription] = useState(true);
   const [isGenerated, setIsGenerated] = useState(false);
-
+ const [planID, setplanID] = useState()
   const { id } = useParams<{ id: string }>();
 
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([]);
@@ -105,27 +105,51 @@ export const TreatmentPlan = () => {
       });
       console.log(response);
       setBenchmarks(response.data[0]);
+      setplanID(response.data[1])
       setIsGenerated(true);
+      
     } catch (err) {
       console.log(err);
     }
   };
+useEffect(()=>console.log(planID) , [planID]
+)
 
-  const onButtonClick = () => {
-    // using Java Script method to get PDF file
-    fetch("Benchmark Assessment Report Template (2).pdf").then((response) => {
-      response.blob().then((blob) => {
-        // Creating new object of PDF file
-        const fileURL = window.URL.createObjectURL(blob);
+const onButtonClick = async (planId : any) => {
+  try {
+    const response = await Application.downloadReport({ treatment_plan_id: planId });
+    console.log(response.data);
+    
+    let base64String = response.data
 
-        // Setting various property values
-        let alink = document.createElement("a");
-        alink.href = fileURL;
-        alink.download = "Benchmark Assessment Report Template.pdf";
-        alink.click();
-      });
-    });
-  };
+    if (!base64String) {
+      console.error('Base64 string is undefined. Check the API response structure.');
+      return;
+    }
+
+    base64String = base64String.replace(/\s/g, '');
+
+  
+    const byteCharacters = atob(base64String);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+
+    const blob = new Blob([byteArray], { type: 'application/pdf' });
+
+
+    const fileURL = window.URL.createObjectURL(blob);
+
+    const alink = document.createElement('a');
+    alink.href = fileURL;
+    alink.download = 'Benchmark_Assessment_Report.pdf';
+    alink.click();
+  } catch (error) {
+    console.error('Error downloading the PDF:', error);
+  }
+};
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
 
   const closeModal = () => {
@@ -150,7 +174,7 @@ export const TreatmentPlan = () => {
               <h2 className="text-sm font-semibold">Treatment Plan 012</h2>
               <div className="flex items-center space-x-4">
                 <button
-                  onClick={() => onButtonClick()}
+                  onClick={() => onButtonClick(planID)}
                   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img
