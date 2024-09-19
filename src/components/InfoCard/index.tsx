@@ -163,7 +163,7 @@ const InfoCard = () => {
               <ProgressCircle
                 key={i}
                 size={35}
-                progress={85}
+                progress={0}
                 title={item.title}
                 MAE={item.MAE}
                 icon={item.icon}
@@ -180,7 +180,7 @@ const InfoCard = () => {
               <div className="w-[1px] h-36 bg-secondary-color -ml-6 " />
             </div>
 
-            <DualProgressCircle size={120} progress1={48} progress2={39} />
+            <DualProgressCircle size={120} progress1={null} progress2={null} />
             <div className="flex justify-center items-center gap-3">
               <div className="w-[1px] h-[140px] bg-secondary-color " />
               <h2 className="text-secondary-text text-xs xl:text-sm text-nowrap -rotate-90 -ml-10 ">
@@ -193,7 +193,7 @@ const InfoCard = () => {
               <ProgressCircle
                 key={i}
                 size={35}
-                progress={45}
+                progress={0}
                 title={item.title}
                 MAE={item.MAE}
                 icon={item.icon}

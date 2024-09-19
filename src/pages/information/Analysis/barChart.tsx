@@ -24,7 +24,7 @@ const BarChart: React.FC<BarChartProps> = ({ type, active, setActive, average, c
     "Needs Focus": '75%'
   };
 
-  const circlePosition = statusPosition[status as StatusType] || '50';
+  const circlePosition = statusPosition[status as StatusType] || '0';
 ;
 
   return (

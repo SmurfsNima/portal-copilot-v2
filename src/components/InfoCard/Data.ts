@@ -173,6 +173,6 @@ export const BiologicalCardInfo = [
  export const Plan_Progress = [
     {
         ID:1,
-        Percentage : 55,
+        Percentage : 0,
     }
  ]
