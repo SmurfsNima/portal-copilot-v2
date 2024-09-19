@@ -117,11 +117,11 @@ const Analysis = () => {
     BloodtestsChartData.find((data)=>data.type === active) ||
     type2BiomarkersData.find((data) => data.type === active);
 
-  const [activeStatus,setActiveStatus] = useState(activeChartData?.status || "");
+  const [activeStatus,setActiveStatus] = useState("Excellent");
   const [search,setSearch] =useState("")
   const renderCart2Components = () => {
     if(search != ''){
-    return type2BiomarkersData.filter(e => e.type.toLowerCase().includes(search.toLowerCase())).map((biomarker, index) => {
+    return type2BiomarkersData.filter(e => e.type.toLowerCase().includes(search.toLowerCase())).filter((e) => e.status == activeStatus).map((biomarker, index) => {
       return (
         <BarChart
           key={index}
@@ -135,7 +135,7 @@ const Analysis = () => {
       );
     });      
     }
-    return type2BiomarkersData.map((biomarker, index) => {
+    return type2BiomarkersData.filter((e) => e.status == activeStatus).map((biomarker, index) => {
       return (
         <BarChart
           key={index}
