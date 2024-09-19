@@ -77,7 +77,7 @@ const Analysis = () => {
   ]);
   const [active, setActive] = useState<string | null>(null);
   const [activeMode, setActiveMode] = useState("Vital");
-  const [buttonState, setButtonState] = useState("initial");
+  const [buttonState,] = useState("initial");
 
   const handleSendMessage = (message: string) => {
     if (message.trim()) {
@@ -149,13 +149,13 @@ const Analysis = () => {
       );
     });
   };
-  const handleClick = () => {
-    setButtonState("loading");
+  // const handleClick = () => {
+  //   setButtonState("loading");
 
-    setTimeout(() => {
-      setButtonState("completed");
-    }, 3000);
-  };
+  //   setTimeout(() => {
+  //     setButtonState("completed");
+  //   }, 3000);
+  // };
   useEffect(() => console.log(buttonState), [buttonState]);
   // const [setIsModalOpen] = useState(false);
 
@@ -304,7 +304,7 @@ const Analysis = () => {
                 activeMode === "Activity" && "hidden"
               }  ${theme}-biomarker-leftbuttons-container w-[316px]`}
             >
-              <div
+              {/* <div
                 onClick={handleClick}
                 className={`${theme}-biomarker-analyze-button  ${
                   active && "hidden"
@@ -333,12 +333,12 @@ const Analysis = () => {
                     </h2>
                   </>
                 )}
-              </div>
+              </div> */}
 
               <div
                 onClick={() => setActive(null)}
                 data-active={active && true}
-                className={`${theme}-biomarker-back-button`}
+                className={`${theme}-biomarker-back-button `}
               >
                 <img className={`${theme}-icons-arrow-left`} />
               </div>
@@ -346,7 +346,7 @@ const Analysis = () => {
               <div
                 id="custom-border"
                 data-active={active && true}
-                className={`${theme}-biomarker-Addbiomarker-button custom-border`}
+                className={`${theme}-biomarker-Addbiomarker-button custom-border h-[145px]`}
               >
                 <img className={`${theme}-icons-Add`} alt="" />
                 <h2 className={`${theme}-biomarker-Addbiomarker-button-text`}>
