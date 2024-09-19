@@ -41,7 +41,7 @@ const BarChart: React.FC<BarChartProps> = ({ type, active, setActive, average, c
           <div className="flex flex-col text-center">
             <h2 data-active={active === type} className={`ml-[2px] ${theme}-smallChartCard-text text-xs`}>Avg</h2>
             <h2 data-active={active === type} className={`ml-[2px] ${theme}-smallChartCard-text text-primary-text text-sm 2xl:text-[16px]`}>
-              {average}
+              {average != 'null' ?average:'-'}
             </h2>
           </div>
           <div className={`flex text-center flex-col`}>

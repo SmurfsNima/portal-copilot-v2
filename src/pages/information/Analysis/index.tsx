@@ -118,7 +118,23 @@ const Analysis = () => {
     type2BiomarkersData.find((data) => data.type === active);
 
   const activeStatus = activeChartData?.status || "";
+  const [search,setSearch] =useState("")
   const renderCart2Components = () => {
+    if(search != ''){
+    return type2BiomarkersData.filter(e => e.type.toLowerCase().includes(search.toLowerCase())).map((biomarker, index) => {
+      return (
+        <BarChart
+          key={index}
+          active={active}
+          setActive={setActive}
+          type={biomarker.type || "Unknown Type"}
+          average={biomarker.average || "N/A"}
+          current={biomarker.current || "N/A"}
+          status={biomarker.status || "Unknown Status"}
+        />
+      );
+    });      
+    }
     return type2BiomarkersData.map((biomarker, index) => {
       return (
         <BarChart
@@ -195,6 +211,9 @@ const Analysis = () => {
           </div>
           <div className=" flex    items-center gap-2 ">
             <SearchBox
+            changeHandler={(e) =>{
+              setSearch(e.target.value)
+            }}
               theme="Aurora"
               placeholder="Quick alphabetical search for biomarkers"
             />
@@ -203,32 +222,42 @@ const Analysis = () => {
                 <div
                   className={` ${getStatusBgColorClass(
                     activeStatus,
-                    "low"
-                  )} rounded-2xl w-[68px] h-[24px] flex items-center justify-center`}
+                    "Needs Focus"
+                  )} rounded-2xl w-[95px] h-[24px] flex items-center justify-center`}
                 >
-                  low
+                  Needs Focus
                 </div>
               </div>
               <div className="border-r border-main-border px-4 py-1">
                 <div
                   className={` ${getStatusBgColorClass(
                     activeStatus,
-                    "medium"
+                    "Ok"
                   )} w-[68px] h-[24px] flex items-center justify-center rounded-2xl`}
                 >
-                  Medium
+                  Ok
                 </div>
               </div>
               <div className="px-4 py-1">
                 <div
                   className={` ${getStatusBgColorClass(
                     activeStatus,
-                    "high"
+                    "Good"
                   )} w-[68px] h-[24px] flex items-center justify-center  rounded-2xl`}
                 >
-                  Critical
+                  Good
                 </div>
               </div>
+              <div className="px-4 py-1">
+                <div
+                  className={` ${getStatusBgColorClass(
+                    activeStatus,
+                    "Excellent"
+                  )} w-[68px] h-[24px] flex items-center justify-center  rounded-2xl`}
+                >
+                  Excellent
+                </div>
+              </div>              
             </div>
             {/* <div>
               <div
