@@ -34,7 +34,7 @@ const BarChart: React.FC<BarChartProps> = ({ type, active, setActive, average, c
 
 ;console.log(status);
 
-const statuses = ['Excellent' , 'Good' , 'Ok' , 'Nedds Focus']
+const statuses = ['Excellent' , 'Good' , 'Ok' , 'Needs Focus']
   return (
     <div
       onClick={() => setActive(type)}
