@@ -113,6 +113,10 @@ static downloadReport(data:any){
     })
     return response    
   }
+  static showPlanDescription(member_id:any) {
+    const response =  this.get(`/patients/${member_id}/show-tplan-description`)
+    return response    
+  }
 }
 
 

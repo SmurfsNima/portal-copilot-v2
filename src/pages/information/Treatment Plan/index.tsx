@@ -1,5 +1,5 @@
 import { InfoCard } from "@/components";
-import {  useEffect, useState } from "react";
+import {  useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
@@ -97,6 +97,8 @@ export const TreatmentPlan = () => {
   const { id } = useParams<{ id: string }>();
 
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([]);
+  const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([])
+  const [Description, setDescription] = useState()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const fetchData = async () => {
     try {
@@ -107,18 +109,20 @@ export const TreatmentPlan = () => {
       setBenchmarks(response.data[0]);
       setplanID(response.data[1])
       setIsGenerated(true);
-      
+      const desResponse = await Application.showPlanDescription(Number(id))
+      console.log(desResponse);
+      setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
+      setDescription(desResponse.data.description)
     } catch (err) {
       console.log(err);
     }
   };
-useEffect(()=>console.log(planID) , [planID]
-)
+
 
 const onButtonClick = async (planId : any) => {
   try {
     const response = await Application.downloadReport({ treatment_plan_id: planId });
-    console.log(response.data);
+   
     
     let base64String = response.data
 
@@ -217,10 +221,7 @@ const onButtonClick = async (planId : any) => {
             {isDescription && (
               <div className="w-full space-y-2 text-xs">
                 <p className="mt-4 text-primary-text">
-                  This patient has high blood sugar and cholesterol, insomnia at
-                  night, and sometimes migraine headaches. By referring to the
-                  mentioned authority, the following plan is considered for this
-                  patient.
+                {Description}
                 </p>
                 <div>
                   Concerning Results:{" "}
@@ -233,11 +234,9 @@ const onButtonClick = async (planId : any) => {
                   <BenchmarkModal isOpen={isModalOpen} onClose={closeModal} />
                 </div>
                 <ul className="list-disc ml-6 mt-4 text-primary-text">
-                  <li>Sex Hormones</li>
-                  <li>Growth/IGF-I Hormones</li>
-                  <li>Free Testosterone</li>
-                  <li>Major Essential Minerals</li>
-                  <li>Liver Function</li>
+                 { Array.isArray(needFocusBenchmarks) && needFocusBenchmarks.map((item , i)=>(
+                  <li key={i}>{item}</li>
+                 ))}
                 </ul>
                 <div className="w-full flex items-center justify-between mt-4 border-b border-main-border pb-2">
                   <input
