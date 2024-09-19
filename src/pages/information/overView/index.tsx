@@ -31,8 +31,8 @@ const OverView: React.FC = () => {
       </div>
       <InfoGraphicCenter />
       <div>
-        <div className="flex flex-col gap-2 max-w-[300px] 2xl:max-w-[400px] max-h-[700px] overflow-auto hidden-scrollBar pb-[200px] ">
-          {type1Biomarkers.map((item, i) => (
+        <div className={`flex flex-col gap-2 max-w-[300px] 2xl:max-w-[400px] max-h-[700px] overflow-auto hidden-scrollBar pb-[200px] ${type1Biomarkers.length < 1 && 'hidden'} `}>
+          { type1Biomarkers.length >1 && type1Biomarkers.map((item, i) => (
             <div key={i}>
               <NormalChartCard
                 type={item.type}

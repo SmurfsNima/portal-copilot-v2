@@ -15,18 +15,26 @@ interface BarChartProps {
 const BarChart: React.FC<BarChartProps> = ({ type, active, setActive, average, current, status }) => {
   const theme = useSelector((state: any) => state.theme.value.name);
   type StatusType = 'Excellent' | 'Good' | 'Ok' | 'Needs Focus';
-
-  // Determine the position of the circle based on the status
   const statusPosition: Record<StatusType, string> = {
-    "Excellent": '0',
-    "Good": '25%',
-    "Ok": '50%',
-    "Needs Focus": '75%'
+    "Excellent": '5%',
+    "Good": '30%',
+    "Ok": '60%',
+    "Needs Focus": '85%'
+  };
+  const statusColors: Record<StatusType, string> = {
+    "Excellent": 'bg-[#7F39FB]',
+    "Good": 'bg-[#03DAC5]',
+    "Ok": 'bg-[#E8D284]',
+    "Needs Focus": 'bg-[#E2798E]'
   };
 
-  const circlePosition = statusPosition[status as StatusType] || '0';
-;
+  const circlePosition = statusPosition[status as StatusType] || '0%';
+  const circleColor = statusColors[status as StatusType] || 'bg-blue-300'; // Default color
 
+
+;console.log(status);
+
+const statuses = ['Excellent' , 'Good' , 'Ok' , 'Needs Focus']
   return (
     <div
       onClick={() => setActive(type)}
@@ -38,7 +46,7 @@ const BarChart: React.FC<BarChartProps> = ({ type, active, setActive, average, c
       
       <div className='w-full flex items-center justify-between'>
         <div className={`flex-row absolute top-[40%] left-8 gap-8 justify-start flex items-start w-full`}>
-          <div className="flex flex-col text-center">
+          <div className={`flex flex-col text-center ${average === "null" && 'hidden'}`}>
             <h2 data-active={active === type} className={`ml-[2px] ${theme}-smallChartCard-text text-xs`}>Avg</h2>
             <h2 data-active={active === type} className={`ml-[2px] ${theme}-smallChartCard-text text-primary-text text-sm 2xl:text-[16px]`}>
               {average != 'null' ?average:'-'}
@@ -54,14 +62,20 @@ const BarChart: React.FC<BarChartProps> = ({ type, active, setActive, average, c
 
         <div className='absolute right-2 w-[180px] h-[100px]'>
           <div className="flex items-center">
-            <div className="absolute top-0 right-[28%] h-full w-2 bg-gradient-to-b from-blue-500 via-green-500 to-red-500 rounded-full"></div>
-            <div className="absolute right-[35%] transform bg-blue-300 w-3 h-3 rounded-full" style={{ top: circlePosition }}></div>
+            <div className="absolute top-0 right-[28%] h-full w-2  rounded-full">
+              <div className='bg-[#7F39FB] h-1/4 w-full rounded-t-full'></div>
+              <div className='bg-[#03DAC5] h-1/4 w-full'></div>
+              <div className='bg-[#E8D284] h-1/4 w-full'></div>
+              <div className='bg-[#E2798E] h-1/4 w-full rounded-b-full'></div>
+            </div>
+            <div className={` ${status === "Unknown Status" && 'hidden'} absolute right-[35%] transform ${circleColor} w-3 h-3 rounded-full`} style={{ top: circlePosition }}></div>
           </div>
-          <div className="text-[8px] text-brand-primary-color absolute right-0 flex flex-col gap-4 ">
-            <div>Excellent</div>
-            <div>Good</div>
-            <div>Ok</div>
-            <div>Need Focus</div>
+          <div className="text-[8px] text-secondary-text absolute right-0 flex flex-col gap-4  mt-1">
+           {
+            statuses.map((item , i)=>(
+              <div key={i} className={`${item === status && 'text-brand-primary-color'}`}>{item}</div>
+            ))
+           }
           </div>
         </div>
       </div>
