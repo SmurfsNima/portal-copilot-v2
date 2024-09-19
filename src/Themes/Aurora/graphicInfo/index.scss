@@ -26,13 +26,13 @@
 }
 
 .Aurora-graphicinfo-patientinfo-Physiological-position {
-  @apply top-10 left-10  xl:top-12 xl:left-12;
+  @apply top-10 left-10  xl:top-12 xl:left-12 2xl:left-28 3xl:left-52 3xl:top-20;
 }
 .Aurora-graphicinfo-patientinfo-Fitness-position {
-  @apply top-0 right-5  xl:top-0 xl:right-48;
+  @apply top-0 right-5  xl:top-0 xl:right-48 2xl:right-[245px] 3xl:right-[335px];
 }
 .Aurora-graphicinfo-patientinfo-Emotional-position {
-  @apply top-10 right-10 xl:top-12 xl:right-12;
+  @apply top-10 right-10 xl:top-12 xl:right-12 2xl:right-28 3xl:right-52 3xl:top-20;
 }
 
 

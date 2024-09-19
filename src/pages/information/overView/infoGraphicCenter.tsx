@@ -87,8 +87,8 @@ export const InfoGraphicCenter = () => {
     <div className="flex w-full flex-col items-center gap-4">
       <div className={`${theme}-graphicinfo-center-section fixed`}>
         {!isNext ? (
-          <div className="w-full relative h-[40vh] xl:h-[45vh] 2xl:h-[450px] pb-3">
-            <div className="w-full flex justify-center absolute bottom-4 h-[40vh] xl:h-[333px] 2xl:h-[446px]">
+          <div className="w-full relative h-[40vh] xl:h-[45vh] 2xl:h-[480px] pb-3">
+            <div className="w-full flex justify-center absolute bottom-4 h-[40vh] xl:h-[333px] ">
               <img src={Img} />
             </div>
             {patientMainInfo.map((item, i) => (
