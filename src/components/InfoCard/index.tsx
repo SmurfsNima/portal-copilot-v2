@@ -127,31 +127,32 @@ const InfoCard = () => {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <h2 className="text-secondary-text lg:text-[8px] xl:text-sm font-medium">
+          <h2 className="text-secondary-text text-sm font-medium">
             {patient?.information.name}
           </h2>
-          <div className="flex -ml-2 text-[8px] xl:text-sm">
-            <h2 className="text-primary-text border-r border-x-secondary-text px-2 lg:text-[8px] xl:text-sm">
+          <div className="flex -ml-2  text-sm">
+            <h2 className="text-primary-text border-r border-x-secondary-text px-2 text-nowrap  xl:text-sm">
               {patient?.information.age} Years
             </h2>
-            <h2 className="text-primary-text border-r border-x-secondary-text px-2 lg:text-[8px] xl:text-sm">
+            <h2 className="text-primary-text border-r border-x-secondary-text px-2  xl:text-sm">
               {patient?.information.sex}
             </h2>
             <h2 className="text-primary-text px-2 lg:text-[8px] xl:text-sm">
               P1245
             </h2>
           </div>
-          <div>
-            <h2 className="text-secondary-text text-xs font-medium">
-              Conditions:
-            </h2>
-            {/* Uncomment and map through conditions */}
-            {patient?.information?.conditions.map((condition, index) => (
-              <div className="text-xs font-normal text-primary-text">
-                {index + 1}. {condition}
-              </div>
-            ))}
-          </div>
+          {patient?.information?.conditions?.length ? (
+            <div>
+              <h2 className="text-secondary-text text-xs font-medium">
+                Conditions:
+              </h2>
+              {patient.information.conditions.map((condition, index) => (
+                <div key={index} className="text-xs font-normal text-primary-text">
+                  {index + 1}. {condition}
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -212,7 +213,7 @@ const InfoCard = () => {
                 <CircularProgressBar
                   key={item.ID}
                   size={50}
-                  percentage={Number(item.Percentage?.toFixed(0))}                  percentageNum={item.Percentage}
+                  percentage={Number(item.Percentage?.toFixed(0))}                  percentageNum={item.Percentage || 0}
                   progressColor={colorMap[item.ID as keyof typeof colorMap]}
                   speed={20}
                   titleC={item.title}
@@ -233,7 +234,7 @@ const InfoCard = () => {
                   progressColor={colorMap[item.ID as keyof typeof colorMap]}
                   speed={20}
                   titleC={item.title}
-                  count={item.Percentage}
+                  count={item.Percentage || 0 }
                 />
               ))}
             </div>
