@@ -117,7 +117,7 @@ const Analysis = () => {
     BloodtestsChartData.find((data)=>data.type === active) ||
     type2BiomarkersData.find((data) => data.type === active);
 
-  const activeStatus = activeChartData?.status || "";
+  const [activeStatus,setActiveStatus] = useState(activeChartData?.status || "");
   const [search,setSearch] =useState("")
   const renderCart2Components = () => {
     if(search != ''){
@@ -220,6 +220,9 @@ const Analysis = () => {
             <div className="rounded-md bg-black-primary border border-main-border flex items-center justify-center text-xs text-primary-text">
               <div className="border-r border-main-border px-4  ">
                 <div
+                  onClick={() => {
+                    setActiveStatus("Needs Focus")
+                  }}
                   className={` ${getStatusBgColorClass(
                     activeStatus,
                     "Needs Focus"
@@ -230,6 +233,9 @@ const Analysis = () => {
               </div>
               <div className="border-r border-main-border px-4 py-1">
                 <div
+                  onClick={() => {
+                    setActiveStatus("Ok")
+                  }}                
                   className={` ${getStatusBgColorClass(
                     activeStatus,
                     "Ok"
@@ -240,6 +246,9 @@ const Analysis = () => {
               </div>
               <div className="px-4 py-1">
                 <div
+                  onClick={() => {
+                    setActiveStatus("Good")
+                  }}                       
                   className={` ${getStatusBgColorClass(
                     activeStatus,
                     "Good"
@@ -250,6 +259,10 @@ const Analysis = () => {
               </div>
               <div className="px-4 py-1">
                 <div
+                  onClick={() => {
+                    setActiveStatus("Excellent")
+                    // alert("dd")
+                  }}                   
                   className={` ${getStatusBgColorClass(
                     activeStatus,
                     "Excellent"

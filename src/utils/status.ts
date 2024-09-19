@@ -25,12 +25,14 @@ const getStatusBgColorClass = (
         return "bg-brand-primary-color text-black";
       case "medium":
         return "bg-orange-status  text-black";
-      case "Excellent":
-        return "bg-red-status text-black";
-      case "Good":
-        return "bg-brand-primary-color text-black";
-      case "Ok":
-        return "bg-orange-status  text-black";        
+      case "excellent":
+        return "bg-blue-500 text-black";
+      case "good":
+        return "bg-green-500 text-black";
+      case "ok":
+        return "bg-yellow-500 text-black";        
+      case "needs focus":
+        return "bg-red-500 text-black";             
       default:
         return "bg-black-secondary";
     }
