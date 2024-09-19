@@ -5,7 +5,7 @@ const CircularProgressBar = ({
   percentage = 0,
   percentageNum = 0,
   progressColor = "#FC5474",
-  titleC='tedt',
+  titleC = 'text',
   speed = 100,
   count = 6.5
 }) => {
@@ -28,10 +28,10 @@ const CircularProgressBar = ({
   }, [percentage, speed]);
 
   const progressStyle = {
-    background: `conic-gradient(${progressColor} ${progressValue * 3.6}deg, rgba(34,139,34,0) 0deg)`,
+    background: percentage > 0 
+      ? `conic-gradient(${progressColor} ${progressValue * 3.6}deg, rgba(34,139,34,0) ${progressValue * 3.6}deg)`
+      : 'none', // No gradient when percentage is 0
   };
-
- 
 
   return (
     <div
@@ -39,16 +39,12 @@ const CircularProgressBar = ({
       className="relative flex justify-center items-center rounded-full"
       style={{ width: size, height: size, ...progressStyle }}
     >
-      <div
-        className=" rounded-full bg-[#333333] w-[90%] h-[90%] flex items-center justify-center flex-col gap-[1px]"
-      >
-      <p className=" text-[6px] h-[11px] text-[#ffffff5e]">{`${titleC}`}</p>
-      <p
-        className=" text-[10px] "
-        
-      >{percentageNum === 200 ? <></> : `${percentageNum}%`} {count === 99 ? <></> : `${count} /10`} </p>
-        </div>
-
+      <div className="rounded-full bg-[#333333] w-[90%] h-[90%] flex items-center justify-center flex-col gap-[1px]">
+        <p className="text-[6px] h-[11px] text-[#ffffff5e]">{`${titleC}`}</p>
+        <p className="text-[10px]">
+          {percentageNum === 200 ? null : `${percentageNum}%`} {count === 99 ? null : `${count} /10`}
+        </p>
+      </div>
     </div>
   );
 };
