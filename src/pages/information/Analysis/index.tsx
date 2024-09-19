@@ -111,6 +111,7 @@ const Analysis = () => {
   const cart2Biomarkers = filterBiomarkersByCartAndType(2, "vital");
   console.log(cart2Biomarkers);
   const type2BiomarkersData = prepareChartData(cart2Biomarkers);
+  
   const activeChartData =
     VitalschartData.find((data) => data.type === active) ||
     BloodtestsChartData.find((data)=>data.type === active) ||
@@ -119,7 +120,6 @@ const Analysis = () => {
   const activeStatus = activeChartData?.status || "";
   const renderCart2Components = () => {
     return type2BiomarkersData.map((biomarker, index) => {
-      console.log(biomarker);
       return (
         <BarChart
           key={index}

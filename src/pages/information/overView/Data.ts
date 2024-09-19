@@ -1,9 +1,4 @@
-import NutritionIcon from "/public/Themes/Aurora/icons/Nutriton-icon.svg";
-import NutritionBorder from "/public/Themes/Aurora/icons/Nutrition-border.svg";
-import ActivityIcon from "/public/Themes/Aurora/icons/Activity-logo.svg";
-import Border from "/public/Themes/Aurora/icons/Activity-border.svg";
-import SleepIcon from "/public/Themes/Aurora/icons/Sleep-icon.svg";
-import MindIcon from "/public/Themes/Aurora/icons/Mind-icon.svg";
+
 export const btnInfo =[
     {
         text : 'Client Info',
@@ -41,32 +36,7 @@ export const appointments = [
     { date: '05 Mar, 2024', time: '9:00 am', doctor: 'Dr. Daniel Alfonzo', isDone: true, details: 'more details' },
     { date: '27 Feb, 2024', time: '11:00 am', doctor: 'Dr. Daniel Alfonzo', isDone: true, details: 'more details' },
   ];
- export const patientMainInfo = [
-    {
-        name :  "Diet",
-        value : 74,
-        border : NutritionBorder,
-        icon : NutritionIcon,
-    },
-    {
-        name : "Activity",
-        value: 79,
-        border : Border,
-        icon : ActivityIcon,
-    },
-    {
-        name : "Supplement",
-        value: 99,
-        border : Border,
-        icon : SleepIcon,
-    },
-    {
-        name : "Mind",
-        value: 83,
-        border : Border,
-        icon : MindIcon,
-    },
- ]
+
  export const chartsInfo = [
     {type : "Temperature",
         isMeasured : false,

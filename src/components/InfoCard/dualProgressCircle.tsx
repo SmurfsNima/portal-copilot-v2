@@ -1,7 +1,7 @@
 // DualProgressCircle.js
 interface DualProgressCircleProps{
-  progress1 : number,
-  progress2 : number,
+  progress1 : number | null,
+  progress2 : number | null,
   size : number,
 }
 const DualProgressCircle: React.FC<DualProgressCircleProps> = ({ progress1, progress2, size = 135 }) => {
