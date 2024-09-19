@@ -7,8 +7,8 @@ interface DualProgressCircleProps{
 const DualProgressCircle: React.FC<DualProgressCircleProps> = ({ progress1, progress2, size = 135 }) => {
   const radius = (size - 10) / 2;
   const circumference = 2 * Math.PI * radius;
-  const offset1 = circumference - (progress1 / 100) * circumference;
-  const offset2 = circumference - (progress2 / 100) * circumference;
+  const offset1 = circumference - ((progress1 ?? 0) / 100) * circumference; 
+  const offset2 = circumference - ((progress2 ?? 0) / 100) * circumference; 
 
   return (
     <div className="flex    items-center">
