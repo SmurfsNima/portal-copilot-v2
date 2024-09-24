@@ -114,17 +114,23 @@ export const TreatmentPlan = () => {
       const response = await Application.generateTreatmentPlan({
         member_id: Number(id),
       });
-      setBenchmarks(response.data[0]);
-      setplanID(response.data[1]);
-      setIsGenerated(true);
-      const desResponse = await Application.showPlanDescription(Number(id));
+      if (response.data && response.data.length > 0) {
+        setBenchmarks(response.data[0]);
+        setplanID(response.data[1]);
+        setIsGenerated(true);
 
-      setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
-      setDescription(desResponse.data.description);
+        const desResponse = await Application.showPlanDescription(Number(id));
+        setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
+        setDescription(desResponse.data.description);
+      } else {
+        setIsGenerated(false); // No data found
+      }
     } catch (err) {
       console.log(err);
+      setIsGenerated(false); // Handle error by not setting generated to true
     }
   };
+
 
   const createPDFReport = (data: {
     client_info: any;
@@ -490,14 +496,14 @@ export const TreatmentPlan = () => {
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
-      <div className="w-full bg-black-primary border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
+      {/* <div className="w-full bg-black-primary border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
         <input
           className="w-full border text-[10px] border-main-border bg-black-secondary rounded-md outline-none text-xs pl-2 py-1 text-primary-text"
           type="text"
           placeholder="Write here..."
         />
         <img src="/Themes/Aurora/icons/send.svg" alt="" />
-      </div>
+      </div> */}
       {isGenerated ? (
         <div className="w-full flex gap-2 ">
           <div className="bg-black-primary text-primary-text w-full h-[340px] overflow-x-hidden overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border">
@@ -621,7 +627,7 @@ export const TreatmentPlan = () => {
                             ))}
                           </ul>
 
-                          <ul className="space-y-4 ">
+                          {/* <ul className="space-y-4 ">
                             {benchmark.first12Weeks.donts.map((dontItem, i) => (
                               <li className="text-nowrap max-w-[250px]" key={i}>
                                 {dontItem}{" "}
@@ -630,7 +636,7 @@ export const TreatmentPlan = () => {
                                 </span>
                               </li>
                             ))}
-                          </ul>
+                          </ul> */}
                         </div>
                         <div className="text-xs space-y-10">
                           <ul className="  space-y-4 ">
@@ -639,7 +645,7 @@ export const TreatmentPlan = () => {
                             ))}
                           </ul>
 
-                          <ul className=" space-y-4 ">
+                          {/* <ul className=" space-y-4 ">
                             {benchmark.second12Weeks.donts.map(
                               (dontItem, i) => (
                                 <li className="text-nowrap" key={i}>
@@ -650,7 +656,7 @@ export const TreatmentPlan = () => {
                                 </li>
                               )
                             )}
-                          </ul>
+                          </ul> */}
                         </div>
                       </div>
                     ))
