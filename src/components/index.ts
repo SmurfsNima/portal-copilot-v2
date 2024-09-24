@@ -1,4 +1,5 @@
 import Accordion from './Accordion';
+import ActivityMenu from './ActivityMenu';
 import Appointments from './Appointments';
 import Badge from './badge';
 import Card from './card'
@@ -16,6 +17,7 @@ import PopUp from './popup';
 import PlanManagerModal from './planModal/planModal';
 export {
     Accordion,
+    ActivityMenu,
     Appointments,
     InfoCard,
     Badge,

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChatBox, InfoCard, SearchBox } from "@/components";
+import { ActivityMenu, ChatBox, InfoCard, SearchBox } from "@/components";
 import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -174,7 +174,11 @@ const Analysis = () => {
       <div className="flex flex-col w-full  items-start gap-2">
         <InfoCard></InfoCard>
         <div className="flex w-full justify-between ">
-          <div className="flex  gap-1 text-primary-text text-xs ">
+          <ActivityMenu activeMenu={activeMode as any} onChangeMenuAction={(menu) => {
+            setActiveMode(menu)
+            setActive(null)
+          }}></ActivityMenu>
+          {/* <div className="flex  gap-1 text-primary-text text-xs ">
             <div
               onClick={() => {
                 setActive(null);
@@ -208,7 +212,18 @@ const Analysis = () => {
             >
               Activity
             </div>
-          </div>
+            <div
+              onClick={() => {
+                setActive("");
+                setActiveMode("Client Profile");
+              }}
+              className={` ${
+                activeMode === "Client Profile" && "bg-black-third"
+              } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer `}
+            >
+              Client Profile
+            </div>            
+          </div> */}
           <div className=" flex    items-center gap-2 ">
             <SearchBox
             changeHandler={(e) =>{
