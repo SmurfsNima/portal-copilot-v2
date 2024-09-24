@@ -121,7 +121,7 @@ const InfoCard = () => {
           >
             <img
               className="absolute top-[4px] left-[4px] xl:top-[6px] xl:left-[6px] w-[78px] h-[88px] rounded-full xl:h-[105px] xl:w-[105px] object-cover"
-              src={patient?.information.picture}
+              src={patient?.information.picture != ''?patient?.information.picture :`https://ui-avatars.com/api/?name=${patient?.information.name}`}
               alt=""
             />
           </div>

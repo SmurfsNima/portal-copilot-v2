@@ -1,4 +1,5 @@
 import Accordion from './Accordion';
+import ActivityMenu from './ActivityMenu';
 import Appointments from './Appointments';
 import Badge from './badge';
 import Card from './card'
@@ -6,6 +7,7 @@ import InfoCard from './InfoCard';
 import NumberBox from './numberBox/numberBox';
 import SearchBox from "./searchBox";
 import SideMenu from "./sideMenu";
+import StatusMenu from './StatusMenu';
 import Table from './table'
 import TabsWrapper from './Tabs';
 import TopBar from "./topBar";
@@ -16,6 +18,7 @@ import PopUp from './popup';
 import PlanManagerModal from './planModal/planModal';
 export {
     Accordion,
+    ActivityMenu,
     Appointments,
     InfoCard,
     Badge,
@@ -24,6 +27,7 @@ export {
     SearchBox,
     SideMenu,
     Table,
+    StatusMenu,
     TabsWrapper,
     TopBar,
     ChatBox,

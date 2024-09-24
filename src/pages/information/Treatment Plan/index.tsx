@@ -637,7 +637,7 @@ export const TreatmentPlan = () => {
                             </div>
                           )}
                         </div>
-                        <div className="text-xs font-medium">
+                        <div className="text-[10px] font-medium overflow-hidden flex flex-col text-left ">
                           <ul className="space-y-4 ">
                             {benchmark.first12Weeks.dos.map((doItem, i) => (
                               <li key={i}>{doItem}</li>
@@ -655,7 +655,7 @@ export const TreatmentPlan = () => {
                             ))}
                           </ul> */}
                         </div>
-                        <div className="text-xs space-y-10">
+                        <div className="text-[10px] font-medium overflow-hidden flex flex-col text-left ">
                           <ul className="  space-y-4 ">
                             {benchmark.second12Weeks.dos.map((doItem, i) => (
                               <li key={i}>{doItem}</li>

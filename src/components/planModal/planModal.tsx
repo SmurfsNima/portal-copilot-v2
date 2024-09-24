@@ -30,7 +30,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [buttonState, setButtonState] = useState("initial");
   const [allData,setAllData] = useState(data)
-  const [categories,setCategories] = useState<Array<string>>([])
+  // const [categories,setCategories] = useState<Array<string>>([])
   useEffect(() => {
     setAllData(data)
   },[data])
@@ -109,6 +109,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
       // Access the specific benchmark using the dynamic key
 
       // Toggle the "checked" state
+      updatedData[topLevelKey].BenchmarkAreas[areaIndex].checked = state
       updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks.map(element => {
         element.checked = state
       })
@@ -168,14 +169,14 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
                     <label className="flex gap-1 items-center justify-start cursor-pointer text-xs font-normal text-secondary-text">
                       <input
                         type="checkbox"
-                        checked={categories.includes(area.Name as string) }
+                        checked={area.checked }
                         onChange={() => {
-                          if(!categories.includes(area.Name as string)){
-                            setCategories([...categories,area.Name])
-                          }else {
-                            setCategories([...categories.filter(item => item !== area.Name)])
-                          }
-                          handleCheckBoxChangeParent(areaIndex,categoryName,!categories.includes(area.Name as string))                          
+                          // if(!categories.includes(area.Name as string)){
+                          //   setCategories([...categories,area.Name])
+                          // }else {
+                          //   setCategories([...categories.filter(item => item !== area.Name)])
+                          // }
+                          handleCheckBoxChangeParent(areaIndex,categoryName,!area.checked)                          
                         }}
                         className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center"
                       />
@@ -195,9 +196,11 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
                           <label className="flex items-center cursor-pointer text-xs font-normal text-secondary-text">
                             <input
                               type="checkbox"
-                              checked={benchmark.checked}
+                              checked={benchmark.checked && area.checked}
                               onChange={() => {
-                                handleCheckboxChange(areaIndex, benchmarkIndex,categoryName,!benchmark.checked)
+                                if(area.checked){
+                                  handleCheckboxChange(areaIndex, benchmarkIndex,categoryName,!benchmark.checked)
+                                }
                               }}
                               className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center"
                             />
@@ -205,29 +208,34 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
                               {benchmark.Benchmark.substring(0,35)}
                             </div>
                           </label>
-                          <div className="w-full flex items-center justify-end ml-2">
-                            <span className="text-[10px] text-secondary-text mr-2">
-                              Level
-                            </span>
-                            <div className="flex border border-main-border">
-                              {Array.from({ length: 3 }, (_, i) => (
-                                <button
-                                  key={i}
-                                  onClick={() =>
-                                    handleValueChange(areaIndex,benchmarkIndex,categoryName,i+1)
-                                  }
-                                  className={`w-6 h-6 flex items-center justify-center text-xs ${
-                                    benchmark.Value
-                                    === i + 1
-                                      ? "bg-black-fourth text-brand-secondary-color"
-                                      : "bg-black-secondary text-secondary-text"
-                                  }`}
-                                >
-                                  {i + 1}
-                                </button>
-                              ))}
+                          {
+                            benchmark.checked ?
+                            <div className="w-full flex items-center justify-end ml-2">
+                              <span className="text-[10px] text-secondary-text mr-2">
+                                Level
+                              </span>
+                              <div className="flex border border-main-border">
+                                {Array.from({ length: 3 }, (_, i) => (
+                                  <button
+                                    key={i}
+                                    onClick={() =>
+                                      handleValueChange(areaIndex,benchmarkIndex,categoryName,i+1)
+                                    }
+                                    className={`w-6 h-6 flex items-center justify-center text-xs ${
+                                      benchmark.Value
+                                      === i + 1
+                                        ? "bg-black-fourth text-brand-secondary-color"
+                                        : "bg-black-secondary text-secondary-text"
+                                    }`}
+                                  >
+                                    {i + 1}
+                                  </button>
+                                ))}
+                              </div>
                             </div>
-                          </div>
+                            :
+                            undefined
+                          }
                         </li>
                       ))}
                     </ul>

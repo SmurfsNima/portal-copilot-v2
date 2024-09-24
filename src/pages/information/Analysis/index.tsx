@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChatBox, InfoCard, SearchBox } from "@/components";
+import { ActivityMenu, ChatBox, InfoCard, SearchBox, StatusMenu } from "@/components";
 import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -8,7 +8,6 @@ import { Button } from "symphony-ui";
 import { NormalChartCard } from "@/components/chartCard/normalChartCard";
 import { useBiomarkers } from "@/hooks";
 import { prepareChartData } from "@/utils/status";
-import { getStatusBgColorClass } from "@/utils/status";
 // import MethylationChart from "@/components/charts/MethylationChart";
 import { ActivityCard } from "./activityCard";
 // import PlanManagerModal from "./planModal";
@@ -77,7 +76,7 @@ const Analysis = () => {
   ]);
   const [active, setActive] = useState<string | null>(null);
   const [activeMode, setActiveMode] = useState("Vital");
-  const [buttonState, setButtonState] = useState("initial");
+  const [buttonState,] = useState("initial");
 
   const handleSendMessage = (message: string) => {
     if (message.trim()) {
@@ -117,11 +116,11 @@ const Analysis = () => {
     BloodtestsChartData.find((data)=>data.type === active) ||
     type2BiomarkersData.find((data) => data.type === active);
 
-  const [activeStatus,setActiveStatus] = useState(activeChartData?.status || "");
+  const [activeStatus,setActiveStatus] = useState("All");
   const [search,setSearch] =useState("")
   const renderCart2Components = () => {
     if(search != ''){
-    return type2BiomarkersData.filter(e => e.type.toLowerCase().includes(search.toLowerCase())).map((biomarker, index) => {
+    return type2BiomarkersData.filter(e => e.type.toLowerCase().includes(search.toLowerCase())).filter((e) => activeStatus!='All'? e.status == activeStatus: e).map((biomarker, index) => {
       return (
         <BarChart
           key={index}
@@ -135,7 +134,7 @@ const Analysis = () => {
       );
     });      
     }
-    return type2BiomarkersData.map((biomarker, index) => {
+    return type2BiomarkersData.filter((e) => activeStatus!='All'? e.status == activeStatus: e).map((biomarker, index) => {
       return (
         <BarChart
           key={index}
@@ -149,13 +148,13 @@ const Analysis = () => {
       );
     });
   };
-  const handleClick = () => {
-    setButtonState("loading");
+  // const handleClick = () => {
+  //   setButtonState("loading");
 
-    setTimeout(() => {
-      setButtonState("completed");
-    }, 3000);
-  };
+  //   setTimeout(() => {
+  //     setButtonState("completed");
+  //   }, 3000);
+  // };
   useEffect(() => console.log(buttonState), [buttonState]);
   // const [setIsModalOpen] = useState(false);
 
@@ -174,41 +173,11 @@ const Analysis = () => {
       <div className="flex flex-col w-full  items-start gap-2">
         <InfoCard></InfoCard>
         <div className="flex w-full justify-between ">
-          <div className="flex  gap-1 text-primary-text text-xs ">
-            <div
-              onClick={() => {
-                setActive(null);
-                setActiveMode("Vital");
-              }}
-              className={` ${
-                activeMode === "Vital" && "bg-black-third"
-              } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer   `}
-            >
-              Vital
-            </div>
-            <div
-              onClick={() => {
-                setActive(null);
-                setActiveMode("Blood Test");
-              }}
-              className={` ${
-                activeMode === "Blood Test" && "bg-black-third"
-              } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer  `}
-            >
-              Blood Test
-            </div>
-            <div
-              onClick={() => {
-                setActive("");
-                setActiveMode("Activity");
-              }}
-              className={` ${
-                activeMode === "Activity" && "bg-black-third"
-              } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer `}
-            >
-              Activity
-            </div>
-          </div>
+          <ActivityMenu activeMenu={activeMode as any} onChangeMenuAction={(menu) => {
+            setActiveMode(menu)
+            setActive(null)
+          }}></ActivityMenu>
+
           <div className=" flex    items-center gap-2 ">
             <SearchBox
             changeHandler={(e) =>{
@@ -217,61 +186,7 @@ const Analysis = () => {
               theme="Aurora"
               placeholder="Quick alphabetical search for biomarkers"
             />
-            <div className="rounded-md bg-black-primary border border-main-border flex items-center justify-center text-xs text-primary-text">
-              <div className="border-r border-main-border px-4  ">
-                <div
-                  onClick={() => {
-                    setActiveStatus("Needs Focus")
-                  }}
-                  className={` ${getStatusBgColorClass(
-                    activeStatus,
-                    "Needs Focus"
-                  )} rounded-2xl w-[95px] h-[24px] flex items-center justify-center`}
-                >
-                  Needs Focus
-                </div>
-              </div>
-              <div className="border-r border-main-border px-4 py-1">
-                <div
-                  onClick={() => {
-                    setActiveStatus("Ok")
-                  }}                
-                  className={` ${getStatusBgColorClass(
-                    activeStatus,
-                    "Ok"
-                  )} w-[68px] h-[24px] flex items-center justify-center rounded-2xl`}
-                >
-                  Ok
-                </div>
-              </div>
-              <div className="px-4 py-1">
-                <div
-                  onClick={() => {
-                    setActiveStatus("Good")
-                  }}                       
-                  className={` ${getStatusBgColorClass(
-                    activeStatus,
-                    "Good"
-                  )} w-[68px] h-[24px] flex items-center justify-center  rounded-2xl`}
-                >
-                  Good
-                </div>
-              </div>
-              <div className="px-4 py-1">
-                <div
-                  onClick={() => {
-                    setActiveStatus("Excellent")
-                    // alert("dd")
-                  }}                   
-                  className={` ${getStatusBgColorClass(
-                    activeStatus,
-                    "Excellent"
-                  )} w-[68px] h-[24px] flex items-center justify-center  rounded-2xl`}
-                >
-                  Excellent
-                </div>
-              </div>              
-            </div>
+            <StatusMenu activeStatus={activeStatus as any} onChange={((value) =>setActiveStatus(value))}></StatusMenu>
             {/* <div>
               <div
                 className="bg-black-primary border border-main-border w-8 h-8 flex items-center justify-center cursor-pointer"
@@ -298,13 +213,13 @@ const Analysis = () => {
               activeMode === "Activity" && "hidden"
             } w-full h-full max-h-[360px] overflow-auto flex flex-wrap justify-start gap-x-[50px]  hidden-scrollBar  `}
           >
-            <div
+            {/* <div
               data-active={active && true}
               className={` ${
                 activeMode === "Activity" && "hidden"
               }  ${theme}-biomarker-leftbuttons-container w-[316px]`}
-            >
-              <div
+            > */}
+              {/* <div
                 onClick={handleClick}
                 className={`${theme}-biomarker-analyze-button  ${
                   active && "hidden"
@@ -333,27 +248,27 @@ const Analysis = () => {
                     </h2>
                   </>
                 )}
-              </div>
+              </div> */}
 
               <div
                 onClick={() => setActive(null)}
                 data-active={active && true}
-                className={`${theme}-biomarker-back-button`}
+                className={`${theme}-biomarker-back-button `}
               >
                 <img className={`${theme}-icons-arrow-left`} />
               </div>
 
-              <div
+              {/* <div
                 id="custom-border"
                 data-active={active && true}
-                className={`${theme}-biomarker-Addbiomarker-button custom-border`}
+                className={`${theme}-biomarker-Addbiomarker-button custom-border h-[145px]`}
               >
                 <img className={`${theme}-icons-Add`} alt="" />
                 <h2 className={`${theme}-biomarker-Addbiomarker-button-text`}>
                   Add New
                 </h2>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
             {activeMode === "Blood Test" &&
               renderChartCards(BloodtestsChartData)}
             {activeMode === "Vital" && renderChartCards(VitalschartData)}
