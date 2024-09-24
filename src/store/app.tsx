@@ -17,7 +17,8 @@ interface AppContextProp {
     getBiomarkers: (id: number) => biomarker[] | undefined;
     getDiagnosis: (id: number) => diagnosis[] | undefined;
     getAllBiomarkersById : () => undefined;
-
+    pdfBlob: Blob | null;
+    setPdfBlob: (blob: Blob | null) => void;
 
 }
 
@@ -35,6 +36,8 @@ export const AppContext = createContext<AppContextProp>({
     getBiomarkers : ()=> undefined,
     getDiagnosis : ()=> undefined,
     getAllBiomarkersById : ()=> undefined,
+    pdfBlob: null,
+    setPdfBlob: () => {}
 
 })
 
@@ -43,6 +46,8 @@ const AppContextProvider =({children}:PropsWithChildren) => {
     const localuser = localStorage.getItem('authUser')
     const resolveUser:User = Object.assign(new User(),JSON.parse(localuser as string))
     const [user,setUser] = useState<User>(resolveUser ? resolveUser : new User());
+    const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
+
     const [patients, setPatients] = useState<Pationt[]>(() => {
         const storedPatients = localStorage.getItem("patients");
         return storedPatients ? JSON.parse(storedPatients) : [];
@@ -104,6 +109,8 @@ const AppContextProvider =({children}:PropsWithChildren) => {
         getBiomarkers,
         getDiagnosis,
         getAllBiomarkersById,
+        pdfBlob,
+        setPdfBlob,
 
 
         

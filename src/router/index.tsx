@@ -10,6 +10,7 @@ import { TreatmentPlan } from "@/pages/information/Treatment Plan";
 import { ActionPlan } from "@/pages/information/ActionPlan";
 import { Calender } from "@/pages/information/calender";
 import { Messages } from "@/pages/messages";
+import PdfViewerComponent from "@/pages/information/Treatment Plan/PdfViewer";
 const router = createHashRouter([
   {
     path: "/",
@@ -43,6 +44,12 @@ const router = createHashRouter([
           {
             path: "treatment-plan",
             element: <TreatmentPlan></TreatmentPlan>,
+            children : [
+              {
+                path: "pdf-viewer",
+                element : <PdfViewerComponent></PdfViewerComponent>
+              }
+            ]
           },
           {
             path: "action-plan",

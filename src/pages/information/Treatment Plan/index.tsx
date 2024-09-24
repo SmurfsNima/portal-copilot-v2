@@ -1,13 +1,16 @@
 import { InfoCard } from "@/components";
-import { useState } from "react";
+import { useState , useContext } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
 import { Application } from "@/api";
-import { useParams } from "react-router-dom";
+import { useParams , useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-type ReportBenchmark = {
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+
+import { AppContext } from "@/store/app";
+ type ReportBenchmark = {
   Category: string;
   "Benchmark areas": string;
   "Test L1": string;
@@ -101,20 +104,27 @@ export const TreatmentPlan = () => {
   const [treatmentActive, setTreatmentActive] = useState(0);
   const [isDetailsOpen, setIsDetailsOpen] = useState(true);
   const [isDescription, setIsDescription] = useState(true);
-  const [isGenerated, setIsGenerated] = useState(false);
+  const [isGenerated, setIsGenerated] = useState(true);
   const [planID, setplanID] = useState();
   const { id } = useParams<{ id: string }>();
-
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([]);
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+    
+  const { setPdfBlob } = useContext(AppContext); // Access the context
+  const navigate = useNavigate(); // Navigation hook
   const fetchData = async () => {
     try {
       const response = await Application.generateTreatmentPlan({
+       
+        
         member_id: Number(id),
       });
+      console.log(response);
       if (response.data && response.data.length > 0) {
+       
+        
         setBenchmarks(response.data[0]);
         setplanID(response.data[1]);
         setIsGenerated(true);
@@ -468,6 +478,9 @@ export const TreatmentPlan = () => {
     doc.text(doc.splitTextToSize(confidentialityText, pageWidth), 10, 20);
     // Save the PDF
     doc.save("Benchmark_Assessment_Report.pdf");
+    const pdfBlob = doc.output("blob");
+    return pdfBlob;
+  
   };
   const onButtonClick = async (planId: string | undefined) => {
     try {
@@ -475,14 +488,17 @@ export const TreatmentPlan = () => {
         treatment_plan_id: planId,
       });
       const data = response.data;
-      console.log(data);
+      console.log(response);
+      console.log(planID);
+      
 
       if (!data) {
         console.error("Data is undefined. Check the API response structure.");
         return;
       }
-
-      createPDFReport(data);
+      const pdfBlob = createPDFReport(data);
+      setPdfBlob(pdfBlob); // Update state with Blob
+      navigate('/pdf-viewer'); 
     } catch (error) {
       console.error("Error downloading the PDF:", error);
     }
@@ -520,6 +536,7 @@ export const TreatmentPlan = () => {
                   />
                   Download Report
                 </button>
+              
                 {!showHistory && (
                   <button
                     onClick={() => setShowHistory(true)}
