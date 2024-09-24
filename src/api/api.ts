@@ -21,9 +21,12 @@ class Api {
     return response;
   }
 
-  protected static get(url:string) {
+  protected static get(url:string , config?:any) {
     // toast.loading('pending ...')
-    const response = axios.get(this.base_url+url);
+    const response = axios.get(this.base_url+url , { headers: {
+      Authorization: "Bearer " + getTokenFromLocalStorage(),
+      "Content-Type": config?.headers?.['Content-Type'] || "application/json",
+    },});
     return response;    
   }
 
