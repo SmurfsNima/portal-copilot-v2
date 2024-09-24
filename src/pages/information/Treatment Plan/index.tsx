@@ -117,32 +117,32 @@ export const TreatmentPlan = () => {
     
   const { setPdfBlob } = useContext(AppContext); // Access the context
   const navigate = useNavigate(); // Navigation hook
-  const fetchData = async () => {
-    try {
-      const response = await Application.generateTreatmentPlan({
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await Application.generateTreatmentPlan({
        
         
-        member_id: Number(id),
-      });
-      console.log(response);
-      if (response.data && response.data.length > 0) {
+  //       member_id: Number(id),
+  //     });
+  //     console.log(response);
+  //     if (response.data && response.data.length > 0) {
        
         
-        setBenchmarks(response.data[0]);
-        setplanID(response.data[1]);
-        setIsGenerated(true);
+  //       setBenchmarks(response.data[0]);
+  //       setplanID(response.data[1]);
+  //       setIsGenerated(true);
 
-        const desResponse = await Application.showPlanDescription(Number(id));
-        setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
-        setDescription(desResponse.data.description);
-      } else {
-        setIsGenerated(false); // No data found
-      }
-    } catch (err) {
-      console.log(err);
-      setIsGenerated(false); // Handle error by not setting generated to true
-    }
-  };
+  //       const desResponse = await Application.showPlanDescription(Number(id));
+  //       setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
+  //       setDescription(desResponse.data.description);
+  //     } else {
+  //       setIsGenerated(false); // No data found
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //     setIsGenerated(false); // Handle error by not setting generated to true
+  //   }
+  // };
   const [regenerated,setIsRegenerated] = useState(false)
   const regenerateModalRefrence = useRef(null)
   useModalAutoClose({
@@ -223,7 +223,7 @@ export const TreatmentPlan = () => {
     doc.setFontSize(16);
     doc.setTextColor(0, 0, 0);
     doc.text("Please read before reviewing this report", 10, 10);
-    let pageWidth = 180;
+    const pageWidth = 180;
     let y = 20;
 
     // Add text
