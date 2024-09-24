@@ -25,7 +25,7 @@ const InfoCard = () => {
     setPatient(getPatientById(Number(id)));
   }, [id]);
 
-  const [active, setActive] = useState("Progress");
+  const [active] = useState("Progress");
   const colorMap = {
     1: "#03DAC5", // Nutrition
     2: "#FC5474", // Mind
@@ -247,7 +247,7 @@ const InfoCard = () => {
       )}
 
       {/* Toggle buttons */}
-      <div className="absolute top-2 right-2 flex gap-1 text-xs">
+      {/* <div className="absolute top-2 right-2 flex gap-1 text-xs">
         <div
           onClick={() => setActive("Progress")}
           className={`rounded-lg px-3 py-2 cursor-pointer ${
@@ -268,7 +268,7 @@ const InfoCard = () => {
         >
           Aging
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -15,24 +15,24 @@ export const TabsInfo = [
     path : 'treatment-plan',
     icon : true
   },
-  {
-    text: "Action Plan",
-    path : 'action-plan',
-    icon : true
-  },
-  {
-    text: "Timeline",
-    path : 'timeline',
-    icon : true
-  },
-  {
-    text: "Calender",
-    path: "calender",
-    icon : true
-  },
-  {
-    text: "Messages",
-    path : 'messages',
-    icon : true
-  },
+  // {
+  //   text: "Action Plan",
+  //   path : 'action-plan',
+  //   icon : true
+  // },
+  // {
+  //   text: "Timeline",
+  //   path : 'timeline',
+  //   icon : true
+  // },
+  // {
+  //   text: "Calender",
+  //   path: "calender",
+  //   icon : true
+  // },
+  // {
+  //   text: "Messages",
+  //   path : 'messages',
+  //   icon : true
+  // },
 ];
