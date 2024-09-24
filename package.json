@@ -23,6 +23,8 @@
     "graphology": "^0.25.4",
     "graphology-layout": "^0.6.1",
     "graphology-types": "^0.24.7",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.3",
     "node": "^22.4.0",
     "path": "^0.12.7",
     "react": "^18.3.1",
@@ -40,6 +42,7 @@
   },
   "devDependencies": {
     "@types/chroma-js": "^2.4.4",
+    "@types/jspdf": "^2.0.0",
     "@types/qs": "^6.9.15",
     "@types/react": "^18.3.3",
     "@types/react-beautiful-dnd": "^13.1.8",
