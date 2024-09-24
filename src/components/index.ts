@@ -7,6 +7,7 @@ import InfoCard from './InfoCard';
 import NumberBox from './numberBox/numberBox';
 import SearchBox from "./searchBox";
 import SideMenu from "./sideMenu";
+import StatusMenu from './StatusMenu';
 import Table from './table'
 import TabsWrapper from './Tabs';
 import TopBar from "./topBar";
@@ -26,6 +27,7 @@ export {
     SearchBox,
     SideMenu,
     Table,
+    StatusMenu,
     TabsWrapper,
     TopBar,
     ChatBox,
