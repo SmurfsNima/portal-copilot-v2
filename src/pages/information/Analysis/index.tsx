@@ -213,12 +213,12 @@ const Analysis = () => {
               activeMode === "Activity" && "hidden"
             } w-full h-full max-h-[360px] overflow-auto flex flex-wrap justify-start gap-x-[50px]  hidden-scrollBar  `}
           >
-            <div
+            {/* <div
               data-active={active && true}
               className={` ${
                 activeMode === "Activity" && "hidden"
               }  ${theme}-biomarker-leftbuttons-container w-[316px]`}
-            >
+            > */}
               {/* <div
                 onClick={handleClick}
                 className={`${theme}-biomarker-analyze-button  ${
@@ -258,7 +258,7 @@ const Analysis = () => {
                 <img className={`${theme}-icons-arrow-left`} />
               </div>
 
-              <div
+              {/* <div
                 id="custom-border"
                 data-active={active && true}
                 className={`${theme}-biomarker-Addbiomarker-button custom-border h-[145px]`}
@@ -267,8 +267,8 @@ const Analysis = () => {
                 <h2 className={`${theme}-biomarker-Addbiomarker-button-text`}>
                   Add New
                 </h2>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
             {activeMode === "Blood Test" &&
               renderChartCards(BloodtestsChartData)}
             {activeMode === "Vital" && renderChartCards(VitalschartData)}
