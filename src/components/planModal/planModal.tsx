@@ -9,6 +9,7 @@ interface Benchmark {
   Benchmark: string;
   Value: number;
   checked: boolean;
+  tag?:boolean
 }
 
 interface BenchmarkArea {
@@ -251,7 +252,10 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
                               className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center"
                             />
                             <div className="peer-checked:text-primary-text text-[10px] w-[185px]">
-                              {benchmark.Benchmark.substring(0,35)}
+                              {benchmark.Benchmark.substring(0, isgenerate?18:35)}
+                              {benchmark?.tag &&
+                               <span className="bg-orange-500 ml-1 px-1 py-1 rounded-[24px]">{benchmark?.tag}</span>
+                              }
                             </div>
                           </label>
                           {
