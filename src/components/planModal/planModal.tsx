@@ -22,10 +22,13 @@ interface Category {
 }
 
 interface PlanManagerModalProps {
-  data: Record<string, Category>;
+  data: Record<string, Category>
+  setDataGenerate?:(data:any) => void
+  onCompleteAction?:() => void
+  isgenerate?:boolean
 }
 
-const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
+const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,setDataGenerate,onCompleteAction}) => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [buttonState, setButtonState] = useState("initial");
@@ -86,6 +89,20 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
 
       return updatedData; // Return the updated state
     });
+    if(setDataGenerate){
+      setDataGenerate((prevState:any) => {
+        const updatedData = { ...prevState }; // Clone the current state
+
+        // Access the specific benchmark using the dynamic key
+
+        // Toggle the "checked" state
+        updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
+          benchmarkIndex
+        ].checked = state;
+
+        return updatedData; // Return the updated state
+      });
+    }
   };
   const handleValueChange = (areaIndex:number, benchmarkIndex:number,topLevelKey:string,value:number) => {
     setAllData((prevState) => {
@@ -100,6 +117,20 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
 
       return updatedData; // Return the updated state
     });
+    if(setDataGenerate){
+      setDataGenerate((prevState:any) => {
+        const updatedData = { ...prevState }; // Clone the current state
+
+        // Access the specific benchmark using the dynamic key
+
+        // Toggle the "checked" state
+        updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
+          benchmarkIndex
+        ].Value = value;
+
+        return updatedData; // Return the updated state
+      });      
+    }
   };  
 
   const handleCheckBoxChangeParent = (areaIndex:number,topLevelKey:string,state:boolean) => {
@@ -116,6 +147,21 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
 
       return updatedData; // Return the updated state
     });
+    if(setDataGenerate){
+      setDataGenerate((prevState:any) => {
+        const updatedData = { ...prevState }; // Clone the current state
+
+        // Access the specific benchmark using the dynamic key
+
+        // Toggle the "checked" state
+        updatedData[topLevelKey].BenchmarkAreas[areaIndex].checked = state
+        updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks.map((element:any) => {
+          element.checked = state
+        })
+
+        return updatedData; // Return the updated state
+      });      
+    }
   }
 
   const SendToApi = () => {
@@ -124,12 +170,12 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
     })
   }
   return (
-    <div className="bg-black-secondary text-primary-text p-4 rounded-md border border-main-border shadow-lg w-full h-[580px]">
+    <div className={`bg-black-secondary text-primary-text p-4 rounded-md border border-main-border shadow-lg w-full ${isgenerate ?'h-[400px]' :'h-[580px]'} `}>
       <div className="w-full flex justify-between gap-3">
         {Object.entries(allData).map(([categoryName, category], categoryIndex) => (
           <div
             key={categoryIndex}
-            className="p-4 rounded-md bg-black-primary select-none w-[390px] h-[450px] overflow-auto"
+            className={`p-4 rounded-md bg-black-primary select-none w-[390px] ${isgenerate?'h-[300px]':'h-[450px]'}  overflow-auto`}
           >
             <div className="flex px-3 pb-1 justify-between items-center border-b border-main-border w-full">
               <span className="flex items-center gap-2 text-xs font-medium">
@@ -246,6 +292,33 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
           </div>
         ))}
       </div>
+      {isgenerate ?
+      <div className="w-full flex justify-center mt-8">
+        <Button onClick={() => {
+          setButtonState("loading")
+          onCompleteAction?onCompleteAction():undefined
+        }}
+  theme={"Aurora"}> 
+  {
+    buttonState == 'initial' &&
+    'Generate Report' 
+  }
+
+  {
+    buttonState == 'loading' &&
+    <BeatLoader size={10} color="white" />
+  }  
+  {
+    buttonState == 'finish' &&
+    <div className="flex justify-center items-center gap-1">
+    <div className={`${theme}-icons-check`} />
+    Report Generated     
+    </div>
+  }    
+
+        </Button>
+      </div>      
+      :
       <div className="w-full flex justify-center mt-8">
         <Button onClick={handleClick}
   theme={"Aurora"}> 
@@ -268,6 +341,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data }) => {
 
 </Button>
       </div>
+      }
     </div>
   );
 };

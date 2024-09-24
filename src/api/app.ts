@@ -117,6 +117,11 @@ static downloadReport(data:any){
     const response =  this.get(`/patients/${member_id}/show-tplan-description`)
     return response    
   }
+
+  static getPatientReorders(member_id:string) {
+    const response = this.post("/patients/priority_data",{member_id:member_id})
+    return response
+  }
 }
 
 

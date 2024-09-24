@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard } from "@/components";
-import { useState , useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
@@ -10,7 +11,9 @@ import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
 import { AppContext } from "@/store/app";
- type ReportBenchmark = {
+import RegenerateModal from "./RegenerateModal";
+import useModalAutoClose from "@/hooks/UseModalAutoClose";
+type ReportBenchmark = {
   Category: string;
   "Benchmark areas": string;
   "Test L1": string;
@@ -102,9 +105,9 @@ export const TreatmentPlan = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const [showHistory, setShowHistory] = useState(false);
   const [treatmentActive, setTreatmentActive] = useState(0);
-  const [isDetailsOpen, setIsDetailsOpen] = useState(true);
-  const [isDescription, setIsDescription] = useState(true);
-  const [isGenerated, setIsGenerated] = useState(true);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isDescription, setIsDescription] = useState(false);
+  const [isGenerated, setIsGenerated] = useState(false);
   const [planID, setplanID] = useState();
   const { id } = useParams<{ id: string }>();
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([]);
@@ -140,8 +143,14 @@ export const TreatmentPlan = () => {
       setIsGenerated(false); // Handle error by not setting generated to true
     }
   };
-
-
+  const [regenerated,setIsRegenerated] = useState(false)
+  const regenerateModalRefrence = useRef(null)
+  useModalAutoClose({
+    refrence:regenerateModalRefrence,
+    close:() => {
+      setIsRegenerated(false)
+    }
+  })
   const createPDFReport = (data: {
     client_info: any;
     patient_benchmark: ReportBenchmark[];
@@ -512,6 +521,33 @@ export const TreatmentPlan = () => {
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
+      {regenerated && 
+        <>
+        <div className="absolute top-0 left-0 z-30 w-full h-full flex justify-center items-center">
+          <RegenerateModal
+          onGenerate={async (data) => {
+            if (data && data.length > 0) {
+            
+              
+              setBenchmarks(data[0]);
+              setplanID(data[1]);
+              setIsGenerated(true);
+
+              const desResponse = await Application.showPlanDescription(Number(id));
+              setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
+              setDescription(desResponse.data.description);
+            } else {
+              setIsGenerated(false); // No data found
+            }            
+          }}
+           onClose={() => {
+            setIsRegenerated(false)
+          }} refEl={regenerateModalRefrence}></RegenerateModal>
+
+        </div>
+        <div className="w-full h-full bg-black bg-opacity-50 fixed left-0 top-0"></div>
+        </>
+      }
       {/* <div className="w-full bg-black-primary border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
         <input
           className="w-full border text-[10px] border-main-border bg-black-secondary rounded-md outline-none text-xs pl-2 py-1 text-primary-text"
@@ -547,7 +583,9 @@ export const TreatmentPlan = () => {
                   </button>
                 )}
 
-                <Button theme={theme}>
+                <Button onClick={() => {
+                  setIsRegenerated(true)
+                }} theme={theme}>
                   <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
                   Re-Generate
                 </Button>
@@ -730,7 +768,9 @@ export const TreatmentPlan = () => {
         >
           <img src={"/images/EmptyState.png"} alt="Empty State" />
           <h1>Nothing to Show</h1>
-          <Button onClick={fetchData} theme={theme}>
+          <Button onClick={() => {
+            setIsRegenerated(true)
+          }} theme={theme}>
             <img src="/Themes/Aurora/icons/add-square-fill.svg" alt="Add" />
             Generate
           </Button>
