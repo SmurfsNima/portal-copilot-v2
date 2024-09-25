@@ -10,13 +10,13 @@ import { Application } from "@/api";
 import { useParams } from "react-router-dom";
 const fakeBiomarkers = [
   {
-    chart: "linear",
+    chart: "line",
     chartData: {
-      dates: ['10 Apr' , '11 Apr' , '12 Apr'],
-      values: [75,78,71]
+      dates: [],
+      values: []
     },
-    isMeasured: true,
-    status: 'low',
+    status: '',
+    isMeasured: false,
     type: "Heart Rate",
     otherTypes : []
   },
@@ -24,10 +24,10 @@ const fakeBiomarkers = [
     chart: "line",
     chartData: {
       dates: ['10 Apr' , '11 Apr' , '12 Apr'],
-      values: [37,37.3,37.6]
+      values: []
     },
-    isMeasured: true,
-    status: 'low',
+    isMeasured: false,
+    
     type: "Temperature",
     otherTypes : []
   },
@@ -35,10 +35,10 @@ const fakeBiomarkers = [
     chart: "line",
     chartData: {
       dates: ['10 Apr' , '11 Apr' , '12 Apr'],
-      values: [76,77,76.8]
+      values: []
     },
     isMeasured: false,
-    status: 'low',
+    
     type: "weight",
     otherTypes : []
   },
