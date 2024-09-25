@@ -79,7 +79,7 @@ const router = createHashRouter([
         element: <Setting></Setting>,
       },
       {
-        path: "pdf-viewer",
+        path: "/pdf-viewer",
         element : <PdfViewerComponent></PdfViewerComponent>
       }     
     ],
