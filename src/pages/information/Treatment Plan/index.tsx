@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
 import { Application } from "@/api";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
