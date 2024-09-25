@@ -108,6 +108,11 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
                     <div>
                         <div className="w-full flex justify-center mb-3 items-center">
                             <div onClick={() => {
+                                const local = Priorities3
+                                setPriorities3({})
+                                setTimeout(() => {
+                                    setPriorities3(local)
+                                }, 1000);
                                 setActiveMenu('3 Month')
                             }} className={`  ${
                                 activeMenu === '3 Month' && "bg-black-third"
@@ -115,6 +120,11 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
                                 3 Month
                             </div>
                             <div onClick={() => {
+                                const local = Priorities6
+                                setPriorities6({})
+                                setTimeout(() => {
+                                    setPriorities6(local)
+                                }, 1000);                                
                                 setActiveMenu('6 Month')
                             }} className={`  ${
                                 activeMenu === '6 Month' && "bg-black-third"
