@@ -6,14 +6,15 @@ import { AppContext } from '@/store/app';
 
 const PdfViewerComponent = () => {
   const { pdfBase64String } = useContext(AppContext); // Access the Base64 string
-
+  console.log(pdfBase64String);
   if (!pdfBase64String) {
-    return <div>No PDF available to display.</div>;
+    return <div className='w-full h-[50vh] bg-red-400'>No PDF available to display.</div>;
   }
 
   // Construct a data URL for the PDF
   const pdfDataUrl = `data:application/pdf;base64,${pdfBase64String}`;
 
+  
   return (
     <div className='bg-white z-50 overflow-visible h-[100vh]'>
       <Worker workerUrl="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js">
