@@ -112,7 +112,7 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
                                 setPriorities3({})
                                 setTimeout(() => {
                                     setPriorities3(local)
-                                }, 1000);
+                                }, 3000);
                                 setActiveMenu('3 Month')
                             }} className={`  ${
                                 activeMenu === '3 Month' && "bg-black-third"
@@ -124,7 +124,7 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
                                 setPriorities6({})
                                 setTimeout(() => {
                                     setPriorities6(local)
-                                }, 1000);                                
+                                }, 3000);                                
                                 setActiveMenu('6 Month')
                             }} className={`  ${
                                 activeMenu === '6 Month' && "bg-black-third"
