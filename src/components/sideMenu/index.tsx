@@ -35,7 +35,7 @@ const SideMenu:React.FC = () => {
             <TopBar></TopBar>
             <nav className={`${theme}-SideMenu-nav`}>
                 <div className={`${theme}-SideMenu-logo-container`}>
-                    <img src="/public/images/main-logo (1).svg" alt="" />
+                    <img src="./images/main-logo (1).svg" alt="" />
                 </div>
                 <div className={`${theme}-SideMenu-MenuList-container`}>
                     {menus.map((menu) => {
@@ -72,7 +72,7 @@ const SideMenu:React.FC = () => {
                         <img className={`${theme}-icons-logOut`}  alt="" />
                     </div>
                     <div className="text-[8px] text-secondary-text w-full justify-center flex gap-1 items-center ">
-                        Powered by <img src="/public/images/sidebar-logo.svg" alt="" />
+                        Powered by <img src="./images/sidebar-logo.svg" alt="" />
                     </div>
                 </div>
             </nav>   

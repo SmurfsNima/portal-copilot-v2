@@ -122,6 +122,11 @@ static downloadReport(data:any){
     const response = this.post("/patients/priority_data",{member_id:member_id})
     return response
   }
+
+  static savereport(data:any) {
+    const response = this.post("/patients/save_report",data)
+    return response
+  }
 }
 
 

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import NutritionBorder from "/Themes/Aurora/icons/Nutrition-border.svg";
 import Border from "/Themes/Aurora/icons/Activity-border.svg";
 import ArrowRight from "/Themes/Aurora/icons/arrowRight.svg";
-import { ChatBox } from "@/components/index.ts";
+// import { ChatBox } from "@/components/index.ts";
 import { useEffect, useState } from "react";
 import Application from "@/api/app.ts";
 import { useParams } from "react-router-dom";
@@ -18,7 +18,7 @@ interface Activity {
 export const InfoGraphicCenter = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const [isNext, setIsNext] = useState(false);
-  const [messages, setMessages] = useState([
+  const [messages] = useState([
     { type: 'text', content: 'Weight Management: Maintaining a healthy weight is crucial for controlling blood pressure.' },
     { type: 'text', content: 'Alcohol and Tobacco: Limiting alcohol intake and avoiding tobacco use can significantly reduce blood pressure.' },
   ]);
@@ -59,11 +59,11 @@ export const InfoGraphicCenter = () => {
     fetchActivities();
   }, [id]);
 
-  const handleSendMessage = (message: string) => {
-    if (message.trim()) {
-      setMessages([...messages, { type: 'text', content: message }]);
-    }
-  };
+  // const handleSendMessage = (message: string) => {
+  //   if (message.trim()) {
+  //     setMessages([...messages, { type: 'text', content: message }]);
+  //   }
+  // };
 
   const patientMainInfo = [
     {
@@ -157,9 +157,9 @@ export const InfoGraphicCenter = () => {
           />
         </div>
       </div>
-      <div className="fixed bottom-4">
+      {/* <div className="fixed bottom-4">
         <ChatBox handleSendMessage={handleSendMessage} />
-      </div>
+      </div> */}
     </div>
   );
 };

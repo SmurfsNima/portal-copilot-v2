@@ -44,13 +44,9 @@ const router = createHashRouter([
           {
             path: "treatment-plan",
             element: <TreatmentPlan></TreatmentPlan>,
-            children : [
-              {
-                path: "pdf-viewer",
-                element : <PdfViewerComponent></PdfViewerComponent>
-              }
-            ]
+           
           },
+          
           {
             path: "action-plan",
             element: <ActionPlan></ActionPlan>,
@@ -81,6 +77,10 @@ const router = createHashRouter([
       {
         path: "/setting",
         element: <Setting></Setting>,
+      },
+      {
+        path: "pdf-viewer",
+        element : <PdfViewerComponent></PdfViewerComponent>
       }     
     ],
   },
