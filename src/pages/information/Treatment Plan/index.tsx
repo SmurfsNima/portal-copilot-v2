@@ -108,14 +108,14 @@ export const TreatmentPlan = () => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isDescription, setIsDescription] = useState(false);
   const [isGenerated, setIsGenerated] = useState(false);
-  const [planID, setplanID] = useState();
+  const [, setplanID] = useState();
   const { id } = useParams<{ id: string }>();
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([]);
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { pdfBase64String, setPdfBase64String } = useContext(AppContext); // Access the context
-  const navigate = useNavigate(); // Navigation hook
+  const {  setPdfBase64String } = useContext(AppContext); // Access the context
+  // const navigate = useNavigate(); // Navigation hook
   // const fetchData = async () => {
   //   try {
   //     const response = await Application.generateTreatmentPlan({
@@ -488,41 +488,45 @@ export const TreatmentPlan = () => {
     `;
     doc.text(doc.splitTextToSize(confidentialityText, pageWidth), 10, 20);
     // Save the PDF
-    doc.save("Benchmark_Assessment_Report.pdf");
+    // doc.save("Benchmark_Assessment_Report.pdf");
     const PdfBase64 = doc.output("datauristring");
     const base64String = PdfBase64.split(",")[1];
 
     return base64String;
   };
-  const onButtonClick = async (planId: string | undefined) => {
-    try {
-      const response = await Application.downloadReport({
-        treatment_plan_id: planId,
-      });
+  // const onButtonClick = async (planId: string | undefined) => {
+  //   try {
+  //     const response = await Application.downloadReport({
+  //       treatment_plan_id: planId,
+  //     });
+    
+      
+  //     const data = response.data;
+  //     console.log(data);
+  //     console.log(response);
+  //     console.log(planID);
+     
+      
+  //     setPdfBase64String(createPDFReport(data));
+     
+  //     if (!data) {
+  //       console.error("Data is undefined. Check the API response structure.");
+  //       return;
+  //     }
 
-      const data = response.data;
-      console.log(response);
-      console.log(planID);
-      setPdfBase64String(createPDFReport(data));
-      console.log(pdfBase64String);
-      if (!data) {
-        console.error("Data is undefined. Check the API response structure.");
-        return;
-      }
+  //     const reportData = {
+  //       report_type: "client_report ",
+  //       treatment_plan_id: planId || "",
+  //       report_string: pdfBase64String,
+  //     };
 
-      const reportData = {
-        report_type: "client_report ",
-        treatment_plan_id: planId || "",
-        report_string: pdfBase64String,
-      };
+  //     await Application.savereport(reportData);
 
-      await Application.savereport(reportData);
-
-      navigate("/pdf-viewer");
-    } catch (error) {
-      console.error("Error processing the report:", error);
-    }
-  };
+  //     navigate("/pdf-viewer");
+  //   } catch (error) {
+  //     console.error("Error processing the report:", error);
+  //   }
+  // };
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
 
   const closeModal = () => {
@@ -533,16 +537,48 @@ export const TreatmentPlan = () => {
     const myData = localStorage.getItem("tretmentPlan-" + id);
     if (myData) {
       const data = JSON.parse(myData);
+  
       setBenchmarks(data[0]);
       setplanID(data[1]);
+  
+      const treatmentPlanId = data[1];
+  
+      const fetchReport = async () => {
+        try {
+          const response = await Application.downloadReport({
+            treatment_plan_id: treatmentPlanId,
+          });
+  
+          const reportData = response.data;
+          console.log(reportData);
+  
+          const pdfString = createPDFReport(reportData);
+          setPdfBase64String(pdfString);
+          console.log(pdfString);
+  
+          const reportDataToSave = {
+            report_type: "client_report",
+            treatment_plan_id: treatmentPlanId,
+            report_string: pdfString,
+          };
+  
+          await Application.savereport(reportDataToSave);
+  
+        } catch (error) {
+          console.error("Error processing the report:", error);
+        }
+      };
+  
+      fetchReport();
+  
       setIsGenerated(true);
-
+  
       Application.showPlanDescription(Number(id)).then((desResponse) => {
         setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
         setDescription(desResponse.data.description);
       });
     }
-  }, []);
+  }, [id]);
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
@@ -596,8 +632,8 @@ export const TreatmentPlan = () => {
               <h2 className="text-sm font-semibold">Treatment Plan 012</h2>
               <div className="flex items-center space-x-4">
                 <button
-                  onClick={() => onButtonClick(planID)}
-                  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+  onClick={() => window.open("/pdf-viewer", "_blank")}
+  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img
                     src="/Themes/Aurora/icons/document-download.svg"
