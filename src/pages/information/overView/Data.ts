@@ -1,33 +1,33 @@
 
 export const btnInfo =[
-    {
-        text : 'Client Info',
+    // {
+    //     text : 'Client Info',
       
-    },
+    // },
     {
         text : 'Appointments History',
        
     },
-    {
-        text : 'Allergies',
-        number : 3,
-    },
-    {
-        text : 'Current Biormarkers',
-        number : 6,
-    },
-    {
-        text : "Current Diagnosis",
-        number : 3,
-    },
-    {
-        text : 'Current Interventions',
-        number : 4,
-    },
-    {
-        text : 'Emergenecy Conditions',
-        number : 1,
-    },
+    // {
+    //     text : 'Allergies',
+    //     number : 3,
+    // },
+    // {
+    //     text : 'Current Biormarkers',
+    //     number : 6,
+    // },
+    // {
+    //     text : "Current Diagnosis",
+    //     number : 3,
+    // },
+    // {
+    //     text : 'Current Interventions',
+    //     number : 4,
+    // },
+    // {
+    //     text : 'Emergenecy Conditions',
+    //     number : 1,
+    // },
     
 ]
 export const appointments = [

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
 import { Application } from "@/api";
-import { useParams , useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -114,20 +114,17 @@ export const TreatmentPlan = () => {
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-    
-  const { setPdfBlob } = useContext(AppContext); // Access the context
+  const { pdfBase64String, setPdfBase64String } = useContext(AppContext); // Access the context
   const navigate = useNavigate(); // Navigation hook
   // const fetchData = async () => {
   //   try {
   //     const response = await Application.generateTreatmentPlan({
-       
-        
+
   //       member_id: Number(id),
   //     });
   //     console.log(response);
   //     if (response.data && response.data.length > 0) {
-       
-        
+
   //       setBenchmarks(response.data[0]);
   //       setplanID(response.data[1]);
   //       setIsGenerated(true);
@@ -143,14 +140,14 @@ export const TreatmentPlan = () => {
   //     setIsGenerated(false); // Handle error by not setting generated to true
   //   }
   // };
-  const [regenerated,setIsRegenerated] = useState(false)
-  const regenerateModalRefrence = useRef(null)
+  const [regenerated, setIsRegenerated] = useState(false);
+  const regenerateModalRefrence = useRef(null);
   useModalAutoClose({
-    refrence:regenerateModalRefrence,
-    close:() => {
-      setIsRegenerated(false)
-    }
-  })
+    refrence: regenerateModalRefrence,
+    close: () => {
+      setIsRegenerated(false);
+    },
+  });
   const createPDFReport = (data: {
     client_info: any;
     patient_benchmark: ReportBenchmark[];
@@ -184,7 +181,7 @@ export const TreatmentPlan = () => {
     doc.text("Client Information", 10, 10);
 
     const clientInfoData = [
-      ["Name:", clientInfo["Name"] || "N/A"],
+      // ["Name:", clientInfo["Name"] || "N/A"],
       ["Assessment Date:", clientInfo["Assessment Date"] || "N/A"],
       ["Date of Birth:", clientInfo["Date of birth"]?.[0] || "N/A"],
       ["Gender:", clientInfo["Biological Gender"]?.[0] || "N/A"],
@@ -425,56 +422,61 @@ export const TreatmentPlan = () => {
       plan.status ? "Needs Focus" : "",
       plan.first12Weeks.dos.join(", ") || "N/A",
       plan.second12Weeks.dos.join(", ") || "N/A",
-     // Include status to use later
-  ]);
-  
-  // Add Treatment Plan Table
-  doc.addPage();
-  doc.setFontSize(16);
-  doc.setTextColor(255, 140, 0);
-  doc.text("Recommended Action Areas", 10, 10);
-  
-  (doc as any).autoTable({
+      // Include status to use later
+    ]);
+
+    // Add Treatment Plan Table
+    doc.addPage();
+    doc.setFontSize(16);
+    doc.setTextColor(255, 140, 0);
+    doc.text("Recommended Action Areas", 10, 10);
+
+    (doc as any).autoTable({
       head: [
-          [
-              "Category",
-              "Benchmark area",
-              "Needs Focus",
-              "Priority 1: First 12 Weeks",
-              "Priority 2: Beyond 12 Weeks",
-          ],
+        [
+          "Category",
+          "Benchmark area",
+          "Needs Focus",
+          "Priority 1: First 12 Weeks",
+          "Priority 2: Beyond 12 Weeks",
+        ],
       ],
       body: treatmentPlanData.map((row: any) => [
-          row[0],
-          row[1],
-          { content: row[2], styles: { fillColor: row[3] === "Needs Focus" ? [236, 141, 27
-          ] : [255, 255, 255] } }, // Conditional fill color
-          row[3],
-          row[4],
+        row[0],
+        row[1],
+        {
+          content: row[2],
+          styles: {
+            fillColor:
+              row[3] === "Needs Focus" ? [236, 141, 27] : [255, 255, 255],
+          },
+        }, // Conditional fill color
+        row[3],
+        row[4],
       ]),
       startY: 20,
       theme: "grid",
       styles: {
-          fontSize: 10,
-          cellPadding: 2,
-          halign: "center",
-          valign: "middle",
-          lineWidth: 0.1,
-          lineColor: [0, 0, 0],
+        fontSize: 10,
+        cellPadding: 2,
+        halign: "center",
+        valign: "middle",
+        lineWidth: 0.1,
+        lineColor: [0, 0, 0],
       },
       headStyles: {
-          fillColor: [255, 255, 255],
-          textColor: [255, 159, 51],
+        fillColor: [255, 255, 255],
+        textColor: [255, 159, 51],
       },
       columnStyles: {
-          0: { cellWidth: 30, halign: "left", textColor: [15, 156, 239] },
-          1: { cellWidth: 30, halign: "left", textColor: [15, 156, 239] },
-          2: { cellWidth: 15, halign: "center", textColor: [15, 156, 239] },
-          3: { cellWidth: 60, halign: "left", textColor: [15, 156, 239] },
-          4: { cellWidth: 60, halign: "left", textColor: [15, 156, 239] },
+        0: { cellWidth: 30, halign: "left", textColor: [15, 156, 239] },
+        1: { cellWidth: 30, halign: "left", textColor: [15, 156, 239] },
+        2: { cellWidth: 15, halign: "center", textColor: [15, 156, 239] },
+        3: { cellWidth: 60, halign: "left", textColor: [15, 156, 239] },
+        4: { cellWidth: 60, halign: "left", textColor: [15, 156, 239] },
       },
-  });
-  
+    });
+
     doc.addPage();
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
@@ -487,26 +489,39 @@ export const TreatmentPlan = () => {
     doc.text(doc.splitTextToSize(confidentialityText, pageWidth), 10, 20);
     // Save the PDF
     doc.save("Benchmark_Assessment_Report.pdf");
-    const pdfBlob = doc.output("blob");
-    return pdfBlob;
-  
-  };
-  const onButtonClick = (planId: string | undefined) => {
-      Application.downloadReport({
-        treatment_plan_id: planId,
-      }).then((response) => {
-        const data = response.data;
-        console.log(response);
-        console.log(planID);
-        if (!data) {
-          console.error("Data is undefined. Check the API response structure.");
-          return;
-        }
-        const pdfBlob = createPDFReport(data);
-        setPdfBlob(pdfBlob); // Update state with Blob
-        navigate('/pdf-viewer'); 
+    const PdfBase64 = doc.output("datauristring");
+    const base64String = PdfBase64.split(",")[1];
 
-      })
+    return base64String;
+  };
+  const onButtonClick = async (planId: string | undefined) => {
+    try {
+      const response = await Application.downloadReport({
+        treatment_plan_id: planId,
+      });
+
+      const data = response.data;
+      console.log(response);
+      console.log(planID);
+      setPdfBase64String(createPDFReport(data));
+      console.log(pdfBase64String);
+      if (!data) {
+        console.error("Data is undefined. Check the API response structure.");
+        return;
+      }
+
+      const reportData = {
+        report_type: "client_report ",
+        treatment_plan_id: planId || "",
+        report_string: pdfBase64String,
+      };
+
+      await Application.savereport(reportData);
+
+      navigate("/pdf-viewer");
+    } catch (error) {
+      console.error("Error processing the report:", error);
+    }
   };
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
 
@@ -515,49 +530,57 @@ export const TreatmentPlan = () => {
   };
 
   useEffect(() => {
-    const myData = localStorage.getItem("tretmentPlan-"+id)
-    if(myData){
-      const data = JSON.parse(myData)
+    const myData = localStorage.getItem("tretmentPlan-" + id);
+    if (myData) {
+      const data = JSON.parse(myData);
       setBenchmarks(data[0]);
       setplanID(data[1]);
       setIsGenerated(true);
 
       Application.showPlanDescription(Number(id)).then((desResponse) => {
         setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
-        setDescription(desResponse.data.description);      
-      })
+        setDescription(desResponse.data.description);
+      });
     }
-  },[])
+  }, []);
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
-      {regenerated && 
+      {regenerated && (
         <>
-        <div className="absolute top-0 left-0 z-30 w-full h-full flex justify-center items-center">
-          <RegenerateModal
-          onGenerate={async (data) => {
-            if (data && data.length > 0) {
-              localStorage.setItem("tretmentPlan-"+id,JSON.stringify(data))
-              
-              setBenchmarks(data[0]);
-              setplanID(data[1]);
-              setIsGenerated(true);
+          <div className="absolute top-0 left-0 z-30 w-full h-full flex justify-center items-center">
+            <RegenerateModal
+              onGenerate={async (data) => {
+                if (data && data.length > 0) {
+                  localStorage.setItem(
+                    "tretmentPlan-" + id,
+                    JSON.stringify(data)
+                  );
 
-              const desResponse = await Application.showPlanDescription(Number(id));
-              setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
-              setDescription(desResponse.data.description);
-            } else {
-              setIsGenerated(false); // No data found
-            }            
-          }}
-           onClose={() => {
-            setIsRegenerated(false)
-          }} refEl={regenerateModalRefrence}></RegenerateModal>
+                  setBenchmarks(data[0]);
+                  setplanID(data[1]);
+                  setIsGenerated(true);
 
-        </div>
-        <div className="w-full h-full bg-black bg-opacity-50 fixed left-0 top-0"></div>
+                  const desResponse = await Application.showPlanDescription(
+                    Number(id)
+                  );
+                  setneedFocusBenchmarks(
+                    desResponse.data["need focus benchmarks"]
+                  );
+                  setDescription(desResponse.data.description);
+                } else {
+                  setIsGenerated(false); // No data found
+                }
+              }}
+              onClose={() => {
+                setIsRegenerated(false);
+              }}
+              refEl={regenerateModalRefrence}
+            ></RegenerateModal>
+          </div>
+          <div className="w-full h-full bg-black bg-opacity-50 fixed left-0 top-0"></div>
         </>
-      }
+      )}
       {/* <div className="w-full bg-black-primary border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
         <input
           className="w-full border text-[10px] border-main-border bg-black-secondary rounded-md outline-none text-xs pl-2 py-1 text-primary-text"
@@ -582,7 +605,7 @@ export const TreatmentPlan = () => {
                   />
                   Download Report
                 </button>
-              
+
                 {!showHistory && (
                   <button
                     onClick={() => setShowHistory(true)}
@@ -593,9 +616,12 @@ export const TreatmentPlan = () => {
                   </button>
                 )}
 
-                <Button onClick={() => {
-                  setIsRegenerated(true)
-                }} theme={theme}>
+                <Button
+                  onClick={() => {
+                    setIsRegenerated(true);
+                  }}
+                  theme={theme}
+                >
                   <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
                   Re-Generate
                 </Button>
@@ -778,9 +804,12 @@ export const TreatmentPlan = () => {
         >
           <img src={"/images/EmptyState.png"} alt="Empty State" />
           <h1>Nothing to Show</h1>
-          <Button onClick={() => {
-            setIsRegenerated(true)
-          }} theme={theme}>
+          <Button
+            onClick={() => {
+              setIsRegenerated(true);
+            }}
+            theme={theme}
+          >
             <img src="/Themes/Aurora/icons/add-square-fill.svg" alt="Add" />
             Generate
           </Button>

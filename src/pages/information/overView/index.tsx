@@ -6,7 +6,8 @@ import { NormalChartCard } from "@/components/chartCard/normalChartCard";
 import { useBiomarkers } from "@/hooks";
 import { prepareChartData } from "@/utils/status";
 import { ChartDataItem } from "@/types";
-
+import { Application } from "@/api";
+import { useParams } from "react-router-dom";
 const fakeBiomarkers = [
   {
     chart: "linear",
@@ -45,6 +46,10 @@ const fakeBiomarkers = [
 
 const OverView: React.FC = () => {
   const [type1Biomarkers, settype1Biomarkers] = useState<ChartDataItem[]>([]);
+  const { id } = useParams<{ id: string }>();
+
+  const [appointments, setAppointments] = useState([])
+const [hasFetched, setHasFetched] = useState(false);
   const biomarkers = useBiomarkers();
 
   useEffect(() => {
@@ -56,13 +61,22 @@ const OverView: React.FC = () => {
   }, [biomarkers]);
 
   const dataToRender = type1Biomarkers.length > 0 ? type1Biomarkers : fakeBiomarkers;
-
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!hasFetched) {
+        const response = await Application.getAppoinments(Number(id));
+        setAppointments(response.data);
+        setHasFetched(true);
+      }
+    };
+    fetchData();
+  }, [id, hasFetched]);
   return (
     <div className="flex justify-between o w-full bg-black-background gap-5">
-      <div className="flex flex-col gap-1 min-w-[340px] max-h-[700px] overflow-auto hidden-scrollBar pb-[200px]">
+      <div className={` ${appointments.length <1 && 'invisible'} flex flex-col gap-1 min-w-[340px] max-h-[700px] overflow-auto hidden-scrollBar pb-[200px]`}>
         {btnInfo.map((item) => (
           <Accordion key={item.text} title={item.text}>
-            {item.text === "Appointments History" && <Appointments />}
+            {item.text === "Appointments History" && <Appointments appointments={appointments} />}
           </Accordion>
         ))}
       </div>

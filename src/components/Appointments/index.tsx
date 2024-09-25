@@ -2,9 +2,7 @@
 import { useSelector } from "react-redux";
 import check from '/Themes/Aurora/icons/check.svg'
 import calender from '/Themes/Aurora/icons/calender.svg'
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Application } from "@/api";
+import React from "react";
 
 interface appointment {
   appointment_date: string
@@ -13,11 +11,12 @@ interface appointment {
   appointment_details: string,
   attended: boolean
 }
-const Appointments = () => {
+interface AppointmentsProps{
+  appointments : appointment[]
+}
+const Appointments: React.FC<AppointmentsProps> = ({appointments}) => {
     const theme = useSelector((state: any) => state.theme.value.name);
-    const { id } = useParams<{ id: string }>();
-const [appointments, setAppointments] = useState<appointment[]>([])
-const [hasFetched, setHasFetched] = useState(false);
+
 
     // const appointments = [
     //     { date: '21 Aug, 2024', time: '8:30 pm', doctor: 'Dr. Daniel Alfonzo', isDone: false, details: 'more details' },
@@ -25,16 +24,7 @@ const [hasFetched, setHasFetched] = useState(false);
     //     { date: '05 Mar, 2024', time: '9:00 am', doctor: 'Dr. Daniel Alfonzo', isDone: true, details: 'more details' },
     //     { date: '27 Feb, 2024', time: '11:00 am', doctor: 'Dr. Daniel Alfonzo', isDone: true, details: 'more details' },
     // ];   
-    useEffect(() => {
-      const fetchData = async () => {
-        if (!hasFetched) {
-          const response = await Application.getAppoinments(Number(id));
-          setAppointments(response.data);
-          setHasFetched(true);
-        }
-      };
-      fetchData();
-    }, [id, hasFetched]);
+
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
       const day = date.getDate();
@@ -44,7 +34,7 @@ const [hasFetched, setHasFetched] = useState(false);
     };
     return (
         <>
-            {appointments.map((item, index) => (
+            {appointments.length > 1 ? ( appointments.map((item, index) => (
               <div key={index} className="flex gap-2">
                 <div className="relative">
                   <img width={32} className='object-contain' src={item.attended ? check : calender} alt="" />
@@ -59,7 +49,7 @@ const [hasFetched, setHasFetched] = useState(false);
                   <a className="underline text-primary-color cursor-pointer text-xs">{item.appointment_details}</a>
                 </div>
               </div>
-            ))}        
+            ))):null}        
         </>
     )
 }
