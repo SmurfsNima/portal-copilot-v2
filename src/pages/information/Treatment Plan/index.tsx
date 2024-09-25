@@ -491,26 +491,22 @@ export const TreatmentPlan = () => {
     return pdfBlob;
   
   };
-  const onButtonClick = async (planId: string | undefined) => {
-    try {
-      const response = await Application.downloadReport({
+  const onButtonClick = (planId: string | undefined) => {
+      Application.downloadReport({
         treatment_plan_id: planId,
-      });
-      const data = response.data;
-      console.log(response);
-      console.log(planID);
-      
+      }).then((response) => {
+        const data = response.data;
+        console.log(response);
+        console.log(planID);
+        if (!data) {
+          console.error("Data is undefined. Check the API response structure.");
+          return;
+        }
+        const pdfBlob = createPDFReport(data);
+        setPdfBlob(pdfBlob); // Update state with Blob
+        navigate('/pdf-viewer'); 
 
-      if (!data) {
-        console.error("Data is undefined. Check the API response structure.");
-        return;
-      }
-      const pdfBlob = createPDFReport(data);
-      setPdfBlob(pdfBlob); // Update state with Blob
-      navigate('/pdf-viewer'); 
-    } catch (error) {
-      console.error("Error downloading the PDF:", error);
-    }
+      })
   };
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
 
@@ -531,7 +527,7 @@ export const TreatmentPlan = () => {
         setDescription(desResponse.data.description);      
       })
     }
-  })
+  },[])
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
