@@ -41,8 +41,8 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
                 setClientGools(res.data.client_goals)
             }
             if(res.data.priority_plan){
-                setPriorities3(res.data.priority_plan)
-                setPriorities6(res.data.priority_plan)
+                setPriorities3(JSON.parse(JSON.stringify(res.data.priority_plan)))
+                setPriorities6(JSON.parse(JSON.stringify(res.data.priority_plan)))
             }
         })
 
@@ -110,23 +110,13 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
                     <div>
                         <div className="w-full flex justify-center mb-3 items-center">
                             <div onClick={() => {
-                                const local = Priorities3
-                                setPriorities3({})
-                                setTimeout(() => {
-                                    setPriorities3(local)
-                                }, 3000);
                                 setActiveMenu('3 Month')
                             }} className={`  ${
                                 activeMenu === '3 Month' && "bg-black-third"
                             } rounded-md w-[105px] text-[14px] h-[24px] flex items-center justify-center cursor-pointer   `}>
                                 3 Month
                             </div>
-                            <div onClick={() => {
-                                const local = Priorities6
-                                setPriorities6({})
-                                setTimeout(() => {
-                                    setPriorities6(local)
-                                }, 3000);                                
+                            <div onClick={() => {               
                                 setActiveMenu('6 Month')
                             }} className={`  ${
                                 activeMenu === '6 Month' && "bg-black-third"
@@ -134,16 +124,23 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
                                 6 Month
                             </div>                            
                         </div>
+                            {activeMenu == '3 Month' ?
+                                <PlanManagerModal onCompleteAction={() => {
+                                    generatePaln()
+                                    }} isgenerate data={Priorities3} setDataGenerate={(data) => {
+                                        setPriorities3(data)
+                                    }}>
+                                </PlanManagerModal>
+                            :
+                                <PlanManagerModal onCompleteAction={() => {
+                                    generatePaln()
+                                }} isgenerate data={Priorities6}  setDataGenerate={(data) => {
+                                        setPriorities6(data)
+                                    }}>
 
-                            <PlanManagerModal onCompleteAction={() => {
-                                generatePaln()
-                            }} isgenerate data={activeMenu =='3 Month'? Priorities3:Priorities6} setDataGenerate={(data) => {
-                                if(activeMenu == '3 Month'){
-                                    setPriorities3(data)
-                                }else {
-                                    setPriorities6(data)
-                                }
-                            }}></PlanManagerModal>
+                                </PlanManagerModal>
+                            }
+
 
                     </div>
                 </>

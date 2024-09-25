@@ -38,6 +38,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
   useEffect(() => {
     setAllData(data)
   },[data])
+
   const handleClick = () => {
     setButtonState("loading");
 
@@ -87,23 +88,12 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
       updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
         benchmarkIndex
       ].checked = state;
-
+      if(setDataGenerate){
+        setDataGenerate(updatedData)
+      }
       return updatedData; // Return the updated state
     });
-    if(setDataGenerate){
-      setDataGenerate((prevState:any) => {
-        const updatedData = { ...prevState }; // Clone the current state
 
-        // Access the specific benchmark using the dynamic key
-
-        // Toggle the "checked" state
-        updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
-          benchmarkIndex
-        ].checked = state;
-
-        return updatedData; // Return the updated state
-      });
-    }
   };
   const handleValueChange = (areaIndex:number, benchmarkIndex:number,topLevelKey:string,value:number) => {
     setAllData((prevState) => {
@@ -115,23 +105,11 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
       updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
         benchmarkIndex
       ].Value = value;
-
+      if(setDataGenerate){
+        setDataGenerate(updatedData)
+      }
       return updatedData; // Return the updated state
     });
-    if(setDataGenerate){
-      setDataGenerate((prevState:any) => {
-        const updatedData = { ...prevState }; // Clone the current state
-
-        // Access the specific benchmark using the dynamic key
-
-        // Toggle the "checked" state
-        updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
-          benchmarkIndex
-        ].Value = value;
-
-        return updatedData; // Return the updated state
-      });      
-    }
   };  
 
   const handleCheckBoxChangeParent = (areaIndex:number,topLevelKey:string,state:boolean) => {
@@ -145,24 +123,11 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
       updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks.map(element => {
         element.checked = state
       })
-
+      if(setDataGenerate){
+        setDataGenerate(updatedData)
+      }
       return updatedData; // Return the updated state
     });
-    if(setDataGenerate){
-      setDataGenerate((prevState:any) => {
-        const updatedData = { ...prevState }; // Clone the current state
-
-        // Access the specific benchmark using the dynamic key
-
-        // Toggle the "checked" state
-        updatedData[topLevelKey].BenchmarkAreas[areaIndex].checked = state
-        updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks.map((element:any) => {
-          element.checked = state
-        })
-
-        return updatedData; // Return the updated state
-      });      
-    }
   }
 
   const SendToApi = () => {
