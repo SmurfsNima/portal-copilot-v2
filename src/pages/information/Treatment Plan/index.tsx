@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard } from "@/components";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
@@ -518,6 +518,20 @@ export const TreatmentPlan = () => {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    const myData = localStorage.getItem("tretmentPlan-"+id)
+    if(myData){
+      const data = JSON.parse(myData)
+      setBenchmarks(data[0]);
+      setplanID(data[1]);
+      setIsGenerated(true);
+
+      Application.showPlanDescription(Number(id)).then((desResponse) => {
+        setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
+        setDescription(desResponse.data.description);      
+      })
+    }
+  })
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
@@ -527,7 +541,7 @@ export const TreatmentPlan = () => {
           <RegenerateModal
           onGenerate={async (data) => {
             if (data && data.length > 0) {
-            
+              localStorage.setItem("tretmentPlan-"+id,JSON.stringify(data))
               
               setBenchmarks(data[0]);
               setplanID(data[1]);
