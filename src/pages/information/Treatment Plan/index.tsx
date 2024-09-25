@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
 import { Application } from "@/api";
-import { useParams } from "react-router-dom";
+import { useParams , useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -114,8 +114,10 @@ export const TreatmentPlan = () => {
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {  setPdfBase64String } = useContext(AppContext); // Access the context
-  // const navigate = useNavigate(); // Navigation hook
+  const {  pdfBase64String,setPdfBase64String  } = useContext(AppContext); 
+  useEffect(()=>console.log(pdfBase64String) , [pdfBase64String]
+  )
+  const navigate = useNavigate(); // Navigation hook
   // const fetchData = async () => {
   //   try {
   //     const response = await Application.generateTreatmentPlan({
@@ -492,6 +494,7 @@ export const TreatmentPlan = () => {
     const PdfBase64 = doc.output("datauristring");
     const base64String = PdfBase64.split(",")[1];
 
+
     return base64String;
   };
   // const onButtonClick = async (planId: string | undefined) => {
@@ -537,6 +540,7 @@ export const TreatmentPlan = () => {
     const myData = localStorage.getItem("tretmentPlan-" + id);
     if (myData) {
       const data = JSON.parse(myData);
+  console.log(data);
   
       setBenchmarks(data[0]);
       setplanID(data[1]);
@@ -548,13 +552,15 @@ export const TreatmentPlan = () => {
           const response = await Application.downloadReport({
             treatment_plan_id: treatmentPlanId,
           });
-  
+          console.log(treatmentPlanId);
+          
           const reportData = response.data;
           console.log(reportData);
   
           const pdfString = createPDFReport(reportData);
           setPdfBase64String(pdfString);
-          console.log(pdfString);
+        
+          
   
           const reportDataToSave = {
             report_type: "client_report",
@@ -596,6 +602,34 @@ export const TreatmentPlan = () => {
                   setBenchmarks(data[0]);
                   setplanID(data[1]);
                   setIsGenerated(true);
+                  // const treatmentPlanId = data[1];
+  
+                  // const fetchReport = async () => {
+                  //   try {
+                  //     const response = await Application.downloadReport({
+                  //       treatment_plan_id: treatmentPlanId,
+                  //     });
+              
+                  //     const reportData = response.data;
+                  //     console.log(reportData);
+              
+                  //     const pdfString = createPDFReport(reportData);
+                  //     setPdfBase64String(pdfString);
+                    
+                      
+              
+                  //     const reportDataToSave = {
+                  //       report_type: "client_report",
+                  //       treatment_plan_id: treatmentPlanId,
+                  //       report_string: pdfString,
+                  //     };
+              
+                  //     await Application.savereport(reportDataToSave);
+                  //     fetchReport()
+                  //   } catch (error) {
+                  //     console.error("Error processing the report:", error);
+                  //   }
+                  // };
 
                   const desResponse = await Application.showPlanDescription(
                     Number(id)
@@ -632,7 +666,7 @@ export const TreatmentPlan = () => {
               <h2 className="text-sm font-semibold">Treatment Plan 012</h2>
               <div className="flex items-center space-x-4">
                 <button
-  onClick={() => window.open("/pdf-viewer", "_blank")}
+  onClick={() => navigate("/pdf-viewer")}
   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img
@@ -681,14 +715,15 @@ export const TreatmentPlan = () => {
             {isDescription && (
               <div className="w-full space-y-2 text-xs">
                 <p className="mt-4 text-primary-text">{Description}</p>
-                <div>
-                  Concerning Results:{" "}
-                  <span
+                <div className="flex items-center gap-1">
+                Needs Focus Benchmarks:{" "}
+                  {/* <span
                     onClick={() => setIsModalOpen(true)}
                     className="underline text-brand-primary-color cursor-pointer"
                   >
                     Detail{" "}
-                  </span>
+                  </span> */}
+                  <img className="cursor-pointer w-5 h-5" onClick={()=>setIsModalOpen(true)} src="./Themes/Aurora/icons/export-v2.svg" alt="" />
                   <BenchmarkModal isOpen={isModalOpen} onClose={closeModal} />
                 </div>
                 <ul className="list-disc ml-6 mt-4 text-primary-text">
@@ -697,14 +732,14 @@ export const TreatmentPlan = () => {
                       <li key={i}>{item}</li>
                     ))}
                 </ul>
-                <div className="w-full flex items-center justify-between mt-4 border-b border-main-border pb-2">
+                {/* <div className="w-full flex items-center justify-between mt-4 border-b border-main-border pb-2">
                   <input
                     className="w-full bg-black-primary outline-none text-primary-text pl-2"
                     type="text"
                     placeholder="your comment..."
                   />
                   <Button theme={theme}>Send</Button>
-                </div>
+                </div> */}
               </div>
             )}
 

@@ -19,6 +19,7 @@ interface AppContextProp {
     getAllBiomarkersById : () => undefined;
     pdfBase64String: string | null;
     setPdfBase64String: (base64: string | null) => void;
+   
 
 }
 
@@ -38,6 +39,7 @@ export const AppContext = createContext<AppContextProp>({
     getAllBiomarkersById : ()=> undefined,
     pdfBase64String: null,
     setPdfBase64String: () => {},
+  
 
 })
 
@@ -111,6 +113,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
         getAllBiomarkersById,
         pdfBase64String,
         setPdfBase64String,
+       
 
 
         

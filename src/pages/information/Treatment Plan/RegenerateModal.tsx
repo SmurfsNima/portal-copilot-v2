@@ -53,6 +53,8 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
             three_months_priority:Priorities3,
             six_months_priority:Priorities6
         }).then(res => {
+            console.log(res);
+            
             onGenerate(res.data)
             onClose()
             // console.log(res)
