@@ -14,11 +14,11 @@ export const menus = [
         icon:'trend-up',
         url:'/ai-knowlage'
     },      
-    // {
-    //     name:'info-circle',
-    //     icon:'info-circle',
-    //     url:'/'
-    // },     
+    {
+        name:'info-circle',
+        icon:'info-circle',
+        url:'/'
+    },     
     {
         name:'Setting',
         icon:'setting',
