@@ -192,8 +192,17 @@ export const TreatmentPlan = () => {
     };
 
     const addFooter = (pageNumber:number) => {
+      doc.setLineWidth(6); // Adjust thickness to match the image
+      doc.setDrawColor(180, 210, 224); // Set the color to light blue (RGB)
+      doc.line(0, pageHeight - 20, 200, pageHeight - 20); // Horizontal line at the bottom
+
+      // Add "REPORT NAME" on the left side
       doc.setFontSize(10);
-      doc.text(`Page ${pageNumber}`, 180 / 2, pageHeight - 10, { align: "center" });
+      doc.setTextColor(150); // Set text color to grey
+      doc.text("REPORT NAME", 10, pageHeight - 10);
+
+      // Add page number on the right side
+      doc.text(`${pageNumber}`, 200 - 10, pageHeight - 10, { align: "right" });
     };
     addHeader()
     // Parse the client_info JSON string
