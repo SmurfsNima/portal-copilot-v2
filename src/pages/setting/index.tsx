@@ -26,7 +26,8 @@ export const Setting = () => {
       text: "Plan Priority",
     },
     {
-      text: "Upload Your Logo"
+      text: "Upload Your Logo",
+      icon: "Upload icon"
     }
     // {
     //   icon: "profile-2user",
