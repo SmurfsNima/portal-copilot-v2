@@ -184,7 +184,7 @@ const Analysis = () => {
               setSearch(e.target.value)
             }}
               theme="Aurora"
-              placeholder="Quick alphabetical search for biomarkers"
+              placeholder="search..."
             />
             <StatusMenu activeStatus={activeStatus as any} onChange={((value) =>setActiveStatus(value))}></StatusMenu>
             {/* <div>
