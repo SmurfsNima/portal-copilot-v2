@@ -174,8 +174,28 @@ export const TreatmentPlan = () => {
     logo:any;
   }) => {
     const doc = new jsPDF();
-    // doc.addImage(logoBase64, 'PNG', 10, 10, 50, 20); // Adjust x, y, width, height as needed
 
+    // let pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();    
+    const addHeader = () => {
+      // Option 1: Add text header
+      doc.setFontSize(16);
+      doc.text("", 180 / 2, 15, { align: "center" });
+
+      // Option 2: Add image header (optional, example with a logo)
+      const img = new Image();
+      img.src = data.logo;
+      doc.addImage(img, 'PNG', 10, 10, 25, 12); // Adjust size/position as needed
+      doc.setLineWidth(1); // Set line thickness
+      doc.setDrawColor(94, 168, 214); // Set color to blue (RGB format)
+      doc.line(0, 25, 250, 25); // Draw      
+    };
+
+    const addFooter = (pageNumber:number) => {
+      doc.setFontSize(10);
+      doc.text(`Page ${pageNumber}`, 180 / 2, pageHeight - 10, { align: "center" });
+    };
+    addHeader()
     // Parse the client_info JSON string
     let clientInfo;
     if (typeof data.client_info === "string") {
@@ -187,19 +207,20 @@ export const TreatmentPlan = () => {
     // Add Contents Section
     doc.setFontSize(14);
     doc.setTextColor(255, 140, 0);
-    doc.text("Contents", 10, 10);
+    doc.text("Contents", 10, 35);
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    doc.text("• Profile", 10, 20);
-    doc.text("• Benchmark summary", 10, 30);
-    doc.text("• Benchmark detail", 10, 40);
-    doc.text("• Client goals", 10, 50);
-    doc.text("• Recommended action areas", 10, 60);
-    doc.text("• Recommended SMART Goals", 10, 70);
-
+    doc.text("• Profile", 10, 45);
+    doc.text("• Benchmark summary", 10, 55);
+    doc.text("• Benchmark detail", 10, 65);
+    doc.text("• Client goals", 10, 75);
+    doc.text("• Recommended action areas", 10, 85);
+    doc.text("• Recommended SMART Goals", 10, 95);
+    addFooter(1)
     doc.addPage();
+    addHeader()
     doc.setFontSize(12);
-    doc.text("Client Information", 10, 10);
+    doc.text("Client Information", 10, 35);
 
     const clientInfoData = [
       // ["Name:", clientInfo["Name"] || "N/A"],
@@ -220,7 +241,7 @@ export const TreatmentPlan = () => {
     ];
 
     (doc as any).autoTable({
-      startY: 20,
+      startY: 60,
 
       body: clientInfoData,
       theme: "grid",
@@ -237,12 +258,14 @@ export const TreatmentPlan = () => {
     });
 
     // Add next section
+    addFooter(2)
     doc.addPage();
+    addHeader()
     doc.setFontSize(16);
     doc.setTextColor(0, 0, 0);
-    doc.text("Please read before reviewing this report", 10, 10);
+    doc.text("Please read before reviewing this report", 10, 35);
     const pageWidth = 180;
-    let y = 20;
+    let y = 45;
 
     // Add text
     doc.setFontSize(12);
@@ -337,20 +360,21 @@ export const TreatmentPlan = () => {
         benchmark["Benchmark performance"],
       ]);
     });
-
+    addFooter(3)
     // Create a table for each category
     Object.keys(groupedBenchmarks).forEach((category) => {
       doc.addPage();
+      addHeader()
       doc.setFontSize(16);
       doc.setTextColor(255, 140, 0);
-      doc.text(`${category} Test Results`, 10, 10);
+      doc.text(`${category} Test Results`, 10, 35);
 
       (doc as any).autoTable({
         head: [
           ["Area", "Test L1", "Test L2", "Result", "Benchmark Performance"],
         ],
         body: groupedBenchmarks[category],
-        startY: 20,
+        startY: 45,
         theme: "grid",
         styles: {
           fontSize: 10,
@@ -387,9 +411,10 @@ export const TreatmentPlan = () => {
     });
     // Add Client Goals Table
     doc.addPage();
+    addHeader()
     doc.setFontSize(16);
     doc.setTextColor(255, 140, 0);
-    doc.text("Client Goals", 10, 10);
+    doc.text("Client Goals", 10, 35);
 
     const clientGoalsData = [
       [
@@ -411,7 +436,7 @@ export const TreatmentPlan = () => {
     ];
 
     (doc as any).autoTable({
-      startY: 20,
+      startY: 45,
       head: [["", ""]],
       body: clientGoalsData,
       theme: "grid",
@@ -448,9 +473,10 @@ export const TreatmentPlan = () => {
 
     // Add Treatment Plan Table
     doc.addPage();
+    addHeader()
     doc.setFontSize(16);
     doc.setTextColor(255, 140, 0);
-    doc.text("Recommended Action Areas", 10, 10);
+    doc.text("Recommended Action Areas", 10, 35);
 
     (doc as any).autoTable({
       head: [
@@ -475,7 +501,7 @@ export const TreatmentPlan = () => {
         row[3],
         row[4],
       ]),
-      startY: 20,
+      startY: 45,
       theme: "grid",
       styles: {
         fontSize: 10,
@@ -499,6 +525,7 @@ export const TreatmentPlan = () => {
     });
 
     doc.addPage();
+    addHeader()
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
     const confidentialityText = `
@@ -507,7 +534,7 @@ export const TreatmentPlan = () => {
 
     This report is classed as confidential and must be stored and handled to the requirements of UK data protection law.
     `;
-    doc.text(doc.splitTextToSize(confidentialityText, pageWidth), 10, 20);
+    doc.text(doc.splitTextToSize(confidentialityText, pageWidth), 10, 35);
     // Save the PDF
     // doc.save("Benchmark_Assessment_Report.pdf");
     const PdfBase64 = doc.output("datauristring");
