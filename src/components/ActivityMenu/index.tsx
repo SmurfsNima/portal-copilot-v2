@@ -11,9 +11,9 @@ interface ActivityMenuProps {
 const ActivityMenu:React.FC<ActivityMenuProps> = ({onChangeMenuAction,activeMenu}) => {
     const menus:Array<menuItem> = [
         {name :'Vital' },
-        {name :'Blood Test' },
-        {name :'Activity' },
-        {name :'Client Profile' },
+        // {name :'Blood Test' },
+        // {name :'Activity' },
+        // {name :'Client Profile' },
     ]
     return (
         <>
