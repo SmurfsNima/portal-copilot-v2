@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { PlanManagerModal } from "@/components";
 import { Application } from "@/api";
+import { UploadLogo } from "./uploadLogo";
 interface Benchmark {
   Benchmark: string;
   Value: number;
@@ -25,17 +26,20 @@ export const Setting = () => {
       text: "Plan Priority",
     },
     {
-      icon: "profile-2user",
-      text: "Staff",
-    },
-    {
-      icon: "note-remove",
-      text: "Customize Questionnaire",
-    },
-    {
-      icon: "lock",
-      text: "Change Password",
-    },
+      text: "Upload Your Logo"
+    }
+    // {
+    //   icon: "profile-2user",
+    //   text: "Staff",
+    // },
+    // {
+    //   icon: "note-remove",
+    //   text: "Customize Questionnaire",
+    // },
+    // {
+    //   icon: "lock",
+    //   text: "Change Password",
+    // },
   ];
   const [Priorities, setPriorities] = useState<PrioritiesType>({});
   useEffect(() => {
@@ -64,10 +68,13 @@ export const Setting = () => {
         ))}
       </div>
       {
-        active === 0 &&(
+        active === 0 ?(
             <PlanManagerModal data={Priorities}></PlanManagerModal>
 
+        ): (
+          <UploadLogo></UploadLogo>
         )
+        
       }
     </div>
   );

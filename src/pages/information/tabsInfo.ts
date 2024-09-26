@@ -1,10 +1,10 @@
 
 export const TabsInfo = [
-  {
-    text: "Overview",
-    path : '',
-    icon : true
-  },
+  // {
+  //   text: "Overview",
+  //   path : '',
+  //   icon : true
+  // },
   {
     text: "Analysis",
     path : 'Analysis',
