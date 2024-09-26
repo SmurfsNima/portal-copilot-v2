@@ -32,7 +32,7 @@ const BarChart: React.FC<BarChartProps> = ({ type, active, setActive, average, c
   const circleColor = statusColors[status as StatusType] || 'bg-blue-300'; // Default color
 
 
-;console.log(status);
+
 
 const statuses = ['Excellent' , 'Good' , 'Ok' , 'Needs Focus']
   return (
