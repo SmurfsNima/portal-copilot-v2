@@ -4,7 +4,7 @@ import { Button } from "symphony-ui";
 export const UploadLogo = () => {
   const [clinicName, setClinicName] = useState("");
   const [logoBase64, setLogoBase64] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [fileName, setFileName] = useState("");
   const [error, setError] = useState("");
