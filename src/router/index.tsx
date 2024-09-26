@@ -25,11 +25,12 @@ const router = createHashRouter([
         path: "/information/:id",
         element: <Information></Information>,
         children: [
+          // {
+          //   index: true,
+          //   element: <OverView></OverView>,
+          // },
           {
-            index: true,
-            element: <OverView></OverView>,
-          },
-          {
+            
             path: "analysis",
             element: <BioMarker></BioMarker>,
           },
