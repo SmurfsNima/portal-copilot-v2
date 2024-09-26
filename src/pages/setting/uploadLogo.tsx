@@ -1,3 +1,4 @@
+import { Application } from "@/api";
 import { useState } from "react";
 import { Button } from "symphony-ui";
 
@@ -62,9 +63,24 @@ export const UploadLogo = () => {
   const handleDragOver = (e: any) => {
     e.preventDefault();
   };
-  const handleSaveChanges = () => {
-    console.log("Clinic Name:", clinicName);
-    console.log("Logo Base64:", logoBase64);
+  const handleSaveChanges = async () => {
+    if (!logoBase64) {
+      console.error("No logo to save");
+      return;
+    }
+  
+    try {
+      const response = await Application.saveLogo({
+        logo: logoBase64,
+      });
+  
+      console.log("Response from server:", response);
+      console.log("Clinic Name:", clinicName);
+      console.log("Logo Base64:", logoBase64);
+  
+    } catch (error) {
+      console.error("Error saving logo:", error);
+    }
   };
 
   return (

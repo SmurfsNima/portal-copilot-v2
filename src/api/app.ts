@@ -127,6 +127,10 @@ static downloadReport(data:any){
     const response = this.post("/patients/save_report",data)
     return response
   }
+  static saveLogo(data:any) {
+    const response = this.post("/clinic/add_clinic_logo/",data)
+    return response
+  }
 }
 
 
