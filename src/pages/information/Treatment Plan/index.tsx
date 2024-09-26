@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard } from "@/components";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -115,7 +116,7 @@ export const TreatmentPlan = () => {
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {  pdfBase64String,setPdfBase64String  } = useContext(AppContext);
-  const [logoBase64, setlogoBase64] = useState('') 
+  // const [ ] = useState('') 
   useEffect(()=>console.log(pdfBase64String) , [pdfBase64String]
   )
   const navigate = useNavigate(); // Navigation hook
@@ -158,7 +159,7 @@ export const TreatmentPlan = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         if (typeof reader.result === 'string') {
-          setlogoBase64(reader.result);
+          // setlogoBase64(reader.result);
         }
       };
       reader.readAsDataURL(blob);
@@ -170,9 +171,10 @@ export const TreatmentPlan = () => {
     client_info: any;
     patient_benchmark: ReportBenchmark[];
     treatment_plan: any;
+    logo:any;
   }) => {
     const doc = new jsPDF();
-    doc.addImage(logoBase64, 'PNG', 10, 10, 50, 20); // Adjust x, y, width, height as needed
+    // doc.addImage(logoBase64, 'PNG', 10, 10, 50, 20); // Adjust x, y, width, height as needed
 
     // Parse the client_info JSON string
     let clientInfo;
@@ -514,6 +516,32 @@ export const TreatmentPlan = () => {
 
     return base64String;
   };
+
+  const fetchReport = async (treatmentPlanId:string) => {
+    try {
+      const response = await Application.downloadReport({
+        treatment_plan_id: treatmentPlanId,
+      });
+
+      const reportData = response.data;
+      console.log(reportData);
+
+      const pdfString = createPDFReport(reportData);
+      setPdfBase64String(pdfString);
+    
+      
+
+      const reportDataToSave = {
+        report_type: "client_report",
+        treatment_plan_id:treatmentPlanId,
+        report_string: pdfString,
+      };
+
+      await Application.savereport(reportDataToSave);
+    } catch (error) {
+      console.error("Error processing the report:", error);
+    }
+  };  
   // const onButtonClick = async (planId: string | undefined) => {
   //   try {
   //     const response = await Application.downloadReport({
@@ -558,49 +586,15 @@ export const TreatmentPlan = () => {
     console.log(myData);
     if (myData) {
       const data = JSON.parse(myData);
-
-  
-      setBenchmarks(data[0]);
-      setplanID(data[1]);
-  
-      const treatmentPlanId = data[1];
-  
-      const fetchReport = async () => {
-        try {
-          const response = await Application.downloadReport({
-            treatment_plan_id: "bf2bf2c050",
-          });
-console.log(response);
-          
-          const reportData = response.data;
-          console.log(reportData);
-  
-          const pdfString = createPDFReport(reportData);
-          setPdfBase64String(pdfString);
-        
-          
-  
-          const reportDataToSave = {
-            report_type: "client_report",
-            treatment_plan_id: treatmentPlanId,
-            report_string: pdfString,
-          };
-  
-          await Application.savereport(reportDataToSave);
-  
-        } catch (error) {
-          console.error("Error processing the report:", error);
-        }
-      };
-  
-      fetchReport();
-  
-      setIsGenerated(true);
-  
-      Application.showPlanDescription(Number(id)).then((desResponse) => {
-        setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
-        setDescription(desResponse.data.description);
-      });
+      if (data) {        
+        setBenchmarks(data.treatment_plans[0]);
+        setplanID(data.treatment_plans[1]);
+        setDescription(data.description_section.description);
+        setneedFocusBenchmarks(
+          data.description_section["need focus benchmarks"]
+        );
+        setIsGenerated(true);
+      }
     }
   }, [id]);
   useEffect(()=> console.log(Description), [Description])
@@ -612,7 +606,8 @@ console.log(response);
           <div className="absolute top-0 left-0 z-30 w-full h-full flex justify-center items-center">
             <RegenerateModal
               onGenerate={async (data) => {
-                if (data && data.length > 0) {
+                console.log(data)
+                if (data) {
                   localStorage.setItem(
                     "tretmentPlan-" + id,
                     JSON.stringify(data)
@@ -627,8 +622,8 @@ console.log(response);
                   );
                   setIsGenerated(true);
                   
-                  // const treatmentPlanId = data[1];
-  
+                  const treatmentPlanId = data.treatment_plans[1]
+                  fetchReport(treatmentPlanId)
                   // const fetchReport = async () => {
                   //   try {
                   //     const response = await Application.downloadReport({
@@ -645,7 +640,7 @@ console.log(response);
               
                   //     const reportDataToSave = {
                   //       report_type: "client_report",
-                  //       treatment_plan_id: treatmentPlanId,
+                  //       treatment_plan_id:data.treatment_plans[1],
                   //       report_string: pdfString,
                   //     };
               
@@ -656,13 +651,13 @@ console.log(response);
                   //   }
                   // };
 
-                  const desResponse = await Application.showPlanDescription(
-                    Number(id)
-                  );
-                  setneedFocusBenchmarks(
-                    desResponse.data["need focus benchmarks"]
-                  );
-                  setDescription(desResponse.data.description);
+                  // const desResponse = await Application.showPlanDescription(
+                  //   Number(id)
+                  // );
+                  // setneedFocusBenchmarks(
+                  //   desResponse.data["need focus benchmarks"]
+                  // );
+                  // setDescription(desResponse.data.description);
                 } else {
                   setIsGenerated(false); // No data found
                 }
