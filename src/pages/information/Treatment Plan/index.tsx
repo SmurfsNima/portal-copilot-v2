@@ -114,7 +114,8 @@ export const TreatmentPlan = () => {
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {  pdfBase64String,setPdfBase64String  } = useContext(AppContext); 
+  const {  pdfBase64String,setPdfBase64String  } = useContext(AppContext);
+  const [logoBase64, setlogoBase64] = useState('') 
   useEffect(()=>console.log(pdfBase64String) , [pdfBase64String]
   )
   const navigate = useNavigate(); // Navigation hook
@@ -150,12 +151,28 @@ export const TreatmentPlan = () => {
       setIsRegenerated(false);
     },
   });
+  useEffect(() => {
+    const convertImageToBase64 = async () => {
+      const response = await fetch('/path/to/your/image.png'); // Update with your image path
+      const blob = await response.blob();
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === 'string') {
+          setlogoBase64(reader.result);
+        }
+      };
+      reader.readAsDataURL(blob);
+    };
+
+    convertImageToBase64();
+  }, []);
   const createPDFReport = (data: {
     client_info: any;
     patient_benchmark: ReportBenchmark[];
     treatment_plan: any;
   }) => {
     const doc = new jsPDF();
+    doc.addImage(logoBase64, 'PNG', 10, 10, 50, 20); // Adjust x, y, width, height as needed
 
     // Parse the client_info JSON string
     let clientInfo;
@@ -538,9 +555,10 @@ export const TreatmentPlan = () => {
 
   useEffect(() => {
     const myData = localStorage.getItem("tretmentPlan-" + id);
+    console.log(myData);
     if (myData) {
       const data = JSON.parse(myData);
-  console.log(data);
+
   
       setBenchmarks(data[0]);
       setplanID(data[1]);
@@ -550,9 +568,9 @@ export const TreatmentPlan = () => {
       const fetchReport = async () => {
         try {
           const response = await Application.downloadReport({
-            treatment_plan_id: treatmentPlanId,
+            treatment_plan_id: "bf2bf2c050",
           });
-          console.log(treatmentPlanId);
+console.log(response);
           
           const reportData = response.data;
           console.log(reportData);
@@ -585,6 +603,7 @@ export const TreatmentPlan = () => {
       });
     }
   }, [id]);
+  useEffect(()=> console.log(Description), [Description])
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
@@ -598,10 +617,16 @@ export const TreatmentPlan = () => {
                     "tretmentPlan-" + id,
                     JSON.stringify(data)
                   );
-
-                  setBenchmarks(data[0]);
-                  setplanID(data[1]);
+                 
+                  
+                  setBenchmarks(data.treatment_plans[0]);
+                  setplanID(data.treatment_plans[1]);
+                  setDescription(data.description_section.description);
+                  setneedFocusBenchmarks(
+                    data.description_section["need focus benchmarks"]
+                  );
                   setIsGenerated(true);
+                  
                   // const treatmentPlanId = data[1];
   
                   // const fetchReport = async () => {
