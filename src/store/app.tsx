@@ -2,9 +2,11 @@ import { Pationt, User } from "@/model";
 import { PropsWithChildren, createContext, useState , useEffect } from "react";
 import {  biomarker, diagnosis  } from "@/types";
 import { Application } from "@/api";
+import {Application as ApplicationModel} from '@/model'
 
 interface AppContextProp {
     user:User;
+    AppManager:ApplicationModel;
     token:string | null;
     isLoggedId:boolean;
     setUser:(user:User) => void;
@@ -39,11 +41,12 @@ export const AppContext = createContext<AppContextProp>({
     getAllBiomarkersById : ()=> undefined,
     pdfBase64String: null,
     setPdfBase64String: () => {},
-  
+    AppManager: new ApplicationModel()
 
 })
 
 const AppContextProvider =({children}:PropsWithChildren) => {
+    const  [applicationmodel] = useState<ApplicationModel>(new ApplicationModel())
     const [token,setToken] = useState<string | null>(localStorage.getItem("token") || null)
     const localuser = localStorage.getItem('authUser')
     const resolveUser:User = Object.assign(new User(),JSON.parse(localuser as string))
@@ -113,7 +116,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
         getAllBiomarkersById,
         pdfBase64String,
         setPdfBase64String,
-       
+        AppManager:applicationmodel
 
 
         
