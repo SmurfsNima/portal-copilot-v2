@@ -84,7 +84,7 @@ export const UploadLogo = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-start pt-10 px-6 min-h-screen bg-black-primary border border-main-border rounded-md">
+    <div className="  w-full flex flex-col items-center justify-start pt-10 px-6 min-h-screen bg-black-primary border border-main-border rounded-md">
       <div className="mb-6 w-full max-w-xl">
         <label className="block text-primary-text text-xs font-normal mb-2">
           Clinic Name

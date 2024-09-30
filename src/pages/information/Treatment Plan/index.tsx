@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
 import { Application } from "@/api";
-import { useParams , useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -109,17 +109,30 @@ export const TreatmentPlan = () => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isDescription, setIsDescription] = useState(false);
   const [isGenerated, setIsGenerated] = useState(false);
+  const [lastUpdateTime, setLastUpdateTime] = useState('');
+
   const [, setplanID] = useState();
   const { id } = useParams<{ id: string }>();
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([]);
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {  pdfBase64String,setPdfBase64String  } = useContext(AppContext);
-  // const [ ] = useState('') 
-  useEffect(()=>console.log(pdfBase64String) , [pdfBase64String]
-  )
+  const { pdfBase64String, setPdfBase64String } = useContext(AppContext);
+  // const [ ] = useState('')
+  useEffect(() => console.log(pdfBase64String), [pdfBase64String]);
   const navigate = useNavigate(); // Navigation hook
+  const handleRegenerateClick = () => {
+    setIsRegenerated(true);
+    const currentDate = new Date();
+    // Format the date as "Month Day, Year"
+    const formattedDate = currentDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    setLastUpdateTime(formattedDate);
+  };
+
   // const fetchData = async () => {
   //   try {
   //     const response = await Application.generateTreatmentPlan({
@@ -154,11 +167,11 @@ export const TreatmentPlan = () => {
   });
   useEffect(() => {
     const convertImageToBase64 = async () => {
-      const response = await fetch('/path/to/your/image.png'); // Update with your image path
+      const response = await fetch("/path/to/your/image.png"); // Update with your image path
       const blob = await response.blob();
       const reader = new FileReader();
       reader.onloadend = () => {
-        if (typeof reader.result === 'string') {
+        if (typeof reader.result === "string") {
           // setlogoBase64(reader.result);
         }
       };
@@ -171,7 +184,7 @@ export const TreatmentPlan = () => {
     client_info: any;
     patient_benchmark: ReportBenchmark[];
     treatment_plan: any;
-    logo:any;
+    logo: any;
   }) => {
     const doc = new jsPDF();
     // doc.addImage(logoBase64, 'PNG', 10, 10, 50, 20); // Adjust x, y, width, height as needed
@@ -513,11 +526,10 @@ export const TreatmentPlan = () => {
     const PdfBase64 = doc.output("datauristring");
     const base64String = PdfBase64.split(",")[1];
 
-
     return base64String;
   };
 
-  const fetchReport = async (treatmentPlanId:string) => {
+  const fetchReport = async (treatmentPlanId: string) => {
     try {
       const response = await Application.downloadReport({
         treatment_plan_id: treatmentPlanId,
@@ -528,12 +540,10 @@ export const TreatmentPlan = () => {
 
       const pdfString = createPDFReport(reportData);
       setPdfBase64String(pdfString);
-    
-      
 
       const reportDataToSave = {
         report_type: "client_report",
-        treatment_plan_id:treatmentPlanId,
+        treatment_plan_id: treatmentPlanId,
         report_string: pdfString,
       };
 
@@ -541,22 +551,20 @@ export const TreatmentPlan = () => {
     } catch (error) {
       console.error("Error processing the report:", error);
     }
-  };  
+  };
   // const onButtonClick = async (planId: string | undefined) => {
   //   try {
   //     const response = await Application.downloadReport({
   //       treatment_plan_id: planId,
   //     });
-    
-      
+
   //     const data = response.data;
   //     console.log(data);
   //     console.log(response);
   //     console.log(planID);
-     
-      
+
   //     setPdfBase64String(createPDFReport(data));
-     
+
   //     if (!data) {
   //       console.error("Data is undefined. Check the API response structure.");
   //       return;
@@ -586,7 +594,7 @@ export const TreatmentPlan = () => {
     console.log(myData);
     if (myData) {
       const data = JSON.parse(myData);
-      if (data) {        
+      if (data) {
         setBenchmarks(data.treatment_plans[0]);
         setplanID(data.treatment_plans[1]);
         setDescription(data.description_section.description);
@@ -597,7 +605,7 @@ export const TreatmentPlan = () => {
       }
     }
   }, [id]);
-  useEffect(()=> console.log(Description), [Description])
+  useEffect(() => console.log(Description), [Description]);
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
@@ -606,14 +614,13 @@ export const TreatmentPlan = () => {
           <div className="absolute top-0 left-0 z-30 w-full h-full flex justify-center items-center">
             <RegenerateModal
               onGenerate={async (data) => {
-                console.log(data)
+                console.log(data);
                 if (data) {
                   localStorage.setItem(
                     "tretmentPlan-" + id,
                     JSON.stringify(data)
                   );
-                 
-                  
+
                   setBenchmarks(data.treatment_plans[0]);
                   setplanID(data.treatment_plans[1]);
                   setDescription(data.description_section.description);
@@ -621,29 +628,27 @@ export const TreatmentPlan = () => {
                     data.description_section["need focus benchmarks"]
                   );
                   setIsGenerated(true);
-                  
-                  const treatmentPlanId = data.treatment_plans[1]
-                  fetchReport(treatmentPlanId)
+
+                  const treatmentPlanId = data.treatment_plans[1];
+                  fetchReport(treatmentPlanId);
                   // const fetchReport = async () => {
                   //   try {
                   //     const response = await Application.downloadReport({
                   //       treatment_plan_id: treatmentPlanId,
                   //     });
-              
+
                   //     const reportData = response.data;
                   //     console.log(reportData);
-              
+
                   //     const pdfString = createPDFReport(reportData);
                   //     setPdfBase64String(pdfString);
-                    
-                      
-              
+
                   //     const reportDataToSave = {
                   //       report_type: "client_report",
                   //       treatment_plan_id:data.treatment_plans[1],
                   //       report_string: pdfString,
                   //     };
-              
+
                   //     await Application.savereport(reportDataToSave);
                   //     fetchReport()
                   //   } catch (error) {
@@ -682,12 +687,22 @@ export const TreatmentPlan = () => {
       {isGenerated ? (
         <div className="w-full flex gap-2 ">
           <div className="bg-black-primary text-primary-text w-full h-[340px] overflow-x-hidden overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border">
-            <div className="flex justify-between items-center pb-4">
-              <h2 className="text-sm font-semibold">Treatment Plan 012</h2>
-              <div className="flex items-center space-x-4">
+            <div className="flex justify-between items- pb-4">
+              <h2 className="text-sm font-medium 
+              ">Treatment Plan 012</h2>
+              <div className="flex items-start space-x-4">
                 <button
-  onClick={() => navigate("/pdf-viewer")}
-  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+                  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+                >
+                  <img
+                    src="/Themes/Aurora/icons/document-download.svg"
+                    alt=""
+                  />
+                  Download Client Report
+                </button>
+                <button
+                  onClick={() => navigate("/pdf-viewer")}
+                  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img
                     src="/Themes/Aurora/icons/document-download.svg"
@@ -705,48 +720,59 @@ export const TreatmentPlan = () => {
                     Show History
                   </button>
                 )}
-
-                <Button
-                  onClick={() => {
-                    setIsRegenerated(true);
-                  }}
-                  theme={theme}
-                >
-                  <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
-                  Re-Generate
-                </Button>
+                <div className="flex flex-col   gap-1">
+                  
+                  <Button
+                  
+                  onClick={handleRegenerateClick}
+                    theme={theme}
+                    data-width='full'
+                  >
+                    <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
+                    Re-Generate
+                  </Button>
+                  <span className={` ${!lastUpdateTime && 'invisible'} text-[9px] font-light `}>
+                  Last Update on {lastUpdateTime}
+                  </span>
+                </div>
               </div>
             </div>
 
             <div
-              onClick={() => setIsDescription(!isDescription)}
-              className="w-full flex items-center gap-2 cursor-pointer text-sm"
+           
+              className="w-full flex items-center gap-10 cursor-pointer text-sm font-medium"
             >
-              <img
+              <div    onClick={() => setIsDescription(!isDescription)} className="flex items-center gap-3"> <img
                 src="/Themes/Aurora/icons/chevron-down.svg"
                 className={`transition-transform ${
                   isDescription && "rotate-180"
                 }`}
                 alt=""
               />
-              Description
+              Description</div>
+             
               <div className="h-[1px] w-full bg-secondary-text" />
             </div>
             {isDescription && (
               <div className="w-full space-y-2 text-xs">
-                <p className="mt-4 text-primary-text">{Description}</p>
-                <div className="flex items-center gap-1">
-                Needs Focus Benchmarks:{" "}
+                <p className="mt-4 text-primary-text text-xs ">{Description}</p>
+                <div className="flex items-center gap-1 text-xs">
+                  Needs Focus Benchmarks:{" "}
                   {/* <span
                     onClick={() => setIsModalOpen(true)}
                     className="underline text-brand-primary-color cursor-pointer"
                   >
                     Detail{" "}
                   </span> */}
-                  <img className="cursor-pointer w-5 h-5" onClick={()=>setIsModalOpen(true)} src="./Themes/Aurora/icons/export-v2.svg" alt="" />
+                  <img
+                    className=" transition-transform cursor-pointer w-5 h-5"
+                    onClick={() => setIsModalOpen(true)}
+                    src="./Themes/Aurora/icons/export-v2.svg"
+                    alt=""
+                  />
                   <BenchmarkModal isOpen={isModalOpen} onClose={closeModal} />
                 </div>
-                <ul className="list-disc ml-6 mt-4 text-primary-text">
+                <ul className="list-disc ml-6 mt-4 text-primary-text text-xs">
                   {Array.isArray(needFocusBenchmarks) &&
                     needFocusBenchmarks.map((item, i) => (
                       <li key={i}>{item}</li>
@@ -764,9 +790,10 @@ export const TreatmentPlan = () => {
             )}
 
             <div
-              className="flex items-center gap-2 cursor-pointer"
-              onClick={toggleDetailsSection}
+              className="flex items-center justify-between gap-10 cursor-pointer"
+             
             >
+              <div  onClick={toggleDetailsSection} className="flex items-center gap-3">
               <img
                 src="/Themes/Aurora/icons/chevron-down.svg"
                 className={`${
@@ -774,7 +801,10 @@ export const TreatmentPlan = () => {
                 } transition-transform`}
               />
               <span className="text-sm font-medium">Details</span>
+              </div>
+             
               <div className="h-[1px] w-full bg-secondary-text" />
+              <img className={`${theme}-icons-edit w-6 h-6`} alt="" />
             </div>
             {isDetailsOpen && (
               <div className="mt-4">
@@ -789,20 +819,20 @@ export const TreatmentPlan = () => {
                         key={index}
                         className="grid grid-cols-3 py-2 border-b border-main-border text-sm"
                       >
-                        <div className="flex gap-24">
+                        <div className="flex gap-24 text-xs font-medium">
                           {index === 0 ||
                           benchmarks[index - 1].area !== benchmark.area ? (
-                            <div className="font-semibold text-xs">
+                            <div className=" text-xs">
                               {benchmark.area}
                             </div>
                           ) : null}
                           {benchmark.subCategory && (
-                            <div className="font-normal text-xs">
+                            <div className=" text-xs">
                               {benchmark.subCategory}
                             </div>
                           )}
                         </div>
-                        <div className="text-[10px] font-medium overflow-hidden flex flex-col text-left ">
+                        <div className="text-xs overflow-hidden flex flex-col text-left ">
                           <ul className="space-y-4 ">
                             {benchmark.first12Weeks.dos.map((doItem, i) => (
                               <li key={i}>{doItem}</li>
@@ -820,7 +850,7 @@ export const TreatmentPlan = () => {
                             ))}
                           </ul> */}
                         </div>
-                        <div className="text-[10px] font-medium overflow-hidden flex flex-col text-left ">
+                        <div className="text-xs  overflow-hidden flex flex-col text-left ">
                           <ul className="  space-y-4 ">
                             {benchmark.second12Weeks.dos.map((doItem, i) => (
                               <li key={i}>{doItem}</li>
@@ -848,7 +878,7 @@ export const TreatmentPlan = () => {
           </div>
           {showHistory && (
             <div className="bg-black-primary text-primary-text p-2 rounded-lg h-[340px] overflow-y-scroll space-y-2 border border-main-border w-[35%]">
-              <div className="flex justify-between items-center font-medium">
+              <div className="flex justify-between items-center text-lg font-medium">
                 Treatment Plan History
                 <button
                   onClick={() => setShowHistory(false)}
@@ -871,14 +901,14 @@ export const TreatmentPlan = () => {
                     } rounded-lg p-2 cursor-pointer space-y-3`}
                   >
                     <div className="w-full flex justify-between items-center">
-                      <p className="text-primary-text text-sm font-semibold">
+                      <p className="text-primary-text text-sm font-medium">
                         {entry.date}
                       </p>
-                      <p className="text-secondary-text text-sm">
+                      <p className="text-secondary-text text-xs ">
                         {entry.time}
                       </p>
                     </div>
-                    <p className="text-secondary-text text-xs w-full">
+                    <p className="text-secondary-text text-sm w-full">
                       {entry.description}
                     </p>
                   </div>

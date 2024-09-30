@@ -111,7 +111,7 @@ const InfoCard = () => {
     
  ]
   return (
-    <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-main-border rounded-xl flex items gap-10 relative overflow-hidden h-[166px]">
+    <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-main-border rounded-xl flex items gap-10  relative overflow-hidden h-[166px]">
       <div className="mt-5 flex gap-10 xl:gap-12">
         {/* Patient Info */}
         <div className="relative w-20 rounded-full bg-cover bg-center h-20 xl:w-[115px] xl:h-[115px]">
@@ -158,8 +158,8 @@ const InfoCard = () => {
 
       {/* Content based on active state */}
       {active === "Aging" ? (
-        <div className="flex gap-10">
-           <div className="flex items-center -ml-6 mb-10 relative  ">
+        <div className=" w-full flex  gap-10">
+           <div className="flex items-center  mb-10 relative  ">
             {BiologicalCardInfo.map((item, i) => (
               <ProgressCircle
                 key={i}
@@ -205,14 +205,14 @@ const InfoCard = () => {
           </div>
         </div>
       ) : (
-        <div className="flex w-full gap-20">
+        <div className=" w-full flex justify-around">
           <div className="text-sm text-primary-text flex items-center justify-center flex-col">
             <h3 className="mb-[10px]">Progress</h3>
-            <div className="  flex items-center justify-center  gap-3">
+            <div className="  flex items-center justify-center  gap-5">
             {Progress.map((item) => (
                 <CircularProgressBar
                   key={item.ID}
-                  size={50}
+                  size={70}
                   percentage={Number(item.Percentage?.toFixed(0))}                  percentageNum={item.Percentage || 0}
                   progressColor={colorMap[item.ID as keyof typeof colorMap]}
                   speed={20}
@@ -224,11 +224,11 @@ const InfoCard = () => {
           </div>
           <div className="text-sm text-primary-text flex items-center justify-center flex-col">
             <h3 className="mb-[10px]">Score</h3>
-            <div className=" flex items-center justify-center  gap-3">
+            <div className=" flex items-center justify-center  gap-5">
               {Score.map((item, index) => (
                 <CircularProgressBar
                   key={index}
-                  size={50}
+                  size={70}
                   percentage={(item.Percentage ?? 0) * 10}
                   percentageNum={200}
                   progressColor={colorMap[item.ID as keyof typeof colorMap]}
