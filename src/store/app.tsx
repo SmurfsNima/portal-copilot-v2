@@ -1,9 +1,10 @@
-import { Pationt, User } from "@/model";
+import { Pationt, User , ClientReport } from "@/model";
 import { PropsWithChildren, createContext, useState , useEffect } from "react";
 import {  biomarker, diagnosis  } from "@/types";
 import { Application } from "@/api";
 
 interface AppContextProp {
+  reportManager : ClientReport
     user:User;
     token:string | null;
     isLoggedId:boolean;
@@ -39,7 +40,7 @@ export const AppContext = createContext<AppContextProp>({
     getAllBiomarkersById : ()=> undefined,
     pdfBase64String: null,
     setPdfBase64String: () => {},
-  
+  reportManager: new ClientReport()
 
 })
 
@@ -49,7 +50,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
     const resolveUser:User = Object.assign(new User(),JSON.parse(localuser as string))
     const [user,setUser] = useState<User>(resolveUser ? resolveUser : new User());
     const [pdfBase64String, setPdfBase64String] = useState<string | null>(null);
-
+  const [clientReport] = useState<ClientReport>(new ClientReport())
     const [patients, setPatients] = useState<Pationt[]>(() => {
         const storedPatients = localStorage.getItem("patients");
         return storedPatients ? JSON.parse(storedPatients) : [];
@@ -113,6 +114,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
         getAllBiomarkersById,
         pdfBase64String,
         setPdfBase64String,
+        reportManager:clientReport
        
 
 

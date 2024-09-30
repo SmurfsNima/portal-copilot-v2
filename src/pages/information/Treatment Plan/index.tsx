@@ -1,26 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard } from "@/components";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
-import { Application } from "@/api";
 import { useParams, useNavigate } from "react-router-dom";
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-
 import { AppContext } from "@/store/app";
 import RegenerateModal from "./RegenerateModal";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
-type ReportBenchmark = {
-  Category: string;
-  "Benchmark areas": string;
-  "Test L1": string;
-  Result: string;
-  "Benchmark performance": string;
-};
 type Benchmark = {
   area: string;
   subCategory?: string;
@@ -109,7 +97,7 @@ export const TreatmentPlan = () => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isDescription, setIsDescription] = useState(false);
   const [isGenerated, setIsGenerated] = useState(false);
-  const [lastUpdateTime, setLastUpdateTime] = useState('');
+  const [lastUpdateTime, setLastUpdateTime] = useState("");
 
   const [, setplanID] = useState();
   const { id } = useParams<{ id: string }>();
@@ -117,46 +105,21 @@ export const TreatmentPlan = () => {
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { pdfBase64String, setPdfBase64String } = useContext(AppContext);
+  const {reportManager} = useContext(AppContext);
   // const [ ] = useState('')
-  useEffect(() => console.log(pdfBase64String), [pdfBase64String]);
   const navigate = useNavigate(); // Navigation hook
   const handleRegenerateClick = () => {
     setIsRegenerated(true);
     const currentDate = new Date();
     // Format the date as "Month Day, Year"
-    const formattedDate = currentDate.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    const formattedDate = currentDate.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
     setLastUpdateTime(formattedDate);
   };
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await Application.generateTreatmentPlan({
-
-  //       member_id: Number(id),
-  //     });
-  //     console.log(response);
-  //     if (response.data && response.data.length > 0) {
-
-  //       setBenchmarks(response.data[0]);
-  //       setplanID(response.data[1]);
-  //       setIsGenerated(true);
-
-  //       const desResponse = await Application.showPlanDescription(Number(id));
-  //       setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
-  //       setDescription(desResponse.data.description);
-  //     } else {
-  //       setIsGenerated(false); // No data found
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //     setIsGenerated(false); // Handle error by not setting generated to true
-  //   }
-  // };
   const [regenerated, setIsRegenerated] = useState(false);
   const regenerateModalRefrence = useRef(null);
   useModalAutoClose({
@@ -180,418 +143,26 @@ export const TreatmentPlan = () => {
 
     convertImageToBase64();
   }, []);
-  const createPDFReport = (data: {
-    client_info: any;
-    patient_benchmark: ReportBenchmark[];
-    treatment_plan: any;
-    logo: any;
-  }) => {
-    const doc = new jsPDF();
-    // doc.addImage(logoBase64, 'PNG', 10, 10, 50, 20); // Adjust x, y, width, height as needed
 
-    // Parse the client_info JSON string
-    let clientInfo;
-    if (typeof data.client_info === "string") {
-      clientInfo = JSON.parse(data.client_info);
-    } else {
-      clientInfo = data.client_info;
-    }
-
-    // Add Contents Section
-    doc.setFontSize(14);
-    doc.setTextColor(255, 140, 0);
-    doc.text("Contents", 10, 10);
-    doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0);
-    doc.text("• Profile", 10, 20);
-    doc.text("• Benchmark summary", 10, 30);
-    doc.text("• Benchmark detail", 10, 40);
-    doc.text("• Client goals", 10, 50);
-    doc.text("• Recommended action areas", 10, 60);
-    doc.text("• Recommended SMART Goals", 10, 70);
-
-    doc.addPage();
-    doc.setFontSize(12);
-    doc.text("Client Information", 10, 10);
-
-    const clientInfoData = [
-      // ["Name:", clientInfo["Name"] || "N/A"],
-      ["Assessment Date:", clientInfo["Assessment Date"] || "N/A"],
-      ["Date of Birth:", clientInfo["Date of birth"]?.[0] || "N/A"],
-      ["Gender:", clientInfo["Biological Gender"]?.[0] || "N/A"],
-
-      ["Smoker:", clientInfo["Smoker"]?.[0] || "N/A"],
-      ["Weight:", clientInfo["Weight"]?.[0] || "N/A"],
-      ["Height:", clientInfo["Height"]?.[0] || "N/A"],
-
-      ["Injuries to be Aware of:", clientInfo["Injury history"]?.[0] || "N/A"],
-
-      [
-        "Prescription Medication:",
-        clientInfo["Prescribed medication"]?.[0] || "N/A",
-      ],
-    ];
-
-    (doc as any).autoTable({
-      startY: 20,
-
-      body: clientInfoData,
-      theme: "grid",
-      styles: {
-        fontSize: 10,
-        cellPadding: 2,
-        halign: "left",
-      },
-
-      columnStyles: {
-        0: { fontStyle: "bold", fillColor: [255, 255, 255] },
-        1: { fillColor: [255, 255, 255] },
-      },
-    });
-
-    // Add next section
-    doc.addPage();
-    doc.setFontSize(16);
-    doc.setTextColor(0, 0, 0);
-    doc.text("Please read before reviewing this report", 10, 10);
-    const pageWidth = 180;
-    let y = 20;
-
-    // Add text
-    doc.setFontSize(12);
-    doc.text("WHY WE USE EXPERIENCE LEVELS", 10, y);
-    y += 10;
-
-    doc.setFontSize(10);
-    let text =
-      "Scoring is recommended standards backed by reputable academic sources and normative data. The benchmarks have experience levels so the score will be against the relevant experience level benchmark for you. Experience levels used are stated on the client overview page of this report.";
-    let lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 10, y);
-    y += lines.length * 10 + 10;
-
-    doc.setFontSize(12);
-    doc.text("3 EXPERIENCE LEVELS:", 10, y);
-    y += 10;
-
-    doc.setFontSize(10);
-    text =
-      "• Novice – a client with some experience in training, nutrition and lifestyle management but with no structured programme";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text =
-      "• Committed – a client working on structured programmes covering fitness, nutrition and lifestyle";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text =
-      "• Elite – a client who has been working on structured longevity programmes and exceeds benchmark performance in their age/gender group";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10 + 10;
-
-    doc.setFontSize(12);
-    doc.text("WHAT THE BENCHMARKS MEAN:", 10, y);
-    y += 10;
-
-    doc.setFontSize(10);
-    text =
-      "• Novice – a good level for your age/gender of physiological, fitness and emotional health. This will mean meeting or exceeding UK healthy guidelines.";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text =
-      "• Committed – excellent level typically top 10% in age/gender group for physiological, fitness and emotional health. This level of performance in studies suggests a reduction in the probability of all cause mortality by 47%.";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text =
-      "• Elite – good or excellent in age/gender group 10 years younger than you. For the people who want to maintain a high level of capability as they age.";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    doc.setFontSize(12);
-    doc.text("SCORING EXPLAINED: ", 10, y);
-    y += 10;
-
-    doc.setFontSize(10);
-    text = "• Needs focus – no activity in this area or a low test performance";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text = "• OK – performance is 25-75% of benchmark";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text = "• Good - performance is 76% to 99% of benchmark";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    // Group benchmarks by category
-    const groupedBenchmarks: Record<string, any[]> = {};
-    data.patient_benchmark.forEach((benchmark: any) => {
-      const category = benchmark.Category;
-      if (!groupedBenchmarks[category]) {
-        groupedBenchmarks[category] = [];
-      }
-      groupedBenchmarks[category].push([
-        benchmark["Benchmark areas"],
-        benchmark["Test L1"],
-        benchmark["Test L2"],
-        benchmark.Result,
-        benchmark["Benchmark performance"],
-      ]);
-    });
-
-    // Create a table for each category
-    Object.keys(groupedBenchmarks).forEach((category) => {
-      doc.addPage();
-      doc.setFontSize(16);
-      doc.setTextColor(255, 140, 0);
-      doc.text(`${category} Test Results`, 10, 10);
-
-      (doc as any).autoTable({
-        head: [
-          ["Area", "Test L1", "Test L2", "Result", "Benchmark Performance"],
-        ],
-        body: groupedBenchmarks[category],
-        startY: 20,
-        theme: "grid",
-        styles: {
-          fontSize: 10,
-          cellPadding: 2,
-          halign: "center",
-          valign: "middle",
-          lineWidth: 0.1, // Set border width
-          lineColor: [0, 0, 0], // Set border color (black)
-        },
-        headStyles: {
-          fillColor: [255, 255, 255], // Change this to the desired color in RGB format
-          textColor: [255, 159, 51],
-        },
-        columnStyles: {
-          0: { cellWidth: 40, halign: "left", textColor: [15, 156, 239] },
-          1: { cellWidth: 40, halign: "left", textColor: [15, 156, 239] },
-          2: { cellWidth: 40, halign: "left", textColor: [15, 156, 239] },
-          3: { cellWidth: 20, halign: "center", textColor: [15, 156, 239] },
-          4: {
-            cellWidth: 40,
-            textColor: [15, 156, 239],
-            // fillColor: (data: any) => {
-            //     switch (data.cell.raw) {
-            //         case 'Needs focus': return [255, 204, 153];
-            //         case 'Ok': return [255, 255, 204];
-            //         case 'Good': return [153, 255, 153];
-            //         case 'Excellent': return [102, 204, 255];
-            //         default: return [255, 255, 255];
-            //     }
-            // }
-          },
-        },
-      });
-    });
-    // Add Client Goals Table
-    doc.addPage();
-    doc.setFontSize(16);
-    doc.setTextColor(255, 140, 0);
-    doc.text("Client Goals", 10, 10);
-
-    const clientGoalsData = [
-      [
-        "What you want to be able to do?",
-        data.client_info["What you want to be able to do?"]["0"] || "N/A",
-      ],
-      [
-        "How you want to look?",
-        data.client_info["How you want to look?"]["0"] || "N/A",
-      ],
-      [
-        "How you want to feel?",
-        data.client_info["How you want to feel?"]["0"] || "N/A",
-      ],
-      [
-        "Any medical conditions to consider?",
-        data.client_info["Medical conditions"]["0"] || "N/A",
-      ],
-    ];
-
-    (doc as any).autoTable({
-      startY: 20,
-      head: [["", ""]],
-      body: clientGoalsData,
-      theme: "grid",
-      styles: {
-        fontSize: 10,
-        cellPadding: 2,
-        halign: "left",
-        lineWidth: 0.1, // Set border width
-        lineColor: [0, 0, 0], // Set border color (black)
-      },
-      headStyles: {
-        fillColor: [255, 255, 255], // Change this to the desired color in RGB format
-        textColor: [255, 159, 51],
-      },
-      columnStyles: {
-        0: {
-          fontStyle: "bold",
-          fillColor: [255, 255, 255],
-          textColor: [15, 156, 239],
-        },
-        1: { fillColor: [255, 255, 255], textColor: [0, 0, 0] },
-      },
-    });
-
-    const treatmentPlanData = data.treatment_plan.map((plan: any) => [
-      plan.subCategory || "N/A",
-      plan.area,
-      "", // Placeholder, replace with actual logic if needed
-      plan.status ? "Needs Focus" : "",
-      plan.first12Weeks.dos.join(", ") || "N/A",
-      plan.second12Weeks.dos.join(", ") || "N/A",
-      // Include status to use later
-    ]);
-
-    // Add Treatment Plan Table
-    doc.addPage();
-    doc.setFontSize(16);
-    doc.setTextColor(255, 140, 0);
-    doc.text("Recommended Action Areas", 10, 10);
-
-    (doc as any).autoTable({
-      head: [
-        [
-          "Category",
-          "Benchmark area",
-          "Needs Focus",
-          "Priority 1: First 12 Weeks",
-          "Priority 2: Beyond 12 Weeks",
-        ],
-      ],
-      body: treatmentPlanData.map((row: any) => [
-        row[0],
-        row[1],
-        {
-          content: row[2],
-          styles: {
-            fillColor:
-              row[3] === "Needs Focus" ? [236, 141, 27] : [255, 255, 255],
-          },
-        }, // Conditional fill color
-        row[3],
-        row[4],
-      ]),
-      startY: 20,
-      theme: "grid",
-      styles: {
-        fontSize: 10,
-        cellPadding: 2,
-        halign: "center",
-        valign: "middle",
-        lineWidth: 0.1,
-        lineColor: [0, 0, 0],
-      },
-      headStyles: {
-        fillColor: [255, 255, 255],
-        textColor: [255, 159, 51],
-      },
-      columnStyles: {
-        0: { cellWidth: 30, halign: "left", textColor: [15, 156, 239] },
-        1: { cellWidth: 30, halign: "left", textColor: [15, 156, 239] },
-        2: { cellWidth: 15, halign: "center", textColor: [15, 156, 239] },
-        3: { cellWidth: 60, halign: "left", textColor: [15, 156, 239] },
-        4: { cellWidth: 60, halign: "left", textColor: [15, 156, 239] },
-      },
-    });
-
-    doc.addPage();
-    doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0);
-    const confidentialityText = `
-    The contents of this report have been prepared from confidential information and data so cannot be shared with anyone other than the client named in this report and coaches working for Longevity Performance Coaching (brand name of LTTL Hubs Limited).
-    Client written permission is required to share this report with any other third parties.
-
-    This report is classed as confidential and must be stored and handled to the requirements of UK data protection law.
-    `;
-    doc.text(doc.splitTextToSize(confidentialityText, pageWidth), 10, 20);
-    // Save the PDF
-    // doc.save("Benchmark_Assessment_Report.pdf");
-    const PdfBase64 = doc.output("datauristring");
-    const base64String = PdfBase64.split(",")[1];
-
-    return base64String;
-  };
-
-  const fetchReport = async (treatmentPlanId: string) => {
-    try {
-      const response = await Application.downloadReport({
-        treatment_plan_id: treatmentPlanId,
-      });
-
-      const reportData = response.data;
-      console.log(reportData);
-
-      const pdfString = createPDFReport(reportData);
-      setPdfBase64String(pdfString);
-
-      const reportDataToSave = {
-        report_type: "client_report",
-        treatment_plan_id: treatmentPlanId,
-        report_string: pdfString,
-      };
-
-      await Application.savereport(reportDataToSave);
-    } catch (error) {
-      console.error("Error processing the report:", error);
-    }
-  };
-  // const onButtonClick = async (planId: string | undefined) => {
-  //   try {
-  //     const response = await Application.downloadReport({
-  //       treatment_plan_id: planId,
-  //     });
-
-  //     const data = response.data;
-  //     console.log(data);
-  //     console.log(response);
-  //     console.log(planID);
-
-  //     setPdfBase64String(createPDFReport(data));
-
-  //     if (!data) {
-  //       console.error("Data is undefined. Check the API response structure.");
-  //       return;
-  //     }
-
-  //     const reportData = {
-  //       report_type: "client_report ",
-  //       treatment_plan_id: planId || "",
-  //       report_string: pdfBase64String,
-  //     };
-
-  //     await Application.savereport(reportData);
-
-  //     navigate("/pdf-viewer");
-  //   } catch (error) {
-  //     console.error("Error processing the report:", error);
-  //   }
-  // };
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  const fetchReport = async (treatmentPlanId: string) => {
+    try {
+      console.log(treatmentPlanId);
+      
+      await reportManager.fetchReport(treatmentPlanId);
+      // setPdfBase64String(reportManager.getReport()); 
+      // console.log(reportManager.getReport());
+      
+    } catch (error) {
+      console.error("Error fetching report:", error);
+    }
+  };
   useEffect(() => {
     const myData = localStorage.getItem("tretmentPlan-" + id);
-    console.log(myData);
     if (myData) {
       const data = JSON.parse(myData);
       if (data) {
@@ -605,7 +176,6 @@ export const TreatmentPlan = () => {
       }
     }
   }, [id]);
-  useEffect(() => console.log(Description), [Description]);
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
@@ -630,39 +200,9 @@ export const TreatmentPlan = () => {
                   setIsGenerated(true);
 
                   const treatmentPlanId = data.treatment_plans[1];
+                  console.log(treatmentPlanId);
+                  
                   fetchReport(treatmentPlanId);
-                  // const fetchReport = async () => {
-                  //   try {
-                  //     const response = await Application.downloadReport({
-                  //       treatment_plan_id: treatmentPlanId,
-                  //     });
-
-                  //     const reportData = response.data;
-                  //     console.log(reportData);
-
-                  //     const pdfString = createPDFReport(reportData);
-                  //     setPdfBase64String(pdfString);
-
-                  //     const reportDataToSave = {
-                  //       report_type: "client_report",
-                  //       treatment_plan_id:data.treatment_plans[1],
-                  //       report_string: pdfString,
-                  //     };
-
-                  //     await Application.savereport(reportDataToSave);
-                  //     fetchReport()
-                  //   } catch (error) {
-                  //     console.error("Error processing the report:", error);
-                  //   }
-                  // };
-
-                  // const desResponse = await Application.showPlanDescription(
-                  //   Number(id)
-                  // );
-                  // setneedFocusBenchmarks(
-                  //   desResponse.data["need focus benchmarks"]
-                  // );
-                  // setDescription(desResponse.data.description);
                 } else {
                   setIsGenerated(false); // No data found
                 }
@@ -688,8 +228,12 @@ export const TreatmentPlan = () => {
         <div className="w-full flex gap-2 ">
           <div className="bg-black-primary text-primary-text w-full h-[340px] overflow-x-hidden overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border">
             <div className="flex justify-between items- pb-4">
-              <h2 className="text-sm font-medium 
-              ">Treatment Plan 012</h2>
+              <h2
+                className="text-sm font-medium 
+              "
+              >
+                Treatment Plan 012
+              </h2>
               <div className="flex items-start space-x-4">
                 <button
                   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
@@ -721,36 +265,41 @@ export const TreatmentPlan = () => {
                   </button>
                 )}
                 <div className="flex flex-col   gap-1">
-                  
                   <Button
-                  
-                  onClick={handleRegenerateClick}
+                    onClick={handleRegenerateClick}
                     theme={theme}
-                    data-width='full'
+                    data-width="full"
                   >
                     <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
                     Re-Generate
                   </Button>
-                  <span className={` ${!lastUpdateTime && 'invisible'} text-[9px] font-light `}>
-                  Last Update on {lastUpdateTime}
+                  <span
+                    className={` ${
+                      !lastUpdateTime && "invisible"
+                    } text-[9px] font-light `}
+                  >
+                    Last Update on {lastUpdateTime}
                   </span>
                 </div>
               </div>
             </div>
 
-            <div
-           
-              className="w-full flex items-center gap-10 cursor-pointer text-sm font-medium"
-            >
-              <div    onClick={() => setIsDescription(!isDescription)} className="flex items-center gap-3"> <img
-                src="/Themes/Aurora/icons/chevron-down.svg"
-                className={`transition-transform ${
-                  isDescription && "rotate-180"
-                }`}
-                alt=""
-              />
-              Description</div>
-             
+            <div className="w-full flex items-center gap-10 cursor-pointer text-sm font-medium">
+              <div
+                onClick={() => setIsDescription(!isDescription)}
+                className="flex items-center gap-3"
+              >
+                {" "}
+                <img
+                  src="/Themes/Aurora/icons/chevron-down.svg"
+                  className={`transition-transform ${
+                    isDescription && "rotate-180"
+                  }`}
+                  alt=""
+                />
+                Description
+              </div>
+
               <div className="h-[1px] w-full bg-secondary-text" />
             </div>
             {isDescription && (
@@ -789,20 +338,20 @@ export const TreatmentPlan = () => {
               </div>
             )}
 
-            <div
-              className="flex items-center justify-between gap-10 cursor-pointer"
-             
-            >
-              <div  onClick={toggleDetailsSection} className="flex items-center gap-3">
-              <img
-                src="/Themes/Aurora/icons/chevron-down.svg"
-                className={`${
-                  isDetailsOpen ? "rotate-180" : ""
-                } transition-transform`}
-              />
-              <span className="text-sm font-medium">Details</span>
+            <div className="flex items-center justify-between gap-10 cursor-pointer">
+              <div
+                onClick={toggleDetailsSection}
+                className="flex items-center gap-3"
+              >
+                <img
+                  src="/Themes/Aurora/icons/chevron-down.svg"
+                  className={`${
+                    isDetailsOpen ? "rotate-180" : ""
+                  } transition-transform`}
+                />
+                <span className="text-sm font-medium">Details</span>
               </div>
-             
+
               <div className="h-[1px] w-full bg-secondary-text" />
               <img className={`${theme}-icons-edit w-6 h-6`} alt="" />
             </div>
@@ -822,9 +371,7 @@ export const TreatmentPlan = () => {
                         <div className="flex gap-24 text-xs font-medium">
                           {index === 0 ||
                           benchmarks[index - 1].area !== benchmark.area ? (
-                            <div className=" text-xs">
-                              {benchmark.area}
-                            </div>
+                            <div className=" text-xs">{benchmark.area}</div>
                           ) : null}
                           {benchmark.subCategory && (
                             <div className=" text-xs">
