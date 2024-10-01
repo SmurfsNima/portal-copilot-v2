@@ -74,12 +74,7 @@ class ClientReport {
   }
 
   // Generates the PDF and returns the base64 string
-  private generatePDFReport(data: {
-    client_info: any;
-    patient_benchmark: ReportBenchmark[];
-    treatment_plan: any;
-    logo:any;
-  }): string {
+  private generatePDFReport(data:ReportData): string {
     const doc = new jsPDF();
 
     // let pageWidth = doc.internal.pageSize.getWidth();
@@ -91,7 +86,7 @@ class ClientReport {
 
       // Option 2: Add image header (optional, example with a logo)
       const img = new Image();
-      img.src = data.logo;
+      img.src = data.logo
       doc.addImage(img, 'PNG', 10, 10, 25, 12); // Adjust size/position as needed
       doc.setLineWidth(1); // Set line thickness
       doc.setDrawColor(94, 168, 214); // Set color to blue (RGB format)
@@ -467,9 +462,11 @@ class ClientReport {
         treatment_plan_id: treatmentPlanId,
       });
 
+      
       const reportData: ReportData = response.data;
      
 
+      
       await this.createPdf(reportData);
     } catch (error) {
       console.error("Error processing the report:", error);

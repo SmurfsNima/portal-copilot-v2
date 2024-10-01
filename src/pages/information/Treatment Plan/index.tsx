@@ -128,21 +128,6 @@ export const TreatmentPlan = () => {
       setIsRegenerated(false);
     },
   });
-  useEffect(() => {
-    const convertImageToBase64 = async () => {
-      const response = await fetch("/path/to/your/image.png"); // Update with your image path
-      const blob = await response.blob();
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (typeof reader.result === "string") {
-          // setlogoBase64(reader.result);
-        }
-      };
-      reader.readAsDataURL(blob);
-    };
-
-    convertImageToBase64();
-  }, []);
 
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
 

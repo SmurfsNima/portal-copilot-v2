@@ -18,9 +18,7 @@ interface AppContextProp {
     getBiomarkers: (id: number) => biomarker[] | undefined;
     getDiagnosis: (id: number) => diagnosis[] | undefined;
     getAllBiomarkersById : () => undefined;
-    pdfBase64String: string | null;
-    setPdfBase64String: (base64: string | null) => void;
-   
+ 
 
 }
 
@@ -38,8 +36,6 @@ export const AppContext = createContext<AppContextProp>({
     getBiomarkers : ()=> undefined,
     getDiagnosis : ()=> undefined,
     getAllBiomarkersById : ()=> undefined,
-    pdfBase64String: null,
-    setPdfBase64String: () => {},
   reportManager: new ClientReport()
 
 })
@@ -49,7 +45,6 @@ const AppContextProvider =({children}:PropsWithChildren) => {
     const localuser = localStorage.getItem('authUser')
     const resolveUser:User = Object.assign(new User(),JSON.parse(localuser as string))
     const [user,setUser] = useState<User>(resolveUser ? resolveUser : new User());
-    const [pdfBase64String, setPdfBase64String] = useState<string | null>(null);
   const [clientReport] = useState<ClientReport>(new ClientReport())
     const [patients, setPatients] = useState<Pationt[]>(() => {
         const storedPatients = localStorage.getItem("patients");
@@ -112,8 +107,6 @@ const AppContextProvider =({children}:PropsWithChildren) => {
         getBiomarkers,
         getDiagnosis,
         getAllBiomarkersById,
-        pdfBase64String,
-        setPdfBase64String,
         reportManager:clientReport
        
 
