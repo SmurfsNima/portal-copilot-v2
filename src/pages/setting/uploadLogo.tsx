@@ -1,14 +1,19 @@
 import { Application } from "@/api";
 import { useState } from "react";
 import { Button } from "symphony-ui";
+import {BeatLoader} from 'react-spinners';
+import { useSelector } from "react-redux";
 
 export const UploadLogo = () => {
+  const theme = useSelector((state: any) => state.theme.value.name);
+
   const [clinicName, setClinicName] = useState("");
   const [logoBase64, setLogoBase64] = useState("");
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [fileName, setFileName] = useState("");
   const [error, setError] = useState("");
+  const [buttonState, setButtonState] = useState("initial");
 
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];
@@ -53,6 +58,7 @@ export const UploadLogo = () => {
     setFileName("");
     setLogoBase64("");
     setError("");
+    setLoading(false)
   };
   const handleDrop = (e: any) => {
     e.preventDefault();
@@ -63,6 +69,22 @@ export const UploadLogo = () => {
   const handleDragOver = (e: any) => {
     e.preventDefault();
   };
+  const handleClick = async () => {
+    setButtonState("loading");
+  
+    try {
+      await handleSaveChanges();
+      setButtonState("finish");
+  
+      setTimeout(() => {
+        setButtonState("initial");
+      }, 3000);
+    } catch (error) {
+      console.error("Error during save:", error);
+      setButtonState("initial");
+    }
+  };
+  
   const handleSaveChanges = async () => {
     if (!logoBase64) {
       console.error("No logo to save");
@@ -77,14 +99,14 @@ export const UploadLogo = () => {
       console.log("Response from server:", response);
       console.log("Clinic Name:", clinicName);
       console.log("Logo Base64:", logoBase64);
-  
+
     } catch (error) {
       console.error("Error saving logo:", error);
     }
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-start pt-10 px-6 min-h-screen bg-black-primary border border-main-border rounded-md">
+    <div className="  w-full flex flex-col items-center justify-start pt-10 px-6 min-h-screen bg-black-primary border border-main-border rounded-md">
       <div className="mb-6 w-full max-w-xl">
         <label className="block text-primary-text text-xs font-normal mb-2">
           Clinic Name
@@ -154,7 +176,7 @@ export const UploadLogo = () => {
           <span>{error}</span>
         </div>
       )}
-      {!loading && logoBase64 && !error && (
+      {!loading && logoBase64 && !error && fileName && (
         <div className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border border-main-border px-4 py-2 rounded-md">
           <div className="flex items-center gap-1">
             <img src="./Themes/Aurora/icons/XMLID_1737_.svg" alt="" />
@@ -172,9 +194,19 @@ export const UploadLogo = () => {
         </div>
       )}
 
-      <Button onClick={handleSaveChanges} theme="Aurora">
-        Save Changes
-      </Button>
+<Button
+  onClick={handleClick}
+  theme={"Aurora"}
+>
+  {buttonState === 'initial' && 'Save Changes'}
+  {buttonState === 'loading' && <BeatLoader size={10} color="white" />}
+  {buttonState === 'finish' && (
+    <div className="flex justify-center items-center gap-1">
+      <div className={`${theme}-icons-check`} />
+      Saved Changes
+    </div>
+  )}
+</Button>
     </div>
   );
 };

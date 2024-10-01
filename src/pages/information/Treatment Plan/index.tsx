@@ -1,26 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard } from "@/components";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
-import { Application } from "@/api";
-import { useParams , useNavigate } from "react-router-dom";
-import jsPDF from "jspdf";
+import { useParams, useNavigate } from "react-router-dom";
 import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-
 import { AppContext } from "@/store/app";
 import RegenerateModal from "./RegenerateModal";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
-type ReportBenchmark = {
-  Category: string;
-  "Benchmark areas": string;
-  "Test L1": string;
-  Result: string;
-  "Benchmark performance": string;
-};
 type Benchmark = {
   area: string;
   subCategory?: string;
@@ -109,41 +97,29 @@ export const TreatmentPlan = () => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isDescription, setIsDescription] = useState(false);
   const [isGenerated, setIsGenerated] = useState(false);
+  const [lastUpdateTime, setLastUpdateTime] = useState("");
+
   const [, setplanID] = useState();
   const { id } = useParams<{ id: string }>();
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([]);
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {  pdfBase64String,setPdfBase64String  } = useContext(AppContext);
-  // const [ ] = useState('') 
-  useEffect(()=>console.log(pdfBase64String) , [pdfBase64String]
-  )
+  const {reportManager} = useContext(AppContext);
+  // const [ ] = useState('')
   const navigate = useNavigate(); // Navigation hook
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await Application.generateTreatmentPlan({
+  const handleRegenerateClick = () => {
+    setIsRegenerated(true);
+    const currentDate = new Date();
+    // Format the date as "Month Day, Year"
+    const formattedDate = currentDate.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    setLastUpdateTime(formattedDate);
+  };
 
-  //       member_id: Number(id),
-  //     });
-  //     console.log(response);
-  //     if (response.data && response.data.length > 0) {
-
-  //       setBenchmarks(response.data[0]);
-  //       setplanID(response.data[1]);
-  //       setIsGenerated(true);
-
-  //       const desResponse = await Application.showPlanDescription(Number(id));
-  //       setneedFocusBenchmarks(desResponse.data["need focus benchmarks"]);
-  //       setDescription(desResponse.data.description);
-  //     } else {
-  //       setIsGenerated(false); // No data found
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //     setIsGenerated(false); // Handle error by not setting generated to true
-  //   }
-  // };
   const [regenerated, setIsRegenerated] = useState(false);
   const regenerateModalRefrence = useRef(null);
   useModalAutoClose({
@@ -152,477 +128,29 @@ export const TreatmentPlan = () => {
       setIsRegenerated(false);
     },
   });
-  useEffect(() => {
-    const convertImageToBase64 = async () => {
-      const response = await fetch('/path/to/your/image.png'); // Update with your image path
-      const blob = await response.blob();
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (typeof reader.result === 'string') {
-          // setlogoBase64(reader.result);
-        }
-      };
-      reader.readAsDataURL(blob);
-    };
 
-    convertImageToBase64();
-  }, []);
-  const createPDFReport = (data: {
-    client_info: any;
-    patient_benchmark: ReportBenchmark[];
-    treatment_plan: any;
-    logo:any;
-  }) => {
-    const doc = new jsPDF();
-
-    // let pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();    
-    const addHeader = () => {
-      // Option 1: Add text header
-      doc.setFontSize(16);
-      doc.text("", 180 / 2, 15, { align: "center" });
-
-      // Option 2: Add image header (optional, example with a logo)
-      const img = new Image();
-      img.src = data.logo;
-      doc.addImage(img, 'PNG', 10, 10, 25, 12); // Adjust size/position as needed
-      doc.setLineWidth(1); // Set line thickness
-      doc.setDrawColor(94, 168, 214); // Set color to blue (RGB format)
-      doc.line(0, 25, 250, 25); // Draw      
-    };
-
-    const addFooter = (pageNumber:number) => {
-      doc.setLineWidth(6); // Adjust thickness to match the image
-      doc.setDrawColor(180, 210, 224); // Set the color to light blue (RGB)
-      doc.line(0, pageHeight - 20, 200, pageHeight - 20); // Horizontal line at the bottom
-
-      // Add "REPORT NAME" on the left side
-      doc.setFontSize(10);
-      doc.setTextColor(150); // Set text color to grey
-      doc.text("REPORT NAME", 10, pageHeight - 10);
-
-      // Add page number on the right side
-      doc.text(`${pageNumber}`, 200 - 10, pageHeight - 10, { align: "right" });
-    };
-    addHeader()
-    // Parse the client_info JSON string
-    let clientInfo;
-    if (typeof data.client_info === "string") {
-      clientInfo = JSON.parse(data.client_info);
-    } else {
-      clientInfo = data.client_info;
-    }
-
-    // Add Contents Section
-    doc.setFontSize(14);
-    doc.setTextColor(255, 140, 0);
-    doc.text("Contents", 10, 35);
-    doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0);
-    doc.text("• Profile", 10, 45);
-    doc.text("• Benchmark summary", 10, 55);
-    doc.text("• Benchmark detail", 10, 65);
-    doc.text("• Client goals", 10, 75);
-    doc.text("• Recommended action areas", 10, 85);
-    doc.text("• Recommended SMART Goals", 10, 95);
-    addFooter(1)
-    doc.addPage();
-    addHeader()
-    doc.setFontSize(12);
-    doc.text("Client Information", 10, 35);
-
-    const clientInfoData = [
-      // ["Name:", clientInfo["Name"] || "N/A"],
-      ["Assessment Date:", clientInfo["Assessment Date"] || "N/A"],
-      ["Date of Birth:", clientInfo["Date of birth"]?.[0] || "N/A"],
-      ["Gender:", clientInfo["Biological Gender"]?.[0] || "N/A"],
-
-      ["Smoker:", clientInfo["Smoker"]?.[0] || "N/A"],
-      ["Weight:", clientInfo["Weight"]?.[0] || "N/A"],
-      ["Height:", clientInfo["Height"]?.[0] || "N/A"],
-
-      ["Injuries to be Aware of:", clientInfo["Injury history"]?.[0] || "N/A"],
-
-      [
-        "Prescription Medication:",
-        clientInfo["Prescribed medication"]?.[0] || "N/A",
-      ],
-    ];
-
-    (doc as any).autoTable({
-      startY: 60,
-
-      body: clientInfoData,
-      theme: "grid",
-      styles: {
-        fontSize: 10,
-        cellPadding: 2,
-        halign: "left",
-      },
-
-      columnStyles: {
-        0: { fontStyle: "bold", fillColor: [255, 255, 255] },
-        1: { fillColor: [255, 255, 255] },
-      },
-    });
-
-    // Add next section
-    addFooter(2)
-    doc.addPage();
-    addHeader()
-    doc.setFontSize(16);
-    doc.setTextColor(0, 0, 0);
-    doc.text("Please read before reviewing this report", 10, 35);
-    const pageWidth = 180;
-    let y = 45;
-
-    // Add text
-    doc.setFontSize(12);
-    doc.text("WHY WE USE EXPERIENCE LEVELS", 10, y);
-    y += 10;
-
-    doc.setFontSize(10);
-    let text =
-      "Scoring is recommended standards backed by reputable academic sources and normative data. The benchmarks have experience levels so the score will be against the relevant experience level benchmark for you. Experience levels used are stated on the client overview page of this report.";
-    let lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 10, y);
-    y += lines.length * 10 + 10;
-
-    doc.setFontSize(12);
-    doc.text("3 EXPERIENCE LEVELS:", 10, y);
-    y += 10;
-
-    doc.setFontSize(10);
-    text =
-      "• Novice – a client with some experience in training, nutrition and lifestyle management but with no structured programme";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text =
-      "• Committed – a client working on structured programmes covering fitness, nutrition and lifestyle";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text =
-      "• Elite – a client who has been working on structured longevity programmes and exceeds benchmark performance in their age/gender group";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10 + 10;
-
-    doc.setFontSize(12);
-    doc.text("WHAT THE BENCHMARKS MEAN:", 10, y);
-    y += 10;
-
-    doc.setFontSize(10);
-    text =
-      "• Novice – a good level for your age/gender of physiological, fitness and emotional health. This will mean meeting or exceeding UK healthy guidelines.";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text =
-      "• Committed – excellent level typically top 10% in age/gender group for physiological, fitness and emotional health. This level of performance in studies suggests a reduction in the probability of all cause mortality by 47%.";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text =
-      "• Elite – good or excellent in age/gender group 10 years younger than you. For the people who want to maintain a high level of capability as they age.";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    doc.setFontSize(12);
-    doc.text("SCORING EXPLAINED: ", 10, y);
-    y += 10;
-
-    doc.setFontSize(10);
-    text = "• Needs focus – no activity in this area or a low test performance";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text = "• OK – performance is 25-75% of benchmark";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    text = "• Good - performance is 76% to 99% of benchmark";
-    lines = doc.splitTextToSize(text, pageWidth);
-    doc.text(lines, 15, y);
-    y += lines.length * 10;
-
-    // Group benchmarks by category
-    const groupedBenchmarks: Record<string, any[]> = {};
-    data.patient_benchmark.forEach((benchmark: any) => {
-      const category = benchmark.Category;
-      if (!groupedBenchmarks[category]) {
-        groupedBenchmarks[category] = [];
-      }
-      groupedBenchmarks[category].push([
-        benchmark["Benchmark areas"],
-        benchmark["Test L1"],
-        benchmark["Test L2"],
-        benchmark.Result,
-        benchmark["Benchmark performance"],
-      ]);
-    });
-    addFooter(3)
-    // Create a table for each category
-    Object.keys(groupedBenchmarks).forEach((category) => {
-      doc.addPage();
-      addHeader()
-      doc.setFontSize(16);
-      doc.setTextColor(255, 140, 0);
-      doc.text(`${category} Test Results`, 10, 35);
-
-      (doc as any).autoTable({
-        head: [
-          ["Area", "Test L1", "Test L2", "Result", "Benchmark Performance"],
-        ],
-        body: groupedBenchmarks[category],
-        startY: 45,
-        theme: "grid",
-        styles: {
-          fontSize: 10,
-          cellPadding: 2,
-          halign: "center",
-          valign: "middle",
-          lineWidth: 0.1, // Set border width
-          lineColor: [0, 0, 0], // Set border color (black)
-        },
-        headStyles: {
-          fillColor: [255, 255, 255], // Change this to the desired color in RGB format
-          textColor: [255, 159, 51],
-        },
-        columnStyles: {
-          0: { cellWidth: 40, halign: "left", textColor: [15, 156, 239] },
-          1: { cellWidth: 40, halign: "left", textColor: [15, 156, 239] },
-          2: { cellWidth: 40, halign: "left", textColor: [15, 156, 239] },
-          3: { cellWidth: 20, halign: "center", textColor: [15, 156, 239] },
-          4: {
-            cellWidth: 40,
-            textColor: [15, 156, 239],
-            // fillColor: (data: any) => {
-            //     switch (data.cell.raw) {
-            //         case 'Needs focus': return [255, 204, 153];
-            //         case 'Ok': return [255, 255, 204];
-            //         case 'Good': return [153, 255, 153];
-            //         case 'Excellent': return [102, 204, 255];
-            //         default: return [255, 255, 255];
-            //     }
-            // }
-          },
-        },
-      });
-    });
-    // Add Client Goals Table
-    doc.addPage();
-    addHeader()
-    doc.setFontSize(16);
-    doc.setTextColor(255, 140, 0);
-    doc.text("Client Goals", 10, 35);
-
-    const clientGoalsData = [
-      [
-        "What you want to be able to do?",
-        data.client_info["What you want to be able to do?"]["0"] || "N/A",
-      ],
-      [
-        "How you want to look?",
-        data.client_info["How you want to look?"]["0"] || "N/A",
-      ],
-      [
-        "How you want to feel?",
-        data.client_info["How you want to feel?"]["0"] || "N/A",
-      ],
-      [
-        "Any medical conditions to consider?",
-        data.client_info["Medical conditions"]["0"] || "N/A",
-      ],
-    ];
-
-    (doc as any).autoTable({
-      startY: 45,
-      head: [["", ""]],
-      body: clientGoalsData,
-      theme: "grid",
-      styles: {
-        fontSize: 10,
-        cellPadding: 2,
-        halign: "left",
-        lineWidth: 0.1, // Set border width
-        lineColor: [0, 0, 0], // Set border color (black)
-      },
-      headStyles: {
-        fillColor: [255, 255, 255], // Change this to the desired color in RGB format
-        textColor: [255, 159, 51],
-      },
-      columnStyles: {
-        0: {
-          fontStyle: "bold",
-          fillColor: [255, 255, 255],
-          textColor: [15, 156, 239],
-        },
-        1: { fillColor: [255, 255, 255], textColor: [0, 0, 0] },
-      },
-    });
-
-    const treatmentPlanData = data.treatment_plan.map((plan: any) => [
-      plan.subCategory || "N/A",
-      plan.area,
-      "", // Placeholder, replace with actual logic if needed
-      plan.status ? "Needs Focus" : "",
-      plan.first12Weeks.dos.join(", ") || "N/A",
-      plan.second12Weeks.dos.join(", ") || "N/A",
-      // Include status to use later
-    ]);
-
-    // Add Treatment Plan Table
-    doc.addPage();
-    addHeader()
-    doc.setFontSize(16);
-    doc.setTextColor(255, 140, 0);
-    doc.text("Recommended Action Areas", 10, 35);
-
-    (doc as any).autoTable({
-      head: [
-        [
-          "Category",
-          "Benchmark area",
-          "Needs Focus",
-          "Priority 1: First 12 Weeks",
-          "Priority 2: Beyond 12 Weeks",
-        ],
-      ],
-      body: treatmentPlanData.map((row: any) => [
-        row[0],
-        row[1],
-        {
-          content: row[2],
-          styles: {
-            fillColor:
-              row[3] === "Needs Focus" ? [236, 141, 27] : [255, 255, 255],
-          },
-        }, // Conditional fill color
-        row[3],
-        row[4],
-      ]),
-      startY: 45,
-      theme: "grid",
-      styles: {
-        fontSize: 10,
-        cellPadding: 2,
-        halign: "center",
-        valign: "middle",
-        lineWidth: 0.1,
-        lineColor: [0, 0, 0],
-      },
-      headStyles: {
-        fillColor: [255, 255, 255],
-        textColor: [255, 159, 51],
-      },
-      columnStyles: {
-        0: { cellWidth: 30, halign: "left", textColor: [15, 156, 239] },
-        1: { cellWidth: 30, halign: "left", textColor: [15, 156, 239] },
-        2: { cellWidth: 15, halign: "center", textColor: [15, 156, 239] },
-        3: { cellWidth: 60, halign: "left", textColor: [15, 156, 239] },
-        4: { cellWidth: 60, halign: "left", textColor: [15, 156, 239] },
-      },
-    });
-
-    doc.addPage();
-    addHeader()
-    doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0);
-    const confidentialityText = `
-    The contents of this report have been prepared from confidential information and data so cannot be shared with anyone other than the client named in this report and coaches working for Longevity Performance Coaching (brand name of LTTL Hubs Limited).
-    Client written permission is required to share this report with any other third parties.
-
-    This report is classed as confidential and must be stored and handled to the requirements of UK data protection law.
-    `;
-    doc.text(doc.splitTextToSize(confidentialityText, pageWidth), 10, 35);
-    // Save the PDF
-    // doc.save("Benchmark_Assessment_Report.pdf");
-    const PdfBase64 = doc.output("datauristring");
-    const base64String = PdfBase64.split(",")[1];
-
-
-    return base64String;
-  };
-
-  const fetchReport = async (treatmentPlanId:string) => {
-    try {
-      const response = await Application.downloadReport({
-        treatment_plan_id: treatmentPlanId,
-      });
-
-      const reportData = response.data;
-      console.log(reportData);
-
-      const pdfString = createPDFReport(reportData);
-      setPdfBase64String(pdfString);
-    
-      
-
-      const reportDataToSave = {
-        report_type: "client_report",
-        treatment_plan_id:treatmentPlanId,
-        report_string: pdfString,
-      };
-
-      await Application.savereport(reportDataToSave);
-    } catch (error) {
-      console.error("Error processing the report:", error);
-    }
-  };  
-  // const onButtonClick = async (planId: string | undefined) => {
-  //   try {
-  //     const response = await Application.downloadReport({
-  //       treatment_plan_id: planId,
-  //     });
-    
-      
-  //     const data = response.data;
-  //     console.log(data);
-  //     console.log(response);
-  //     console.log(planID);
-     
-      
-  //     setPdfBase64String(createPDFReport(data));
-     
-  //     if (!data) {
-  //       console.error("Data is undefined. Check the API response structure.");
-  //       return;
-  //     }
-
-  //     const reportData = {
-  //       report_type: "client_report ",
-  //       treatment_plan_id: planId || "",
-  //       report_string: pdfBase64String,
-  //     };
-
-  //     await Application.savereport(reportData);
-
-  //     navigate("/pdf-viewer");
-  //   } catch (error) {
-  //     console.error("Error processing the report:", error);
-  //   }
-  // };
   const toggleDetailsSection = () => setIsDetailsOpen(!isDetailsOpen);
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  const fetchReport = async (treatmentPlanId: string) => {
+    try {
+      console.log(treatmentPlanId);
+      
+      await reportManager.fetchReport(treatmentPlanId);
+      // setPdfBase64String(reportManager.getReport()); 
+      // console.log(reportManager.getReport());
+      
+    } catch (error) {
+      console.error("Error fetching report:", error);
+    }
+  };
   useEffect(() => {
     const myData = localStorage.getItem("tretmentPlan-" + id);
-    console.log(myData);
     if (myData) {
       const data = JSON.parse(myData);
-      if (data) {        
+      if (data) {
         setBenchmarks(data.treatment_plans[0]);
         setplanID(data.treatment_plans[1]);
         setDescription(data.description_section.description);
@@ -633,7 +161,6 @@ export const TreatmentPlan = () => {
       }
     }
   }, [id]);
-  useEffect(()=> console.log(Description), [Description])
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
@@ -642,7 +169,7 @@ export const TreatmentPlan = () => {
           <div className="absolute top-0 left-0 z-30 w-full h-full flex justify-center items-center">
             <RegenerateModal
               onGenerate={async (data) => {
-                console.log(data)
+                console.log(data);
                 if (data) {
                   if(data != 'there is no benchmark data for patient'){
                     localStorage.setItem(
@@ -659,43 +186,11 @@ export const TreatmentPlan = () => {
                     data.description_section["need focus benchmarks"]
                   );
                   setIsGenerated(true);
-                  
-                  const treatmentPlanId = data.treatment_plans[1]
-                  fetchReport(treatmentPlanId)
-                  // const fetchReport = async () => {
-                  //   try {
-                  //     const response = await Application.downloadReport({
-                  //       treatment_plan_id: treatmentPlanId,
-                  //     });
-              
-                  //     const reportData = response.data;
-                  //     console.log(reportData);
-              
-                  //     const pdfString = createPDFReport(reportData);
-                  //     setPdfBase64String(pdfString);
-                    
-                      
-              
-                  //     const reportDataToSave = {
-                  //       report_type: "client_report",
-                  //       treatment_plan_id:data.treatment_plans[1],
-                  //       report_string: pdfString,
-                  //     };
-              
-                  //     await Application.savereport(reportDataToSave);
-                  //     fetchReport()
-                  //   } catch (error) {
-                  //     console.error("Error processing the report:", error);
-                  //   }
-                  // };
 
-                  // const desResponse = await Application.showPlanDescription(
-                  //   Number(id)
-                  // );
-                  // setneedFocusBenchmarks(
-                  //   desResponse.data["need focus benchmarks"]
-                  // );
-                  // setDescription(desResponse.data.description);
+                  const treatmentPlanId = data.treatment_plans[1];
+                  console.log(treatmentPlanId);
+                  
+                  fetchReport(treatmentPlanId);
                 } else {
                   setIsGenerated(false); // No data found
                 }
@@ -720,13 +215,26 @@ export const TreatmentPlan = () => {
       {isGenerated ? (
         <div className="w-full flex gap-2 ">
           <div className="bg-black-primary text-primary-text w-full h-[340px] overflow-x-hidden overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border">
-            <div className="flex justify-between items-center pb-4">
-              <h2 className="text-sm font-semibold">Treatment Plan 012</h2>
-              <div className="flex items-center space-x-4">
+            <div className="flex justify-between items- pb-4">
+              <h2
+                className="text-sm font-medium 
+              "
+              >
+                Treatment Plan 012
+              </h2>
+              <div className="flex items-start space-x-4">
                 <button
-                onClick={() =>
-                   navigate("/pdf-viewer")}
-  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+                  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+                >
+                  <img
+                    src="/Themes/Aurora/icons/document-download.svg"
+                    alt=""
+                  />
+                  Download Client Report
+                </button>
+                <button
+                  onClick={() => navigate("/pdf-viewer")}
+                  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img
                     src="/Themes/Aurora/icons/document-download.svg"
@@ -744,48 +252,64 @@ export const TreatmentPlan = () => {
                     Show History
                   </button>
                 )}
-
-                <Button
-                  onClick={() => {
-                    setIsRegenerated(true);
-                  }}
-                  theme={theme}
-                >
-                  <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
-                  Re-Generate
-                </Button>
+                <div className="flex flex-col   gap-1">
+                  <Button
+                    onClick={handleRegenerateClick}
+                    theme={theme}
+                    data-width="full"
+                  >
+                    <img src="/Themes/Aurora/icons/refresh-2.svg" alt="" />
+                    Re-Generate
+                  </Button>
+                  <span
+                    className={` ${
+                      !lastUpdateTime && "invisible"
+                    } text-[9px] font-light `}
+                  >
+                    Last Update on {lastUpdateTime}
+                  </span>
+                </div>
               </div>
             </div>
 
-            <div
-              onClick={() => setIsDescription(!isDescription)}
-              className="w-full flex items-center gap-2 cursor-pointer text-sm"
-            >
-              <img
-                src="/Themes/Aurora/icons/chevron-down.svg"
-                className={`transition-transform ${
-                  isDescription && "rotate-180"
-                }`}
-                alt=""
-              />
-              Description
+            <div className="w-full flex items-center gap-10 cursor-pointer text-sm font-medium">
+              <div
+                onClick={() => setIsDescription(!isDescription)}
+                className="flex items-center gap-3"
+              >
+                {" "}
+                <img
+                  src="/Themes/Aurora/icons/chevron-down.svg"
+                  className={`transition-transform ${
+                    isDescription && "rotate-180"
+                  }`}
+                  alt=""
+                />
+                Description
+              </div>
+
               <div className="h-[1px] w-full bg-secondary-text" />
             </div>
             {isDescription && (
               <div className="w-full space-y-2 text-xs">
-                <p className="mt-4 text-primary-text">{Description}</p>
-                <div className="flex items-center gap-1">
-                Needs Focus Benchmarks:{" "}
+                <p className="mt-4 text-primary-text text-xs ">{Description}</p>
+                <div className="flex items-center gap-1 text-xs">
+                  Needs Focus Benchmarks:{" "}
                   {/* <span
                     onClick={() => setIsModalOpen(true)}
                     className="underline text-brand-primary-color cursor-pointer"
                   >
                     Detail{" "}
                   </span> */}
-                  <img className="cursor-pointer w-5 h-5" onClick={()=>setIsModalOpen(true)} src="./Themes/Aurora/icons/export-v2.svg" alt="" />
+                  <img
+                    className=" transition-transform cursor-pointer w-5 h-5"
+                    onClick={() => setIsModalOpen(true)}
+                    src="./Themes/Aurora/icons/export-v2.svg"
+                    alt=""
+                  />
                   <BenchmarkModal isOpen={isModalOpen} onClose={closeModal} />
                 </div>
-                <ul className="list-disc ml-6 mt-4 text-primary-text">
+                <ul className="list-disc ml-6 mt-4 text-primary-text text-xs">
                   {Array.isArray(needFocusBenchmarks) &&
                     needFocusBenchmarks.map((item, i) => (
                       <li key={i}>{item}</li>
@@ -802,18 +326,22 @@ export const TreatmentPlan = () => {
               </div>
             )}
 
-            <div
-              className="flex items-center gap-2 cursor-pointer"
-              onClick={toggleDetailsSection}
-            >
-              <img
-                src="/Themes/Aurora/icons/chevron-down.svg"
-                className={`${
-                  isDetailsOpen ? "rotate-180" : ""
-                } transition-transform`}
-              />
-              <span className="text-sm font-medium">Details</span>
+            <div className="flex items-center justify-between gap-10 cursor-pointer">
+              <div
+                onClick={toggleDetailsSection}
+                className="flex items-center gap-3"
+              >
+                <img
+                  src="/Themes/Aurora/icons/chevron-down.svg"
+                  className={`${
+                    isDetailsOpen ? "rotate-180" : ""
+                  } transition-transform`}
+                />
+                <span className="text-sm font-medium">Details</span>
+              </div>
+
               <div className="h-[1px] w-full bg-secondary-text" />
+              <img className={`${theme}-icons-edit w-6 h-6`} alt="" />
             </div>
             {isDetailsOpen && (
               <div className="mt-4">
@@ -828,20 +356,18 @@ export const TreatmentPlan = () => {
                         key={index}
                         className="grid grid-cols-3 py-2 border-b border-main-border text-sm"
                       >
-                        <div className="flex gap-24">
+                        <div className="flex gap-24 text-xs font-medium">
                           {index === 0 ||
                           benchmarks[index - 1].area !== benchmark.area ? (
-                            <div className="font-semibold text-xs">
-                              {benchmark.area}
-                            </div>
+                            <div className=" text-xs">{benchmark.area}</div>
                           ) : null}
                           {benchmark.subCategory && (
-                            <div className="font-normal text-xs">
+                            <div className=" text-xs">
                               {benchmark.subCategory}
                             </div>
                           )}
                         </div>
-                        <div className="text-[10px] font-medium overflow-hidden flex flex-col text-left ">
+                        <div className="text-xs overflow-hidden flex flex-col text-left ">
                           <ul className="space-y-4 ">
                             {benchmark.first12Weeks.dos.map((doItem, i) => (
                               <li key={i}>{doItem}</li>
@@ -859,7 +385,7 @@ export const TreatmentPlan = () => {
                             ))}
                           </ul> */}
                         </div>
-                        <div className="text-[10px] font-medium overflow-hidden flex flex-col text-left ">
+                        <div className="text-xs  overflow-hidden flex flex-col text-left ">
                           <ul className="  space-y-4 ">
                             {benchmark.second12Weeks.dos.map((doItem, i) => (
                               <li key={i}>{doItem}</li>
@@ -887,7 +413,7 @@ export const TreatmentPlan = () => {
           </div>
           {showHistory && (
             <div className="bg-black-primary text-primary-text p-2 rounded-lg h-[340px] overflow-y-scroll space-y-2 border border-main-border w-[35%]">
-              <div className="flex justify-between items-center font-medium">
+              <div className="flex justify-between items-center text-lg font-medium">
                 Treatment Plan History
                 <button
                   onClick={() => setShowHistory(false)}
@@ -910,14 +436,14 @@ export const TreatmentPlan = () => {
                     } rounded-lg p-2 cursor-pointer space-y-3`}
                   >
                     <div className="w-full flex justify-between items-center">
-                      <p className="text-primary-text text-sm font-semibold">
+                      <p className="text-primary-text text-sm font-medium">
                         {entry.date}
                       </p>
-                      <p className="text-secondary-text text-sm">
+                      <p className="text-secondary-text text-xs ">
                         {entry.time}
                       </p>
                     </div>
-                    <p className="text-secondary-text text-xs w-full">
+                    <p className="text-secondary-text text-sm w-full">
                       {entry.description}
                     </p>
                   </div>

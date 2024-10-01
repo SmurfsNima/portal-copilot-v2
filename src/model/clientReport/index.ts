@@ -1,3 +1,4 @@
+// ClientReport.ts
 
 import jsPDF from "jspdf";
 import "jspdf-autotable"; 
@@ -53,8 +54,6 @@ class ClientReport {
   }
 
   async createPdf(data: ReportData): Promise<void> {
-    console.log(data);
-    
     try {
       const pdfString = this.generatePDFReport(data);
       console.log(pdfString);
@@ -67,19 +66,17 @@ class ClientReport {
         report_string: pdfString,
       };
 
-       await Application.savereport(reportDataToSave);
- 
-     
+      await Application.savereport(reportDataToSave);
     } catch (error) {
       console.error("Error creating PDF:", error);
      
     }
   }
 
-  private generatePDFReport(data: ReportData): string {
+  // Generates the PDF and returns the base64 string
+  private generatePDFReport(data:ReportData): string {
     const doc = new jsPDF();
-  
-    
+
     // let pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();    
     const addHeader = () => {
@@ -88,10 +85,9 @@ class ClientReport {
       doc.text("", 180 / 2, 15, { align: "center" });
 
       // Option 2: Add image header (optional, example with a logo)
-      if (data.logo) {
-        const imgData = data.logo.split(',')[1]; // Extract base64 data
-        doc.addImage(imgData, 'PNG', 10, 10, 25, 12); // Adjust size/position as needed
-      }
+      const img = new Image();
+      img.src = data.logo
+      doc.addImage(img, 'PNG', 10, 10, 25, 12); // Adjust size/position as needed
       doc.setLineWidth(1); // Set line thickness
       doc.setDrawColor(94, 168, 214); // Set color to blue (RGB format)
       doc.line(0, 25, 250, 25); // Draw      
@@ -459,23 +455,22 @@ class ClientReport {
     return base64String;
   };
 
+  // Fetches the report data, creates the PDF, and stores it
   async fetchReport(treatmentPlanId: string): Promise<void> {
     try {
       const response = await Application.downloadReport({
         treatment_plan_id: treatmentPlanId,
       });
-      console.log(response);
-      
 
+      
       const reportData: ReportData = response.data;
      
 
-      await this.createPdf(reportData);
-   
       
+      await this.createPdf(reportData);
     } catch (error) {
       console.error("Error processing the report:", error);
-      throw error; 
+      throw error; // Re-throw to handle it in the calling function if needed
     }
   }
 }

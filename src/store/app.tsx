@@ -1,12 +1,11 @@
-import { Pationt, User,  } from "@/model";
+import { Pationt, User , ClientReport } from "@/model";
 import { PropsWithChildren, createContext, useState , useEffect } from "react";
 import {  biomarker, diagnosis  } from "@/types";
 import { Application } from "@/api";
-import {Application as ApplicationModel} from '@/model'
 
 interface AppContextProp {
+  reportManager : ClientReport
     user:User;
-    AppManager:ApplicationModel;
     token:string | null;
     isLoggedId:boolean;
     setUser:(user:User) => void;
@@ -19,8 +18,7 @@ interface AppContextProp {
     getBiomarkers: (id: number) => biomarker[] | undefined;
     getDiagnosis: (id: number) => diagnosis[] | undefined;
     getAllBiomarkersById : () => undefined;
-
-   
+ 
 
 }
 
@@ -43,7 +41,6 @@ export const AppContext = createContext<AppContextProp>({
 })
 
 const AppContextProvider =({children}:PropsWithChildren) => {
-    const  [applicationmodel] = useState<ApplicationModel>(new ApplicationModel())
     const [token,setToken] = useState<string | null>(localStorage.getItem("token") || null)
     const localuser = localStorage.getItem('authUser')
     const resolveUser:User = Object.assign(new User(),JSON.parse(localuser as string))

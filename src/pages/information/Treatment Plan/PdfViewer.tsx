@@ -5,7 +5,8 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { AppContext } from '@/store/app';
 
 const PdfViewerComponent = () => {
-  const { pdfBase64String } = useContext(AppContext); // Access the base64 string
+  const { reportManager } = useContext(AppContext); // Access the base64 string
+const pdfBase64String = reportManager.getReport();
 
   useEffect(() => {
     console.log('PDF Base64 String:', pdfBase64String);

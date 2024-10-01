@@ -71,7 +71,7 @@ const SideMenu:React.FC = () => {
                     }} className={`${theme}-SideMenu-MenuList2-logOut`}>
                         <img className={`${theme}-icons-logOut`}  alt="" />
                     </div>
-                    <div className="text-[8px] text-secondary-text w-full justify-center flex gap-1 items-center ">
+                    <div className="text-[8px] text-secondary-text w-full justify-center flex gap-1 items-start ">
                         Powered by <img src="./images/sidebar-logo.svg" alt="" />
                     </div>
                 </div>

@@ -1,9 +1,9 @@
-import Application from "./app";
 import Pationt from "./patient";
 import User from "./user";
 import Biomarkers from "./biomarkers";
+import ClientReport from "./clientReport";
 export {
-    Application,
+    ClientReport,
     User,
     Pationt,
     Biomarkers
