@@ -171,11 +171,14 @@ export const TreatmentPlan = () => {
               onGenerate={async (data) => {
                 console.log(data);
                 if (data) {
-                  localStorage.setItem(
-                    "tretmentPlan-" + id,
-                    JSON.stringify(data)
-                  );
-
+                  if(data != 'there is no benchmark data for patient'){
+                    localStorage.setItem(
+                      "tretmentPlan-" + id,
+                      JSON.stringify(data)
+                    );
+                  }
+                 
+                  
                   setBenchmarks(data.treatment_plans[0]);
                   setplanID(data.treatment_plans[1]);
                   setDescription(data.description_section.description);
