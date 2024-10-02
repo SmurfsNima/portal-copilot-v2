@@ -105,6 +105,7 @@ export const TreatmentPlan = () => {
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const {reportManager} = useContext(AppContext);
   // const [ ] = useState('')
   const navigate = useNavigate(); // Navigation hook
@@ -139,6 +140,7 @@ export const TreatmentPlan = () => {
       console.log(treatmentPlanId);
       
       await reportManager.fetchReport(treatmentPlanId);
+      await reportManager.fetchClinicReport(treatmentPlanId)
       // setPdfBase64String(reportManager.getReport()); 
       // console.log(reportManager.getReport());
       
@@ -161,6 +163,11 @@ export const TreatmentPlan = () => {
       }
     }
   }, [id]);
+  const handleViewReport = (reportType : string) => {
+    
+    localStorage.setItem("selectedReport", reportType);
+    navigate("/pdf-viewer");
+  };
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
@@ -224,6 +231,8 @@ export const TreatmentPlan = () => {
               </h2>
               <div className="flex items-start space-x-4">
                 <button
+                                  onClick={() => handleViewReport("client")}
+
                   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img
@@ -233,7 +242,7 @@ export const TreatmentPlan = () => {
                   Download Client Report
                 </button>
                 <button
-                  onClick={() => navigate("/pdf-viewer")}
+                  onClick={() => handleViewReport("clinic")}
                   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img

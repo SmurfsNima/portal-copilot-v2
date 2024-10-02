@@ -106,6 +106,10 @@ static downloadReport(data:any){
   const response =  this.post(`/patients/download_report` , data)
   return response
 }
+static downloadClinicReport(data:any){
+  const response =  this.post(`/patients/download_clinic_report` , data)
+  return response
+}
 
   static updatePlanPriorities(data:any) {
     const response =  this.post(`/clinic/update-plan-priorities`,{
