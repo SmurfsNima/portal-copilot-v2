@@ -34,7 +34,7 @@ class Application extends Api {
     return response;
   }
   static getgraphData() {
-    const response = this.post("/graphData", {});
+    const response = this.post("/ai_knowledge/show_ai_knowledge", {});
     return response;
   }
   static getActionPLan() {
@@ -141,6 +141,11 @@ static downloadReport(data:any){
   }
   static aiStudio_overview(data: any) {
     const response = this.post("/ai_studio/overview",data)
+    return response
+  }
+
+  static getDocument(data:any) {
+    const response = this.post("/ai_knowledge/get_documents",data)
     return response
   }
 }

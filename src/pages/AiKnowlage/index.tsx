@@ -4,10 +4,11 @@ import { useLoadGraph, useRegisterEvents, useSigma } from "@react-sigma/core";
 import "@react-sigma/core/lib/react-sigma.min.css";
 import { useEffect, useState } from "react";
 import Graph from "graphology";
-import  graphDataMock from '../../api/--moch--/data/graphData.json';
+// import  graphDataMock from '../../api/--moch--/data/graph.json';
 import chroma from "chroma-js";
 // import { ApplicationMock } from "@/api";
 import { useLayoutCircular } from "@react-sigma/layout-circular";
+import { Application } from "@/api";
 const GraphEvents = () => {
   const registerEvents = useRegisterEvents();
   const sigma = useSigma();
@@ -97,30 +98,33 @@ const LoadGraph: React.FC<LoadGraphProps> = ({ activeFilters, graphData, isIniti
   return null;
 };
 const AiKnowledge = () => {
-  const [isContractsOpen, setIsContractsOpen] = useState(true);
-  const [isAgreementsOpen, setIsAgreementsOpen] = useState(true);
-  const [isReportsOpen, setIsReportsOpen] = useState(true);
+  // const [isContractsOpen, setIsContractsOpen] = useState(true);
+  // const [isAgreementsOpen, setIsAgreementsOpen] = useState(true);
+  // const [isReportsOpen, setIsReportsOpen] = useState(true);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const [graphData, setGraphData] = useState<any>(null); // Adjust the type as needed
 
-  const categories = [
-    "Health",
-    "Fitness",
-    "Aging",
-    "Symptoms",
-    "Interventions",
-    "Wellness",
-    "Exercise",
-    "Mental Health",
-    "Nutrition",
-    "Strength"
-  ];
+  // const categories = [
+  //   "Health",
+  //   "Fitness",
+  //   "Aging",
+  //   "Symptoms",
+  //   "Interventions",
+  //   "Wellness",
+  //   "Exercise",
+  //   "Mental Health",
+  //   "Nutrition",
+  //   "Strength"
+  // ];
   useEffect(() => {
     const fetchGraphData = async () => {
       try {
-        // const response = await ApplicationMock.getgraphData();
-        setGraphData(graphDataMock);
+        const response = await Application.getgraphData();
+        if(response.data.nodes){
+          setGraphData(response.data);
+          setActiveFilters([...new Set(response.data?.nodes.map((e:any) =>e.category2))] as Array<string>)
+        }
       } catch (error) {
         console.error("Error fetching graph data:", error);
       }
@@ -136,9 +140,71 @@ const AiKnowledge = () => {
         : [...prevFilters, category]
     );
   };
+  // const [modelData,setModelData] = useState(
+  //   [
+  //       {
+  //           "Node Type": "DISEASE_DISORDER",
+  //           "Current Information": "Strokes",
+  //           "Source": "stroke.txt",
+  //           "Last Update": "2024, 10, 01"
+  //       },
+  //       {
+  //           "Node Type": "SIGN_SYMPTOM",
+  //           "Current Information": "dysphagia",
+  //           "Source": "stroke.txt",
+  //           "Last Update": "2024, 10, 01"
+  //       },
+  //       {
+  //           "Node Type": "SIGN_SYMPTOM",
+  //           "Current Information": "focal muscle weakness",
+  //           "Source": "stroke.txt",
+  //           "Last Update": "2024, 10, 01"
+  //       },
+  //       {
+  //           "Node Type": "SIGN_SYMPTOM",
+  //           "Current Information": "dysarthria",
+  //           "Source": "stroke.txt",
+  //           "Last Update": "2024, 10, 01"
+  //       },
+  //       {
+  //           "Node Type": "SIGN_SYMPTOM",
+  //           "Current Information": "paresis",
+  //           "Source": "stroke.txt",
+  //           "Last Update": "2024, 10, 01"
+  //       },
+  //       {
+  //           "Node Type": "DISEASE_DISORDER",
+  //           "Current Information": "urinary tract infections",
+  //           "Source": "stroke.txt",
+  //           "Last Update": "2024, 10, 01"
+  //       }
+  //   ]    
+  // )
+  // const [fileName, setFileName] = useState("");
+  const convertToBase64 = (file:any,fileName:string) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      Application.getDocument({
+        files:[
+          {
+            filename:fileName,
+            content:reader.result?.toString().split(",")[1]
+          }
+        ]
+      }).then((res) => {
+        console.log(res)
+      })
+    };
+
+    reader.onerror = (error) => {
+      console.error("Error converting file to Base64:", error);
+    };
+  };
   return (
     <div className="relative text-primary-text flex justify-center w-full">
-      <div className="   w-64 text-primary-text text-xs text-nowrap flex flex-col px-5 pt-[55px]">
+      {/* <div className="   w-64 text-primary-text text-xs text-nowrap flex flex-col px-5 pt-[55px]">
       {categories.map((category) => (
           <button
             key={category}
@@ -150,7 +216,7 @@ const AiKnowledge = () => {
             {category}
           </button>
         ))}
-      </div>
+      </div> */}
 
       <SigmaContainer
         settings={{
@@ -175,15 +241,47 @@ const AiKnowledge = () => {
       </SigmaContainer>
 
       <div className="fixed right-5 top-[15%] w-64 text-primary-text bg-black-primary border border-main-border flex flex-col p-4 rounded-md">
-        <button className="mb-4 flex justify-center gap-2 text-secondary-text border border-main-border border-dashed py-2 rounded-lg">
+        <button onClick={() => {
+          document.getElementById("uploadFile")?.click()
+        }} className="mb-4 relative flex justify-center gap-2 text-secondary-text border border-main-border border-dashed py-2 rounded-lg">
           <img src="/Themes/Aurora/icons/add-square.svg" alt="Add" />
           Add New Document
+          <input id="uploadFile" onChange={(e:any) => {
+              const file = e.target.files[0];
+              if (file) {
+                // setFileName(file.name);
+                convertToBase64(file,file.name);
+              }
+
+          }} className="absolute w-full h-full invisible " type="file" />
         </button>
         <div className="overflow-y-auto">
           <div className="mb-4">
             <h3 className="text-lg mb-2">Documents</h3>
             <div className="ml-4">
-              <div className="flex items-center mb-2 cursor-pointer">
+              {[...new Set(graphData?.nodes.map((e:any) =>e.category2))].map((el:any) => {
+                return (
+                  <>
+                  <div className="flex mb-2 justify-start items-center">
+                    <input checked={activeFilters.includes(el)} onChange={() => {
+                      handleButtonClick(el)
+                    }} type="checkbox"  className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center" />
+                    <label
+                      onClick={() => {
+                        handleButtonClick(el)
+                      }} 
+                      htmlFor="contracts"
+                      className="ml-2 flex gap-1"
+                    >
+                      {/* <img className={`${isContractsOpen && "rotate-180"}`} src="/Themes/Aurora/icons/chevron-down.svg" alt="" /> */}
+                      {el}
+                    </label>
+
+                  </div>
+                  </>
+                )
+              })}
+              {/* <div className="flex items-center mb-2 cursor-pointer">
                 <input
                 
                   className="custom-checkbox"
@@ -199,50 +297,6 @@ const AiKnowledge = () => {
                   Contracts
                 </label>
               </div>
-              {isContractsOpen && (
-                <div className="ml-4 border-l-2 border-gray-600 pl-2">
-                  <div className="flex items-center mb-2">
-                    <input className="custom-checkbox" type="checkbox" id="legal" />
-                    <label htmlFor="legal" className="ml-2">
-                      Legal
-                    </label>
-                  </div>
-                  <div className="flex items-center mb-2">
-                    <input className="custom-checkbox" type="checkbox" id="nda" />
-                    <label htmlFor="nda" className="ml-2">
-                      NDA.pdf
-                    </label>
-                  </div>
-                  <div className="flex items-center mb-2 cursor-pointer" onClick={() => setIsAgreementsOpen(!isAgreementsOpen)}>
-                    <input className="custom-checkbox" type="checkbox" id="agreements" />
-                    <label htmlFor="agreements" className="ml-2">
-                      Agreements
-                    </label>
-                  </div>
-                  {isAgreementsOpen && (
-                    <div className="ml-4 border-l-2 border-gray-600 pl-2">
-                      <div className="flex items-center mb-2">
-                        <input className="custom-checkbox" type="checkbox" id="client" />
-                        <label htmlFor="client" className="ml-2">
-                          Client
-                        </label>
-                      </div>
-                      <div className="flex items-center mb-2">
-                        <input className="custom-checkbox" type="checkbox" id="service" />
-                        <label htmlFor="service" className="ml-2">
-                          Service
-                        </label>
-                      </div>
-                      <div className="flex items-center mb-2">
-                        <input className="custom-checkbox" type="checkbox" id="vendor" />
-                        <label htmlFor="vendor" className="ml-2">
-                          Vendor
-                        </label>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
               <div className="flex items-center mb-2 cursor-pointer">
                 <input
                   className="custom-checkbox"
@@ -257,7 +311,7 @@ const AiKnowledge = () => {
                   <img className={`${isReportsOpen && "rotate-180"}`} src="/Themes/Aurora/icons/chevron-down.svg" alt="" />
                   Reports
                 </label>
-              </div>
+              </div> */}
             </div>
           </div>
           <div>

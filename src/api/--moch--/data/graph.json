@@ -1,0 +1,123 @@
+{
+    "nodes": [
+        {
+            "size": 10,
+            "id": "potassium",
+            "label": "potassium",
+            "category1": "CHEMICALS",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 10,
+            "id": "lower blood pressure",
+            "label": "lower blood pressure",
+            "category1": "ACTIVITY",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 20,
+            "id": "good diet choices",
+            "label": "good diet choices",
+            "category1": "FOOD",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 10,
+            "id": "address heart-related conditions",
+            "label": "address heart-related conditions",
+            "category1": "ACTIVITY",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 10,
+            "id": "address risk factors for heart disease",
+            "label": "address risk factors for heart disease",
+            "category1": "ACTIVITY",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 50,
+            "id": "heart-healthy diet",
+            "label": "heart-healthy diet",
+            "category1": "FOOD",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 10,
+            "id": "decrease blood pressure",
+            "label": "decrease blood pressure",
+            "category1": "ACTIVITY",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 10,
+            "id": "lower triglycerides",
+            "label": "lower triglycerides",
+            "category1": "ACTIVITY",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 10,
+            "id": "lower blood sugars",
+            "label": "lower blood sugars",
+            "category1": "ACTIVITY",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 10,
+            "id": "lower bad cholesterol",
+            "label": "lower bad cholesterol",
+            "category1": "ACTIVITY",
+            "category2": "hearthealthy"
+        },
+        {
+            "size": 10,
+            "id": "reduce total cholesterol",
+            "label": "reduce total cholesterol",
+            "category1": "ACTIVITY",
+            "category2": "hearthealthy"
+        }
+    ],
+    "edges": [
+        {
+            "source": "potassium",
+            "target": "lower blood pressure",
+            "weight": 1
+        },
+        {
+            "source": "good diet choices",
+            "target": "address heart-related conditions",
+            "weight": 1
+        },
+        {
+            "source": "good diet choices",
+            "target": "address risk factors for heart disease",
+            "weight": 1
+        },
+        {
+            "source": "heart-healthy diet",
+            "target": "decrease blood pressure",
+            "weight": 1
+        },
+        {
+            "source": "heart-healthy diet",
+            "target": "lower triglycerides",
+            "weight": 1
+        },
+        {
+            "source": "heart-healthy diet",
+            "target": "lower blood sugars",
+            "weight": 1
+        },
+        {
+            "source": "heart-healthy diet",
+            "target": "lower bad cholesterol",
+            "weight": 1
+        },
+        {
+            "source": "heart-healthy diet",
+            "target": "reduce total cholesterol",
+            "weight": 1
+        }
+    ]
+}
