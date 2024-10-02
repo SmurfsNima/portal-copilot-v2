@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ActivityMenu, AiChat, SearchBox, StatusMenu } from "@/components";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ClientCard } from "./ClientCard";
 import { Application } from "@/api";
 import React from "react";
 import { Button } from "symphony-ui";
 import GenerateReportTable from "./GenerateReportTable";
 import ReportTable from "./ReportsTable";
+import GenerateWithAiModal from "./GenerateWithAiModal";
+import useModalAutoClose from "@/hooks/UseModalAutoClose";
+import { BeatLoader } from "react-spinners";
 type menuItem = {
   name: string;
 };
@@ -43,6 +47,7 @@ export const AiStudio = () => {
     const matchesStatus = activeStatus === "All" || client.Status === activeStatus;
     return matchesSearch && matchesStatus;
   });
+  const [isloadingGenerate,setIsLoadingGenerate] = useState(false)
   const [generateReportGoolsData,setGenerateReportGoolsData] = useState({"Type of progress":[]})
   useEffect(() => {
     const fetchData = async () => {
@@ -78,18 +83,53 @@ export const AiStudio = () => {
   },[activeMemberID])
   const status: Array<string> = ["All", "Need to Check", "Checked"];
   const [isCreateReportMode,setisCreateReportMode] = useState(false)
-
+  const [showAiGenereteModal,setShowAiGenerateAi] = useState(false)
+  const modalAiGenerateRef = useRef(null)
+  useModalAutoClose({
+    refrence:modalAiGenerateRef,
+    close:() => {
+      setShowAiGenerateAi(false)
+    }
+  })
   return (
     <div className="bg-black-background h-full w-full px-5 flex items-start gap-2">
       {isCreateReportMode ?
         <div className="w-full">
           <div className="w-full mb-2 flex justify-between items-center">
             <div></div>
-            <div>
-              <Button theme="Aurora">Generate by AI</Button>
+            <div className="relative">
+              <div className="absolute right-[0px] top-10 z-30">
+                {showAiGenereteModal &&
+                  <GenerateWithAiModal onSuccess={(value) =>{
+                    setShowAiGenerateAi(false)
+                    setIsLoadingGenerate(true)
+                    Application.generateWithAi({
+                        member_id:activeMemberID,
+                        instruction:value,
+                        data:generateReportGoolsData
+                    }).then(res => {
+                      setGenerateReportGoolsData(res.data)
+                      setIsLoadingGenerate(false)
+                    })
+                  }} refEl={modalAiGenerateRef}></GenerateWithAiModal>
+                }
+
+              </div>
+              <Button onClick={() => {
+                setShowAiGenerateAi(true)
+              }} theme="Aurora">
+                {isloadingGenerate ?
+                <div className="px-3 w-full flex justify-center items-center">
+                  <BeatLoader size={8} color="#7F39FB"></BeatLoader>
+
+                </div>
+                :
+                'Generate by AI'
+                }</Button>
+                
             </div>
           </div>
-          <div className="w-full bg-black-primary rounded-[6px] border-main-border border h-[75vh]">
+          <div className="w-full bg-[#1E1E1E] rounded-[6px] border-main-border border h-[75vh]">
             <div className="p-4">
               <GenerateReportTable onClose={()=> {
                 setisCreateReportMode(false)

@@ -177,6 +177,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/ai_studio/get_messages_id",data)
     return response
   }
+
+  static generateWithAi(data:any){
+    const response = this.post("/ai_studio/ai_studio_generate_report",data)
+    return response
+  }  
 }
 
 
