@@ -1,8 +1,8 @@
 // ClientReport.ts
 
 import jsPDF from "jspdf";
-import "jspdf-autotable"; 
-import { Application } from "@/api"; 
+import "jspdf-autotable";
+import { Application } from "@/api";
 
 type ReportBenchmark = {
   Category: string;
@@ -17,16 +17,18 @@ type ReportData = {
   client_info: any;
   patient_benchmark: ReportBenchmark[];
   treatment_plan: any[];
-  logo: any; 
+  logo: any;
 };
 
 type ReportInformation = {
-  pdfBase64String: string;
+  clientPdfBase64String: string;
+  clinicPdfBase64String: string;
 };
 
 class ClientReport {
   information: ReportInformation = {
-    pdfBase64String: "",
+    clientPdfBase64String: "",
+    clinicPdfBase64String: "",
   };
 
   constructor() {
@@ -34,66 +36,81 @@ class ClientReport {
     if (storedReportData) {
       this.information = JSON.parse(storedReportData);
     } else {
-      this.information = { pdfBase64String: "" };
       this.synctoLocal();
     }
   }
 
-  getReport(): string {
-    return this.information.pdfBase64String;
+  getClientReport(): string {
+    return this.information.clientPdfBase64String;
   }
 
-  setReport(pdfBase64String: string): void {
-    this.information.pdfBase64String = pdfBase64String;
+  getClinicReport(): string {
+    return this.information.clinicPdfBase64String;
+  }
+
+  setClientReport(pdfBase64String: string): void {
+    this.information.clientPdfBase64String = pdfBase64String;
+    this.synctoLocal();
+  }
+
+  setClinicReport(pdfBase64String: string): void {
+    this.information.clinicPdfBase64String = pdfBase64String;
     this.synctoLocal();
   }
 
   synctoLocal(): void {
-
     localStorage.setItem("reportData", JSON.stringify(this.information));
   }
 
-  async createPdf(data: ReportData): Promise<void> {
+  async createPdf(data: any): Promise<void> {
     try {
-      const pdfString = this.generatePDFReport(data);
-      console.log(pdfString);
-      
-      this.setReport(pdfString);
+      const clientPdfString = this.generatePDFReport(data);
+      console.log("client report: " + clientPdfString);
 
+      this.setClientReport(clientPdfString);
+      const clinicPdfString = this.generatePDFReport(data);
+this.setClinicReport(clinicPdfString)
+      const treatmentPlanId = data.treatment_plan[0]?.id || "";
       const reportDataToSave = {
         report_type: "client_report",
-        treatment_plan_id: data.treatment_plan[0]?.id || "", 
-        report_string: pdfString,
+        treatment_plan_id: treatmentPlanId,
+        report_string: clientPdfString,
+      };
+
+      const clinicReportDataToSave = {
+        report_type: "clinic_report",
+        treatment_plan_id: treatmentPlanId,
+        report_string: clinicPdfString,
       };
 
       await Application.savereport(reportDataToSave);
+      await Application.savereport(clinicReportDataToSave)
     } catch (error) {
       console.error("Error creating PDF:", error);
-     
     }
   }
 
   // Generates the PDF and returns the base64 string
-  private generatePDFReport(data:ReportData): string {
+  private generatePDFReport(data: any): string {
     const doc = new jsPDF();
 
     // let pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();    
+    const pageHeight = doc.internal.pageSize.getHeight();
     const addHeader = () => {
       // Option 1: Add text header
       doc.setFontSize(16);
       doc.text("", 180 / 2, 15, { align: "center" });
 
       // Option 2: Add image header (optional, example with a logo)
-      const img = new Image();
-      img.src = data.logo
-      doc.addImage(img, 'PNG', 10, 10, 25, 12); // Adjust size/position as needed
+      // const img = new Image();
+      // img.src = data.logo
+      // doc.addImage(img, 'PNG', 10, 10, 25, 12); // Adjust size/position as needed
       doc.setLineWidth(1); // Set line thickness
       doc.setDrawColor(94, 168, 214); // Set color to blue (RGB format)
-      doc.line(0, 25, 250, 25); // Draw      
+      doc.line(0, 25, 250, 25); // Draw
     };
 
-    const addFooter = (pageNumber:number) => {
+    const addFooter = (pageNumber: number) => {
       doc.setLineWidth(6); // Adjust thickness to match the image
       doc.setDrawColor(180, 210, 224); // Set the color to light blue (RGB)
       doc.line(0, pageHeight - 20, 200, pageHeight - 20); // Horizontal line at the bottom
@@ -106,7 +123,7 @@ class ClientReport {
       // Add page number on the right side
       doc.text(`${pageNumber}`, 200 - 10, pageHeight - 10, { align: "right" });
     };
-    addHeader()
+    addHeader();
     // Parse the client_info JSON string
     let clientInfo;
     if (typeof data.client_info === "string") {
@@ -127,9 +144,9 @@ class ClientReport {
     doc.text("• Client goals", 10, 75);
     doc.text("• Recommended action areas", 10, 85);
     doc.text("• Recommended SMART Goals", 10, 95);
-    addFooter(1)
+    addFooter(1);
     doc.addPage();
-    addHeader()
+    addHeader();
     doc.setFontSize(12);
     doc.text("Client Information", 10, 35);
 
@@ -167,11 +184,9 @@ class ClientReport {
         1: { fillColor: [255, 255, 255] },
       },
     });
-
-    // Add next section
-    addFooter(2)
+    addFooter(2);
     doc.addPage();
-    addHeader()
+    addHeader();
     doc.setFontSize(16);
     doc.setTextColor(0, 0, 0);
     doc.text("Please read before reviewing this report", 10, 35);
@@ -239,24 +254,19 @@ class ClientReport {
     doc.setFontSize(12);
     doc.text("SCORING EXPLAINED: ", 10, y);
     y += 10;
-
     doc.setFontSize(10);
     text = "• Needs focus – no activity in this area or a low test performance";
     lines = doc.splitTextToSize(text, pageWidth);
     doc.text(lines, 15, y);
     y += lines.length * 10;
-
     text = "• OK – performance is 25-75% of benchmark";
     lines = doc.splitTextToSize(text, pageWidth);
     doc.text(lines, 15, y);
     y += lines.length * 10;
-
     text = "• Good - performance is 76% to 99% of benchmark";
     lines = doc.splitTextToSize(text, pageWidth);
     doc.text(lines, 15, y);
     y += lines.length * 10;
-
-    // Group benchmarks by category
     const groupedBenchmarks: Record<string, any[]> = {};
     data.patient_benchmark.forEach((benchmark: any) => {
       const category = benchmark.Category;
@@ -271,11 +281,10 @@ class ClientReport {
         benchmark["Benchmark performance"],
       ]);
     });
-    addFooter(3)
-    // Create a table for each category
+    addFooter(3);
     Object.keys(groupedBenchmarks).forEach((category) => {
       doc.addPage();
-      addHeader()
+      addHeader();
       doc.setFontSize(16);
       doc.setTextColor(255, 140, 0);
       doc.text(`${category} Test Results`, 10, 35);
@@ -292,11 +301,11 @@ class ClientReport {
           cellPadding: 2,
           halign: "center",
           valign: "middle",
-          lineWidth: 0.1, // Set border width
-          lineColor: [0, 0, 0], // Set border color (black)
+          lineWidth: 0.1,
+          lineColor: [0, 0, 0],
         },
         headStyles: {
-          fillColor: [255, 255, 255], // Change this to the desired color in RGB format
+          fillColor: [255, 255, 255], 
           textColor: [255, 159, 51],
         },
         columnStyles: {
@@ -320,9 +329,8 @@ class ClientReport {
         },
       });
     });
-    // Add Client Goals Table
     doc.addPage();
-    addHeader()
+    addHeader();
     doc.setFontSize(16);
     doc.setTextColor(255, 140, 0);
     doc.text("Client Goals", 10, 35);
@@ -375,16 +383,14 @@ class ClientReport {
     const treatmentPlanData = data.treatment_plan.map((plan: any) => [
       plan.subCategory || "N/A",
       plan.area,
-      "", // Placeholder, replace with actual logic if needed
+      "", 
       plan.status ? "Needs Focus" : "",
       plan.first12Weeks.dos.join(", ") || "N/A",
       plan.second12Weeks.dos.join(", ") || "N/A",
-      // Include status to use later
     ]);
 
-    // Add Treatment Plan Table
     doc.addPage();
-    addHeader()
+    addHeader();
     doc.setFontSize(16);
     doc.setTextColor(255, 140, 0);
     doc.text("Recommended Action Areas", 10, 35);
@@ -408,7 +414,7 @@ class ClientReport {
             fillColor:
               row[3] === "Needs Focus" ? [236, 141, 27] : [255, 255, 255],
           },
-        }, // Conditional fill color
+        }, 
         row[3],
         row[4],
       ]),
@@ -434,9 +440,25 @@ class ClientReport {
         4: { cellWidth: 60, halign: "left", textColor: [15, 156, 239] },
       },
     });
-
     doc.addPage();
-    addHeader()
+    addHeader();
+    doc.setFontSize(16);
+    doc.setTextColor(255, 140, 0);
+    doc.text("Clinic Details", 10, 35);
+  
+    const clinicDetails = [
+      ["Clinic Recommendation:", data.recommendation?.["Diet Do's"] || "N/A"],
+    ];
+  
+    (doc as any).autoTable({
+      startY: 45,
+      body: clinicDetails,
+      theme: "grid",
+      styles: { fontSize: 10, cellPadding: 2, halign: "left" },
+      columnStyles: { 0: { fontStyle: "bold", fillColor: [255, 255, 255] }, 1: { fillColor: [255, 255, 255] } },
+    });
+    doc.addPage();
+    addHeader();
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
     const confidentialityText = `
@@ -446,31 +468,40 @@ class ClientReport {
     This report is classed as confidential and must be stored and handled to the requirements of UK data protection law.
     `;
     doc.text(doc.splitTextToSize(confidentialityText, pageWidth), 10, 35);
-    // Save the PDF
-    // doc.save("Benchmark_Assessment_Report.pdf");
     const PdfBase64 = doc.output("datauristring");
     const base64String = PdfBase64.split(",")[1];
 
-
     return base64String;
-  };
-
-  // Fetches the report data, creates the PDF, and stores it
+  }
   async fetchReport(treatmentPlanId: string): Promise<void> {
     try {
       const response = await Application.downloadReport({
         treatment_plan_id: treatmentPlanId,
       });
 
-      
       const reportData: ReportData = response.data;
-     
 
-      
+      console.log(response);
+
+     
       await this.createPdf(reportData);
     } catch (error) {
       console.error("Error processing the report:", error);
       throw error; // Re-throw to handle it in the calling function if needed
+    }
+  }
+  async fetchClinicReport(treatmentPlanId: string): Promise<void> {
+    try {
+      const response = await Application.downloadClinicReport({
+        treatment_plan_id: treatmentPlanId,
+      });
+      const reportData: any = response.data;
+      console.log(response);
+
+      await this.createPdf(reportData);
+    } catch (error) {
+      console.error("Error fetching clinic report:", error);
+      throw error;
     }
   }
 }

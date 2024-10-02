@@ -1,13 +1,21 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Worker, Viewer } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { AppContext } from '@/store/app';
 
 const PdfViewerComponent = () => {
-  const { reportManager } = useContext(AppContext); // Access the base64 string
-const pdfBase64String = reportManager.getReport();
+  const { reportManager } = useContext(AppContext); 
+  const [pdfBase64String, setPdfBase64String] = useState("");
+  const selectedReport = localStorage.getItem("selectedReport");
 
+useEffect(() => {
+  if (selectedReport === "client") {
+    setPdfBase64String(reportManager.getClientReport());
+  } else if (selectedReport === "clinic") {
+    setPdfBase64String(reportManager.getClinicReport());
+  }
+}, [reportManager]);
   useEffect(() => {
     console.log('PDF Base64 String:', pdfBase64String);
   }, [pdfBase64String]);
