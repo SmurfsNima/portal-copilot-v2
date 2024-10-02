@@ -8,13 +8,12 @@ interface ClientCardProps {
   name: string;
   email: string;
   status: string;
-  cardActive: undefined | number;
+  cardActive: null | number;
   onClick: () => void;
   memberID : number
   // setCardActive: Dispatch<SetStateAction<number>>;
 }
 export const ClientCard: React.FC<ClientCardProps> = ({
-  index,
   picture,
   name,
   email,
@@ -34,7 +33,7 @@ console.log(email);
         onClick(); // Call onClick when the card is clicked
       }} // onClick={() => setCardActive(index)}
       className={`${
-        cardActive === index + 1
+        cardActive === memberID
           ? "border-brand-primary-color bg-black-secondary"
           : "border-main-border bg-black-primary"
       } cursor-pointer   px-3 py-2 border rounded-md relative mt-[6px] w-full  `}

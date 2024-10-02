@@ -152,6 +152,26 @@ static downloadClinicReport(data:any){
     const response = this.post("/ai_knowledge/get_documents",data)
     return response
   }
+
+  static getWeeklyReport(data:any) {
+    const response = this.post("/ai_studio/ai_studio_show_weekly_data",data)
+    return response
+  }
+
+  static showReportList(data:any) {
+    const response = this.post("/ai_studio/show_report_list",data)
+    return response
+  }  
+
+  static ai_studio_generate_report(data:any) {
+    const response = this.post("/ai_studio/ai_studio_generate_report",data)
+    return response
+  }    
+
+  static ai_studio_update_weekly_data(data:any) {
+    const response = this.post("/ai_studio/ai_studio_update_weekly_data",data)
+    return response
+  }      
 }
 
 
