@@ -18,7 +18,7 @@ export const TabsInfo = [
   {
     text: "Copilot",
     path : 'copilot',
-    icon : false
+    icon : true
   },
   // {
   //   text: "Action Plan",
