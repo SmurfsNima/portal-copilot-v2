@@ -69,22 +69,73 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
       handleSend();
     }
   };
+  useEffect(() => {
+    Application.getListChats({
+      member_id:memberID
+    }).then(res => {
+      const resolve = res.data.messages.flatMap((mes:any,index:number) => {
+        const request:Message = {
+          id:1,
+          sender:'user',
+          text:mes.request,
+          time:mes.entrytime
+        }
+        const response:Message = {
+          id:index,
+          sender:'ai',
+          text:mes.response,
+          time:mes.entrytime
+        }
+        return [
+          request,
+          response
+        ]
+        
+        
+      })
+      setMessages(resolve)
+      // console.log(resolve)
+    })
+  },[memberID])
   return (
     <div className="w-full h-[424px] mx-auto  bg-black-primary border border-main-border  rounded-md relative flex flex-col ">
       
       <div className="p-4 space-y-4 max-h-[310px] overflow-y-auto">
         {messages.map((msg) => (
-          <div key={msg.id} className={` relative flex ${msg.sender === 'user' ? 'justify-start' : 'justify-end'}`}>
-            <div className="flex flex-col items-center space-x-2 max-w-[383px]">
-            <div className='text-primary-text flex items-center gap-3 '>{msg.sender === "ai" ? 'ai-coilot' : 'nima'}
-            <span className="text-xs  text-gray-400">{msg.time}</span></div>
-
-              <div className={`rounded-[20px] p-3 bg-black-secondary text-primary-text`}>
-                <p>{msg.text}</p>
+          <>
+            {msg.sender=='ai' ?
+              <div className='flex justify-start items-start gap-1'>
+                <div className='w-[40px] h-[40px] flex justify-center items-center rounded-full bg-[#383838]'>
+                  <img src="/src/assets/images/clinic.png" alt="" />                 
+                </div>
+                <div>
+                  <div className='text-[#FFFFFFDE] text-[12px]'>AI-Copilot <span className='text-[#FFFFFF99] ml-1'>{msg.time}</span></div>
+                  <div className='max-w-[383px] bg-[#272727] p-4 text-justify mt-1 border-[#383838] border text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tl-none '>{msg.text}</div>
+                </div>
               </div>
+            :
+              <div className='flex justify-end items-start gap-1'>
+                <div className='flex flex-col items-end'>
+                  <div className='text-[#FFFFFFDE] text-[12px]'>Coach <span className='text-[#FFFFFF99] ml-1'>{msg.time}</span></div>
+                  <div className='max-w-[383px] bg-[#272727] p-4 text-justify mt-1 border-[#383838] border text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tr-none '>{msg.text}</div>
+                </div>
+                <div className='w-[40px] h-[40px] overflow-hidden flex justify-center items-center rounded-full bg-[#383838]'>
+                  <img className='rounded-full' src={`https://ui-avatars.com/api/?name=${'Coach'}`} alt="" />                 
+                </div>
+              </div>
+            }
+          </>
+          // <div key={msg.id} className={` relative flex ${msg.sender === 'user' ? 'justify-start' : 'justify-end'}`}>
+          //   <div className="flex flex-col items-center space-x-2 max-w-[383px]">
+          //   <div className='text-primary-text flex items-center gap-3 '>{msg.sender === "ai" ? 'ai-coilot' : 'nima'}
+          //   <span className="text-xs  text-gray-400">{msg.time}</span></div>
+
+          //     <div className={`rounded-[20px] p-3 bg-black-secondary text-primary-text`}>
+          //       <p>{msg.text}</p>
+          //     </div>
              
-            </div>
-          </div>
+          //   </div>
+          // </div>
         ))}
       </div>
       <div className="w-[98%] bg-black-primar  absolute bottom-0 ml-2 mb-2    border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">

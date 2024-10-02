@@ -172,6 +172,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/ai_studio/ai_studio_update_weekly_data",data)
     return response
   }      
+
+  static getListChats(data:any){
+    const response = this.post("/ai_studio/get_messages_id",data)
+    return response
+  }
 }
 
 
