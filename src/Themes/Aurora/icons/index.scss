@@ -635,3 +635,11 @@
 .Aurora-icons-setting[data-mode="active"] {
   @apply bg-[#03DAC5];
 }
+.Aurora-icons-Copilot{
+  mask-image: url(./Themes/Aurora/icons/health.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-4 h-4 bg-[#FFFFFF99];
+}

@@ -1,6 +1,7 @@
 // import React, { Dispatch, SetStateAction } from "react";
 // import { useSelector } from "react-redux";
 import { getStatusBgColorClass } from "@/utils/status";
+import { Link } from "react-router-dom";
 interface ClientCardProps {
   index: number;
   picture?: string;
@@ -9,6 +10,7 @@ interface ClientCardProps {
   status: string;
   cardActive: undefined | number;
   onClick: () => void;
+  memberID : number
   // setCardActive: Dispatch<SetStateAction<number>>;
 }
 export const ClientCard: React.FC<ClientCardProps> = ({
@@ -19,6 +21,7 @@ export const ClientCard: React.FC<ClientCardProps> = ({
   status,
   cardActive,
   onClick,
+  memberID
   // setCardActive,
 }) => {
   // const theme = useSelector((state: any) => state.theme.value.name);
@@ -60,6 +63,7 @@ console.log(email);
         <span className="text-[10px] text-primary-text font-normal">{email}</span>
         </div>
       </div>
+      <Link to={`/information/${memberID}/Analysis`}>
       <div className=" absolute right-[5%] bottom-1 flex flex-col gap-4">
         <div className="cursor-pointer bg-black-third rounded-full p-2">
           {" "}
@@ -73,6 +77,9 @@ src="/Themes/Aurora/icons/more-square.svg"
           />
         </div> */}
       </div>
+      </Link>
+
+    
     </div>
   );
 };

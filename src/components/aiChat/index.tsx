@@ -1,5 +1,5 @@
 import { Application } from '@/api';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type Message = {
   id: number;
@@ -13,7 +13,9 @@ interface AiChatProps{
 const AiChat: React.FC<AiChatProps> = ({memberID}) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-
+  const [conversationId, setConversationId] = useState<number>(1);
+  useEffect(()=> console.log(conversationId), [conversationId]
+  )
   const handleSend = async() => {
     if (input.trim() && memberID!==null) {
       const newMessage: Message = {
@@ -28,16 +30,18 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
         const res = await Application.aiStudio_copilotChat({
           text: newMessage.text,
           member_id: memberID,
-          conversation_id: 1,
+          conversation_id: conversationId,
 
         })
         console.log(res);
-        
+   
           const data = await res.data
+          setConversationId(data.current_conversation_id
+          )
           const aiMessage: Message = {
             id: messages.length + 2,
             sender: 'ai',
-            text: data.answer, // Assuming the response contains the AI's text
+            text: data.answer, 
             time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
           };
           setMessages((prevMessages) => [...prevMessages, aiMessage]);
@@ -60,13 +64,14 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
       // }, 1000);
     }
   };
-
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSend();
+    }
+  };
   return (
     <div className="w-full h-[424px] mx-auto  bg-black-primary border border-main-border  rounded-md relative flex flex-col ">
-      <div className="p-4 border-b border-main-border flex justify-between items-center">
-        <h2 className="text-xs text-primary-text ">Chat03</h2>
-        {/* <span>12 June 2024</span> */}
-      </div>
+      
       <div className="p-4 space-y-4 max-h-[310px] overflow-y-auto">
         {messages.map((msg) => (
           <div key={msg.id} className={` relative flex ${msg.sender === 'user' ? 'justify-start' : 'justify-end'}`}>
@@ -89,6 +94,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
           placeholder="Write here..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
         <img onClick={handleSend} src="/Themes/Aurora/icons/send.svg" alt="" />
       </div>
