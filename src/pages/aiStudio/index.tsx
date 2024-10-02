@@ -10,6 +10,8 @@ import ReportTable from "./ReportsTable";
 import GenerateWithAiModal from "./GenerateWithAiModal";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
 import { BeatLoader } from "react-spinners";
+import { subscribe } from "@/utils/event";
+
 type menuItem = {
   name: string;
 };
@@ -91,48 +93,68 @@ export const AiStudio = () => {
       setShowAiGenerateAi(false)
     }
   })
+  const [showGenerateButton,setShowGenerateButton] = useState(true)
+  subscribe("completeChanges",() => {
+    setShowGenerateButton(false)
+  })
+
   return (
     <div className="bg-black-background h-full w-full px-5 flex items-start gap-2">
       {isCreateReportMode ?
         <div className="w-full">
           <div className="w-full mb-2 flex justify-between items-center">
-            <div></div>
-            <div className="relative">
-              <div className="absolute right-[0px] top-10 z-30">
-                {showAiGenereteModal &&
-                  <GenerateWithAiModal onSuccess={(value) =>{
-                    setShowAiGenerateAi(false)
-                    setIsLoadingGenerate(true)
-                    Application.generateWithAi({
-                        member_id:activeMemberID,
-                        instruction:value,
-                        data:generateReportGoolsData
-                    }).then(res => {
-                      setGenerateReportGoolsData(res.data)
-                      setIsLoadingGenerate(false)
-                    })
-                  }} refEl={modalAiGenerateRef}></GenerateWithAiModal>
-                }
-
-              </div>
-              <Button onClick={() => {
-                setShowAiGenerateAi(true)
-              }} theme="Aurora">
-                {isloadingGenerate ?
-                <div className="px-3 w-full flex justify-center items-center">
-                  <BeatLoader size={8} color="#7F39FB"></BeatLoader>
+            <div>
+              <div onClick={() => {
+                setisCreateReportMode(false)
+                setShowGenerateButton(true)
+              }} className={`Aurora-tab-icon-container cursor-pointer h-[35px]`}>
+                <img className={`Aurora-icons-arrow-left`} />
+              </div>              
+            </div>
+            {showGenerateButton && 
+              <div className="relative">
+                <div className="absolute right-[0px] top-10 z-30">
+                  {showAiGenereteModal &&
+                    <GenerateWithAiModal onSuccess={(value) =>{
+                      setShowAiGenerateAi(false)
+                      setIsLoadingGenerate(true)
+                      Application.generateWithAi({
+                          member_id:activeMemberID,
+                          instruction:value,
+                          data:generateReportGoolsData
+                      }).then(res => {
+                        setGenerateReportGoolsData(res.data)
+                        setIsLoadingGenerate(false)
+                      }).catch(() => {
+                        setIsLoadingGenerate(false)
+                      })
+                    }} refEl={modalAiGenerateRef}></GenerateWithAiModal>
+                  }
 
                 </div>
-                :
-                'Generate by AI'
-                }</Button>
-                
-            </div>
+                <Button onClick={() => {
+                  setShowAiGenerateAi(true)
+                }} theme="Aurora">
+                  {isloadingGenerate ?
+                  <div className="px-3 w-full flex justify-center items-center">
+                    <BeatLoader size={8} color="#7F39FB"></BeatLoader>
+
+                  </div>
+                  :
+                  <>
+                  <div className={`Aurora-icons-stars w-[15px]`}></div>
+                  Generate by AI
+                  </>
+                  }</Button>
+                  
+              </div>
+            }
           </div>
-          <div className="w-full bg-[#1E1E1E] rounded-[6px] border-main-border border h-[75vh]">
+          <div className="w-full bg-[#272727] rounded-[6px] border-main-border border h-[75vh]">
             <div className="p-4">
               <GenerateReportTable onClose={()=> {
                 setisCreateReportMode(false)
+                setShowGenerateButton(true)
               }} memberId={activeMemberID as number} setData={setGenerateReportGoolsData} data={generateReportGoolsData}></GenerateReportTable>
 
             </div>

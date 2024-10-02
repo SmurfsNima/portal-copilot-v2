@@ -1,4 +1,5 @@
 import { Application } from "@/api"
+import { publish } from "@/utils/event"
 import { useState } from "react"
 import { FiExternalLink } from "react-icons/fi"
 import { Button } from "symphony-ui"
@@ -37,6 +38,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,setData,on
             member_id:memberId,
             data:data
         })
+        publish("completeChanges",{})
         setISComplete(true)
     }
     return (
@@ -48,16 +50,18 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,setData,on
                         <div className="text-[12px] text-center mt-6 text-[#FFFFFF99]">By confirming this option, the report will be sent directly through your chosen channel</div>
                         <div className="text-center mt-4">
                             <div className="flex justify-center gap-2 items-center">
-                                <input className="w-4 h-4 bg-transparent" type="checkbox" />
-                                <label htmlFor="">Via SMS</label>
+                                <input id="viasms" className="w-4 h-4 rounded-[4px] bg-transparent" type="checkbox" />
+                                <label className="text-[12px]" htmlFor="viasms">Via SMS</label>
                             </div>
                             <div className="flex justify-center gap-2 mt-2 items-center">
-                                <input className="w-4 h-4 bg-transparent" type="checkbox" />
-                                <label htmlFor="">Via Mail</label>
+                                <input id="viaEmail" className="w-4 rounded-[4px] h-4 bg-transparent" type="checkbox" />
+                                <label className="text-[12px]" htmlFor="viaEmail">Via Mail</label>
                             </div>                            
                         </div>
                         <div className="flex justify-center mt-10">
-                            <Button onClick={onClose} theme="Aurora">Finish</Button>
+                            <Button onClick={onClose} theme="Aurora-pro">
+                                <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
+                                Finish</Button>
                         </div>
                     </div>
                 </>
@@ -96,7 +100,9 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,setData,on
                         </div>
                     </div>
                     <div className="w-full flex mt-2 justify-center">
-                        <Button onClick={nextAction} theme="Aurora">Next</Button>
+                        <Button onClick={nextAction} theme="Aurora-pro">
+                            <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
+                            Next</Button>
                     </div>
                 </>
             }
