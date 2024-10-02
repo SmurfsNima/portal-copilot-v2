@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Application } from '@/api';
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 type Message = {
   id: number;
@@ -12,12 +14,22 @@ interface AiChatProps{
 }
 const AiChat: React.FC<AiChatProps> = ({memberID}) => {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [memberId,setMemberId] = useState<any>(memberID)
   const [input, setInput] = useState('');
+  const { id } = useParams<{ id: string }>();
+  useEffect(() => {
+    setMemberId(memberID)
+  },[memberID])
+  useEffect(() => {
+    if(id != undefined){
+      setMemberId(id)
+    }
+  },[id])
   const [conversationId, setConversationId] = useState<number>(1);
   useEffect(()=> console.log(conversationId), [conversationId]
   )
   const handleSend = async() => {
-    if (input.trim() && memberID!==null) {
+    if (input.trim() && memberId!==null) {
       const newMessage: Message = {
         id: messages.length + 1,
         sender: 'user',
@@ -29,7 +41,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
       try{
         const res = await Application.aiStudio_copilotChat({
           text: newMessage.text,
-          member_id: memberID,
+          member_id: memberId,
           conversation_id: conversationId,
 
         })
@@ -71,7 +83,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
   };
   useEffect(() => {
     Application.getListChats({
-      member_id:memberID
+      member_id:memberId
     }).then(res => {
       const resolve = res.data.messages.flatMap((mes:any,index:number) => {
         const request:Message = {
@@ -96,7 +108,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
       setMessages(resolve)
       // console.log(resolve)
     })
-  },[memberID])
+  },[memberId])
   return (
     <div className="w-full h-[424px] mx-auto  bg-black-primary border border-main-border  rounded-md relative flex flex-col ">
       
