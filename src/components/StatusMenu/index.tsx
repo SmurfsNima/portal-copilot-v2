@@ -2,7 +2,7 @@ import { getStatusBgColorClass } from "@/utils/status"
 type Status ='Needs Focus' | 'Ok' | 'Good' | 'Excellent' | 'All'
 
 interface StatusMenuProps {
-    status: string[]
+    status?: string[]
     activeStatus:Status,
     onChange:(status:string) =>void
 }
@@ -11,7 +11,7 @@ const StatusMenu:React.FC<StatusMenuProps> = ({ status,activeStatus,onChange}) =
     return (
         <>
             <div className="rounded-md bg-black-primary border  border-main-border flex items-center justify-center text-[10px] text-primary-text">
-                {status.map((state) => {
+                { status && status.map((state) => {
                     return (
                         <>
                             <div className=" py-1 px-3  ">
