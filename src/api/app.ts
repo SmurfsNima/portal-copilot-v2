@@ -131,6 +131,18 @@ static downloadReport(data:any){
     const response = this.post("/clinic/add_clinic_logo/",data)
     return response
   }
+  static aiStudio_patients() {
+    const response = this.post("/ai_studio/patient_list")
+    return response
+  }
+  static aiStudio_copilotChat(data: any) {
+    const response = this.post("/ai_studio/copilot_chat",data)
+    return response
+  }
+  static aiStudio_overview(data: any) {
+    const response = this.post("/ai_studio/overview",data)
+    return response
+  }
 }
 
 

@@ -11,6 +11,7 @@ import { ActionPlan } from "@/pages/information/ActionPlan";
 import { Calender } from "@/pages/information/calender";
 import { Messages } from "@/pages/messages";
 import PdfViewerComponent from "@/pages/information/Treatment Plan/PdfViewer";
+import { AiChat } from "@/components";
 const router = createHashRouter([
   {
     path: "/",
@@ -64,6 +65,10 @@ const router = createHashRouter([
           {
             path: "messages",
             element: <Messages></Messages>,
+          },
+          {
+            path: "copilot",
+            element: <AiChat></AiChat>,
           },
         ],
       },

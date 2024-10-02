@@ -1,20 +1,16 @@
-type MenuNames = 'Vital' | 'Blood Test' | 'Activity' | 'Client Profile'
+// type MenuNames = 'Vital' | 'Blood Test' | 'Activity' | 'Client Profile' | "Weekly report"
 type menuItem  = {
-    name:MenuNames
+    name:string
 }
 interface ActivityMenuProps {
-    onChangeMenuAction:(activeMenu:MenuNames) => void
-    activeMenu:MenuNames
+    onChangeMenuAction:(activeMenu:string) => void
+    activeMenu:string;
+    menus : menuItem[]
 
 }
 
-const ActivityMenu:React.FC<ActivityMenuProps> = ({onChangeMenuAction,activeMenu}) => {
-    const menus:Array<menuItem> = [
-        {name :'Vital' },
-        // {name :'Blood Test' },
-        // {name :'Activity' },
-        // {name :'Client Profile' },
-    ]
+const ActivityMenu:React.FC<ActivityMenuProps> = ({onChangeMenuAction,activeMenu , menus}) => {
+  
     return (
         <>
             <div className="flex  gap-1 text-primary-text text-xs ">
