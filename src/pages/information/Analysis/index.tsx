@@ -14,6 +14,10 @@ import { ActivityCard } from "./activityCard";
 import { Activity, BiomarkerCategory } from "@/types";
 import { Application } from "@/api";
 import BarChart from "./barChart";
+type MenuNames = 'Vital' | 'Blood Test' | 'Activity' | 'Client Profile' | "Weekly report"
+type menuItem  = {
+    name:MenuNames
+}
 const Analysis = () => {
   const { id } = useParams<{ id: string }>();
   const theme = useSelector((state: any) => state.theme.value.name);
@@ -168,12 +172,18 @@ const Analysis = () => {
   
   useEffect(() => console.log(activeChartData), [activeChartData]);
   console.log(activeChartData)
+  const menus:Array<menuItem> = [
+    {name :'Vital' },
+    // {name :'Blood Test' },
+    // {name :'Activity' },
+    // {name :'Client Profile' },
+]
   return (
     <>
       <div className="flex flex-col w-full  items-start gap-2">
         <InfoCard></InfoCard>
         <div className="flex w-full justify-between ">
-          <ActivityMenu activeMenu={activeMode as any} onChangeMenuAction={(menu) => {
+          <ActivityMenu menus={menus} activeMenu={activeMode as any} onChangeMenuAction={(menu) => {
             setActiveMode(menu)
             setActive(null)
           }}></ActivityMenu>

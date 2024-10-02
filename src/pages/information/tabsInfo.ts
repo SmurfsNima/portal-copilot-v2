@@ -15,6 +15,11 @@ export const TabsInfo = [
     path : 'treatment-plan',
     icon : true
   },
+  {
+    text: "Copilot",
+    path : 'copilot',
+    icon : false
+  },
   // {
   //   text: "Action Plan",
   //   path : 'action-plan',

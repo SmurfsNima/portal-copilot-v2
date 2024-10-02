@@ -16,7 +16,9 @@ import HistoryBox from './HistoryBox';
 import ChatHistoryBox from './HistoryChat';
 import PopUp from './popup';
 import PlanManagerModal from './planModal/planModal';
+import AiChat from './aiChat';
 export {
+    AiChat,
     Accordion,
     ActivityMenu,
     Appointments,

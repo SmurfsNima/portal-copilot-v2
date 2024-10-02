@@ -34,7 +34,11 @@ const getStatusBgColorClass = (
       case "needs focus":
         return "bg-red-500 text-black";      
       case "all":
-        return "bg-indigo-500 text-black";                   
+        return "bg-secondary-text  text-black";
+        case "need to check":
+          return "bg-orange-status text-black"                   
+        case "checked":
+          return "bg-green-status text-black"                   
       default:
         return "bg-black-secondary";
     }
