@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import { AppContext } from "@/store/app";
@@ -108,7 +108,7 @@ export const TreatmentPlan = () => {
 
   const {reportManager} = useContext(AppContext);
   // const [ ] = useState('')
-  const navigate = useNavigate(); // Navigation hook
+  // const navigate = useNavigate(); // Navigation hook
   const handleRegenerateClick = () => {
     setIsRegenerated(true);
     const currentDate = new Date();
@@ -166,7 +166,8 @@ export const TreatmentPlan = () => {
   const handleViewReport = (reportType : string) => {
     
     localStorage.setItem("selectedReport", reportType);
-    navigate("/pdf-viewer");
+    window.open("#/pdf-viewer", "_blank");
+
   };
   return (
     <div className="flex flex-col gap-3 w-full">

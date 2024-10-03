@@ -129,7 +129,7 @@ const Analysis = () => {
         />
       );
     });
-  const cart2Biomarkers = filterBiomarkersByCartAndType(2, "vital");
+  const cart2Biomarkers = filterBiomarkersByCartAndType(2, "All");
   console.log(cart2Biomarkers);
   const type2BiomarkersData = prepareChartData(cart2Biomarkers);
   

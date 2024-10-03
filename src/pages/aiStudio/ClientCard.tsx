@@ -1,4 +1,4 @@
-// import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 // import { useSelector } from "react-redux";
 import { getStatusBgColorClass } from "@/utils/status";
 import { Link } from "react-router-dom";
@@ -9,27 +9,26 @@ interface ClientCardProps {
   email: string;
   status: string;
   cardActive: null | number;
-  onClick: () => void;
+  // onClick: () => void;
   memberID : number
-  // setCardActive: Dispatch<SetStateAction<number>>;
+  setCardActive: Dispatch<SetStateAction< null | number>>;
 }
 export const ClientCard: React.FC<ClientCardProps> = ({
   name,
   email,
   status,
   cardActive,
-  onClick,
-  memberID
-  // setCardActive,
+  memberID,
+  setCardActive,
 }) => {
   // const theme = useSelector((state: any) => state.theme.value.name);
-console.log(email);
+console.log(memberID);
 
   return (
     <div
       onClick={() => {
-        // setCardActive(index);
-        onClick(); // Call onClick when the card is clicked
+        setCardActive(memberID);
+        // onClick(); // Call onClick when the card is clicked
       }} // onClick={() => setCardActive(index)}
       className={`${
         cardActive === memberID
