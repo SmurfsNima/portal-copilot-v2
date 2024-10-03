@@ -313,7 +313,12 @@ export const AiStudio = () => {
               </div>
               <div className=" px-5">
                 <div className="border-black-third mb-4 border"></div>
-                  <ReportTable memberId={activeMemberID as number} data={reportsData}></ReportTable>
+                  <ReportTable onUpdate={async()=>{
+                    const res = await Application.showReportList({
+                      member_id : activeMemberID
+                    })
+                    SetReportsData(res.data)
+                  }} memberId={activeMemberID as number} data={reportsData}></ReportTable>
               </div>
             </div>
           )}

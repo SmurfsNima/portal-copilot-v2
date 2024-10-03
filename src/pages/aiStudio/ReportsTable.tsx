@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Application } from "@/api"
-
+import { useEffect } from "react";
+import { Button } from "symphony-ui";
 interface ReportTableProps {
     data:Array<any>
-    memberId:number
+    memberId:number;
+    onUpdate : ()=>Promise<void>
 }
 const ReportTable:React.FC<ReportTableProps> = ({
-    data,memberId
+    data,memberId,onUpdate
 }) => {
+
     const handleDownload = (value:any) => {
         const link = document.createElement('a');
         link.href =`data:application/pdf;base64,`+value;
@@ -17,6 +20,8 @@ const ReportTable:React.FC<ReportTableProps> = ({
         link.click();
         document.body.removeChild(link);
     };    
+    useEffect(()=>console.log(data), [data]
+    )
     return (
         <>
             <div className=" bg-[#383838] px-4 rounded-[6px]">
@@ -24,6 +29,8 @@ const ReportTable:React.FC<ReportTableProps> = ({
                     <div className="text-[#FFFFFFDE] py-5 w-[250px] text-[14px]">Report Title</div>
                     <div className="text-[#FFFFFFDE] py-5 w-[400px] flex items-center justify-center text-[14px]">Create on</div>
                     <div className="text-[#FFFFFFDE] py-5 w-[330px] flex items-center justify-end pr-10 text-[14px]">Action</div>
+                    <Button onClick={onUpdate} theme="Aurora">Refresh</Button>
+     
                 </div>
                 <div className=" border-black-third  border"></div>
                 {data.length> 0
