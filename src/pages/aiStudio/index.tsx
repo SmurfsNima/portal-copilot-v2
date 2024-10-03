@@ -63,7 +63,7 @@ export const AiStudio = () => {
       try {
         const response = await Application.aiStudio_patients();
         setPatients(response.data);
-        setActiveMemberID(response.data[0].member_id)
+        // setActiveMemberID(response.data[0].member_id)
         const res = await Application.aiStudio_overview({
           member_id: activeMemberID, 
         });
@@ -336,10 +336,11 @@ export const AiStudio = () => {
                 name={client.Name}
                 email={client.Email}
                 memberID={client.member_id}
-                onClick={() => {
-                  // setcardActive(i + 1); // Update the active card index
-                  setActiveMemberID(client.member_id); // Set active member ID
-                }}
+                setCardActive={setActiveMemberID}
+                // onClick={() => {
+                //   setcardActive(i + 1); // Update the active card index
+                //   setActiveMemberID(client.member_id); // Set active member ID
+                // }}
                 status={client.Status}
                 cardActive={activeMemberID}
               />
