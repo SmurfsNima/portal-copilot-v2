@@ -30,7 +30,14 @@ export const AiStudio = () => {
   const [isEngagementOpen, setIsEngagementOpen] = useState(true);
   const [activeStatus, setActiveStatus] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [patients, setPatients] = useState<Patient[]>([]);
+  const [patients, setPatients] = useState<Patient[]>([
+    {
+      Email:'',
+      member_id:1,
+      Name:"",
+      Status:''
+    }
+  ]);
   const [activeMemberID, setActiveMemberID] = useState<number | null>(null);
   const [overviewData, setOverviewData] = useState<any>(null);
 

@@ -26,6 +26,8 @@ const ReportTable:React.FC<ReportTableProps> = ({
                     <div className="text-[#FFFFFFDE] py-5 w-[330px] flex items-center justify-end pr-10 text-[14px]">Action</div>
                 </div>
                 <div className=" border-black-third  border"></div>
+                {data.length> 0
+                &&
                 <div className="h-[35vh] overflow-y-scroll">
                     {data.map((el) => {
                         return (
@@ -49,6 +51,7 @@ const ReportTable:React.FC<ReportTableProps> = ({
                     })}
 
                 </div>
+                }
             </div>
         </>
     )

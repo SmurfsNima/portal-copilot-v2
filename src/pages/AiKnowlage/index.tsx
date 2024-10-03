@@ -240,7 +240,7 @@ const AiKnowledge = () => {
         <GraphEvents />
       </SigmaContainer>
 
-      <div className="fixed right-5 top-[15%] w-64 text-primary-text bg-black-primary border border-main-border flex flex-col p-4 rounded-md">
+      <div className="fixed right-5 top-[15%] w-[340px] text-primary-text bg-black-primary border border-main-border flex flex-col p-4 rounded-md">
         <button onClick={() => {
           document.getElementById("uploadFile")?.click()
         }} className="mb-4 relative flex justify-center gap-2 text-secondary-text border border-main-border border-dashed py-2 rounded-lg">
@@ -271,7 +271,7 @@ const AiKnowledge = () => {
                         handleButtonClick(el)
                       }} 
                       htmlFor="contracts"
-                      className="ml-2 flex gap-1"
+                      className="ml-2 text-[14px] flex gap-1"
                     >
                       {/* <img className={`${isContractsOpen && "rotate-180"}`} src="/Themes/Aurora/icons/chevron-down.svg" alt="" /> */}
                       {el}
@@ -315,11 +315,11 @@ const AiKnowledge = () => {
             </div>
           </div>
           <div>
-            <p className="text-secondary-text">
+            {/* <p className="text-secondary-text">
               Practicing guided <span className="text-purple-400">sleep</span> meditation will imbue your <span className="text-purple-400">sleep</span> with awareness.
               In that way, <span className="text-purple-400">sleep</span> itself becomes a meditation. If you{" "}
               <span className="text-purple-400">sleep</span> for an hour, you've meditated for an hour. Lovely to think about it that way, isn't it?
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

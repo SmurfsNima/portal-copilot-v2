@@ -42,7 +42,7 @@ console.log(email);
         <div className="flex gap-3 items-center">
           <img
             className="rounded-full w-[32px] h-[32px]"
-            src={picture}
+            src={`https://ui-avatars.com/api/?name=${name}`}
             alt=""
           />
           <div className=" text-primary-text font-medium flex flex-col ">
