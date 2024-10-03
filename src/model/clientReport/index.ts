@@ -69,8 +69,8 @@ class ClientReport {
 
       this.setClientReport(clientPdfString);
       const clinicPdfString = this.generatePDFReport(data);
-this.setClinicReport(clinicPdfString)
-      const treatmentPlanId = data.treatment_plan[0]?.id || "";
+      this.setClinicReport(clinicPdfString)
+      const treatmentPlanId = data.treatment_plan?data.treatment_plan[0]?.id || "":"";
       const reportDataToSave = {
         report_type: "client_report",
         treatment_plan_id: treatmentPlanId,
@@ -91,7 +91,7 @@ this.setClinicReport(clinicPdfString)
   }
 
   // Generates the PDF and returns the base64 string
-  private generatePDFReport(data: any): string {
+  public generatePDFReport(data: any): string {
     const doc = new jsPDF();
 
     // let pageWidth = doc.internal.pageSize.getWidth();
@@ -268,7 +268,7 @@ this.setClinicReport(clinicPdfString)
     doc.text(lines, 15, y);
     y += lines.length * 10;
     const groupedBenchmarks: Record<string, any[]> = {};
-    data.patient_benchmark.forEach((benchmark: any) => {
+    data.patient_benchmark?.forEach((benchmark: any) => {
       const category = benchmark.Category;
       if (!groupedBenchmarks[category]) {
         groupedBenchmarks[category] = [];
@@ -380,7 +380,7 @@ this.setClinicReport(clinicPdfString)
       },
     });
 
-    const treatmentPlanData = data.treatment_plan.map((plan: any) => [
+    const treatmentPlanData = data.treatment_plan?.map((plan: any) => [
       plan.subCategory || "N/A",
       plan.area,
       "", 
@@ -405,7 +405,7 @@ this.setClinicReport(clinicPdfString)
           "Priority 2: Beyond 12 Weeks",
         ],
       ],
-      body: treatmentPlanData.map((row: any) => [
+      body: treatmentPlanData?.map((row: any) => [
         row[0],
         row[1],
         {

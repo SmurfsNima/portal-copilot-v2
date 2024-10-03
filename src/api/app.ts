@@ -182,6 +182,21 @@ static downloadClinicReport(data:any){
     const response = this.post("/ai_studio/ai_studio_generate_report",data)
     return response
   }  
+
+  static downloadReportForGenerate(data:any){
+    const response = this.post("/ai_studio/download_weekly_report",data)
+    return response
+  }    
+
+  static saveAiStadioReport(data:any){
+    const response = this.post("/ai_studio/save_weekly_data",data)
+    return response
+  }     
+
+  static getReportString(data:any){
+    const response = this.post("/ai_studio/get_report_string",data)
+    return response
+  }  
 }
 
 

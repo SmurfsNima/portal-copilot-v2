@@ -1,6 +1,7 @@
 import { Application } from "@/api"
+import { AppContext } from "@/store/app"
 import { publish } from "@/utils/event"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { FiExternalLink } from "react-icons/fi"
 import { Button } from "symphony-ui"
 
@@ -22,6 +23,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,setData,on
         }  
       return '#FC5474'        
     }
+    const {reportManager} = useContext(AppContext);
     const handleRecomendChange = (index:number, value:string) => {
         const updatedRecommendation = [...data.Recommendation];
         updatedRecommendation[index] = value;
@@ -37,6 +39,18 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,setData,on
         Application.ai_studio_update_weekly_data({
             member_id:memberId,
             data:data
+        }).then(res => {
+            Application.downloadReportForGenerate({
+                 member_id:memberId,
+                report_id:res.data.report_id
+            }).then(resovle => {
+               const pdf =  reportManager.generatePDFReport(resovle.data)
+                Application.saveAiStadioReport({
+                    member_id : memberId,
+                    weekly_report_string:pdf,
+                    report_id:res.data.report_id                         
+                })
+            })
         })
         publish("completeChanges",{})
         setISComplete(true)

@@ -304,7 +304,7 @@ export const AiStudio = () => {
               </div>
               <div className=" px-5">
                 <div className="border-black-third mb-4 border"></div>
-                  <ReportTable data={reportsData}></ReportTable>
+                  <ReportTable memberId={activeMemberID as number} data={reportsData}></ReportTable>
               </div>
             </div>
           )}
