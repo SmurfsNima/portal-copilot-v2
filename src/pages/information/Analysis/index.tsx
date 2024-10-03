@@ -45,7 +45,6 @@ const Analysis = () => {
 
   const filterBiomarkersByCartAndType = (
     cartNumber: number,
-    type: string
   ): BiomarkerCategory[] => {
     console.dir(biomarkers)
     if (!biomarkers || biomarkers.length === 0) return [];
@@ -55,7 +54,7 @@ const Analysis = () => {
           value.some(
             (entry) =>{
               console.log(entry)
-             return entry.cart === cartNumber && entry.type == type
+             return entry.cart === cartNumber 
             }
           )
         )
@@ -75,9 +74,9 @@ const Analysis = () => {
       );    
   }
   useEffect(() => {
-    setFitness(filterBiomarkersByCartAndType(1, "Fitness"));
+    setFitness(filterBiomarkersByCartAndType(1));
     SetAlls(filterBiomarkersByCart(1));
-    setBloodTests(filterBiomarkersByCartAndType(1, "blood test"));
+    setBloodTests(filterBiomarkersByCartAndType(1));
   }, [biomarkers]);
   const BloodtestsChartData = prepareChartData(bloodTests);
   const FitnesschartData = prepareChartData(Fitness);
@@ -129,7 +128,7 @@ const Analysis = () => {
         />
       );
     });
-  const cart2Biomarkers = filterBiomarkersByCartAndType(2, "All");
+  const cart2Biomarkers = filterBiomarkersByCartAndType(2);
   console.log(cart2Biomarkers);
   const type2BiomarkersData = prepareChartData(cart2Biomarkers);
   
