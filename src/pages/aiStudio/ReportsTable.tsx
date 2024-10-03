@@ -35,14 +35,21 @@ const ReportTable:React.FC<ReportTableProps> = ({
                                 <div className="flex justify-start items-center">
                                     <div className="text-[#FFFFFFDE] py-2 w-[250px] text-[12px]">{el.Title}</div>
                                     <div className="text-[#FFFFFFDE] py-2 w-[400px] flex justify-center items-center text-[12px]">{el["Created Date"]}</div>
-                                    <div className="text-[#FFFFFFDE] py-2 w-[330px] flex justify-end px-5 items-center text-[12px]"><img onClick={() => {
+                                    <div className="text-[#FFFFFFDE] py-2 w-[330px] gap-2 flex justify-end px-5 items-center text-[12px]">
+                                        
+                                        <img onClick={() => {
                                         Application.getReportString({
                                             member_id : memberId,
                                             report_id:el.report_id
                                         }).then(res => {
                                             handleDownload(res.data)
                                         })
-                                    }} className="cursor-pointer" src={'./Themes/Aurora/icons/document-download3.svg'} /></div>
+                                        }} className="cursor-pointer" src={'./Themes/Aurora/icons/document-download3.svg'} />
+
+                                        <img className="cursor-pointer"  src={"./Themes/Aurora/icons/share.svg"} />
+
+                                        <img className="cursor-pointer" src={"./Themes/Aurora/icons/edit4.svg"} />
+                                    </div>
                                 </div>
                                 <div className=" border-black-third  border">
                                 </div>

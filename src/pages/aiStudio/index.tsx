@@ -306,7 +306,9 @@ export const AiStudio = () => {
                       setGenerateReportGoolsData(res.data)
                     })
                     setisCreateReportMode(true)
-                  }} theme="Aurora">Generate New Report</Button>
+                  }} theme="Aurora">
+                    <img src="./Themes/Aurora/icons/additem.svg" alt="" />
+                    Generate New Report</Button>
                 </div>
               </div>
               <div className=" px-5">
