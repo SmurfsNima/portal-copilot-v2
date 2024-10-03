@@ -14,7 +14,6 @@ interface ClientCardProps {
   // setCardActive: Dispatch<SetStateAction<number>>;
 }
 export const ClientCard: React.FC<ClientCardProps> = ({
-  picture,
   name,
   email,
   status,
