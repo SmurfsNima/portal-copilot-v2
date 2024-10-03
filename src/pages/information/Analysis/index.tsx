@@ -14,7 +14,7 @@ import { ActivityCard } from "./activityCard";
 import { Activity, BiomarkerCategory } from "@/types";
 import { Application } from "@/api";
 import BarChart from "./barChart";
-type MenuNames = 'Vital' | 'Blood Test' | 'Activity' | 'Client Profile' | "Weekly report"
+type MenuNames = 'All' | 'Blood Test' | 'Activity' | 'Client Profile' | "Weekly report"|"Fitness"|"Physiological" |"Emotional"
 type menuItem  = {
     name:MenuNames
 }
@@ -23,8 +23,8 @@ const Analysis = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const biomarkers = useBiomarkers();
   console.log(biomarkers);
-
-  const [Vitals, setVitals] = useState<BiomarkerCategory[]>([]);
+  const [Alls, SetAlls] = useState<BiomarkerCategory[]>([]);
+  const [Fitness, setFitness] = useState<BiomarkerCategory[]>([]);
   const [bloodTests, setBloodTests] = useState<BiomarkerCategory[]>([]);
   const [activitis, setActivitis] = useState<Activity[]>([]);
   useEffect(() => {
@@ -47,23 +47,41 @@ const Analysis = () => {
     cartNumber: number,
     type: string
   ): BiomarkerCategory[] => {
+    console.dir(biomarkers)
     if (!biomarkers || biomarkers.length === 0) return [];
     return biomarkers.flatMap((biomarker) =>
       Object.entries(biomarker)
         .filter(([, value]) =>
           value.some(
-            (entry) => entry.cart === cartNumber && entry.type === type
+            (entry) =>{
+              console.log(entry)
+             return entry.cart === cartNumber && entry.type == type
+            }
           )
         )
         .map(([key, value]) => ({ [key]: value }))
     );
   };
+  const filterBiomarkersByCart =(cartNumber: number,) => {
+    if (!biomarkers || biomarkers.length === 0) return [];
+      return biomarkers.flatMap((biomarker) =>
+        Object.entries(biomarker)
+          .filter(([, value]) =>
+            value.some(
+              (entry) => entry.cart === cartNumber
+            )
+          )
+          .map(([key, value]) => ({ [key]: value }))
+      );    
+  }
   useEffect(() => {
-    setVitals(filterBiomarkersByCartAndType(1, "vital"));
+    setFitness(filterBiomarkersByCartAndType(1, "Fitness"));
+    SetAlls(filterBiomarkersByCart(1));
     setBloodTests(filterBiomarkersByCartAndType(1, "blood test"));
   }, [biomarkers]);
   const BloodtestsChartData = prepareChartData(bloodTests);
-  const VitalschartData = prepareChartData(Vitals);
+  const FitnesschartData = prepareChartData(Fitness);
+  const AllchartData = prepareChartData(Alls);
 
   useEffect(() => console.log(bloodTests), [bloodTests]);
   const [messages, setMessages] = useState([
@@ -79,7 +97,7 @@ const Analysis = () => {
     },
   ]);
   const [active, setActive] = useState<string | null>(null);
-  const [activeMode, setActiveMode] = useState("Vital");
+  const [activeMode, setActiveMode] = useState("All");
   const [buttonState,] = useState("initial");
 
   const handleSendMessage = (message: string) => {
@@ -116,7 +134,7 @@ const Analysis = () => {
   const type2BiomarkersData = prepareChartData(cart2Biomarkers);
   
   const activeChartData =
-    VitalschartData.find((data) => data.type === active) ||
+    FitnesschartData.find((data) => data.type === active) ||
     BloodtestsChartData.find((data)=>data.type === active) ||
     type2BiomarkersData.find((data) => data.type === active);
 
@@ -173,7 +191,10 @@ const Analysis = () => {
   useEffect(() => console.log(activeChartData), [activeChartData]);
   console.log(activeChartData)
   const menus:Array<menuItem> = [
-    {name :'Vital' },
+    {name :'All' },
+    {name :'Fitness' },
+    {name :'Physiological' },
+    {name :'Emotional' },
     // {name :'Blood Test' },
     // {name :'Activity' },
     // {name :'Client Profile' },
@@ -281,8 +302,9 @@ const Analysis = () => {
             {/* </div> */}
             {activeMode === "Blood Test" &&
               renderChartCards(BloodtestsChartData)}
-            {activeMode === "Vital" && renderChartCards(VitalschartData)}
-            {activeMode === "Vital" && renderCart2Components()}
+            {activeMode === "All" && renderChartCards(AllchartData)}
+            {activeMode === "Fitness" && renderChartCards(FitnesschartData)}
+            {activeMode === "All" && renderCart2Components()}
           </div>
 
           <div

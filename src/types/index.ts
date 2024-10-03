@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface PationtInformation {
   name: string;
   picture: string;
@@ -82,6 +83,7 @@ interface BiomarkerEntry {
   type: string;
   value: BiomarkerValue;
   chart: string;
+  category:string
 }
 interface BiomarkerCategory {
   [key: string]: BiomarkerEntry[];
