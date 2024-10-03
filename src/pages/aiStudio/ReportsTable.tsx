@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Application } from "@/api";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "symphony-ui";
+import useModalAutoClose from "@/hooks/UseModalAutoClose";
+
 interface ReportTableProps {
   data: Array<any>;
   memberId: number;
@@ -24,11 +26,19 @@ const ReportTable: React.FC<ReportTableProps> = ({
   useEffect(() => console.log(data), [data]);
   console.log(data.length);
   const [shareReportId, setShareReportId] = useState<number | null>(null);
+  const [showModal, setshowModal] = useState(true)
+  const modalAiGenerateRef = useRef(null)
+  useModalAutoClose({
+    refrence:modalAiGenerateRef,
+    close:() => {
+        setshowModal(false)
+    }
+  })
   const ShareModal = ({ reportId }: { reportId: number }) => {
     console.log(reportId);
-    
+   
 return(
-      <div className=" z-10  absolute w-[80px] h-[80px] text-xs bg-black-third right-0 top-6 p-4 rounded-md shadow-md  flex flex-col justify-between">
+      <div ref={modalAiGenerateRef} className={` ${!showModal && 'hidden'} z-10  absolute w-[80px] h-[80px] text-xs bg-black-third right-0 top-6 p-4 rounded-md shadow-md  flex flex-col justify-between`}>
         
        
          <span className="text-[10px] cursor-pointer">Via Email</span> 
@@ -92,11 +102,14 @@ return(
                           src={"./Themes/Aurora/icons/document-download3.svg"}
                         />
                         <div className="relative"> <img
-                          onClick={() => setShareReportId(el.report_id)}
+                          onClick={() => {setShareReportId(el.report_id)
+                           setshowModal(true)
+                          }
+                          }
                           className="cursor-pointer"
                           src={"./Themes/Aurora/icons/share.svg"}
                         />
- {shareReportId === el.report_id && (
+ {shareReportId === el.report_id && showModal && (
                           <ShareModal reportId={el.report_id} />
                         )}</div>
                        
