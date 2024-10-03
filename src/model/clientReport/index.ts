@@ -92,6 +92,8 @@ class ClientReport {
 
   // Generates the PDF and returns the base64 string
   public generatePDFReport(data: any): string {
+    console.log(data);
+    
     const doc = new jsPDF();
 
     // let pageWidth = doc.internal.pageSize.getWidth();
@@ -379,16 +381,19 @@ class ClientReport {
         1: { fillColor: [255, 255, 255], textColor: [0, 0, 0] },
       },
     });
-
+    const filterDos = (dos: string[] = []) => {
+      const filtered = dos.filter(item => item !== '-');
+      return filtered.length > 0 ? filtered.join(", ") : "";
+    };
     const treatmentPlanData = data.treatment_plan?.map((plan: any) => [
       plan.subCategory || "N/A",
       plan.area,
       "", 
       plan.status ? "Needs Focus" : "",
-      plan.first12Weeks.dos.join(", ") || "N/A",
-      plan.second12Weeks.dos.join(", ") || "N/A",
+      filterDos(plan.first12Weeks.dos),
+      filterDos(plan.second12Weeks.dos),
     ]);
-
+  
     doc.addPage();
     addHeader();
     doc.setFontSize(16);
