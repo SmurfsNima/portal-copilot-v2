@@ -1,0 +1,1358 @@
+{
+    "client_info": {
+        "Phone number": {
+            "0": null
+        },
+        "Biological Gender": {
+            "0": "Male"
+        },
+        "Height": {
+            "0": null
+        },
+        "Date of birth": {
+            "0": "16/01/1983"
+        },
+        "Location": {
+            "0": null
+        },
+        "Timezone": {
+            "0": null
+        },
+        "Medical conditions": {
+            "0": "Gout ,diabetes,asthma"
+        },
+        "Prescribed medication": {
+            "0": "Lansoprazole for Reflux with history of Gout"
+        },
+        "Injury history": {
+            "0": "Right shoulder mobility issues"
+        },
+        "Smoker": {
+            "0": null
+        },
+        "Diet preference (vegan, vegtarian, etc)": {
+            "0": null
+        },
+        "Activity level (based on PAL definition)": {
+            "0": null
+        },
+        "Weight": {
+            "0": 120
+        },
+        "Body fat %": {
+            "0": null
+        },
+        "Hip to waist ratio": {
+            "0": null
+        },
+        "In the last year how often have you participated in physical activity?": {
+            "0": "1-2 times per month"
+        },
+        "What physical activity has worked for you in the past and what level did you get to?": {
+            "0": null
+        },
+        " What has not worked and why not?": {
+            "0": null
+        },
+        "What types of physical activity do you enjoy?": {
+            "0": null
+        },
+        "What do you not enjoy and why not?": {
+            "0": null
+        },
+        "Do you have any negative feelings toward, or have you had any bad experience with exercise? (If YES please give details)": {
+            "0": null
+        },
+        "If you have been unable to exercise regularly, what are the reasons?": {
+            "0": null
+        },
+        "What is your present occupation?": {
+            "0": null
+        },
+        "Does your occupation involve much physical activity (i.e. lifting, walking)?": {
+            "0": null
+        },
+        "What activities do you participate in during your leisure time?": {
+            "0": null
+        },
+        "How much time are you willing to devote to exercise?": {
+            "0": null
+        },
+        " What types of exercise interest you?": {
+            "0": null
+        },
+        " What is your ultimate goal?": {
+            "0": null
+        },
+        "Why is this outcome important to you?": {
+            "0": null
+        },
+        "What you want to be able to do?": {
+            "0": "I liked to run but too unfit to do that now. I want a realistic entry into getting fitter where I build up the intensity to match my capability. I dont enjoy squats as they make my legs hurt but recognise I may need to do them."
+        },
+        "How you want to look?": {
+            "0": "Lose the 18kg of weight I have put on since 2019 and get to a target weight of 82kg"
+        },
+        "How you want to feel?": {
+            "0": "Have more energy and know my health is improving"
+        },
+        "TDEE": {
+            "0": 1000
+        },
+        "Calories consumed": {
+            "0": 2500
+        },
+        "Macro mix": {
+            "0": null
+        },
+        "Diastolic Pressure": {
+            "0": null
+        },
+        "Systolic Pressure": {
+            "0": null
+        },
+        "SPO2 %": {
+            "0": null
+        },
+        "How many hours did you exercised?": {
+            "0": null
+        },
+        "Fat free Muscle index": {
+            "0": null
+        }
+    },
+    "patient_benchmark": [
+        {
+            "Result": 8,
+            "Test L1": "Time working",
+            "Test L2": "Lifestyle tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Time priorities",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": 0,
+            "Test L1": "Time socialising",
+            "Test L2": "Lifestyle tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Time priorities",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": 80,
+            "Test L1": "Sleep quality",
+            "Test L2": "Wearable tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Recovery",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": 5,
+            "Test L1": "Sleep hours",
+            "Test L2": "Wearable tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Recovery",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Left leg",
+            "Test L2": "Left leg stand duration (secs)",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Left leg",
+            "Test L2": "Left leg squat ankle stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Left leg",
+            "Test L2": "Left leg squat knee stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Left leg",
+            "Test L2": "Left leg squat hip stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Right leg",
+            "Test L2": "Right leg stand duration (secs)",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Right leg",
+            "Test L2": "Right leg squat ankle stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Right leg",
+            "Test L2": "Right leg squat knee stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Right leg",
+            "Test L2": "Right leg squat hip stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Yes",
+            "Test L1": "Left foot stability",
+            "Test L2": "Hold 3 point contact when squatting",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Yes",
+            "Test L1": "Right foot stability",
+            "Test L2": "Hold 3 point contact when squatting",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Forward tilt",
+            "Test L1": "Lower back posture",
+            "Test L2": "Neutral spine test",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Holds neutral spine",
+            "Test L1": "Spine curvature",
+            "Test L2": "Neutral spine test",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Holds neutral spine",
+            "Test L1": "Upper back posture",
+            "Test L2": "Neutral spine test",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Lower back arches, Lower back rounds",
+            "Test L1": "Overhead squat test",
+            "Test L2": "Excessive lean forwards (excessive trunk flexion and/or hip flexion)",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Overhead squat test",
+            "Test L2": "Lower back arches",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Overhead squat test",
+            "Test L2": "Lower back rounds",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Overhead squat test",
+            "Test L2": "Asymmetrical weight shift",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Full ROM hamstring touches calf",
+            "Test L1": "Lower body",
+            "Test L2": "Sagital Squat - Air Squat ROM",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Proper hip hinge form",
+            "Test L1": "Lower body",
+            "Test L2": "Sagital Hinge - 5kg ball pick up ROM",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Too painful to complete movement",
+            "Test L1": "Lower body",
+            "Test L2": "Frontal Right leg side lunge ROM",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Above 90 degree knee to hip angle",
+            "Test L1": "Lower body",
+            "Test L2": "Frontal Left leg side lunge ROM",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Can touch wall with back of hand",
+            "Test L1": "Upper body",
+            "Test L2": "Sagital Shoulder - Standing bent arm rotation left arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Has limited ROM",
+            "Test L1": "Upper body",
+            "Test L2": "Sagital Shoulder - Standing bent arm rotation right arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Arm has more than 45 degree movement",
+            "Test L1": "Upper body",
+            "Test L2": "Frontal Shoulder - Lying arm hip to above head right arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Arm has more than 45 degree movement",
+            "Test L1": "Upper body",
+            "Test L2": "Frontal Shoulder - Lying arm hip to above head left arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Arm has full ROM and can extend above head",
+            "Test L1": "Upper body",
+            "Test L2": "Sagital Shoulder - Standing press left arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Arm has full ROM and can extend above head",
+            "Test L1": "Upper body",
+            "Test L2": "Sagital Shoulder - Standing press right arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Can rotate to left no pain and touch wall with elbow, Experiences pain when rotating right",
+            "Test L1": "Upper body",
+            "Test L2": "Transverse - Twist to right",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Can rotate to left no pain and touch wall with elbow, Experiences pain when rotating right",
+            "Test L1": "Upper body",
+            "Test L2": "Transverse - Twist to left",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Movement causes pain",
+            "Test L1": "Upper body",
+            "Test L2": "Back extension",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Good can touch wall with knee when toes 6 inches from wall with no heal raise",
+            "Test L1": "Lower body",
+            "Test L2": "Left ankle flexibility",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Good can touch wall with knee when toes 6 inches from wall with no heal raise",
+            "Test L1": "Lower body",
+            "Test L2": "Right ankle flexibility",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "45-90 degree flexion",
+            "Test L1": "Lower body",
+            "Test L2": "Right hamstring",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "45-90 degree flexion",
+            "Test L1": "Lower body",
+            "Test L2": "Left hamstring",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "less than 45 degree",
+            "Test L1": "Lower body",
+            "Test L2": "Left hip flexor test",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "less than 45 degree",
+            "Test L1": "Lower body",
+            "Test L2": "Right hip flexor test",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Is more than 45 degree from ground with hand",
+            "Test L1": "Upper body",
+            "Test L2": "Left arm pec test",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Is more than 45 degree from ground with hand",
+            "Test L1": "Upper body",
+            "Test L2": "Right arm pec test",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Can touch mid back",
+            "Test L1": "Upper body",
+            "Test L2": "Right arm back touch",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Good can touch between shoulder blades",
+            "Test L1": "Upper body",
+            "Test L2": "Left arm back touch",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": null,
+            "Test L1": "Time exercising",
+            "Test L2": "Lifestyle tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Time priorities",
+            "Benchmark performance": null
+        },
+        {
+            "Result": 120,
+            "Test L1": "Heart rate variability",
+            "Test L2": "Wearable tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Recovery",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": null,
+            "Test L1": "High LDL",
+            "Test L2": "Lipid blood test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Low HDL",
+            "Test L2": "Lipid blood test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "High Blood Lipids",
+            "Test L2": "Lipid blood test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "HDL Ratio",
+            "Test L2": "Lipid blood test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Insulin Sensitivity",
+            "Test L2": "Fasting glucose test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Kidney Function",
+            "Test L2": "U&E test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Inflammation Marker",
+            "Test L2": "CRP",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Liver Function",
+            "Test L2": "LFT test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": 50,
+            "Test L1": "Calcium",
+            "Test L2": "",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": 60,
+            "Test L1": "Iron",
+            "Test L2": "",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": null,
+            "Test L1": "Hormone function",
+            "Test L2": "Female Estrogen",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Hormone function",
+            "Test L2": "Male Testosterone",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Macro mix",
+            "Test L2": "Macro mix actual versus what is required for age and gender",
+            "Category": "Physiological",
+            "Benchmark areas": "Nutrition",
+            "Benchmark performance": null
+        },
+        {
+            "Result": "Yes",
+            "Test L1": "Water intake",
+            "Test L2": "Water intake versus target guidelines",
+            "Category": "Physiological",
+            "Benchmark areas": "Nutrition",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": 1,
+            "Test L1": "Alcohol intake",
+            "Test L2": "Alcohol intake against safe guidelines",
+            "Category": "Physiological",
+            "Benchmark areas": "Nutrition",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 70,
+            "Test L1": "Resting heart rate",
+            "Test L2": "Wearable tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Cardiovascular health",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": null,
+            "Test L1": "Oxygen saturation",
+            "Test L2": "SPO2 %",
+            "Category": "Physiological",
+            "Benchmark areas": "Cardiovascular health",
+            "Benchmark performance": null
+        },
+        {
+            "Result": 120,
+            "Test L1": "Weight",
+            "Test L2": "Scales",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": null,
+            "Test L1": "Fat free Muscle index",
+            "Test L2": "Calculation based on height, gender, body fat%, weight",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Body fat %",
+            "Test L2": "Scales",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Hip to Waist ratio",
+            "Test L2": "Measure",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": null
+        },
+        {
+            "Result": 10000,
+            "Test L1": "Steps",
+            "Test L2": "Wearable tracker",
+            "Category": "Fitness",
+            "Benchmark areas": "Daily Activity",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 60,
+            "Test L1": "Exercise activity",
+            "Test L2": "Lifestyle tracker/exercise app",
+            "Category": "Fitness",
+            "Benchmark areas": "Daily Activity",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 25,
+            "Test L1": "VO2 Max",
+            "Test L2": "Sub maximal test on bike or treadmill",
+            "Category": "Fitness",
+            "Benchmark areas": "Cardiovascular fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Upper body",
+            "Test L2": "Left grip strength test",
+            "Category": "Fitness",
+            "Benchmark areas": "Power",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 12,
+            "Test L1": "Upper body",
+            "Test L2": "Right grip strength test",
+            "Category": "Fitness",
+            "Benchmark areas": "Power",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 5,
+            "Test L1": "Lower body",
+            "Test L2": "Forward jump",
+            "Category": "Fitness",
+            "Benchmark areas": "Power",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 90,
+            "Test L1": "Isometric hang",
+            "Test L2": "Deadhang",
+            "Category": "Fitness",
+            "Benchmark areas": "Bodyweight max strength",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 120,
+            "Test L1": "Isometric hold",
+            "Test L2": "Plank",
+            "Category": "Fitness",
+            "Benchmark areas": "Bodyweight max strength",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 90,
+            "Test L1": "Isometric Hold",
+            "Test L2": "Biering-Sorensen test lower back endurance",
+            "Category": "Fitness",
+            "Benchmark areas": "Bodyweight max strength",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 60,
+            "Test L1": "Isometric squat",
+            "Test L2": "Wall squat",
+            "Category": "Fitness",
+            "Benchmark areas": "Bodyweight max strength",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 0,
+            "Test L1": "Pull",
+            "Test L2": "Pull up",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 0,
+            "Test L1": "Push",
+            "Test L2": "Press up max",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 15,
+            "Test L1": "Legs",
+            "Test L2": "Air squat max",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 60,
+            "Test L1": "Front core",
+            "Test L2": "Abdominal curl",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 20,
+            "Test L1": "Back core",
+            "Test L2": "Hyper extension",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": null,
+            "Test L1": "Blood pressure_Diastolic Pressure",
+            "Test L2": "Monitor",
+            "Category": "Physiological",
+            "Benchmark areas": "Cardiovascular health",
+            "Benchmark performance": null
+        },
+        {
+            "Result": null,
+            "Test L1": "Blood pressure_Systolic Pressure",
+            "Test L2": "Monitor",
+            "Category": "Physiological",
+            "Benchmark areas": "Cardiovascular health",
+            "Benchmark performance": null
+        },
+        {
+            "Result": 48.89,
+            "Test L1": "OSWERTY lower back pain disability score",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 17,
+            "Test L1": "Fear avoidance about physical activity",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 37,
+            "Test L1": "Fear avoidance about physical activity",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 77,
+            "Test L1": "Stress management",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "maintenance",
+            "Test L1": "Stages of change",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 26,
+            "Test L1": "Motivation",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": 15,
+            "Test L1": "Squat",
+            "Test L2": "Barbell squat",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Hinge",
+            "Test L2": "Deadlift",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Pull max strength",
+            "Test L2": "Barbell row",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 15,
+            "Test L1": "Push overhead max strength",
+            "Test L2": "Barbell press",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Push max strength",
+            "Test L2": "Bench press",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 5,
+            "Test L1": "Carry",
+            "Test L2": "Farmers walk",
+            "Category": "Fitness",
+            "Benchmark areas": "Functional strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Pull locomotion",
+            "Test L2": "Prowler pull",
+            "Category": "Fitness",
+            "Benchmark areas": "Functional strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 20,
+            "Test L1": "Push locomotion",
+            "Test L2": "Prowler push",
+            "Category": "Fitness",
+            "Benchmark areas": "Functional strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": null,
+            "Test L1": "BMI",
+            "Test L2": "Height and weight",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": null
+        },
+        {
+            "Result": 0.8584905660377358,
+            "Test L1": "Relative upper to lower body ratio",
+            "Test L2": "Use 1RM results",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        }
+    ],
+    "treatment_plan": [
+        {
+            "area": "Body composition",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Time priorities",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Recovery",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Metabolic Function",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Nutrition",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Cardiovascular health",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Cardiovascular fitness",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Work on increasing aerobic volume"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Work on increasing aerobic volume"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Power",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Focus on forearm and hand strength",
+                    "Focus on forearm and hand strength",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Focus on forearm and hand strength",
+                    "Focus on forearm and hand strength",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Muscle endurance",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Build back and shoulder muscle endurance",
+                    "Build pressing muscle endurance",
+                    "Build leg  and glute muscle endurance",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Build back and shoulder muscle endurance",
+                    "Build pressing muscle endurance",
+                    "Build leg  and glute muscle endurance",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Weighted max strength",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Focus on building squat strength",
+                    "Focus on building hinge strength",
+                    "Focus on building back strength",
+                    "Focus on building pressing strength",
+                    "Focus on building pressing strength",
+                    "Prioirtise upper or lower body strength depending on which ratio is off target"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Focus on building squat strength",
+                    "Focus on building hinge strength",
+                    "Focus on building back strength",
+                    "Focus on building pressing strength",
+                    "Focus on building pressing strength",
+                    "Prioirtise upper or lower body strength depending on which ratio is off target"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Functional strength",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Build high intensity work capacity and work on grip strength",
+                    "Build high intensity work capacity in lower body",
+                    "Build high intensity work capacity in lower body"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Build high intensity work capacity and work on grip strength",
+                    "Build high intensity work capacity in lower body",
+                    "Build high intensity work capacity in lower body"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Stability",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Mobility",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Flexibility",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Daily Activity",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Bodyweight max strength",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Emotional fitness",
+            "status": true,
+            "subCategory": "Emotional",
+            "first12Weeks": {
+                "dos": [
+                    "Refer to back pain programme to work on improving every day activity functionality",
+                    "If score high refer to Cognitive behaviour therapy professional",
+                    "If score high refer to Cognitive behaviour therapy professional",
+                    "If not desired stage, set up regualr calls to help client get ready for change. If stage is really off propose a motivation building coaching service to help them get in the right state.",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Refer to back pain programme to work on improving every day activity functionality",
+                    "If score high refer to Cognitive behaviour therapy professional",
+                    "If score high refer to Cognitive behaviour therapy professional",
+                    "If not desired stage, set up regualr calls to help client get ready for change. If stage is really off propose a motivation building coaching service to help them get in the right state.",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        }
+    ],
+    "logo": "data:image/png;base64,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"
+}

@@ -11,9 +11,6 @@ axios.interceptors.response.use((response) => {
         window.location.reload(); 
     }    
 
-    if(response.data.detail){
-       toast.error(response.data.detail) 
-    }
     return response;
 }, (error) => {
     if (error.response && error.response.data) {

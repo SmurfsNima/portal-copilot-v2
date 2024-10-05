@@ -12,6 +12,8 @@ import { Calender } from "@/pages/information/calender";
 import { Messages } from "@/pages/messages";
 import PdfViewerComponent from "@/pages/information/Treatment Plan/PdfViewer";
 import { AiChat } from "@/components";
+import PDFRender from "@/pages/Pdf";
+
 const router = createHashRouter([
   {
     path: "/",
@@ -91,6 +93,10 @@ const router = createHashRouter([
   {
     path: "pdf-viewer",
     element: <PdfViewerComponent></PdfViewerComponent>,
+  },
+  {
+    path:"test-Pdf",
+    element:<PDFRender></PDFRender>
   },
   {
     path: "/login",
