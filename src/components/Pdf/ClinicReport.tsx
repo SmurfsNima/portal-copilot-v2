@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Page, Text, Document, StyleSheet, Font, View, Image } from '@react-pdf/renderer';
-import data from './data.json';
+import { Page, Text, Document, StyleSheet, Font, View } from '@react-pdf/renderer';
+// import data from './data.json';
+import Patient_benchmark from './components/patient_benchmark';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import TableInfoRender from './components/TableRender';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -126,27 +130,14 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },  
 });
-const values :any = data 
-// Header Component
-const Header = () => (
-  <View style={styles.header}>
-    <Image src={values.logo} style={{width:'35px',height:'35px'}}></Image>
-    <View style={styles.line} /> {/* Horizontal line */}
-  </View>
-);
+// const values :any = data 
 
-// Footer Component
-const Footer = ({ pageNumber}:{pageNumber:number}) => (
-  <View style={styles.footer}>
-    <Text>Page {pageNumber}</Text>
-  </View>
-);
 
-const ReadMorePage = () => {
+const ReadMorePage = ({values}:{values:any}) => {
   return (
     <>
     <Page style={styles.body}>
-      <Header></Header>
+      <Header logo={values["logo"]}></Header>
       <Text style={styles.title} >Please read before reviewing this report</Text>
       <Text style={styles.subtitle} >WHY WE USE EXPERIENCE LEVELS</Text>
       <Text style={styles.text}>
@@ -197,140 +188,28 @@ const ReadMorePage = () => {
 }
 
 // Create Document Component
-const ClinicReport = () => (
+const ClinicReport = ({values}:{values:any}) => (
   <Document>
     <Page style={styles.body} >
-        <Header></Header>
+        <Header logo={values["logo"]}></Header>
         <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-            {Object.keys(values).map((el,index) =>{
-                return (
-                    <>
-                        {
-                            el == 'client_info' &&
-                            <TableInfoRender key={index} item={el} ></TableInfoRender>
-                        }
-                        return <View></View>
-                    </>
-                )
-            })}
-
+          <TableInfoRender title='Client Information' styles={styles}  item={values["client_info"]} ></TableInfoRender>
         </View>
 
         <Footer pageNumber={1}></Footer>
     </Page>
-    <ReadMorePage></ReadMorePage>
+    <ReadMorePage values={values}></ReadMorePage>
+    <Patient_benchmark logo={values["logo"]} styles={styles} data={values["patient_benchmark"]}></Patient_benchmark>
     <Page style={styles.body} >
-        <Header></Header>
+        <Header logo={values["logo"]}></Header>
         <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-            {Object.keys(values).map((el,index) =>{
-                return (
-                    <>
-                        {
-                            el == 'patient_benchmark' &&
-                            <TableBenchMarkRender key={index} item={el} ></TableBenchMarkRender>
-                        }
-                        return <View></View>
-                    </>
-                )
-            })}
-
+          <TableInfoRender title='Client Goals' styles={styles}  item={values["client_goal"]} ></TableInfoRender>
         </View>
 
-        <Footer pageNumber={3}></Footer>
-    </Page>    
+        <Footer pageNumber={6}></Footer>
+    </Page>  
   </Document>
 );
-
-const TableInfoRender= ({item}:{item:any}) => {
-    return (
-        <>
-          <Text style={styles.title} >Client Information:</Text>
-          <View style={styles.table}>
-            {/* Table Header */}
-            <View style={styles.tableRow}>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>key</Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>value</Text>
-              </View>
-            </View>
-
-            {/* Table Rows */}
-            {Object.keys(values[item]).map((el:any,index) => {
-                return (
-                  <>
-                  {values[item][el]["0"]!=null &&
-                    <View style={styles.tableRow} key={index}>
-                      <View style={styles.tableCol}>
-                        <Text style={styles.tableCell}>{el}</Text>
-                      </View>
-                      <View style={styles.tableCol}>
-                        <Text style={styles.tableCell}>{values[item][el]["0"]}</Text>
-                      </View>
-                    </View>
-                  }
-                  </>
-                )
-            })}
-          </View>        
-        </>
-    )
-}
-
-const TableBenchMarkRender= ({item}:{item:any}) => {
-    return (
-        <>
-          <Text style={styles.title} >Physiological Test Results</Text>
-          <View style={styles.table}>
-            {/* Table Header */}
-            <View style={styles.tableRow}>
-              <View style={styles.tableCol2}>
-                <Text style={styles.tableCell}>Area</Text>
-              </View>
-              <View style={styles.tableCol2}>
-                <Text style={styles.tableCell}>Test L1</Text>
-              </View>
-              <View style={styles.tableCol2}>
-                <Text style={styles.tableCell}>Test L2</Text>
-              </View>    
-              <View style={styles.tableCol2}>
-                <Text style={styles.tableCell}>Result</Text>
-              </View>    
-              <View style={styles.tableCol2}>
-                <Text style={styles.tableCell}>Benchmark Performance</Text>
-              </View>                                    
-            </View>
-
-            {/* Table Rows */}
-            {Object.keys(values[item]).map((el:any,index) => {
-                return (
-                  <>
-                    <View style={styles.tableRow} key={index}>
-                      <View style={styles.tableCol}>
-                        <Text style={styles.tableCell}>{values[item][el]["Benchmark areas"]}</Text>
-                      </View>
-                      <View style={styles.tableCol}>
-                        <Text style={styles.tableCell}>{values[item][el]["Test L1"]}</Text>
-                      </View>
-                      <View style={styles.tableCol}>
-                        <Text style={styles.tableCell}>{values[item][el]["Test L2"]}</Text>
-                      </View>
-                      <View style={styles.tableCol}>
-                        <Text style={styles.tableCell}>{values[item][el]["Result"]}</Text>
-                      </View>
-                      <View style={styles.tableCol}>
-                        <Text style={{...styles.tableCell,color:values[item][el]["Benchmark performance"]=='Needs Focus'?'#fc9803':'#2e2e2e'}}>{values[item][el]["Benchmark performance"]}</Text>
-                      </View>                                          
-                    </View>
-                  </>
-                )
-            })}
-          </View>        
-        </>
-    )
-}
-
 
 Font.register({
   family: 'Roboto',

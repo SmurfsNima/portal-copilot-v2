@@ -95,7 +95,7 @@ const router = createHashRouter([
     element: <PdfViewerComponent></PdfViewerComponent>,
   },
   {
-    path:"test-Pdf",
+    path:"report/:id",
     element:<PDFRender></PDFRender>
   },
   {
