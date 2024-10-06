@@ -5,6 +5,8 @@ import Patient_benchmark from './components/patient_benchmark';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import TableInfoRender from './components/TableRender';
+import Treatment_plan from './components/Treatment_plan';
+import CoachReminder from './components/Coach-reminder';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -208,6 +210,23 @@ const ClinicReport = ({values}:{values:any}) => (
 
         <Footer pageNumber={6}></Footer>
     </Page>  
+
+    <Page style={styles.body} >
+        <Header logo={values["logo"]}></Header>
+        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+          <Treatment_plan item={values["treatment_plan"]} styles={styles} title='Recommended Action Areas'></Treatment_plan>
+        </View>
+
+        <Footer pageNumber={7}></Footer>
+    </Page>      
+    <Page style={styles.body} >
+        <Header logo={values["logo"]}></Header>
+        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+          <CoachReminder item={values["coach_reminders"]} styles={styles} title='Recommended Action Areas'></CoachReminder>
+        </View>
+
+        <Footer pageNumber={8}></Footer>
+    </Page>     
   </Document>
 );
 
