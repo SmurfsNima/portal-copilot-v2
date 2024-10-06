@@ -190,7 +190,7 @@ const ReadMorePage = ({values}:{values:any}) => {
 }
 
 // Create Document Component
-const ClinicReport = ({values}:{values:any}) => (
+const ClinicReport = ({values,type}:{values:any,type:string}) => (
   <Document>
     <Page style={styles.body} >
         <Header logo={values["logo"]}></Header>
@@ -218,15 +218,18 @@ const ClinicReport = ({values}:{values:any}) => (
         </View>
 
         <Footer pageNumber={7}></Footer>
-    </Page>      
-    <Page style={styles.body} >
-        <Header logo={values["logo"]}></Header>
-        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-          <CoachReminder item={values["coach_reminders"]} styles={styles} title='Recommended Action Areas'></CoachReminder>
-        </View>
+    </Page>    
+    {type == 'client' ?
+      <Page style={styles.body} >
+          <Header logo={values["logo"]}></Header>
+          <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+            <CoachReminder item={values["coach_reminders"]} styles={styles} title='Recommended Action Areas'></CoachReminder>
+          </View>
 
-        <Footer pageNumber={8}></Footer>
-    </Page>     
+          <Footer pageNumber={8}></Footer>
+      </Page>     
+    :
+    undefined}  
   </Document>
 );
 

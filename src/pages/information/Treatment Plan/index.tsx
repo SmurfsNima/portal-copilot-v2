@@ -164,12 +164,12 @@ export const TreatmentPlan = () => {
       }
     }
   }, [id]);
-  const handleViewReport = (reportType : string) => {
+  // const handleViewReport = (reportType : string) => {
     
-    localStorage.setItem("selectedReport", reportType);
-    window.open("#/pdf-viewer", "_blank");
+  //   localStorage.setItem("selectedReport", reportType);
+  //   window.open("#/pdf-viewer", "_blank");
 
-  };
+  // };
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
@@ -232,8 +232,7 @@ export const TreatmentPlan = () => {
                 Treatment Plan 012
               </h2>
               <div className="flex items-start space-x-4">
-                <button
-                                  onClick={() => handleViewReport("client")}
+                <button onClick={() => navigate("/report/"+ApplicationManager.getTreatmentPlanId(id as string)+'/'+"clinic")}
 
                   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
@@ -244,7 +243,7 @@ export const TreatmentPlan = () => {
                   Download Client Report
                 </button>
                 <button
-                  onClick={() => navigate("/report/"+ApplicationManager.getTreatmentPlanId(id as string))}
+                  onClick={() => navigate("/report/"+ApplicationManager.getTreatmentPlanId(id as string)+'/'+"client")}
                   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img
