@@ -1,26 +1,30 @@
-type appInformation  = {
-    pdfBase64String:string
+interface ClientReports {
+    memberId:string
+    treatmentPlanId:string
 }
 class Application {
-    // patients:Array<Pat>
-    information:appInformation = {
-        pdfBase64String:''
+    public clientsReport:Array<ClientReports> = []
+    constructor() {
+        if(localStorage.getItem("treatmentPalnId")){
+            this.clientsReport = JSON.parse(localStorage.getItem("treatmentPalnId") as string)
+        }
+    }
+    public addTreatmentPlanID (memberID:string,treatmentPlanId:string) {
+        this.clientsReport.push({
+            memberId:memberID,
+            treatmentPlanId:treatmentPlanId
+        })
+        this.syncTolocal()
     }
 
-    setReport() {
-
-        this.syncToLocal()
+    public getTreatmentPlanId(memberId:string){
+        if(this.clientsReport.map((el) => el.memberId).includes(memberId)){
+            return this.clientsReport.filter(el =>el.memberId == memberId)[0].treatmentPlanId
+        }
     }
 
-    getReport(){
-        return this.information.pdfBase64String
-    }
-    getReportAsPdf() {
-        
-    }
-
-    syncToLocal() {
-        localStorage.setItem("applicationData",JSON.stringify(this.information))
+    public syncTolocal() {
+        localStorage.setItem("treatmentPalnId",JSON.stringify(this.clientsReport))
     }
 }
 

@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { InfoCard } from "@/components";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "./benchmarkModal";
-import { useParams} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import { AppContext } from "@/store/app";
@@ -106,9 +107,9 @@ export const TreatmentPlan = () => {
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const {reportManager} = useContext(AppContext);
+  const {reportManager,ApplicationManager} = useContext(AppContext);
   // const [ ] = useState('')
-  // const navigate = useNavigate(); // Navigation hook
+  const navigate = useNavigate(); // Navigation hook
   const handleRegenerateClick = () => {
     setIsRegenerated(true);
     const currentDate = new Date();
@@ -197,7 +198,7 @@ export const TreatmentPlan = () => {
 
                   const treatmentPlanId = data.treatment_plans[1];
                   console.log(treatmentPlanId);
-                  
+                  ApplicationManager.addTreatmentPlanID(id as string,treatmentPlanId)
                   fetchReport(treatmentPlanId);
                 } else {
                   setIsGenerated(false); // No data found
@@ -243,7 +244,7 @@ export const TreatmentPlan = () => {
                   Download Client Report
                 </button>
                 <button
-                  onClick={() => handleViewReport("clinic")}
+                  onClick={() => navigate("/report/"+ApplicationManager.getTreatmentPlanId(id as string))}
                   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img

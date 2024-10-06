@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ClientReport.ts
 
 import jsPDF from "jspdf";

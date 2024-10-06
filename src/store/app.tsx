@@ -2,9 +2,11 @@ import { Pationt, User , ClientReport } from "@/model";
 import { PropsWithChildren, createContext, useState , useEffect } from "react";
 import {  biomarker, diagnosis  } from "@/types";
 import { Application } from "@/api";
+import  ApplicationModel  from "@/model/app";
 
 interface AppContextProp {
-  reportManager : ClientReport
+    reportManager : ClientReport
+    ApplicationManager:ApplicationModel
     user:User;
     token:string | null;
     isLoggedId:boolean;
@@ -24,6 +26,7 @@ interface AppContextProp {
 
 export const AppContext = createContext<AppContextProp>({
     user:new User(),
+    ApplicationManager:new ApplicationModel(),
     token:null,
     isLoggedId:false,
     setUser:() => {},
@@ -42,10 +45,11 @@ export const AppContext = createContext<AppContextProp>({
 
 const AppContextProvider =({children}:PropsWithChildren) => {
     const [token,setToken] = useState<string | null>(localStorage.getItem("token") || null)
+    const [applicationModel,] = useState(new ApplicationModel())
     const localuser = localStorage.getItem('authUser')
     const resolveUser:User = Object.assign(new User(),JSON.parse(localuser as string))
     const [user,setUser] = useState<User>(resolveUser ? resolveUser : new User());
-  const [clientReport] = useState<ClientReport>(new ClientReport())
+    const [clientReport] = useState<ClientReport>(new ClientReport())
     const [patients, setPatients] = useState<Pationt[]>(() => {
         const storedPatients = localStorage.getItem("patients");
         return storedPatients ? JSON.parse(storedPatients) : [];
@@ -91,6 +95,7 @@ const AppContextProvider =({children}:PropsWithChildren) => {
         token:token,
         user:user,
         isLoggedId:!!token,
+        ApplicationManager:applicationModel,
         setUser:(user:User) => {
             localStorage.setItem('authUser',JSON.stringify(user))
             setUser(user)
