@@ -2,7 +2,7 @@ import { createHashRouter } from "react-router-dom";
 import Layout from "@/Themes/index";
 import ProtectedRoute from "./Protected";
 import { AiKnowlage, Information, Login,  PatientList, TimeLine, Setting } from "@/pages";
-import BioMarker from "@/pages/information/Analysis";
+import BioMarker from "@/pages/information/Analysis/index2";
 import { Diagnosis } from "@/pages/information/diagnosis";
 import { Intervention } from "@/pages/information/intervention";
 import { AiStudio } from "@/pages/aiStudio";
