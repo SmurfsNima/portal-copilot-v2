@@ -2,7 +2,6 @@
 
 import { Application } from "@/api";
 import { useEffect, useState, useRef } from "react";
-import { Button } from "symphony-ui";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
 
 interface ReportTableProps {
@@ -13,7 +12,6 @@ interface ReportTableProps {
 const ReportTable: React.FC<ReportTableProps> = ({
   data,
   memberId,
-  onUpdate,
 }) => {
   const handleDownload = (value: any) => {
     const link = document.createElement("a");
@@ -71,9 +69,9 @@ return(
             <div className="text-[#FFFFFFDE] py-5 w-[300px] flex items-center justify-end pr-10 text-[14px]">
               Action
             </div>
-            <Button onClick={onUpdate} theme="Aurora">
+            {/* <Button onClick={onUpdate} theme="Aurora">
               Refresh
-            </Button>
+            </Button> */}
           </div>
           <div className=" border-black-third  border"></div>
           {data.length > 0 && (

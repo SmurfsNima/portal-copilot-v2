@@ -82,6 +82,7 @@ export const AiStudio = () => {
       setActivePatent(patients.filter((el) => el.member_id == activeMemberID)[0])
     }
   },[activeMemberID])
+  const [reloadData,setReloadData] = useState(false)
   const [reportsData,SetReportsData] = useState([])
   useEffect(() => {
     Application.showReportList({
@@ -170,8 +171,29 @@ export const AiStudio = () => {
       :
       <>
         <div className="w-full flex flex-col gap-3">
-          <div className="w-full flex items-center justify-center">
+          <div className="w-full flex items-center justify-between">
+            <div className="w-[171px]">
+
+            </div>
             <ActivityMenu activeMenu={activeMenu} menus={menus} onChangeMenuAction={(menu) => setActiveMenu(menu)} />
+            <div className="flex justify-end items-center gap-2">
+              <Button onClick={() => {
+            
+              }} theme="Aurora-pro">
+                <img src="./Themes/Aurora/icons/import.svg" alt="" />
+                Manual Data Entry</Button>
+              <Button onClick={() => {
+                setReloadData(true)
+                Application.showReportList({
+                  member_id : activeMemberID
+                }).then((res) => {
+                  SetReportsData(res.data) 
+                  setReloadData(false)                   
+                })
+              }} theme="Aurora-pro">
+                <img className={reloadData?"animate-spin":''} src="./Themes/Aurora/icons/reload.svg" alt="" />
+              </Button>
+            </div>
           </div>
           {activeMenu === "Overview" ? (
             <div className="overflow-y-auto max-h-[531px] ">
