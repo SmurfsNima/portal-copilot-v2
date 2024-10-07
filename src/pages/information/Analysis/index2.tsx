@@ -56,12 +56,14 @@ const Analysis = () => {
         return filteredResults;        
     }       
     useEffect(() => {
-        if((avtiveMenu != 'All' && search != '' )) {
+        if((avtiveMenu != 'All' )) {
             setFilteredData([updateCategory()])
-        }else if(search !=''){
-            setFilteredData([updateSearch()])
-        }else {
-            setFilteredData(analyseData)
+        } else{
+            if(search!= ''){
+                setFilteredData([updateSearch()])
+            }else {
+                setFilteredData(analyseData)
+            }
         }
     },[avtiveMenu,analyseData,search])
 
