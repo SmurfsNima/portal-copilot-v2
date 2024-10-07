@@ -13,7 +13,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const theme = useSelector((state: any) => state.theme.value.name);
-  const [wearableDevice, setWearableDevice] = useState("");
+  const [wearableDevice,] = useState("");
   const modalRef = useRef<HTMLDivElement>(null);
   const [step,setStep] = useState('AddCient')
   useEffect(()=>console.log(step) , [step]
@@ -182,7 +182,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
                 required
               />
             </div>
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label
                 htmlFor="wearableDevice"
                 className="block text-[12px] mb-2"
@@ -203,7 +203,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
                 <option value="device2">Device 2</option>
                 <option value="device3">Device 3</option>
               </select>
-            </div>
+            </div> */}
             <div className='flex justify-center'>
             <Button
               type="submit"

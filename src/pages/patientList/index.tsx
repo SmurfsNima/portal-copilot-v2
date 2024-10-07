@@ -13,12 +13,12 @@ import { useState, useContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "@/store/app";
 // import Diagnosis from "@/model/diagnosis";
-import ReportNumberBox from "@/components/ReportsNumberBox";
+// import ReportNumberBox from "@/components/ReportsNumberBox";
 
 const PatientList = () => {
   // const theme = useSelector((state: any) => state.theme.value.name);
   const { patients ,savePatientList } = useContext(AppContext);
-  const [reports,setReports] = useState<Array<any>>([]);
+  const [,setReports] = useState<Array<any>>([]);
   const [reloadData,setReloadData] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
@@ -98,7 +98,7 @@ const PatientList = () => {
           <div className="w-full flex items-center justify-between text-[#ffffffc3] mb-[10px]">
 
           <h1 className={"text-sm"}>
-            General Report
+            {/* General Report */}
           </h1>
           <h1 onClick={() => {
             setReloadData(true)
@@ -106,7 +106,7 @@ const PatientList = () => {
             <img className={reloadData?"animate-spin":''} src="./Themes/Aurora/icons/reload.svg" alt="" />
           </span>Reload Data</h1>
           </div>
-          <ReportNumberBox reports={reports}></ReportNumberBox>
+          {/* <ReportNumberBox reports={reports}></ReportNumberBox> */}
         </div>
         <Table classData={patients}></Table>
         <Outlet />

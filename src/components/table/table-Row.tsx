@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 import Badge from "../badge";
 import { FC } from "react";
-import { PiChatBold } from "react-icons/pi";
+// import { PiChatBold } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import { biomarker } from "@/types";
 
@@ -32,7 +32,6 @@ export const TableRow: FC<TableRowProps> = ({
   sex,
   enroll_date,
   status,
-  last_followup,
 }) => {
   const theme = useSelector((state: any) => state.theme.value.name);
   return (
@@ -44,7 +43,7 @@ export const TableRow: FC<TableRowProps> = ({
             src={picture}
             alt="Jese image"
           />
-          <div className="flex items-center">
+          <div className="flex items-center justify-start text-left">
             {name}
             <Link to={`/information`}>
               <FiExternalLink></FiExternalLink>
@@ -54,10 +53,10 @@ export const TableRow: FC<TableRowProps> = ({
         <td className={`${theme}-Table-td`}>{member_id}</td>
         <td className={`${theme}-Table-td`}>{age}</td>
         <td className={`${theme}-Table-td`}>{sex}</td>
-
+        <td className={`${theme}-Table-td`}>{''}</td>
         <td className={`${theme}-Table-td`}>{enroll_date}</td>
 
-        <td className={`${theme}-Table-td`}>{last_followup}</td>
+        {/* <td className={`${theme}-Table-td`}>{last_followup}</td> */}
         <td className={`${theme}-Table-td`}>
           <Badge theme={theme} status={status}>
             {status}
@@ -68,9 +67,9 @@ export const TableRow: FC<TableRowProps> = ({
                     return(<td className={`${theme}-Table-td`}>{el.}</td>)
                 })
               } */}
-        <td className={`${theme}-Table-td`}>
+        {/* <td className={`${theme}-Table-td`}>
           <PiChatBold className={`${theme}-icons-PiChatBold`} />
-        </td>
+        </td> */}
       </tr>
     </>
   );

@@ -3,11 +3,13 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Link } from "react-router-dom";
 import { FiExternalLink } from "react-icons/fi";
 import { Badge } from "@/components";
-import { PiChatBold } from "react-icons/pi";
-import { useSelector } from "react-redux";
+// import { PiChatBold } from "react-icons/pi";
+// import { useSelector } from "react-redux";
 import { Pationt } from "@/model";
+import { useSelector } from "react-redux";
 
-import CircularProgressBar from "../charts/CircularProgressBar";
+// import CircularProgressBar from "../charts/CircularProgressBar";
+// eslint-disable-next-line react-refresh/only-export-components
 const Theme = () => {
   return useSelector((state: any) => state.theme.value.name);
 };
@@ -54,25 +56,25 @@ export const columns: ColumnDef<Pationt>[] = [
     header: "Sex",
     enableSorting: false,
   },
-  {
-    accessorKey: "information.weight",
-    header: "Weight",
-    cell: ({ row }) => {
-      return (
-        <div className="flex items-center justify-center">
-          {row.original.information.weight}
-        </div>
-      );
-    },
-  },
+  // {
+  //   accessorKey: "information.weight",
+  //   header: "Weight",
+  //   cell: ({ row }) => {
+  //     return (
+  //       <div className="flex items-center justify-center">
+  //         {row.original.information.weight}
+  //       </div>
+  //     );
+  //   },
+  // },
   {
     accessorKey: "information.enroll_date",
     header: "Enroll Date",
   },
-  {
-    accessorKey: "information.last_followup",
-    header: "Last Follow-Up",
-  },
+  // {
+  //   accessorKey: "information.last_followup",
+  //   header: "Last Follow-Up",
+  // },
   {
     accessorKey: "information.status",
     header: "Status",
@@ -88,28 +90,28 @@ export const columns: ColumnDef<Pationt>[] = [
       );
     },
   },
-  {
-    accessorKey: "information.score",
-    header: "Score",
-    cell: ({ row }) => {
-      return (
-       <div>
-        {row.original.information.score} <span className="text-secondary-text">/10</span>
-       </div>
-      );
-    },
-  },
-  {
-    accessorKey: "information.progress",
-    header: "Progress",
-    cell: ({ row }) => {
+  // {
+  //   accessorKey: "information.score",
+  //   header: "Score",
+  //   cell: ({ row }) => {
+  //     return (
+  //      <div>
+  //       {row.original.information.score} <span className="text-secondary-text">/10</span>
+  //      </div>
+  //     );
+  //   },
+  // },
+//   {
+//     accessorKey: "information.progress",
+//     header: "Progress",
+//     cell: ({ row }) => {
       
-      return (
-       <div>
-<CircularProgressBar percentage={row.original.information.progress}></CircularProgressBar>       </div>
-      );
-    },
-  },
+//       return (
+//        <div>
+// <CircularProgressBar percentage={row.original.information.progress}></CircularProgressBar>       </div>
+//       );
+//     },
+//   },
   // {
   //   accessorKey: "information.heart_rate",
   //   header: "Heart Rate",
@@ -161,13 +163,13 @@ export const columns: ColumnDef<Pationt>[] = [
   //   },
   // },
 
-  {
-    accessorKey: "information.action",
-    header: "Action",
-    enableSorting: false,
+  // {
+  //   accessorKey: "information.action",
+  //   header: "Action",
+  //   enableSorting: false,
 
-    cell: () => {
-      return <PiChatBold className={`${Theme()}-icons-PiChatBold w-full`} />;
-    },
-  },
+  //   cell: () => {
+  //     return <PiChatBold className={`${Theme()}-icons-PiChatBold w-full`} />;
+  //   },
+  // },
 ];

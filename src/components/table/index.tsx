@@ -149,7 +149,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
             onSubmit={() =>{}}      
           ></ClientPreview>
         </div>
-        <div className={`${theme}-Table-container h-[50vh] ${theme}-scrollBar`}>
+        <div className={`${theme}-Table-container h-[68vh] ${theme}-scrollBar`}>
           {table.getRowModel().rows.length > 0 ? (
             <table className={`${theme}-table ${theme}-scrollBar w-full`}>
               <thead className="text-xs text-gray-700">
