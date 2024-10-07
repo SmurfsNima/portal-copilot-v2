@@ -5,9 +5,11 @@ import border from "../../assets/images/profile-img-border.svg";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Application } from "@/api";
-import {  Button } from "symphony-ui";
+import {  Button, TextField } from "symphony-ui";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useConstructor } from "@/help";
+import { useFormik } from 'formik';
+
 interface FileData {
   name: string;
   base64: any;
@@ -96,6 +98,20 @@ const HelthProfile = () => {
     })
     const [showAddNote,setShowAddNote] = useState(false)
     const [commentText,setCommentText]= useState("")
+    const [isEditMode,setIsEditMode] = useState(false)
+    const formik = useFormik({
+        initialValues:{
+            firstName:'',
+            lastName:'',
+            workOuts:'',
+            Activity:'',
+            expert:'',
+            location:''
+        },
+        onSubmit:() => {
+
+        }
+    })
     // const accordians = [
     //     {
     //         name:'Activity'
@@ -115,7 +131,11 @@ const HelthProfile = () => {
         <div className="px-8 mb-2">
             <div className="w-[50px]">
               <div onClick={() => {
-                navigate(-1)
+                if(isEditMode){
+                    setIsEditMode(false)
+                }else {
+                    navigate(-1)
+                }
                 // setisCreateReportMode(false)
                 // setShowGenerateButton(true)
               }} className={`Aurora-tab-icon-container cursor-pointer h-[35px]`}>
@@ -123,6 +143,51 @@ const HelthProfile = () => {
               </div>              
             </div>            
         </div>
+        {isEditMode ?
+        <div className="w-full inset-0 z-10  flex items-center justify-center  px-8 bg-black-background bg-opacity-50">
+            <div className="bg-black-secondary min-h-[276px] overflow-hidden relative text-primary-text p-6 rounded-lg w-full shadow-lg ">
+                <div className="w-full flex justify-between">
+                    <div> Edit Health Profile</div>
+                    <Button onClick={() => {
+                        setIsEditMode(false)
+                    }} theme="Aurora">
+                        <img src="./Themes/Aurora/icons/tick-square.svg" alt="" />
+                        Apply Changes
+                    </Button>
+                </div>
+
+                <div className="w-full flex justify-between mt-4">
+                    <div>
+                        <div className="flex justify-center relative items-center pt-4">
+                            <img src={border} className="w-[71px] h-[71px]" alt="" />
+                            <img className="absolute w-[60px] h-[60px] rounded-full" src={data?.personal_info.picture!= '' ?data?.personal_info.picture:`https://ui-avatars.com/api/?name=${data?.personal_info.name}`} alt="" />
+                            <div className="absolute cursor-pointer right-[-12px] bottom-[-8px] w-[42px] h-[42px] ">
+                                <div className="w-full h-full bg-[#121212] opacity-50 rounded-full"></div>
+                                <div className="absolute w-full h-full flex justify-center items-center top-0 left-0">
+                                    <img  src="./Themes/Aurora/icons/gallery-edit.svg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="text-[10px] text-[#FFFFFF99] text-left mt-4">{data?.personal_info.email}</div>
+                    </div>
+                    <div className="grid gap-4 grid-cols-3">
+                        <TextField {...formik.getFieldProps("firstName")} label="First Name:" theme="Aurora" placeholder="Your client's name" name="firstName" type="text"  inValid={false}></TextField>
+
+                        <TextField {...formik.getFieldProps("workOuts")} label="Total workouts:" theme="Aurora" placeholder="Workouts hours..." name="workOuts" type="text"  inValid={false}></TextField>
+
+                        <TextField {...formik.getFieldProps("expert")} label="Expert:" theme="Aurora" placeholder="Write your expert name..." name="expert" type="text"  inValid={false}></TextField>
+                       
+                        <TextField {...formik.getFieldProps("lastName")} label="Last Name:" theme="Aurora" placeholder="Your client's last name" name="lastName" type="text"  inValid={false}></TextField>
+
+                        <TextField {...formik.getFieldProps("Activity")} label="Total Cardio Activities:" theme="Aurora" placeholder="Total cardio activities hours..." name="Activity" type="text"  inValid={false}></TextField>
+
+                        <TextField {...formik.getFieldProps("location")} label="Location:" theme="Aurora" placeholder="Write your location..." name="location" type="text"  inValid={false}></TextField>                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        :
         <div className="w-full inset-0 z-10  flex items-center justify-center px-8 bg-black-background bg-opacity-50">
             <div className="bg-black-secondary min-h-[476px] overflow-hidden relative text-primary-text p-6 rounded-lg w-full shadow-lg ">
 
@@ -134,7 +199,12 @@ const HelthProfile = () => {
                         menu == 'Summary' ?
                         <>
                             <div className="w-full flex justify-between">
-                                <div className="w-[300px] h-[388px] bg-[#1E1E1E] rounded-[16px]">
+                                <div className="w-[300px] h-[388px] relative bg-[#1E1E1E] rounded-[16px]">
+                                    <div onClick={() => {
+                                        setIsEditMode(true)
+                                    }} className="absolute right-3 cursor-pointer top-3">
+                                        <img src="./Themes/Aurora/icons/edit.svg" alt="" />
+                                    </div>
                                     <div className="flex justify-center items-center pt-4">
                                         <img src={border} className="w-[71px] h-[71px]" alt="" />
                                         <img className="absolute w-[60px] h-[60px] rounded-full" src={data?.personal_info.picture!= '' ?data?.personal_info.picture:`https://ui-avatars.com/api/?name=${data?.personal_info.name}`} alt="" />
@@ -391,6 +461,7 @@ const HelthProfile = () => {
                 </div>
             </div>
         </div>            
+        }
         </>
     )
 }
