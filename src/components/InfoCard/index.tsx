@@ -9,6 +9,8 @@ import HalfCycle from "./HalfCycle";
 import DualProgressCircle from "./dualProgressCircle";
 import ProgressCircle from "./progressCircle";
 import { Application } from "@/api";
+import { FiExternalLink } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 interface Activity {
   category: string;
@@ -19,7 +21,7 @@ const InfoCard = () => {
   const [patient, setPatient] = useState<Pationt>();
   const { getPatientById } = useContext(AppContext);
   console.log(patient);
-
+  const navigate= useNavigate()
   const { id } = useParams<{ id: string }>();
   useEffect(() => {
     setPatient(getPatientById(Number(id)));
@@ -239,9 +241,17 @@ const InfoCard = () => {
               ))}
             </div>
           </div>
-          <div className="text-sm text-primary-text flex items-center justify-center flex-col">
+          <div className="text-sm text-primary-text flex items-center mr-5 justify-center flex-col">
             <h3 className="mb-[10px]">Plan Progress</h3>
             <HalfCycle percentage={Plan_Progress[0].Percentage} />
+          </div>
+          <div className="absolute top-2 right-3">
+            <div onClick={() => {
+              navigate("/helthProfile/"+id+`?name=${patient?.information.name}&email=${''}`)
+            }} className="text-[#03DAC5] cursor-pointer text-[12px] flex items-center gap-2">
+              <FiExternalLink></FiExternalLink>
+              health profile 
+            </div>
           </div>
         </div>
       )}

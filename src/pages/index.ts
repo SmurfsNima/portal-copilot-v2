@@ -4,6 +4,7 @@ import PatientList from "./patientList";
 import OverView from "./information/overView";
 import TimeLine from "./information/timeLine";
 import AiKnowlage from "./AiKnowlage";
+import HelthProfile from "./HelthProfile";
 import { Setting } from "./setting";
 export {
     AiKnowlage,
@@ -12,5 +13,6 @@ export {
     PatientList,
     OverView,
     TimeLine,
-    Setting
+    Setting,
+    HelthProfile
 }

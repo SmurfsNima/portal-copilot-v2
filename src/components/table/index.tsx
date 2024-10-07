@@ -23,6 +23,7 @@ import { Pationt } from "@/model/index.ts";
 import AddClientModal from "@/pages/patientList/addClientModal.tsx";
 import Pagination from "../pagination/index.tsx";
 import ClientPreview from "@/pages/patientList/ClientPreview.tsx";
+import { useNavigate } from "react-router-dom";
 // import Application from "@/api/app.ts";
 interface TableProps {
   classData: Array<Pationt>;
@@ -87,11 +88,13 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   };
   const [email,setEmail]= useState('')
   const [name,setName] = useState("")
+  const navigate = useNavigate()
   const handleAddClient = (clientData: any) => {
     console.log("Client Added:", clientData);
     setEmail(clientData.email)
     setName(clientData.fullName)
-    setisProfileClientOpen(true)
+    navigate("/helthProfile/"+clientData.memberId+`?name=${clientData.fullName}&email=${clientData.email}`)
+    // setisProfileClientOpen(true)
   };
 
   const handlePageChange = (page: number) => {

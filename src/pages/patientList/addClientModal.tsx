@@ -41,6 +41,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
       setStep("AddCient")
     }
   },[isOpen])
+  const [memberId,setMemberId] = useState("")
   // if (!isOpen) return setStep("AddCient")
   if (!isOpen) return null;
   // const clientData = { fullName, email, wearableDevice };
@@ -66,6 +67,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
           wearableDevice: wearableDevice,
           memberId:res.data.member_id
         })
+        setMemberId(res.data.member_id)
       }
     })
     // await sendInvitationEmail(clientData);
@@ -235,7 +237,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
 
           <div className='w-full flex gap-4 mt-4 justify-center items-center'>
             <Button onClick={() => {
-                const clientData = { fullName, email, wearableDevice };
+                const clientData = { fullName, email, wearableDevice ,memberId};
                 setEmail("")
                 setFullName("")
                 onSubmit(clientData);

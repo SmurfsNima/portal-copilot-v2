@@ -78,7 +78,7 @@ static getAppoinments(patient_id: number){
   const response =  this.get(`/patients/`+patient_id+`/overview/appointments`)
   return response
 }
-static getSummary(member_id: number){
+static getSummary(member_id: number|string){
   const response =  this.get(`/summary/${member_id}`)
   return response
 }
@@ -197,6 +197,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/ai_studio/get_report_string",data)
     return response
   }  
+
+  static addNoteHelth(data:any){
+    const response = this.post("/clinic-user/add-notes",data)
+    return response
+  } 
 }
 
 
