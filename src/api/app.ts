@@ -82,6 +82,11 @@ static getSummary(member_id: number|string){
   const response =  this.get(`/summary/${member_id}`)
   return response
 }
+
+static updateSummary(data:any){
+  const response =  this.post(`/summary/update` , data)
+  return response
+}
 static generateTreatmentPlan(data:any){
   const response =  this.post(`/patients/generate_treatment_plan` , data)
   return response

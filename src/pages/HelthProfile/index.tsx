@@ -90,10 +90,18 @@ const HelthProfile = () => {
     const [menu,setMenu] = useState('Summary')
     const navigate= useNavigate()
     const [data,setData] = useState<any>(null)
+    const [image,setImage] = useState<any>("")
     useConstructor(() => {
         Application.getSummary(id as string).then(res => {
             console.log(res)
             setData(res.data)
+            formik.setFieldValue("firstName",res.data.personal_info.name)
+            // formik.setFieldValue("lastName",res.data.personal_info.name)
+            setImage(res.data.personal_info.picture)
+            formik.setFieldValue("workOuts",res.data.personal_info["total workouts"])
+            formik.setFieldValue("Activity",res.data.personal_info["total Cardio Activities"])
+            formik.setFieldValue("expert",res.data.personal_info.expert)
+            formik.setFieldValue("location",res.data.personal_info.Location)
         })
     })
     const [showAddNote,setShowAddNote] = useState(false)
@@ -149,6 +157,27 @@ const HelthProfile = () => {
                 <div className="w-full flex justify-between">
                     <div> Edit Health Profile</div>
                     <Button onClick={() => {
+                        Application.updateSummary({
+                            member_id:id,
+                            name:formik.values.firstName,
+                            picture:image,
+                            location:formik.values.location,
+                            "total workouts":formik.values.workOuts,
+                            "total Cardio Activities":formik.values.Activity
+                        })
+                        setData((pre:any) => {
+                            const old = pre
+                            old.personal_info ={
+                                "name": formik.values.firstName,
+                                "picture": image,
+                                "expert": formik.values.expert,
+                                "Location": formik.values.location,
+                                "email": data.personal_info.email,
+                                "total workouts": formik.values.workOuts,
+                                "total Cardio Activities": formik.values.Activity                             
+                            }
+                            return old
+                        })
                         setIsEditMode(false)
                     }} theme="Aurora">
                         <img src="./Themes/Aurora/icons/tick-square.svg" alt="" />
@@ -160,12 +189,22 @@ const HelthProfile = () => {
                     <div>
                         <div className="flex justify-center relative items-center pt-4">
                             <img src={border} className="w-[71px] h-[71px]" alt="" />
-                            <img className="absolute w-[60px] h-[60px] rounded-full" src={data?.personal_info.picture!= '' ?data?.personal_info.picture:`https://ui-avatars.com/api/?name=${data?.personal_info.name}`} alt="" />
-                            <div className="absolute cursor-pointer right-[-12px] bottom-[-8px] w-[42px] h-[42px] ">
+                            <img className="absolute w-[60px] h-[60px] rounded-full" src={image!= '' ?image:`https://ui-avatars.com/api/?name=${data?.personal_info.name}`} alt="" />
+                            <div onClick={() => {
+                                document.getElementById("fileUploader")?.click()
+                            }} className="absolute cursor-pointer right-[-12px] bottom-[-8px] w-[42px] h-[42px] ">
                                 <div className="w-full h-full bg-[#121212] opacity-50 rounded-full"></div>
                                 <div className="absolute w-full h-full flex justify-center items-center top-0 left-0">
                                     <img  src="./Themes/Aurora/icons/gallery-edit.svg" alt="" />
                                 </div>
+                                <input onChange={(event:any) => {
+                                    const fileReader = new FileReader();
+                                    const file = event.target.files[0]
+                                    fileReader.readAsDataURL(file)
+                                    fileReader.onload = () => {
+                                        setImage(fileReader.result)
+                                    }                                    
+                                }} type="file" accept=".png" className="invisible" id="fileUploader" />
                             </div>
                         </div>
                         <div className="text-[10px] text-[#FFFFFF99] text-left mt-4">{data?.personal_info.email}</div>
