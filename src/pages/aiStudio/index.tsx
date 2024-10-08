@@ -50,32 +50,59 @@ export const AiStudio = () => {
     { name: "Copilot" },
     { name: "Weekly report" },
   ];
-
-  const filteredClients = patients.filter((client) => {
-    const matchesSearch = client.Name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesStatus = activeStatus === "All" || client.Status === activeStatus;
-    return matchesSearch && matchesStatus;
-  });
+    const [filteredClients,setFilteredClients] = useState(patients)
+  // const filteredClients = patients.filter((client) => {
+  //   const matchesSearch = client.Name.toLowerCase().includes(searchQuery.toLowerCase());
+  //   const matchesStatus = activeStatus === "All" || client.Status === activeStatus;
+  //   return matchesSearch && matchesStatus 
+  // });
   const [isloadingGenerate,setIsLoadingGenerate] = useState(false)
   const [generateReportGoolsData,setGenerateReportGoolsData] = useState({"Type of progress":[]})
+  useEffect(() => {
+    if(searchQuery!= '' && activeStatus != 'All'){
+      setFilteredClients(() =>{
+        return patients.filter(el =>{ return el.Name.toLowerCase() == searchQuery && el.Status ==activeStatus})
+      })
+    }else {
+      if(activeStatus != 'All'){
+        setFilteredClients(() =>{
+          return patients.filter(el =>{ return el.Status ==activeStatus})
+        })        
+      }
+      if(searchQuery != ''){
+        setFilteredClients(() =>{
+          return patients.filter(el =>el.Name.toLowerCase() == searchQuery)
+        })    
+      }
+      if(searchQuery == '' && activeStatus == 'All'){
+        setFilteredClients(patients)
+      }
+    }
+  },[patients,searchQuery,activeStatus])
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await Application.aiStudio_patients();
         setPatients(response.data);
-        // setActiveMemberID(response.data[0].member_id)
-        const res = await Application.aiStudio_overview({
-          member_id: activeMemberID, 
-        });
-        setOverviewData(res.data); 
-        console.log(res);
+        setActiveMemberID(response.data[0].member_id)
+
         
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, [activeMemberID]); 
+  }, []); 
+  useEffect(() => {
+    if(activeMemberID!= null){
+      Application.aiStudio_overview({
+        member_id: activeMemberID, 
+      }).then(res => {
+        setOverviewData(res.data); 
+        // console.log(res);
+      });
+    }
+  },[activeMemberID])
   const [activePatinet,setActivePatent] = useState(patients[0])
   useEffect(() => {
     if(activeMemberID!=null){
@@ -335,12 +362,10 @@ export const AiStudio = () => {
               </div>
               <div className=" px-5">
                 <div className="border-black-third mb-4 border"></div>
-                  <ReportTable onUpdate={async()=>{
-                    const res = await Application.showReportList({
-                      member_id : activeMemberID
-                    })
-                    SetReportsData(res.data)
-                  }} memberId={activeMemberID as number} data={reportsData}></ReportTable>
+                  <ReportTable onResolved={(resolveData) => {
+                    setGenerateReportGoolsData(resolveData)
+                    setisCreateReportMode(true)
+                  }} onUpdate={()=>{}} memberId={activeMemberID as number} data={reportsData}></ReportTable>
               </div>
             </div>
           )}

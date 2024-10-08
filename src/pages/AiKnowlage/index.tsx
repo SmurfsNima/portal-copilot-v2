@@ -202,6 +202,27 @@ const AiKnowledge = () => {
       console.error("Error converting file to Base64:", error);
     };
   };
+  const [sigmaSetting,setSigmaSetting] =useState<any>({})
+  useEffect(() => {
+    setTimeout(() => {
+      setSigmaSetting(
+        {
+          allowInvalidContainer: false,
+          renderLabels: true,
+          labelColor: { color: "#fff" },
+          defaultDrawNodeHover: (context:any, data:any) => {
+            const size = data.size || 10;
+            context.fillStyle = "#fff"; // Dark hover color
+
+            context.beginPath();
+            context.arc(data.x, data.y, size + 4, 0, Math.PI * 4, true);
+            context.closePath();
+            context.fill();
+          },
+        }
+      )
+    }, 600);
+  },[])
   return (
     <div className="relative text-primary-text flex justify-center w-full">
       {/* <div className="   w-64 text-primary-text text-xs text-nowrap flex flex-col px-5 pt-[55px]">
@@ -219,20 +240,7 @@ const AiKnowledge = () => {
       </div> */}
 
       <SigmaContainer
-        settings={{
-          allowInvalidContainer: true,
-          renderLabels: true,
-          labelColor: { color: "#fff" },
-          defaultDrawNodeHover: (context, data) => {
-            const size = data.size || 10;
-            context.fillStyle = "#fff"; // Dark hover color
-
-            context.beginPath();
-            context.arc(data.x, data.y, size + 4, 0, Math.PI * 4, true);
-            context.closePath();
-            context.fill();
-          },
-        }}
+        settings={sigmaSetting}
         id="sigma-container"
         style={{ height: window.innerHeight, width: window.innerWidth, backgroundColor: "#121212" }}
       >

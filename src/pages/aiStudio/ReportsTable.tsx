@@ -7,11 +7,13 @@ import useModalAutoClose from "@/hooks/UseModalAutoClose";
 interface ReportTableProps {
   data: Array<any>;
   memberId: number;
-  onUpdate: () => Promise<void>;
+  onUpdate: () => void;
+  onResolved: (data:any) => void;
 }
 const ReportTable: React.FC<ReportTableProps> = ({
   data,
   memberId,
+  onResolved
 }) => {
   const handleDownload = (value: any) => {
     const link = document.createElement("a");
@@ -112,6 +114,14 @@ return(
                         )}</div>
                        
                         <img
+                          onClick={() => {
+                            Application.AiStudioShowSavedReport({
+                              member_id:memberId,
+                              report_id:el.report_id
+                            }).then(res => {
+                              onResolved(res.data)
+                            })
+                          }}
                           className="cursor-pointer"
                           src={"./Themes/Aurora/icons/edit4.svg"}
                         />
