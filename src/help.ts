@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 
 const useConstructor = (callBack = () => {}) => {
@@ -9,4 +10,13 @@ const useConstructor = (callBack = () => {}) => {
   setHasBeenCalled(true);
 };
 
-export {useConstructor}
+const blobToBase64 = (blob:any) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+};
+
+export {useConstructor,blobToBase64}

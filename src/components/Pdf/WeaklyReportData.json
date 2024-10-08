@@ -1,0 +1,259 @@
+{
+    "client_info": {
+        "Phone number": {
+            "0": null
+        },
+        "Biological Gender": {
+            "0": "Male"
+        },
+        "Height": {
+            "0": null
+        },
+        "Date of birth": {
+            "0": "16/01/1983"
+        },
+        "Location": {
+            "0": null
+        },
+        "Timezone": {
+            "0": null
+        },
+        "Medical conditions": {
+            "0": "Gout ,diabetes,asthma"
+        },
+        "Prescribed medication": {
+            "0": "Lansoprazole for Reflux with history of Gout"
+        },
+        "Injury history": {
+            "0": "Right shoulder mobility issues"
+        },
+        "Smoker": {
+            "0": null
+        },
+        "Diet preference (vegan, vegtarian, etc)": {
+            "0": null
+        },
+        "Activity level (based on PAL definition)": {
+            "0": null
+        },
+        "Weight": {
+            "0": 120
+        },
+        "Body fat %": {
+            "0": null
+        },
+        "Hip to waist ratio": {
+            "0": null
+        },
+        "In the last year how often have you participated in physical activity?": {
+            "0": "1-2 times per month"
+        },
+        "What physical activity has worked for you in the past and what level did you get to?": {
+            "0": null
+        },
+        " What has not worked and why not?": {
+            "0": null
+        },
+        "What types of physical activity do you enjoy?": {
+            "0": null
+        },
+        "What do you not enjoy and why not?": {
+            "0": null
+        },
+        "Do you have any negative feelings toward, or have you had any bad experience with exercise? (If YES please give details)": {
+            "0": null
+        },
+        "If you have been unable to exercise regularly, what are the reasons?": {
+            "0": null
+        },
+        "What is your present occupation?": {
+            "0": null
+        },
+        "Does your occupation involve much physical activity (i.e. lifting, walking)?": {
+            "0": null
+        },
+        "What activities do you participate in during your leisure time?": {
+            "0": null
+        },
+        "How much time are you willing to devote to exercise?": {
+            "0": null
+        },
+        " What types of exercise interest you?": {
+            "0": null
+        },
+        " What is your ultimate goal?": {
+            "0": null
+        },
+        "Why is this outcome important to you?": {
+            "0": null
+        },
+        "What you want to be able to do?": {
+            "0": "I liked to run but too unfit to do that now. I want a realistic entry into getting fitter where I build up the intensity to match my capability. I dont enjoy squats as they make my legs hurt but recognise I may need to do them."
+        },
+        "How you want to look?": {
+            "0": "Lose the 18kg of weight I have put on since 2019 and get to a target weight of 82kg"
+        },
+        "How you want to feel?": {
+            "0": "Have more energy and know my health is improving"
+        },
+        "TDEE": {
+            "0": 1000
+        },
+        "Calories consumed": {
+            "0": 2500
+        },
+        "Macro mix": {
+            "0": null
+        },
+        "Diastolic Pressure": {
+            "0": null
+        },
+        "Systolic Pressure": {
+            "0": null
+        },
+        "SPO2 %": {
+            "0": null
+        },
+        "How many hours did you exercised?": {
+            "0": null
+        },
+        "Fat free Muscle index": {
+            "0": null
+        }
+    },
+    "weekly_report_data": {
+        "Goal": [
+            "Days met calorie target",
+            "Days met protein target",
+            "Days met sleep target",
+            "Days met steps target",
+            "CV mins Zone 2 + % of target",
+            "Strength session compliance",
+            "Meditation/breathe work compliance",
+            "Hot/cold routine compliance",
+            "Stress survey  % of target",
+            "Change ready survey in target state",
+            "Average heart rate",
+            "Peak HRV",
+            "Low HRV",
+            "SPo2",
+            "Body weight (kgs)",
+            "Body fat %",
+            "Lean muscle mass",
+            "Fat free muscle mass index",
+            "Waist to hip ratio",
+            "Motivation level"
+        ],
+        "Status": [
+            "Not OK",
+            "Not OK",
+            "Not OK",
+            "Not OK",
+            "Not OK",
+            "Not OK",
+            "Not OK",
+            "Not OK",
+            "Incomplete",
+            "Incomplete",
+            "Incomplete",
+            "Incomplete",
+            "Incomplete",
+            "Incomplete",
+            "OK",
+            "OK",
+            "OK",
+            "OK",
+            "OK",
+            "OK"
+        ],
+        "Target goal": [
+            7,
+            7,
+            7,
+            7,
+            2,
+            2,
+            2,
+            2,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            75,
+            21,
+            59,
+            17,
+            1,
+            24
+        ],
+        "Current value": [
+            5,
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            50,
+            50,
+            50,
+            20,
+            75,
+            21,
+            59,
+            17,
+            1,
+            24
+        ],
+        "Recommendation": [
+            "Improve calorie tracking, aim for 2 more days",
+            "Increase protein intake to meet target",
+            "Establish a consistent sleep schedule",
+            "Boost daily step count by 10,000",
+            "Spend 1 more minute in Zone 2",
+            "Schedule a strength session",
+            "Dedicate time to meditation/breathe work",
+            "Practice hot/cold routine daily",
+            "N/A",
+            "N/A",
+            "Maintain a healthy heart rate",
+            "Monitor Peak HRV",
+            "Keep Low HRV in check",
+            "Maintain optimal SPo2 levels",
+            "Maintain body weight at 75kgs",
+            "Keep body fat at 21%",
+            "Maintain lean muscle mass at 59",
+            "Keep fat free muscle mass index at 17",
+            "Maintain waist to hip ratio at 1",
+            "Retain motivation at level 24"
+        ],
+        "Type of progress": [
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly trend over time for input target compliance (%age of days or times met target)",
+            "Weekly progress towards outcome targets",
+            "Weekly progress towards outcome targets",
+            "Weekly progress towards outcome targets",
+            "Weekly progress towards outcome targets",
+            "Weekly progress towards outcome targets",
+            "Weekly progress towards outcome targets",
+            "Weekly progress towards outcome targets",
+            "Weekly progress towards outcome targets",
+            "Weekly progress towards outcome targets",
+            "Weekly progress towards outcome targets"
+        ]
+    },
+    "logo": ""
+}

@@ -30,7 +30,7 @@ const PDFRender = () => {
             <div className="h-[100vh]">
                 {data!=null ?
                     <PDFViewer height={"100%"} width={'100%'}>
-                        <ClinicReport type={type as string} values={data}></ClinicReport>
+                        <ClinicReport values={data}></ClinicReport>
                     </PDFViewer>
                 :
                 undefined

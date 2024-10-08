@@ -12,7 +12,9 @@ import { Calender } from "@/pages/information/calender";
 import { Messages } from "@/pages/messages";
 import PdfViewerComponent from "@/pages/information/Treatment Plan/PdfViewer";
 import { AiChat } from "@/components";
-import PDFRender from "@/pages/Pdf";
+import WeaklyReport from "@/pages/Pdf/WeaklyReport";
+import ClinicReportPage from "@/pages/Pdf/ClinicReport";
+import ClientReportPage from "@/pages/Pdf/ClientReport";
 
 const router = createHashRouter([
   {
@@ -99,8 +101,16 @@ const router = createHashRouter([
     element: <PdfViewerComponent></PdfViewerComponent>,
   },
   {
-    path:"report/:id/:type",
-    element:<PDFRender></PDFRender>
+    path:"ClinicReportPage/:id",
+    element:<ClinicReportPage></ClinicReportPage>
+  },
+  {
+    path:"ClientReportPage/:id",
+    element:<ClientReportPage></ClientReportPage>
+  },  
+  {
+    path:"weaklyReport/:memberId/:reportId",
+    element:<WeaklyReport></WeaklyReport>
   },
   {
     path: "/login",

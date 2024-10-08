@@ -3,6 +3,7 @@
 import { Application } from "@/api";
 import { useEffect, useState, useRef } from "react";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
+import { useNavigate } from "react-router-dom";
 
 interface ReportTableProps {
   data: Array<any>;
@@ -15,16 +16,17 @@ const ReportTable: React.FC<ReportTableProps> = ({
   memberId,
   onResolved
 }) => {
-  const handleDownload = (value: any) => {
-    const link = document.createElement("a");
-    link.href = `data:application/pdf;base64,` + value;
-    link.download = "downloaded_file.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownload = (value: any) => {
+  //   const link = document.createElement("a");
+  //   link.href = `data:application/pdf;base64,` + value;
+  //   link.download = "downloaded_file.pdf";
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
   useEffect(() => console.log(data), [data]);
   console.log(data.length);
+  const navigate = useNavigate()
   const [shareReportId, setShareReportId] = useState<number | null>(null);
   const [showModal, setshowModal] = useState(true)
   const modalAiGenerateRef = useRef(null)
@@ -91,12 +93,14 @@ return(
                       <div className="text-[#FFFFFFDE] py-2 w-[300px] gap-2 flex justify-end px-5 items-center text-[12px]">
                         <img
                           onClick={() => {
-                            Application.getReportString({
-                              member_id: memberId,
-                              report_id: el.report_id,
-                            }).then((res) => {
-                              handleDownload(res.data);
-                            });
+                            // Application.getReportString({
+                            //   member_id: memberId,
+                            //   report_id: el.report_id,
+                            // }).then((res) => {
+                            //   handleDownload(res.data);
+                            // });
+                            navigate("/weaklyReport/"+memberId+"/"+el.report_id)
+                            // window.open(location.host+"/#/weaklyReport/"+memberId+"/"+el.report_id)
                           }}
                           className="cursor-pointer"
                           src={"./Themes/Aurora/icons/document-download3.svg"}

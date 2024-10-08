@@ -6,7 +6,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import TableInfoRender from './components/TableRender';
 import Treatment_plan from './components/Treatment_plan';
-import CoachReminder from './components/Coach-reminder';
 // import CoachReminder from './components/Coach-reminder';
 
 // Create styles
@@ -191,7 +190,7 @@ const ReadMorePage = ({values}:{values:any}) => {
 }
 
 // Create Document Component
-const ClinicReport = ({values}:{values:any}) => (
+const ClientReport = ({values}:{values:any}) => (
   <Document>
     <Page style={styles.body} >
         <Header logo={values["logo"]}></Header>
@@ -220,14 +219,14 @@ const ClinicReport = ({values}:{values:any}) => (
 
         <Footer pageNumber={7}></Footer>
     </Page>    
-    <Page style={styles.body} >
+    {/* <Page style={styles.body} >
         <Header logo={values["logo"]}></Header>
         <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-          <CoachReminder item={values["coach_reminders"]} styles={styles} title='Coach Reminders'></CoachReminder>
+          <CoachReminder item={values["coach_reminders"]} styles={styles} title='Recommended Action Areas'></CoachReminder>
         </View>
 
         <Footer pageNumber={8}></Footer>
-    </Page>     
+    </Page>      */}
   </Document>
 );
 
@@ -236,4 +235,4 @@ Font.register({
   src: "http://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf"
 });
 
-export default ClinicReport
+export default ClientReport

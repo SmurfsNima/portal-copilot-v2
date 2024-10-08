@@ -3,6 +3,7 @@ import { InfoCard } from "@/components";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
+// import Data from './data.json';
 import BenchmarkModal from "./benchmarkModal";
 import { useNavigate, useParams} from "react-router-dom";
 import "jspdf-autotable";
@@ -10,6 +11,10 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import { AppContext } from "@/store/app";
 import RegenerateModal from "./RegenerateModal";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
+// import ClinicReport from "@/components/Pdf/ClinicReport";
+// import { pdf } from "@react-pdf/renderer";
+// import { Application } from "@/api";
+// import { blobToBase64 } from "@/help";
 type Benchmark = {
   area: string;
   subCategory?: string;
@@ -107,7 +112,7 @@ export const TreatmentPlan = () => {
   const [Description, setDescription] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const {reportManager,ApplicationManager} = useContext(AppContext);
+  const {ApplicationManager} = useContext(AppContext);
   // const [ ] = useState('')
   const navigate = useNavigate(); // Navigation hook
   const handleRegenerateClick = () => {
@@ -136,19 +141,22 @@ export const TreatmentPlan = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const fetchReport = async (treatmentPlanId: string) => {
-    try {
-      console.log(treatmentPlanId);
+  // const fetchReport = async (treatmentPlanId: string) => {
+
+  //   try {
+  //     console.log(treatmentPlanId);
+  //     // const response = await Application.downloadReport({
+  //     //   treatment_plan_id: treatmentPlanId,
+  //     // });
+  //     // await reportManager.fetchReport(treatmentPlanId);
+  //     await reportManager.fetchClinicReport(treatmentPlanId)
+  //     // setPdfBase64String(reportManager.getReport()); 
+  //     // console.log(reportManager.getReport());
       
-      await reportManager.fetchReport(treatmentPlanId);
-      await reportManager.fetchClinicReport(treatmentPlanId)
-      // setPdfBase64String(reportManager.getReport()); 
-      // console.log(reportManager.getReport());
-      
-    } catch (error) {
-      console.error("Error fetching report:", error);
-    }
-  };
+  //   } catch (error) {
+  //     console.error("Error fetching report:", error);
+  //   }
+  // };
   useEffect(() => {
     const myData = localStorage.getItem("tretmentPlan-" + id);
     if (myData) {
@@ -186,7 +194,10 @@ export const TreatmentPlan = () => {
                       JSON.stringify(data)
                     );
                   }
-                 
+                  // const pdfBlob = await pdf(<ClinicReport type="" values={Data} />).toBlob();
+
+                  // const base64Pdf = await blobToBase64(pdfBlob);
+
                   
                   setBenchmarks(data.treatment_plans[0]);
                   setplanID(data.treatment_plans[1]);
@@ -195,11 +206,10 @@ export const TreatmentPlan = () => {
                     data.description_section["need focus benchmarks"]
                   );
                   setIsGenerated(true);
-
                   const treatmentPlanId = data.treatment_plans[1];
                   console.log(treatmentPlanId);
                   ApplicationManager.addTreatmentPlanID(id as string,treatmentPlanId)
-                  fetchReport(treatmentPlanId);
+                  // fetchReport(treatmentPlanId);
                 } else {
                   setIsGenerated(false); // No data found
                 }
@@ -232,7 +242,7 @@ export const TreatmentPlan = () => {
                 Treatment Plan 012
               </h2>
               <div className="flex items-start space-x-4">
-                <button onClick={() => navigate("/report/"+ApplicationManager.getTreatmentPlanId(id as string)+'/'+"clinic")}
+                <button onClick={() => navigate("/ClientReportPage/"+ApplicationManager.getTreatmentPlanId(id as string))}
 
                   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
@@ -243,7 +253,7 @@ export const TreatmentPlan = () => {
                   Download Client Report
                 </button>
                 <button
-                  onClick={() => navigate("/report/"+ApplicationManager.getTreatmentPlanId(id as string)+'/'+"client")}
+                  onClick={() => navigate("/ClinicReportPage/"+ApplicationManager.getTreatmentPlanId(id as string))}
                   className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
                 >
                   <img
