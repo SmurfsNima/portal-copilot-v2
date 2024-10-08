@@ -120,6 +120,8 @@ export const AiStudio = () => {
   },[activeMemberID])
   const status: Array<string> = ["All", "Need to Check", "Checked"];
   const [isCreateReportMode,setisCreateReportMode] = useState(false)
+  const [isEditMode,setEditMode] = useState(false)
+  const [currentReportId,setCurrentReportId] = useState("")
   const [showAiGenereteModal,setShowAiGenerateAi] = useState(false)
   const modalAiGenerateRef = useRef(null)
   useModalAutoClose({
@@ -187,7 +189,7 @@ export const AiStudio = () => {
           </div>
           <div className="w-full bg-[#272727] rounded-[6px] border-main-border border h-[75vh]">
             <div className="p-4">
-              <GenerateReportTable onClose={()=> {
+              <GenerateReportTable reportId={currentReportId} isEdit={isEditMode} onClose={()=> {
                 setisCreateReportMode(false)
                 setShowGenerateButton(true)
               }} memberId={activeMemberID as number} setData={setGenerateReportGoolsData} data={generateReportGoolsData}></GenerateReportTable>
@@ -362,9 +364,11 @@ export const AiStudio = () => {
               </div>
               <div className=" px-5">
                 <div className="border-black-third mb-4 border"></div>
-                  <ReportTable onResolved={(resolveData) => {
+                  <ReportTable onResolved={(resolveData,reportId) => {
                     setGenerateReportGoolsData(resolveData)
                     setisCreateReportMode(true)
+                    setCurrentReportId(reportId)
+                    setEditMode(true)
                   }} onUpdate={()=>{}} memberId={activeMemberID as number} data={reportsData}></ReportTable>
               </div>
             </div>

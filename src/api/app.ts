@@ -207,6 +207,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/ai_studio/show_saved_report",data)
     return response
   }   
+
+  static AiStudioEditSavedReport(data:any){
+    const response = this.post("/ai_studio/edit_saved_report",data)
+    return response
+  }   
 }
 
 

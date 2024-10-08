@@ -11,9 +11,11 @@ interface GenerateReportTableProps {
     setData:(value:any) => void
     memberId:number
     onClose:() => void
+    isEdit?:boolean
+    reportId?:string
 }
 
-const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,setData,onClose,memberId}) => {
+const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,setData,onClose,memberId}) => {
     const resolveStatusColor = (ststus:string) => {
         if(ststus == 'OK'){
             return '#03DAC5'
@@ -54,6 +56,15 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,setData,on
         })
         publish("completeChanges",{})
         setISComplete(true)
+    }
+    const saveChanges =() => {
+        Application.AiStudioEditSavedReport({
+            member_id:memberId,
+            report_id:'',
+            data:data
+        })
+        publish("completeChanges",{})
+        onClose()
     }
     return (
         <>
@@ -114,9 +125,17 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,setData,on
                         </div>
                     </div>
                     <div className="w-full flex mt-2 justify-center">
+                        {isEdit ?
+                        <Button onClick={() => {
+                            saveChanges()
+                        }} theme="Aurora-pro">
+                            <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
+                            Save Changes</Button>                        
+                        :
                         <Button onClick={nextAction} theme="Aurora-pro">
                             <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
                             Next</Button>
+                        }
                     </div>
                 </>
             }

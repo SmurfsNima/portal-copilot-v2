@@ -8,7 +8,7 @@ interface ReportTableProps {
   data: Array<any>;
   memberId: number;
   onUpdate: () => void;
-  onResolved: (data:any) => void;
+  onResolved: (data:any,reportId:string) => void;
 }
 const ReportTable: React.FC<ReportTableProps> = ({
   data,
@@ -119,7 +119,7 @@ return(
                               member_id:memberId,
                               report_id:el.report_id
                             }).then(res => {
-                              onResolved(res.data)
+                              onResolved(res.data,el.report_id)
                             })
                           }}
                           className="cursor-pointer"
