@@ -33,6 +33,7 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
     const [step ,setStep] = useState(1)
     const [activeMenu,setActiveMenu] = useState('3 Month')
     const [isLoading,setIsLoading] = useState(true)
+    const [AIAssistanc,setAiAssistance] = useState(false)
     useEffect(() => {
         Application.getPatientReorders(id as string).then((res) => {
             console.log(res)
@@ -40,9 +41,9 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
             if(res.data.client_goals){
                 setClientGools(res.data.client_goals)
             }
-            if(res.data.priority_plan){
-                setPriorities3(JSON.parse(JSON.stringify(res.data.priority_plan)))
-                setPriorities6(JSON.parse(JSON.stringify(res.data.priority_plan)))
+            if(res.data.priority_plan_3m){
+                setPriorities3(res.data.priority_plan_3m)
+                setPriorities6(res.data.priority_plan_6m)
             }
         })
 
@@ -51,7 +52,8 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
         Application.generateTreatmentPlan({
             member_id: Number(id),
             three_months_priority:Priorities3,
-            six_months_priority:Priorities6
+            six_months_priority:Priorities6,
+            use_ai:AIAssistanc
         }).then(res => {
             console.log(res.data);
             
@@ -108,21 +110,34 @@ const RegenerateModal:React.FC<RegenerateModalProps> = ({refEl,onClose,onGenerat
                 :
                 <>
                     <div>
-                        <div className="w-full flex justify-center mb-3 items-center">
-                            <div onClick={() => {
-                                setActiveMenu('3 Month')
-                            }} className={`  ${
-                                activeMenu === '3 Month' && "bg-black-third"
-                            } rounded-md w-[105px] text-[14px] h-[24px] flex items-center justify-center cursor-pointer   `}>
-                                3 Month
+                        <div className="w-full flex justify-between  mt-4 mb-3 items-center">
+                            <div className="w-[170px]"></div>
+                            <div className="flex justify-center items-center">
+                                <div onClick={() => {
+                                    setActiveMenu('3 Month')
+                                }} className={`  ${
+                                    activeMenu === '3 Month' && "bg-black-third"
+                                } rounded-md w-[105px] text-[14px] h-[24px] flex items-center justify-center cursor-pointer   `}>
+                                    3 Month
+                                </div>
+                                <div onClick={() => {               
+                                    setActiveMenu('6 Month')
+                                }} className={`  ${
+                                    activeMenu === '6 Month' && "bg-black-third"
+                                } rounded-md w-[105px] text-[14px] h-[24px] flex items-center justify-center cursor-pointer   `}>
+                                    6 Month
+                                </div>   
+
                             </div>
-                            <div onClick={() => {               
-                                setActiveMenu('6 Month')
-                            }} className={`  ${
-                                activeMenu === '6 Month' && "bg-black-third"
-                            } rounded-md w-[105px] text-[14px] h-[24px] flex items-center justify-center cursor-pointer   `}>
-                                6 Month
-                            </div>                            
+
+                            <div className="flex justify-between gap-2 items-center">
+                                <div onClick={() => {
+                                    setAiAssistance(!AIAssistanc)
+                                }} className={` relative rounded-[40px] flex items-center cursor-pointer ${!AIAssistanc?'justify-start border border-[#7F39FB]':'justify-end bg-[#7F39FB]'} px-1 w-12 h-6`}>
+                                    <div className="w-4 h-4 rounded-full bg-[#FFFFFFDE]"></div>
+                                </div>
+                                <div className="text-[#FFFFFFDE] text-[12px]">AI Assistance for Plan</div>
+                            </div>                         
                         </div>
                             {activeMenu == '3 Month' ?
                                 <PlanManagerModal onCompleteAction={() => {

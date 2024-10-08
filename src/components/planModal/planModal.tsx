@@ -164,7 +164,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
               </span>
             </div>
             <ul className="mt-2">
-              {category.BenchmarkAreas.map((area, areaIndex) => (
+              {category?.BenchmarkAreas?.map((area, areaIndex) => (
                 <li key={areaIndex} className="flex flex-col px-3 my-2">
                   <div className="flex items-center">
                   <img
@@ -219,7 +219,17 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
                             <div className="peer-checked:text-primary-text text-[10px] w-[185px]">
                               {benchmark.Benchmark.substring(0, isgenerate?18:35)}
                               {benchmark?.tag &&
-                               <span className="bg-orange-500 ml-1 px-1 py-1 rounded-[24px]">{benchmark?.tag[0]}</span>
+                              <>
+                                {benchmark?.tag.length>0 &&
+                                <>
+                                {benchmark?.tag.map(el => {
+                                  return (
+                                    <span className="bg-orange-500 ml-1 px-1 py-1 rounded-[24px]">{el}</span>
+                                  )
+                                })}
+                                </>
+                                }
+                              </>
                               }
                             </div>
                           </label>
@@ -230,7 +240,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
                                 Level
                               </span>
                               <div className="flex border border-main-border">
-                                {Array.from({ length: 3 }, (_, i) => (
+                                {Array.from({ length: isgenerate?2: 3 }, (_, i) => (
                                   <button
                                     key={i}
                                     onClick={() =>

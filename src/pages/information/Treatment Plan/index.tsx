@@ -180,7 +180,7 @@ export const TreatmentPlan = () => {
               onGenerate={async (data) => {
                 console.log(data);
                 if (data) {
-                  if(data != 'there is no benchmark data for patient'){
+                  if(data != 'there is no benchmark data for patient' && data!= 'Internal Server Error'){
                     localStorage.setItem(
                       "tretmentPlan-" + id,
                       JSON.stringify(data)
