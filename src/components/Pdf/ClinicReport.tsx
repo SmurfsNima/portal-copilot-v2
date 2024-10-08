@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Page, Text, Document, StyleSheet, Font, View } from '@react-pdf/renderer';
+import { Page, Text, Document, StyleSheet, View } from '@react-pdf/renderer';
 // import data from './data.json';
 import Patient_benchmark from './components/patient_benchmark';
 import Header from './components/Header';
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     marginBottom:12,
     textAlign: 'left',
     color:'#0e005e',
-    fontFamily: 'Roboto'
+    fontFamily: 'Helvetica'
   },
   author: {
     fontSize: 12,
@@ -39,14 +39,14 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     margin: 10,
-    fontFamily: 'Roboto'
+    fontFamily: 'Helvetica'
   },
   text: {
     margin:6,
     fontSize: 14,
     textAlign: 'justify',
     color:'#242424',
-    fontFamily: 'Times-Roman'
+    fontFamily: 'Helvetica'
   },
   text2: {
     margin: 10,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom:0,
     textAlign: 'justify',
-    fontFamily: 'Times-Roman'
+    fontFamily: 'Helvetica'
   },  
   image: {
     marginVertical: 15,
@@ -231,9 +231,9 @@ const ClinicReport = ({values}:{values:any}) => (
   </Document>
 );
 
-Font.register({
-  family: 'Roboto',
-  src: "./fonts/Roboto-Regular.ttf"
-});
+// Font.register({
+//   family: 'Roboto',
+//   src: "./fonts/Roboto-Regular.ttf"
+// });
 
 export default ClinicReport
