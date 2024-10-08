@@ -146,6 +146,6 @@ const WeaklyReport = ({values}:{values:any}) => {
 }
 Font.register({
   family: 'Roboto',
-  src: "http://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf"
+  src: "https://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf"
 });
 export default WeaklyReport
