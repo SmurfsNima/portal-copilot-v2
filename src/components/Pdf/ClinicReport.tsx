@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Page, Text, Document, StyleSheet, View } from '@react-pdf/renderer';
+import { Page, Text, Document, StyleSheet, Font, View } from '@react-pdf/renderer';
 // import data from './data.json';
 import Patient_benchmark from './components/patient_benchmark';
 import Header from './components/Header';
@@ -231,9 +231,9 @@ const ClinicReport = ({values}:{values:any}) => (
   </Document>
 );
 
-// Font.register({
-//   family: 'Roboto',
-//   src: "https://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf"
-// });
+Font.register({
+  family: 'Roboto',
+  src: "../../assets/fonts/Roboto-Regular.ttf"
+});
 
 export default ClinicReport

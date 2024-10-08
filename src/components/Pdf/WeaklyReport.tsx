@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Page, Document, StyleSheet, View } from '@react-pdf/renderer';
+import { Page, Document, StyleSheet, Font, View } from '@react-pdf/renderer';
 // import Header from './components/Header';
 import TableInfoRender from './components/TableRender';
 import Footer from './components/Footer';
@@ -144,8 +144,8 @@ const WeaklyReport = ({values}:{values:any}) => {
         </>
     )
 }
-// Font.register({
-//   family: 'Roboto',
-//   src: "https://fonts.gstatic.com/s/roboto/v16/zN7GBFwfMP4uA6AR0HCoLQ.ttf"
-// });
+Font.register({
+  family: 'Roboto',
+  src: "../../assets/fonts/Roboto-Regular.ttf"
+});
 export default WeaklyReport
