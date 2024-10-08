@@ -28,13 +28,25 @@ const Analysis = () => {
         const entries = analyseData[0]; // Single object inside the array
 
         for (const key in entries) {
-            if(search == ''){
-                if (entries[key][0].category === avtiveMenu) {
-                    filteredResults[key] = entries[key]; // Add to filtered results if category matches
+            if(activeStatus == 'All') {
+                if(search == ''){
+                    if (entries[key][0].category === avtiveMenu) {
+                        filteredResults[key] = entries[key]; // Add to filtered results if category matches
+                    }
+                }else {
+                    if (entries[key][0].category === avtiveMenu && key.toUpperCase().includes(search.toUpperCase())) {
+                        filteredResults[key] = entries[key]; // Add to filtered results if category matches
+                    }                
                 }
             }else {
-                if (entries[key][0].category === avtiveMenu && key.toUpperCase().includes(search.toUpperCase())) {
-                    filteredResults[key] = entries[key]; // Add to filtered results if category matches
+                if(search == ''){
+                    if (entries[key][0].category === avtiveMenu && entries[key][0].value.status == activeStatus) {
+                        filteredResults[key] = entries[key]; // Add to filtered results if category matches
+                    }
+                }else {
+                    if (entries[key][0].category === avtiveMenu && key.toUpperCase().includes(search.toUpperCase()) && entries[key][0].value.status == activeStatus) {
+                        filteredResults[key] = entries[key]; // Add to filtered results if category matches
+                    }                
                 }                
             }
         }
@@ -48,13 +60,34 @@ const Analysis = () => {
         const entries = analyseData[0]; // Single object inside the array
 
         for (const key in entries) {
-            if (key.toUpperCase().includes(search.toUpperCase())) {
-                filteredResults[key] = entries[key]; // Add to filtered results if category matches
-            }                
+            if(activeStatus == 'All'){
+                if (key.toUpperCase().includes(search.toUpperCase())) {
+                    filteredResults[key] = entries[key]; // Add to filtered results if category matches
+                }                
+            }else {
+                if (key.toUpperCase().includes(search.toUpperCase()) && entries[key][0].value.status == activeStatus) {
+                    filteredResults[key] = entries[key]; // Add to filtered results if category matches
+                }     
+                // && entries[key][0].value.status == activeStatus
+            }
         }
 
         return filteredResults;        
     }       
+    const updateStatus = () => {
+        const filteredResults:any = {};
+
+        // Since data is an array of objects, we access the first object using data[0]
+        const entries = analyseData[0]; // Single object inside the array
+
+        for (const key in entries) {
+            if (entries[key][0].value.status == activeStatus) {
+                filteredResults[key] = entries[key]; // Add to filtered results if category matches
+            }                
+        }
+
+        return filteredResults;            
+    }
     useEffect(() => {
         if((avtiveMenu != 'All' )) {
             setFilteredData([updateCategory()])
@@ -62,10 +95,14 @@ const Analysis = () => {
             if(search!= ''){
                 setFilteredData([updateSearch()])
             }else {
-                setFilteredData(analyseData)
+                if(activeStatus !='All'){
+                    setFilteredData([updateStatus()])
+                }else {
+                    setFilteredData(analyseData)
+                }
             }
         }
-    },[avtiveMenu,analyseData,search])
+    },[avtiveMenu,analyseData,search,activeStatus])
 
     return (
         <>
@@ -84,7 +121,7 @@ const Analysis = () => {
                     theme="Aurora"
                     placeholder="search..."
                     />
-                    <StatusMenu  activeStatus={activeStatus as any} onChange={((value) =>setActiveStatus(value))}></StatusMenu>
+                    <StatusMenu status={["All","Needs Focus","ok","Good","Excellent"]} activeStatus={activeStatus as any} onChange={((value) =>setActiveStatus(value))}></StatusMenu>
                 </div>
                 </div>    
                 <div className="flex w-full  ">
