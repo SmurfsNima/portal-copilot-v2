@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     marginBottom:12,
     textAlign: 'left',
     color:'#0e005e',
-    fontFamily: 'Roboto'
+    fontFamily: 'Helvetica'
   },
   author: {
     fontSize: 12,

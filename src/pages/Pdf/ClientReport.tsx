@@ -1,5 +1,6 @@
 import { Application } from "@/api"
-import ClinicReport from "@/components/Pdf/ClinicReport"
+import ClientReport from "@/components/Pdf/ClientReport"
+// import ClinicReport from "@/components/Pdf/ClinicReport"
 import { useConstructor } from "@/help"
 import { BlobProvider, PDFViewer } from "@react-pdf/renderer"
 import { useState } from "react"
@@ -21,12 +22,12 @@ const ClientReportPage = () => {
             <div className="h-[100vh]">
                 {data!=null ?
                     <BlobProvider              
-                        document={<ClinicReport values={data} />}
+                        document={<ClientReport values={data} />}
                     >
                          {({ loading }) =>
                             loading ? "Loading document..." :
                                 <PDFViewer height={"100%"} width={'100%'}>
-                                    <ClinicReport  values={data}></ClinicReport>
+                                    <ClientReport  values={data}></ClientReport>
                                 </PDFViewer>
                              }
 

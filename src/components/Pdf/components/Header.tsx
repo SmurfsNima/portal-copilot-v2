@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { View,Image , StyleSheet} from "@react-pdf/renderer";
+import { View , StyleSheet} from "@react-pdf/renderer";
 
 const styles =StyleSheet.create({
     header: {
@@ -17,11 +17,12 @@ const styles =StyleSheet.create({
   },    
 })
 
-const Header = ({logo}:{logo:string}) => (
+// eslint-disable-next-line no-empty-pattern
+const Header = ({}:{logo:string}) => (
   <View style={styles.header}>
-      {logo!= '' &&
+      {/* {logo!= '' &&
         <Image src={logo} style={{width:'35px',height:'35px'}}></Image> 
-      }
+      } */}
 
     <View style={styles.line} /> {/* Horizontal line */}
   </View>
