@@ -232,7 +232,7 @@ const ClientReport = ({values}:{values:any}) => (
 
 Font.register({
   family: 'Roboto',
-  src: "../../assets/fonts/Roboto-Regular.ttf"
+  src: "./fonts/Roboto-Regular.ttf"
 });
 
 export default ClientReport
