@@ -51,7 +51,7 @@ const ReadMorePage = ({values,styles,reportName}:{values:any,styles:any,reportNa
       <Text style={styles.text}>
 • Good - performance is 76% to 99% of benchmark
       </Text>       
-      <Footer reportName={reportName} styles={styles} pageNumber={2}></Footer>
+      <Footer reportName={reportName} styles={styles} pageNumber={3}></Footer>
     </Page>    
     </>
   )

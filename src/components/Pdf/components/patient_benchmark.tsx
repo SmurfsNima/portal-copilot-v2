@@ -10,36 +10,73 @@ const Patient_benchmark = ({data,styles,logo,reportName}:{data:any,styles:any,re
                 <Header logo={logo}></Header>
                 <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
                     <>
-                        <TableBenchMarkRender styles={styles} title='Physiological Test Results' category='Physiological'  item={data} ></TableBenchMarkRender>
+                        <TableBenchMarkRender styles={styles} title='Physiological Test Results' category='Physiological'  item={data.filter((val:any) =>val.Category == 'Physiological').slice(0, 20)} ></TableBenchMarkRender>
                     </>
                 </View>
 
-                <Footer reportName={reportName} styles={styles} pageNumber={3}></Footer>
-            </Page>   
+                <Footer reportName={reportName} styles={styles} pageNumber={4}></Footer>
+            </Page>  
             <Page style={styles.body} >
                 <Header logo={logo}></Header>
                 <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-                    <TableBenchMarkRender styles={styles} title='Fitness Test Results'  category='Fitness' item={data} ></TableBenchMarkRender>
+                    <>
+                        <TableBenchMarkRender styles={styles} title='' category='Physiological'  item={data.filter((val:any) =>val.Category == 'Physiological').slice(20, 40)} ></TableBenchMarkRender>
+                    </>
                 </View>
 
-                <Footer reportName={reportName} styles={styles}  pageNumber={4}></Footer>
-            </Page>      
+                <Footer reportName={reportName} styles={styles} pageNumber={5}></Footer>
+            </Page>                
+            <Page style={styles.body} >
+                <Header logo={logo}></Header>
+                <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+                    <TableBenchMarkRender styles={styles} title='Fitness Test Results'  category='Fitness' item={data.filter((val:any) =>val.Category == 'Fitness').slice(0, 14)} ></TableBenchMarkRender>
+                </View>
+
+                <Footer reportName={reportName} styles={styles}  pageNumber={6}></Footer>
+            </Page>     
+            <Page style={styles.body} >
+                <Header logo={logo}></Header>
+                <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+                    <TableBenchMarkRender styles={styles} title=''  category='Fitness' item={data.filter((val:any) =>val.Category == 'Fitness').slice(14, 26)} ></TableBenchMarkRender>
+                </View>
+
+                <Footer reportName={reportName} styles={styles}  pageNumber={7}></Footer>
+            </Page>    
+
+            <Page style={styles.body} >
+                <Header logo={logo}></Header>
+                <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+                    <TableBenchMarkRender styles={styles} title=''  category='Fitness' item={data.filter((val:any) =>val.Category == 'Fitness').slice(26, 39)} ></TableBenchMarkRender>
+                </View>
+
+                <Footer reportName={reportName} styles={styles}  pageNumber={8}></Footer>
+            </Page>        
+
+            <Page style={styles.body} >
+                <Header logo={logo}></Header>
+                <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+                    <TableBenchMarkRender styles={styles} title=''  category='Fitness' item={data.filter((val:any) =>val.Category == 'Fitness').slice(39, 42)} ></TableBenchMarkRender>
+                </View>
+
+                <Footer reportName={reportName} styles={styles}  pageNumber={9}></Footer>
+            </Page> 
+
             <Page style={styles.body} >
                 <Header logo={logo}></Header>
                 <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
 
-                    <TableBenchMarkRender styles={styles} title='Emotional Test Results'  category='Emotional'  item={data} ></TableBenchMarkRender>
+                    <TableBenchMarkRender styles={styles} title='Emotional Test Results'  category='Emotional'  item={data.filter((val:any) =>val.Category == 'Emotional').slice(0, 20)} ></TableBenchMarkRender>
 
                 </View>
 
-                <Footer reportName={reportName} styles={styles}  pageNumber={5}></Footer>
+                <Footer reportName={reportName} styles={styles}  pageNumber={10}></Footer>
             </Page>              
         </>
     )
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-const TableBenchMarkRender= ({item,category,title,styles}:{item:any,category:string,title:string,styles:any}) => {
+const TableBenchMarkRender= ({item,title,styles}:{item:any,category:string,title:string,styles:any}) => {
     return (
         <>
           <Text style={styles.title} >{title}</Text>
@@ -69,7 +106,7 @@ const TableBenchMarkRender= ({item,category,title,styles}:{item:any,category:str
             </View>
 
             {/* Table Rows */}
-            {item.filter((val:any) =>val.Category == category ).map((el:any,index:number) => {
+            {item.map((el:any,index:number) => {
                 return (
                   <>
                     <View style={styles.tableRow} key={index}>

@@ -166,41 +166,75 @@ const styles = StyleSheet.create({
 // Create Document Component
 const ClientReport = ({values}:{values:any}) => (
   <Document>
-    <Page style={styles.body} >
+    <Page style={styles.body}  wrap>
         <Header logo={values["logo"]}></Header>
         <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-          <TableInfoRender title='Client Information' styles={styles}  item={values["client_info"]} ></TableInfoRender>
+          <TableInfoRender title='Client Information' styles={styles}  item={Object.fromEntries(Object.entries(values["client_info"]).slice(0, 20))} ></TableInfoRender>
         </View>
 
-        <Footer  reportName='Benchmark Assessment Report- Client '  styles={styles} pageNumber={1}></Footer>
+        <Footer reportName='Benchmark Assessment Report- Coach' styles={styles} pageNumber={1}></Footer>
     </Page>
-    <ReadMorePage reportName='Benchmark Assessment Report- Client '  values={values} styles={styles}></ReadMorePage>
-    <Patient_benchmark reportName={'Benchmark Assessment Report- Client'} logo={values["logo"]} styles={styles} data={values["patient_benchmark"]}></Patient_benchmark>
-    <Page style={styles.body} >
+    <Page style={styles.body}  wrap>
+        <Header logo={values["logo"]}></Header>
+        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+          <TableInfoRender title='' styles={styles}  item={Object.fromEntries(Object.entries(values["client_info"]).slice(20, 40))} ></TableInfoRender>
+        </View>
+
+        <Footer reportName='Benchmark Assessment Report- Coach' styles={styles} pageNumber={2}></Footer>
+    </Page>    
+    <ReadMorePage reportName='Benchmark Assessment Report- Coach' styles={styles}  values={values}></ReadMorePage>
+    <Patient_benchmark reportName={'Benchmark Assessment Report- Coach'} logo={values["logo"]} styles={styles} data={values["patient_benchmark"]}></Patient_benchmark>
+    
+    
+    <Page style={styles.body} wrap>
         <Header logo={values["logo"]}></Header>
         <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
           <TableInfoRender title='Client Goals' styles={styles}  item={values["client_goal"]} ></TableInfoRender>
         </View>
 
-        <Footer  reportName='Benchmark Assessment Report- Client '  styles={styles} pageNumber={6}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={11}></Footer>
     </Page>  
 
-    <Page style={styles.body} >
+    <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
         <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-          <Treatment_plan item={values["treatment_plan"]} styles={styles} title='Recommended Action Areas'></Treatment_plan>
+          <Treatment_plan item={values["treatment_plan"].slice(0,3)} styles={styles} title='Recommended Action Areas'></Treatment_plan>
         </View>
 
-        <Footer  reportName='Benchmark Assessment Report- Client '  styles={styles} pageNumber={7}></Footer>
-    </Page>    
-    {/* <Page style={styles.body} >
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={12}></Footer>
+    </Page>  
+    <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
         <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-          <CoachReminder item={values["coach_reminders"]} styles={styles} title='Recommended Action Areas'></CoachReminder>
+          <Treatment_plan item={values["treatment_plan"].slice(3,6)} styles={styles} title=''></Treatment_plan>
         </View>
 
-        <Footer pageNumber={8}></Footer>
-    </Page>      */}
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={13}></Footer>
+    </Page>        
+    <Page style={styles.body} wrap >
+        <Header logo={values["logo"]}></Header>
+        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+          <Treatment_plan item={values["treatment_plan"].slice(6,9)} styles={styles} title=''></Treatment_plan>
+        </View>
+
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={14}></Footer>
+    </Page>     
+    <Page style={styles.body} wrap >
+        <Header logo={values["logo"]}></Header>
+        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+          <Treatment_plan item={values["treatment_plan"].slice(9,10)} styles={styles} title=''></Treatment_plan>
+        </View>
+
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={15}></Footer>
+    </Page>     
+    <Page style={styles.body} wrap >
+        <Header logo={values["logo"]}></Header>
+        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+          <Treatment_plan item={values["treatment_plan"].slice(10,11)} styles={styles} title=''></Treatment_plan>
+        </View>
+
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={16}></Footer>
+    </Page>                                            
   </Document>
 );
 

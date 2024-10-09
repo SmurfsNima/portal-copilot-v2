@@ -158,14 +158,22 @@ const WeaklyReport = ({values}:{values:any}) => {
     return (
         <>
           <Document>
-             <Page  wrap={true} size="A4" style={styles.body} >
-                 <Header logo={values["logo"]}></Header>
-                <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-                <TableInfoRender title='Client Information' styles={styles}  item={values["client_info"]} ></TableInfoRender>
-                </View>
+        <Page style={styles.body}  wrap>
+            <Header logo={values["logo"]}></Header>
+            <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+              <TableInfoRender title='Client Information' styles={styles}  item={Object.fromEntries(Object.entries(values["client_info"]).slice(0, 20))} ></TableInfoRender>
+            </View>
 
-                <Footer reportName={`Client's Weekly Report`} styles={styles} pageNumber={1}></Footer>                 
-             </Page>
+            <Footer reportName={`Client's Weekly Report`} styles={styles} pageNumber={1}></Footer>
+        </Page>
+        <Page style={styles.body}  wrap>
+            <Header logo={values["logo"]}></Header>
+            <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+              <TableInfoRender title='' styles={styles}  item={Object.fromEntries(Object.entries(values["client_info"]).slice(20, 40))} ></TableInfoRender>
+            </View>
+
+            <Footer reportName={`Client's Weekly Report`} styles={styles} pageNumber={2}></Footer>
+        </Page>  
           </Document>
         </>
     )
