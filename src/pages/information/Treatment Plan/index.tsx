@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "symphony-ui";
 // import Data from './data.json';
 import BenchmarkModal from "./benchmarkModal";
-import { useNavigate, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import "jspdf-autotable";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import { AppContext } from "@/store/app";
@@ -114,7 +114,7 @@ export const TreatmentPlan = () => {
 
   const {ApplicationManager} = useContext(AppContext);
   // const [ ] = useState('')
-  const navigate = useNavigate(); // Navigation hook
+  // const navigate = useNavigate(); // Navigation hook
   const handleRegenerateClick = () => {
     setIsRegenerated(true);
     const currentDate = new Date();
@@ -242,26 +242,30 @@ export const TreatmentPlan = () => {
                 Treatment Plan 012
               </h2>
               <div className="flex items-start space-x-4">
-                <button onClick={() => navigate("/ClientReportPage/"+ApplicationManager.getTreatmentPlanId(id as string))}
+                 {/* <Link> */}
+                  <button onClick={() => window.open("/#/ClientReportPage/"+ApplicationManager.getTreatmentPlanId(id as string), '_blank')}
 
-                  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
-                >
-                  <img
-                    src="/Themes/Aurora/icons/document-download.svg"
-                    alt=""
-                  />
-                  Download Client Report
-                </button>
-                <button
-                  onClick={() => navigate("/ClinicReportPage/"+ApplicationManager.getTreatmentPlanId(id as string))}
-                  className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
-                >
-                  <img
-                    src="/Themes/Aurora/icons/document-download.svg"
-                    alt=""
-                  />
-                  Download Report
-                </button>
+                    className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+                  >
+                    <img
+                      src="/Themes/Aurora/icons/document-download.svg"
+                      alt=""
+                    />
+                    Download Client Report
+                  </button>
+                 {/* </Link> */}
+                {/* <Link to={"/ClinicReportPage/"+ApplicationManager.getTreatmentPlanId(id as string)}> */}
+                  <button
+                    onClick={() => window.open("/#/ClinicReportPage/"+ApplicationManager.getTreatmentPlanId(id as string), '_blank')}
+                    className={`flex items-center gap-1 bg-black-secondary px-4 py-2 border border-main-border rounded-lg text-primary-text text-xs `}
+                  >
+                    <img
+                      src="/Themes/Aurora/icons/document-download.svg"
+                      alt=""
+                    />
+                    Download Report
+                  </button>
+                {/* </Link> */}
 
                 {!showHistory && (
                   <button
