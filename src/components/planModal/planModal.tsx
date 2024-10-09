@@ -205,7 +205,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
                           key={benchmarkIndex}
                           className="flex items-center my-1"
                         >
-                          <label className="flex items-center cursor-pointer text-xs font-normal text-secondary-text">
+                          <label className="flex items-start cursor-pointer text-xs font-normal text-secondary-text">
                             <input
                               type="checkbox"
                               checked={benchmark.checked && area.checked}
@@ -216,17 +216,20 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
                               }}
                               className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center"
                             />
-                            <div className="peer-checked:text-primary-text text-[10px] w-[185px]">
+                            <div className="peer-checked:text-primary-text flex text-[10px] w-[185px]">
                               {benchmark.Benchmark.substring(0, isgenerate?18:35)}
                               {benchmark?.tag &&
                               <>
                                 {benchmark?.tag.length>0 &&
                                 <>
-                                {benchmark?.tag.map(el => {
-                                  return (
-                                    <span className="bg-orange-500 ml-1 px-1 py-1 rounded-[24px]">{el}</span>
-                                  )
-                                })}
+                                <div className="flex flex-col mt-[0px] gap-2">
+                                  {benchmark?.tag.map(el => {
+                                    return (
+                                      <span className={` ${el == 'Needs Focus'?'bg-[#FC5474]':'bg-orange-500'} ml-1 px-1 text-[10px] h-24px text-[#1E1E1E] rounded-[24px]`}>{el}</span>
+                                    )
+                                  })}
+
+                                </div>
                                 </>
                                 }
                               </>
