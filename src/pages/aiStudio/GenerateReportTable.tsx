@@ -4,6 +4,7 @@ import { Application } from "@/api"
 import { publish } from "@/utils/event"
 import { useState } from "react"
 import { FiExternalLink } from "react-icons/fi"
+import { useNavigate } from "react-router-dom"
 import { Button } from "symphony-ui"
 // import { pdf } from "@react-pdf/renderer";
 // import { blobToBase64 } from "@/help"
@@ -27,6 +28,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
         }  
       return '#FC5474'        
     }
+    const navigate = useNavigate()
     // const {reportManager} = useContext(AppContext);
     const handleRecomendChange = (index:number, value:string) => {
         const updatedRecommendation = [...data.Recommendation];
@@ -38,6 +40,17 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
             Recommendation: updatedRecommendation
         });
     };    
+
+    const handleTargetGoalChange = (index:number, value:string) => {
+        const updatedRecommendation = [...data["Target goal"]];
+        updatedRecommendation[index] = value;
+
+        // Update state with the new "Recommendation" array
+        setData({
+            ...data,
+            "Target goal": updatedRecommendation
+        });
+    };       
     const [isComplete,setISComplete] = useState(false)
     const nextAction = () => {
         Application.ai_studio_update_weekly_data({
@@ -117,9 +130,14 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
                                         <div className="w-[323px] text-[#FFFFFFDE] py-5 pl-4 pr-3 text-[12px] font-medium">{el}</div>
                                         <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center text-[12px] font-medium">{data["Goal"][index]}</div>
                                         <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">{data["Current value"][index]}</div>
-                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">{data["Target goal"][index]}</div>
+                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
+                                            <input type="text" onChange={(e) => {
+                                                handleTargetGoalChange(index,e.target.value)
+                                            }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Target goal"][index]} />
+                                            {}
+                                        </div>
                                         <div className="w-[140px] text-[#1E1E1E] py-5 flex justify-center  text-[8px] font-medium"><span className="w-[53px] h-[16px] rounded-[16px] flex justify-center items-center" style={{backgroundColor:resolveStatusColor(data["Status"][index])}}>{data["Status"][index]}</span></div>
-                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink className="cursor-pointer"></FiExternalLink></div>
+                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink onClick={() => navigate("/historyCalData")} className="cursor-pointer"></FiExternalLink></div>
                                         <div className="w-[300px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
                                             <input type="text" onChange={(e) => {
                                                 handleRecomendChange(index,e.target.value)

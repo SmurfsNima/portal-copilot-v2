@@ -6,11 +6,14 @@ import TimeLine from "./information/timeLine";
 import AiKnowlage from "./AiKnowlage";
 import HelthProfile from "./HelthProfile";
 import { Setting } from "./setting";
+import Historycaldata from "./HistorycalData";
+
 export {
     AiKnowlage,
     Information,
     Login,
     PatientList,
+    Historycaldata,
     OverView,
     TimeLine,
     Setting,

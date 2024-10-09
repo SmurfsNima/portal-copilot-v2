@@ -2,7 +2,7 @@ import { Application } from "@/api"
 import ClientReport from "@/components/Pdf/ClientReport"
 // import ClinicReport from "@/components/Pdf/ClinicReport"
 import { useConstructor } from "@/help"
-import { BlobProvider, PDFViewer } from "@react-pdf/renderer"
+import { PDFViewer } from "@react-pdf/renderer"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
@@ -21,17 +21,20 @@ const ClientReportPage = () => {
         <>
             <div className="h-[100vh]">
                 {data!=null ?
-                    <BlobProvider              
-                        document={<ClientReport values={data} />}
-                    >
-                         {({ loading }) =>
-                            loading ? "Loading document..." :
-                                <PDFViewer height={"100%"} width={'100%'}>
-                                    <ClientReport  values={data}></ClientReport>
-                                </PDFViewer>
-                             }
+                    <PDFViewer className="w-full h-full">
+                         <ClientReport  values={data}></ClientReport>
+                    </PDFViewer>
+                    // <BlobProvider              
+                    //     document={<ClientReport values={data} />}
+                    // >
+                    //      {({ loading }) =>
+                    //         loading ? "Loading document..." :
+                    //             <PDFViewer height={"100%"} width={'100%'}>
+                    //                 <ClientReport  values={data}></ClientReport>
+                    //             </PDFViewer>
+                    //          }
 
-                    </BlobProvider>
+                    // </BlobProvider>
                 :
                 <div className="w-full h-screen flex justify-center items-center">
                     <BeatLoader color="blue"></BeatLoader>

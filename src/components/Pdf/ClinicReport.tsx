@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import TableInfoRender from './components/TableRender';
 import Treatment_plan from './components/Treatment_plan';
 import CoachReminder from './components/Coach-reminder';
-import Recomendition from './components/Recomendition';
+// import Recomendition from './components/Recomendition';
 // import CoachReminder from './components/Coach-reminder';
 
 // Create styles
@@ -17,6 +17,16 @@ const styles = StyleSheet.create({
     paddingTop: 35,
     paddingBottom: 65,
     paddingHorizontal: 35,
+  },
+    subHeader: {
+    fontSize: 14,
+    marginBottom: 5,
+    marginLeft:12,
+    color:'#333333',
+    fontFamily: 'Helvetica'
+  },
+    listItem: {
+    marginLeft: 10,
   },
   line: {
     borderBottomWidth: 1, // Line thickness
@@ -191,6 +201,41 @@ const ReadMorePage = ({values}:{values:any}) => {
   )
 }
 
+const renderSection = (data:any, level = 0) => {
+  return Object.entries(data).map(([key, value]) => {
+    if (typeof value === 'object' && !Array.isArray(value)) {
+      // If the value is a nested object, recursively render it
+      return (
+        <View key={key} style={{ marginLeft: level * 10, marginBottom: 5 }}>
+          <Text style={styles.subHeader}>{key}</Text>
+          {renderSection(value, level + 1)}
+        </View>
+      );
+    } else if (Array.isArray(value)) {
+      // If it's an array, render each item
+      return (
+        <View key={key} style={{ marginLeft: level * 10 }}>
+          <Text style={styles.subHeader}>{key}</Text>
+          {value.map((item, index) => (
+            <View key={index} style={styles.listItem}>
+              {typeof item === 'object' ? renderSection(item, level + 1) : <Text>{item}</Text>}
+            </View>
+          ))}
+        </View>
+      );
+    } else {
+      // Otherwise, just render the key-value pair
+      return (
+        <View key={key} style={{ marginLeft: level * 10, marginBottom: 5 }}>
+          <Text style={{ fontWeight: 'bold' }}>{key}: </Text>
+          <Text style={styles.text}>
+            {value+''}
+          </Text>
+        </View>
+      );
+    }
+  });
+};
 // Create Document Component
 const ClinicReport = ({values}:{values:any}) => (
   <Document>
@@ -232,7 +277,8 @@ const ClinicReport = ({values}:{values:any}) => (
    <Page style={styles.body} >
         <Header logo={values["logo"]}></Header>
         <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-          <Recomendition data={values} ></Recomendition>
+          {/* <Recomendition data={values} ></Recomendition> */}
+          {renderSection(values["recommendation"])}
         </View>
 
         <Footer pageNumber={8}></Footer>

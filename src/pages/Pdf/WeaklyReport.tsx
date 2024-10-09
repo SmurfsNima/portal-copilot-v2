@@ -1,6 +1,6 @@
 import { Application } from "@/api"
 import { useConstructor } from "@/help"
-import { BlobProvider, PDFViewer } from "@react-pdf/renderer"
+import { PDFViewer } from "@react-pdf/renderer"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import WeaklyReportComponent from '@/components/Pdf/WeaklyReport';
@@ -26,18 +26,20 @@ const WeaklyReport =() => {
         <>
             <div className="h-[100vh]">
                 {data!=null && !isLoading?
-                    <BlobProvider              
-                        document={<WeaklyReportComponent values={data} />}
-                    >
-                            {({ loading }) =>
-                            loading ? "Loading document..." : 
-                            <PDFViewer  height={"100%"} width={'100%'}>
-                                <WeaklyReportComponent  values={data} ></WeaklyReportComponent>
-                            </PDFViewer>
-                            // <a href={url as string} download="example.pdf">Download PDF</a>
+                    // <BlobProvider              
+                    //     document={<WeaklyReportComponent values={data} />}
+                    // >
+                    //         {({ loading }) =>
+                    //         loading ? "Loading document..." : 
+                    //         <PDFViewer  height={"100%"} width={'100%'}>
+                    //             <WeaklyReportComponent  values={data} ></WeaklyReportComponent>
+                    //         </PDFViewer>
 
-                            }
-                    </BlobProvider>
+                    //         }
+                    // </BlobProvider>
+                    <PDFViewer className="w-full h-full">
+                        <WeaklyReportComponent  values={data} ></WeaklyReportComponent>
+                    </PDFViewer>
                 :
                 <div className="w-full h-screen flex justify-center items-center">
                     <BeatLoader color="blue"></BeatLoader>

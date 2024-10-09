@@ -14,20 +14,25 @@ const MethylationChart: React.FC = () => {
         gradientCurrent.addColorStop(0.1, 'rgba(127, 57, 251, 1)');
 
         const gradientAverage = ctx.createLinearGradient(0, 0, 0, 400);
-        gradientAverage.addColorStop(0, 'rgba(217, 217, 217, 0)');
-        gradientAverage.addColorStop(0.1, 'rgba(3, 218, 197, 1)');
-
+        // gradientAverage.addColorStop(0, 'rgba(217, 217, 217, 0)');
+        // gradientAverage.addColorStop(0.1, 'rgba(3, 218, 197, 1)');
+        gradientAverage.addColorStop(1, '#D9D9D900');
+        gradientAverage.addColorStop(0, '#7F39FB');  
         const data = {
-          labels: ['Promoters', 'Enhancers', 'Gene bodies', 'Intergenic'],
+          labels: ['Jan', 'Feb', 'Mar', 'Apr','May','Jun','Jul','Aug','Sep','Sep','Oct','Nov','Dec'],
           datasets: [
-            {
-              label: 'Current',
-              data: [60, 70, 50, 40],
-              backgroundColor: gradientCurrent,
-            },
+            // {
+            //   label: 'Current',
+            //   data: [60, 70, 50, 40],
+            //   backgroundColor: gradientCurrent,
+            // },
             {
               label: 'Average',
-              data: [50, 60, 40, 30],
+              borderRadius: 100,
+              // width:10,
+              barThickness: 10,  // Fixed bar width of 40px
+              
+              data: [50, 60, 40, 30,20,14,36,41,12,51,34,25,45],
               backgroundColor: gradientAverage,
             },
           ],
@@ -57,7 +62,7 @@ const MethylationChart: React.FC = () => {
             },
             y: {
               beginAtZero: true,
-              max: 100,
+              max:100,
               ticks: {
                 color: "#FFFF",
                 font: {
@@ -90,7 +95,7 @@ const MethylationChart: React.FC = () => {
   }, []);
 
   return (
-    <div className=" w-full bg-black-secondary border border-main-border p-4 rounded-lg shadow-md max-w-[872px] max-h-[223px]">
+    <div className=" w-full bg-black-secondary border border-main-border p-4 rounded-lg shadow-md  h-[50px]}">
       <canvas ref={chartRef} />
     </div>
   );
