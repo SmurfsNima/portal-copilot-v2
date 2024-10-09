@@ -132,31 +132,25 @@ export const TreatmentPlan = () => {
     };
     fetchHistory();
   }, [id]);
-  useEffect(() => {
-    const fetchTplan = async () => {
-      try {
-        const response = await Application.showTreatmentPlan({
-          tplan_id: planID,
-        });
-
-        const Data = response.data;
-        console.log(Data);
-        
-        if (Data) {
-          setDescription(Data.description_section.description);
-          setneedFocusBenchmarks(
-            Data.description_section["need focus benchmarks"]
-          );
-          setBenchmarks(Data.treatmen_plans);
-        }
-      } catch (err) {
-        console.log(err);
+  const fetchTreatmentPlan = async (t_plan_id: string) => {
+    try {
+      const response = await Application.showTreatmentPlan({
+        tplan_id: t_plan_id,
+      });
+  
+      const Data = response.data;
+      console.log(Data);
+  
+      if (Data) {
+        setDescription(Data.description_section.description);
+        setneedFocusBenchmarks(Data.description_section["need focus benchmarks"]);
+        setBenchmarks(Data.treatment_plans);
       }
-    };
-    fetchTplan();
-  }, [planID]);
-  useEffect(()=>console.log(needFocusBenchmarks),[needFocusBenchmarks]
-  )
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-3 w-full">
       <InfoCard></InfoCard>
@@ -292,7 +286,7 @@ export const TreatmentPlan = () => {
               </div>
             </div>
 
-            <div className="w-full flex items-center gap-10 cursor-pointer text-sm font-medium">
+            <div className="w-full flex items-center gap-5 cursor-pointer text-sm font-medium">
               <div
                 onClick={() => setIsDescription(!isDescription)}
                 className="flex items-center gap-3"
@@ -346,7 +340,7 @@ export const TreatmentPlan = () => {
               </div>
             )}
 
-            <div className="flex items-center  gap-5 cursor-pointer">
+            <div className="flex items-center  gap-3 cursor-pointer">
               <div
                 onClick={toggleDetailsSection}
                 className="flex items-center gap-3"
@@ -376,7 +370,7 @@ export const TreatmentPlan = () => {
                         key={index}
                         className="grid grid-cols-3 py-2 border-b border-main-border text-sm"
                       >
-                        <div className="  flex  w-[50%]   text-xs font-medium">
+                        <div className="  flex justify-around w-[65%]   text-xs font-medium">
                           {index === 0 ||
                           benchmarks[index - 1].subCategory !==
                             benchmark.subCategory ? (
@@ -462,6 +456,9 @@ export const TreatmentPlan = () => {
                         onClick={() => {
                           setTreatmentActive(index);
                           setplanID(entry.t_plan_id);
+                          fetchTreatmentPlan(entry.t_plan_id);
+                          ApplicationManager.addTreatmentPlanID(id as string, entry.t_plan_id );
+
                         }}
                         className={`${
                           treatmentActive === index && "bg-black-third"
@@ -492,7 +489,7 @@ export const TreatmentPlan = () => {
       ) : (
         <div
           className={
-            "flex flex-col items-center justify-center bg-black-primary text-primary-text text-sm w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border"
+            "flex flex-col items-center justify-center bg-black-primary text-primary-text text-xs w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border"
           }
         >
           <img src={"/images/EmptyState.png"} alt="Empty State" />
