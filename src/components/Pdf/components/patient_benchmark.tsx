@@ -43,22 +43,27 @@ const TableBenchMarkRender= ({item,category,title,styles}:{item:any,category:str
     return (
         <>
           <Text style={styles.title} >{title}</Text>
-          <View style={styles.table}>
+          <View style={{...styles.table,marginTop:5}} wrap>
             {/* Table Header */}
             <View style={styles.tableRow}>
-              <View style={styles.tableCol2}>
+              <View style={{...styles.tableCol,color:'#cc4100',
+                    borderColor: '#782600',}}>
                 <Text style={styles.tableCell}>Area</Text>
               </View>
-              <View style={styles.tableCol2}>
+              <View style={{...styles.tableCol,color:'#cc4100',
+                    borderColor: '#782600',}}>
                 <Text style={styles.tableCell}>Test L1</Text>
               </View>
-              <View style={styles.tableCol2}>
+              <View style={{...styles.tableCol,color:'#cc4100',
+                    borderColor: '#782600',}}>
                 <Text style={styles.tableCell}>Test L2</Text>
               </View>    
-              <View style={styles.tableCol2}>
+              <View style={{...styles.tableCol,color:'#cc4100',
+                    borderColor: '#782600',}}>
                 <Text style={styles.tableCell}>Result</Text>
               </View>    
-              <View style={styles.tableCol2}>
+              <View style={{...styles.tableCol,color:'#cc4100',
+                    borderColor: '#782600',}}>
                 <Text style={styles.tableCell}>Benchmark Performance</Text>
               </View>                                    
             </View>

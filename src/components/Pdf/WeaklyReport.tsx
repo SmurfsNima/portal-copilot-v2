@@ -3,6 +3,7 @@ import { Page, Document, StyleSheet, View } from '@react-pdf/renderer';
 // import Header from './components/Header';
 import TableInfoRender from './components/TableRender';
 import Footer from './components/Footer';
+import Header from './components/Header';
 
 const styles = StyleSheet.create({
   body: {
@@ -10,6 +11,16 @@ const styles = StyleSheet.create({
     paddingTop: 35,
     paddingBottom: 65,
     paddingHorizontal: 35,
+  },
+    subHeader: {
+    fontSize: 14,
+    marginBottom: 5,
+    marginLeft:12,
+    color:'#333333',
+    fontFamily: 'Helvetica'
+  },
+    listItem: {
+    marginLeft: 10,
   },
   line: {
     borderBottomWidth: 1, // Line thickness
@@ -31,13 +42,13 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 12,
     margin: 10,
     fontFamily: 'Helvetica'
   },
   text: {
-    margin:6,
-    fontSize: 14,
+    margin:12,
+    fontSize: 10,
     textAlign: 'justify',
     color:'#242424',
     fontFamily: 'Helvetica'
@@ -133,7 +144,7 @@ const WeaklyReport = ({values}:{values:any}) => {
         <>
           <Document>
              <Page  wrap={true} size="A4" style={styles.body} >
-                 {/* <Header logo={values["logo"]}></Header> */}
+                 <Header logo={values["logo"]}></Header>
                 <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
                 <TableInfoRender title='Client Information' styles={styles}  item={values["client_info"]} ></TableInfoRender>
                 </View>

@@ -8,10 +8,26 @@ const TableInfoRender= ({item,styles,title}:{item:any,styles:any,title:string}) 
           <View style={styles.table}>
             {/* Table Header */}
             <View style={styles.tableRow}>
-              <View style={styles.tableCol}>
+              <View style={{
+                    width: '50%',
+                    borderStyle: 'solid',
+                    borderWidth: 1,
+                    borderLeftWidth: 0,
+                    borderTopWidth: 0,
+                    color:'#cc4100',
+                    borderColor: '#782600',
+              }}>
                 <Text style={styles.tableCell}>key</Text>
               </View>
-              <View style={styles.tableCol}>
+              <View style={{
+                    width: '50%',
+                    borderStyle: 'solid',
+                    borderWidth: 1,
+                    borderLeftWidth: 0,
+                    borderTopWidth: 0,
+                    color:'#cc4100',
+                    borderColor: '#782600',
+              }}>
                 <Text style={styles.tableCell}>value</Text>
               </View>
             </View>

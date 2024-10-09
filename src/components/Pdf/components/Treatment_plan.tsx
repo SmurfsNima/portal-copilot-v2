@@ -8,16 +8,20 @@ const Treatment_plan = ({item,title,styles}:{item:any,title:string,styles:any}) 
             <View style={styles.table}>
                 {/* Table Header */}
                 <View style={styles.tableRow}>
-                <View style={styles.tableCol}>
+                <View style={{...styles.tableCol,color:'#cc4100',
+                    borderColor: '#782600',}}>
                     <Text style={styles.tableCell}>Category</Text>
                 </View>
-                <View style={styles.tableCol}>
+                <View style={{...styles.tableCol,color:'#cc4100',
+                    borderColor: '#782600',}}>
                     <Text style={styles.tableCell}>Benchmark area</Text>
                 </View>      
-                <View style={styles.tableCol}>
+                <View style={{...styles.tableCol,color:'#cc4100',
+                    borderColor: '#782600',}}>
                     <Text style={styles.tableCell}>Priority 1: First 12 Weeks</Text>
                 </View>    
-                <View style={styles.tableCol}>
+                <View style={{...styles.tableCol,color:'#cc4100',
+                    borderColor: '#782600',}}>
                     <Text style={styles.tableCell}>Priority 2: Beyond 12 Weeks</Text>
                 </View>                                         
                 </View>
