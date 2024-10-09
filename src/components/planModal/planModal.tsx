@@ -36,8 +36,9 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
   const [allData,setAllData] = useState(data)
   // const [categories,setCategories] = useState<Array<string>>([])
   useEffect(() => {
-    setAllData(data)
-  },[data])
+    setAllData(data);
+    setExpanded({}); // Reset expanded state when data changes
+  }, [data]);
 
   const handleClick = () => {
     setButtonState("loading");
@@ -141,9 +142,9 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
         {Object.entries(allData).map(([categoryName, category], categoryIndex) => (
           <div
             key={categoryIndex}
-            className={`p-4 rounded-md bg-black-primary select-none w-[390px] ${isgenerate?'h-[300px]':'h-[450px]'}  overflow-auto`}
+            className={`p-4 rounded-md bg-black-primary relative select-none w-[390px] ${isgenerate?'h-[300px]':'h-[450px]'}  overflow-auto overflow-x-hidden`}
           >
-            <div className="flex px-3 pb-1 justify-between items-center border-b border-main-border w-full">
+            <div className="flex px-3 pb-1 justify-between items-center border-b border-main-border w-full ">
               <span className="flex items-center gap-2 text-xs font-medium">
                 <div className="bg-black-background rounded-lg p-1 flex items-center justify-center">
                   <div
