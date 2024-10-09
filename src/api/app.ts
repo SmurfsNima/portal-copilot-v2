@@ -126,6 +126,10 @@ static downloadClinicReport(data:any){
     const response =  this.get(`/patients/${member_id}/show-tplan-description`)
     return response    
   }
+  static showTreatmentPlan(data:any) {
+    const response =  this.post(`/patients/show_treatmentplan`,data)
+    return response    
+  }
 
   static getPatientReorders(member_id:string) {
     const response = this.post("/patients/priority_data",{member_id:member_id})
@@ -200,6 +204,10 @@ static downloadClinicReport(data:any){
 
   static getReportString(data:any){
     const response = this.post("/ai_studio/get_report_string",data)
+    return response
+  }  
+  static showHistory(data:any){
+    const response = this.post("/patients/show_treatment_plan_list",data)
     return response
   }  
 
