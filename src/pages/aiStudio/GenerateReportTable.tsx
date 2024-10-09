@@ -4,6 +4,7 @@ import { Application } from "@/api"
 import { publish } from "@/utils/event"
 import { useState } from "react"
 import { FiExternalLink } from "react-icons/fi"
+import { useNavigate } from "react-router-dom"
 import { Button } from "symphony-ui"
 // import { pdf } from "@react-pdf/renderer";
 // import { blobToBase64 } from "@/help"
@@ -27,6 +28,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
         }  
       return '#FC5474'        
     }
+    const navigate = useNavigate()
     // const {reportManager} = useContext(AppContext);
     const handleRecomendChange = (index:number, value:string) => {
         const updatedRecommendation = [...data.Recommendation];
@@ -135,7 +137,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
                                             {}
                                         </div>
                                         <div className="w-[140px] text-[#1E1E1E] py-5 flex justify-center  text-[8px] font-medium"><span className="w-[53px] h-[16px] rounded-[16px] flex justify-center items-center" style={{backgroundColor:resolveStatusColor(data["Status"][index])}}>{data["Status"][index]}</span></div>
-                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink className="cursor-pointer"></FiExternalLink></div>
+                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink onClick={() => navigate("/historyCalData")} className="cursor-pointer"></FiExternalLink></div>
                                         <div className="w-[300px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
                                             <input type="text" onChange={(e) => {
                                                 handleRecomendChange(index,e.target.value)

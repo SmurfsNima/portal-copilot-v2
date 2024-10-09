@@ -1,7 +1,7 @@
 import { createHashRouter } from "react-router-dom";
 import Layout from "@/Themes/index";
 import ProtectedRoute from "./Protected";
-import { AiKnowlage, Information, Login,  PatientList, TimeLine, Setting, HelthProfile } from "@/pages";
+import { AiKnowlage, Information, Login,  PatientList, TimeLine, Setting, HelthProfile, Historycaldata } from "@/pages";
 import BioMarker from "@/pages/information/Analysis/index2";
 import { Diagnosis } from "@/pages/information/diagnosis";
 import { Intervention } from "@/pages/information/intervention";
@@ -25,6 +25,10 @@ const router = createHashRouter([
         path: "/",
         element: <PatientList></PatientList>,
         children: [],
+      },
+      {
+        path:'historyCalData',
+        element:<Historycaldata></Historycaldata>
       },
       {
         path:"/helthProfile/:id",
