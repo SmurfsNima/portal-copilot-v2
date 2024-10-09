@@ -12,6 +12,7 @@ import { AppContext } from "@/store/app";
 import RegenerateModal from "./RegenerateModal";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
 import { Application } from "@/api";
+import { BeatLoader } from "react-spinners";
 // import ClinicReport from "@/components/Pdf/ClinicReport";
 // import { pdf } from "@react-pdf/renderer";
 // import { Application } from "@/api";
@@ -51,7 +52,7 @@ export const TreatmentPlan = () => {
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+const [Loading, setLoading] = useState(true)
   const { ApplicationManager } = useContext(AppContext);
   // const [ ] = useState('')
   // const navigate = useNavigate(); // Navigation hook
@@ -97,21 +98,21 @@ export const TreatmentPlan = () => {
   //     console.error("Error fetching report:", error);
   //   }
   // };
-  useEffect(() => {
-    const myData = localStorage.getItem("tretmentPlan-" + id);
-    if (myData) {
-      const data = JSON.parse(myData);
-      if (data) {
-        setBenchmarks(data.treatment_plans[0]);
-        setplanID(data.treatment_plans[1]);
-        setDescription(data.description_section.description);
-        setneedFocusBenchmarks(
-          data.description_section["need focus benchmarks"]
-        );
-        setIsGenerated(true);
-      }
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   const myData = localStorage.getItem("tretmentPlan-" + id);
+  //   if (myData) {
+  //     const data = JSON.parse(myData);
+  //     if (data) {
+  //       setBenchmarks(data.treatment_plans[0]);
+  //       setplanID(data.treatment_plans[1]);
+  //       setDescription(data.description_section.description);
+  //       setneedFocusBenchmarks(
+  //         data.description_section["need focus benchmarks"]
+  //       );
+  //       setIsGenerated(true);
+  //     }
+  //   }
+  // }, [id]);
   // const handleViewReport = (reportType : string) => {
 
   //   localStorage.setItem("selectedReport", reportType);
@@ -121,17 +122,34 @@ export const TreatmentPlan = () => {
 
   useEffect(() => {
     const fetchHistory = async () => {
+
       try {
         const response = await Application.showHistory({
           member_id: id,
         });
         setHistoryData(response.data);
+        const firstPlan = response.data[0]
+        console.log(firstPlan);
+        ApplicationManager.addTreatmentPlanID(id as string, firstPlan.t_plan_id );
+        fetchTreatmentPlan(firstPlan.t_plan_id)
+       if(firstPlan){
+        setIsGenerated(true)
+       }
+       
       } catch (err) {
         console.log(err);
       }
+      finally{
+        setLoading(false)
+       
+  
+      }
+    
     };
     fetchHistory();
   }, [id]);
+  useEffect(()=> console.log(historyData), [historyData]
+  )
   const fetchTreatmentPlan = async (t_plan_id: string) => {
     try {
       const response = await Application.showTreatmentPlan({
@@ -165,10 +183,10 @@ export const TreatmentPlan = () => {
                     data != "there is no benchmark data for patient" &&
                     data != "Internal Server Error"
                   ) {
-                    localStorage.setItem(
-                      "tretmentPlan-" + id,
-                      JSON.stringify(data)
-                    );
+                    // localStorage.setItem(
+                    //   "tretmentPlan-" + id,
+                    //   JSON.stringify(data)
+                    // );
                   }
                   // const pdfBlob = await pdf(<ClinicReport type="" values={Data} />).toBlob();
 
@@ -486,7 +504,15 @@ export const TreatmentPlan = () => {
             </div>
           )}
         </div>
-      ) : (
+      ) :
+      Loading ? (
+        <div  className={
+          "flex flex-col items-center justify-center bg-black-primary text-primary-text text-xs w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border"
+        }>
+          <BeatLoader size={15} color={"#fff"} />
+        </div>
+      ) : historyData.length < 1 && 
+      (
         <div
           className={
             "flex flex-col items-center justify-center bg-black-primary text-primary-text text-xs w-full h-[340px] overflow-y-scroll p-3 rounded-lg space-y-3 border border-main-border"
@@ -504,7 +530,8 @@ export const TreatmentPlan = () => {
             Generate
           </Button>
         </div>
-      )}
+      )
+    }
     </div>
   );
 };
