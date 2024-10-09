@@ -15,6 +15,7 @@ import WeaklyReport from "@/pages/Pdf/WeaklyReport";
 import ClinicReportPage from "@/pages/Pdf/ClinicReport";
 import ClientReportPage from "@/pages/Pdf/ClientReport";
 import CopilotChat from "@/pages/information/CopilotChat";
+import ResportTest from "@/pages/ReportTest";
 
 const router = createHashRouter([
   {
@@ -115,6 +116,10 @@ const router = createHashRouter([
   {
     path:"weaklyReport/:memberId/:reportId",
     element:<WeaklyReport></WeaklyReport>
+  },
+  {
+    path:"reportTest",
+    element:<ResportTest></ResportTest>
   },
   {
     path: "/login",

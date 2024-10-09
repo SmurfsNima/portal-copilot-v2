@@ -1,0 +1,1454 @@
+{
+    "client_info": {
+        "Phone number": {
+            "0": " "
+        },
+        "Biological Gender": {
+            "0": "Male"
+        },
+        "Height": {
+            "0": " "
+        },
+        "Date of birth": {
+            "0": "16/01/1983"
+        },
+        "Location": {
+            "0": " "
+        },
+        "Timezone": {
+            "0": " "
+        },
+        "Prescribed medication": {
+            "0": "Lansoprazole for Reflux with history of Gout"
+        },
+        "Injury history": {
+            "0": "Right shoulder mobility issues"
+        },
+        "Smoker": {
+            "0": " "
+        },
+        "Diet preference (vegan, vegtarian, etc)": {
+            "0": " "
+        },
+        "Activity level (based on PAL definition)": {
+            "0": " "
+        },
+        "Weight": {
+            "0": 120
+        },
+        "Body fat %": {
+            "0": " "
+        },
+        "Hip to waist ratio": {
+            "0": " "
+        },
+        "In the last year how often have you participated in physical activity?": {
+            "0": "1-2 times per month"
+        },
+        "What physical activity has worked for you in the past and what level did you get to?": {
+            "0": " "
+        },
+        " What has not worked and why not?": {
+            "0": " "
+        },
+        "What types of physical activity do you enjoy?": {
+            "0": " "
+        },
+        "What do you not enjoy and why not?": {
+            "0": " "
+        },
+        "Do you have any negative feelings toward, or have you had any bad experience with exercise? (If YES please give details)": {
+            "0": " "
+        },
+        "If you have been unable to exercise regularly, what are the reasons?": {
+            "0": " "
+        },
+        "What is your present occupation?": {
+            "0": " "
+        },
+        "Does your occupation involve much physical activity (i.e. lifting, walking)?": {
+            "0": " "
+        },
+        "What activities do you participate in during your leisure time?": {
+            "0": " "
+        },
+        "How much time are you willing to devote to exercise?": {
+            "0": " "
+        },
+        " What types of exercise interest you?": {
+            "0": " "
+        },
+        " What is your ultimate goal?": {
+            "0": " "
+        },
+        "Why is this outcome important to you?": {
+            "0": " "
+        },
+        "TDEE": {
+            "0": 1000
+        },
+        "Calories consumed": {
+            "0": 2500
+        },
+        "Macro mix": {
+            "0": " "
+        },
+        "Diastolic Pressure": {
+            "0": " "
+        },
+        "Systolic Pressure": {
+            "0": " "
+        },
+        "SPO2 %": {
+            "0": " "
+        },
+        "How many hours did you exercised?": {
+            "0": " "
+        },
+        "Fat free Muscle index": {
+            "0": " "
+        }
+    },
+    "client_goal": {
+        "Medical conditions": {
+            "0": "Gout ,diabetes,asthma"
+        },
+        "What you want to be able to do?": {
+            "0": "I liked to run but too unfit to do that now. I want a realistic entry into getting fitter where I build up the intensity to match my capability. I dont enjoy squats as they make my legs hurt but recognise I may need to do them."
+        },
+        "How you want to look?": {
+            "0": "Lose the 18kg of weight I have put on since 2019 and get to a target weight of 82kg"
+        },
+        "How you want to feel?": {
+            "0": "Have more energy and know my health is improving"
+        }
+    },
+    "patient_benchmark": [
+        {
+            "Result": 8,
+            "Test L1": "Time working",
+            "Test L2": "Lifestyle tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Time priorities",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": 0,
+            "Test L1": "Time socialising",
+            "Test L2": "Lifestyle tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Time priorities",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": 80,
+            "Test L1": "Sleep quality",
+            "Test L2": "Wearable tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Recovery",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": 5,
+            "Test L1": "Sleep hours",
+            "Test L2": "Wearable tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Recovery",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Left leg",
+            "Test L2": "Left leg stand duration (secs)",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Left leg",
+            "Test L2": "Left leg squat ankle stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Left leg",
+            "Test L2": "Left leg squat knee stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Left leg",
+            "Test L2": "Left leg squat hip stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Right leg",
+            "Test L2": "Right leg stand duration (secs)",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Right leg",
+            "Test L2": "Right leg squat ankle stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Right leg",
+            "Test L2": "Right leg squat knee stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Right leg",
+            "Test L2": "Right leg squat hip stability",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Yes",
+            "Test L1": "Left foot stability",
+            "Test L2": "Hold 3 point contact when squatting",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Yes",
+            "Test L1": "Right foot stability",
+            "Test L2": "Hold 3 point contact when squatting",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Forward tilt",
+            "Test L1": "Lower back posture",
+            "Test L2": "Neutral spine test",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Holds neutral spine",
+            "Test L1": "Spine curvature",
+            "Test L2": "Neutral spine test",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Holds neutral spine",
+            "Test L1": "Upper back posture",
+            "Test L2": "Neutral spine test",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Lower back arches, Lower back rounds",
+            "Test L1": "Overhead squat test",
+            "Test L2": "Excessive lean forwards (excessive trunk flexion and/or hip flexion)",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Overhead squat test",
+            "Test L2": "Lower back arches",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Overhead squat test",
+            "Test L2": "Lower back rounds",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Right ankle caves in, Right hip twists, Wink visible",
+            "Test L1": "Overhead squat test",
+            "Test L2": "Asymmetrical weight shift",
+            "Category": "Fitness",
+            "Benchmark areas": "Stability",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Full ROM hamstring touches calf",
+            "Test L1": "Lower body",
+            "Test L2": "Sagital Squat - Air Squat ROM",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Proper hip hinge form",
+            "Test L1": "Lower body",
+            "Test L2": "Sagital Hinge - 5kg ball pick up ROM",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Too painful to complete movement",
+            "Test L1": "Lower body",
+            "Test L2": "Frontal Right leg side lunge ROM",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Above 90 degree knee to hip angle",
+            "Test L1": "Lower body",
+            "Test L2": "Frontal Left leg side lunge ROM",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Can touch wall with back of hand",
+            "Test L1": "Upper body",
+            "Test L2": "Sagital Shoulder - Standing bent arm rotation left arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Has limited ROM",
+            "Test L1": "Upper body",
+            "Test L2": "Sagital Shoulder - Standing bent arm rotation right arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Arm has more than 45 degree movement",
+            "Test L1": "Upper body",
+            "Test L2": "Frontal Shoulder - Lying arm hip to above head right arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Arm has more than 45 degree movement",
+            "Test L1": "Upper body",
+            "Test L2": "Frontal Shoulder - Lying arm hip to above head left arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Arm has full ROM and can extend above head",
+            "Test L1": "Upper body",
+            "Test L2": "Sagital Shoulder - Standing press left arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Arm has full ROM and can extend above head",
+            "Test L1": "Upper body",
+            "Test L2": "Sagital Shoulder - Standing press right arm",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Can rotate to left no pain and touch wall with elbow, Experiences pain when rotating right",
+            "Test L1": "Upper body",
+            "Test L2": "Transverse - Twist to right",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Can rotate to left no pain and touch wall with elbow, Experiences pain when rotating right",
+            "Test L1": "Upper body",
+            "Test L2": "Transverse - Twist to left",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Movement causes pain",
+            "Test L1": "Upper body",
+            "Test L2": "Back extension",
+            "Category": "Fitness",
+            "Benchmark areas": "Mobility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Good can touch wall with knee when toes 6 inches from wall with no heal raise",
+            "Test L1": "Lower body",
+            "Test L2": "Left ankle flexibility",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "Good can touch wall with knee when toes 6 inches from wall with no heal raise",
+            "Test L1": "Lower body",
+            "Test L2": "Right ankle flexibility",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "45-90 degree flexion",
+            "Test L1": "Lower body",
+            "Test L2": "Right hamstring",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "45-90 degree flexion",
+            "Test L1": "Lower body",
+            "Test L2": "Left hamstring",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "less than 45 degree",
+            "Test L1": "Lower body",
+            "Test L2": "Left hip flexor test",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "less than 45 degree",
+            "Test L1": "Lower body",
+            "Test L2": "Right hip flexor test",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Is more than 45 degree from ground with hand",
+            "Test L1": "Upper body",
+            "Test L2": "Left arm pec test",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Is more than 45 degree from ground with hand",
+            "Test L1": "Upper body",
+            "Test L2": "Right arm pec test",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Can touch mid back",
+            "Test L1": "Upper body",
+            "Test L2": "Right arm back touch",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Needs focus"
+        },
+        {
+            "Result": "Good can touch between shoulder blades",
+            "Test L1": "Upper body",
+            "Test L2": "Left arm back touch",
+            "Category": "Fitness",
+            "Benchmark areas": "Flexibility",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": " ",
+            "Test L1": "Time exercising",
+            "Test L2": "Lifestyle tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Time priorities",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": 120,
+            "Test L1": "Heart rate variability",
+            "Test L2": "Wearable tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Recovery",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": " ",
+            "Test L1": "High LDL",
+            "Test L2": "Lipid blood test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Low HDL",
+            "Test L2": "Lipid blood test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "High Blood Lipids",
+            "Test L2": "Lipid blood test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "HDL Ratio",
+            "Test L2": "Lipid blood test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Insulin Sensitivity",
+            "Test L2": "Fasting glucose test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Kidney Function",
+            "Test L2": "U&E test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Inflammation Marker",
+            "Test L2": "CRP",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Liver Function",
+            "Test L2": "LFT test",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": 50,
+            "Test L1": "Calcium",
+            "Test L2": "",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": 60,
+            "Test L1": "Iron",
+            "Test L2": "",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": " ",
+            "Test L1": "Hormone function",
+            "Test L2": "Female Estrogen",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Hormone function",
+            "Test L2": "Male Testosterone",
+            "Category": "Physiological",
+            "Benchmark areas": "Metabolic Function",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Macro mix",
+            "Test L2": "Macro mix actual versus what is required for age and gender",
+            "Category": "Physiological",
+            "Benchmark areas": "Nutrition",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": "Yes",
+            "Test L1": "Water intake",
+            "Test L2": "Water intake versus target guidelines",
+            "Category": "Physiological",
+            "Benchmark areas": "Nutrition",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": 1,
+            "Test L1": "Alcohol intake",
+            "Test L2": "Alcohol intake against safe guidelines",
+            "Category": "Physiological",
+            "Benchmark areas": "Nutrition",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 70,
+            "Test L1": "Resting heart rate",
+            "Test L2": "Wearable tracker",
+            "Category": "Physiological",
+            "Benchmark areas": "Cardiovascular health",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": " ",
+            "Test L1": "Oxygen saturation",
+            "Test L2": "SPO2 %",
+            "Category": "Physiological",
+            "Benchmark areas": "Cardiovascular health",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": 120,
+            "Test L1": "Weight",
+            "Test L2": "Scales",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": " ",
+            "Test L1": "Fat free Muscle index",
+            "Test L2": "Calculation based on height, gender, body fat%, weight",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Body fat %",
+            "Test L2": "Scales",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Hip to Waist ratio",
+            "Test L2": "Measure",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": 10000,
+            "Test L1": "Steps",
+            "Test L2": "Wearable tracker",
+            "Category": "Fitness",
+            "Benchmark areas": "Daily Activity",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 60,
+            "Test L1": "Exercise activity",
+            "Test L2": "Lifestyle tracker/exercise app",
+            "Category": "Fitness",
+            "Benchmark areas": "Daily Activity",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 25,
+            "Test L1": "VO2 Max",
+            "Test L2": "Sub maximal test on bike or treadmill",
+            "Category": "Fitness",
+            "Benchmark areas": "Cardiovascular fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Upper body",
+            "Test L2": "Left grip strength test",
+            "Category": "Fitness",
+            "Benchmark areas": "Power",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 12,
+            "Test L1": "Upper body",
+            "Test L2": "Right grip strength test",
+            "Category": "Fitness",
+            "Benchmark areas": "Power",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 5,
+            "Test L1": "Lower body",
+            "Test L2": "Forward jump",
+            "Category": "Fitness",
+            "Benchmark areas": "Power",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 90,
+            "Test L1": "Isometric hang",
+            "Test L2": "Deadhang",
+            "Category": "Fitness",
+            "Benchmark areas": "Bodyweight max strength",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 120,
+            "Test L1": "Isometric hold",
+            "Test L2": "Plank",
+            "Category": "Fitness",
+            "Benchmark areas": "Bodyweight max strength",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 90,
+            "Test L1": "Isometric Hold",
+            "Test L2": "Biering-Sorensen test lower back endurance",
+            "Category": "Fitness",
+            "Benchmark areas": "Bodyweight max strength",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 60,
+            "Test L1": "Isometric squat",
+            "Test L2": "Wall squat",
+            "Category": "Fitness",
+            "Benchmark areas": "Bodyweight max strength",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 0,
+            "Test L1": "Pull",
+            "Test L2": "Pull up",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 0,
+            "Test L1": "Push",
+            "Test L2": "Press up max",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 15,
+            "Test L1": "Legs",
+            "Test L2": "Air squat max",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 60,
+            "Test L1": "Front core",
+            "Test L2": "Abdominal curl",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": 20,
+            "Test L1": "Back core",
+            "Test L2": "Hyper extension",
+            "Category": "Fitness",
+            "Benchmark areas": "Muscle endurance",
+            "Benchmark performance": "Excellent"
+        },
+        {
+            "Result": " ",
+            "Test L1": "Blood pressure_Diastolic Pressure",
+            "Test L2": "Monitor",
+            "Category": "Physiological",
+            "Benchmark areas": "Cardiovascular health",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": " ",
+            "Test L1": "Blood pressure_Systolic Pressure",
+            "Test L2": "Monitor",
+            "Category": "Physiological",
+            "Benchmark areas": "Cardiovascular health",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": 48.89,
+            "Test L1": "OSWERTY lower back pain disability score",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 17,
+            "Test L1": "Fear avoidance about physical activity",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 37,
+            "Test L1": "Fear avoidance about physical activity",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 77,
+            "Test L1": "Stress management",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": "maintenance",
+            "Test L1": "Stages of change",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 26,
+            "Test L1": "Motivation",
+            "Test L2": "Survey",
+            "Category": "Emotional",
+            "Benchmark areas": "Emotional fitness",
+            "Benchmark performance": "Good"
+        },
+        {
+            "Result": 15,
+            "Test L1": "Squat",
+            "Test L2": "Barbell squat",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Hinge",
+            "Test L2": "Deadlift",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Pull max strength",
+            "Test L2": "Barbell row",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 15,
+            "Test L1": "Push overhead max strength",
+            "Test L2": "Barbell press",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Push max strength",
+            "Test L2": "Bench press",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 5,
+            "Test L1": "Carry",
+            "Test L2": "Farmers walk",
+            "Category": "Fitness",
+            "Benchmark areas": "Functional strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 10,
+            "Test L1": "Pull locomotion",
+            "Test L2": "Prowler pull",
+            "Category": "Fitness",
+            "Benchmark areas": "Functional strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": 20,
+            "Test L1": "Push locomotion",
+            "Test L2": "Prowler push",
+            "Category": "Fitness",
+            "Benchmark areas": "Functional strength",
+            "Benchmark performance": "Needs Focus"
+        },
+        {
+            "Result": " ",
+            "Test L1": "BMI",
+            "Test L2": "Height and weight",
+            "Category": "Physiological",
+            "Benchmark areas": "Body composition",
+            "Benchmark performance": " "
+        },
+        {
+            "Result": 0.8584905660377358,
+            "Test L1": "Relative upper to lower body ratio",
+            "Test L2": "Use 1RM results",
+            "Category": "Fitness",
+            "Benchmark areas": "Weighted max strength",
+            "Benchmark performance": "Needs Focus"
+        }
+    ],
+    "treatment_plan": [
+        {
+            "area": "Body composition",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Time priorities",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Recovery",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Metabolic Function",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Nutrition",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Cardiovascular health",
+            "status": true,
+            "subCategory": "Physiological",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Cardiovascular fitness",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Work on increasing aerobic volume"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Work on increasing aerobic volume"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Power",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Focus on forearm and hand strength",
+                    "Focus on forearm and hand strength",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Focus on forearm and hand strength",
+                    "Focus on forearm and hand strength",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Muscle endurance",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Build back and shoulder muscle endurance",
+                    "Build pressing muscle endurance",
+                    "Build leg  and glute muscle endurance",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Build back and shoulder muscle endurance",
+                    "Build pressing muscle endurance",
+                    "Build leg  and glute muscle endurance",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Weighted max strength",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Focus on building squat strength",
+                    "Focus on building hinge strength",
+                    "Focus on building back strength",
+                    "Focus on building pressing strength",
+                    "Focus on building pressing strength",
+                    "Prioirtise upper or lower body strength depending on which ratio is off target"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Focus on building squat strength",
+                    "Focus on building hinge strength",
+                    "Focus on building back strength",
+                    "Focus on building pressing strength",
+                    "Focus on building pressing strength",
+                    "Prioirtise upper or lower body strength depending on which ratio is off target"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Functional strength",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "Build high intensity work capacity and work on grip strength",
+                    "Build high intensity work capacity in lower body",
+                    "Build high intensity work capacity in lower body"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Build high intensity work capacity and work on grip strength",
+                    "Build high intensity work capacity in lower body",
+                    "Build high intensity work capacity in lower body"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Stability",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Mobility",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Flexibility",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Daily Activity",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Bodyweight max strength",
+            "status": true,
+            "subCategory": "Fitness",
+            "first12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "-",
+                    "-",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        },
+        {
+            "area": "Emotional fitness",
+            "status": true,
+            "subCategory": "Emotional",
+            "first12Weeks": {
+                "dos": [
+                    "Refer to back pain programme to work on improving every day activity functionality",
+                    "If score high refer to Cognitive behaviour therapy professional",
+                    "If score high refer to Cognitive behaviour therapy professional",
+                    "If not desired stage, set up regualr calls to help client get ready for change. If stage is really off propose a motivation building coaching service to help them get in the right state.",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            },
+            "second12Weeks": {
+                "dos": [
+                    "Refer to back pain programme to work on improving every day activity functionality",
+                    "If score high refer to Cognitive behaviour therapy professional",
+                    "If score high refer to Cognitive behaviour therapy professional",
+                    "If not desired stage, set up regualr calls to help client get ready for change. If stage is really off propose a motivation building coaching service to help them get in the right state.",
+                    "-",
+                    "-"
+                ],
+                "donts": []
+            }
+        }
+    ],
+    "coach_reminders": [
+        {
+            "condition": "Diabetes",
+            "recommendations": [
+                "Main aim is improving BS control/improve insulin sensitivity and CHD risk profile (↑ aerobic CV, ↓Body fat/BMI if applicable, ↑lifestyle change).",
+                "Functional movements should take preference – mimic movement patterns.",
+                "Use functional fitness tests and health tests, such as 6MWT, sit to stand, peak flow, balance testing, co-ordination testing.",
+                "Clients should be able to test own BS levels – ideally pre and post exercise.",
+                "New clients should avoid exercising alone due to higher risk of hypo.",
+                "Excessive intensity can ↑BS levels.",
+                "Prolonged warm-up and cool-down (15minutes) – gradual ROM and intensity increases to dilate coronary arteries thus aiding blood flow.",
+                "Consider time of day – avoid 3 hours prior to sleep due to nocturnal hypoglycaemia unless increasing carbohydrate intake."
+            ],
+            "contraindications": [
+                "Consider time of day – avoid 3 hours prior to sleep due to nocturnal hypoglycaemia unless increasing carbohydrate intake.",
+                "Avoid high impacts/jarring - ↑risks, such as retinopathy and neuropathy.",
+                "Consider footwear (neuropathy) and environment (dehydration/fatigue).",
+                "Avoid exercising during peak insulin activity and injection site areas as it speeds up medications action (abdominal site best rather than exercising limbs).",
+                "VM, breathe holding and over-gripping equipment – potentially ↑BP.",
+                "Warning signs (hypo or hyper) – extreme fatigue, irritable, nausea, intermittent claudication, frequent urination, extreme thirst/hunger, blurry vision/disorientated - anything different to a ‘normal’ response."
+            ]
+        },
+        {
+            "condition": "Asthma",
+            "recommendations": [
+                "Main aim is improving/maintaining aerobic capacity (↑ aerobic CV, ↑muscle strength/lifestyle change, ↑ADL`s).",
+                "Improve self-esteem, confidence and QOL.",
+                "Functional movements should take preference – mimic movement patterns where possible to aid ADLs.",
+                "Use functional fitness tests and health tests such as 6MWT, sit to stand, peak flow, balance testing, co-ordination testing.",
+                "Ensure medication is available throughout sessions – SABs.",
+                "Prolonged warm-up and cool-down (15 minutes) – gradual ROM and intensity increases aiding bronchial dilation – EIA SABs prior to exercise."
+            ],
+            "contraindications": [
+                "Consider temperature and time of day/environmental triggers (EIA).",
+                "Individualised programmes are required.",
+                "Warning signs – excessive coughing, excessive SOB, lower exercise tolerance – no exercise during exacerbation periods or unstable diagnosis.",
+                "Ensuring clients with asthma have written personal asthma plans.",
+                "To reduce the risk of exercise-induced bronchoconstriction, clients with asthma may need to take their reliever bronchodilator medication 15 minutes before exercise (upon agreement with GP).",
+                "Wearing a scarf to cover the mouth and nose during cold weather can also help prevent EIA .",
+                "The client should also be encouraged to use the breathing techniques that are taught as part of their treatment.",
+                "Make sure you know what to do in the event of an asthma attack."
+            ]
+        }
+    ],
+    "logo": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxMCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuMzY4NjEgMi43OTIyOFYxMi42MzkyQzkuMzY4NjEgMTIuODczNSA5LjE3Nzk4IDEzLjA2NDIgOC45NDM2IDEzLjA2NDJIMS4xMzQyM0MwLjg5OTg1NyAxMy4wNjQyIDAuNzA5MjI5IDEyLjg3MzUgMC43MDkyMjkgMTIuNjM5MlYxLjM2MTA0QzAuNzA5MjI5IDEuMTI2NjYgMC44OTk4NTcgMC45MzYwMzUgMS4xMzQyMyAwLjkzNjAzNUg3LjUxMjM2TDkuMzY4NjEgMi43OTIyOFoiIGZpbGw9IiMzMUM0OEQiLz4KPHBhdGggZD0iTTkuMzY4NzUgMi43OTIyOFYxMi42MzkyQzkuMzY4NzUgMTIuODczNSA5LjE3ODEyIDEzLjA2NDIgOC45NDM3NSAxMy4wNjQySDguMzM3NUM4LjU3MTg4IDEzLjA2NDIgOC43NjI1IDEyLjg3MzUgOC43NjI1IDEyLjYzOTJWMi43OTIyOEw2LjkwNjI1IDAuOTM2MDM1SDcuNTEyNUw5LjM2ODc1IDIuNzkyMjhaIiBmaWxsPSIjMDZDNzhEIi8+CjxwYXRoIGQ9Ik05LjM2ODcgMi43OTIyOEg3LjkzNzQ1QzcuNzAzMDggMi43OTIyOCA3LjUxMjQ1IDIuNjAxNjYgNy41MTI0NSAyLjM2NzI5VjAuOTM2MDM1TDkuMzY4NyAyLjc5MjI4WiIgZmlsbD0iIzA0NkM0RSIvPgo8cGF0aCBkPSJNMy45MzExNSA1LjA3MzQ2SDAuNzEyNDAyVjQuNTY0MDlINC4yNDY3OFY0Ljc2MDk2QzQuMjQzNjUgNC45MzI4MyA0LjEwMzAzIDUuMDczNDYgMy45MzExNSA1LjA3MzQ2WiIgZmlsbD0iIzA2Qzc4RCIvPgo8cGF0aCBkPSJNNC4yNTMxMiA0LjU2NDE2SDBWMi44NDIyOUMwIDIuNzExMDQgMC4xMDYyNSAyLjYwNzkxIDAuMjM0Mzc1IDIuNjA3OTFINC4yNTMxMkM0LjM4NDM3IDIuNjA3OTEgNC40ODc1IDIuNzE0MTYgNC40ODc1IDIuODQyMjlWNC4zMjk3OUM0LjQ4NzUgNC40NTc5MSA0LjM4MTI1IDQuNTY0MTYgNC4yNTMxMiA0LjU2NDE2WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQuNDg3NSA0LjI5ODQ5VjQuMzI2NjFDNC40ODc1IDQuNDU3ODYgNC4zODEyNSA0LjU2MDk5IDQuMjUzMTIgNC41NjA5OUgwVjIuODM5MTFDMCAyLjcwNzg2IDAuMTA2MjUgMi42MDQ3NCAwLjIzNDM3NSAyLjYwNDc0SDAuMzU2MjUxVjMuMjE3MjRDMC4zNTYyNTEgMy44MTQxMSAwLjg0MDYyNSA0LjI5ODQ5IDEuNDM3NSA0LjI5ODQ5SDQuNDg3NVoiIGZpbGw9IiNFMkUyRTIiLz4KPHBhdGggZD0iTTAgNC41NjQwOUwwLjcxMjUwMiA1LjM3NjU5VjQuNTY0MDlIMFoiIGZpbGw9IiNDNkM2QzYiLz4KPHBhdGggZD0iTTMuMzY1NTIgNy4wNzk3N0gxLjc0OTlDMS42OTY3OCA3LjA3OTc3IDEuNjQ5OSA3LjAzNjAxIDEuNjQ5OSA2Ljk3OTc2VjYuMTk4NTFDMS42NDk5IDYuMTQ1MzggMS42OTM2NSA2LjA5ODUxIDEuNzQ5OSA2LjA5ODUxSDMuMzY1NTJDMy40MTg2NSA2LjA5ODUxIDMuNDY1NTMgNi4xNDIyNiAzLjQ2NTUzIDYuMTk4NTFWNi45Nzk3NkMzLjQ2NTUzIDcuMDMyODggMy40MjE3NyA3LjA3OTc3IDMuMzY1NTIgNy4wNzk3N1oiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0zLjM2NTUyIDExLjU0ODVIMS43NDk5QzEuNjk2NzggMTEuNTQ4NSAxLjY0OTkgMTEuNTA0OCAxLjY0OTkgMTEuNDQ4NVY3LjQxNzI2QzEuNjQ5OSA3LjM2NDEzIDEuNjkzNjUgNy4zMTcyNiAxLjc0OTkgNy4zMTcyNkgzLjM2NTUyQzMuNDE4NjUgNy4zMTcyNiAzLjQ2NTUzIDcuMzYxMDEgMy40NjU1MyA3LjQxNzI2VjExLjQ0ODVDMy40NjU1MyAxMS41MDE2IDMuNDIxNzcgMTEuNTQ4NSAzLjM2NTUyIDExLjU0ODVaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOC4wNDA1OCA3LjA3OTc3SDQuMDY1NTdDNC4wMTI0NSA3LjA3OTc3IDMuOTY1NTggNy4wMzYwMSAzLjk2NTU4IDYuOTc5NzZWNi4xOTg1MUMzLjk2NTU4IDYuMTQ1MzggNC4wMDkzMiA2LjA5ODUxIDQuMDY1NTcgNi4wOTg1MUg4LjA0MDU4QzguMDkzNyA2LjA5ODUxIDguMTQwNTggNi4xNDIyNiA4LjE0MDU4IDYuMTk4NTFWNi45Nzk3NkM4LjEzNzQ1IDcuMDMyODggOC4wOTM3IDcuMDc5NzcgOC4wNDA1OCA3LjA3OTc3WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTUuMDUzMDIgNy45ODkwOEg0LjA2MjRDNC4wMDkyOCA3Ljk4OTA4IDMuOTYyNCA3Ljk0NTMzIDMuOTYyNCA3Ljg4OTA4VjcuNDE0MDlDMy45NjI0IDcuMzYwOTYgNC4wMDYxNSA3LjMxNDA5IDQuMDYyNCA3LjMxNDA5SDUuMDUzMDJDNS4xMDYxNSA3LjMxNDA5IDUuMTUzMDMgNy4zNTc4NCA1LjE1MzAzIDcuNDE0MDlWNy44ODkwOEM1LjE1MzAzIDcuOTQ1MzMgNS4xMDkyNyA3Ljk4OTA4IDUuMDUzMDIgNy45ODkwOFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik02LjU0NjkyIDcuOTg5MDhINS41NTYzQzUuNTAzMTggNy45ODkwOCA1LjQ1NjMgNy45NDUzMyA1LjQ1NjMgNy44ODkwOFY3LjQxNDA5QzUuNDU2MyA3LjM2MDk2IDUuNTAwMDUgNy4zMTQwOSA1LjU1NjMgNy4zMTQwOUg2LjU0NjkyQzYuNjAwMDUgNy4zMTQwOSA2LjY0NjkyIDcuMzU3ODQgNi42NDY5MiA3LjQxNDA5VjcuODg5MDhDNi42NDY5MiA3Ljk0NTMzIDYuNjAwMDUgNy45ODkwOCA2LjU0NjkyIDcuOTg5MDhaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOC4wNDA1OCA3Ljk4OTA4SDcuMDQ5OTVDNi45OTY4MiA3Ljk4OTA4IDYuOTQ5OTUgNy45NDUzMyA2Ljk0OTk1IDcuODg5MDhWNy40MTQwOUM2Ljk0OTk1IDcuMzYwOTYgNi45OTM3IDcuMzE0MDkgNy4wNDk5NSA3LjMxNDA5SDguMDQwNThDOC4wOTM3IDcuMzE0MDkgOC4xNDA1OCA3LjM1Nzg0IDguMTQwNTggNy40MTQwOVY3Ljg4OTA4QzguMTM3NDUgNy45NDUzMyA4LjA5MzcgNy45ODkwOCA4LjA0MDU4IDcuOTg5MDhaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNS4wNTMwMiA4Ljg4OTExSDQuMDYyNEM0LjAwOTI4IDguODg5MTEgMy45NjI0IDguODQ1MzcgMy45NjI0IDguNzg5MTJWOC4zMTQxMkMzLjk2MjQgOC4yNjA5OSA0LjAwNjE1IDguMjE0MTEgNC4wNjI0IDguMjE0MTFINS4wNTMwMkM1LjEwNjE1IDguMjE0MTEgNS4xNTMwMyA4LjI1Nzg3IDUuMTUzMDMgOC4zMTQxMlY4Ljc4OTEyQzUuMTUzMDMgOC44NDUzNyA1LjEwOTI3IDguODg5MTEgNS4wNTMwMiA4Ljg4OTExWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTYuNTQ2OTIgOC44ODkxMUg1LjU1NjNDNS41MDMxOCA4Ljg4OTExIDUuNDU2MyA4Ljg0NTM3IDUuNDU2MyA4Ljc4OTEyVjguMzE0MTJDNS40NTYzIDguMjYwOTkgNS41MDAwNSA4LjIxNDExIDUuNTU2MyA4LjIxNDExSDYuNTQ2OTJDNi42MDAwNSA4LjIxNDExIDYuNjQ2OTIgOC4yNTc4NyA2LjY0NjkyIDguMzE0MTJWOC43ODkxMkM2LjY0NjkyIDguODQ1MzcgNi42MDAwNSA4Ljg4OTExIDYuNTQ2OTIgOC44ODkxMVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik04LjA0MDU4IDguODg5MTFINy4wNDk5NUM2Ljk5NjgyIDguODg5MTEgNi45NDk5NSA4Ljg0NTM3IDYuOTQ5OTUgOC43ODkxMlY4LjMxNDEyQzYuOTQ5OTUgOC4yNjA5OSA2Ljk5MzcgOC4yMTQxMSA3LjA0OTk1IDguMjE0MTFIOC4wNDA1OEM4LjA5MzcgOC4yMTQxMSA4LjE0MDU4IDguMjU3ODcgOC4xNDA1OCA4LjMxNDEyVjguNzg5MTJDOC4xMzc0NSA4Ljg0NTM3IDguMDkzNyA4Ljg4OTExIDguMDQwNTggOC44ODkxMVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik01LjA1MzAyIDkuNzc2NjhINC4wNjI0QzQuMDA5MjggOS43NzY2OCAzLjk2MjQgOS43MzI5MyAzLjk2MjQgOS42NzY2OFY5LjIwMTY4QzMuOTYyNCA5LjE0ODU2IDQuMDA2MTUgOS4xMDE2OCA0LjA2MjQgOS4xMDE2OEg1LjA1MzAyQzUuMTA2MTUgOS4xMDE2OCA1LjE1MzAzIDkuMTQ1NDMgNS4xNTMwMyA5LjIwMTY4VjkuNjc2NjhDNS4xNTMwMyA5LjcyOTgxIDUuMTA5MjcgOS43NzY2OCA1LjA1MzAyIDkuNzc2NjhaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNi41NDY5MiA5Ljc3NjY4SDUuNTU2M0M1LjUwMzE4IDkuNzc2NjggNS40NTYzIDkuNzMyOTMgNS40NTYzIDkuNjc2NjhWOS4yMDE2OEM1LjQ1NjMgOS4xNDg1NiA1LjUwMDA1IDkuMTAxNjggNS41NTYzIDkuMTAxNjhINi41NDY5MkM2LjYwMDA1IDkuMTAxNjggNi42NDY5MiA5LjE0NTQzIDYuNjQ2OTIgOS4yMDE2OFY5LjY3NjY4QzYuNjQ2OTIgOS43Mjk4MSA2LjYwMDA1IDkuNzc2NjggNi41NDY5MiA5Ljc3NjY4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTguMDQwNTggOS43NzY2OEg3LjA0OTk1QzYuOTk2ODIgOS43NzY2OCA2Ljk0OTk1IDkuNzMyOTMgNi45NDk5NSA5LjY3NjY4VjkuMjAxNjhDNi45NDk5NSA5LjE0ODU2IDYuOTkzNyA5LjEwMTY4IDcuMDQ5OTUgOS4xMDE2OEg4LjA0MDU4QzguMDkzNyA5LjEwMTY4IDguMTQwNTggOS4xNDU0MyA4LjE0MDU4IDkuMjAxNjhWOS42NzY2OEM4LjEzNzQ1IDkuNzI5ODEgOC4wOTM3IDkuNzc2NjggOC4wNDA1OCA5Ljc3NjY4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTUuMDUzMDIgMTAuNjYxSDQuMDYyNEM0LjAwOTI4IDEwLjY2MSAzLjk2MjQgMTAuNjE3MiAzLjk2MjQgMTAuNTYxVjEwLjA4NkMzLjk2MjQgMTAuMDMyOCA0LjAwNjE1IDkuOTg1OTYgNC4wNjI0IDkuOTg1OTZINS4wNTMwMkM1LjEwNjE1IDkuOTg1OTYgNS4xNTMwMyAxMC4wMjk3IDUuMTUzMDMgMTAuMDg2VjEwLjU2MUM1LjE1MzAzIDEwLjYxNzIgNS4xMDkyNyAxMC42NjEgNS4wNTMwMiAxMC42NjFaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNi41NDY5MiAxMC42NjFINS41NTYzQzUuNTAzMTggMTAuNjYxIDUuNDU2MyAxMC42MTcyIDUuNDU2MyAxMC41NjFWMTAuMDg2QzUuNDU2MyAxMC4wMzI4IDUuNTAwMDUgOS45ODU5NiA1LjU1NjMgOS45ODU5Nkg2LjU0NjkyQzYuNjAwMDUgOS45ODU5NiA2LjY0NjkyIDEwLjAyOTcgNi42NDY5MiAxMC4wODZWMTAuNTYxQzYuNjQ2OTIgMTAuNjE3MiA2LjYwMDA1IDEwLjY2MSA2LjU0NjkyIDEwLjY2MVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik04LjA0MDU4IDEwLjY2MUg3LjA0OTk1QzYuOTk2ODIgMTAuNjYxIDYuOTQ5OTUgMTAuNjE3MiA2Ljk0OTk1IDEwLjU2MVYxMC4wODZDNi45NDk5NSAxMC4wMzI4IDYuOTkzNyA5Ljk4NTk2IDcuMDQ5OTUgOS45ODU5Nkg4LjA0MDU4QzguMDkzNyA5Ljk4NTk2IDguMTQwNTggMTAuMDI5NyA4LjE0MDU4IDEwLjA4NlYxMC41NjFDOC4xMzc0NSAxMC42MTcyIDguMDkzNyAxMC42NjEgOC4wNDA1OCAxMC42NjFaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNS4wNTMwMiAxMS41NDg1SDQuMDYyNEM0LjAwOTI4IDExLjU0ODUgMy45NjI0IDExLjUwNDggMy45NjI0IDExLjQ0ODVWMTAuOTczNUMzLjk2MjQgMTAuOTIwNCA0LjAwNjE1IDEwLjg3MzUgNC4wNjI0IDEwLjg3MzVINS4wNTMwMkM1LjEwNjE1IDEwLjg3MzUgNS4xNTMwMyAxMC45MTczIDUuMTUzMDMgMTAuOTczNVYxMS40NDg1QzUuMTUzMDMgMTEuNTAxNyA1LjEwOTI3IDExLjU0ODUgNS4wNTMwMiAxMS41NDg1WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTYuNTQ2OTIgMTEuNTQ4NUg1LjU1NjNDNS41MDMxOCAxMS41NDg1IDUuNDU2MyAxMS41MDQ4IDUuNDU2MyAxMS40NDg1VjEwLjk3MzVDNS40NTYzIDEwLjkyMDQgNS41MDAwNSAxMC44NzM1IDUuNTU2MyAxMC44NzM1SDYuNTQ2OTJDNi42MDAwNSAxMC44NzM1IDYuNjQ2OTIgMTAuOTE3MyA2LjY0NjkyIDEwLjk3MzVWMTEuNDQ4NUM2LjY0NjkyIDExLjUwMTcgNi42MDAwNSAxMS41NDg1IDYuNTQ2OTIgMTEuNTQ4NVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik04LjA0MDU4IDExLjU0ODVINy4wNDk5NUM2Ljk5NjgyIDExLjU0ODUgNi45NDk5NSAxMS41MDQ4IDYuOTQ5OTUgMTEuNDQ4NVYxMC45NzM1QzYuOTQ5OTUgMTAuOTIwNCA2Ljk5MzcgMTAuODczNSA3LjA0OTk1IDEwLjg3MzVIOC4wNDA1OEM4LjA5MzcgMTAuODczNSA4LjE0MDU4IDEwLjkxNzMgOC4xNDA1OCAxMC45NzM1VjExLjQ0ODVDOC4xMzc0NSAxMS41MDE3IDguMDkzNyAxMS41NDg1IDguMDQwNTggMTEuNTQ4NVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xLjM5OTk1IDIuOTU0NzlIMS42MjE4M1YzLjQxNzI4SDEuMzk5OTVDMS4zMzc0NSAzLjI1MTY2IDEuMjI4MDggMy4xNjcyOCAxLjA3MTgzIDMuMTY3MjhDMC45NDM3MDIgMy4xNjcyOCAwLjg0NjgyNSAzLjIxMTA0IDAuNzgxMiAzLjI5ODU0QzAuNzE1NTc1IDMuMzg2MDQgMC42ODEyMDIgMy40OTIyOCAwLjY4MTIwMiAzLjYxNDE2QzAuNjgxMjAyIDMuNzQyMjggMC43MTU1NzUgMy44NDU0MSAwLjc4NDMyNSAzLjkyNjY2QzAuODUzMDc1IDQuMDA0NzggMC45NDM3IDQuMDQ1NDEgMS4wNDk5NSA0LjA0NTQxQzEuMTM3NDUgNC4wNDU0MSAxLjIxNTU4IDQuMDE0MTYgMS4yODEyIDMuOTU0NzlDMS4zNDY4MyAzLjg5NTQxIDEuMzkzNyAzLjgxMTA0IDEuNDE1NTggMy43MDQ3OUwxLjY3NDk1IDMuODI5NzlDMS41NzQ5NSA0LjEzNjA0IDEuMzU5MzMgNC4yODkxNiAxLjAyNDk1IDQuMjg5MTZDMC43ODc0NTIgNC4yODkxNiAwLjYwOTMyNCA0LjIyNjY2IDAuNDkwNTc0IDQuMDk4NTNDMC4zNzE4MjQgMy45NzA0MSAwLjMwOTMyNiAzLjgxMTAzIDAuMzA5MzI2IDMuNjE0MTZDMC4zMDkzMjYgMy40NzY2NiAwLjM0MDU3NiAzLjM1NDc5IDAuNDAzMDc2IDMuMjQ4NTRDMC40NjU1NzYgMy4xNDIyOSAwLjU0OTk1IDMuMDY3MjkgMC42NTYyIDMuMDE0MTZDMC43NjI0NSAyLjk2MTA0IDAuODc4MDc1IDIuOTM2MDQgMS4wMDMwNyAyLjkzNjA0QzEuMTU5MzIgMi45MzYwNCAxLjI5MDU3IDIuOTc2NjYgMS4zOTY4MiAzLjA1NzkxVjIuOTU0NzlIMS4zOTk5NVoiIGZpbGw9IiMwNDZDNEUiLz4KPHBhdGggZD0iTTEuODIxODMgNC4yNzA0NVYzLjgyMDQ2SDIuMDQzN0MyLjA0NjgzIDMuOTAxNzEgMi4wNjg3IDMuOTY0MjEgMi4xMDkzMyA0LjAwMTcxQzIuMTQ5OTUgNC4wMzkyMSAyLjE5NjgzIDQuMDYxMDggMi4yNDY4MyA0LjA2MTA4QzIuMjg3NDUgNC4wNjEwOCAyLjMyMTgyIDQuMDQ4NTggMi4zNDk5NSA0LjAyMDQ1QzIuMzc4MDcgMy45OTIzMyAyLjM5MDU4IDMuOTU3OTYgMi4zOTA1OCAzLjkyMDQ2QzIuMzkwNTggMy44Nzk4MyAyLjM3ODA3IDMuODQ1NDUgMi4zNDk5NSAzLjgxNzMzQzIuMzIxODIgMy43ODkyIDIuMjcxODMgMy43NTc5NSAyLjE5OTk1IDMuNzIzNThDMi4wNDY4MyAzLjY1MTcgMS45NDM3IDMuNTg2MDggMS44OTA1OCAzLjUyOTgzQzEuODM3NDUgMy40NzM1OCAxLjgwOTMzIDMuMzk4NTggMS44MDkzMyAzLjMwMTdDMS44MDkzMyAzLjE4NjA4IDEuODQ2ODMgMy4wOTg1OCAxLjkxODcgMy4wMzI5NkMxLjk5MDU4IDIuOTcwNDYgMi4wNzE4MiAyLjkzOTIxIDIuMTYyNDUgMi45MzkyMUMyLjI2ODcgMi45MzkyMSAyLjM0NjgzIDIuOTc5ODMgMi40MDYyIDMuMDYxMDhWMi45NTE3MUgyLjYyODA3VjMuMzUxNzFIMi40MDYyQzIuMzk5OTUgMy4yODkyMSAyLjM3ODA4IDMuMjQyMzMgMi4zNDM3IDMuMjA3OTVDMi4zMDkzMyAzLjE3MzU4IDIuMjY1NTggMy4xNTc5NiAyLjIxODcgMy4xNTc5NkMyLjE4MTIgMy4xNTc5NiAyLjE0OTk1IDMuMTY3MzMgMi4xMjQ5NSAzLjE4NjA4QzIuMDk5OTUgMy4yMDQ4MyAyLjA4NzQ1IDMuMjI5ODMgMi4wODc0NSAzLjI2NDIxQzIuMDg3NDUgMy4yOTIzMyAyLjA5NjgzIDMuMzE3MzMgMi4xMTg3IDMuMzQyMzNDMi4xNDA1OCAzLjM2NzMzIDIuMTk5OTUgMy40MDE3MSAyLjMwMzA3IDMuNDQ1NDZDMi4zOTk5NSAzLjQ4OTIxIDIuNDc0OTUgMy41MjY3MSAyLjUyODA4IDMuNTY0MjFDMi41ODEyIDMuNTk4NTggMi42MjE4MyAzLjY0NTQ2IDIuNjQ5OTUgMy43MDE3MUMyLjY4MTIgMy43NTc5NiAyLjY5NjgzIDMuODIzNTggMi42OTY4MyAzLjg5NTQ1QzIuNjk2ODMgNC4wMjY3IDIuNjU5MzIgNC4xMjM1OCAyLjU4NDMyIDQuMTg5MjFDMi41MDkzMiA0LjI1NDgzIDIuNDE4NyA0LjI4OTIxIDIuMzE1NTcgNC4yODkyMUMyLjE5OTk1IDQuMjg5MjEgMi4xMTI0NSA0LjI0NTQ1IDIuMDQ5OTUgNC4xNjEwOFY0LjI3MzU4SDEuODIxODNWNC4yNzA0NVoiIGZpbGw9IiMwNDZDNEUiLz4KPHBhdGggZD0iTTMuMzAyOTggNC4yNzk4M0wyLjkxMjM1IDMuMTc2N0gyLjc1NjFWMi45NTQ4M0gzLjQyNzk4VjMuMTc2N0gzLjI1NjFMMy40Nzc5OCAzLjgzNjA4TDMuNjk5ODYgMy4xNzY3SDMuNTMxMTFWMi45NTQ4M0g0LjExNTQ4VjMuMTc2N0gzLjk1NjFMMy41Nzc5OCA0LjI3OTgzSDMuMzAyOThaIiBmaWxsPSIjMDQ2QzRFIi8+Cjwvc3ZnPgo=",
+    "recommendation": {
+        "diet": {
+            "Diet:Do's": "Eat a variety of fruits and vegetables, focusing on dark-colored produce like spinach, kale, and berries, which are rich in antioxidants.",
+            "Diet:Don't": "Limit your intake of processed and packaged foods, sugary drinks, and saturated fats found in foods like butter, lard, and partially hydrogenated oils."
+        },
+        "exercise": {
+            "Start Slowly": {
+                "Recommendations": "When starting a new exercise routine, begin with shorter sessions (20-30 minutes) and gradually increase duration and intensity as your body adapts."
+            },
+            "Warm Up and Cool Down": {
+                "Recommendations": "Always include a 5-10 minute warm-up (light cardio, stretching) before your workout and a 5-10 minute cool-down (static stretching) afterwards to prevent injuries and improve recovery."
+            },
+            "Listen to Your Body": {
+                "Recommendations": "Rest when needed, and avoid pushing through pain or discomfort. If you experience any severe pain or injury, stop immediately and consult a medical professional."
+            }
+        },
+        "advice": {
+            "Advice:General Advice": {
+                "Recommendations": {
+                    "Hydration": "Drink at least 8-10 glasses of water per day to maintain proper hydration levels, especially for individuals with high activity levels or living in hot climates.",
+                    "Supplements and Minerals": "Consult with your healthcare provider to determine necessary supplements and minerals tailored to your specific needs, such as calcium for bone health or vitamin D for immune function.",
+                    "Regular Monitoring": "Regularly monitor your health status, tracking vital signs, and discussing any concerns or changes with your healthcare provider."
+                },
+                "Potential Risk Factors": [
+                    {
+                        "Risk Factor": "Alcohol Consumption",
+                        "Recommendation": "Limit daily alcohol consumption to no more than one drink for women and two drinks for men, and avoid binge drinking altogether."
+                    },
+                    {
+                        "Risk Factor": "Smoking",
+                        "Recommendation": "Quit smoking immediately to reduce the risk of cardiovascular disease, lung cancer, and other smoking-related health issues."
+                    }
+                ],
+                "Condition-Specific Considerations": {
+                    "Diabetes": "Regularly monitor blood sugar levels and work closely with your healthcare provider to manage diabetes through medication, lifestyle modifications, and regular check-ups.",
+                    "Hypertension": "Monitor blood pressure regularly and follow your healthcare provider's recommendations for medication and lifestyle changes to manage hypertension."
+                },
+                "General Tips": [
+                    {
+                        "Tip": "Get enough sleep",
+                        "Description": "Aim for 7-8 hours of sleep per night to help regulate stress, repair tissues, and maintain overall health."
+                    },
+                    {
+                        "Tip": "Manage stress",
+                        "Description": "Engage in stress-reducing activities, such as meditation, deep breathing, or yoga, to help manage stress and maintain mental well-being."
+                    }
+                ]
+            }
+        }
+    }
+}
