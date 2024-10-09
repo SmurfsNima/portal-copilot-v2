@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import TableInfoRender from './components/TableRender';
 import Treatment_plan from './components/Treatment_plan';
 import CoachReminder from './components/Coach-reminder';
+import Recomendition from './components/Recomendition';
 // import CoachReminder from './components/Coach-reminder';
 
 // Create styles
@@ -228,6 +229,14 @@ const ClinicReport = ({values}:{values:any}) => (
 
         <Footer pageNumber={8}></Footer>
     </Page>     
+   <Page style={styles.body} >
+        <Header logo={values["logo"]}></Header>
+        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+          <Recomendition data={values} ></Recomendition>
+        </View>
+
+        <Footer pageNumber={8}></Footer>
+    </Page>         
   </Document>
 );
 

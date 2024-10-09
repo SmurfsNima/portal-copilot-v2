@@ -351,6 +351,8 @@ export const AiStudio = () => {
 
                 <div>
                   <Button onClick={() => {
+                    setEditMode(false)
+                    setGenerateReportGoolsData({"Type of progress":[]})
                     Application.getWeeklyReport({
                       member_id: activeMemberID, 
                     }).then((res) => {

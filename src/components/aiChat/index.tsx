@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Application } from '@/api';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 type Message = {
@@ -81,6 +81,13 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
       handleSend();
     }
   };
+  const messagesEndRef = useRef<null | HTMLDivElement>(null)
+  const scrollToBottom = () => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }    
+  useEffect(() => {
+      scrollToBottom()
+  }, [messages]);    
   useEffect(() => {
     Application.getListChats({
       member_id:memberId
@@ -110,26 +117,26 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
     })
   },[memberId])
   return (
-    <div className="w-full h-[424px] mx-auto  bg-black-primary border border-main-border  rounded-md relative flex flex-col ">
+    <div className="w-full h-[424px]  mx-auto  bg-black-primary border border-main-border  rounded-md relative flex flex-col ">
       
-      <div className="p-4 space-y-4 max-h-[310px] overflow-y-auto">
+      <div className="p-4 space-y-4 max-h-[380px] overflow-y-auto">
         {messages.map((msg) => (
           <>
             {msg.sender=='ai' ?
               <div className='flex justify-start items-start gap-1'>
                 <div className='w-[40px] h-[40px] flex justify-center items-center rounded-full bg-[#383838]'>
-                  <img src="/src/assets/images/clinic.png" alt="" />                 
+                  <img src="./images/clinic.png" alt="" />                 
                 </div>
                 <div>
                   <div className='text-[#FFFFFFDE] text-[12px]'>AI-Copilot <span className='text-[#FFFFFF99] ml-1'>{msg.time}</span></div>
-                  <div className='max-w-[383px] bg-[#272727] p-4 text-justify mt-1 border-[#383838] border text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tl-none '>{msg.text}</div>
+                  <div className='max-w-[500px] bg-[#272727] p-4 text-justify  mt-1 border-[#383838] border text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tl-none ' style={{lineHeight:'26px'}}>{msg.text}</div>
                 </div>
               </div>
             :
               <div className='flex justify-end items-start gap-1'>
                 <div className='flex flex-col items-end'>
                   <div className='text-[#FFFFFFDE] text-[12px]'>Coach <span className='text-[#FFFFFF99] ml-1'>{msg.time}</span></div>
-                  <div className='max-w-[383px] bg-[#272727] p-4 text-justify mt-1 border-[#383838] border text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tr-none '>{msg.text}</div>
+                  <div className='max-w-[500px] bg-[#272727] p-4 text-justify mt-1 border-[#383838] border text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tr-none '>{msg.text}</div>
                 </div>
                 <div className='w-[40px] h-[40px] overflow-hidden flex justify-center items-center rounded-full bg-[#383838]'>
                   <img className='rounded-full' src={`https://ui-avatars.com/api/?name=${'Coach'}`} alt="" />                 
@@ -149,6 +156,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
           //   </div>
           // </div>
         ))}
+        <div  ref={messagesEndRef}></div>
       </div>
       <div className="w-[98%] bg-black-primar  absolute bottom-0 ml-2 mb-2    border border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
         <input

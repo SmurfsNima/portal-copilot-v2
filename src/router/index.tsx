@@ -11,10 +11,10 @@ import { ActionPlan } from "@/pages/information/ActionPlan";
 import { Calender } from "@/pages/information/calender";
 import { Messages } from "@/pages/messages";
 import PdfViewerComponent from "@/pages/information/Treatment Plan/PdfViewer";
-import { AiChat } from "@/components";
 import WeaklyReport from "@/pages/Pdf/WeaklyReport";
 import ClinicReportPage from "@/pages/Pdf/ClinicReport";
 import ClientReportPage from "@/pages/Pdf/ClientReport";
+import CopilotChat from "@/pages/information/CopilotChat";
 
 const router = createHashRouter([
   {
@@ -76,7 +76,7 @@ const router = createHashRouter([
           },
           {
             path: "copilot",
-            element: <AiChat></AiChat>,
+            element: <CopilotChat></CopilotChat>
           },
         ],
       },

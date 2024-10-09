@@ -3,7 +3,7 @@ import { ActivityMenu, InfoCard, SearchBox, StatusMenu } from "@/components"
 import { useEffect, useState } from "react"
 import { useBiomarkers } from "@/hooks"
 import ChartController from "./Charts/ChartController"
-type MenuNames = 'All' | 'Blood Test' | 'Activity' | 'Client Profile' | "Weekly report"|"Fitness"|"Physiological" |"Emotional"
+type MenuNames = 'All' | 'Blood Test'|'Ongoing'| 'Activity' | 'Client Profile' | "Weekly report"|"Fitness"|"Physiological" |"Emotional"
 type menuItem  = {
     name:MenuNames
 }
@@ -15,6 +15,7 @@ const Analysis = () => {
         {name :'Fitness' },
         {name :'Physiological' },
         {name :'Emotional' },
+        {name:"Ongoing"}
     ]    
     const [avtiveMenu,setActiveMenu] = useState<MenuNames>(menus[0].name)
     const [search,setSearch] =useState<string>("")

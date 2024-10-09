@@ -94,14 +94,16 @@ const HelthProfile = () => {
     useConstructor(() => {
         Application.getSummary(id as string).then(res => {
             console.log(res)
-            setData(res.data)
-            formik.setFieldValue("firstName",res.data.personal_info.name)
-            // formik.setFieldValue("lastName",res.data.personal_info.name)
-            setImage(res.data.personal_info.picture)
-            formik.setFieldValue("workOuts",res.data.personal_info["total workouts"])
-            formik.setFieldValue("Activity",res.data.personal_info["total Cardio Activities"])
-            formik.setFieldValue("expert",res.data.personal_info.expert)
-            formik.setFieldValue("location",res.data.personal_info.Location)
+            if(res.data!='Internal Server Error') {
+                setData(res.data)
+                formik.setFieldValue("firstName",res.data.personal_info.name)
+                // formik.setFieldValue("lastName",res.data.personal_info.name)
+                setImage(res.data.personal_info.picture)
+                formik.setFieldValue("workOuts",res.data.personal_info["total workouts"])
+                formik.setFieldValue("Activity",res.data.personal_info["total Cardio Activities"])
+                formik.setFieldValue("expert",res.data.personal_info.expert)
+                formik.setFieldValue("location",res.data.personal_info.Location)
+            }
         })
     })
     const [showAddNote,setShowAddNote] = useState(false)

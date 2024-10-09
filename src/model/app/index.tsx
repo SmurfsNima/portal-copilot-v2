@@ -10,10 +10,14 @@ class Application {
         }
     }
     public addTreatmentPlanID (memberID:string,treatmentPlanId:string) {
-        this.clientsReport.push({
-            memberId:memberID,
-            treatmentPlanId:treatmentPlanId
-        })
+        if(this.clientsReport.map((el) => el.memberId).includes(memberID)){
+            this.clientsReport.filter(el => el.memberId == memberID)[0].treatmentPlanId = treatmentPlanId
+        }else {
+            this.clientsReport.push({
+                memberId:memberID,
+                treatmentPlanId:treatmentPlanId
+            })
+        }
         this.syncTolocal()
     }
 
