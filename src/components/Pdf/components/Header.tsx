@@ -14,17 +14,22 @@ const styles =StyleSheet.create({
     width: '100%', // Full width of the header
     marginBottom: 8, // Space below the line
     marginTop:8
-  },    
+  },  
+    footerLine: {
+      height: 5,
+      backgroundColor: '#97B2C6',  // Light blue color for the line
+      marginBottom: 10,
+    },    
 })
 
 // eslint-disable-next-line no-empty-pattern
 const Header = ({logo}:{logo:string}) => (
   <View style={styles.header}>
       {logo!= '' &&
-        <Image src={logo} style={{width:'35px',height:'35px'}}></Image> 
+        <Image src={logo} style={{width:150,height:50,marginBottom:5}}></Image> 
       }
 
-    <View style={styles.line} /> {/* Horizontal line */}
+    <View style={styles.footerLine} /> {/* Horizontal line */}
   </View>
 );
 

@@ -3,7 +3,7 @@ import { Page, View,Text } from "@react-pdf/renderer"
 import Header from "./Header"
 import Footer from "./Footer"
 
-const Patient_benchmark = ({data,styles,logo}:{data:any,styles:any,logo:string}) => {
+const Patient_benchmark = ({data,styles,logo,reportName}:{data:any,styles:any,reportName:string,logo:string}) => {
     return (
         <>
             <Page style={styles.body} >
@@ -14,7 +14,7 @@ const Patient_benchmark = ({data,styles,logo}:{data:any,styles:any,logo:string})
                     </>
                 </View>
 
-                <Footer pageNumber={3}></Footer>
+                <Footer reportName={reportName} styles={styles} pageNumber={3}></Footer>
             </Page>   
             <Page style={styles.body} >
                 <Header logo={logo}></Header>
@@ -22,7 +22,7 @@ const Patient_benchmark = ({data,styles,logo}:{data:any,styles:any,logo:string})
                     <TableBenchMarkRender styles={styles} title='Fitness Test Results'  category='Fitness' item={data} ></TableBenchMarkRender>
                 </View>
 
-                <Footer pageNumber={4}></Footer>
+                <Footer reportName={reportName} styles={styles}  pageNumber={4}></Footer>
             </Page>      
             <Page style={styles.body} >
                 <Header logo={logo}></Header>
@@ -32,7 +32,7 @@ const Patient_benchmark = ({data,styles,logo}:{data:any,styles:any,logo:string})
 
                 </View>
 
-                <Footer pageNumber={5}></Footer>
+                <Footer reportName={reportName} styles={styles}  pageNumber={5}></Footer>
             </Page>              
         </>
     )

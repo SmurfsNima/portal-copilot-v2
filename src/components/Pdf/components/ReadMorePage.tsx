@@ -3,7 +3,7 @@ import { Page,Text } from "@react-pdf/renderer"
 import Header from "./Header"
 import Footer from "./Footer"
 
-const ReadMorePage = ({values,styles}:{values:any,styles:any}) => {
+const ReadMorePage = ({values,styles,reportName}:{values:any,styles:any,reportName:string}) => {
   return (
     <>
     <Page style={styles.body}>
@@ -51,7 +51,7 @@ const ReadMorePage = ({values,styles}:{values:any,styles:any}) => {
       <Text style={styles.text}>
 • Good - performance is 76% to 99% of benchmark
       </Text>       
-      <Footer pageNumber={2}></Footer>
+      <Footer reportName={reportName} styles={styles} pageNumber={2}></Footer>
     </Page>    
     </>
   )

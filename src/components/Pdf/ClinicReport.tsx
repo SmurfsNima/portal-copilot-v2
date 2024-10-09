@@ -26,6 +26,30 @@ const styles = StyleSheet.create({
     color:'#333333',
     fontFamily: 'Helvetica'
   },
+      footerContainer: {
+      position: 'absolute',
+      bottom: 20,
+      left: 0,
+      right: 0,
+      paddingHorizontal: 40,
+    },
+    footerLine: {
+      height: 5,
+      backgroundColor: '#97B2C6',  // Light blue color for the line
+      marginBottom: 10,
+    },
+    footerTextContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      fontSize: 10,
+      color: '#b0b0b0',  // Light gray color for the text
+    },
+    reportName: {
+      fontSize: 10,
+    },
+    pageNumber: {
+      fontSize: 10,
+    },  
     listItem: {
     marginLeft: 10,
   },
@@ -92,15 +116,6 @@ const styles = StyleSheet.create({
   bulletPoint: {
     marginLeft: 10,
   },  
-  pageNumber: {
-    position: 'absolute',
-    fontSize: 12,
-    bottom: 30,
-    left: 0,
-    right: 0,
-    textAlign: 'center',
-    color: 'grey',
-  },
   table: {
     display: 'flex', // Use Flexbox layout
     flexDirection: 'column', // Table rows stack vertically
@@ -192,17 +207,17 @@ const ClinicReport = ({values}:{values:any}) => (
           <TableInfoRender title='Client Information' styles={styles}  item={values["client_info"]} ></TableInfoRender>
         </View>
 
-        <Footer pageNumber={1}></Footer>
+        <Footer reportName='Benchmark Assessment Report- Coach' styles={styles} pageNumber={1}></Footer>
     </Page>
-    <ReadMorePage styles={styles}  values={values}></ReadMorePage>
-    <Patient_benchmark logo={values["logo"]} styles={styles} data={values["patient_benchmark"]}></Patient_benchmark>
+    <ReadMorePage reportName='Benchmark Assessment Report- Coach' styles={styles}  values={values}></ReadMorePage>
+    <Patient_benchmark reportName={'Benchmark Assessment Report- Coach'} logo={values["logo"]} styles={styles} data={values["patient_benchmark"]}></Patient_benchmark>
     <Page style={styles.body} wrap>
         <Header logo={values["logo"]}></Header>
         <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
           <TableInfoRender title='Client Goals' styles={styles}  item={values["client_goal"]} ></TableInfoRender>
         </View>
 
-        <Footer pageNumber={6}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={6}></Footer>
     </Page>  
 
     <Page style={styles.body} wrap >
@@ -211,7 +226,7 @@ const ClinicReport = ({values}:{values:any}) => (
           <Treatment_plan item={values["treatment_plan"]} styles={styles} title='Recommended Action Areas'></Treatment_plan>
         </View>
 
-        <Footer pageNumber={7}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={7}></Footer>
     </Page>    
     <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
@@ -219,7 +234,7 @@ const ClinicReport = ({values}:{values:any}) => (
           <CoachReminder item={values["coach_reminders"]} styles={styles} title='Coach Reminders'></CoachReminder>
         </View>
 
-        <Footer pageNumber={8}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={8}></Footer>
     </Page>     
    <Page style={styles.body} wrap>
         <Header logo={values["logo"]}></Header>
@@ -231,7 +246,7 @@ const ClinicReport = ({values}:{values:any}) => (
           {renderSection(values["recommendation"])}
         </View>
 
-        <Footer pageNumber={9}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={9}></Footer>
     </Page>         
   </Document>
 );

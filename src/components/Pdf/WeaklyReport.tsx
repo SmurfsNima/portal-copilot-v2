@@ -19,6 +19,30 @@ const styles = StyleSheet.create({
     color:'#333333',
     fontFamily: 'Helvetica'
   },
+      footerContainer: {
+      position: 'absolute',
+      bottom: 20,
+      left: 0,
+      right: 0,
+      paddingHorizontal: 40,
+    },
+    footerLine: {
+      height: 5,
+      backgroundColor: '#97B2C6',  // Light blue color for the line
+      marginBottom: 10,
+    },
+    footerTextContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      fontSize: 10,
+      color: '#b0b0b0',  // Light gray color for the text
+    },
+    reportName: {
+      fontSize: 10,
+    },
+    pageNumber: {
+      fontSize: 10,
+    },  
     listItem: {
     marginLeft: 10,
   },
@@ -85,15 +109,6 @@ const styles = StyleSheet.create({
   bulletPoint: {
     marginLeft: 10,
   },  
-  pageNumber: {
-    position: 'absolute',
-    fontSize: 12,
-    bottom: 30,
-    left: 0,
-    right: 0,
-    textAlign: 'center',
-    color: 'grey',
-  },
   table: {
     display: 'flex', // Use Flexbox layout
     flexDirection: 'column', // Table rows stack vertically
@@ -149,7 +164,7 @@ const WeaklyReport = ({values}:{values:any}) => {
                 <TableInfoRender title='Client Information' styles={styles}  item={values["client_info"]} ></TableInfoRender>
                 </View>
 
-                <Footer pageNumber={1}></Footer>                 
+                <Footer reportName={`Client's Weekly Report`} styles={styles} pageNumber={1}></Footer>                 
              </Page>
           </Document>
         </>
