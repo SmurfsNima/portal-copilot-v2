@@ -45,7 +45,7 @@ export const TreatmentPlan = () => {
   const [lastUpdateTime, setLastUpdateTime] = useState("");
   const [historyData, setHistoryData] = useState<HistoryEntry[]>([]);
 
-  const [planID, setplanID] = useState("");
+  const [, setplanID] = useState("");
   const { id } = useParams<{ id: string }>();
   const [benchmarks, setBenchmarks] = useState<Benchmark[]>([]);
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
