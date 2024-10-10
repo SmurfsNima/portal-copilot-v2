@@ -2,16 +2,11 @@
 import { Application } from "@/api"
 import { useConstructor } from "@/help"
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer"
-import React, { useState } from "react"
+import { useState } from "react"
 import { useParams } from "react-router-dom"
 import WeaklyReportComponent from '@/components/Pdf/WeaklyReport';
 import { BeatLoader } from "react-spinners"
-type RenderProps = {
-  blob: Blob | null;
-  url: string | null;
-  loading: boolean;
-  error: Error | null;
-};
+
 const WeaklyReport =() => {
     const {reportId,memberId} = useParams()
     const [data,setData] = useState(null)
