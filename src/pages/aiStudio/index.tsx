@@ -138,7 +138,7 @@ export const AiStudio = () => {
   })
 
   return (
-    <div className="bg-black-background h-full w-full px-5 flex items-start gap-2">
+    <div className="bg-white dark:bg-black-background h-full w-full px-5 flex items-start gap-2">
       {isCreateReportMode ?
         <div className="w-full">
           <div className="w-full mb-2 flex justify-between items-center">
@@ -235,7 +235,7 @@ export const AiStudio = () => {
                 />
                 <img className="cursor-pointer" src="/Themes/Aurora/icons/send.svg" alt="" />
               </div> */}
-              <div className="bg-black-primary text-primary-text p-4 rounded-lg space-y-5">
+              <div className="bg-white border border-light-border-color dark:bg-black-primary text-light-secandary-text dark:text-primary-text p-4 rounded-lg space-y-5">
                 <div
                   onClick={toggleStateSection}
                   className="flex items-center cursor-pointer gap-2 text-xs text-nowrap font-medium"
