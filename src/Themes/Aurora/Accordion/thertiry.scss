@@ -1,5 +1,5 @@
 .Aurora-thertiry-Accordion-container {
-  @apply flex justify-between bg-black-primary w-full min-h-[48px] h-[48px]  items-center  px-4 py-2 cursor-pointer select-none;
+  @apply flex justify-between bg-[#272727] w-full min-h-[48px] h-[48px]  items-center  px-4 py-2 cursor-pointer select-none;
 }
 
 .Aurora-thertiry-Accordion-container[data-isActive="true"] {
@@ -16,7 +16,7 @@
   @apply text-brand-primary-color text-xs font-normal;
 }
 .Aurora-thertiry-Accordion-list-container {
-  @apply w-full bg-black-primary   h-full max-h-[420px] flex  rounded-t-none border-none rounded-xl border-main-border flex-col gap-4 px-6;
+  @apply w-full bg-[#272727]  h-full max-h-[420px] flex  rounded-t-none border-none rounded-xl border-main-border flex-col gap-4 px-6;
 }
 
 .Aurora-thertiry-icons-arrow-down {

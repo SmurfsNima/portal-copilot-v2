@@ -52,7 +52,7 @@ export const TreatmentPlan = () => {
   const [needFocusBenchmarks, setneedFocusBenchmarks] = useState([]);
   const [Description, setDescription] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-const [Loading, setLoading] = useState(true)
+  const [Loading, setLoading] = useState(true)
   const { ApplicationManager } = useContext(AppContext);
   // const [ ] = useState('')
   // const navigate = useNavigate(); // Navigation hook
@@ -129,7 +129,7 @@ const [Loading, setLoading] = useState(true)
         });
         setHistoryData(response.data);
         const firstPlan = response.data[0]
-        console.log(firstPlan);
+        // console.log(firstPlan);
         ApplicationManager.addTreatmentPlanID(id as string, firstPlan.t_plan_id );
         fetchTreatmentPlan(firstPlan.t_plan_id)
        if(firstPlan){

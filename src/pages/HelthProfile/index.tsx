@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TabsWrapper,Accordion } from "@/components"
+import { Accordion } from "@/components"
 import border from "../../assets/images/profile-img-border.svg";
 // import NullPage from '../../assets/images/Group.png';
 import { useSelector } from "react-redux";
@@ -20,48 +20,6 @@ const HelthProfile = () => {
     const {id} = useParams()
     const [serachParametr] = useSearchParams()
     console.log(serachParametr.get("name"))
-    const tabs =[
-        {
-            text: "Summary",
-            path : 'Summary',
-            icon : true
-        },    
-        {
-            text: "Data Entry",
-            path : 'DataEntry',
-            icon : true,
-        },    
-        {
-            text: "Overview",
-            path : '',
-            icon : true,
-            isVisible:false
-        },  
-        {
-            text: "Overview",
-            path : '',
-            icon : true,
-            isVisible:false
-        },  
-        {
-            text: "Overview",
-            path : '',
-            icon : true,
-            isVisible:false
-        },  
-        {
-            text: "Overview",
-            path : '',
-            icon : true,
-            isVisible:false
-        },  
-        {
-            text: "Overview",
-            path : '',
-            icon : true,
-            isVisible:false
-        },                                                   
-    ]
     const [files, setFiles] = useState<FileData[]>([])
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFiles = Array.from(event.target.files || []);
@@ -88,7 +46,7 @@ const HelthProfile = () => {
     const handleDeleteFile = (index: number) => {
         setFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
     };
-    const [menu,setMenu] = useState('Summary')
+    const [menu] = useState('Summary')
     const navigate= useNavigate()
     const [data,setData] = useState<any>(null)
     const [image,setImage] = useState<any>("")
@@ -201,8 +159,8 @@ const HelthProfile = () => {
                 </div>
 
                 <div className="w-full flex justify-between mt-4">
-                    <div>
-                        <div className="flex justify-center relative items-center pt-4">
+                    <div className="">
+                        <div className="flex  justify-center relative items-center pt-4">
                             <img src={border} className="w-[71px] h-[71px]" alt="" />
                             <img className="absolute w-[60px] h-[60px] rounded-full" src={image!= '' ?image:`https://ui-avatars.com/api/?name=${data?.personal_info.name}`} alt="" />
                             <div onClick={() => {
@@ -222,7 +180,7 @@ const HelthProfile = () => {
                                 }} type="file" accept=".png" className="invisible" id="fileUploader" />
                             </div>
                         </div>
-                        <div className="text-[10px] text-[#FFFFFF99] text-left mt-4">{data?.personal_info.email}</div>
+                        <div className="text-[10px] absolute text-[#FFFFFF99] text-left mt-4">{data?.personal_info.email.substring(0,30)}</div>
                     </div>
                     <div className="grid gap-4 grid-cols-3">
                         <TextField {...formik.getFieldProps("firstName")} label="First Name:" theme="Aurora" placeholder="Your client's name" name="firstName" type="text"  inValid={false}></TextField>
@@ -243,17 +201,14 @@ const HelthProfile = () => {
         </div>
         :
         <div className="w-full inset-0 z-10  flex items-center justify-center px-8  bg-opacity-50">
-            <div className="bg-black-secondary min-h-[476px] overflow-hidden relative text-primary-text p-6 rounded-lg w-full shadow-lg ">
-
-                <TabsWrapper defaultActiveTab="Summary" isNotNavigate TabsInfo={tabs} handleTabClick={(path) =>{
-                    setMenu(path)
-                }}/>
+            <div className="bg-[#1E1E1E] min-h-[476px] overflow-hidden relative text-primary-text p-6 rounded-lg w-full shadow-lg ">
+                <div className="text-[12px] mb-4 font-medium">Health Profile</div>                
                 <div className="mt-2">
                     {
                         menu == 'Summary' ?
                         <>
                             <div className="w-full flex justify-between">
-                                <div className="w-[300px] h-[388px] relative bg-[#1E1E1E] rounded-[16px]">
+                                <div className="w-[300px] h-[388px] relative bg-[#272727] rounded-[16px]">
                                     <div onClick={() => {
                                         setIsEditMode(true)
                                     }} className="absolute right-3 cursor-pointer top-3">
@@ -313,14 +268,14 @@ const HelthProfile = () => {
                                         </div>                                                                                                                                                                                                       
                                     </div>
                                 </div>
-                                <div className="w-[300px] h-[388px] bg-[#1E1E1E] rounded-[16px]">
+                                <div className="w-[300px] h-[388px] bg-[#272727] rounded-[16px]">
                                     <div className="w-full flex justify-between px-5 py-3">
                                         <div className="text-[14px] text-[#FFFFFFDE]">Data Syncing</div>
                 
                                     </div>
                                     <div className="w-full border-t border-[#383838]"></div>
                                     <div className="px-2 mt-2">
-                                        <div className="w-full border border-[#272727] text-[#FFFFFFDE] text-[12px] px-4 pr-6 h-[48px]  flex justify-between items-center rounded-[12px]">
+                                        <div className="w-full border border-[#383838] text-[#FFFFFFDE] text-[12px] px-4 pr-6 h-[48px]  flex justify-between items-center rounded-[12px]">
                                             <div>Data</div>
                                             <div>Last Sync</div>
                                             <div>State</div>
@@ -370,13 +325,13 @@ const HelthProfile = () => {
 
                                 </div>
                                 
-                                <div className="w-[300px] h-[388px] bg-[#1E1E1E] overflow-hidden rounded-[16px]">
+                                <div className="w-[300px] h-[388px] bg-[#272727] overflow-hidden rounded-[16px]">
                                     <div className="w-full flex justify-between px-5 py-3">
                                         <div className="text-[14px] text-[#FFFFFFDE]">Data Tracking</div>
                                     </div>
                                     <div className="w-full border-t border-[#383838]"></div>
                                     <div className="px-2 mt-2">
-                                        <div className="w-full border border-[#272727] text-[#FFFFFFDE] text-[12px] px-4 h-[48px]  flex justify-between items-center rounded-[12px]">
+                                        <div className="w-full border border-[#383838] text-[#FFFFFFDE] text-[12px] px-4 h-[48px]  flex justify-between items-center rounded-[12px]">
                                             <div>Data</div>
                                             <div>Completed on</div>
                                             <div>State</div>
@@ -432,7 +387,7 @@ const HelthProfile = () => {
 
                                 </div>
 
-                                <div className="w-[300px] h-[388px] bg-[#1E1E1E] rounded-[16px]">
+                                <div className="w-[300px] h-[388px] bg-[#272727] rounded-[16px]">
                                     <div className="w-full flex justify-between px-5 py-3">
                                         <div className="text-[14px] text-[#FFFFFFDE]">Trainer's  Notes ({data?.notes? data.notes.length : '0'})</div>
                                         {!showAddNote &&
