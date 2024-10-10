@@ -9,6 +9,7 @@ import {  Button, TextField } from "symphony-ui";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useConstructor } from "@/help";
 import { useFormik } from 'formik';
+import { toast } from "react-toastify";
 
 interface FileData {
   name: string;
@@ -91,6 +92,14 @@ const HelthProfile = () => {
     const navigate= useNavigate()
     const [data,setData] = useState<any>(null)
     const [image,setImage] = useState<any>("")
+    const resolveStatusColor =(text:string) => {
+        if(text == 'Connected' || text=='Complete'){
+            return '#06C78D'
+        } 
+        if(text == 'Disconnected' || text=='Incomplete'){
+            return '#FBAD37'
+        }
+    }
     useConstructor(() => {
         Application.getSummary(id as string).then(res => {
             console.log(res)
@@ -99,8 +108,8 @@ const HelthProfile = () => {
                 formik.setFieldValue("firstName",res.data.personal_info.name)
                 // formik.setFieldValue("lastName",res.data.personal_info.name)
                 setImage(res.data.personal_info.picture)
-                formik.setFieldValue("workOuts",res.data.personal_info["total workouts"])
-                formik.setFieldValue("Activity",res.data.personal_info["total Cardio Activities"])
+                formik.setFieldValue("workOuts",res.data.personal_info["total workouts"]!='No Data'?res.data.personal_info["total workouts"]:'')
+                formik.setFieldValue("Activity",res.data.personal_info["total Cardio Activities"]!='No Data'?res.data.personal_info["total Cardio Activities"]:'')
                 formik.setFieldValue("expert",res.data.personal_info.expert)
                 formik.setFieldValue("location",res.data.personal_info.Location)
             }
@@ -162,10 +171,14 @@ const HelthProfile = () => {
                         Application.updateSummary({
                             member_id:id,
                             name:formik.values.firstName,
+                            last_name:formik.values.lastName,
+                            expert:formik.values.expert,
                             picture:image,
                             location:formik.values.location,
                             "total workouts":formik.values.workOuts,
                             "total Cardio Activities":formik.values.Activity
+                        }).then((res) => {
+                            toast.success(res.data)
                         })
                         setData((pre:any) => {
                             const old = pre
@@ -307,24 +320,57 @@ const HelthProfile = () => {
                                     </div>
                                     <div className="w-full border-t border-[#383838]"></div>
                                     <div className="px-2 mt-2">
-                                        <div className="w-full border border-[#272727] text-[#FFFFFFDE] text-[12px] px-4 h-[48px]  flex justify-between items-center rounded-[12px]">
+                                        <div className="w-full border border-[#272727] text-[#FFFFFFDE] text-[12px] px-4 pr-6 h-[48px]  flex justify-between items-center rounded-[12px]">
                                             <div>Data</div>
                                             <div>Last Sync</div>
                                             <div>State</div>
-                                            <div>Action</div>
                                         </div>
-                                        <div className="flex justify-center items-center h-[300px]">
-                                            <div>
-                                                <img src="./images/Empty State.png" alt="" />
-                                                <div className="text-[12px] text-[#FFFFFF61]">No Note to Show</div>
-                                            </div>
-                                        </div>
-
+                                        {data?
+                                        <>
+                                            {data["Data Syncing"]?.length > 0 ?
+                                                <>
+                                                 <div className="flex justify-center w-full items-start overflow-hidden h-[300px]">
+                                                    <div className="w-full mt-2">
+                                                        {data["Data Syncing"]?.map((el:any) => {
+                                                            return(
+                                                                <div className="bg-[#2F2F2F] mb-1 px-4 h-[48px] w-full rounded-[12px] flex justify-between items-center">
+                                                                    <div className="text-[10px] w-[50px] text-[#FFFFFFDE]">{el.Data}</div>
+                                                                    <div>{el["Last Sync"]}</div>
+                                                                    <div className="text-[8px] w-[60px]">
+                                                                        <div className="rounded-[16px]  px-1 py-1 text-[#1E1E1E]" style={{backgroundColor:resolveStatusColor(el["State"])}}>
+                                                                            {el["State"]}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                 </div>
+                                                </>
+                                            :
+                                                <div className="flex justify-center items-center h-[300px]">
+                                                    <div>
+                                                        <img src="./images/Empty State.png" alt="" />
+                                                        <div className="text-[12px] text-[#FFFFFF61]">No Note to Show</div>
+                                                    </div>
+                                                </div>                                        
+                                            }
+                                        </>
+                                        :
+                                        <>
+                                                <div className="flex justify-center items-center h-[300px]">
+                                                    <div>
+                                                        <img src="./images/Empty State.png" alt="" />
+                                                        <div className="text-[12px] text-[#FFFFFF61]">No Note to Show</div>
+                                                    </div>
+                                                </div>                                           
+                                        </>
+                                        }   
                                     </div>
 
                                 </div>
                                 
-                                <div className="w-[300px] h-[388px] bg-[#1E1E1E] rounded-[16px]">
+                                <div className="w-[300px] h-[388px] bg-[#1E1E1E] overflow-hidden rounded-[16px]">
                                     <div className="w-full flex justify-between px-5 py-3">
                                         <div className="text-[14px] text-[#FFFFFFDE]">Data Tracking</div>
                                     </div>
@@ -337,12 +383,50 @@ const HelthProfile = () => {
                                             <div>Action</div>
                                         </div>
 
-                                        <div className="flex justify-center items-center h-[300px]">
-                                            <div>
-                                                <img src="./images/Empty State.png" alt="" />
-                                                <div className="text-[12px] text-[#FFFFFF61]">No Note to Show</div>
-                                            </div>
-                                        </div>
+                                        {data?
+                                        <>
+                                            {data["Data Tracking"]?.length > 0 ?
+                                                <>
+                                                 <div className="flex justify-center w-full items-start overflow-scroll h-[300px]">
+                                                    <div className="w-full mt-2">
+                                                        {data["Data Tracking"]?.map((el:any) => {
+                                                            return(
+                                                                <div className="bg-[#2F2F2F] mb-1 px-4 h-[48px] w-full rounded-[12px] flex justify-between items-center">
+                                                                    <div className="text-[10px] w-[50px] text-[#FFFFFFDE]">{el.Data.substring(0,8)+'...'}</div>
+                                                                    <div className="w-[60px] flex justify-center">{el["Completed on"]}</div>
+                                                                    <div className="text-[8px] w-[60px]">
+                                                                        <div className="rounded-[16px] flex justify-center px-1 py-1 text-[#1E1E1E]" style={{backgroundColor:resolveStatusColor(el["State"])}}>
+                                                                            {el["State"]}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="text-primary-color cursor-pointer text-[12px] w-[27px]">
+                                                                        View
+                                                                    </div>
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </div>
+                                                 </div>
+                                                </>
+                                            :
+                                                <div className="flex justify-center items-center h-[300px]">
+                                                    <div>
+                                                        <img src="./images/Empty State.png" alt="" />
+                                                        <div className="text-[12px] text-[#FFFFFF61]">No Note to Show</div>
+                                                    </div>
+                                                </div>                                        
+                                            }
+                                        </>
+                                        :
+                                        <>
+                                                <div className="flex justify-center items-center h-[300px]">
+                                                    <div>
+                                                        <img src="./images/Empty State.png" alt="" />
+                                                        <div className="text-[12px] text-[#FFFFFF61]">No Note to Show</div>
+                                                    </div>
+                                                </div>                                           
+                                        </>
+                                        }  
 
                                     </div>
 
@@ -350,7 +434,7 @@ const HelthProfile = () => {
 
                                 <div className="w-[300px] h-[388px] bg-[#1E1E1E] rounded-[16px]">
                                     <div className="w-full flex justify-between px-5 py-3">
-                                        <div className="text-[14px] text-[#FFFFFFDE]">Trainer's  Notes (0)</div>
+                                        <div className="text-[14px] text-[#FFFFFFDE]">Trainer's  Notes ({data?.notes? data.notes.length : '0'})</div>
                                         {!showAddNote &&
                                          <div onClick={() => {
                                             setShowAddNote(true)
