@@ -1,5 +1,5 @@
 .Aurora-TopBar-container {
-    @apply absolute  md:h-[56px] w-full pl-20 py-3 bg-black-primary border-b border-black-fourth top-0 z-40
+    @apply absolute  md:h-[56px] w-full pl-20 py-3 bg-light-min-color   dark:bg-black-primary border-b border-light-border-color dark:border-black-fourth top-0 z-40
 }
 
 .Aurora-TopBar-container-main {

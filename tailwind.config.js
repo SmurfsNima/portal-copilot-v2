@@ -2,7 +2,7 @@
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-
+  darkMode: 'class',
   theme: {
     extend: {
       backgroundImage :{
@@ -37,6 +37,13 @@ export default {
         'orange-status': '#FAB307',
         'red-background': '#FDE7E7',
         'green-background': '#CFFAF4',
+
+        // light
+        "light-min-color":"#F2F2F2",
+        "light-primary-text":"#4F4F4FE0",
+        "light-blue-active":"#929DFE",
+        "light-border-color":"#E9EDF5",
+        "light-secandary-text":'#262626'
       },
       screens:{
         '3xl':'1700px'

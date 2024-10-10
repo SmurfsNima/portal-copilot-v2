@@ -93,7 +93,7 @@ const PatientList = () => {
 
   return (
     <>
-      <div className="bg-black-background w-full -mt-4  px-5">
+      <div className="bg-white dark:bg-black-background w-full -mt-4  px-5">
         <div className={""}>
           <div className="w-full flex items-center justify-between text-[#ffffffc3] mb-[10px]">
 

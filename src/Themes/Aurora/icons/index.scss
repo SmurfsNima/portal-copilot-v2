@@ -4,13 +4,13 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-6 h-6  bg-[#FFFFFF99];
+  @apply w-6 h-6 bg-[#555555] dark:bg-[#FFFFFF99];
 }
 .Aurora-icons-people[data-mode="active"],
 .Aurora-icons-info-circle[data-mode="active"],
 .Aurora-icons-trend-up[data-mode="active"],
 .Aurora-icons-message-square[data-mode="active"] {
-  @apply bg-[#03DAC5];
+  @apply bg-[white] dark:bg-[#03DAC5];
 }
 
 .Aurora-icons-info-circle {
@@ -28,7 +28,7 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-6 h-6  bg-[#FFFFFF99];
+  @apply w-6 h-6 bg-[#555555]  dark:bg-[#FFFFFF99];
 }
 
 .Aurora-icons-message-square {
@@ -37,7 +37,7 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-6 h-6  bg-[#FFFFFF99];
+  @apply w-6 h-6  bg-black dark:bg-[#FFFFFF99];
 }
 
 .Aurora-icons-logOut {
@@ -46,7 +46,7 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-6 h-6  bg-[#FFFFFF99];
+  @apply w-6 h-6  bg-[#555555] dark:bg-[#FFFFFF99];
 }
 .Aurora-icons-Search {
   mask-image: url(/Themes/Aurora/icons/search-normal.svg);
@@ -54,7 +54,7 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-6 h-6  bg-[#FFFFFF99];
+  @apply w-6 h-6 bg-[#4F4F4FE0] dark:bg-[#FFFFFF99];
 }
 .Aurora-icons-arrow-left {
   mask-image: url(/Themes/Aurora/icons/arrow-left.svg);

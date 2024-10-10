@@ -3,6 +3,7 @@ import clinic from '@/assets/images/clinic.png';
 import SearchBox from '../searchBox';
 import { useSelector } from 'react-redux';
 import React from 'react';
+import ThemeToggle from '../ToggleTheme';
 
 const TopBar:React.FC = () => {
     const theme = useSelector((state:any) => state.theme.value.name)
@@ -10,7 +11,11 @@ const TopBar:React.FC = () => {
         <>
             <div className={`${theme}-TopBar-container`}>
                 <div className={`${theme}-TopBar-container-main`}>
-                    <SearchBox placeholder='search ...' theme={theme}></SearchBox>
+                    <div className='flex justify-start gap-2 items-center'>
+                        <SearchBox placeholder='search ...' theme={theme}></SearchBox>
+                        <ThemeToggle></ThemeToggle>
+
+                    </div>
                     <div className={`${theme}-TopBar-container-main-boxLayer`}>
                         {/* <div className={`${theme}-TopBar-Button-layer`}>
                             <img src={'./Themes/Aurora/icons/notification.svg'}  alt="" />

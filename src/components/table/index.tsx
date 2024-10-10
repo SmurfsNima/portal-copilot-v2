@@ -105,12 +105,12 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   };
   return (
     <div className="flex items-center justify-center flex-col">
-      <div className="w-full top-0 shadow-md sm:rounded-lg py-1">
+      <div className="w-full top-0 dark:shadow-md sm:rounded-lg py-1">
         <div className={`${theme}-Table-header-section `}>
           <label htmlFor="table-search" className="sr-only">
             Search
           </label>
-          <h5 className=" text-sm font-medium py-2 text-[#ffffffc3]">Client List</h5>
+          <h5 className=" text-sm font-medium py-2 text-light-primary-text dark:text-[#ffffffc3]">Client List</h5>
           <div className="flex items-center gap-1  ">
             <SearchBox
               changeHandler={(e: any) => setGlobalFilter(e.target.value)} // Update global filter on input change
@@ -154,7 +154,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
             <table className={`${theme}-table ${theme}-scrollBar w-full`}>
               <thead className="text-xs text-gray-700">
                 {table.getHeaderGroups().map((headerGroup) => (
-                  <tr key={headerGroup.id} className="text-nowrap text-[#FFFFFF]">
+                  <tr key={headerGroup.id} className="text-nowrap text-secondary-color dark:text-[#FFFFFF]">
                     {headerGroup.headers.map((header) => (
                       <th key={header.id} className={`${theme}-Table-header`}>
                         <div className="flex items-center justify-center">
@@ -177,7 +177,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
               </thead>
               <tbody>
                 {table.getRowModel().rows.map((row) => (
-                  <tr className="text-white space-y-7" key={row.id}>
+                  <tr className="text-light-secandary-text dark:text-white space-y-7" key={row.id}>
                     {row.getVisibleCells().map((cell) => (
                       <td className={`${theme}-Table-td`} key={cell.id}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
