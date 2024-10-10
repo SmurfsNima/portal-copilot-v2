@@ -1,11 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Application } from "@/api"
 import { useConstructor } from "@/help"
-import { PDFViewer } from "@react-pdf/renderer"
-import { useState } from "react"
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer"
+import React, { useState } from "react"
 import { useParams } from "react-router-dom"
 import WeaklyReportComponent from '@/components/Pdf/WeaklyReport';
 import { BeatLoader } from "react-spinners"
-
+type RenderProps = {
+  blob: Blob | null;
+  url: string | null;
+  loading: boolean;
+  error: Error | null;
+};
 const WeaklyReport =() => {
     const {reportId,memberId} = useParams()
     const [data,setData] = useState(null)
@@ -37,9 +43,24 @@ const WeaklyReport =() => {
 
                     //         }
                     // </BlobProvider>
-                    <PDFViewer className="w-full h-full">
-                        <WeaklyReportComponent  values={data} ></WeaklyReportComponent>
-                    </PDFViewer>
+                    <>
+                        <PDFViewer className="w-full h-[100%]">
+                            <WeaklyReportComponent  values={data} ></WeaklyReportComponent>
+                        </PDFViewer>
+                        {window.innerWidth<=600 &&
+                            <PDFDownloadLink
+                                className="absolute w-full top-0 right-0 z-20"
+                                document={<WeaklyReportComponent values={data} />}
+                                fileName="my-document.pdf"
+                                style={{ textDecoration: 'none', color: 'blue' }}
+                                >
+                                    <div className="w-full rounded-lg flex justify-center items-center mt-2 mr-32 h-[40px] bg-white">
+                                        <button className="w-full h-full flex justify-center items-center">download</button>
+
+                                    </div>
+                            </PDFDownloadLink>
+                        }
+                    </>
                 :
                 <div className="w-full h-screen flex justify-center items-center">
                     <BeatLoader color="blue"></BeatLoader>
