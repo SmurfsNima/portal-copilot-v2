@@ -242,7 +242,7 @@ const [Loading, setLoading] = useState(true)
                 <button
                   onClick={() =>
                     window.open(
-                      "/#/ClientReportPage/" +
+                      "/#/ClientReportPage/"+id+"/" +
                         ApplicationManager.getTreatmentPlanId(id as string),
                       "_blank"
                     )

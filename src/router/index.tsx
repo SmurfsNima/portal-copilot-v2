@@ -110,7 +110,7 @@ const router = createHashRouter([
     element:<ClinicReportPage></ClinicReportPage>
   },
   {
-    path:"ClientReportPage/:id",
+    path:"ClientReportPage/:memberId/:id",
     element:<ClientReportPage></ClientReportPage>
   },  
   {

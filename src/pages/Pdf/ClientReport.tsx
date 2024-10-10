@@ -8,11 +8,12 @@ import { useParams } from "react-router-dom"
 import { BeatLoader } from "react-spinners"
 // import data from '../../components/Pdf/data.json'
 const ClientReportPage = () => {
-    const {id} = useParams()
+    const {id,memberId} = useParams()
     const [data,setData] = useState(null)
     useConstructor(() => {
         Application.downloadReport({
-                treatment_plan_id:id
+                treatment_plan_id:id,
+                member_id:memberId
             }).then((res) => {
                 setData(res.data)
         })

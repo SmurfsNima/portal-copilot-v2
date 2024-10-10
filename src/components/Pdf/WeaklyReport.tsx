@@ -4,6 +4,7 @@ import { Page, Document, StyleSheet, View } from '@react-pdf/renderer';
 import TableInfoRender from './components/TableRender';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import WeaklyData from './components/WeaklyData';
 
 const styles = StyleSheet.create({
   body: {
@@ -174,7 +175,9 @@ const WeaklyReport = ({values}:{values:any}) => {
 
             <Footer reportName={`Client's Weekly Report`} styles={styles} pageNumber={2}></Footer>
         </Page>  
-          </Document>
+        <WeaklyData logo={values["logo"]} styles={styles} title='Weekly report data' items={values["weekly_report_data"]}></WeaklyData>
+         
+        </Document>
         </>
     )
 }
