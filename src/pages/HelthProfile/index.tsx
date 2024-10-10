@@ -110,8 +110,8 @@ const HelthProfile = () => {
                 setImage(res.data.personal_info.picture)
                 formik.setFieldValue("workOuts",res.data.personal_info["total workouts"]!='No Data'?res.data.personal_info["total workouts"]:'')
                 formik.setFieldValue("Activity",res.data.personal_info["total Cardio Activities"]!='No Data'?res.data.personal_info["total Cardio Activities"]:'')
-                formik.setFieldValue("expert",res.data.personal_info.expert)
-                formik.setFieldValue("location",res.data.personal_info.Location)
+                formik.setFieldValue("expert",res.data.personal_info.expert?res.data.personal_info.expert:'')
+                formik.setFieldValue("location",res.data.personal_info.Location?res.data.personal_info.Location:'')
             }
         })
     })
@@ -242,7 +242,7 @@ const HelthProfile = () => {
             </div>
         </div>
         :
-        <div className="w-full inset-0 z-10  flex items-center justify-center px-8 bg-black-background bg-opacity-50">
+        <div className="w-full inset-0 z-10  flex items-center justify-center px-8  bg-opacity-50">
             <div className="bg-black-secondary min-h-[476px] overflow-hidden relative text-primary-text p-6 rounded-lg w-full shadow-lg ">
 
                 <TabsWrapper defaultActiveTab="Summary" isNotNavigate TabsInfo={tabs} handleTabClick={(path) =>{
@@ -515,70 +515,78 @@ const HelthProfile = () => {
                         :
                         <>
                             <div className=" flex w-full justify-center">
-                                <div>
-                                    <div className="text-[12px]  text-center mt-10 text-[#FFFFFFDE]">
-                                        <div className="mt-[4px] flex justify-start items-center"><div className="w-[3px] mr-2 h-[3px] bg-white rounded-full"></div>Once your file is selected, click the "Upload" button.</div>
-                                        <div className="mt-[4px] flex justify-start items-center"><div className="w-[3px] mr-2 h-[3px] bg-white rounded-full"></div> Wait for the upload to complete and check for a confirmation message indicating success.</div>
-                                    </div>
-
-                                    <div className="bg-black-primary relative mt-8 flex justify-center items-center rounded-[12px] w-[536px] h-[193px]">
-                                        <div onClick={() => {
-                                            document.getElementById("fileUploader")?.click()
-                                        }} className="text-center ">
-                                            <div className="flex justify-center">
-                                                <img src="./Themes/Aurora/icons/csvUpload.svg" alt="" />
-
-                                            </div>
-                                            <div className="text-[12px] mt-3">Drag and drop a file here or <span className="text-[#03DAC5]">upload a file</span></div>
-                                            <div className="text-[#FFFFFF61] text-[12px]">CSV</div>
+                                <div className="w-full flex justify-between items-center">
+                                    <div className="bg-[#272727] max-w-[630px]">
+                                        <div className="text-[12px]  text-center mt-10 text-[#FFFFFFDE]">
+                                            <div className="mt-[4px] flex justify-start items-center"><div className="w-[3px] mr-2 h-[3px] bg-white rounded-full"></div>Once your file is selected, click the "Upload" button.</div>
+                                            <div className="mt-[4px] flex justify-start items-center"><div className="w-[3px] mr-2 h-[3px] bg-white rounded-full"></div> Wait for the upload to complete and check for a confirmation message indicating success.</div>
                                         </div>
-                                        
-                                        <input id="fileUploader" type="file" className="absolute invisible top-0 left-0 cursor-pointer w-full h-full" accept=".csv" multiple onChange={handleFileChange}  />
-                                    </div>
-                                    <div className="max-h-[120px] overflow-y-scroll">
-                                        {
-                                            files.map((el,index) => {
-                                                return (
-                                                    <>
-                                                        <div className="bg-black-primary flex justify-between py-2 items-center px-6 mt-2 h-[28px] rounded-[6px] w-full">
-                                                            <div className="flex items-center">
-                                                                <i className="fas fa-file-csv" style={{ marginRight: '8px' }}></i>
-                                                                <div className="text-[12px]">{el.name}</div>
-                                                            </div>
-                                                            <img onClick={() => {
-                                                                handleDeleteFile(index)
-                                                            }} className="cursor-pointer" src="./Themes/Aurora/icons/trash.svg" alt="" />
-                                                        </div>
-                                                    </>
-                                                )
-                                            })
-                                        }
 
-                                    </div>
-                                    <div className="flex mt-8 justify-center w-full">
-                                        <Button onClick={() => {
-                                            // Application.addClient({
-                                            //     personal_info:{
-                                            //         name:name,
-                                            //         p_email:email,
-                                            //     },
-                                            //     csv_information:files.map(e =>e.base64)
-                                            // })
-                                            Application.addDataEntery({
-                                                member_id: id,
-                                                base64_strings: files.map(e =>e.base64)                                               
-                                            })
-                                            navigate(-1)
-                                            setFiles([])
-                                        }} theme={theme}>
-                                            <div className="text-[#1E1E1E] px-8">
-                                                Save Changes
+                                        <div className="bg-black-primary relative mt-8 flex justify-center items-center rounded-[12px] w-[536px] h-[193px]">
+                                            <div onClick={() => {
+                                                document.getElementById("fileUploader")?.click()
+                                            }} className="text-center ">
+                                                <div className="flex justify-center">
+                                                    <img src="./Themes/Aurora/icons/csvUpload.svg" alt="" />
 
+                                                </div>
+                                                <div className="text-[12px] mt-3">Drag and drop a file here or <span className="text-[#03DAC5]">upload a file</span></div>
+                                                <div className="text-[#FFFFFF61] text-[12px]">CSV</div>
                                             </div>
-                                            </Button>
+                                            
+                                            <input id="fileUploader" type="file" className="absolute invisible top-0 left-0 cursor-pointer w-full h-full" accept=".csv" multiple onChange={handleFileChange}  />
+                                        </div>
+                                        <div className="max-h-[120px] overflow-y-scroll">
+                                            {
+                                                files.map((el,index) => {
+                                                    return (
+                                                        <>
+                                                            <div className="bg-black-primary flex justify-between py-2 items-center px-6 mt-2 h-[28px] rounded-[6px] w-full">
+                                                                <div className="flex items-center">
+                                                                    <i className="fas fa-file-csv" style={{ marginRight: '8px' }}></i>
+                                                                    <div className="text-[12px]">{el.name}</div>
+                                                                </div>
+                                                                <img onClick={() => {
+                                                                    handleDeleteFile(index)
+                                                                }} className="cursor-pointer" src="./Themes/Aurora/icons/trash.svg" alt="" />
+                                                            </div>
+                                                        </>
+                                                    )
+                                                })
+                                            }
+
+                                        </div>
+                                        <div className="flex mt-8 justify-center w-full">
+                                            <Button onClick={() => {
+                                                // Application.addClient({
+                                                //     personal_info:{
+                                                //         name:name,
+                                                //         p_email:email,
+                                                //     },
+                                                //     csv_information:files.map(e =>e.base64)
+                                                // })
+                                                Application.addDataEntery({
+                                                    member_id: id,
+                                                    base64_strings: files.map(e => {
+                                                        return {
+                                                            name:e.name,
+                                                            url:e.base64
+                                                        }
+                                                    })                                             
+                                                })
+                                                navigate(-1)
+                                                setFiles([])
+                                            }} theme={theme}>
+                                                <div className="text-[#1E1E1E] px-8">
+                                                    Save Changes
+
+                                                </div>
+                                                </Button>
+
+                                        </div>
 
                                     </div>
-
+                                    {/* <div className="bg-[#272727] z-30 w-[630px] h-[430px]"></div> */}
                                 </div>
                             </div>
                         </>

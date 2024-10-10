@@ -21,6 +21,7 @@ interface Patient {
   Name: string;
   Status: string;
   member_id: number;
+  Picture:string
 }
 
 export const AiStudio = () => {
@@ -35,7 +36,8 @@ export const AiStudio = () => {
       Email:'',
       member_id:1,
       Name:"",
-      Status:''
+      Status:'',
+      Picture:''
     }
   ]);
   const [activeMemberID, setActiveMemberID] = useState<number | null>(null);
@@ -388,6 +390,7 @@ export const AiStudio = () => {
                 key={client.Name}
                 name={client.Name}
                 email={client.Email}
+                picture={client.Picture}
                 memberID={client.member_id}
                 setCardActive={setActiveMemberID}
                 // onClick={() => {
