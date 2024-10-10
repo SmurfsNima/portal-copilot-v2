@@ -40,10 +40,10 @@ const getStatusBgColorClass = (
         case "checked":
           return "bg-green-status text-black"                   
       default:
-        return "bg-black-secondary";
+        return "border border-light-blue-active dark:border-none dark:bg-black-secondary";
     }
   }
-  return "bg-black-secondary";
+  return "border border-light-blue-active text-light-secandary-text dark:text-white dark:border-none dark:bg-black-secondary";
 };
 const formatDate = (dateString: string): string => {
     const date = new Date(dateString);

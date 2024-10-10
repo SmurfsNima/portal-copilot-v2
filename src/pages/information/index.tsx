@@ -11,8 +11,8 @@ const Information = () => {
     navigate(path);
   };
   return (
-    <div className=" bg-black-background  h-fit -mt-5  overflow-hidden flex flex-col justify-start items-center px-5 ">
-      <div className="flex  py-2 z-10 justify-center bg-black-background w-full">
+    <div className=" bg-white dark:bg-black-background  h-fit -mt-5  overflow-hidden flex flex-col justify-start items-center px-5 ">
+      <div className="flex  py-2 z-10 justify-center bg-white dark:bg-black-background w-full">
         <div className=" w-full flex items-center gap-3 ">
           <Link to={"/"}>
             <div className={`${theme}-tab-icon-container`}>

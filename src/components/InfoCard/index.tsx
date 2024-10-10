@@ -113,7 +113,7 @@ const InfoCard = () => {
     
  ]
   return (
-    <div className="bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-main-border rounded-xl flex items gap-10  relative overflow-hidden h-[166px]">
+    <div className="bg-white dark:bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-light-border-color dark:border-main-border rounded-xl flex items gap-10  relative overflow-hidden h-[166px]">
       <div className="mt-5 flex gap-10 xl:gap-12">
         {/* Patient Info */}
         <div className="relative w-20 rounded-full bg-cover bg-center h-20 xl:w-[115px] xl:h-[115px]">
@@ -129,7 +129,7 @@ const InfoCard = () => {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <h2 className="text-secondary-text text-sm font-medium">
+          <h2 className="text-light-secandary-text dark:text-secondary-text text-sm font-medium">
             {patient?.information.name}
           </h2>
           <div className="flex -ml-2  text-sm">

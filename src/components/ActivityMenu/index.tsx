@@ -13,7 +13,7 @@ const ActivityMenu:React.FC<ActivityMenuProps> = ({onChangeMenuAction,activeMenu
   
     return (
         <>
-            <div className="flex  gap-1 text-primary-text text-xs ">
+            <div className="flex  gap-1 text-light-secandary-text dark:text-primary-text text-xs ">
                 {menus.map((menu) => {
                     return (
                         <>
@@ -22,7 +22,7 @@ const ActivityMenu:React.FC<ActivityMenuProps> = ({onChangeMenuAction,activeMenu
                                 onChangeMenuAction(menu.name)
                             }}
                             className={` ${
-                                activeMenu === menu.name && "bg-black-third"
+                                activeMenu === menu.name && "dark:bg-black-third border border-light-blue-active dark:border-none"
                             } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer   `}
                             >
                             {menu.name}

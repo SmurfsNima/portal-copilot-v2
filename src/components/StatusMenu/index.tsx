@@ -10,7 +10,7 @@ const StatusMenu:React.FC<StatusMenuProps> = ({ status,activeStatus,onChange}) =
   
     return (
         <>
-            <div className="rounded-md bg-black-primary border  border-main-border flex items-center justify-center text-[10px] text-primary-text">
+            <div className="rounded-md dark:bg-black-primary border  border-light-border-color dark:border-main-border flex items-center justify-center text-[10px] text-primary-text">
                 { status && status.map((state) => {
                     return (
                         <>

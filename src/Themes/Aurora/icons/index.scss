@@ -62,7 +62,7 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   mask-position: center;
-  @apply w-6 h-6 bg-brand-primary-color;
+  @apply w-6 h-6 bg-light-blue-active dark:bg-brand-primary-color;
 }
 .Aurora-icons-arrow-up {
   mask-image: url(/Themes/Aurora/icons/chevron-up.svg);
