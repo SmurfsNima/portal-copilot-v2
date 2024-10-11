@@ -133,23 +133,23 @@ const InfoCard = () => {
             {patient?.information.name}
           </h2>
           <div className="flex -ml-2  text-sm">
-            <h2 className="text-primary-text border-r border-x-secondary-text px-2 text-nowrap  xl:text-sm">
+            <h2 className="text-light-secandary-text dark:text-primary-text border-r border-x-secondary-text px-2 text-nowrap  xl:text-sm">
               {patient?.information.age} Years
             </h2>
-            <h2 className="text-primary-text border-r border-x-secondary-text px-2  xl:text-sm">
+            <h2 className="text-light-secandary-text dark:text-primary-text border-r border-x-secondary-text px-2  xl:text-sm">
               {patient?.information.sex}
             </h2>
-            <h2 className="text-primary-text px-2 lg:text-[8px] xl:text-sm">
+            <h2 className="text-light-secandary-text dark:text-primary-text px-2 lg:text-[8px] xl:text-sm">
               P1245
             </h2>
           </div>
           {patient?.information?.conditions?.length ? (
             <div>
-              <h2 className="text-secondary-text text-xs font-medium">
+              <h2 className="text-light-primary-text dark:text-secondary-text text-xs font-medium">
                 Conditions:
               </h2>
               {patient.information.conditions.map((condition, index) => (
-                <div key={index} className="text-xs font-normal text-primary-text">
+                <div key={index} className="text-xs font-normal text-light-primary-text dark:text-primary-text">
                   {index + 1}. {condition}
                 </div>
               ))}
@@ -208,7 +208,7 @@ const InfoCard = () => {
         </div>
       ) : (
         <div className=" w-full flex justify-around">
-          <div className="text-sm text-primary-text flex items-center justify-center flex-col">
+          <div className="text-sm text-light-primary-text dark:text-primary-text flex items-center justify-center flex-col">
             <h3 className="mb-[10px]">Progress</h3>
             <div className="  flex items-center justify-center  gap-5">
             {Progress.map((item) => (
@@ -224,7 +224,7 @@ const InfoCard = () => {
               ))}
             </div>
           </div>
-          <div className="text-sm text-primary-text flex items-center justify-center flex-col">
+          <div className="text-sm text-light-primary-text dark:text-primary-text flex items-center justify-center flex-col">
             <h3 className="mb-[10px]">Score</h3>
             <div className=" flex items-center justify-center  gap-5">
               {Score.map((item, index) => (
@@ -241,7 +241,7 @@ const InfoCard = () => {
               ))}
             </div>
           </div>
-          <div className="text-sm text-primary-text flex items-center mr-5 justify-center flex-col">
+          <div className="text-sm text-light-primary-text dark:text-primary-text flex items-center mr-5 justify-center flex-col">
             <h3 className="mb-[10px]">Plan Progress</h3>
             <HalfCycle percentage={Plan_Progress[0].Percentage} />
           </div>

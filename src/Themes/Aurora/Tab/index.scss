@@ -1,5 +1,5 @@
 .Aurora-tab-container{
-  @apply h-8   w-full flex justify-center border-b border-main-border px-8    ;
+  @apply h-8   w-full flex justify-center border-b border-light-border-color dark:border-main-border px-8    ;
 }
 .Aurora-tab {
   @apply flex-1 w-1/5 flex text-light-secandary-text dark:text-primary-text justify-center items-center gap-1 cursor-pointer  border-t border-transparent border-x rounded-t-md text-xs ;
