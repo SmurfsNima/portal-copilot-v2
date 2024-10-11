@@ -55,6 +55,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
       personal_info:{
         name:fullName,
         email: email,
+        last_name:"",
         picture:'',
         wearable_devices:[wearableDevice]
       }
