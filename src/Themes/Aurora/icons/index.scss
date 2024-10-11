@@ -453,6 +453,36 @@
   @apply w-5 h-5 bg-[#FFFFFF99];
    ;
 }
+
+.Aurora-icons-close{
+  mask-image: url(Themes/Aurora/icons/close.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-light-secandary-text dark:bg-[#FFFFFF99];
+   ;
+}
+.Aurora-icons-EShare{
+  mask-image: url(./Themes/Aurora/icons/shareE.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-light-blue-active dark:bg-[#FFFFFF99];
+   ;
+}
+
+.Aurora-icons-userAdd{
+  mask-image: url(./Themes/Aurora/icons/user-add.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-5 h-5 bg-white dark:bg-gray-800;
+   ;
+}
+
 .Aurora-icons-update{
   mask-image: url(/Themes/Aurora/icons/refresh-2.svg);
   mask-size: 100%;

@@ -18,6 +18,11 @@
   font-family: Roboto;
   src: url("../src/assets/fonts/Roboto-Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: Roboto;
+  font-weight: 500;
+  src: url("../src/assets/fonts/Roboto-Medium.ttf") format("truetype");
+}
 #copilot-chat::-webkit-scrollbar {
   display: none;
 }

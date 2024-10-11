@@ -43,7 +43,9 @@ export default {
         "light-primary-text":"#4F4F4FE0",
         "light-blue-active":"#929DFE",
         "light-border-color":"#E9EDF5",
-        "light-secandary-text":'#262626'
+        "light-secandary-text":'#262626',
+        "light-overlay":"#ADADAD",
+        "light-input-color":'#F8F9FC80'
       },
       screens:{
         '3xl':'1700px'

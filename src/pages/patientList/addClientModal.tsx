@@ -138,8 +138,8 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
   // };
   
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black-background bg-opacity-95">
-      <div ref={modalRef} className={`bg-black-secondary relative text-primary-text p-6 rounded-lg shadow-lg ${step=='AddCient' ?'w-[428px]':'w-[570px]'} `}>
+    <div className="fixed inset-0 z-10 flex items-center justify-center bg-light-overlay dark:bg-black-background bg-opacity-80 dark:bg-opacity-95">
+      <div ref={modalRef} className={`dark:bg-black-secondary bg-white relative text-primary-text p-6 rounded-lg shadow-lg ${step=='AddCient' ?'w-[428px]':'w-[570px]'} `}>
 
         {/* <button className=" absolute top-2 right-2" onClick={onClose}>
           &times;
@@ -148,21 +148,21 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
         <>
           <div className=" mb-6 w-full flex justify-between items-center">
             {" "}
-            <h2 className="text-[14px] font-medium ">Add Client</h2>
+            <h2 className="text-[14px] text-light-secandary-text dark:text-white font-medium ">Add Client</h2>
             <button onClick={onClose} className="text-lg">
-              <img src={"Themes/Aurora/icons/close.svg"}></img>
+              <img className='Aurora-icons-close' ></img>
             </button>
           </div>
 
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label htmlFor="fullName" className="block text-[12px] mb-2">
+              <label htmlFor="fullName" className="block text-light-secandary-text dark:text-white text-[12px] mb-2">
                 Full Name
               </label>
               <input
                 type="text"
                 id="fullName"
-                className="w-full p-2 pl-4  text-[12px] bg-black-background placeholder:text-secondary-text text-primary-text outline-none rounded-md"
+                className="w-full p-2 pl-4  text-[12px] bg-light-input-color text-light-secandary-text border border-light-border-color dark:bg-black-background placeholder:dark:text-secondary-text dark:border-none placeholder:text-light-primary-text dark:text-primary-text outline-none rounded-md"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Enter your first and last name..."
@@ -170,13 +170,13 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-[12px] mb-2">
+              <label htmlFor="email" className="block text-light-secandary-text dark:text-white text-[12px] mb-2">
                 Email Address
               </label>
               <input
                 type="email"
                 id="email"
-                className="w-full p-2 pl-4 text-[12px]  bg-black-background placeholder:text-secondary-text text-primary-text outline-none rounded-md"
+                className="w-full p-2 pl-4  text-[12px] bg-light-input-color text-light-secandary-text border border-light-border-color dark:bg-black-background placeholder:dark:text-secondary-text dark:border-none placeholder:text-light-primary-text dark:text-primary-text outline-none rounded-md"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email address..."
@@ -224,7 +224,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
         <>
           <div className='absolute top-3 right-3'>
             <button onClick={onClose} className="text-lg">
-              <img src={"Themes/Aurora/icons/close.svg"}></img>
+             <img className='Aurora-icons-close' ></img>
             </button>        
 
           </div>
@@ -232,9 +232,9 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
             <img src="./images/tick-circle.png" alt="" />
 
           </div>
-          <div className='text-[14px] text-white text-center mt-3'>An invitation has been sent to {email}</div>
-          <div className='text-[12px] text-white text-center my-3'>Alex has no fitness content. Start setting up their account.</div>
-          <div className='text-[12px] text-white text-center ' style={{lineHeight:'24px'}}>To setup or review client’s progress, always open the client account to look into it. Build a new training program for them, or subscribe them one you have already built. You can also prescribe habits or a meal plan.</div>
+          <div className='text-[14px] text-light-secandary-text dark:text-white font-medium text-center mt-3'>An invitation has been sent to {email}</div>
+          <div className='text-[12px] text-light-secandary-text dark:text-white font-medium text-center my-3'>Alex has no fitness content. Start setting up their account.</div>
+          <div className='text-[12px] text-light-secandary-text dark:text-white  text-center ' style={{lineHeight:'24px'}}>To setup or review client’s progress, always open the client account to look into it. Build a new training program for them, or subscribe them one you have already built. You can also prescribe habits or a meal plan.</div>
 
           <div className='w-full flex gap-4 mt-4 justify-center items-center'>
             <Button onClick={() => {
@@ -243,7 +243,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
                 setFullName("")
                 onSubmit(clientData);
             }} theme="Aurora-secondary">
-                <img src="./Themes/Aurora/icons/shareE.svg" alt="" />
+                <img className="Aurora-icons-EShare" alt="" />
                 Open Client Account
               </Button>
             <Button onClick={async() => {
@@ -254,7 +254,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
            
         
             }} theme="Aurora">
-              <img src="./Themes/Aurora/icons/user-add.svg" alt="" />
+              <img className='Aurora-icons-userAdd' alt="" />
               Add Another Client</Button>
           </div>
         </>}        
