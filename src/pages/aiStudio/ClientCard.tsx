@@ -33,8 +33,8 @@ console.log(memberID);
       }} // onClick={() => setCardActive(index)}
       className={`${
         cardActive === memberID
-          ? "border-brand-primary-color bg-black-secondary"
-          : "border-main-border bg-black-primary"
+          ? "dark:border-brand-primary-color bg-light-border-color border-light-blue-active   dark:bg-black-secondary"
+          : "dark:border-main-border border-light-border-color bg-white dark:bg-black-primary"
       } cursor-pointer   px-3 py-2 border rounded-md relative mt-[6px] w-full  `}
     >
       <div className="w-full flex justify-between items-start text-[10px]">
@@ -44,7 +44,7 @@ console.log(memberID);
             src={picture!=''?picture:`https://ui-avatars.com/api/?name=${name}`}
             alt=""
           />
-          <div className=" text-primary-text font-medium flex flex-col ">
+          <div className=" text-light-secandary-text dark:text-primary-text font-medium flex flex-col ">
             {name}
           </div>
         </div>
@@ -57,13 +57,13 @@ console.log(memberID);
       <div className="mt-3 flex justify-between items-center">
         <div className="flex flex-col  text-primary-text">
           {" "}
-          <span className="text-secondary-text text-[8px] font-light">Email-address </span>
-        <span className="text-[10px] text-primary-text font-normal">{email}</span>
+          <span className="text-light-primary-text dark:text-secondary-text text-[8px] font-light">Email-address </span>
+        <span className="text-[10px] text-light-secandary-text dark:text-primary-text font-normal">{email}</span>
         </div>
       </div>
       <Link to={`/information/${memberID}/Analysis`}>
       <div className=" absolute right-[5%] bottom-1 flex flex-col gap-4">
-        <div className="cursor-pointer bg-black-third rounded-full p-2">
+        <div className="cursor-pointer bg-light-border-color dark:bg-black-third rounded-full p-2">
           {" "}
           <img src="/Themes/Aurora/icons/export.svg" alt="" />
         </div>

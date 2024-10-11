@@ -40,7 +40,7 @@ const ReportTable: React.FC<ReportTableProps> = ({
     console.log(reportId);
    
 return(
-      <div ref={modalAiGenerateRef} className={` ${!showModal && 'hidden'} z-10  absolute w-[80px] h-[80px] text-xs bg-black-third right-0 top-6 p-4 rounded-md shadow-md  flex flex-col justify-between`}>
+      <div ref={modalAiGenerateRef} className={` ${!showModal && 'hidden'} z-10  absolute w-[80px] h-[80px] text-xs bg-white dark:bg-black-third right-0 top-6 p-4 rounded-md shadow-md  flex flex-col justify-between`}>
         
        
          <span className="text-[10px] cursor-pointer">Via Email</span> 
@@ -62,32 +62,32 @@ return(
           </div>
         </div>
       ) : (
-        <div className=" bg-[#272727] px-4 rounded-[6px]">
+        <div className=" bg-white border dark:border-none border-light-border-color dark:bg-[#272727] px-4 rounded-[6px]">
           <div className="flex justify-start items-center">
-            <div className="text-[#FFFFFFDE] py-5 w-[250px] text-[14px]">
+            <div className=" text-light-secandary-text dark:text-[#FFFFFFDE] py-5 w-[250px] text-[14px]">
               Report Title
             </div>
-            <div className="text-[#FFFFFFDE] py-5 w-[360px] flex items-center justify-center text-[14px]">
+            <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-5 w-[360px] flex items-center justify-center text-[14px]">
               Create on
             </div>
-            <div className="text-[#FFFFFFDE] py-5 w-[300px] flex items-center justify-end pr-10 text-[14px]">
+            <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-5 w-[300px] flex items-center justify-end pr-10 text-[14px]">
               Action
             </div>
             {/* <Button onClick={onUpdate} theme="Aurora">
               Refresh
             </Button> */}
           </div>
-          <div className=" border-black-third  border"></div>
+          <div className=" border-light-border-color dark:border-black-third  border"></div>
           {data.length > 0 && (
             <div className="h-[35vh] overflow-y-scroll">
               {data.map((el) => {
                 return (
                   <>
                     <div className="flex justify-start items-center my-1">
-                      <div className="text-[#FFFFFFDE] py-2 w-[250px] text-[12px]">
+                      <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-2 w-[250px] text-[12px]">
                         {el.Title}
                       </div>
-                      <div className="text-[#FFFFFFDE] py-2 w-[360px] flex justify-center items-center text-[12px]">
+                      <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-2 w-[360px] flex justify-center items-center text-[12px]">
                         {el["Created Date"]}
                       </div>
                       <div className="text-[#FFFFFFDE] py-2 w-[300px] gap-2 flex justify-end px-5 items-center text-[12px]">
@@ -131,7 +131,7 @@ return(
                         />
                       </div>
                     </div>
-                    <div className=" border-black-third  border"></div>
+                    <div className=" border-light-border-color dark:border-black-third  border"></div>
                   </>
                 );
               })}

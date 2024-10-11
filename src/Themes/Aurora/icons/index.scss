@@ -483,6 +483,27 @@
    ;
 }
 
+.Aurora-icons-import{
+  mask-image: url(/Themes/Aurora/icons/import.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-4 h-4 bg-[#555555] dark:bg-white;
+   ;
+}
+
+
+.Aurora-icons-refresh{
+  mask-image: url(./Themes/Aurora/icons/reload.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-4 h-4 bg-[#555555]  dark:bg-white;
+   ;
+}
+
 .Aurora-icons-update{
   mask-image: url(/Themes/Aurora/icons/refresh-2.svg);
   mask-size: 100%;

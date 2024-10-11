@@ -225,6 +225,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/ai_studio/edit_saved_report",data)
     return response
   }   
+
+  static WeaklyReportGraph =(data:any) => {
+    const response = this.post("/weekly_graph",data)
+    return response
+  }
 }
 
 

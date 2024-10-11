@@ -1,10 +1,11 @@
 import { Application } from "@/api"
+import MethylationChart from "@/components/charts/MethylationChart"
 // import WeaklyReport from "@/components/Pdf/WeaklyReport"
 // import { AppContext } from "@/store/app"
 import { publish } from "@/utils/event"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FiExternalLink } from "react-icons/fi"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import { Button } from "symphony-ui"
 // import { pdf } from "@react-pdf/renderer";
 // import { blobToBase64 } from "@/help"
@@ -28,7 +29,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
         }  
       return '#FC5474'        
     }
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     // const {reportManager} = useContext(AppContext);
     const handleRecomendChange = (index:number, value:string) => {
         const updatedRecommendation = [...data.Recommendation];
@@ -86,6 +87,20 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
         publish("completeChanges",{})
         onClose()
     }
+    const getChartData =() => {
+        Application.WeaklyReportGraph({
+            member_id:memberId
+        }).then(res => {
+            console.log(res)
+        })
+    }
+    const [showWeaklyData,setSHowWeaklyData] = useState(false)
+    useEffect(() => {
+        if(showWeaklyData){
+            getChartData()
+        }
+    },[showWeaklyData])
+
     return (
         <>
             {isComplete ?
@@ -112,56 +127,76 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
                 </>
             :
                 <>
-                    <div className="w-full bg-[#383838] rounded-[6px]">
-                        <div className="flex justify-start items-center">
-                            <div className="w-[323px] text-[#FFFFFFDE] py-5 pl-4 text-[14px] font-medium">Type of Progress</div>
-                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center text-[14px] font-medium">Goal</div>
-                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Current Value</div>
-                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Target Goal</div>
-                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Status</div>
-                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Historical Data</div>
-                            <div className="w-[300px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Recommendation</div>
+                {showWeaklyData ?
+                <>
+                {/* <Outlet></Outlet> */}
+                <div className="w-full h-full bg-[#1E1E1E] p-8 border-[#383838] border rounded-[6px]">
+                    <div className="text-[14px] text-[#FFFFFFDE] mb-8">‘Days Met Calories Target’ Historical Data</div>
+                    <div className="w-full  bg-[#1E1E1E] p-8 border-[#383838] border rounded-[6px]">
+                        <div className="mb-4 flex justify-start items-center gap-8">
+                            <div className="text-[#FFFFFF99] text-[12px]">Average Value: <span className="font-semibold text-[14px] text-[#FFFFFFDE] ml-2">50</span></div>
+                             <div className="text-[#FFFFFF99] text-[12px]">Current Value: <span className="font-semibold text-[14px] text-[#FFFFFFDE] ml-2">60</span></div>
                         </div>
-                        <div className="w-full h-[1px] border-b border-white opacity-25"></div>
-                        <div className="h-[55vh] overflow-y-scroll">
-                            {data["Type of progress"]?.map((el:string,index:number) => {
-                                return (
-                                    <div className="flex justify-start items-center">
-                                        <div className="w-[323px] text-[#FFFFFFDE] py-5 pl-4 pr-3 text-[12px] font-medium">{el}</div>
-                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center text-[12px] font-medium">{data["Goal"][index]}</div>
-                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">{data["Current value"][index]}</div>
-                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
-                                            <input type="text" onChange={(e) => {
-                                                handleTargetGoalChange(index,e.target.value)
-                                            }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Target goal"][index]} />
-                                            {}
-                                        </div>
-                                        <div className="w-[140px] text-[#1E1E1E] py-5 flex justify-center  text-[8px] font-medium"><span className="w-[53px] h-[16px] rounded-[16px] flex justify-center items-center" style={{backgroundColor:resolveStatusColor(data["Status"][index])}}>{data["Status"][index]}</span></div>
-                                        <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink onClick={() => navigate("/historyCalData")} className="cursor-pointer"></FiExternalLink></div>
-                                        <div className="w-[300px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
-                                            <input type="text" onChange={(e) => {
-                                                handleRecomendChange(index,e.target.value)
-                                            }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Recommendation"][index]} />
-                                        </div>                            
-                                    </div>
-                                )
-                            })}
+                        <MethylationChart></MethylationChart>   
 
+                    </div>
+
+                </div>
+                </>
+                :
+                <>
+                        <div className="w-full bg-[#383838] rounded-[6px]">
+                            <div className="flex justify-start items-center">
+                                <div className="w-[323px] text-[#FFFFFFDE] py-5 pl-4 text-[14px] font-medium">Type of Progress</div>
+                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center text-[14px] font-medium">Goal</div>
+                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Current Value</div>
+                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Target Goal</div>
+                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Status</div>
+                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Historical Data</div>
+                                <div className="w-[300px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Recommendation</div>
+                            </div>
+                            <div className="w-full h-[1px] border-b border-white opacity-25"></div>
+                            <div className="h-[55vh] overflow-y-scroll">
+                                {data["Type of progress"]?.map((el:string,index:number) => {
+                                    return (
+                                        <div className="flex justify-start items-center">
+                                            <div className="w-[323px] text-[#FFFFFFDE] py-5 pl-4 pr-3 text-[12px] font-medium">{el}</div>
+                                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center text-[12px] font-medium">{data["Goal"][index]}</div>
+                                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">{data["Current value"][index]}</div>
+                                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
+                                                <input type="text" onChange={(e) => {
+                                                    handleTargetGoalChange(index,e.target.value)
+                                                }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Target goal"][index]} />
+                                                {}
+                                            </div>
+                                            <div className="w-[140px] text-[#1E1E1E] py-5 flex justify-center  text-[8px] font-medium"><span className="w-[53px] h-[16px] rounded-[16px] flex justify-center items-center" style={{backgroundColor:resolveStatusColor(data["Status"][index])}}>{data["Status"][index]}</span></div>
+                                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink onClick={() => setSHowWeaklyData(true)} className="cursor-pointer"></FiExternalLink></div>
+                                            <div className="w-[300px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
+                                                <input type="text" onChange={(e) => {
+                                                    handleRecomendChange(index,e.target.value)
+                                                }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Recommendation"][index]} />
+                                            </div>                            
+                                        </div>
+                                    )
+                                })}
+
+                            </div>
                         </div>
-                    </div>
-                    <div className="w-full flex mt-2 justify-center">
-                        {isEdit ?
-                        <Button onClick={() => {
-                            saveChanges()
-                        }} theme="Aurora-pro">
-                            <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
-                            Save Changes</Button>                        
-                        :
-                        <Button onClick={nextAction} theme="Aurora-pro">
-                            <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
-                            Next</Button>
-                        }
-                    </div>
+                        <div className="w-full flex mt-2 justify-center">
+                            {isEdit ?
+                            <Button onClick={() => {
+                                saveChanges()
+                            }} theme="Aurora-pro">
+                                <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
+                                Save Changes</Button>                        
+                            :
+                            <Button onClick={nextAction} theme="Aurora-pro">
+                                <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
+                                Next</Button>
+                            }
+                        </div>
+                </>
+                }
                 </>
             }
         </>

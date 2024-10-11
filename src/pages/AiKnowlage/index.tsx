@@ -242,7 +242,8 @@ const AiKnowledge = () => {
       <SigmaContainer
         settings={sigmaSetting}
         id="sigma-container"
-        style={{ height: window.innerHeight, width: window.innerWidth, backgroundColor: "#121212" }}
+        className=" bg-white dark:bg-[#121212]"
+        style={{ height: window.innerHeight, width: window.innerWidth }}
       >
         <LoadGraph graphData={graphData}  activeFilters={activeFilters} isInitialLoad={isInitialLoad} />
         <GraphEvents />

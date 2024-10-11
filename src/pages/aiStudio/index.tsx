@@ -211,7 +211,7 @@ export const AiStudio = () => {
               <Button onClick={() => {
             
               }} theme="Aurora-pro">
-                <img src="./Themes/Aurora/icons/import.svg" alt="" />
+                <img className="Aurora-icons-import" alt="" />
                 Manual Data Entry</Button>
               <Button onClick={() => {
                 setReloadData(true)
@@ -222,7 +222,7 @@ export const AiStudio = () => {
                   setReloadData(false)                   
                 })
               }} theme="Aurora-pro">
-                <img className={reloadData?"animate-spin":''} src="./Themes/Aurora/icons/reload.svg" alt="" />
+                <img className={reloadData?"animate-spin":''+"Aurora-icons-refresh"}  alt="" />
               </Button>
             </div>
           </div>
@@ -250,7 +250,7 @@ export const AiStudio = () => {
                 </div>
                 {isStateOpen && (
                   <div className="text-xs text-primary-text">
-                    <p className="mt-4 text-primary-text">
+                    <p className="mt-4 text-light-secandary-text dark:text-primary-text">
                       {overviewData ? overviewData.description : ""}
                     </p>
                     {/* <div className="my-4">
@@ -341,13 +341,13 @@ export const AiStudio = () => {
           ) : activeMenu === "Copilot" ? (
             <AiChat memberID={activeMemberID} />
           ) : (
-            <div className="bg-black-primary rounded-[6px] border-main-border border h-[60vh]">
+            <div className="bg-white dark:bg-black-primary rounded-[6px] border-light-border-color dark:border-main-border border h-[60vh]">
               <div className="flex justify-between w-full px-5 py-3">
                 <div className="px-4 flex justify-start items-center">
                   <img className="w-[32px] h-[32px] rounded-full" src={`https://ui-avatars.com/api/?name=${activePatinet?.Name}`} alt="" />
                   <div className="ml-2">
-                    <div className="text-[#FFFFFFDE] text-[10px]">{activePatinet.Name}</div>
-                    <div className="text-[#FFFFFF99] text-[10px]">{activePatinet.Email}</div>
+                    <div className="text-light-secandary-text dark:text-[#FFFFFFDE] text-[10px]">{activePatinet.Name}</div>
+                    <div className="text-light-secandary-text dark:text-[#FFFFFF99] text-[10px]">{activePatinet.Email}</div>
                   </div>
                 </div>
 
@@ -367,7 +367,7 @@ export const AiStudio = () => {
                 </div>
               </div>
               <div className=" px-5">
-                <div className="border-black-third mb-4 border"></div>
+                <div className="border-light-border-color dark:border-black-third mb-4 border"></div>
                   <ReportTable onResolved={(resolveData,reportId) => {
                     setGenerateReportGoolsData(resolveData)
                     setisCreateReportMode(true)
