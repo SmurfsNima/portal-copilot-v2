@@ -7,7 +7,7 @@ import AiKnowlage from "./AiKnowlage";
 import HelthProfile from "./HelthProfile";
 import { Setting } from "./setting";
 import Historycaldata from "./HistorycalData";
-
+import TreatMentPlan from "./information/TreatmentPlan-V2";
 export {
     AiKnowlage,
     Information,
@@ -17,5 +17,6 @@ export {
     OverView,
     TimeLine,
     Setting,
-    HelthProfile
+    HelthProfile,
+    TreatMentPlan
 }

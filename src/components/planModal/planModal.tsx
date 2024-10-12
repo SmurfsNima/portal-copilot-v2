@@ -27,9 +27,10 @@ interface PlanManagerModalProps {
   setDataGenerate?:(data:any) => void
   onCompleteAction?:() => void
   isgenerate?:boolean
+  isNewGenerate?:boolean
 }
 
-const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,setDataGenerate,onCompleteAction}) => {
+const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate,isgenerate ,setDataGenerate,onCompleteAction}) => {
   const theme = useSelector((state: any) => state.theme.value.name);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [buttonState, setButtonState] = useState("initial");
@@ -137,12 +138,12 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
     })
   }
   return (
-    <div className={`bg-black-secondary text-primary-text p-4 rounded-md border border-main-border shadow-lg w-full ${isgenerate ?'h-[400px]' :'h-[580px]'} `}>
+    <div className={`bg-black-secondary text-primary-text p-4 rounded-md border border-main-border shadow-lg w-full ${isgenerate || isNewGenerate ?'h-[400px]' :'h-[580px]'} `}>
       <div className="w-full flex justify-between gap-3">
         {Object.entries(allData).map(([categoryName, category], categoryIndex) => (
           <div
             key={categoryIndex}
-            className={`p-4 rounded-md bg-black-primary relative select-none w-[390px] ${isgenerate?'h-[300px]':'h-[450px]'}  overflow-auto overflow-x-hidden`}
+            className={`p-4 rounded-md bg-black-primary relative select-none w-[390px] ${isgenerate ?'h-[300px]':isNewGenerate?'h-[350px]':'h-[450px]'}  overflow-auto overflow-x-hidden`}
           >
             <div className="flex px-3 pb-1 justify-between items-center border-b border-main-border w-full ">
               <span className="flex items-center gap-2 text-xs font-medium">
@@ -302,28 +303,34 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isgenerate ,s
         </Button>
       </div>      
       :
-      <div className="w-full flex justify-center mt-8">
-        <Button onClick={handleClick}
-  theme={"Aurora"}> 
-  {
-    buttonState == 'initial' &&
-    'Save Changes' 
-  }
+      <>
+        {isNewGenerate ?
+          <></>
+      :
+        <div className="w-full flex justify-center mt-8">
+          <Button onClick={handleClick}
+          theme={"Aurora"}> 
+              {
+                buttonState == 'initial' &&
+                'Save Changes' 
+              }
 
-  {
-    buttonState == 'loading' &&
-    <BeatLoader size={10} color="white" />
-  }  
-  {
-    buttonState == 'finish' &&
-    <div className="flex justify-center items-center gap-1">
-    <div className={`${theme}-icons-check`} />
-    Saved Changes      
-    </div>
-  }    
+                {
+                  buttonState == 'loading' &&
+                  <BeatLoader size={10} color="white" />
+                }  
+                {
+                  buttonState == 'finish' &&
+                  <div className="flex justify-center items-center gap-1">
+                  <div className={`${theme}-icons-check`} />
+                  Saved Changes      
+                  </div>
+                }    
 
-</Button>
-      </div>
+          </Button>
+        </div>
+      }
+      </>
       }
     </div>
   );

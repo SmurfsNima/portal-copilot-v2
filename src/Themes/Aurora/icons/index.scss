@@ -493,6 +493,14 @@
    ;
 }
 
+.Aurora-icons-AddNewItem {
+  mask-image: url(./Themes/Aurora/icons/additem.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-4 h-4 bg-black dark:bg-white;  
+}
 
 .Aurora-icons-refresh{
   mask-image: url(./Themes/Aurora/icons/reload.svg);
