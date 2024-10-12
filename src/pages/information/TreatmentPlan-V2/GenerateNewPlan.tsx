@@ -4,7 +4,8 @@ import { PlanManagerModal } from "@/components";
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { Button } from "symphony-ui";
+import { Button, TextArea } from "symphony-ui";
+// import data from './data.json';
 
 interface Benchmark {
   Benchmark: string;
@@ -31,14 +32,15 @@ const GenerateNewPlan =() => {
     const [isLoading,setIsLoading] = useState(true)
     const [Priorities3,setPriorities3] = useState<PrioritiesType>({})
     const [Priorities6,setPriorities6] = useState<PrioritiesType>({})
+    const [treatmentPlanData,setTratmentPlanData] = useState<any>(null)
     const resolveNextStep = () => {
         if(generateStep== 'Client Goals'){
             setGenereStep("Category Order")
-        }else {
-            setGenereStep("Generate")
+        }else {         
+            generatePaln()
         }
         if(generateStep == 'Generate'){
-            generatePaln()
+            navigate(-1)
         }
     }
     const resolveBack = () => {
@@ -49,6 +51,8 @@ const GenerateNewPlan =() => {
         }
     }    
     const generatePaln =() => {
+        setIsLoading(true)
+        setGenereStep("Generate")
         Application.generateTreatmentPlan({
             member_id: Number(id),
             three_months_priority:Priorities3,
@@ -57,9 +61,17 @@ const GenerateNewPlan =() => {
         }).then(res => {
             console.log(res.data);
             // console.log(res)
-            navigate(-1)
+            setIsLoading(false)
+            setTratmentPlanData(res.data)
+            // navigate(-1)
         });
     }    
+    const resolveTextDoDoes = (value:any) => {
+        const resolvedText = ''
+        const newDo = value.dos.map((el:any) => el)
+        const newDoes = value.donts.map((el:any) => el)
+        return resolvedText+ newDo + newDoes
+    }
     useEffect(() => {
         Application.getPatientReorders(id as string).then((res) => {
             console.log(res)
@@ -150,8 +162,55 @@ const GenerateNewPlan =() => {
                 }
                 {
                     generateStep == 'Generate' &&
-                        <div className="bg-white rounded-[6px] px-6 py-6 h-[256px] mt-2  border border-light-border-color dark:bg-[#2F2F2F] dark:border-[#383838]">
-                
+                        <div className="bg-white rounded-[6px] px-6 py-6 h-[390px] mt-2  border border-light-border-color dark:bg-[#2F2F2F] dark:border-[#383838]">
+                            {isLoading ?
+                            <div className="w-full flex justify-center mt-3">
+                                <BeatLoader color="white" size={12}></BeatLoader>
+                            </div>
+                            :    
+                            <div className="w-full dark:bg-[#272727] border h-[350px] overflow-y-scroll border-light-border-color p-6 dark:border-[#383838] rounded-[6px]">
+                                <div className="dark:text-[#FFFFFFDE] text-light-secandary-text gap-2 flex justify-start items-center text-[14px] font-medium">
+                                    <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
+                                    Client Condition Insights
+                                </div>
+
+                                <div className="dark:bg-[#1E1E1E] border mt-4 py-6 px-8 text-[12px] text-justify text-light-secandary-text dark:text-[#FFFFFFDE] border-light-border-color dark:border-[#383838] rounded-[6px] ">
+                                    <div>{treatmentPlanData?.description_section?.description}</div>
+                                    <div className="dark:bg-[#1E1E1E] mt-3 dark:text-[#FFFFFFDE] text-[12px]">Needs Focus Benchmarks:</div>
+                                    {treatmentPlanData?.description_section["need focus benchmarks"].map((el:any) => {
+                                        return (
+                                            <div className="ml-4 flex justify-start items-center gap-2 mt-1">
+                                                <span className="w-[3px] h-[3px] bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
+                                            {el}</div>
+                                        )
+                                    })}
+                                </div>
+
+                                <div className="dark:text-[#FFFFFFDE] mt-4 text-light-secandary-text gap-2 flex justify-start items-center text-[14px] font-medium">
+                                    <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
+                                    Report Details
+                                </div>
+
+                                <div className="w-full border-b border-b-light-border-color dark:border-b-[#383838] pb-3 font-medium text-[14px] mt-6 text-light-secandary-text dark:text-[#FFFFFFDE] flex justify-start">
+                                    <div className="w-[350px]">Benchmark Areas</div>
+                                    <div className="w-[450px]">First 12 weeks</div>
+                                    <div className="w-[450px]">Second 12 weeks</div>
+                                </div>
+                                {treatmentPlanData?.treatment_plans[0].map((el:any) => {
+                                    return (
+                                        <div className="text-light-secandary-text flex border-b border-b-light-border-color dark:border-b-[#383838] text-[12px] py-4 w-full dark:text-[#FFFFFFDE] ">
+                                            <div className="flex w-[350px]"> <div className=" w-[90px] overflow-hidden">{el.subCategory}</div> <span className="ml-1">{el.area}</span></div>
+                                            <div className="w-[450px] pr-4">
+                                                <TextArea onChange={() => {}} value={resolveTextDoDoes(el.first12Weeks)} theme="Aurora" name="" inValid={false} onBlur={() => {}} ></TextArea>
+                                            </div>
+                                            <div className="w-[450px] pr-4">
+                                                <TextArea onChange={() => {}} value={resolveTextDoDoes(el.second12Weeks)} theme="Aurora" name="" inValid={false} onBlur={() => {}} ></TextArea>
+                                            </div>                                            
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            }
                         </div>
                 }                
                 <div className="w-full mt-6 flex gap-4 justify-center">

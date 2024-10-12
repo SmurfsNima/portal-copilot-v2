@@ -1,0 +1,187 @@
+{
+    "description_section": {
+        "description": "The patient is a 40-year-old male with a BMI indicating obesity (120kg) and a goal to lose 18kg. He experiences significant health concerns including gout, diabetes, and asthma, and is currently taking lansoprazole for reflux. Biomarkers indicate limited social interaction and physical activity, with only 1-2 exercises per month. Sleep is inadequate at 5 hours, yet his sleep quality is rated good. Notably, he faces issues with lower back posture and mobility, evidenced by limitations during fitness tests and pain in movements. His fitness performance shows a need for improvement in strength, particularly in upper body and functional exercises, and overall muscular endurance. Emotional fitness assessments suggest he is facing some stress but shows motivation. The patient would benefit from a focused physical rehabilitation program that addresses strength, mobility, and weight management while taking his medical conditions into account.",
+        "need focus benchmarks": [
+            "Time working Lifestyle tracker",
+            "Time socialising Lifestyle tracker",
+            "Sleep quality Wearable tracker",
+            "Sleep hours Wearable tracker",
+            "Left leg Left leg stand duration (secs)",
+            "Left leg Left leg squat ankle stability",
+            "Left leg Left leg squat knee stability",
+            "Left leg Left leg squat hip stability",
+            "Right leg Right leg stand duration (secs)",
+            "Right leg Right leg squat ankle stability",
+            "Right leg Right leg squat knee stability",
+            "Right leg Right leg squat hip stability",
+            "Left foot stability Hold 3 point contact when squatting",
+            "Right foot stability Hold 3 point contact when squatting",
+            "Lower back posture Neutral spine test",
+            "Spine curvature Neutral spine test",
+            "Upper back posture Neutral spine test",
+            "Overhead squat test Excessive lean forwards (excessive trunk flexion and/or hip flexion)",
+            "Overhead squat test Lower back arches",
+            "Overhead squat test Lower back rounds",
+            "Overhead squat test Asymmetrical weight shift",
+            "Lower body Sagital Squat - Air Squat ROM",
+            "Lower body Sagital Hinge - 5kg ball pick up ROM",
+            "Lower body Frontal Right leg side lunge ROM",
+            "Lower body Frontal Left leg side lunge ROM",
+            "Upper body Sagital Shoulder - Standing bent arm rotation left arm",
+            "Upper body Sagital Shoulder - Standing bent arm rotation right arm",
+            "Upper body Frontal Shoulder - Lying arm hip to above head right arm",
+            "Upper body Frontal Shoulder - Lying arm hip to above head left arm",
+            "Upper body Sagital Shoulder - Standing press left arm",
+            "Upper body Sagital Shoulder - Standing press right arm",
+            "Upper body Transverse - Twist to right",
+            "Upper body Transverse - Twist to left",
+            "Upper body Back extension",
+            "Lower body Left ankle flexibility",
+            "Lower body Right ankle flexibility",
+            "Lower body Right hamstring",
+            "Lower body Left hamstring",
+            "Lower body Left hip flexor test",
+            "Lower body Right hip flexor test",
+            "Upper body Left arm pec test",
+            "Upper body Right arm pec test",
+            "Upper body Right arm back touch",
+            "Upper body Left arm back touch",
+            "Time exercising Lifestyle tracker",
+            "Heart rate variability Wearable tracker",
+            "Macro mix Macro mix actual versus what is required for age and gender",
+            "Water intake Water intake versus target guidelines",
+            "Alcohol intake Alcohol intake against safe guidelines",
+            "Resting heart rate Wearable tracker",
+            "Oxygen saturation SPO2 %",
+            "Weight Scales",
+            "Fat free Muscle index Calculation based on height, gender, body fat%, weight",
+            "Body fat % Scales",
+            "Hip to Waist ratio Measure",
+            "Steps Wearable tracker",
+            "Exercise activity Lifestyle tracker/exercise app",
+            "VO2 Max Sub maximal test on bike or treadmill",
+            "Upper body Left grip strength test",
+            "Upper body Right grip strength test",
+            "Lower body Forward jump",
+            "Isometric hang Deadhang",
+            "Isometric hold Plank",
+            "Isometric Hold Biering-Sorensen test lower back endurance",
+            "Isometric squat Wall squat",
+            "Pull Pull up",
+            "Push Press up max",
+            "Legs Air squat max",
+            "Front core Abdominal curl",
+            "Back core Hyper extension",
+            "Blood pressure_Diastolic Pressure Monitor",
+            "Blood pressure_Systolic Pressure Monitor",
+            "OSWERTY lower back pain disability score Survey",
+            "Fear avoidance about physical activity Survey",
+            "Fear avoidance about physical activity Survey",
+            "Stress management Survey",
+            "Stages of change Survey",
+            "Motivation Survey",
+            "Squat Barbell squat",
+            "Hinge Deadlift",
+            "Pull max strength Barbell row",
+            "Push overhead max strength Barbell press",
+            "Push max strength Bench press",
+            "Carry Farmers walk",
+            "Pull locomotion Prowler pull",
+            "Push locomotion Prowler push",
+            "BMI Height and weight",
+            "Relative upper to lower body ratio Use 1RM results"
+        ]
+    },
+    "treatment_plans": [
+        [
+            {
+                "area": "Time priorities",
+                "subCategory": "Physiological",
+                "first12Weeks": {
+                    "dos": [],
+                    "donts": []
+                },
+                "second12Weeks": {
+                    "dos": [
+                        "-"
+                    ],
+                    "donts": []
+                },
+                "status": true
+            },
+            {
+                "area": "Stability",
+                "subCategory": "Fitness",
+                "first12Weeks": {
+                    "dos": [
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-"
+                    ],
+                    "donts": []
+                },
+                "second12Weeks": {
+                    "dos": [
+                        "-",
+                        "-",
+                        "-",
+                        "-"
+                    ],
+                    "donts": []
+                },
+                "status": true
+            },
+            {
+                "area": "Mobility",
+                "subCategory": "Fitness",
+                "first12Weeks": {
+                    "dos": [
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-"
+                    ],
+                    "donts": []
+                },
+                "second12Weeks": {
+                    "dos": [
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-"
+                    ],
+                    "donts": []
+                },
+                "status": true
+            },
+            {
+                "area": "Flexibility",
+                "subCategory": "Fitness",
+                "first12Weeks": {
+                    "dos": [
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-",
+                        "-"
+                    ],
+                    "donts": []
+                },
+                "second12Weeks": {
+                    "dos": [],
+                    "donts": []
+                },
+                "status": true
+            }
+        ],
+        "05502c32b7"
+    ]
+}
