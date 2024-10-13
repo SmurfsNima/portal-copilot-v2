@@ -35,7 +35,8 @@ const SideMenu:React.FC = () => {
             <TopBar></TopBar>
             <nav className={`${theme}-SideMenu-nav`}>
                 <div className={`${theme}-SideMenu-logo-container`}>
-                    <img src="./images/main-logo (1).svg" alt="" />
+                    <img className="Aurora-icons-logoPortal" alt="" />
+                
                 </div>
                 <div className={`${theme}-SideMenu-MenuList-container`}>
                     {menus.map((menu) => {

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { Button, TextArea } from "symphony-ui";
+import BenchmarkModal from "../Treatment Plan/benchmarkModal";
 // import data from './data.json';
 
 interface Benchmark {
@@ -73,6 +74,7 @@ const GenerateNewPlan =() => {
         const newDoes = value.donts.map((el:any) => el)
         return resolvedText+ newDo + newDoes
     }
+    const [isModalOpen, setIsModalOpen] = useState(false);
     useEffect(() => {
         Application.getPatientReorders(id as string).then((res) => {
             console.log(res)
@@ -210,7 +212,15 @@ const GenerateNewPlan =() => {
 
                                 <div className="dark:bg-[#1E1E1E] border mt-4 py-6 px-8 text-[12px] text-justify text-light-secandary-text dark:text-[#FFFFFFDE] border-light-border-color dark:border-[#383838] rounded-[6px] ">
                                     <div>{treatmentPlanData?.description_section?.description}</div>
-                                    <div className="dark:bg-[#1E1E1E] mt-3 dark:text-[#FFFFFFDE] text-[12px]">Needs Focus Benchmarks:</div>
+                                    <div className="dark:bg-[#1E1E1E] flex items-center gap-1 mt-3 dark:text-[#FFFFFFDE] text-[12px]">Needs Focus Benchmarks:
+                                        <img
+                                            className=" transition-transform cursor-pointer w-5 h-5"
+                                            onClick={() => {setIsModalOpen(true)}}
+                                            src="./Themes/Aurora/icons/export-v2.svg"
+                                            alt=""
+                                        />
+                                    </div>
+                                    <BenchmarkModal isOpen={isModalOpen} onClose={() => {setIsModalOpen(false)}} />
                                     {treatmentPlanData?.description_section["need focus benchmarks"].map((el:any) => {
                                         return (
                                             <div className="ml-4 flex justify-start items-center gap-2 mt-1">

@@ -502,6 +502,15 @@
   @apply w-4 h-4 bg-black dark:bg-white;  
 }
 
+.Aurora-icons-logoPortal {
+  mask-image: url(./Themes/Aurora/icons/Logo-Light.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-14 h-14 bg-black dark:bg-white;  
+}
+
 .Aurora-icons-refresh{
   mask-image: url(./Themes/Aurora/icons/reload.svg);
   mask-size: 100%;
