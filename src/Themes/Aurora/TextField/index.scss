@@ -2,17 +2,17 @@
   @apply flex flex-col  w-[100%]  gap-y-1;
 }
 .Aurora-TextField-label {
-  @apply leading-[19.36px] text-[12px] font-[500] text-[#FFFFFFDE];
+  @apply leading-[19.36px] text-[12px] font-[500] text-light-secandary-text dark:text-[#FFFFFFDE];
 }
 .Aurora-TextField-input {
-  @apply focus:outline-none w-full px-4 rounded-[4px] bg-[#272727] h-[30px] placeholder:leading-[27.25px] text-[14px]  placeholder:text-[14px]  placeholder:font-[300]   pb-[10px] pt-[8px]  placeholder:text-[#FFFFFF99] ;
+  @apply focus:outline-none w-full px-4 rounded-[4px] dark:bg-[#272727] h-[30px] placeholder:leading-[27.25px] text-[14px]  placeholder:text-[14px]  placeholder:font-[300]   pb-[10px] pt-[8px]  placeholder:dark:text-[#FFFFFF99] ;
 }
 
 .Aurora-TextField-inValid {
   @apply border-red-500 border;
 }
 .Aurora-TextField-box {
-  @apply  flex items-center justify-between h-[32px] rounded-[6px] border w-full border-[#383838] bg-[#272727] px-[0px];
+  @apply  flex items-center justify-between h-[32px] rounded-[6px] border w-full dark:border-[#383838] dark:bg-[#272727] px-[0px];
 }
 
 .Aurora-TextField-togglePassword {

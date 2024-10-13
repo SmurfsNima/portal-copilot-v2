@@ -122,8 +122,8 @@ const HelthProfile = () => {
             </div>            
         </div>
         {isEditMode ?
-        <div className="w-full inset-0 z-10  flex items-center justify-center  px-8 bg-black-background bg-opacity-50">
-            <div className="bg-black-secondary min-h-[276px] overflow-hidden relative text-primary-text p-6 rounded-lg w-full shadow-lg ">
+        <div className="w-full inset-0 z-10  flex items-center justify-center  px-8  bg-opacity-50">
+            <div className="dark:bg-black-secondary border border-light-border-color dark:border-none min-h-[276px] overflow-hidden relative text-light-secandary-text dark:text-primary-text p-6 rounded-lg w-full dark:shadow-lg ">
                 <div className="w-full flex justify-between">
                     <div> Edit Health Profile</div>
                     <Button onClick={() => {
@@ -182,7 +182,7 @@ const HelthProfile = () => {
                                 }} type="file" accept=".png" className="invisible" id="fileUploader" />
                             </div>
                         </div>
-                        <div className="text-[10px] absolute text-[#FFFFFF99] text-left mt-4">{data?.personal_info.email.substring(0,30)}</div>
+                        <div className="text-[10px] absolute text-light-primary-text dark:text-[#FFFFFF99] text-left mt-4">{data?.personal_info.email.substring(0,30)}</div>
                     </div>
                     <div className="grid gap-4 grid-cols-3">
                         <div className="w-[330px]">
@@ -407,7 +407,7 @@ const HelthProfile = () => {
 
                                     <div className="w-[300px] h-[388px] border border-light-border-color dark:border-none dark:bg-[#272727] rounded-[16px]">
                                         <div className="w-full flex justify-between px-5 py-3">
-                                            <div className="text-[14px] text-[#FFFFFFDE]">Trainer's  Notes ({data?.notes? data.notes.length : '0'})</div>
+                                            <div className="text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE]">Trainer's  Notes ({data?.notes? data.notes.length : '0'})</div>
                                             {!showAddNote &&
                                             <div onClick={() => {
                                                 setShowAddNote(true)
@@ -420,10 +420,10 @@ const HelthProfile = () => {
                                         {showAddNote ?
                                         <div className="flex justify-center items-center">
                                             <div className="w-full p-4">
-                                                <div className="text-[12px] text-[#FFFFFFDE]">Note</div>
+                                                <div className="text-[12px] text-light-secandary-text dark:text-[#FFFFFFDE]">Note</div>
                                                 <textarea value={commentText} onChange={(e) => {
                                                     setCommentText(e.target.value)
-                                                }} placeholder="Add your note for this client here..." className="h-[250px] font-light text-[14px] p-2 border border-[#383838] mt-1 rounded-[6px] bg-[#272727] w-full"  />
+                                                }} placeholder="Add your note for this client here..." className="h-[250px] font-light text-[14px] p-2 border border-light-border-color dark:border-[#383838] mt-1 rounded-[6px] dark:bg-[#272727] w-full"  />
                                                 <div className="flex justify-between items-center mt-2">
                                                     <Button onClick={() => {
                                                         setShowAddNote(false)
