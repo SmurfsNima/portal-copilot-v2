@@ -17,6 +17,7 @@ import ClientReportPage from "@/pages/Pdf/ClientReport";
 import CopilotChat from "@/pages/information/CopilotChat";
 import ResportTest from "@/pages/ReportTest";
 import GenerateNewPlan from "@/pages/information/TreatmentPlan-V2/GenerateNewPlan";
+import FormDataEntry from "@/pages/FormDataEntry";
 
 const router = createHashRouter([
   {
@@ -36,6 +37,10 @@ const router = createHashRouter([
         path:"/helthProfile/:id",
         element:<HelthProfile></HelthProfile>
       },
+      {
+        path:"/helthProfile/dataEntry/",
+        element:<FormDataEntry></FormDataEntry>
+      },      
       {
         path: "/information/:id",
         element: <Information></Information>,
