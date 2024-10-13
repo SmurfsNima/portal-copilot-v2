@@ -97,22 +97,22 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
     });
 
   };
-  const handleValueChange = (areaIndex:number, benchmarkIndex:number,topLevelKey:string,value:number) => {
-    setAllData((prevState) => {
-      const updatedData = { ...prevState }; // Clone the current state
+  // const handleValueChange = (areaIndex:number, benchmarkIndex:number,topLevelKey:string,value:number) => {
+  //   setAllData((prevState) => {
+  //     const updatedData = { ...prevState }; // Clone the current state
 
-      // Access the specific benchmark using the dynamic key
+  //     // Access the specific benchmark using the dynamic key
 
-      // Toggle the "checked" state
-      updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
-        benchmarkIndex
-      ].Value = value;
-      if(setDataGenerate){
-        setDataGenerate(updatedData)
-      }
-      return updatedData; // Return the updated state
-    });
-  };  
+  //     // Toggle the "checked" state
+  //     updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
+  //       benchmarkIndex
+  //     ].Value = value;
+  //     if(setDataGenerate){
+  //       setDataGenerate(updatedData)
+  //     }
+  //     return updatedData; // Return the updated state
+  //   });
+  // };  
 
   const handleCheckBoxChangeParent = (areaIndex:number,topLevelKey:string,state:boolean) => {
     setAllData((prevState) => {
@@ -138,12 +138,12 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
     })
   }
   return (
-    <div className={`bg-black-secondary text-primary-text p-4 rounded-md border border-main-border shadow-lg w-full ${isgenerate || isNewGenerate ?'h-[400px]' :'h-[580px]'} `}>
+    <div className={`bg-black-secondary text-primary-text p-4 rounded-md border border-main-border shadow-lg w-full ${isgenerate || isNewGenerate ?'h-[370px]' :'h-[580px]'} ${isNewGenerate && 'bg-inherit rounded-none border-none'} `}>
       <div className="w-full flex justify-between gap-3">
         {Object.entries(allData).map(([categoryName, category], categoryIndex) => (
           <div
             key={categoryIndex}
-            className={`p-4 rounded-md bg-black-primary relative select-none w-[390px] ${isgenerate ?'h-[300px]':isNewGenerate?'h-[350px]':'h-[450px]'}  overflow-auto overflow-x-hidden`}
+            className={`p-4 rounded-md bg-black-primary relative select-none w-[390px] ${isgenerate ?'h-[300px]':isNewGenerate?'h-[340px]':'h-[450px]'}  overflow-auto overflow-x-hidden`}
           >
             <div className="flex px-3 pb-1 justify-between items-center border-b border-main-border w-full ">
               <span className="flex items-center gap-2 text-xs font-medium">
@@ -218,7 +218,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                               }}
                               className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center"
                             />
-                            <div className="peer-checked:text-primary-text flex text-[10px] w-[185px]">
+                            <div className="peer-checked:text-primary-text flex text-[10px] w-[350px]">
                               {benchmark.Benchmark.substring(0, isgenerate?18:35)}
                               {benchmark?.tag &&
                               <>
@@ -227,7 +227,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                                 <div className="flex flex-col mt-[0px] gap-2">
                                   {benchmark?.tag.map(el => {
                                     return (
-                                      <span className={` ${el == 'Needs Focus'?'bg-[#FC5474]':'bg-orange-500'} ml-1 px-1 text-[10px] h-24px text-[#1E1E1E] rounded-[24px]`}>{el}</span>
+                                      <span className={` ${el == 'Needs Focus'?'bg-[#FC5474]':'bg-orange-500'} ml-1 px-1 w-max text-[10px] h-24px text-[#1E1E1E] rounded-[24px]`}>{el}</span>
                                     )
                                   })}
 
@@ -238,7 +238,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                               }
                             </div>
                           </label>
-                          {
+                          {/* {
                             benchmark.checked ?
                             <div className="w-full flex items-center justify-end ml-2">
                               <span className="text-[10px] text-secondary-text mr-2">
@@ -265,7 +265,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                             </div>
                             :
                             undefined
-                          }
+                          } */}
                         </li>
                       ))}
                     </ul>

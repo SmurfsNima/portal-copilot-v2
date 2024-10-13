@@ -50,6 +50,7 @@ const GenerateNewPlan =() => {
             setGenereStep("Client Goals")
         }
     }    
+    const [activeMenu,setActiveMenu] = useState('3 Month')
     const generatePaln =() => {
         setIsLoading(true)
         setGenereStep("Generate")
@@ -151,13 +152,46 @@ const GenerateNewPlan =() => {
                 {
                     generateStep == 'Category Order' &&
                     <div className="bg-white rounded-[6px]   h-[400px] mt-2  border border-light-border-color dark:bg-[#2F2F2F] dark:border-[#383838]">
-                        <PlanManagerModal onCompleteAction={() => {
+                        <div className="flex justify-center mt-3 items-center">
+                            <div onClick={() => {
+                                setActiveMenu('3 Month')
+                            }} className={`  ${
+                                activeMenu === '3 Month' && "bg-[#272727] text-[#FFFFFFDE]"
+                            } rounded-md w-[105px] text-xs text-[#FFFFFF99] h-[24px] flex items-center justify-center cursor-pointer   `}>
+                                3 Month
+                            </div>
+                            <div onClick={() => {               
+                                setActiveMenu('6 Month')
+                            }} className={`  ${
+                                activeMenu === '6 Month' && "bg-[#272727] text-[#FFFFFFDE]"
+                            } rounded-md w-[105px] text-xs text-[#FFFFFF99] h-[24px] flex items-center justify-center cursor-pointer   `}>
+                                6 Month
+                            </div>   
+
+                        </div>                       
+                        {/* <PlanManagerModal onCompleteAction={() => {
                             // generatePaln()
                         }} isNewGenerate data={Priorities6}  setDataGenerate={(data) => {
                                 setPriorities6(data)
                             }}>
 
-                        </PlanManagerModal>
+                        </PlanManagerModal> */}
+                            {activeMenu == '3 Month' ?
+                                <PlanManagerModal onCompleteAction={() => {
+                                    // generatePaln()
+                                    }} isNewGenerate data={Priorities3} setDataGenerate={(data) => {
+                                        setPriorities3(data)
+                                    }}>
+                                </PlanManagerModal>
+                            :
+                                <PlanManagerModal onCompleteAction={() => {
+                                    // generatePaln()
+                                }} isNewGenerate data={Priorities6}  setDataGenerate={(data) => {
+                                        setPriorities6(data)
+                                    }}>
+
+                                </PlanManagerModal>
+                            }                        
                     </div>
                 }
                 {
