@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Application } from "@/api";
 import { InfoCard } from "@/components"
-import { useEffect, useState } from "react";
+import useModalAutoClose from "@/hooks/UseModalAutoClose";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "symphony-ui"
@@ -12,6 +13,16 @@ const TreatMentPlan = () => {
     const navigate = useNavigate()
     const [historyData,setHistory] = useState([])
     // const [isCreateNew,setIsCreateNew] = useState(false)
+    const [showReportModal,setSHowReportModal] = useState(-1)
+    const showReportModalRefrence = useRef(null)
+    const showReportModalButtonRefrence = useRef(null)
+    useModalAutoClose({
+        refrence:showReportModalRefrence,
+        buttonRefrence:showReportModalButtonRefrence,
+        close:() => {
+            setSHowReportModal(-1)
+        }
+    })
     const getHistory =() => {
         Application.showHistory({
           member_id: id,
@@ -21,7 +32,7 @@ const TreatMentPlan = () => {
     }
     useEffect(() => {
         getHistory()
-    })
+    },[])
     return (
         <>
             <div className="flex flex-col gap-3 w-full">
@@ -60,7 +71,7 @@ const TreatMentPlan = () => {
                             <div className=" border-light-border-color dark:border-black-third  border"></div>
                             {historyData.length > 0 && (
                                 <div className="h-[25vh] overflow-y-scroll">
-                                {historyData.map((el:any) => {
+                                {historyData.map((el:any,index) => {
                                     return (
                                     <>
                                         <div className="flex justify-between items-center my-1">
@@ -70,21 +81,37 @@ const TreatMentPlan = () => {
                                         <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-2 w-[360px] flex justify-center items-center text-[12px]">
                                             {el.formatted_time}
                                         </div>
-                                        <div className="text-[#FFFFFFDE] py-2 w-[300px] gap-2 flex justify-end px-5 items-center text-[12px]">
+                                        <div className="text-[#FFFFFFDE] overflow-visible relative py-2 w-[300px] gap-2 flex justify-end px-5 items-center text-[12px]">
                                             <img
+                                            ref={showReportModalButtonRefrence}
                                             onClick={() => {
-                                                // Application.getReportString({
-                                                //   member_id: memberId,
-                                                //   report_id: el.report_id,
-                                                // }).then((res) => {
-                                                //   handleDownload(res.data);
-                                                // });
-                                                // navigate("/weaklyReport/"+memberId+"/"+el.report_id)
-                                                // window.open(location.host+"/#/weaklyReport/"+memberId+"/"+el.report_id)
+                                                if(showReportModal == index){
+                                                    setSHowReportModal(-1)
+                                                }else {
+                                                    setSHowReportModal(index)
+                                                }
                                             }}
                                             className="cursor-pointer"
                                             src={"./Themes/Aurora/icons/document-download3.svg"}
                                             />
+                                            {showReportModal == index &&
+                                                <div ref={showReportModalRefrence} className=" absolute top-8 right-10 z-20 w-[95px] rounded-[6px] p-2 bg-[#2F2F2F] border border-[#383838]">
+                                                    <div onClick={() => {
+                                                        window.open(
+                                                        "/#/ClientReportPage/"+id+"/" +
+                                                            el.t_plan_id,
+                                                        "_blank"
+                                                        )                                                        
+                                                    }} className="text-[#FFFFFFDE] text-[12px] cursor-pointer border-b border-b-[#383838] pb-2">Client Report</div>
+                                                    <div onClick={() => {
+                                                        window.open(
+                                                        "/#/ClinicReportPage/" +
+                                                            el.t_plan_id,
+                                                        "_blank"
+                                                        )                                                        
+                                                    }} className="text-[#FFFFFFDE] text-[12px] cursor-pointer pt-2 ">Coach Report</div>
+                                                </div>
+                                            }
                                             <div className="relative"> <img
                                             onClick={() => {
                                             }

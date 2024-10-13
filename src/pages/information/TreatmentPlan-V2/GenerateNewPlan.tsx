@@ -92,7 +92,7 @@ const GenerateNewPlan =() => {
             <div className="w-full py-6 px-4 bg-white rounded-[6px] dark:bg-[#1E1E1E] border border-light-border-color dark:border-[#383838] h-[610px] ">
                 <div className="flex justify-start items-center gap-4">
                     <div onClick={() => {
-
+                        navigate(-1)
                     }} className={`Aurora-tab-icon-container w-[60px] cursor-pointer h-[35px]`}>
                         <img className={`Aurora-icons-arrow-left`} />
                     </div> 
