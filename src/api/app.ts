@@ -230,6 +230,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/weekly_graph",data)
     return response
   }
+
+  static getDataTracking =(data:any) => {
+    const response = this.post("/summary/data_tracking_action",data)
+    return response
+  }  
 }
 
 

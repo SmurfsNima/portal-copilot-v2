@@ -63,8 +63,8 @@ const HelthProfile = () => {
             console.log(res)
             if(res.data!='Internal Server Error') {
                 setData(res.data)
-                formik.setFieldValue("firstName",res.data.personal_info["first name"])
-                formik.setFieldValue("lastName",res.data.personal_info["last name"])
+                formik.setFieldValue("firstName",res.data.personal_info["first_name"])
+                formik.setFieldValue("lastName",res.data.personal_info["last_name"])
                 setImage(res.data.personal_info.picture)
                 formik.setFieldValue("workOuts",res.data.personal_info["total workouts"]!='No Data'?res.data.personal_info["total workouts"]:'')
                 formik.setFieldValue("Activity",res.data.personal_info["total Cardio Activities"]!='No Data'?res.data.personal_info["total Cardio Activities"]:'')
@@ -129,7 +129,7 @@ const HelthProfile = () => {
                     <Button onClick={() => {
                         Application.updateSummary({
                             member_id:id,
-                            "first name":formik.values.firstName,
+                            "first_name":formik.values.firstName,
                             "last_name":formik.values.lastName,
                             expert:formik.values.expert,
                             picture:image,
@@ -142,8 +142,8 @@ const HelthProfile = () => {
                         setData((pre:any) => {
                             const old = pre
                             old.personal_info ={
-                                "first name": formik.values.firstName,
-                                "last name":formik.values.lastName,
+                                "first_name": formik.values.firstName,
+                                "last_name":formik.values.lastName,
                                 "picture": image,
                                 "expert": formik.values.expert,
                                 "Location": formik.values.location,
@@ -164,7 +164,7 @@ const HelthProfile = () => {
                     <div className="">
                         <div className="flex text-center self-center  justify-center relative items-center pt-4">
                             <img src={border} className="w-[71px] h-[71px]" alt="" />
-                            <img className="absolute w-[60px] h-[60px] rounded-full" src={image!= '' ?image:`https://ui-avatars.com/api/?name=${data?.personal_info.name}`} alt="" />
+                            <img className="absolute w-[60px] h-[60px] rounded-full" src={image!= '' ?image:`https://ui-avatars.com/api/?name=${data?.personal_info.first_name}`} alt="" />
                             <div onClick={() => {
                                 document.getElementById("fileUploader")?.click()
                             }} className="absolute cursor-pointer right-[-12px] bottom-[-8px] w-[42px] h-[42px] ">
@@ -221,10 +221,10 @@ const HelthProfile = () => {
                                         </div>
                                         <div className="flex justify-center items-center pt-4">
                                             <img src={border} className="w-[71px] h-[71px]" alt="" />
-                                            <img className="absolute w-[60px] h-[60px] rounded-full" src={data?.personal_info.picture!= '' ?data?.personal_info.picture:`https://ui-avatars.com/api/?name=${data?.personal_info.name}`} alt="" />
+                                            <img className="absolute w-[60px] h-[60px] rounded-full" src={data?.personal_info.picture!= '' ?data?.personal_info.picture:`https://ui-avatars.com/api/?name=${data?.personal_info.first_name}`} alt="" />
                                             {/* <div className="absolute text-[#FFFFFF61] text-[38px]">LA</div> */}
                                         </div>
-                                        <div className="dark:text-[#FFFFFFDE] text-light-primary-text opacity-[60%] mt-6 text-center text-[20px]">{data?.personal_info["first name"] +" " +data?.personal_info["last name"]}</div>
+                                        <div className="dark:text-[#FFFFFFDE] text-light-primary-text opacity-[60%] mt-6 text-center text-[20px]">{data?.personal_info.first_name +" " +data?.personal_info.last_name}</div>
                                         <div className="px-5 flex flex-col gap-4 mt-6">
                                             <div className="flex w-full items-center justify-between">
                                                 <div className="flex items-center gap-1">
@@ -361,7 +361,17 @@ const HelthProfile = () => {
                                                                         </div>
                                                                         <div onClick={() => {
                                                                             // setIsFormMode(true)
-                                                                            navigate('/helthProfile/dataEntry')
+                                                                            Application.getDataTracking({
+                                                                                member_id:id,
+                                                                                form_name:el.Data
+                                                                            }).then(res => {
+                                                                                if(typeof res.data == 'string'){
+                                                                                    window.open(res.data)
+                                                                                }else {
+                                                                                    navigate('/helthProfile/dataEntry')
+                                                                                }
+                                                                            })
+                                                                            // navigate('/helthProfile/dataEntry')
                                                                         }} className="text-primary-color cursor-pointer text-[12px] w-[27px]">
                                                                             {el["State"] =='Complete'? 'View':'Fill'}
                                                                         </div>
