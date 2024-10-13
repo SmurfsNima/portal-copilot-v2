@@ -6,7 +6,7 @@ import { publish } from "@/utils/event"
 import { useEffect, useState } from "react"
 import { FiExternalLink } from "react-icons/fi"
 // import { useNavigate } from "react-router-dom"
-import { Button } from "symphony-ui"
+import { Button, TextField,TextArea } from "symphony-ui"
 // import { pdf } from "@react-pdf/renderer";
 // import { blobToBase64 } from "@/help"
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -52,6 +52,17 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
             "Target goal": updatedRecommendation
         });
     };       
+
+    const handleStatusChange = (index:number, value:string) => {
+        const updatedRecommendation = [...data["Status"]];
+        updatedRecommendation[index] = value;
+
+        // Update state with the new "Recommendation" array
+        setData({
+            ...data,
+            "Status": updatedRecommendation
+        });
+    };    
     const [isComplete,setISComplete] = useState(false)
     const nextAction = () => {
         Application.ai_studio_update_weekly_data({
@@ -147,34 +158,59 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
                 <>
                         <div className="w-full bg-[#383838] rounded-[6px]">
                             <div className="flex justify-start items-center">
-                                <div className="w-[323px] text-[#FFFFFFDE] py-5 pl-4 text-[14px] font-medium">Type of Progress</div>
+                                <div className="w-[200px] text-[#FFFFFFDE] py-5 pl-4 text-[14px] font-medium">Type of Progress</div>
                                 <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center text-[14px] font-medium">Goal</div>
                                 <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Current Value</div>
-                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Target Goal</div>
-                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Status</div>
+                                <div className="w-[100px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Target Goal</div>
+                                <div className="w-[200px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Status</div>
                                 <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Historical Data</div>
-                                <div className="w-[300px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Recommendation</div>
+                                <div className="w-[400px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Recommendation</div>
                             </div>
                             <div className="w-full h-[1px] border-b border-white opacity-25"></div>
                             <div className="h-[55vh] overflow-y-scroll">
                                 {data["Type of progress"]?.map((el:string,index:number) => {
                                     return (
                                         <div className="flex justify-start items-center">
-                                            <div className="w-[323px] text-[#FFFFFFDE] py-5 pl-4 pr-3 text-[12px] font-medium">{el}</div>
+                                            <div className="w-[200px] text-justify text-[#FFFFFFDE] py-5 pl-4 pr-3 text-[12px] font-medium">{el}</div>
                                             <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center text-[12px] font-medium">{data["Goal"][index]}</div>
                                             <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">{data["Current value"][index]}</div>
-                                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
-                                                <input type="text" onChange={(e) => {
+                                            <div className="w-[100px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
+                                               <TextField data-width="full" theme="Aurora" name="" onBlur={()=>{}} onChange={(e)=>{handleTargetGoalChange(index,e.target.value)}} type="text" value={data["Target goal"][index]} inValid={false}></TextField>
+                                                {/* <input type="text" onChange={(e) => {
                                                     handleTargetGoalChange(index,e.target.value)
-                                                }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Target goal"][index]} />
+                                                }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Target goal"][index]} /> */}
                                                 {}
                                             </div>
-                                            <div className="w-[140px] text-[#1E1E1E] py-5 flex justify-center  text-[8px] font-medium"><span className="w-[53px] h-[16px] rounded-[16px] flex justify-center items-center" style={{backgroundColor:resolveStatusColor(data["Status"][index])}}>{data["Status"][index]}</span></div>
+                                            <div className="w-[200px] text-[#1E1E1E] py-5 px-4 flex justify-center  text-[8px] font-medium">
+                                                <div className="w-full  bg-[#1E1E1E] min-h-[58px] p-2 flex justify-center rounded-[6px] border border-[#383838]">
+                                                 <div>
+                                                    <div onClick={() => {
+                                                        handleStatusChange(index,'Not OK')
+                                                    }} className="flex justify-center gap-2 items-center">
+                                                        <div className={`w-4 h-4 ${data["Status"][index] == 'Not OK'?' bg-primary-color':'bg-[#2F2F2F]'} rounded-full flex justify-center items-center`}>
+                                                            <div className="w-2 h-2 rounded-full bg-[#2F2F2F]"></div>
+                                                        </div>
+                                                        <span className={`w-[53px] h-[16px] rounded-[16px] flex justify-center items-center ${data["Status"][index] == 'Not OK'?'text-[#1E1E1E]':'border border-[#383838] text-[#FFFFFFDE]'}`} style={{backgroundColor:data["Status"][index] == 'Not OK' ?resolveStatusColor('Not OK'):'unset'}}>Not OK</span>
+                                                    </div>
+
+                                                    <div onClick={() => {
+                                                        handleStatusChange(index,'OK')
+                                                    }} className="flex mt-3 justify-center gap-2 items-center">
+                                                        <div className={`w-4 h-4 ${data["Status"][index] == 'OK'?' bg-primary-color':'bg-[#2F2F2F]'} rounded-full flex justify-center items-center`}>
+                                                            <div className="w-2 h-2 rounded-full bg-[#2F2F2F]"></div>
+                                                        </div>
+                                                        <span className={`w-[53px] h-[16px] rounded-[16px] flex justify-center items-center ${data["Status"][index] == 'OK'?'text-[#1E1E1E]':'border border-[#383838] text-[#FFFFFFDE]'}`} style={{backgroundColor:data["Status"][index] == 'OK' ?resolveStatusColor('OK'):'unset'}}>OK</span>
+                                                    </div>
+                                                </div>
+                                                 </div>
+
+                                                </div>
                                             <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink onClick={() => setSHowWeaklyData(true)} className="cursor-pointer"></FiExternalLink></div>
-                                            <div className="w-[300px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
-                                                <input type="text" onChange={(e) => {
+                                            <div className="w-[400px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
+                                                  <TextArea   theme="Aurora" name="" onBlur={()=>{}} onChange={(e)=>{handleRecomendChange(index,e.target.value)}} value={data["Recommendation"][index]} inValid={false}></TextArea>
+                                                {/* <input type="text" onChange={(e) => {
                                                     handleRecomendChange(index,e.target.value)
-                                                }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Recommendation"][index]} />
+                                                }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Recommendation"][index]} /> */}
                                             </div>                            
                                         </div>
                                     )

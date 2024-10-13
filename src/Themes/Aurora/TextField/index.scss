@@ -12,8 +12,9 @@
   @apply border-red-500 border;
 }
 .Aurora-TextField-box {
-  @apply  flex items-center justify-between h-[32px] rounded-[6px] border w-[337px] border-[#383838] bg-[#272727] px-[0px];
+  @apply  flex items-center justify-between h-[32px] rounded-[6px] border w-full border-[#383838] bg-[#272727] px-[0px];
 }
+
 .Aurora-TextField-togglePassword {
   @apply cursor-pointer;
 }
