@@ -106,20 +106,20 @@ export const UploadLogo = () => {
   };
 
   return (
-      <div className="  w-full flex h-[435px] items-start justify-center pt-10 px-6  bg-black-primary border border-main-border rounded-md">
-      <div className={"flex-1 p-10 flex items-center justify-start  flex-col gap-3.5 "}>
+      <div className="  w-full flex h-[435px] items-start justify-center pt-10 px-6  dark:bg-black-primary border rounded-md">
+      <div className={"flex-1 p-10 flex items-center justify-start  flex-col gap-3.5"}>
         <div>
-          <h1 className={"mb-5 block text-gray-300 text-xs"}>Current Logo</h1>
+          <h1 className={"mb-5 block  dark:text-gray-300 text-light-primary-text text-xs"}>Current Logo</h1>
           <div
-              className="border w-fit py-5 px-2 border-main-border rounded-lg text-center text-primary-text flex flex-col items-center gap-5">
+              className="border dark:border-main-border w-fit py-5 px-2  rounded-lg text-center text-primary-text flex flex-col items-center gap-5">
             <img className={"w-[170px] h-[150px]"} src={"/Themes/Aurora/icons/EmptyStateLogo.svg"}/>
           </div>
         </div>
-        <h1 className={"block text-gray-300 text-xs"}>No logo uploaded yet.</h1>
+        <h1 className={"block  text-light-primary-text text-xs"}>No logo uploaded yet.</h1>
       </div>
-        <div className="  flex flex-col items-center justify-start py-10 pr-10 w-[800px] ">
+        <div className="  flex flex-col items-center justify-start py-10 pr-10 w-[800px] md:min-w-4xl">
           <div className="mb-6 w-full ">
-            <label className="block text-primary-text text-xs font-normal mb-2">
+            <label className="block dark:text-primary-text text-light-primary-text text-xs font-normal mb-2">
           Clinic Name
         </label>
         <input
@@ -127,22 +127,22 @@ export const UploadLogo = () => {
           value={clinicName}
           onChange={(e) => setClinicName(e.target.value)}
           placeholder="Enter clinic name..."
-          className=" outline-none w-full h-[32px] p-3 rounded-lg bg-black-primary border border-main-border text-xs text-primary-text"
+          className=" outline-none w-full h-[32px] p-3 rounded-lg dark:bg-black-primary bg-light-input-color border dark:border-main-border text-xs text-primary-text"
         />
       </div>
 
       <div className=" w-full  mb-8">
-        <label className="block text-gray-300 text-xs mb-2">Clinic Logo</label>
+        <label className="block text-light-primary-text text-xs mb-2">Clinic Logo</label>
         <div
             onDrop={handleDrop}
             onDragOver={handleDragOver}
-            className="border  border-main-border rounded-lg py-4 text-center text-primary-text flex flex-col items-center gap-5"
+            className="border  dark:border-main-border rounded-lg py-4 text-center text-light-primary-text darktext-primary-text flex flex-col items-center gap-5"
         >
           <img src="./Themes/Aurora/icons/uploadlogo.svg" alt=""/>
           <label htmlFor="fileUpload" className="cursor-pointer text-xs">
             Drag and drop a file here or{" "}
             <span className="text-brand-primary-color">upload a file</span>
-            <div className="text-xs text-secondary-text mt-2">
+            <div className="text-xs text-light-secondary-text darktext-secondary-text mt-2">
               JPG, PNG, SVG, PDF
             </div>
           </label>
@@ -159,7 +159,7 @@ export const UploadLogo = () => {
 
       {loading && (
           <div
-              className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border border-main-border px-4 py-2 rounded-md">
+              className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
             <span className="text-primary-text text-xs mr-3">{fileName}</span>
             <div className="flex items-center justify-between gap-2 w-full">
             <div className="relative w-full h-2 bg-main-border rounded">
@@ -190,7 +190,7 @@ export const UploadLogo = () => {
         </div>
       )}
       {!loading && logoBase64 && !error && fileName && (
-        <div className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border border-main-border px-4 py-2 rounded-md">
+        <div className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
           <div className="flex items-center gap-1">
             <img src="./Themes/Aurora/icons/XMLID_1737_.svg" alt="" />
             <span className="text-gray-200">{fileName}</span>
