@@ -4,8 +4,9 @@ import { PlanManagerModal } from "@/components";
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
-import { Button, TextArea } from "symphony-ui";
+import { Button } from "symphony-ui";
 import BenchmarkModal from "../Treatment Plan/benchmarkModal";
+import TextBoxAi from "./TextBoxAi";
 // import data from './data.json';
 
 interface Benchmark {
@@ -64,7 +65,9 @@ const GenerateNewPlan =() => {
             console.log(res.data);
             // console.log(res)
             setIsLoading(false)
-            setTratmentPlanData(res.data)
+            if(!res.data.detail){
+                setTratmentPlanData(res.data)
+            }
             // navigate(-1)
         });
     }    
@@ -89,6 +92,7 @@ const GenerateNewPlan =() => {
         })
 
     },[])    
+    const [isloadingGenerate,setIsLoadingGenerate] = useState(false)
     return (
         <>
         <div className="w-full flex justify-center px-4">
@@ -230,9 +234,27 @@ const GenerateNewPlan =() => {
                                     })}
                                 </div>
 
-                                <div className="dark:text-[#FFFFFFDE] mt-4 text-light-secandary-text gap-2 flex justify-start items-center text-[14px] font-medium">
-                                    <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
-                                    Report Details
+                                <div className="dark:text-[#FFFFFFDE] mt-4 text-light-secandary-text gap-2 flex justify-between items-center text-[14px] font-medium">
+                                    <div className="w-full flex justify-start gap-2 items-center">
+                                        <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
+                                        Report Details
+                                    </div>
+                                    <Button onClick={() => {
+                                        setIsLoadingGenerate(true)
+                                    }} theme="Aurora-pro">
+                                        {isloadingGenerate ?
+                                        <div className="px-3 w-full flex justify-center items-center">
+                                            <BeatLoader size={8} color="#7F39FB"></BeatLoader>
+                                        </div>
+                                        :
+                                        <>
+                                        <div className={`Aurora-icons-stars w-[15px]`}></div>
+                                        <div className="w-[90px]">
+                                             Generate by AI
+                                        </div>
+                                        </>
+                                        }
+                                    </Button>
                                 </div>
 
                                 <div className="w-full border-b border-b-light-border-color dark:border-b-[#383838] pb-3 font-medium text-[14px] mt-6 text-light-secandary-text dark:text-[#FFFFFFDE] flex justify-start">
@@ -244,15 +266,15 @@ const GenerateNewPlan =() => {
                                     return (
                                         <div className="text-light-secandary-text flex border-b border-b-light-border-color dark:border-b-[#383838] text-[12px] py-4 w-full dark:text-[#FFFFFFDE] ">
                                             <div className="flex w-[350px]"> <div className=" w-[90px] overflow-hidden">{el.subCategory}</div> <span className="ml-1">{el.area}</span></div>
+                                            <TextBoxAi value={resolveTextDoDoes(el.first12Weeks)}></TextBoxAi>
                                             <div className="w-[450px] pr-4">
-                                                <TextArea onChange={() => {}} value={resolveTextDoDoes(el.first12Weeks)} theme="Aurora" name="" inValid={false} onBlur={() => {}} ></TextArea>
-                                            </div>
-                                            <div className="w-[450px] pr-4">
-                                                <TextArea onChange={() => {}} value={resolveTextDoDoes(el.second12Weeks)} theme="Aurora" name="" inValid={false} onBlur={() => {}} ></TextArea>
+                                                 <TextBoxAi value={resolveTextDoDoes(el.second12Weeks)}></TextBoxAi>
+                                                {/* <TextArea onChange={() => {}} value={resolveTextDoDoes(el.second12Weeks)} theme="Aurora" name="" inValid={false} onBlur={() => {}} ></TextArea> */}
                                             </div>                                            
                                         </div>
                                     )
                                 })}
+                                <div className="mb-[200px]"></div>
                             </div>
                             }
                         </div>

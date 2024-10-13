@@ -309,6 +309,16 @@
   @apply w-6 h-6 bg-brand-secondary-color;
    ;
 }
+.Aurora-icons-stars2{
+  mask-image: url(/Themes/Aurora/icons/stars.svg);
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  @apply w-12 h-12 bg-brand-secondary-color;
+   ;
+}
+
 .Aurora-icons-Add{
   mask-image: url(/Themes/Aurora/icons/add-square.svg);
   mask-size: 100%;
