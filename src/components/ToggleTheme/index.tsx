@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { AppContext } from '@/store/app';
+import { useState, useEffect, useContext } from 'react';
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState('dark');
-
+  const appcontext = useContext(AppContext)
   useEffect(() => {
     // Check the user's saved preference
     const savedTheme = localStorage.getItem('theme-base');
@@ -23,8 +24,10 @@ const ThemeToggle = () => {
     localStorage.setItem('theme-base', newTheme);
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');
+      appcontext.setThemeIsLight(false)
     } else {
       document.documentElement.classList.remove('dark');
+      appcontext.setThemeIsLight(true)
     }
   };
 
