@@ -63,8 +63,8 @@ const HelthProfile = () => {
             console.log(res)
             if(res.data!='Internal Server Error') {
                 setData(res.data)
-                formik.setFieldValue("firstName",res.data.personal_info.name)
-                // formik.setFieldValue("lastName",res.data.personal_info.name)
+                formik.setFieldValue("firstName",res.data.personal_info["first name"])
+                formik.setFieldValue("lastName",res.data.personal_info["last name"])
                 setImage(res.data.personal_info.picture)
                 formik.setFieldValue("workOuts",res.data.personal_info["total workouts"]!='No Data'?res.data.personal_info["total workouts"]:'')
                 formik.setFieldValue("Activity",res.data.personal_info["total Cardio Activities"]!='No Data'?res.data.personal_info["total Cardio Activities"]:'')
@@ -129,8 +129,8 @@ const HelthProfile = () => {
                     <Button onClick={() => {
                         Application.updateSummary({
                             member_id:id,
-                            name:formik.values.firstName,
-                            last_name:formik.values.lastName,
+                            "first name":formik.values.firstName,
+                            "last_name":formik.values.lastName,
                             expert:formik.values.expert,
                             picture:image,
                             location:formik.values.location,
@@ -142,7 +142,8 @@ const HelthProfile = () => {
                         setData((pre:any) => {
                             const old = pre
                             old.personal_info ={
-                                "name": formik.values.firstName,
+                                "first name": formik.values.firstName,
+                                "last name":formik.values.lastName,
                                 "picture": image,
                                 "expert": formik.values.expert,
                                 "Location": formik.values.location,
