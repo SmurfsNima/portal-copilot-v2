@@ -181,27 +181,27 @@ const AiKnowledge = () => {
   //   ]    
   // )
   // const [fileName, setFileName] = useState("");
-  const convertToBase64 = (file:any,fileName:string) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
+  // const convertToBase64 = (file:any,fileName:string) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
 
-    reader.onloadend = () => {
-      Application.getDocument({
-        files:[
-          {
-            filename:fileName,
-            content:reader.result?.toString().split(",")[1]
-          }
-        ]
-      }).then((res) => {
-        console.log(res)
-      })
-    };
+  //   reader.onloadend = () => {
+  //     Application.getDocument({
+  //       files:[
+  //         {
+  //           filename:fileName,
+  //           content:reader.result?.toString().split(",")[1]
+  //         }
+  //       ]
+  //     }).then((res) => {
+  //       console.log(res)
+  //     })
+  //   };
 
-    reader.onerror = (error) => {
-      console.error("Error converting file to Base64:", error);
-    };
-  };
+  //   reader.onerror = (error) => {
+  //     console.error("Error converting file to Base64:", error);
+  //   };
+  // };
   const [sigmaSetting,setSigmaSetting] =useState<any>({})
   useEffect(() => {
     setTimeout(() => {
@@ -250,7 +250,7 @@ const AiKnowledge = () => {
       </SigmaContainer>
 
       <div className="fixed right-5 top-[15%] w-[340px] text-primary-text bg-black-primary border border-main-border flex flex-col p-4 rounded-md">
-        <button onClick={() => {
+        {/* <button onClick={() => {
           document.getElementById("uploadFile")?.click()
         }} className="mb-4 relative flex justify-center gap-2 text-secondary-text border border-main-border border-dashed py-2 rounded-lg">
           <img src="/Themes/Aurora/icons/add-square.svg" alt="Add" />
@@ -263,7 +263,7 @@ const AiKnowledge = () => {
               }
 
           }} className="absolute w-full h-full invisible " type="file" />
-        </button>
+        </button> */}
         <div className="overflow-y-auto">
           <div className="mb-4">
             <h3 className="text-lg mb-2">Documents</h3>
