@@ -39,7 +39,7 @@ const router = createHashRouter([
         element:<HelthProfile></HelthProfile>
       },
       {
-        path:"/helthProfile/dataEntry/",
+        path:"/helthProfile/dataEntry/:name/:id",
         element:<FormDataEntry></FormDataEntry>
       },      
       {

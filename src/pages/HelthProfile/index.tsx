@@ -353,7 +353,7 @@ const HelthProfile = () => {
                                                                 return(
                                                                     <div className="dark:bg-[#2F2F2F] border-light-border-color dark:border-none mb-1 px-4 h-[48px] w-full rounded-[12px] flex justify-between items-center">
                                                                         <div className="text-[10px] w-[50px] text-light-secandary-text dark:text-[#FFFFFFDE]">{el.Data.substring(0,8)+'...'}</div>
-                                                                        <div className="w-[60px] flex justify-center">{el["Completed on"]}</div>
+                                                                        <div className="w-[60px] text-[10px] flex justify-center">{el["Completed on"]}</div>
                                                                         <div className="text-[8px] w-[60px]">
                                                                             <div className="rounded-[16px] flex justify-center px-1 py-1 text-[#1E1E1E]" style={{backgroundColor:resolveStatusColor(el["State"])}}>
                                                                                 {el["State"]}
@@ -368,7 +368,7 @@ const HelthProfile = () => {
                                                                                 if(typeof res.data == 'string'){
                                                                                     window.open(res.data)
                                                                                 }else {
-                                                                                    navigate('/helthProfile/dataEntry')
+                                                                                    navigate('/helthProfile/dataEntry/'+el.Data+"/"+id)
                                                                                 }
                                                                             })
                                                                             // navigate('/helthProfile/dataEntry')

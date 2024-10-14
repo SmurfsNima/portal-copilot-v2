@@ -1,9 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useContext, useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import { AppContext } from '@/store/app';
 
-const MethylationChart: React.FC = () => {
+ interface MethylationChartProps {
+  labels:Array<any>
+  values:Array<any>
+}
+
+const MethylationChart: React.FC<MethylationChartProps> = ({labels,values}) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
-
+  const context= useContext(AppContext)
   useEffect(() => {
     if (chartRef.current) {
       const ctx = chartRef.current.getContext('2d');
@@ -19,7 +26,7 @@ const MethylationChart: React.FC = () => {
         gradientAverage.addColorStop(1, '#D9D9D900');
         gradientAverage.addColorStop(0, '#7F39FB');  
         const data = {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr','May','Jun','Jul','Aug','Sep','Sep','Oct','Nov','Dec'],
+          labels: labels,
           datasets: [
             // {
             //   label: 'Current',
@@ -32,7 +39,7 @@ const MethylationChart: React.FC = () => {
               // width:10,
               barThickness: 10,  // Fixed bar width of 40px
               
-              data: [50, 60, 40, 30,20,14,36,41,12,51,34,25,45],
+              data: values,
               backgroundColor: gradientAverage,
             },
           ],
@@ -49,7 +56,7 @@ const MethylationChart: React.FC = () => {
           scales: {
             x: {
               ticks: {
-                color: "#FFFF",
+                color:context.themeISLight?"#262626" :"#FFFF",
                 font: {
                   size: 10,
                 },
@@ -64,7 +71,7 @@ const MethylationChart: React.FC = () => {
               beginAtZero: true,
               max:100,
               ticks: {
-                color: "#FFFF",
+                color: context.themeISLight?"#262626" :"#FFFF",
                 font: {
                   size: 10,
                 },
@@ -95,7 +102,7 @@ const MethylationChart: React.FC = () => {
   }, []);
 
   return (
-    <div className=" w-full bg-black-secondary border border-main-border p-4 rounded-lg shadow-md  h-[50px]}">
+    <div className=" w-full bg-gray-50 dark:bg-black-secondary border border-none dark:border-main-border p-4 rounded-lg shadow-md  h-full ">
       <canvas ref={chartRef} />
     </div>
   );

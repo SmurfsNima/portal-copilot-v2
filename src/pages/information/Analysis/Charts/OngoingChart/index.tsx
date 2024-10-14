@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface StatusChartProps {
     data:any,
-    title:string
+    title:string,
+    onClick:() => void
 }
-const OnGoingChart:React.FC<StatusChartProps> = ({data,title}) => {
+const OnGoingChart:React.FC<StatusChartProps> = ({data,title,onClick}) => {
     return (
         <>
-            <div className="w-[315px] py-3 px-6 bg-white dark:bg-black-primary border border-light-border-color dark:border-[#383838] h-[148px] rounded-[6px] flex justify-between">
+            <div onClick={() => {
+                onClick()
+            }} className="w-[315px] cursor-pointer py-3 px-6 bg-white dark:bg-black-primary border border-light-border-color dark:border-[#383838] h-[148px] rounded-[6px] flex justify-between">
                 <div>
                     <div className=" text-light-secandary-text dark:text-[#FFFFFFDE] text-[12px] h-[45px] w-[185px]">{title}</div>
                     <div className="flex justify-between w-[155px] items-center mt-4">
