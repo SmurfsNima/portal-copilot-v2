@@ -10,7 +10,8 @@ interface AddClientModalProps{
     onSubmit: (data: { fullName: string; email: string; wearableDevice: string }) => void;
 }
 const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSubmit , sendCLientData }) => {
-  const [fullName, setFullName] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const theme = useSelector((state: any) => state.theme.value.name);
   const [wearableDevice,] = useState("");
@@ -53,9 +54,9 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
     // Send invitation email
     Application.addClient({
       personal_info:{
-        name:fullName,
+        first_name:firstName,
         email: email,
-        last_name:"",
+        last_name:lastName,
         picture:'',
         wearable_devices:[wearableDevice]
       }
@@ -63,7 +64,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
       if(res.data.member_id){
         setStep("success")
         sendCLientData({
-          fullName: fullName,
+          fullName: firstName + lastName,
           email: email,
           wearableDevice: wearableDevice,
           memberId:res.data.member_id
@@ -157,18 +158,32 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label htmlFor="fullName" className="block text-light-secandary-text dark:text-white text-[12px] mb-2">
-                Full Name
+                First Name
               </label>
               <input
                 type="text"
                 id="fullName"
                 className="w-full p-2 pl-4  text-[12px] bg-light-input-color text-light-secandary-text border border-light-border-color dark:bg-black-background placeholder:dark:text-secondary-text dark:border-none placeholder:text-light-primary-text dark:text-primary-text outline-none rounded-md"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="Enter your first and last name..."
+                value={firstName}
+                onChange={(e) => setfirstName(e.target.value)}
+                placeholder="Enter client first name..."
                 required
               />
             </div>
+            <div className="mb-4">
+              <label htmlFor="lastName" className="block text-light-secandary-text dark:text-white text-[12px] mb-2">
+                Last Name
+              </label>
+              <input
+                type="text"
+                id="lastName"
+                className="w-full p-2 pl-4  text-[12px] bg-light-input-color text-light-secandary-text border border-light-border-color dark:bg-black-background placeholder:dark:text-secondary-text dark:border-none placeholder:text-light-primary-text dark:text-primary-text outline-none rounded-md"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Enter client last name...."
+                required
+              />
+            </div>            
             <div className="mb-4">
               <label htmlFor="email" className="block text-light-secandary-text dark:text-white text-[12px] mb-2">
                 Email Address
@@ -179,7 +194,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
                 className="w-full p-2 pl-4  text-[12px] bg-light-input-color text-light-secandary-text border border-light-border-color dark:bg-black-background placeholder:dark:text-secondary-text dark:border-none placeholder:text-light-primary-text dark:text-primary-text outline-none rounded-md"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address..."
+                placeholder="Enter client email address..."
                 required
               />
             </div>
@@ -238,9 +253,10 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
 
           <div className='w-full flex gap-4 mt-4 justify-center items-center'>
             <Button onClick={() => {
-                const clientData = { fullName, email, wearableDevice ,memberId};
+                const clientData = { fullName:firstName, email, wearableDevice ,memberId};
                 setEmail("")
-                setFullName("")
+                setfirstName("")
+                setLastName("");
                 onSubmit(clientData);
             }} theme="Aurora-secondary">
                 <img className="Aurora-icons-EShare" alt="" />
@@ -249,7 +265,8 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
             <Button onClick={async() => {
               setStep("AddCient")
               setEmail("")
-              setFullName("")
+              setfirstName("")
+              setLastName("")
               // await sendCLientData(clientData)
            
         
