@@ -43,7 +43,7 @@ const TreatMentPlan = () => {
                         // setIsCreateNew(true)
                         navigate("/generateNewTreatmentPlan/"+id)
                     }} theme={theme}>
-                        <img className="Aurora-icons-AddNewItem" alt="Add" />
+                        <img src="./Themes/Aurora/icons/additem.svg" className="Aurora-icons-AddNewItem" alt="Add" />
                         Generate New Plan                    
                     </Button>
                 </div>

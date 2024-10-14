@@ -504,12 +504,12 @@
 }
 
 .Aurora-icons-AddNewItem {
-  mask-image: url(./Themes/Aurora/icons/additem.svg);
-  mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  @apply w-4 h-4 bg-black dark:bg-white;  
+  // mask-image: url(./Themes/Aurora/icons/additem.svg);
+  // mask-size: 100%;
+  // -webkit-mask-repeat: no-repeat;
+  // mask-repeat: no-repeat;
+  // mask-position: center;
+  @apply w-4 h-4 invert dark:invert-0 ;  
 }
 
 .Aurora-icons-logoPortal {
@@ -521,15 +521,16 @@
   @apply w-14 h-14 bg-black dark:bg-white;  
 }
 
-.Aurora-icons-refresh{
-  mask-image: url(./Themes/Aurora/icons/reload.svg);
-  mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  @apply w-4 h-4 bg-[#555555]  dark:bg-white;
-   ;
-}
+// .Aurora-icons-refresh{
+//   // mask-image: url(./Themes/Aurora/icons/reload.svg);
+//   // mask-size: 100%;
+//   background-image: url('/Themes/Aurora/icons/reload.svg');
+//   // -webkit-mask-repeat: no-repeat;
+//   // mask-repeat: no-repeat;
+//   // mask-position: center;
+//   @apply w-4 h-4 invert border-none outline-none dark:invert-0;
+//    ;
+// }
 
 .Aurora-icons-update{
   mask-image: url(/Themes/Aurora/icons/refresh-2.svg);

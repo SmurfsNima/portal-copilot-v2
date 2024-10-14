@@ -102,8 +102,9 @@ const PatientList = () => {
           </h1>
           <h1 onClick={() => {
             setReloadData(true)
-          }} className="flex text-[12px] cursor-pointer"><span className="mr-[5px] ">
-            <img className={reloadData?"animate-spin":''} src="./Themes/Aurora/icons/reload.svg" alt="" />
+          }} className="flex text-[12px] text-light-secandary-text dark:text-white cursor-pointer"><span className="mr-[5px] ">
+            <img className={`${reloadData?"animate-spin":''} invert dark:invert-0`} src="./Themes/Aurora/icons/reload.svg" alt="" />
+          {/* <img className={`Aurora-icons-refresh ${reloadData?"animate-spin":''}`} /> */}
           </span>Reload Data</h1>
           </div>
           {/* <ReportNumberBox reports={reports}></ReportNumberBox> */}

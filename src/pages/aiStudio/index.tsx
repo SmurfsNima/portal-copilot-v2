@@ -236,7 +236,7 @@ export const AiStudio = () => {
                   setReloadData(false)                   
                 })
               }} theme="Aurora-pro">
-                <img className={reloadData?"animate-spin":''+"Aurora-icons-refresh"}  alt="" />
+                <img className={`${reloadData?"animate-spin":''} invert dark:invert-0`} src="./Themes/Aurora/icons/reload.svg" alt="" />
               </Button>
             </div>
           </div>
