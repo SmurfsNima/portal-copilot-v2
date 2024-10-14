@@ -1,5 +1,5 @@
 import { Application } from "@/api";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { Button } from "symphony-ui";
 import {BeatLoader} from 'react-spinners';
 import { useSelector } from "react-redux";
@@ -14,7 +14,7 @@ export const UploadLogo = () => {
   const [fileName, setFileName] = useState("");
   const [error, setError] = useState("");
   const [buttonState, setButtonState] = useState("initial");
-
+  const [logo,setLogo] = useState("");
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];
     if (file) {
@@ -104,11 +104,30 @@ export const UploadLogo = () => {
       console.error("Error saving logo:", error);
     }
   };
-
+  const getClinicLogo = async () => {
+   const data= await Application.getLogoClinic()
+    setLogo(data.data.clinic_logo)
+  }
+  useEffect(()=>{
+    getClinicLogo()
+  })
   return (
-    <div className="  w-full flex flex-col items-center justify-start pt-10 px-6 min-h-screen bg-black-primary border border-main-border rounded-md">
-      <div className="mb-6 w-full max-w-xl">
-        <label className="block text-primary-text text-xs font-normal mb-2">
+      <div className="  w-full flex h-[435px] items-start justify-center pt-10 px-6  dark:bg-black-primary border rounded-md">
+      <div className={"flex-1 p-10 flex items-center justify-start  flex-col gap-3.5"}>
+        <div>
+          <h1 className={"mb-5 block  dark:text-gray-300 text-light-primary-text text-xs"}>Current Logo</h1>
+          <div
+              className="border dark:border-main-border w-fit py-5 px-2  rounded-lg text-center text-primary-text flex flex-col items-center gap-5">
+            <img className={"w-[170px] h-[150px]"} src={logo.length>=1?logo:"/Themes/Aurora/icons/EmptyStateLogo.svg"}/>
+          </div>
+        </div>
+        {logo.length>=1 &&
+        <h1 className={"block  text-light-primary-text text-xs"}>No logo uploaded yet.</h1>
+        }
+      </div>
+        <div className="  flex flex-col items-center justify-start py-10 pr-10 w-[800px] md:min-w-4xl">
+          <div className="mb-6 w-full ">
+            <label className="block dark:text-primary-text text-light-primary-text text-xs font-normal mb-2">
           Clinic Name
         </label>
         <input
@@ -116,39 +135,41 @@ export const UploadLogo = () => {
           value={clinicName}
           onChange={(e) => setClinicName(e.target.value)}
           placeholder="Enter clinic name..."
-          className="w-full outline-none p-3 rounded-lg bg-black-primary border border-main-border text-xs text-primary-text"
+          className=" outline-none w-full h-[32px] p-3 rounded-lg dark:bg-black-primary bg-light-input-color border dark:border-main-border text-xs text-primary-text"
         />
       </div>
 
-      <div className=" w-full max-w-xl mb-8">
-        <label className="block text-gray-300 text-xs mb-2">Clinic Logo</label>
+      <div className=" w-full  mb-8">
+        <label className="block text-light-primary-text text-xs mb-2">Clinic Logo</label>
         <div
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          className="border border-main-border rounded-lg p-6 py-16 text-center text-primary-text flex flex-col items-center gap-8"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            className="border  dark:border-main-border rounded-lg py-4 text-center text-light-primary-text darktext-primary-text flex flex-col items-center gap-5"
         >
-          <img src="./Themes/Aurora/icons/uploadlogo.svg" alt="" />
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="hidden"
-            id="fileUpload"
-          />
+          <img src="./Themes/Aurora/icons/uploadlogo.svg" alt=""/>
           <label htmlFor="fileUpload" className="cursor-pointer text-xs">
             Drag and drop a file here or{" "}
             <span className="text-brand-primary-color">upload a file</span>
-            <div className="text-xs text-secondary-text mt-2">
+            <div className="text-xs text-light-secondary-text darktext-secondary-text mt-2">
               JPG, PNG, SVG, PDF
             </div>
           </label>
+          <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="hidden"
+              id="fileUpload"
+          />
+
         </div>
       </div>
 
       {loading && (
-        <div className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border border-main-border px-4 py-2 rounded-md">
-          <span className="text-primary-text text-xs mr-3">{fileName}</span>
-          <div className="flex items-center justify-between gap-2 w-full">
+          <div
+              className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
+            <span className="text-primary-text text-xs mr-3">{fileName}</span>
+            <div className="flex items-center justify-between gap-2 w-full">
             <div className="relative w-full h-2 bg-main-border rounded">
               <div
                 className="absolute top-0 left-0 h-2 bg-brand-secondary-color rounded"
@@ -177,7 +198,7 @@ export const UploadLogo = () => {
         </div>
       )}
       {!loading && logoBase64 && !error && fileName && (
-        <div className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border border-main-border px-4 py-2 rounded-md">
+        <div className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
           <div className="flex items-center gap-1">
             <img src="./Themes/Aurora/icons/XMLID_1737_.svg" alt="" />
             <span className="text-gray-200">{fileName}</span>
@@ -198,15 +219,19 @@ export const UploadLogo = () => {
   onClick={handleClick}
   theme={"Aurora"}
 >
-  {buttonState === 'initial' && 'Save Changes'}
-  {buttonState === 'loading' && <BeatLoader size={10} color="white" />}
+  {buttonState === 'initial' && <div className="flex justify-center items-center gap-2 !">
+    <img src={"/Themes/Aurora/icons/uploadIcon.svg"}/>
+    <p>Upload Your Logo</p>
+  </div>}
+  {buttonState === 'loading' && <BeatLoader size={10} color="white"/>}
   {buttonState === 'finish' && (
-    <div className="flex justify-center items-center gap-1">
+      <div className="flex justify-center items-center gap-1">
       <div className={`${theme}-icons-check`} />
-      Saved Changes
+      Upload Your Logo
     </div>
   )}
 </Button>
     </div>
+      </div>
   );
 };
