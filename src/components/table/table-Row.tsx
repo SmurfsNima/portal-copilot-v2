@@ -62,6 +62,7 @@ export const TableRow: FC<TableRowProps> = ({
             {status}
           </Badge>
         </td>
+        
         {/* {
                 biomarkers.map((el)=>{
                     return(<td className={`${theme}-Table-td`}>{el.}</td>)

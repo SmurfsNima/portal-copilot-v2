@@ -12,6 +12,7 @@ import { useState, useContext, useEffect } from "react";
 // import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "@/store/app";
+import { subscribe } from "@/utils/event";
 // import Diagnosis from "@/model/diagnosis";
 // import ReportNumberBox from "@/components/ReportsNumberBox";
 
@@ -90,6 +91,9 @@ const PatientList = () => {
     fetchData();
   }, [reloadData]);
 
+  subscribe("confirmDelete",(value) => {
+    console.log(value.detail.id)
+  })
 
   return (
     <>

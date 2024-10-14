@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-function subscribe(eventName:string, listener:()=>void) {
+function subscribe(eventName:string, listener:(data:any)=>void) {
   document.addEventListener(eventName, listener);
 }
 

@@ -97,7 +97,9 @@ const Analysis = () => {
         Application.WeaklyReportGraph({
             member_id:id
         }).then(res => {
-            setOnGoingData(res.data)
+            if(res.data != 'Internal Server Error'){
+                setOnGoingData(res.data)
+            }
         })
     },[])    
     useEffect(() => {

@@ -36,7 +36,7 @@ const ThemeToggle = () => {
       <img className='invert dark:invert-0' src="./Themes/Aurora/icons/sun.svg" alt="" />
       <div>
         {theme == 'light' ? 
-        <><div className='text-[14px] text-light-secandary-text'>Dark Mode</div></>
+        <><div className='text-[14px] text-light-secandary-text'>Light Mode</div></>
       :
         <><div className='text-[14px] text-[#FFFFFFDE]'>Light Mode</div></>
         }

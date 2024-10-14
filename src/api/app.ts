@@ -254,6 +254,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/clinic/update_setting/",data)
     return response     
   }
+
+  static deleteClinic = (data:any) => {
+    const response = this.post("/patients/delete_patient",data)
+    return response     
+  }  
 }
 
 

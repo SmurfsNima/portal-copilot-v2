@@ -7,6 +7,8 @@ import { Badge } from "@/components";
 // import { useSelector } from "react-redux";
 import { Pationt } from "@/model";
 import { useSelector } from "react-redux";
+// import { Application } from "@/api";
+import { publish } from "@/utils/event";
 
 // import CircularProgressBar from "../charts/CircularProgressBar";
 // eslint-disable-next-line react-refresh/only-export-components
@@ -163,13 +165,25 @@ export const columns: ColumnDef<Pationt>[] = [
   //   },
   // },
 
-  // {
-  //   accessorKey: "information.action",
-  //   header: "Action",
-  //   enableSorting: false,
-
-  //   cell: () => {
-  //     return <PiChatBold className={`${Theme()}-icons-PiChatBold w-full`} />;
-  //   },
-  // },
+  {
+    accessorKey: "",
+    header: "Action",
+    enableSorting: false,
+   cell: ({ row }) => {
+      return (
+        <div className="flex justify-center w-full">
+          <img onClick={() => {
+            publish("confirmDelete",{id:row.original.information.member_id})
+            // const status = confirm("delete this member?")
+            // if(status){
+            //   Application.deleteClinic({
+            //     member_id:row.original.information.member_id
+            //   })
+            // }
+            // console.log(row.original.information.member_id)
+          }} className="cursor-pointer" src="./Themes/Aurora/icons/trash.svg" alt="" />
+        </div>
+      );
+    },
+  },
 ];
