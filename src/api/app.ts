@@ -141,11 +141,11 @@ static downloadClinicReport(data:any){
     return response
   }
   static saveLogo(data:any) {
-    const response = this.post("/clinic/add_clinic_logo/",data)
+    const response = this.post("/clinic/settings_update_logo",data)
     return response
   }
   static getLogoClinic() {
-    const response = this.post("/show_clinic_info/")
+    const response = this.post("/clinic/settings_show_logo")
     return response
   }
   static aiStudio_patients() {
@@ -247,6 +247,11 @@ static downloadClinicReport(data:any){
 
   static Gethistorical_graph = (data:any) => {
     const response = this.post("/historical_graph",data)
+    return response     
+  }
+
+  static updateSetting = (data:any) => {
+    const response = this.post("/clinic/update_setting/",data)
     return response     
   }
 }

@@ -2,13 +2,14 @@
 import { SigmaContainer } from "@react-sigma/core";
 import { useLoadGraph, useRegisterEvents, useSigma } from "@react-sigma/core";
 import "@react-sigma/core/lib/react-sigma.min.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Graph from "graphology";
 // import  graphDataMock from '../../api/--moch--/data/graph.json';
 import chroma from "chroma-js";
 // import { ApplicationMock } from "@/api";
 import { useLayoutCircular } from "@react-sigma/layout-circular";
 import { Application } from "@/api";
+import { AppContext } from "@/store/app";
 const GraphEvents = () => {
   const registerEvents = useRegisterEvents();
   const sigma = useSigma();
@@ -202,25 +203,46 @@ const AiKnowledge = () => {
   //     console.error("Error converting file to Base64:", error);
   //   };
   // };
+  const context = useContext(AppContext)
   const [sigmaSetting,setSigmaSetting] =useState<any>({})
   useEffect(() => {
     setTimeout(() => {
-      setSigmaSetting(
-        {
-          allowInvalidContainer: false,
-          renderLabels: true,
-          labelColor: { color: "#fff" },
-          defaultDrawNodeHover: (context:any, data:any) => {
-            const size = data.size || 10;
-            context.fillStyle = "#fff"; // Dark hover color
+      if(context.themeISLight){
+        setSigmaSetting(
+          {
+            allowInvalidContainer: false,
+            renderLabels: true,
+            labelColor: { color: "#000" },
+            defaultDrawNodeHover: (context:any, data:any) => {
+              const size = data.size || 10;
+              context.fillStyle = "#fff"; // Dark hover color
+  
+              context.beginPath();
+              context.arc(data.x, data.y, size + 4, 0, Math.PI * 4, true);
+              context.closePath();
+              context.fill();
+            },
+          }
+        )
+      }else {
+        setSigmaSetting(
+          {
+            allowInvalidContainer: false,
+            renderLabels: true,
+            labelColor: { color: "#fff" },
+            defaultDrawNodeHover: (context:any, data:any) => {
+              const size = data.size || 10;
+              context.fillStyle = "#fff"; // Dark hover color
+  
+              context.beginPath();
+              context.arc(data.x, data.y, size + 4, 0, Math.PI * 4, true);
+              context.closePath();
+              context.fill();
+            },
+          }
+        )
 
-            context.beginPath();
-            context.arc(data.x, data.y, size + 4, 0, Math.PI * 4, true);
-            context.closePath();
-            context.fill();
-          },
-        }
-      )
+      }
     }, 600);
   },[])
   return (
@@ -249,7 +271,7 @@ const AiKnowledge = () => {
         <GraphEvents />
       </SigmaContainer>
 
-      <div className="fixed right-5 top-[15%] w-[340px] text-primary-text bg-black-primary border border-main-border flex flex-col p-4 rounded-md">
+      <div className="fixed right-5 top-[15%] w-[340px] text-primary-text bg-white border-light-border-color dark:bg-black-primary border dark:border-main-border flex flex-col p-4 rounded-md">
         {/* <button onClick={() => {
           document.getElementById("uploadFile")?.click()
         }} className="mb-4 relative flex justify-center gap-2 text-secondary-text border border-main-border border-dashed py-2 rounded-lg">
@@ -266,7 +288,7 @@ const AiKnowledge = () => {
         </button> */}
         <div className="overflow-y-auto">
           <div className="mb-4">
-            <h3 className="text-lg mb-2">Documents</h3>
+            <h3 className="text-lg text-light-secandary-text dark:text-white mb-2">Documents</h3>
             <div className="ml-4">
               {[...new Set(graphData?.nodes.map((e:any) =>e.category2))].map((el:any) => {
                 return (
@@ -274,13 +296,13 @@ const AiKnowledge = () => {
                   <div className="flex mb-2 justify-start items-center">
                     <input checked={activeFilters.includes(el)} onChange={() => {
                       handleButtonClick(el)
-                    }} type="checkbox"  className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center" />
+                    }} type="checkbox"  className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-light-border-color dark:border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center" />
                     <label
                       onClick={() => {
                         handleButtonClick(el)
                       }} 
                       htmlFor="contracts"
-                      className="ml-2 text-[14px] flex gap-1"
+                      className="ml-2 text-light-secandary-text dark:text-white text-[14px] flex gap-1"
                     >
                       {/* <img className={`${isContractsOpen && "rotate-180"}`} src="/Themes/Aurora/icons/chevron-down.svg" alt="" /> */}
                       {el}

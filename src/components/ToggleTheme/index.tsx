@@ -33,7 +33,7 @@ const ThemeToggle = () => {
 
   return (
     <div className='flex justify-end items-center gap-2'>
-      <img src="./Themes/Aurora/icons/sun.svg" alt="" />
+      <img className='invert dark:invert-0' src="./Themes/Aurora/icons/sun.svg" alt="" />
       <div>
         {theme == 'light' ? 
         <><div className='text-[14px] text-light-secandary-text'>Dark Mode</div></>

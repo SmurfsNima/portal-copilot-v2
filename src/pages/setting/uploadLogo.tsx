@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Application } from "@/api";
 import {useEffect, useState} from "react";
 import { Button } from "symphony-ui";
@@ -69,6 +70,7 @@ export const UploadLogo = () => {
   const handleDragOver = (e: any) => {
     e.preventDefault();
   };
+
   const handleClick = async () => {
     setButtonState("loading");
   
@@ -76,9 +78,6 @@ export const UploadLogo = () => {
       await handleSaveChanges();
       setButtonState("finish");
   
-      setTimeout(() => {
-        setButtonState("initial");
-      }, 3000);
     } catch (error) {
       console.error("Error during save:", error);
       setButtonState("initial");
@@ -92,10 +91,13 @@ export const UploadLogo = () => {
     }
   
     try {
-      const response = await Application.saveLogo({
-        logo: logoBase64,
+      const response = await Application.updateSetting({
+        edited_setting:{
+          new_logo: logoBase64,
+          clinic_name:clinicName
+        }
       });
-  
+      setLogo(logoBase64)
       console.log("Response from server:", response);
       console.log("Clinic Name:", clinicName);
       console.log("Logo Base64:", logoBase64);
@@ -106,13 +108,16 @@ export const UploadLogo = () => {
   };
   const getClinicLogo = async () => {
    const data= await Application.getLogoClinic()
-    setLogo(data.data.clinic_logo)
+   if(data.data!='Internal Server Error'){
+     setLogo(data.data.clinic_logo)
+     setClinicName(data.data.clinic_name)
+   }
   }
   useEffect(()=>{
     getClinicLogo()
-  })
+  },[])
   return (
-      <div className="  w-full flex h-[435px] items-start justify-center pt-10 px-6  dark:bg-black-primary border rounded-md">
+      <div className="  w-full flex h-[535px] items-start justify-center pt-10 px-6  dark:bg-black-primary border dark:border-none rounded-md">
       <div className={"flex-1 p-10 flex items-center justify-start  flex-col gap-3.5"}>
         <div>
           <h1 className={"mb-5 block  dark:text-gray-300 text-light-primary-text text-xs"}>Current Logo</h1>
@@ -121,7 +126,7 @@ export const UploadLogo = () => {
             <img className={"w-[170px] h-[150px]"} src={logo.length>=1?logo:"/Themes/Aurora/icons/EmptyStateLogo.svg"}/>
           </div>
         </div>
-        {logo.length>=1 &&
+        {logo.length ==0 &&
         <h1 className={"block  text-light-primary-text text-xs"}>No logo uploaded yet.</h1>
         }
       </div>
@@ -135,7 +140,7 @@ export const UploadLogo = () => {
           value={clinicName}
           onChange={(e) => setClinicName(e.target.value)}
           placeholder="Enter clinic name..."
-          className=" outline-none w-full h-[32px] p-3 rounded-lg dark:bg-black-primary bg-light-input-color border dark:border-main-border text-xs text-primary-text"
+          className=" outline-none w-full h-[32px] p-3 rounded-lg text-light-secandary-text dark:text-white dark:bg-black-primary bg-light-input-color border dark:border-main-border text-xs "
         />
       </div>
 
@@ -167,10 +172,10 @@ export const UploadLogo = () => {
 
       {loading && (
           <div
-              className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
-            <span className="text-primary-text text-xs mr-3">{fileName}</span>
+              className="w-full max-w-xl mb-4 flex items-center justify-between dark:bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
+            <span className="text-light-secandary-text dark:text-primary-text text-xs mr-3">{fileName}</span>
             <div className="flex items-center justify-between gap-2 w-full">
-            <div className="relative w-full h-2 bg-main-border rounded">
+            <div className="relative w-full h-2 bg-gray-300 dark:bg-main-border rounded">
               <div
                 className="absolute top-0 left-0 h-2 bg-brand-secondary-color rounded"
                 style={{ width: `${progress}%` }}
@@ -198,10 +203,10 @@ export const UploadLogo = () => {
         </div>
       )}
       {!loading && logoBase64 && !error && fileName && (
-        <div className="w-full max-w-xl mb-4 flex items-center justify-between bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
-          <div className="flex items-center gap-1">
+        <div className="w-full max-w-xl mb-4 flex items-center justify-between dark:bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
+          <div className="flex items-center gap-2">
             <img src="./Themes/Aurora/icons/XMLID_1737_.svg" alt="" />
-            <span className="text-gray-200">{fileName}</span>
+            <span className=" text-light-secandary-text text-[14px]  dark:text-gray-200">{fileName}</span>
           </div>
 
           <img
