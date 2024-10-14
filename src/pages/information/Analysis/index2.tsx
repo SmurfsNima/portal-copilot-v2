@@ -3,6 +3,8 @@ import { ActivityMenu, InfoCard, SearchBox, StatusMenu } from "@/components"
 import { useEffect, useState } from "react"
 import { useBiomarkers } from "@/hooks"
 import ChartController from "./Charts/ChartController"
+import { Application } from "@/api"
+import { useParams } from "react-router-dom"
 type MenuNames = 'All' | 'Blood Test'|'Ongoing'| 'Activity' | 'Client Profile' | "Weekly report"|"Fitness"|"Physiological" |"Emotional"
 type menuItem  = {
     name:MenuNames
@@ -21,6 +23,8 @@ const Analysis = () => {
     const [search,setSearch] =useState<string>("")
     const [activeStatus,setActiveStatus] = useState("All");
     const analyseData = useBiomarkers();
+    const [onGoingData,setOnGoingData] = useState<any>({})
+    const { id } = useParams<{ id: string }>();
     const [filteredData,setFilteredData] = useState<any>([])
     const updateCategory = () => {
         const filteredResults:any = {};
@@ -89,6 +93,13 @@ const Analysis = () => {
 
         return filteredResults;            
     }
+   useEffect(() => {
+        Application.WeaklyReportGraph({
+            member_id:id
+        }).then(res => {
+            setOnGoingData(res.data)
+        })
+    },[])    
     useEffect(() => {
         if((avtiveMenu != 'All' )) {
             setFilteredData([updateCategory()])
@@ -104,7 +115,15 @@ const Analysis = () => {
             }
         }
     },[avtiveMenu,analyseData,search,activeStatus])
-
+    const resolveOnGoingData =() => {
+        const resolved:any ={}
+        Object.keys(onGoingData).map((el) => {
+            if(el.toLowerCase().includes(search.toLowerCase()) ||  search ==''){
+                resolved[el] = onGoingData[el]
+            }
+        })
+        return resolved
+    }
     return (
         <>
             <div className="flex flex-col w-full  items-start gap-2">
@@ -126,7 +145,7 @@ const Analysis = () => {
                 </div>
                 </div>    
                 <div className="flex w-full  ">
-                    <ChartController data={filteredData}></ChartController>
+                    <ChartController onGoingData={resolveOnGoingData()} isGoing={avtiveMenu =='Ongoing'?true:false} data={filteredData}></ChartController>
                 </div>            
             </div>
         </>
