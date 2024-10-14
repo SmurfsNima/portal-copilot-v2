@@ -17,9 +17,13 @@ interface GenerateReportTableProps {
     onClose:() => void
     isEdit?:boolean
     reportId?:string
+    onShowChart:() => void
+    onCloseChart:() =>void
+    showWeaklyData:boolean
+    setSHowWeaklyData:(active:boolean) => void
 }
 
-const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,setData,onClose,memberId}) => {
+const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,showWeaklyData,setSHowWeaklyData,onCloseChart,onShowChart,isEdit,setData,onClose,memberId}) => {
     const resolveStatusColor = (ststus:string) => {
         if(ststus == 'OK'){
             return '#03DAC5'
@@ -105,18 +109,22 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
             console.log(res)
         })
     }
-    const [showWeaklyData,setSHowWeaklyData] = useState(false)
+    // const [showWeaklyData,setSHowWeaklyData] = useState(false)
     useEffect(() => {
         if(showWeaklyData){
             getChartData()
+            onShowChart()
+        }else {
+            onCloseChart()
         }
     },[showWeaklyData])
+    const [,setGraphData] = useState({})
 
     return (
         <>
             {isComplete ?
                 <>
-                    <div className="text-[#FFFFFFDE]">
+                    <div className=" text-light-secandary-textdark:text-[#FFFFFFDE]">
                         <div className="text-center text-[14px]">Do you want send this report to client?</div>
                         <div className="text-[12px] text-center mt-6 text-[#FFFFFF99]">By confirming this option, the report will be sent directly through your chosen channel</div>
                         <div className="text-center mt-4">
@@ -131,7 +139,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
                         </div>
                         <div className="flex justify-center mt-10">
                             <Button onClick={onClose} theme="Aurora-pro">
-                                <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
+                                <img className="invert dark:invert-0" src={"./Themes/Aurora/icons/tick-square3.svg"} />
                                 Finish</Button>
                         </div>
                     </div>
@@ -141,12 +149,12 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
                 {showWeaklyData ?
                 <>
                 {/* <Outlet></Outlet> */}
-                <div className="w-full h-full bg-[#1E1E1E] p-8 border-[#383838] border rounded-[6px]">
-                    <div className="text-[14px] text-[#FFFFFFDE] mb-8">‘Days Met Calories Target’ Historical Data</div>
-                    <div className="w-full  bg-[#1E1E1E] p-8 border-[#383838] border rounded-[6px]">
+                <div className="w-full h-full bg-gray-50 dark:bg-[#1E1E1E] p-8 border-light-border-color dark:border-[#383838] border rounded-[6px]">
+                    <div className="text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] mb-8">‘Days Met Calories Target’ Historical Data</div>
+                    <div className="w-full  dark:bg-[#1E1E1E] bg-gray-100 p-8 dark:border-[#383838] border rounded-[6px]">
                         <div className="mb-4 flex justify-start items-center gap-8">
-                            <div className="text-[#FFFFFF99] text-[12px]">Average Value: <span className="font-semibold text-[14px] text-[#FFFFFFDE] ml-2">50</span></div>
-                             <div className="text-[#FFFFFF99] text-[12px]">Current Value: <span className="font-semibold text-[14px] text-[#FFFFFFDE] ml-2">60</span></div>
+                            <div className="dark:text-[#FFFFFF99] text-light-primary-text text-[12px]">Average Value: <span className="font-semibold text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">50</span></div>
+                             <div className="dark:text-[#FFFFFF99] text-light-primary-text text-[12px]">Current Value: <span className="font-semibold text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">60</span></div>
                         </div>
                         <MethylationChart labels={[]} values={[]}></MethylationChart>   
 
@@ -156,57 +164,65 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
                 </>
                 :
                 <>
-                        <div className="w-full bg-[#383838] rounded-[6px]">
+                        <div className="w-full dark:bg-[#383838] border border-light-border-color dark:border-main-border rounded-[6px]">
                             <div className="flex justify-start items-center">
-                                <div className="w-[200px] text-[#FFFFFFDE] py-5 pl-4 text-[14px] font-medium">Type of Progress</div>
-                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center text-[14px] font-medium">Goal</div>
-                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Current Value</div>
-                                <div className="w-[100px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Target Goal</div>
-                                <div className="w-[200px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Status</div>
-                                <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Historical Data</div>
-                                <div className="w-[400px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Recommendation</div>
+                                <div className="w-[200px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 pl-4 text-[14px] font-medium">Type of Progress</div>
+                                <div className="w-[140px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center text-[14px] font-medium">Goal</div>
+                                <div className="w-[140px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Current Value</div>
+                                <div className="w-[100px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Target Goal</div>
+                                <div className="w-[200px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Status</div>
+                                <div className="w-[140px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Historical Data</div>
+                                <div className="w-[400px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium">Recommendation</div>
                             </div>
-                            <div className="w-full h-[1px] border-b border-white opacity-25"></div>
+                            <div className="w-full h-[1px] border-b border-light-secandary-text dark:border-white opacity-25"></div>
                             <div className="h-[55vh] overflow-y-scroll">
                                 {data["Type of progress"]?.map((el:string,index:number) => {
                                     return (
                                         <div className="flex justify-start items-center">
-                                            <div className="w-[200px] text-justify text-[#FFFFFFDE] py-5 pl-4 pr-3 text-[12px] font-medium">{el}</div>
-                                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center text-[12px] font-medium">{data["Goal"][index]}</div>
-                                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">{data["Current value"][index]}</div>
-                                            <div className="w-[100px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
+                                            <div className="w-[200px] text-justify text-light-secandary-text dark:text-[#FFFFFFDE] py-5 pl-4 pr-3 text-[12px] font-medium">{el}</div>
+                                            <div className="w-[140px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center text-[12px] font-medium">{data["Goal"][index]}</div>
+                                            <div className="w-[140px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">{data["Current value"][index]}</div>
+                                            <div className="w-[100px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
                                                <TextField data-width="full" theme="Aurora" name="" onBlur={()=>{}} onChange={(e)=>{handleTargetGoalChange(index,e.target.value)}} type="text" value={data["Target goal"][index]} inValid={false}></TextField>
                                                 {/* <input type="text" onChange={(e) => {
                                                     handleTargetGoalChange(index,e.target.value)
                                                 }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Target goal"][index]} /> */}
                                                 {}
                                             </div>
-                                            <div className="w-[200px] text-[#1E1E1E] py-5 px-4 flex justify-center  text-[8px] font-medium">
-                                                <div className="w-full  bg-[#1E1E1E] min-h-[58px] p-2 flex justify-center rounded-[6px] border border-[#383838]">
+                                            <div className="w-[200px] text-light-secandary-text dark:text-[#1E1E1E] py-5 px-4 flex justify-center  text-[8px] font-medium">
+                                                <div className="w-full  dark:bg-[#1E1E1E] min-h-[58px] p-2 flex justify-center rounded-[6px] border border-light-border-color dark:border-[#383838]">
                                                  <div>
                                                     <div onClick={() => {
                                                         handleStatusChange(index,'Not OK')
                                                     }} className="flex justify-center gap-2 items-center">
-                                                        <div className={`w-4 h-4 ${data["Status"][index] == 'Not OK'?' bg-primary-color':'bg-[#2F2F2F]'} rounded-full flex justify-center items-center`}>
-                                                            <div className="w-2 h-2 rounded-full bg-[#2F2F2F]"></div>
+                                                        <div className={`w-4 h-4 ${data["Status"][index] == 'Not OK'?' bg-light-blue-active dark:bg-primary-color':'bg-white border-light-border-color border dark:border-none dark:bg-[#2F2F2F]'} rounded-full flex justify-center items-center`}>
+                                                            <div className="w-2 h-2 rounded-full bg-white dark:bg-[#2F2F2F]"></div>
                                                         </div>
-                                                        <span className={`w-[53px] h-[16px] rounded-[16px] flex justify-center items-center ${data["Status"][index] == 'Not OK'?'text-[#1E1E1E]':'border border-[#383838] text-[#FFFFFFDE]'}`} style={{backgroundColor:data["Status"][index] == 'Not OK' ?resolveStatusColor('Not OK'):'unset'}}>Not OK</span>
+                                                        <span className={`w-[53px] h-[16px] rounded-[16px] flex justify-center items-center ${data["Status"][index] == 'Not OK'?' text-light-secandary-text dark:text-[#1E1E1E]':'border border-light-border-color dark:border-[#383838] text-light-secandary-text dark:text-[#FFFFFFDE]'}`} style={{backgroundColor:data["Status"][index] == 'Not OK' ?resolveStatusColor('Not OK'):'unset'}}>Not OK</span>
                                                     </div>
 
                                                     <div onClick={() => {
                                                         handleStatusChange(index,'OK')
                                                     }} className="flex mt-3 justify-center gap-2 items-center">
-                                                        <div className={`w-4 h-4 ${data["Status"][index] == 'OK'?' bg-primary-color':'bg-[#2F2F2F]'} rounded-full flex justify-center items-center`}>
-                                                            <div className="w-2 h-2 rounded-full bg-[#2F2F2F]"></div>
+                                                        <div className={`w-4 h-4 ${data["Status"][index] == 'OK'?' bg-light-blue-active dark:bg-primary-color':'bg-white border-light-border-color border dark:border-none dark:bg-[#2F2F2F]'} rounded-full flex justify-center items-center`}>
+                                                            <div className="w-2 h-2 rounded-full bg-white dark:bg-[#2F2F2F]"></div>
                                                         </div>
-                                                        <span className={`w-[53px] h-[16px] rounded-[16px] flex justify-center items-center ${data["Status"][index] == 'OK'?'text-[#1E1E1E]':'border border-[#383838] text-[#FFFFFFDE]'}`} style={{backgroundColor:data["Status"][index] == 'OK' ?resolveStatusColor('OK'):'unset'}}>OK</span>
+                                                        <span className={`w-[53px] h-[16px] rounded-[16px] flex justify-center items-center ${data["Status"][index] == 'OK'?'text-light-secandary-text dark:text-[#1E1E1E]':'border dark:border-[#383838]  border-light-border-color text-light-secandary-text dark:text-[#FFFFFFDE]'}`} style={{backgroundColor:data["Status"][index] == 'OK' ?resolveStatusColor('OK'):'unset'}}>OK</span>
                                                     </div>
                                                 </div>
                                                  </div>
 
                                                 </div>
-                                            <div className="w-[140px] text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink onClick={() => setSHowWeaklyData(true)} className="cursor-pointer"></FiExternalLink></div>
-                                            <div className="w-[400px] text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
+                                            <div className="w-[140px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink onClick={() =>{
+                                                setSHowWeaklyData(true)
+                                                Application.Gethistorical_graph({
+                                                    member_id:memberId,
+                                                    key:el
+                                                }).then(res => {
+                                                   setGraphData(res.data)
+                                                })
+                                                }} className="cursor-pointer"></FiExternalLink></div>
+                                            <div className="w-[400px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
                                                   <TextArea   theme="Aurora" name="" onBlur={()=>{}} onChange={(e)=>{handleRecomendChange(index,e.target.value)}} value={data["Recommendation"][index]} inValid={false}></TextArea>
                                                 {/* <input type="text" onChange={(e) => {
                                                     handleRecomendChange(index,e.target.value)
@@ -223,11 +239,11 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
                             <Button onClick={() => {
                                 saveChanges()
                             }} theme="Aurora-pro">
-                                <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
+                                <img className="invert dark:invert-0" src={"./Themes/Aurora/icons/tick-square3.svg"} />
                                 Save Changes</Button>                        
                             :
                             <Button onClick={nextAction} theme="Aurora-pro">
-                                <img src={"./Themes/Aurora/icons/tick-square3.svg"} />
+                                <img className="invert dark:invert-0" src={"./Themes/Aurora/icons/tick-square3.svg"} />
                                 Next</Button>
                             }
                         </div>

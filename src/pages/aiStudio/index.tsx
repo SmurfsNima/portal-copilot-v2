@@ -57,6 +57,7 @@ export const AiStudio = () => {
   //   const matchesStatus = activeStatus === "All" || client.Status === activeStatus;
   //   return matchesSearch && matchesStatus 
   // });
+   const [showWeaklyData,setSHowWeaklyData] = useState(false)
   const [isloadingGenerate,setIsLoadingGenerate] = useState(false)
   const [generateReportGoolsData,setGenerateReportGoolsData] = useState({"Type of progress":[]})
   // useEffect(() => {
@@ -158,8 +159,12 @@ export const AiStudio = () => {
           <div className="w-full mb-2 flex justify-between items-center">
             <div>
               <div onClick={() => {
-                setisCreateReportMode(false)
-                setShowGenerateButton(true)
+                if(showWeaklyData){
+                  setSHowWeaklyData(false)
+                }else {
+                  setisCreateReportMode(false)
+                  setShowGenerateButton(true)
+                }
               }} className={`Aurora-tab-icon-container cursor-pointer h-[35px]`}>
                 <img className={`Aurora-icons-arrow-left`} />
               </div>              
@@ -203,11 +208,11 @@ export const AiStudio = () => {
               </div>
             }
           </div>
-          <div className="w-full bg-[#272727] rounded-[6px] border-main-border border h-[75vh]">
+          <div className="w-full bg-white border-light-border-color dark:bg-[#272727] rounded-[6px] dark:border-main-border border h-[75vh]">
             <div className="p-4">
-              <GenerateReportTable reportId={currentReportId} isEdit={isEditMode} onClose={()=> {
-                setisCreateReportMode(false)
-                setShowGenerateButton(true)
+              <GenerateReportTable setSHowWeaklyData={(active:boolean) => setSHowWeaklyData(active)} showWeaklyData={showWeaklyData} onCloseChart={() => {setShowGenerateButton(true)}} onShowChart={() => {setShowGenerateButton(false)}} reportId={currentReportId} isEdit={isEditMode} onClose={()=> {
+                  setisCreateReportMode(false)
+                  setShowGenerateButton(true)
               }} memberId={activeMemberID as number} setData={setGenerateReportGoolsData} data={generateReportGoolsData}></GenerateReportTable>
 
             </div>
@@ -223,7 +228,9 @@ export const AiStudio = () => {
             <ActivityMenu activeMenu={activeMenu} menus={menus} onChangeMenuAction={(menu) => setActiveMenu(menu)} />
             <div className="flex justify-end items-center gap-2">
               <Button onClick={() => {
-            
+                Application.getManualData().then(res => {
+                  window.open(res.data)
+                })
               }} theme="Aurora-pro">
                 <img className="Aurora-icons-import" alt="" />
                 Manual Data Entry</Button>
@@ -256,7 +263,7 @@ export const AiStudio = () => {
                 >
                   <img
                     src="/Themes/Aurora/icons/chevron-up.svg"
-                    className={`transition-transform rotate-90  ${isStateOpen && "rotate-[180deg]"}`}
+                    className={`transition-transform invert dark:invert-0 rotate-90  ${isStateOpen && "rotate-[180deg]"}`}
                     alt=""
                   />
                   General Condition
@@ -278,10 +285,10 @@ export const AiStudio = () => {
                   
                   </div>
                 )}
-                <div onClick={toggleAlertSection} className="text-sm font-medium cursor-pointer flex gap-2 items-center">
+                <div onClick={toggleAlertSection} className="text-xs font-medium cursor-pointer flex gap-2 items-center">
                   <img
                     src="/Themes/Aurora/icons/chevron-up.svg"
-                    className={`transition-transform rotate-90 ${isAlertOpen && "rotate-[180deg]"}`}
+                    className={`transition-transform invert dark:invert-0 rotate-90 ${isAlertOpen && "rotate-[180deg]"}`}
                     alt=""
                   />
                   Alert
@@ -300,17 +307,17 @@ export const AiStudio = () => {
                 <div onClick={toggleEngagementSection} className="text-xs text-nowrap font-medium cursor-pointer flex gap-2 items-center">
                   <img
                     src="/Themes/Aurora/icons/chevron-up.svg"
-                    className={`transition-transform rotate-90  ${isEngagementOpen && "rotate-[180deg]"}`}
+                    className={`transition-transform invert dark:invert-0 rotate-90  ${isEngagementOpen && "rotate-[180deg]"}`}
                     alt=""
                   />
                   Limits & Contradiction
-                  <div className="h-[1px] w-full bg-third-text" />
+                  <div className="h-[1px] w-full bg-light-border-color dark:bg-third-text" />
                 </div>
                 {isEngagementOpen &&(
                   <div className="my-4">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="border-b border-main-border">
+                      <tr className="border-b border-light-border-color dark:border-main-border">
                         
                         
                         <th className="px-4 py-2 text-sm font-medium text-center">Limits</th>
@@ -376,7 +383,7 @@ export const AiStudio = () => {
                     })
                     setisCreateReportMode(true)
                   }} theme="Aurora">
-                    <img src="./Themes/Aurora/icons/additem.svg" alt="" />
+                    <img className="invert dark:invert-0" src="./Themes/Aurora/icons/additem.svg" alt="" />
                     Generate New Report</Button>
                 </div>
               </div>

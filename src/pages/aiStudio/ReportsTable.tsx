@@ -43,9 +43,9 @@ return(
       <div ref={modalAiGenerateRef} className={` ${!showModal && 'hidden'} z-10  absolute w-[80px] h-[80px] text-xs bg-white dark:bg-black-third right-0 top-6 p-4 rounded-md shadow-md  flex flex-col justify-between`}>
         
        
-         <span className="text-[10px] cursor-pointer">Via Email</span> 
-       <div className="h-[1px] bg-main-border w-full"></div>
-      <span className="text-[10px] cursor-pointer">Via SMS</span>
+         <span className="text-[10px] text-light-secandary-text dark:text-primary-text cursor-pointer">Via Email</span> 
+       <div className="h-[1px] bg-light-border-color dark:bg-main-border w-full"></div>
+      <span className="text-[10px] text-light-secandary-text dark:text-primary-text cursor-pointer">Via SMS</span>
       </div>)
   
   };

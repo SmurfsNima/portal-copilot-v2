@@ -239,6 +239,16 @@ static downloadClinicReport(data:any){
     const response = this.post("/summary/data_tracking_action",data)
     return response
   }  
+
+  static getManualData = () => {
+    const response = this.post("/ai_studio/manual_data_entry")
+    return response    
+  }
+
+  static Gethistorical_graph = (data:any) => {
+    const response = this.post("/historical_graph",data)
+    return response     
+  }
 }
 
 
