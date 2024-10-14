@@ -3,8 +3,9 @@ import { Outlet, useNavigate  , useLocation} from "react-router-dom"
 
 import { menus } from "./menu";
 import { useSelector } from "react-redux";
-import React, { useState , useEffect } from "react";
+import React, { useState , useEffect, useContext } from "react";
 import TopBar from "../topBar";
+import { AppContext } from "@/store/app";
 
 const SideMenu:React.FC = () => {
     const theme = useSelector((state: any) => state.theme.value.name);
@@ -28,15 +29,18 @@ const SideMenu:React.FC = () => {
         setActiveMenu(menu);
         navigate(menu.url);
     };
-
+    const appcontext = useContext(AppContext)
     return (
         <>
         <div className={`${theme}-SideMenu-container`}>
             <TopBar></TopBar>
             <nav className={`${theme}-SideMenu-nav`}>
                 <div className={`${theme}-SideMenu-logo-container`}>
-                    <img className="Aurora-icons-logoPortal" alt="" />
-                
+                    {appcontext.themeISLight ?
+                        <img src="./Themes/Aurora/icons/Logo-Light.svg" alt="" />
+                    :
+                        <img src="./images/main-logo (1).svg" alt="" />
+                    }
                 </div>
                 <div className={`${theme}-SideMenu-MenuList-container`}>
                     {menus.map((menu) => {
@@ -48,9 +52,21 @@ const SideMenu:React.FC = () => {
                                     :
                                     <>
                                     {menu.name == activeMenu.name ?
-                                         <img src={'./Themes/Aurora/icons/setting-2.svg'}   alt="" />
+                                        <>
+                                            {appcontext.themeISLight ?
+                                                <img src={'./Themes/Aurora/icons/setting-wite-2.svg'}   alt="" />
+                                            :
+                                                <img src={'./Themes/Aurora/icons/setting-2.svg'}   alt="" />
+                                            }
+                                        </>
                                          :
-                                         <img src={'./Themes/Aurora/icons/setting-wite-2.svg'}   alt="" />
+                                         <>
+                                            {appcontext.themeISLight ?
+                                                <img src={'./Themes/Aurora/icons/setting-wite-light.svg'}   alt="" />
+                                            :                                         
+                                                <img src={'./Themes/Aurora/icons/setting-wite-2.svg'}   alt="" />
+                                            }
+                                         </>
                                     }
                                     </>
                                     }
@@ -72,8 +88,12 @@ const SideMenu:React.FC = () => {
                     }} className={`${theme}-SideMenu-MenuList2-logOut`}>
                         <img className={`${theme}-icons-logOut`}  alt="" />
                     </div>
-                    <div className="text-[8px] text-secondary-text w-full justify-center flex gap-1 items-start ">
-                        Powered by <img src="./images/sidebar-logo.svg" alt="" />
+                    <div className="text-[8px] text-light-secandary-text dark:text-secondary-text w-full justify-center flex gap-1 items-start ">
+                        Powered by {appcontext.themeISLight ?
+                            <img src="./Themes/Aurora/icons/Codie Logo- Light.svg" alt="" />
+                        :
+                            <img src="./images/sidebar-logo.svg" alt="" />
+                        }
                     </div>
                 </div>
             </nav>   

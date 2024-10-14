@@ -20,12 +20,13 @@ interface AppContextProp {
     getBiomarkers: (id: number) => biomarker[] | undefined;
     getDiagnosis: (id: number) => diagnosis[] | undefined;
     getAllBiomarkersById : () => undefined;
- 
-
+    themeISLight:boolean
+    setThemeIsLight:(action:boolean) => void
 }
 
 export const AppContext = createContext<AppContextProp>({
     user:new User(),
+    themeISLight:false,
     ApplicationManager:new ApplicationModel(),
     token:null,
     isLoggedId:false,
@@ -35,6 +36,7 @@ export const AppContext = createContext<AppContextProp>({
     addPatient: () => {},
     removePatient: () => {},
     patients: [],
+    setThemeIsLight:() => undefined,
     getPatientById: () => undefined,
     getBiomarkers : ()=> undefined,
     getDiagnosis : ()=> undefined,
@@ -46,6 +48,7 @@ export const AppContext = createContext<AppContextProp>({
 const AppContextProvider =({children}:PropsWithChildren) => {
     const [token,setToken] = useState<string | null>(localStorage.getItem("token") || null)
     const [applicationModel,] = useState(new ApplicationModel())
+    const [isLight,setIsLight]= useState<boolean>(localStorage.getItem("theme-base")=='light'?true : false)
     const localuser = localStorage.getItem('authUser')
     const resolveUser:User = Object.assign(new User(),JSON.parse(localuser as string))
     const [user,setUser] = useState<User>(resolveUser ? resolveUser : new User());
@@ -100,11 +103,13 @@ const AppContextProvider =({children}:PropsWithChildren) => {
             localStorage.setItem('authUser',JSON.stringify(user))
             setUser(user)
         },
+        themeISLight:isLight,
         login:(token:string) =>{
             setToken(token)
             localStorage.setItem("token",token)
         },
         savePatientList,
+        setThemeIsLight:setIsLight,
         addPatient,
         removePatient,
         patients,

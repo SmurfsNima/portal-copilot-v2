@@ -122,6 +122,9 @@ const TreatMentPlan = () => {
                                             </div>
                                         
                                             <img
+                                            onClick={() => {
+                                                navigate('/showTreatmentPlan/'+id+'/'+el.t_plan_id)
+                                            }}
                                             className="cursor-pointer"
                                             src={"./Themes/Aurora/icons/edit4.svg"}
                                             />

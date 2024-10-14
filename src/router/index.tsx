@@ -18,6 +18,7 @@ import CopilotChat from "@/pages/information/CopilotChat";
 import ResportTest from "@/pages/ReportTest";
 import GenerateNewPlan from "@/pages/information/TreatmentPlan-V2/GenerateNewPlan";
 import FormDataEntry from "@/pages/FormDataEntry";
+import ViewTreatmentPlan from "@/pages/information/TreatmentPlan-V2/viewTreatmentPlan";
 
 const router = createHashRouter([
   {
@@ -95,6 +96,10 @@ const router = createHashRouter([
         path:'generateNewTreatmentPlan/:id',
         element:<GenerateNewPlan></GenerateNewPlan>
       },
+      {
+        path:'showTreatmentPlan/:id/:report',
+        element:<ViewTreatmentPlan></ViewTreatmentPlan>
+      },      
       {
         path: "/ai-studio",
         element: <AiStudio></AiStudio>,

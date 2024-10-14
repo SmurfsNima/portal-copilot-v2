@@ -134,12 +134,15 @@ const Table: React.FC<TableProps> = ({ classData }) => {
               Add Client{" "}
             </Button>
           </div>
+          {isModalOpen && 
           <AddClientModal
             isOpen={isModalOpen}
             onClose={handleCloseModal}
             onSubmit={handleAddClient}
             sendCLientData={sendClientData}
           />
+          }
+          {isProfileClientOpen &&
           <ClientPreview
             isOpen={isProfileClientOpen}
             email={email}
@@ -148,6 +151,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
             onClose={() => setisProfileClientOpen(false)}    
             onSubmit={() =>{}}      
           ></ClientPreview>
+          }
         </div>
         <div className={`${theme}-Table-container h-[68vh] ${theme}-scrollBar`}>
           {table.getRowModel().rows.length > 0 ? (
@@ -155,9 +159,9 @@ const Table: React.FC<TableProps> = ({ classData }) => {
               <thead className="text-xs text-gray-700">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id} className="text-nowrap text-secondary-color dark:text-[#FFFFFF]">
-                    {headerGroup.headers.map((header) => (
+                    {headerGroup.headers.map((header,index) => (
                       <th key={header.id} className={`${theme}-Table-header`}>
-                        <div className="flex items-center justify-center">
+                        <div className={`flex items-center ${index == 0?'justify-start':'justify-center'} `}>
                           <div
                             className="flex items-center justify-center"
                             onClick={header.column.getToggleSortingHandler()}
