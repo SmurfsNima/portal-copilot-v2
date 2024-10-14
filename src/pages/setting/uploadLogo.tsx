@@ -1,5 +1,5 @@
 import { Application } from "@/api";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { Button } from "symphony-ui";
 import {BeatLoader} from 'react-spinners';
 import { useSelector } from "react-redux";
@@ -14,7 +14,7 @@ export const UploadLogo = () => {
   const [fileName, setFileName] = useState("");
   const [error, setError] = useState("");
   const [buttonState, setButtonState] = useState("initial");
-
+  const [logo,setLogo] = useState("");
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];
     if (file) {
@@ -104,7 +104,13 @@ export const UploadLogo = () => {
       console.error("Error saving logo:", error);
     }
   };
-
+  const getClinicLogo = async () => {
+   const data= await Application.getLogoClinic()
+    setLogo(data.data.clinic_logo)
+  }
+  useEffect(()=>{
+    getClinicLogo()
+  })
   return (
       <div className="  w-full flex h-[435px] items-start justify-center pt-10 px-6  dark:bg-black-primary border rounded-md">
       <div className={"flex-1 p-10 flex items-center justify-start  flex-col gap-3.5"}>
@@ -112,10 +118,12 @@ export const UploadLogo = () => {
           <h1 className={"mb-5 block  dark:text-gray-300 text-light-primary-text text-xs"}>Current Logo</h1>
           <div
               className="border dark:border-main-border w-fit py-5 px-2  rounded-lg text-center text-primary-text flex flex-col items-center gap-5">
-            <img className={"w-[170px] h-[150px]"} src={"/Themes/Aurora/icons/EmptyStateLogo.svg"}/>
+            <img className={"w-[170px] h-[150px]"} src={logo.length>=1?logo:"/Themes/Aurora/icons/EmptyStateLogo.svg"}/>
           </div>
         </div>
+        {logo.length>=1 &&
         <h1 className={"block  text-light-primary-text text-xs"}>No logo uploaded yet.</h1>
+        }
       </div>
         <div className="  flex flex-col items-center justify-start py-10 pr-10 w-[800px] md:min-w-4xl">
           <div className="mb-6 w-full ">

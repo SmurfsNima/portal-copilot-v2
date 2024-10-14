@@ -144,6 +144,10 @@ static downloadClinicReport(data:any){
     const response = this.post("/clinic/add_clinic_logo/",data)
     return response
   }
+  static getLogoClinic() {
+    const response = this.post("/show_clinic_info/")
+    return response
+  }
   static aiStudio_patients() {
     const response = this.post("/ai_studio/patient_list")
     return response
