@@ -148,7 +148,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,isEdit,set
                             <div className="text-[#FFFFFF99] text-[12px]">Average Value: <span className="font-semibold text-[14px] text-[#FFFFFFDE] ml-2">50</span></div>
                              <div className="text-[#FFFFFF99] text-[12px]">Current Value: <span className="font-semibold text-[14px] text-[#FFFFFFDE] ml-2">60</span></div>
                         </div>
-                        <MethylationChart></MethylationChart>   
+                        <MethylationChart labels={[]} values={[]}></MethylationChart>   
 
                     </div>
 
