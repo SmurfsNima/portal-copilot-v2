@@ -138,12 +138,12 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
     })
   }
   return (
-    <div className={`bg-black-secondary text-primary-text p-4 rounded-md border border-main-border shadow-lg w-full ${isgenerate || isNewGenerate ?'h-[370px]' :'h-[580px]'} ${isNewGenerate && 'bg-inherit rounded-none border-none'} `}>
+    <div className={`dark:bg-black-secondary text-light-secandary-text dark:text-primary-text p-4 rounded-md border shadow-none border-light-border-color dark:border-main-border dark:shadow-lg w-full ${isgenerate || isNewGenerate ?'h-[370px]' :'h-[580px]'} ${isNewGenerate && 'bg-inherit rounded-none border-none'} `}>
       <div className="w-full flex justify-between gap-3">
         {Object.entries(allData).map(([categoryName, category], categoryIndex) => (
           <div
             key={categoryIndex}
-            className={`p-4 rounded-md bg-black-primary relative select-none w-[390px] ${isgenerate ?'h-[300px]':isNewGenerate?'h-[340px]':'h-[450px]'}  overflow-auto overflow-x-hidden`}
+            className={`p-4 rounded-md bg-gray-100 dark:bg-black-primary relative select-none w-[390px] ${isgenerate ?'h-[300px]':isNewGenerate?'h-[340px]':'h-[450px]'}  overflow-auto overflow-x-hidden`}
           >
             <div className="flex px-3 pb-1 justify-between items-center border-b border-main-border w-full ">
               <span className="flex items-center gap-2 text-xs font-medium">
@@ -178,9 +178,9 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                           expanded[`${categoryName}-${areaIndex}`]
                             ? "rotate-180"
                             : "rotate-90"
-                        } transition-transform -ml-5`}
+                        } transition-transform invert dark:invert-0 -ml-5`}
                       />
-                    <label className="flex gap-1 items-center justify-start cursor-pointer text-xs font-normal text-secondary-text">
+                    <label className="flex gap-1 items-center justify-start cursor-pointer text-xs font-normal text-light-primary-text dark:text-secondary-text">
                       <input
                         type="checkbox"
                         checked={area.checked }
@@ -195,7 +195,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                         className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center"
                       />
                      
-                      <div className="peer-checked:text-primary-text">
+                      <div className="peer-checked:dark:text-primary-text peer-checked:text-light-secandary-text">
                         {area.Name}
                       </div>
                     </label>
@@ -207,7 +207,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                           key={benchmarkIndex}
                           className="flex items-center my-1"
                         >
-                          <label className="flex items-start cursor-pointer text-xs font-normal text-secondary-text">
+                          <label className="flex items-start cursor-pointer text-xs font-normal text-light-secandary-text dark:text-secondary-text">
                             <input
                               type="checkbox"
                               checked={benchmark.checked && area.checked}
@@ -218,7 +218,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                               }}
                               className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center"
                             />
-                            <div className="peer-checked:text-primary-text flex text-[10px] w-[350px]">
+                            <div className="peer-checked:dark:text-primary-text peer-checked:text-light-secandary-text flex text-[10px] w-[350px]">
                               {benchmark.Benchmark.substring(0, isgenerate?18:35)}
                               {benchmark?.tag &&
                               <>
