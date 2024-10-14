@@ -52,7 +52,6 @@ export const AiStudio = () => {
     { name: "Copilot" },
     { name: "Weekly report" },
   ];
-    const [filteredClients,setFilteredClients] = useState(patients)
   // const filteredClients = patients.filter((client) => {
   //   const matchesSearch = client.Name.toLowerCase().includes(searchQuery.toLowerCase());
   //   const matchesStatus = activeStatus === "All" || client.Status === activeStatus;
@@ -60,27 +59,42 @@ export const AiStudio = () => {
   // });
   const [isloadingGenerate,setIsLoadingGenerate] = useState(false)
   const [generateReportGoolsData,setGenerateReportGoolsData] = useState({"Type of progress":[]})
-  useEffect(() => {
+  // useEffect(() => {
+  //   if(searchQuery!= '' && activeStatus != 'All'){
+  //     setFilteredClients(() =>{
+  //       return patients.filter(el => el.Name.toLowerCase().includes(searchQuery.toLowerCase()) && el.Status ==activeStatus)
+  //     })
+  //   }else {
+  //     if(activeStatus != 'All'){
+  //       setFilteredClients(() =>{
+  //         return patients.filter(el =>{ return el.Status ==activeStatus})
+  //       })        
+  //     }else  if(searchQuery != ''){
+  //       // console.log(patients.filter(el =>el.Name.toUpperCase().includes(searchQuery.toUpperCase())))
+  //       setFilteredClients(() =>{
+  //         return patients.filter(el =>el.Name.toUpperCase().includes(searchQuery.toUpperCase()))
+  //       })    
+  //     }else if(searchQuery == '' && activeStatus == 'All'){
+  //       setFilteredClients(patients)
+  //     }
+  //   }
+  // },[patients,searchQuery,activeStatus])
+
+  const resolvedFiltersData = () => {
     if(searchQuery!= '' && activeStatus != 'All'){
-      setFilteredClients(() =>{
-        return patients.filter(el =>{ return el.Name.toLowerCase() == searchQuery && el.Status ==activeStatus})
-      })
+        return patients.filter(el => el.Name.toLowerCase().includes(searchQuery.toLowerCase()) && el.Status ==activeStatus)
     }else {
       if(activeStatus != 'All'){
-        setFilteredClients(() =>{
-          return patients.filter(el =>{ return el.Status ==activeStatus})
-        })        
+          return patients.filter(el =>{ return el.Status ==activeStatus})    
+      }else  if(searchQuery != ''){
+        // console.log(patients.filter(el =>el.Name.toUpperCase().includes(searchQuery.toUpperCase())))
+          return patients.filter(el =>el.Name.toUpperCase().includes(searchQuery.toUpperCase()))
+      }else if(searchQuery == '' && activeStatus == 'All'){
+        return patients
       }
-      if(searchQuery != ''){
-        setFilteredClients(() =>{
-          return patients.filter(el =>el.Name.toLowerCase() == searchQuery)
-        })    
-      }
-      if(searchQuery == '' && activeStatus == 'All'){
-        setFilteredClients(patients)
-      }
-    }
-  },[patients,searchQuery,activeStatus])
+    }    
+    return patients
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -235,7 +249,7 @@ export const AiStudio = () => {
                 />
                 <img className="cursor-pointer" src="/Themes/Aurora/icons/send.svg" alt="" />
               </div> */}
-              <div className="bg-white border border-light-border-color dark:bg-black-primary text-light-secandary-text dark:text-primary-text p-4 rounded-lg space-y-5">
+              <div className="bg-white border dark:border-none border-light-border-color dark:bg-black-primary text-light-secandary-text dark:text-primary-text p-4 rounded-lg space-y-5">
                 <div
                   onClick={toggleStateSection}
                   className="flex items-center cursor-pointer gap-2 text-xs text-nowrap font-medium"
@@ -384,10 +398,10 @@ export const AiStudio = () => {
           <StatusMenu status={status} activeStatus={activeStatus as any} onChange={(value) => setActiveStatus(value)} />
 
           <div className="flex flex-col pr-1 max-h-[531px] w-full overflow-auto">
-            {filteredClients.map((client, i) => (
+            {resolvedFiltersData().map((client, i) => (
               <ClientCard
                 index={i}
-                key={client.Name}
+                key={i}
                 name={client.Name}
                 email={client.Email}
                 picture={client.Picture}
