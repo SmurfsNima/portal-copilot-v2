@@ -37,9 +37,9 @@ const SideMenu:React.FC = () => {
             <nav className={`${theme}-SideMenu-nav`}>
                 <div className={`${theme}-SideMenu-logo-container`}>
                     {appcontext.themeISLight ?
-                        <img src="./Themes/Aurora/icons/Logo-Light.svg" alt="" />
+                        <img src="./images/Logo2.png" alt="" />
                     :
-                        <img src="./images/main-logo (1).svg" alt="" />
+                        <img src="./images/Logo1.png" alt="" />
                     }
                 </div>
                 <div className={`${theme}-SideMenu-MenuList-container`}>
