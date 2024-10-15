@@ -53,13 +53,11 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
 
     // Send invitation email
     Application.addClient({
-      personal_info:{
         first_name:firstName,
         email: email,
         last_name:lastName,
         picture:'',
         wearable_devices:[wearableDevice]
-      }
     }).then((res) => {
       if(res.data.member_id){
         setStep("success")

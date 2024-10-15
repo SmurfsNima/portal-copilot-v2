@@ -37,9 +37,9 @@ const SideMenu:React.FC = () => {
             <nav className={`${theme}-SideMenu-nav`}>
                 <div className={`${theme}-SideMenu-logo-container`}>
                     {appcontext.themeISLight ?
-                        <img src="./images/Logo2.png" alt="" />
+                        <img src="./Themes/Aurora/icons/Logo-Light.svg" alt="" />
                     :
-                        <img src="./images/Logo1.png" alt="" />
+                        <img src="./images/main-logo (1).svg" alt="" />
                     }
                 </div>
                 <div className={`${theme}-SideMenu-MenuList-container`}>
@@ -89,11 +89,15 @@ const SideMenu:React.FC = () => {
                         <img className={`${theme}-icons-logOut`}  alt="" />
                     </div>
                     <div className="text-[8px] text-light-secandary-text dark:text-secondary-text w-full justify-center flex gap-1 items-start ">
-                        Powered by {appcontext.themeISLight ?
-                            <img src="./Themes/Aurora/icons/Codie Logo- Light.svg" alt="" />
+                        <div className="flex flex-col items-center">
+                        Powered by 
+                        {appcontext.themeISLight ?
+                            <img className="w-[50px]" src="./images/Logo2.png" alt="" />
                         :
-                            <img src="./images/sidebar-logo.svg" alt="" />
+                            <img className="w-[50px]" src="./images/Logo1.png" alt="" />
                         }
+
+                        </div>
                     </div>
                 </div>
             </nav>   
