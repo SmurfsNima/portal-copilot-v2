@@ -131,7 +131,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
               <TbFilterPlus className="w-5 h-5" />
               Apply Filter
             </Button> */}
-            <Button onClick={handleOpenModal} theme={theme}>
+            <Button onClick={handleOpenModal}  theme={theme}>
               <RiUserAddLine className="w-5 h-5" />
               Add Client{" "}
             </Button>

@@ -18,8 +18,11 @@ export default {
         'black-secondary': '#272727',
         'black-third': '#2F2F2F',
         'black-fourth': '#333333',
+        "dark-btn-active":"#383838",
         // Border
         'main-border': '#353535',
+        'lite-main-border': '#E5E5E5',
+
 
         // Text
         'primary-text': '#F5F5FA',
@@ -44,6 +47,7 @@ export default {
         "light-blue-active":"#929DFE",
         "light-border-color":"#E9EDF5",
         "light-border-color-active":"#005F73",
+        "light-btn-pagination-active":"#E5E5E5",
         "light-secandary-text":'#262626',
         "light-overlay":"#ADADAD",
         "light-input-color":'#F8F9FC80'
