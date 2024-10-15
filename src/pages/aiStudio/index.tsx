@@ -135,7 +135,7 @@ export const AiStudio = () => {
       SetReportsData(res.data)
     })
   },[activeMemberID])
-  const status: Array<string> = ["All", "Need to Check", "Checked"];
+  const status: Array<string> = ["All", "Need to Check", "Checked","Incompleted"];
   const [isCreateReportMode,setisCreateReportMode] = useState(false)
   const [isEditMode,setEditMode] = useState(false)
   const [currentReportId,setCurrentReportId] = useState("")
@@ -257,106 +257,124 @@ export const AiStudio = () => {
                 <img className="cursor-pointer" src="/Themes/Aurora/icons/send.svg" alt="" />
               </div> */}
               <div className="bg-white border dark:border-none border-light-border-color dark:bg-black-primary text-light-secandary-text dark:text-primary-text p-4 rounded-lg space-y-5">
-                <div
-                  onClick={toggleStateSection}
-                  className="flex items-center cursor-pointer gap-2 text-xs text-nowrap font-medium"
-                >
-                  <img
-                    src="/Themes/Aurora/icons/chevron-up.svg"
-                    className={`transition-transform invert dark:invert-0 rotate-90  ${isStateOpen && "rotate-[180deg]"}`}
-                    alt=""
-                  />
-                  General Condition
-                  <div className="h-[1px] w-full bg-third-text" />
-                </div>
-                {isStateOpen && (
-                  <div className="text-xs text-primary-text">
-                    <p className="mt-4 text-light-secandary-text dark:text-primary-text">
-                      {overviewData ? overviewData.description : ""}
-                    </p>
-                    {/* <div className="my-4">
-                    Need Focus Benchmarks:
-                    <ul className="list-disc mt-2 space-y-3 px-4 text-primary-text">
-                  <li>Recovery</li>
-                  <li>Recovery</li>
-                  <li>Recovery</li>
-                    </ul>
-                    </div> */}
-                  
-                  </div>
-                )}
-                <div onClick={toggleAlertSection} className="text-xs font-medium cursor-pointer flex gap-2 items-center">
-                  <img
-                    src="/Themes/Aurora/icons/chevron-up.svg"
-                    className={`transition-transform invert dark:invert-0 rotate-90 ${isAlertOpen && "rotate-[180deg]"}`}
-                    alt=""
-                  />
-                  Alert
-                  <div className="h-[1px] w-full bg-third-text" />
-                </div>
-                {isAlertOpen && (
-    <div className="my-4">
-      <ul className="list-disc space-y-2 px-4">
-        {overviewData?.alerts &&
-          Object.values(overviewData.alerts).map((value, index) => (
-            <li key={index} className="text-xs">{value as string}</li>
-          ))}
-      </ul>
-    </div>
-  )}
-                <div onClick={toggleEngagementSection} className="text-xs text-nowrap font-medium cursor-pointer flex gap-2 items-center">
-                  <img
-                    src="/Themes/Aurora/icons/chevron-up.svg"
-                    className={`transition-transform invert dark:invert-0 rotate-90  ${isEngagementOpen && "rotate-[180deg]"}`}
-                    alt=""
-                  />
-                  Limits & Contradiction
-                  <div className="h-[1px] w-full bg-light-border-color dark:bg-third-text" />
-                </div>
-                {isEngagementOpen &&(
-                  <div className="my-4">
-                  <table className="w-full text-left">
-                    <thead>
-                      <tr className="border-b border-light-border-color dark:border-main-border">
-                        
-                        
-                        <th className="px-4 py-2 text-sm font-medium text-center">Limits</th>
-                        <th className="px-4 py-2 text-sm font-medium text-center">Contradictions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {overviewData?.coach_reminders?.map((reminder: any, index: number) => (
-    <React.Fragment key={index}>
-      <tr className="">
-        <td className="  px-4 " >
-          <span className="text-xs font-medium">{reminder.condition}</span>
-        </td>
-      </tr>
-      <tr className="border-b border-main-border ">
-        <td className=" px-4    pl-[200px] ">
-          <ul className="space-y-5 -mt-16 ">
-            {reminder?.contraindications?.map((contradiction: string, cIndex: number) => (
-              <li className="text-xs font-normal max-w-[453px]    " key={`c-${index}-${cIndex}`}>{contradiction}</li>
+                {overviewData?.description &&
+                <>
+                    <div
+                      onClick={toggleStateSection}
+                      className="flex items-center cursor-pointer gap-2 text-xs text-nowrap font-medium"
+                    >
+                      <img
+                        src="/Themes/Aurora/icons/chevron-up.svg"
+                        className={`transition-transform invert dark:invert-0 rotate-90  ${isStateOpen && "rotate-[180deg]"}`}
+                        alt=""
+                      />
+                      General Condition
+                      <div className="h-[1px] w-full bg-light-border-color dark:bg-white dark:opacity-50" />
+                    </div>
+                    {isStateOpen && (
+                      <div className="text-xs text-primary-text">
+                        <p className="mt-4 text-light-secandary-text dark:text-primary-text">
+                          {overviewData ? overviewData.description : ""}
+                        </p>
+                        {/* <div className="my-4">
+                        Need Focus Benchmarks:
+                        <ul className="list-disc mt-2 space-y-3 px-4 text-primary-text">
+                      <li>Recovery</li>
+                      <li>Recovery</li>
+                      <li>Recovery</li>
+                        </ul>
+                        </div> */}
+                      
+                      </div>
+                    )}
+                </>
+                }
+                <>
+                {overviewData?.alerts?
+                  <>
+                    <div onClick={toggleAlertSection} className="text-xs font-medium cursor-pointer flex gap-2 items-center">
+                      <img
+                        src="/Themes/Aurora/icons/chevron-up.svg"
+                        className={`transition-transform invert dark:invert-0 rotate-90 ${isAlertOpen && "rotate-[180deg]"}`}
+                        alt=""
+                      />
+                      Alert
+                      <div className="h-[1px] w-full bg-light-border-color dark:bg-white dark:opacity-50t" />
+                    </div>
+                    {isAlertOpen && (
+                      <div className="my-4">
+                        <ul className="list-disc space-y-2 px-4">
+                          {overviewData?.alerts &&
+                            Object.values(overviewData.alerts).map((value, index) => (
+                              <li key={index} className="text-xs">{value as string}</li>
+                            ))}
+                        </ul>
+                      </div>
+                      )}
+                  </>
+                :
+                <>
+                </>
+                }
+                </>
+                {overviewData?.coach_reminders?
+                  <>
+                    <div onClick={toggleEngagementSection} className="text-xs text-nowrap font-medium cursor-pointer flex gap-2 items-center">
+                      <img
+                        src="/Themes/Aurora/icons/chevron-up.svg"
+                        className={`transition-transform invert dark:invert-0 rotate-90  ${isEngagementOpen && "rotate-[180deg]"}`}
+                        alt=""
+                      />
+                      Limits & Contradiction
+                      <div className="h-[1px] w-full bg-light-border-color dark:bg-white dark:opacity-50" />
+                    </div>
+                    {isEngagementOpen &&(
+                      <div className="my-4">
+                      <table className="w-full text-left">
+                        <thead>
+                          <tr className="border-b border-light-border-color dark:border-gray-500">
+                            
+                            
+                            <th className="px-4 py-2 text-sm font-medium text-center">Limits</th>
+                            <th className="px-4 py-2 text-sm font-medium text-center">Contradictions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {overviewData?.coach_reminders?.map((reminder: any, index: number) => (
+                        <React.Fragment key={index}>
+                          <tr className="">
+                            <td className="  px-4 " >
+                              <span className="text-xs font-medium">{reminder.condition}</span>
+                            </td>
+                          </tr>
+                          <tr className="border-b border-light-border-color dark:border-gray-500">
+                            <td className=" px-4    pl-[200px] ">
+                              <ul className="space-y-5 -mt-16 ">
+                                {reminder?.contraindications?.map((contradiction: string, cIndex: number) => (
+                                  <li className="text-xs font-normal max-w-[453px]    " key={`c-${index}-${cIndex}`}>{contradiction}</li>
 
-            ))}
-          </ul>
-          
-        </td>
-        <td className=" px-4  pl-[200px]  ">
-          <ul className="space-y-5">
-            {reminder?.recommendations?.map((recommendation: string, rIndex: number) => (
-              <li className="text-xs font-normal max-w-[453px] " key={`r-${index}-${rIndex}`}>{recommendation}</li>
-            ))}
-          </ul>
-        </td>
-        
-      </tr>
-    </React.Fragment>
-  ))}
-                    </tbody>
-                  </table>
-                </div>
-                )}
+                                ))}
+                              </ul>
+                              
+                            </td>
+                            <td className=" px-4  pl-[200px]  ">
+                              <ul className="space-y-5">
+                                {reminder?.recommendations?.map((recommendation: string, rIndex: number) => (
+                                  <li className="text-xs font-normal max-w-[453px] " key={`r-${index}-${rIndex}`}>{recommendation}</li>
+                                ))}
+                              </ul>
+                            </td>
+                            
+                          </tr>
+                        </React.Fragment>
+      ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    )}
+                  </>
+                :
+                undefined}
               </div>
               </div>
           ) : activeMenu === "Copilot" ? (
