@@ -173,7 +173,7 @@ export const columns: ColumnDef<Pationt>[] = [
       return (
         <div className="flex justify-center w-full">
           <img onClick={() => {
-            publish("confirmDelete",{id:row.original.information.member_id})
+            publish("confirmDelete",{id:row.original.information.member_id,name:row.original.information.name})
             // const status = confirm("delete this member?")
             // if(status){
             //   Application.deleteClinic({

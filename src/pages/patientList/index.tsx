@@ -13,6 +13,7 @@ import { useState, useContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { AppContext } from "@/store/app";
 import { subscribe } from "@/utils/event";
+import ConfirmModal from "./ConfirmModal";
 // import Diagnosis from "@/model/diagnosis";
 // import ReportNumberBox from "@/components/ReportsNumberBox";
 
@@ -21,6 +22,7 @@ const PatientList = () => {
   const { patients ,savePatientList } = useContext(AppContext);
   const [,setReports] = useState<Array<any>>([]);
   const [reloadData,setReloadData] = useState(false)
+  const [isOpenConfirm,setISOpenConfirm] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -90,9 +92,13 @@ const PatientList = () => {
     }
     fetchData();
   }, [reloadData]);
-
+  const [removeId,setRemoveId] =useState("")
+  const [removeName,setRemoveName] =useState("")
   subscribe("confirmDelete",(value) => {
-    console.log(value.detail.id)
+    // console.log(value.detail.id)
+    setRemoveId(value.detail.id)
+    setRemoveName(value.detail.name)
+    setISOpenConfirm(true)
   })
 
   return (
@@ -116,6 +122,16 @@ const PatientList = () => {
         <Table classData={patients}></Table>
         <Outlet />
       </div>
+      <ConfirmModal clientName={removeName} onConfirm={() => {
+        setISOpenConfirm(false)
+        Application.deleteClinic({
+          member_id:removeId
+        }).then(() => {
+          setReloadData(true)
+        })
+      }} isOpen={isOpenConfirm} onClose={() => {
+        setISOpenConfirm(false)
+      }}></ConfirmModal>
     </>
   );
 };
