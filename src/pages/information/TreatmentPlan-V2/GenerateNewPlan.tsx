@@ -276,23 +276,23 @@ const GenerateNewPlan =() => {
                                             <div className="flex w-[350px]"> <div className=" w-[90px] overflow-hidden">{el.subCategory}</div> <span className="ml-1">{el.area}</span></div>
                                             <div>
 
-                                                <TextBoxAi label="dos" onChange={(val) => {
+                                                <TextBoxAi label="" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"first12Weeks",'dos')
                                                 }} value={el.first12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
 
-                                                <TextBoxAi label="donts" onChange={(val) => {
+                                                {/* <TextBoxAi label="donts" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"first12Weeks",'donts')
-                                                }} value={el.first12Weeks.donts.map((e:string) =>e)}></TextBoxAi>
+                                                }} value={el.first12Weeks.donts.map((e:string) =>e)}></TextBoxAi> */}
                                             </div>
                                             <div className="w-[450px] pr-4">
                                                 <div>
-                                                <TextBoxAi label="dos" onChange={(val) => {
+                                                <TextBoxAi label="" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"second12Weeks",'dos')
                                                 }} value={el.second12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
-
+{/* 
                                                 <TextBoxAi label="donts" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"second12Weeks",'donts')
-                                                }} value={el.second12Weeks.donts.map((e:string) =>e)}></TextBoxAi>                                                    
+                                                }} value={el.second12Weeks.donts.map((e:string) =>e)}></TextBoxAi>                                                     */}
                                                 </div>
                                             </div>                                            
                                         </div>
