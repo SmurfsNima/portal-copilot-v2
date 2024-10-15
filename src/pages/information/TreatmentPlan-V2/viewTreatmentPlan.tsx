@@ -17,7 +17,7 @@ const ViewTreatmentPlan = () => {
         console.log(value)
         setTratmentPlanData((pre:any) => {
             const old = pre
-            old.treatment_plans[0][index][key][doOrdos] =value.includes(",")?[...value.split(",")][0]:[value][0]
+            old.treatment_plans[index][key][doOrdos] =value.includes(",")?[...value.split(",")][0]:[value][0]
             return old
         })
     }
