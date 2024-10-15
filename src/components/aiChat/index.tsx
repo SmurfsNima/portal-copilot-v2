@@ -162,7 +162,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
         <input
           className="w-full border dark:border-main-border bg-white border-light-border-color dark:bg-black-secondary rounded-md outline-none pl-2 py-1 text-xs text-light-secandary-text dark:text-primary-text"
           type="text"
-          placeholder="Write here..."
+          placeholder="Write message here ..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
