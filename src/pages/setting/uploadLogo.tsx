@@ -83,7 +83,7 @@ export const UploadLogo = () => {
       setButtonState("initial");
     }
   };
-  
+  const [visivleDelete,setVisibleDelete] = useState(false)
   const handleSaveChanges = async () => {
     if (!logoBase64) {
       console.error("No logo to save");
@@ -91,11 +91,9 @@ export const UploadLogo = () => {
     }
   
     try {
-      const response = await Application.updateSetting({
-        edited_setting:{
+      const response = await Application.saveLogo({
           new_logo: logoBase64,
           clinic_name:clinicName
-        }
       });
       setLogo(logoBase64)
       console.log("Response from server:", response);
@@ -122,12 +120,27 @@ export const UploadLogo = () => {
         <div>
           <h1 className={"mb-5 block  dark:text-gray-300 text-light-primary-text text-xs"}>Current Logo</h1>
           <div
-              className="border dark:border-main-border w-fit py-5 px-2  rounded-lg text-center text-primary-text flex flex-col items-center gap-5">
+          onMouseEnter={() => {
+            setVisibleDelete(true)
+          }}
+          onMouseLeave={() => {
+            setVisibleDelete(false)
+          }}
+              className="border relative dark:border-main-border w-fit py-5 px-2  rounded-lg text-center text-primary-text flex flex-col items-center gap-5">
             <img className={"w-[170px] h-[150px]"} src={logo.length>=1?logo:"/Themes/Aurora/icons/EmptyStateLogo.svg"}/>
+            {visivleDelete &&logo.length>0 &&
+              <img onClick={() => {
+                Application.saveLogo({
+                      new_logo: '',
+                      clinic_name:clinicName
+                  });        
+                  setLogo("")      
+              }} className="absolute cursor-pointer right-2 top-2" src="./Themes/Aurora/icons/trash.svg" alt="" />
+            }
           </div>
         </div>
         {logo.length ==0 &&
-        <h1 className={"block  text-light-primary-text text-xs"}>No logo uploaded yet.</h1>
+        <h1 className={"block  text-light-primary-text dark:text-primary-text text-xs"}>No logo uploaded yet.</h1>
         }
       </div>
         <div className="  flex flex-col items-center justify-start py-10 pr-10 w-[800px] md:min-w-4xl">
@@ -145,7 +158,7 @@ export const UploadLogo = () => {
       </div>
 
       <div className=" w-full  mb-8">
-        <label className="block text-light-primary-text text-xs mb-2">Clinic Logo</label>
+        <label className="block text-light-primary-text dark:text-primary-text text-xs mb-2">Clinic Logo</label>
         <div
             onDrop={handleDrop}
             onDragOver={handleDragOver}
