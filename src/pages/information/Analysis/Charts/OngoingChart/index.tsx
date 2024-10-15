@@ -3,13 +3,14 @@ interface StatusChartProps {
     data:any,
     title:string,
     onClick:() => void
+    isActive?:boolean
 }
-const OnGoingChart:React.FC<StatusChartProps> = ({data,title,onClick}) => {
+const OnGoingChart:React.FC<StatusChartProps> = ({data,title,onClick,isActive}) => {
     return (
         <>
             <div onClick={() => {
                 onClick()
-            }} className="w-[315px] cursor-pointer py-3 px-6 bg-white dark:bg-black-primary border border-light-border-color dark:border-[#383838] h-[148px] rounded-[6px] flex justify-between">
+            }} className={`w-[315px] ${isActive?'border-light-blue-active dark:border-primary-color':'border-light-border-color dark:border-[#383838]'} cursor-pointer py-3 px-6 bg-white dark:bg-black-primary border  h-[148px] rounded-[6px] flex justify-between`}>
                 <div>
                     <div className=" text-light-secandary-text dark:text-[#FFFFFFDE] text-[12px] h-[45px] w-[185px]">{title}</div>
                     <div className="flex justify-between w-[155px] items-center mt-4">

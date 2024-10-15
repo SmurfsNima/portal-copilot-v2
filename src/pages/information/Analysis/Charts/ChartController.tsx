@@ -26,6 +26,13 @@ const ChartController:React.FC<ChartControllerProps> = ({
     // const [onGoingData,setOnGoingData] = useState<any>({})
     const [isShowMore,setIsShowMore] = useState(false);
     const [avtiveChart,setActiveChart] = useState("")
+    useEffect(() => {
+        if(avtiveChart!=''){
+            setIsShowMore(true)
+        }else{
+            setIsShowMore(false)
+        }
+    },[avtiveChart])
     return (
         <>
         <div className="w-full h-full max-h-[360px] gap-4 overflow-auto flex flex-wrap justify-start gap-x-[50px]  hidden-scrollBar">
@@ -42,9 +49,9 @@ const ChartController:React.FC<ChartControllerProps> = ({
                                     Object.keys(onGoingData).map(el => {
                                         return (
                                             <>
-                                                <OnGoingChart onClick={() => {
+                                                <OnGoingChart isActive={el == avtiveChart} onClick={() => {
                                                     setActiveChart(el)
-                                                    setIsShowMore(true)
+                                                    // setIsShowMore(true)
         
                                                 }} title={el} data={onGoingData[el]}></OnGoingChart>
                                             </>
@@ -87,7 +94,7 @@ const ChartController:React.FC<ChartControllerProps> = ({
                                         return (
                                             <>
                                                 <OnGoingChart onClick={() => {
-                                                    setIsShowMore(true)
+                                                    setActiveChart(el)
                                                 }} title={el} data={onGoingData[el]}></OnGoingChart>
                                             </>
                                         )

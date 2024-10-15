@@ -99,7 +99,7 @@ const MethylationChart: React.FC<MethylationChartProps> = ({labels,values}) => {
         };
       }
     }
-  }, []);
+  }, [values,labels]);
 
   return (
     <div className=" w-full bg-gray-50 dark:bg-black-secondary border border-none dark:border-main-border p-4 rounded-lg shadow-md  h-full ">
