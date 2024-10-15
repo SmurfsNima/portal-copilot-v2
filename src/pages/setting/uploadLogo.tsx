@@ -115,10 +115,13 @@ export const UploadLogo = () => {
       console.error("Error saving logo:", error);
     }
   };
+  const [isLoading,setIsLoading] = useState(false)
   const getClinicLogo = async () => {
+    setIsLoading(true)
    const data= await Application.getLogoClinic()
    if(data.data!='Internal Server Error'){
      setLogo(data.data.clinic_logo)
+     setIsLoading(false)
      setClinicName2(data.data.clinic_name)
    }
   }
@@ -127,142 +130,150 @@ export const UploadLogo = () => {
   },[])
   return (
       <div className="  w-full flex h-[535px] items-start justify-center pt-10 px-6  dark:bg-black-primary border dark:border-none rounded-md">
-      <div className={"flex-1 p-10 flex items-center justify-start  flex-col gap-3.5"}>
-        <div>
-          <h1 className={"mb-5 block  dark:text-gray-300 text-light-primary-text text-xs"}>Current Logo</h1>
-          <div
-          onMouseEnter={() => {
-            setVisibleDelete(true)
-          }}
-          onMouseLeave={() => {
-            setVisibleDelete(false)
-          }}
-              className="border relative dark:border-main-border w-fit py-5 px-2  rounded-lg text-center text-primary-text flex flex-col items-center gap-5">
-            <img className={"w-[170px] h-[150px]"} src={logo.length>=1?logo:"/Themes/Aurora/icons/EmptyStateLogo.svg"}/>
-            {visivleDelete &&logo.length>0 &&
-              <img onClick={() => {
-                Application.saveLogo({
-                      new_logo: '',
-                      clinic_name:clinicName
-                  });        
-                  setLogo("")      
-              }} className="absolute cursor-pointer right-2 top-2" src="./Themes/Aurora/icons/trash.svg" alt="" />
+       {isLoading ?
+       <div className="w-full h-[350px] flex justify-center items-center">
+          <BeatLoader size={10} color="#0CBC84"></BeatLoader>
+       </div>
+       :
+       <>
+          <div className={"flex-1 p-10 flex items-center justify-start  flex-col gap-3.5"}>
+            <div>
+              <h1 className={"mb-5 block  dark:text-gray-300 text-light-primary-text text-xs"}>Current Logo</h1>
+              <div
+              onMouseEnter={() => {
+                setVisibleDelete(true)
+              }}
+              onMouseLeave={() => {
+                setVisibleDelete(false)
+              }}
+                  className="border relative dark:border-main-border w-fit py-5 px-2  rounded-lg text-center text-primary-text flex flex-col items-center gap-5">
+                <img className={"w-[170px] h-[150px]"} src={logo.length>=1?logo:"/Themes/Aurora/icons/EmptyStateLogo.svg"}/>
+                {visivleDelete &&logo.length>0 &&
+                  <img onClick={() => {
+                    Application.saveLogo({
+                          new_logo: '',
+                          clinic_name:clinicName
+                      });        
+                      setLogo("")      
+                  }} className="absolute cursor-pointer right-2 top-2" src="./Themes/Aurora/icons/trash.svg" alt="" />
+                }
+              </div>
+            </div>
+            {logo.length ==0 ?
+            <h1 className={"block  text-light-primary-text dark:text-primary-text text-xs"}>No logo uploaded yet.</h1>
+            :
+            <h1 className={"block  text-light-primary-text dark:text-primary-text text-xs"}>{clinicName2}</h1>
             }
           </div>
-        </div>
-        {logo.length ==0 ?
-        <h1 className={"block  text-light-primary-text dark:text-primary-text text-xs"}>No logo uploaded yet.</h1>
-        :
-        <h1 className={"block  text-light-primary-text dark:text-primary-text text-xs"}>{clinicName2}</h1>
-        }
-      </div>
-        <div className="  flex flex-col items-center justify-start py-10 pr-10 w-[800px] md:min-w-4xl">
-          <div className="mb-6 w-full ">
-            <label className="block dark:text-primary-text text-light-primary-text text-xs font-normal mb-2">
-          Clinic Name
-        </label>
-        <input
-          type="text"
-          value={clinicName}
-          onChange={(e) => setClinicName(e.target.value)}
-          placeholder="Enter clinic name..."
-          className=" outline-none w-full h-[32px] p-3 rounded-lg text-light-secandary-text dark:text-white dark:bg-black-primary bg-light-input-color border dark:border-main-border text-xs "
-        />
-      </div>
-
-      <div className=" w-full  mb-8">
-        <label className="block text-light-primary-text dark:text-primary-text text-xs mb-2">Clinic Logo</label>
-        <div
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            className="border  dark:border-main-border rounded-lg py-4 text-center text-light-primary-text darktext-primary-text flex flex-col items-center gap-5"
-        >
-          <img src="./Themes/Aurora/icons/uploadlogo.svg" alt=""/>
-          <label htmlFor="fileUpload" className="cursor-pointer text-xs">
-            Drag and drop a file here or{" "}
-            <span className="text-brand-primary-color">upload a file</span>
-            <div className="text-xs text-light-secondary-text darktext-secondary-text mt-2">
-              JPG, PNG, SVG, PDF
-            </div>
+          <div className="  flex flex-col items-center justify-start py-10 pr-10 w-[800px] md:min-w-4xl">
+            <div className="mb-6 w-full ">
+              <label className="block dark:text-primary-text text-light-primary-text text-xs font-normal mb-2">
+            Clinic Name
           </label>
           <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="hidden"
-              id="fileUpload"
+            type="text"
+            value={clinicName}
+            onChange={(e) => setClinicName(e.target.value)}
+            placeholder="Enter clinic name..."
+            className=" outline-none w-full h-[32px] p-3 rounded-lg text-light-secandary-text dark:text-white dark:bg-black-primary bg-light-input-color border dark:border-main-border text-xs "
           />
-
         </div>
-      </div>
 
-      {loading && (
+        <div className=" w-full  mb-8">
+          <label className="block text-light-primary-text dark:text-primary-text text-xs mb-2">Clinic Logo</label>
           <div
-              className="w-full max-w-xl mb-4 flex items-center justify-between dark:bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
-            <span className="text-light-secandary-text dark:text-primary-text text-xs mr-3">{fileName}</span>
-            <div className="flex items-center justify-between gap-2 w-full">
-            <div className="relative w-full h-2 bg-gray-300 dark:bg-main-border rounded">
-              <div
-                className="absolute top-0 left-0 h-2 bg-brand-secondary-color rounded"
-                style={{ width: `${progress}%` }}
-              ></div>
-            </div>
-            <div className="flex items-center gap-1">
-              {" "}
-              <span className="text-primary-text text-[10px]">
-                {Math.round(progress)}%
-              </span>
-              <button
-                onClick={handleDeleteFile}
-                className="text-brand-primary-color h-4 w-4 -mt-2"
-              >
-                ✕
-              </button>
-            </div>
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              className="border  dark:border-main-border rounded-lg py-4 text-center text-light-primary-text darktext-primary-text flex flex-col items-center gap-5"
+          >
+            <img src="./Themes/Aurora/icons/uploadlogo.svg" alt=""/>
+            <label htmlFor="fileUpload" className="cursor-pointer text-xs">
+              Drag and drop a file here or{" "}
+              <span className="text-brand-primary-color">upload a file</span>
+              <div className="text-xs text-light-secondary-text darktext-secondary-text mt-2">
+                JPG, PNG, SVG, PDF
+              </div>
+            </label>
+            <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="hidden"
+                id="fileUpload"
+            />
+
           </div>
         </div>
-      )}
-      {error && (
-        <div className="w-full max-w-xl mb-4 text-red-status bg-transparent px-4 py-2 rounded-lg flex items-center gap-1">
-          <img src="./Themes/Aurora/icons/error.svg" alt="" />
-          <span>{error}</span>
-        </div>
-      )}
-      {!loading && logoBase64 && !error && fileName && (
-        <div className="w-full max-w-xl mb-4 flex items-center justify-between dark:bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
-          <div className="flex items-center gap-2">
-            <img src="./Themes/Aurora/icons/XMLID_1737_.svg" alt="" />
-            <span className=" text-light-secandary-text text-[14px]  dark:text-gray-200">{fileName}</span>
+
+        {loading && (
+            <div
+                className="w-full max-w-xl mb-4 flex items-center justify-between dark:bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
+              <span className="text-light-secandary-text dark:text-primary-text text-xs mr-3">{fileName}</span>
+              <div className="flex items-center justify-between gap-2 w-full">
+              <div className="relative w-full h-2 bg-gray-300 dark:bg-main-border rounded">
+                <div
+                  className="absolute top-0 left-0 h-2 bg-brand-secondary-color rounded"
+                  style={{ width: `${progress}%` }}
+                ></div>
+              </div>
+              <div className="flex items-center gap-1">
+                {" "}
+                <span className="text-primary-text text-[10px]">
+                  {Math.round(progress)}%
+                </span>
+                <button
+                  onClick={handleDeleteFile}
+                  className="text-brand-primary-color h-4 w-4 -mt-2"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
           </div>
+        )}
+        {error && (
+          <div className="w-full max-w-xl mb-4 text-red-status bg-transparent px-4 py-2 rounded-lg flex items-center gap-1">
+            <img src="./Themes/Aurora/icons/error.svg" alt="" />
+            <span>{error}</span>
+          </div>
+        )}
+        {!loading && logoBase64 && !error && fileName && (
+          <div className="w-full max-w-xl mb-4 flex items-center justify-between dark:bg-black-secondary border dark:border-main-border px-4 py-2 rounded-md">
+            <div className="flex items-center gap-2">
+              <img src="./Themes/Aurora/icons/XMLID_1737_.svg" alt="" />
+              <span className=" text-light-secandary-text text-[14px]  dark:text-gray-200">{fileName}</span>
+            </div>
 
-          <img
-            onClick={() => {
-              handleDeleteFile();
-            }}
-            className="cursor-pointer"
-            src="./Themes/Aurora/icons/trash.svg"
-            alt=""
-          />
+            <img
+              onClick={() => {
+                handleDeleteFile();
+              }}
+              className="cursor-pointer"
+              src="./Themes/Aurora/icons/trash.svg"
+              alt=""
+            />
+          </div>
+        )}
+
+  <Button
+    onClick={handleClick}
+    theme={"Aurora"}
+  >
+    {buttonState === 'initial' && <div className="flex justify-center items-center gap-2 !">
+      <img src={"/Themes/Aurora/icons/uploadIcon.svg"}/>
+      <p>Save Changes</p>
+    </div>}
+    {buttonState === 'loading' && <BeatLoader size={10} color="white"/>}
+    {buttonState === 'finish' && (
+        <div className="flex justify-center items-center gap-1">
+        <div className={`${theme}-icons-check`} />
+        Saved Changes
+      </div>
+    )}
+  </Button>
         </div>
-      )}
-
-<Button
-  onClick={handleClick}
-  theme={"Aurora"}
->
-  {buttonState === 'initial' && <div className="flex justify-center items-center gap-2 !">
-    <img src={"/Themes/Aurora/icons/uploadIcon.svg"}/>
-    <p>Save Changes</p>
-  </div>}
-  {buttonState === 'loading' && <BeatLoader size={10} color="white"/>}
-  {buttonState === 'finish' && (
-      <div className="flex justify-center items-center gap-1">
-      <div className={`${theme}-icons-check`} />
-      Saved Changes
-    </div>
-  )}
-</Button>
-    </div>
+       </>
+       }
       </div>
   );
 };

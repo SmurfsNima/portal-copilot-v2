@@ -77,7 +77,7 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "information.status",
     header: "Status",
-    enableSorting: false,
+    enableSorting: true,
 
     cell: ({ row }) => {
       return (

@@ -46,6 +46,13 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
 
     SendToApi()
   };
+  useEffect(() => {
+    if(buttonState == 'finish'){
+      setTimeout(() => {
+        setButtonState("initial")
+      }, 2000);
+    }
+  },[buttonState])
   // const [selectedLevels, setSelectedLevels] = useState(() => {
   //   const levels: Record<string, number> = {};
   //   Object.entries(data).forEach(([categoryName, category]) => {
@@ -282,23 +289,23 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
           setButtonState("loading")
           onCompleteAction?onCompleteAction():undefined
         }}
-  theme={"Aurora"}> 
-  {
-    buttonState == 'initial' &&
-    'Generate Report' 
-  }
+        theme={"Aurora"}> 
+        {
+          buttonState == 'initial' &&
+          'Generate Report' 
+        }
 
-  {
-    buttonState == 'loading' &&
-    <BeatLoader size={10} color="white" />
-  }  
-  {
-    buttonState == 'finish' &&
-    <div className="flex justify-center items-center gap-1">
-    <div className={`${theme}-icons-check`} />
-    Report Generated     
-    </div>
-  }    
+        {
+          buttonState == 'loading' &&
+          <BeatLoader size={10} color="white" />
+        }  
+        {
+          buttonState == 'finish' &&
+          <div className="flex justify-center items-center gap-1">
+          <div className={`${theme}-icons-check`} />
+          Report Generated     
+          </div>
+        }    
 
         </Button>
       </div>      
