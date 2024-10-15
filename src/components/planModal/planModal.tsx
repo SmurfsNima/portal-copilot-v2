@@ -145,7 +145,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
     })
   }
   return (
-    <div className={`dark:bg-black-secondary text-light-secandary-text dark:text-primary-text p-4 rounded-md border shadow-none border-light-border-color dark:border-main-border dark:shadow-lg w-full ${isgenerate || isNewGenerate ?'h-[370px]' :'h-[580px]'} ${isNewGenerate && 'bg-inherit rounded-none border-none'} `}>
+    <div className={`dark:bg-[#2F2F2F] text-light-secandary-text dark:text-primary-text p-4 rounded-md border shadow-none border-light-border-color dark:border-main-border dark:shadow-lg w-full ${isgenerate || isNewGenerate ?'h-[370px]' :'h-[580px]'} ${isNewGenerate && 'bg-inherit rounded-none border-none'} `}>
       <div className="w-full flex justify-between gap-3">
         {Object.entries(allData).map(([categoryName, category], categoryIndex) => (
           <div

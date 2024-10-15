@@ -7,6 +7,7 @@ import TextBoxAi from "./TextBoxAi"
 import { useNavigate, useParams } from "react-router-dom"
 import { Application } from "@/api"
 import GenerateWithAiModal from "@/pages/aiStudio/GenerateWithAiModal"
+import useModalAutoClose from "@/hooks/UseModalAutoClose"
 
 const ViewTreatmentPlan = () => {
     const navigate = useNavigate()
@@ -41,6 +42,12 @@ const ViewTreatmentPlan = () => {
             return old
         })       
     }    
+    useModalAutoClose({
+        refrence:modalAiGenerateRef,
+        close:() => {
+            setShowGenerateWithAi(false)
+        }
+    })    
     return (
         <div className="w-full px-4">
             <div className="w-full py-6 px-4 bg-white rounded-[6px] dark:bg-[#1E1E1E] border border-light-border-color dark:border-[#383838] h-[610px] ">

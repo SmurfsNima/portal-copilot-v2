@@ -9,6 +9,48 @@ const GenerateWithAiModal:React.FC<GenerateWithAiModalProps> = ({
     onSuccess,
 }) => {
     const [askAi,setAskAi] = useState("")
+    const [promps,] = useState([
+        {
+            key:'Goal Alignment',
+            icon:'../images/Analyse/refresh-left-square.svg'
+        },
+        {
+            key:'Add Encouragement',
+            // icon:'./images/Analyse/activity.svg'
+            icon:'./images/Analyse/add-square.svg'
+        },
+        {
+            key:'Action Oriented',
+            icon:'./images/Analyse/activity.svg'
+        },
+        {
+            key:'Habit building',
+            // icon:'./images/Analyse/maximize-2.svg'
+            icon:'./images/Analyse/task-square.svg'
+        },
+        {
+            key:'Progressive Difficulty',
+            icon:'./images/Analyse/activity.svg'
+        },                                
+        // {
+        //     key:'Make Longer',
+        //     icon:'./images/Analyse/refresh-left-square.svg'
+        // },
+        {
+            key:'Make Shorter',
+            icon:'./images/Analyse/maximize-2.svg'
+        },
+        {
+            key:'Simplify Language',
+            // icon:'./Themes/Aurora/icons/status-up.svg'
+            icon:'./images/Analyse/smallcaps.svg'
+        },
+        {
+            key:'Be More Specific',
+            icon:'./images/Analyse/search-status.svg'
+        },
+                                                    
+    ])
     return (
         <>
             <div ref={refEl} className="w-[205px] h-[190px] overflow-auto px-3 py-2 rounded-[6px] dark:bg-[#272727] border bg-gray-50 border-light-border-color dark:border-[#383838]">
@@ -36,7 +78,19 @@ const GenerateWithAiModal:React.FC<GenerateWithAiModalProps> = ({
                 <div onClick={() => {
                     onSuccess("Translate")
                 }} className="text-[10px] text-[#FFFFFFDE] h-[34px] flex justify-start items-center border-b cursor-pointer border-b-[#383838]">Translate</div> */}
-                <div onClick={() => {
+               {promps.map((el) => {
+                    return (
+                        <>
+                            <div onClick={() => {
+                                onSuccess(el.key)
+                            }} className="text-[10px] text-light-secandary-text dark:text-[#FFFFFFDE] gap-2 h-[34px] flex justify-start items-center border-b cursor-pointer border-b-[#383838]">
+                                <img className="invert dark:invert-0" src={el.icon} alt="" />
+                            {el.key}</div>                        
+                        </>
+                    )
+               })}
+               
+                {/* <div onClick={() => {
                     onSuccess("Make Longer")
                 }} className="text-[10px] text-light-secandary-text dark:text-[#FFFFFFDE] gap-2 h-[34px] flex justify-start items-center border-b cursor-pointer border-b-[#383838]">
                     <img className="invert dark:invert-0" src="./Themes/Aurora/icons/sendData.svg" alt="" />
@@ -55,7 +109,7 @@ const GenerateWithAiModal:React.FC<GenerateWithAiModalProps> = ({
                     onSuccess("Be More Specific")
                 }} className="text-[10px] text-light-secandary-text dark:text-[#FFFFFFDE] h-[34px] gap-2 flex justify-start items-center  cursor-pointer border-b-[#383838]">
                     <img className="invert dark:invert-0" src="./Themes/Aurora/icons/search-status.svg" alt="" />
-                    Be More Specific</div>
+                    Be More Specific</div> */}
             </div>
         </>
     )

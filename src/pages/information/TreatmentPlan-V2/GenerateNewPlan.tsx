@@ -8,6 +8,7 @@ import { Button } from "symphony-ui";
 import BenchmarkModal from "../Treatment Plan/benchmarkModal";
 import TextBoxAi from "./TextBoxAi";
 import GenerateWithAiModal from "@/pages/aiStudio/GenerateWithAiModal";
+import useModalAutoClose from "@/hooks/UseModalAutoClose";
 // import data from './data.json';
 
 interface Benchmark {
@@ -110,6 +111,12 @@ const GenerateNewPlan =() => {
     },[])    
     const [isloadingGenerate,setIsLoadingGenerate] = useState(false)
     const [showGenerateWithAi,setShowGenerateWithAi] = useState(false)
+    useModalAutoClose({
+        refrence:modalAiGenerateRef,
+        close:() => {
+            setShowGenerateWithAi(false)
+        }
+    })      
     return (
         <>
         <div className="w-full flex justify-center px-4">
