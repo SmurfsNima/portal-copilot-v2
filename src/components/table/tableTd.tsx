@@ -23,18 +23,15 @@ export const columns: ColumnDef<Pationt>[] = [
     enableSorting: false,
 
     cell: ({ row }) => {
-      
-      
       return (
-        <Link to={`/information/${row.original.information.member_id}/Analysis`}>
-          <div className="flex items-center justify-start gap-4">
+        <Link to={`/information/${row.original.information.member_id}/Analysis`} className={"w-fit"}>
+          <div className="flex items-center justify-start gap-4 w-[20vw]">
             <img
               className="w-10 h-10 border rounded-full"
               src={row.original.information.picture!= ''?row.original.information.picture:`https://ui-avatars.com/api/?name=${row.original.information.name}`}
               alt={`${row.original.information.name} image`}
             />
-            
-              <div className="font-semibold text-nowrap flex items-center gap-3">
+            <div className="font-semibold text-nowrap flex items-center gap-3">
                 {row.original.information.name}
                 <FiExternalLink />
               </div>

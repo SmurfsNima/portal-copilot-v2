@@ -11,7 +11,7 @@
   @apply flex overflow-hidden  flex-row gap-2 justify-between flex-wrap space-y-0 pb-4 
 }
 .Aurora-Table-td{
-  @apply px-6 py-2 text-center text-nowrap text-xs 
+  @apply px-6 py-2 text-center text-nowrap text-xs w-[20vw]
 }
 .Aurora-Table-search{
 @apply block p-2 ps-10 border-[#FFFFFF]  border-opacity-15 text-sm text-gray-900 border rounded-lg w-80 bg-[#121212] focus:ring-blue-500 focus:border-blue-500
