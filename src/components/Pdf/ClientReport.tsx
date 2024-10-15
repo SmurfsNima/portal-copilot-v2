@@ -172,7 +172,7 @@ const ClientReport = ({values}:{values:any}) => (
           <TableInfoRender title='Client Information' styles={styles}  item={Object.fromEntries(Object.entries(values["client_info"]).slice(0, 20))} ></TableInfoRender>
         </View>
 
-        <Footer reportName='Benchmark Assessment Report- Coach' styles={styles} pageNumber={1}></Footer>
+        <Footer reportName='Benchmark Assessment Report- Client' styles={styles} pageNumber={1}></Footer>
     </Page>
     <Page style={styles.body}  wrap>
         <Header logo={values["logo"]}></Header>
@@ -180,10 +180,10 @@ const ClientReport = ({values}:{values:any}) => (
           <TableInfoRender title='' styles={styles}  item={Object.fromEntries(Object.entries(values["client_info"]).slice(20, 40))} ></TableInfoRender>
         </View>
 
-        <Footer reportName='Benchmark Assessment Report- Coach' styles={styles} pageNumber={2}></Footer>
+        <Footer reportName='Benchmark Assessment Report- Client' styles={styles} pageNumber={2}></Footer>
     </Page>    
-    <ReadMorePage reportName='Benchmark Assessment Report- Coach' styles={styles}  values={values}></ReadMorePage>
-    <Patient_benchmark reportName={'Benchmark Assessment Report- Coach'} logo={values["logo"]} styles={styles} data={values["patient_benchmark"]}></Patient_benchmark>
+    <ReadMorePage reportName='Benchmark Assessment Report- Client' styles={styles}  values={values}></ReadMorePage>
+    <Patient_benchmark reportName={'Benchmark Assessment Report- Client'} logo={values["logo"]} styles={styles} data={values["patient_benchmark"]}></Patient_benchmark>
     
     
     <Page style={styles.body} wrap>
@@ -192,7 +192,7 @@ const ClientReport = ({values}:{values:any}) => (
           <TableInfoRender title='Client Goals' styles={styles}  item={values["client_goal"]} ></TableInfoRender>
         </View>
 
-        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={11}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Client'  styles={styles} pageNumber={11}></Footer>
     </Page>  
 
     <Page style={styles.body} wrap >
@@ -201,7 +201,7 @@ const ClientReport = ({values}:{values:any}) => (
           <Treatment_plan item={values["treatment_plan"].slice(0,3)} styles={styles} title='Recommended Action Areas'></Treatment_plan>
         </View>
 
-        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={12}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Client'  styles={styles} pageNumber={12}></Footer>
     </Page>  
     <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
@@ -209,7 +209,7 @@ const ClientReport = ({values}:{values:any}) => (
           <Treatment_plan item={values["treatment_plan"].slice(3,6)} styles={styles} title=''></Treatment_plan>
         </View>
 
-        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={13}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Client'  styles={styles} pageNumber={13}></Footer>
     </Page>        
     <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
@@ -217,7 +217,7 @@ const ClientReport = ({values}:{values:any}) => (
           <Treatment_plan item={values["treatment_plan"].slice(6,9)} styles={styles} title=''></Treatment_plan>
         </View>
 
-        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={14}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Client'  styles={styles} pageNumber={14}></Footer>
     </Page>     
     <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
@@ -225,7 +225,7 @@ const ClientReport = ({values}:{values:any}) => (
           <Treatment_plan item={values["treatment_plan"].slice(9,10)} styles={styles} title=''></Treatment_plan>
         </View>
 
-        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={15}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Client'  styles={styles} pageNumber={15}></Footer>
     </Page>     
     <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
@@ -233,7 +233,7 @@ const ClientReport = ({values}:{values:any}) => (
           <Treatment_plan item={values["treatment_plan"].slice(10,11)} styles={styles} title=''></Treatment_plan>
         </View>
 
-        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={16}></Footer>
+        <Footer  reportName='Benchmark Assessment Report- Client'  styles={styles} pageNumber={16}></Footer>
     </Page>                                            
   </Document>
 );
