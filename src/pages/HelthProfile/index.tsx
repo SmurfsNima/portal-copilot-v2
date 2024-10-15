@@ -134,8 +134,8 @@ const HelthProfile = () => {
                             expert:formik.values.expert,
                             picture:image,
                             location:formik.values.location,
-                            "total workouts":formik.values.workOuts,
-                            "total Cardio Activities":formik.values.Activity
+                            "total_workouts":formik.values.workOuts,
+                            "total_cardio_activities":formik.values.Activity
                         }).then((res) => {
                             toast.success(res.data)
                         })
