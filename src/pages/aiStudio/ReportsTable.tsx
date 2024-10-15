@@ -36,19 +36,19 @@ const ReportTable: React.FC<ReportTableProps> = ({
         setshowModal(false)
     }
   })
-  const ShareModal = ({ reportId }: { reportId: number }) => {
-    console.log(reportId);
+//   const ShareModal = ({ reportId }: { reportId: number }) => {
+//     console.log(reportId);
    
-return(
-      <div ref={modalAiGenerateRef} className={` ${!showModal && 'hidden'} z-10  absolute w-[80px] h-[80px] text-xs bg-white dark:bg-black-third right-0 top-6 p-4 rounded-md shadow-md  flex flex-col justify-between`}>
+// return(
+//       <div ref={modalAiGenerateRef} className={` ${!showModal && 'hidden'} z-10  absolute w-[80px] h-[80px] text-xs bg-white dark:bg-black-third right-0 top-6 p-4 rounded-md shadow-md  flex flex-col justify-between`}>
         
        
-         <span className="text-[10px] text-light-secandary-text dark:text-primary-text cursor-pointer">Via Email</span> 
-       <div className="h-[1px] bg-light-border-color dark:bg-main-border w-full"></div>
-      <span className="text-[10px] text-light-secandary-text dark:text-primary-text cursor-pointer">Via SMS</span>
-      </div>)
+//          <span className="text-[10px] text-light-secandary-text dark:text-primary-text cursor-pointer">Via Email</span> 
+//        <div className="h-[1px] bg-light-border-color dark:bg-main-border w-full"></div>
+//       <span className="text-[10px] text-light-secandary-text dark:text-primary-text cursor-pointer">Via SMS</span>
+//       </div>)
   
-  };
+//   };
   return (
     <>
       
@@ -114,7 +114,8 @@ return(
                           src={"./Themes/Aurora/icons/share.svg"}
                         />
  {shareReportId === el.report_id && showModal && (
-                          <ShareModal reportId={el.report_id} />
+                            <></>
+                          // <ShareModal reportId={el.report_id} />
                         )}</div>
                        
                         <img

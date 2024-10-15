@@ -102,7 +102,7 @@ const ViewTreatmentPlan = () => {
                             <div className="w-[450px]">First 12 weeks</div>
                             <div className="w-[450px]">Second 12 weeks</div>
                         </div>
-                        {treatmentPlanData?.treatment_plans.map((el:any) => {
+                        {treatmentPlanData?.treatment_plans?.map((el:any) => {
                             return (
                                 <div className="text-light-secandary-text flex border-b border-b-light-border-color dark:border-b-[#383838] text-[12px] py-4 w-full dark:text-[#FFFFFFDE] ">
                                     <div className="flex w-[350px]"> <div className=" w-[90px] overflow-hidden">{el.subCategory}</div> <span className="ml-1">{el.area}</span></div>
