@@ -51,7 +51,7 @@ const ViewTreatmentPlan = () => {
                         <img className={`Aurora-icons-arrow-left`} />
                     </div> 
                     <div className="text-[14px] font-medium text-light-secandary-text dark:text-[#FFFFFFDE]">
-                        View Treatment Plan
+                        Edit Treatment Plan
                     </div>
                 </div>                
                 <div className="bg-white rounded-[6px] px-6 py-6 h-[390px] mt-2  border border-light-border-color dark:bg-[#2F2F2F] dark:border-[#383838]">

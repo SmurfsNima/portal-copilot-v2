@@ -2,13 +2,13 @@
   @apply h-8   w-full flex justify-center border-b border-light-border-color dark:border-main-border px-8    ;
 }
 .Aurora-tab {
-  @apply flex-1 w-1/5 flex text-light-secandary-text dark:text-primary-text justify-center items-center gap-1 cursor-pointer  border-t border-transparent border-x rounded-t-md text-xs ;
+  @apply flex-1 w-1/5 flex text-light-secandary-text dark:text-gray-500 opacity-55 justify-center items-center gap-1 cursor-pointer  border-t border-transparent border-x rounded-t-md text-xs ;
 }
 .Aurora-tab-icon-container{
   @apply flex items-center justify-center px-4 py-[6px] bg-white border-light-border-color dark:bg-black-primary border dark:dark:border-main-border rounded-xl;
 }
 .Aurora-tab[data-active="true"] {
-  @apply border-light-blue-active dark:border-brand-primary-color bg-white dark:bg-black-primary text-light-secandary-text dark:text-primary-text;
+  @apply border-light-blue-active opacity-100 dark:border-brand-primary-color bg-white dark:bg-black-primary text-light-secandary-text dark:text-primary-text;
 }
 // .Aurora-tab[data-isLast="true"] {
 //   @apply rounded-r-xl;

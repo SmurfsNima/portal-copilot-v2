@@ -71,7 +71,7 @@ const TreatMentPlan = () => {
                                     Report Title
                                     </div>
                                     <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-5 w-[360px] flex items-center justify-center text-[14px]">
-                                    Create on
+                                    Created on
                                     </div>
                                     <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-5 w-[300px] flex items-center justify-end pr-10 text-[14px]">
                                     Action
@@ -86,12 +86,12 @@ const TreatMentPlan = () => {
                                         <>
                                             <div className="flex justify-between items-center my-1">
                                             <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-2 w-[250px] text-[12px]">
-                                                {el.formatted_date}
+                                                {el.description.substring(0,40)+ '...'}
                                             </div>
                                             <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-2 w-[360px] flex justify-center items-center text-[12px]">
-                                                {el.formatted_time}
+                                                {el.formatted_date+" "+el.formatted_time}
                                             </div>
-                                            <div className="text-[#FFFFFFDE] overflow-visible relative py-2 w-[300px] gap-2 flex justify-end px-5 items-center text-[12px]">
+                                            <div className="text-[#FFFFFFDE] overflow-visible relative py-2 w-[300px] gap-3 flex justify-end px-5 items-center text-[12px]">
                                                 <img
                                                 ref={showReportModalButtonRefrence}
                                                 onClick={() => {
