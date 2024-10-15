@@ -22,6 +22,9 @@ const ChartController:React.FC<ChartControllerProps> = ({
         console.log(data)
         setResolveData(data)
     }, [data])
+    useEffect(() => {
+        setActiveChart("")
+    },[onGoingData])
     // const { id } = useParams<{ id: string }>();
     // const [onGoingData,setOnGoingData] = useState<any>({})
     const [isShowMore,setIsShowMore] = useState(false);

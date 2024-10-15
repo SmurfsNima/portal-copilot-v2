@@ -53,10 +53,10 @@ const ReportTable: React.FC<ReportTableProps> = ({
     <>
       
       {data.length < 1 ? (
-        <div className="w-full h-[500px] flex items-center justify-center">
+        <div className="w-full h-[300px] flex items-center justify-center">
           <div className="flex flex-col gap-1">
             <img src="/images/Empty State.png" alt="" />
-            <span className="text-secondary-text text-base">
+            <span className="text-light-secandary-text dark:text-secondary-text text-base">
               No Result to Show
             </span>
           </div>

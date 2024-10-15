@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { BeatLoader } from "react-spinners"
 import BenchmarkModal from "../Treatment Plan/benchmarkModal"
 import { Button } from "symphony-ui"
 import TextBoxAi from "./TextBoxAi"
 import { useNavigate, useParams } from "react-router-dom"
 import { Application } from "@/api"
+import GenerateWithAiModal from "@/pages/aiStudio/GenerateWithAiModal"
 
 const ViewTreatmentPlan = () => {
     const navigate = useNavigate()
@@ -17,7 +18,7 @@ const ViewTreatmentPlan = () => {
         console.log(value)
         setTratmentPlanData((pre:any) => {
             const old = pre
-            old.treatment_plans[0][index][key][doOrdos] =value.includes(",")?[...value.split(",")][0]:[value][0]
+            old.treatment_plans[index][key][doOrdos] =value.includes(",")?[...value.split(",")][0]:[value]
             return old
         })
     }
@@ -31,6 +32,15 @@ const ViewTreatmentPlan = () => {
             setIsLoading(false)
         })
     },[])
+    const [showGenerateWithAi,setShowGenerateWithAi] = useState(false)
+    const modalAiGenerateRef = useRef(null)
+    const updateTreatmentPalnData= (value:any) => {
+         setTratmentPlanData((pre:any) => {
+            const old = pre
+            old.treatment_plans[0] =value
+            return old
+        })       
+    }    
     return (
         <div className="w-full px-4">
             <div className="w-full py-6 px-4 bg-white rounded-[6px] dark:bg-[#1E1E1E] border border-light-border-color dark:border-[#383838] h-[610px] ">
@@ -76,13 +86,14 @@ const ViewTreatmentPlan = () => {
                             })}
                         </div>
 
-                        <div className="dark:text-[#FFFFFFDE] mt-4 text-light-secandary-text gap-2 flex justify-between items-center text-[14px] font-medium">
+                        <div className="dark:text-[#FFFFFFDE] relative mt-4 text-light-secandary-text gap-2 flex justify-between items-center text-[14px] font-medium">
                             <div className="w-full flex justify-start gap-2 items-center">
                                 <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
                                 Report Details
                             </div>
                             <Button onClick={() => {
-                                setIsLoadingGenerate(true)
+                                // setIsLoadingGenerate(true)
+                                setShowGenerateWithAi(true)
                             }} theme="Aurora-pro">
                                 {isloadingGenerate ?
                                 <div className="px-3 w-full flex justify-center items-center">
@@ -97,6 +108,22 @@ const ViewTreatmentPlan = () => {
                                 </>
                                 }
                             </Button>
+                            {showGenerateWithAi &&
+                                <div className="absolute right-[140px] top-[30px] z-40">
+                                    <GenerateWithAiModal onSuccess={(val) => {
+                                        setShowGenerateWithAi(false)
+                                        setIsLoadingGenerate(true)
+                                        Application.UpdateTreatmentPlanWithAi({
+                                            ai_generation_mode:val,
+                                            input_text:treatmentPlanData?.treatment_plans[0],
+                                        }).then((res) => {
+                                            // setLocalVal(res.data.map((e:any) => e))
+                                            setIsLoadingGenerate(false)
+                                            updateTreatmentPalnData(res.data)
+                                        })                          
+                                    }} refEl={modalAiGenerateRef}></GenerateWithAiModal>                                    
+                                </div>
+                            }
                         </div>
 
                         <div className="w-full border-b border-b-light-border-color dark:border-b-[#383838] pb-3 font-medium text-[14px] mt-6 text-light-secandary-text dark:text-[#FFFFFFDE] flex justify-start">
@@ -110,23 +137,23 @@ const ViewTreatmentPlan = () => {
                                             <div className="flex w-[350px]"> <div className=" w-[90px] overflow-hidden">{el.subCategory}</div> <span className="ml-1">{el.area}</span></div>
                                             <div>
 
-                                                <TextBoxAi label="dos" onChange={(val) => {
+                                                <TextBoxAi label="" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"first12Weeks",'dos')
                                                 }} value={el.first12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
 
-                                                <TextBoxAi label="donts" onChange={(val) => {
+                                                {/* <TextBoxAi label="donts" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"first12Weeks",'donts')
-                                                }} value={el.first12Weeks.donts.map((e:string) =>e)}></TextBoxAi>
+                                                }} value={el.first12Weeks.donts.map((e:string) =>e)}></TextBoxAi> */}
                                             </div>
                                             <div className="w-[450px] pr-4">
                                                 <div>
-                                                <TextBoxAi label="dos" onChange={(val) => {
+                                                <TextBoxAi label="" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"second12Weeks",'dos')
                                                 }} value={el.second12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
 
-                                                <TextBoxAi label="donts" onChange={(val) => {
+                                                {/* <TextBoxAi label="donts" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"second12Weeks",'donts')
-                                                }} value={el.second12Weeks.donts.map((e:string) =>e)}></TextBoxAi>                                                    
+                                                }} value={el.second12Weeks.donts.map((e:string) =>e)}></TextBoxAi>                                                     */}
                                                 </div>
                                             </div>                                            
                                         </div>
@@ -136,8 +163,22 @@ const ViewTreatmentPlan = () => {
                     </div>
                     }
                 </div>        
-
+                <div className="w-full mt-6 flex gap-4 justify-center">
+                    <Button onClick={() => {
+                        Application.saveTreatmentPaln({
+                            treatment_id:report,
+                            description:treatmentPlanData.description_section.description,
+                            treatment_plan:treatmentPlanData.treatment_plans
+                        })
+                        navigate(-1)
+                    }} theme="Aurora">
+                        <div className="w-[100px]">
+                            Save
+                        </div>
+                    </Button>
+                </div>       
             </div>
+   
         </div>
     )
 }

@@ -9,6 +9,7 @@ export const UploadLogo = () => {
   const theme = useSelector((state: any) => state.theme.value.name);
 
   const [clinicName, setClinicName] = useState("");
+  const [clinicName2, setClinicName2] = useState("");
   const [logoBase64, setLogoBase64] = useState("");
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -72,30 +73,40 @@ export const UploadLogo = () => {
   };
 
   const handleClick = async () => {
-    setButtonState("loading");
+    
   
     try {
       await handleSaveChanges();
-      setButtonState("finish");
+
+      
   
     } catch (error) {
       console.error("Error during save:", error);
       setButtonState("initial");
     }
   };
+  useEffect(() => {
+    if(buttonState == 'finish'){
+      setTimeout(() => {
+        setButtonState("initial")
+      }, 2000);
+    }
+  })
   const [visivleDelete,setVisibleDelete] = useState(false)
   const handleSaveChanges = async () => {
-    if (!logoBase64) {
+    if (!logoBase64 && clinicName == '') {
       console.error("No logo to save");
       return;
     }
-  
+    setButtonState("loading");
     try {
       const response = await Application.saveLogo({
           new_logo: logoBase64,
           clinic_name:clinicName
       });
       setLogo(logoBase64)
+      setButtonState("finish");
+      setClinicName2(clinicName)
       console.log("Response from server:", response);
       console.log("Clinic Name:", clinicName);
       console.log("Logo Base64:", logoBase64);
@@ -108,7 +119,7 @@ export const UploadLogo = () => {
    const data= await Application.getLogoClinic()
    if(data.data!='Internal Server Error'){
      setLogo(data.data.clinic_logo)
-     setClinicName(data.data.clinic_name)
+     setClinicName2(data.data.clinic_name)
    }
   }
   useEffect(()=>{
@@ -139,8 +150,10 @@ export const UploadLogo = () => {
             }
           </div>
         </div>
-        {logo.length ==0 &&
+        {logo.length ==0 ?
         <h1 className={"block  text-light-primary-text dark:text-primary-text text-xs"}>No logo uploaded yet.</h1>
+        :
+        <h1 className={"block  text-light-primary-text dark:text-primary-text text-xs"}>{clinicName2}</h1>
         }
       </div>
         <div className="  flex flex-col items-center justify-start py-10 pr-10 w-[800px] md:min-w-4xl">
@@ -239,13 +252,13 @@ export const UploadLogo = () => {
 >
   {buttonState === 'initial' && <div className="flex justify-center items-center gap-2 !">
     <img src={"/Themes/Aurora/icons/uploadIcon.svg"}/>
-    <p>Upload Your Logo</p>
+    <p>Save Changes</p>
   </div>}
   {buttonState === 'loading' && <BeatLoader size={10} color="white"/>}
   {buttonState === 'finish' && (
       <div className="flex justify-center items-center gap-1">
       <div className={`${theme}-icons-check`} />
-      Upload Your Logo
+      Saved Changes
     </div>
   )}
 </Button>
