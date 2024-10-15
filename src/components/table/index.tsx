@@ -115,7 +115,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
             <SearchBox
               changeHandler={(e: any) => setGlobalFilter(e.target.value)} // Update global filter on input change
               theme={theme}
-              placeholder="Search for users"
+              placeholder="Search for client"
             />
             {/* <div className="w-[236px] h-[32px] bg-[#1E1E1E] border border-[#333333] rounded-[6px] flex items-center justify-between gap-1 text-[11px] text-[#ffffffc3] px-[25px]">
               <svg xmlns="http://www.w3.org/2000/svg" className="w-[11px]" fill="currentColor" viewBox="0 0 16 16">
