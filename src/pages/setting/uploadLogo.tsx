@@ -85,9 +85,16 @@ export const UploadLogo = () => {
       setButtonState("initial");
     }
   };
+  useEffect(() => {
+    if(buttonState == 'finish'){
+      setTimeout(() => {
+        setButtonState("initial")
+      }, 2000);
+    }
+  })
   const [visivleDelete,setVisibleDelete] = useState(false)
   const handleSaveChanges = async () => {
-    if (!logoBase64) {
+    if (!logoBase64 && clinicName == '') {
       console.error("No logo to save");
       return;
     }
@@ -245,13 +252,13 @@ export const UploadLogo = () => {
 >
   {buttonState === 'initial' && <div className="flex justify-center items-center gap-2 !">
     <img src={"/Themes/Aurora/icons/uploadIcon.svg"}/>
-    <p>Upload Your Logo</p>
+    <p>Save Changes</p>
   </div>}
   {buttonState === 'loading' && <BeatLoader size={10} color="white"/>}
   {buttonState === 'finish' && (
       <div className="flex justify-center items-center gap-1">
       <div className={`${theme}-icons-check`} />
-      Uploaded Your Logo
+      Saved Changes
     </div>
   )}
 </Button>
