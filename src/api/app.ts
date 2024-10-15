@@ -264,6 +264,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/save_treatment_plan",data)
     return response     
   }
+
+  static UpdateTreatmentPlanWithAi =(data:any) =>{
+    const response = this.post("/update_treatment_plan_with_ai",data)
+    return response       
+  }
 }
 
 

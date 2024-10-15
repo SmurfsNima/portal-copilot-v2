@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import clinic from '@/assets/images/clinic.png';
+// import clinic from '@/assets/images/clinic.png';
 // import SearchBox from '../searchBox';
 import { useSelector } from 'react-redux';
 import React from 'react';
@@ -15,12 +15,12 @@ const TopBar:React.FC = () => {
                         {/* <div className={`${theme}-TopBar-Button-layer`}>
                             <img src={'./Themes/Aurora/icons/notification.svg'}  alt="" />
                         </div>                         */}
-                        <div className={`${theme}-TopBar-Button-layer`}>
+                        {/* <div className={`${theme}-TopBar-Button-layer`}>
                             <img src={clinic} alt="" />
-                        </div>
+                        </div> */}
                         <div>
-                            <div className={`${theme}-Text-xs`}>Clinic Longevity 1</div>
-                            <div className={`${theme}-Text-xs`}>Clinic-Longevity-1@gmail.com</div>
+                            <div className={`${theme}-Text-xs`}>Longeviti Performance Coaching</div>
+                            {/* <div className={`${theme}-Text-xs`}>Clinic-Longevity-1@gmail.com</div> */}
                         </div>
                     </div>
                     <div className='flex justify-start gap-2 items-center'>

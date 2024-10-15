@@ -2,7 +2,7 @@
   @apply flex flex-col  w-[100%]  gap-y-1;
 }
 .Aurora-TextArea-label {
-  @apply leading-[19.36px] text-[16px] font-[500] text-secondary-color;
+  @apply leading-[19.36px] text-[12px] font-[500] text-light-secandary-text opacity-85 dark:text-white;
 }
 .Aurora-TextArea-input {
   @apply focus:outline-none h-[95px] w-full resize-none px-2 rounded-[6px]  placeholder:leading-[27.25px]  placeholder:text-[16px]  placeholder:font-[300]   pb-[12px] pt-[10px] border border-light-border-color dark:border-[#383838]  placeholder:text-placeholder-color bg-white  dark:bg-[#1E1E1E];

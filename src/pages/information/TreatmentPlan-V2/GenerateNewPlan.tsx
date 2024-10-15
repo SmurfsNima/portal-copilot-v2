@@ -42,6 +42,11 @@ const GenerateNewPlan =() => {
             generatePaln()
         }
         if(generateStep == 'Generate'){
+            Application.saveTreatmentPaln({
+                treatment_id:treatmentPlanData.treatment_plans[1],
+                description:treatmentPlanData.description_section.description,
+                treatment_plan:treatmentPlanData.treatment_plans[0]
+            })
             navigate(-1)
         }
     }
@@ -71,11 +76,14 @@ const GenerateNewPlan =() => {
             // navigate(-1)
         });
     }    
-    const resolveTextDoDoes = (value:any) => {
-        const resolvedText = ''
-        const newDo = value.dos.map((el:any) => el)
-        const newDoes = value.donts.map((el:any) => el)
-        return resolvedText+ newDo + newDoes
+
+    const resolveChangeTextFields =(value:string,index:number,key:string,doOrdos:string) => {
+        console.log(value)
+        setTratmentPlanData((pre:any) => {
+            const old = pre
+            old.treatment_plans[0][index][key][doOrdos] =value.includes(",")?[...value.split(",")][0]:[value][0]
+            return old
+        })
     }
     const [isModalOpen, setIsModalOpen] = useState(false);
     useEffect(() => {
@@ -262,14 +270,30 @@ const GenerateNewPlan =() => {
                                     <div className="w-[450px]">First 12 weeks</div>
                                     <div className="w-[450px]">Second 12 weeks</div>
                                 </div>
-                                {treatmentPlanData?.treatment_plans[0].map((el:any) => {
+                                {treatmentPlanData?.treatment_plans[0].map((el:any,index:number) => {
                                     return (
                                         <div className="text-light-secandary-text flex border-b border-b-light-border-color dark:border-b-[#383838] text-[12px] py-4 w-full dark:text-[#FFFFFFDE] ">
                                             <div className="flex w-[350px]"> <div className=" w-[90px] overflow-hidden">{el.subCategory}</div> <span className="ml-1">{el.area}</span></div>
-                                            <TextBoxAi value={resolveTextDoDoes(el.first12Weeks)}></TextBoxAi>
+                                            <div>
+
+                                                <TextBoxAi label="dos" onChange={(val) => {
+                                                    resolveChangeTextFields(val,index,"first12Weeks",'dos')
+                                                }} value={el.first12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
+
+                                                <TextBoxAi label="donts" onChange={(val) => {
+                                                    resolveChangeTextFields(val,index,"first12Weeks",'donts')
+                                                }} value={el.first12Weeks.donts.map((e:string) =>e)}></TextBoxAi>
+                                            </div>
                                             <div className="w-[450px] pr-4">
-                                                 <TextBoxAi value={resolveTextDoDoes(el.second12Weeks)}></TextBoxAi>
-                                                {/* <TextArea onChange={() => {}} value={resolveTextDoDoes(el.second12Weeks)} theme="Aurora" name="" inValid={false} onBlur={() => {}} ></TextArea> */}
+                                                <div>
+                                                <TextBoxAi label="dos" onChange={(val) => {
+                                                    resolveChangeTextFields(val,index,"second12Weeks",'dos')
+                                                }} value={el.second12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
+
+                                                <TextBoxAi label="donts" onChange={(val) => {
+                                                    resolveChangeTextFields(val,index,"second12Weeks",'donts')
+                                                }} value={el.second12Weeks.donts.map((e:string) =>e)}></TextBoxAi>                                                    
+                                                </div>
                                             </div>                                            
                                         </div>
                                     )
