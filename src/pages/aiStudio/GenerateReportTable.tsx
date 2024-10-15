@@ -217,7 +217,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,showWeakly
                                                 setSHowWeaklyData(true)
                                                 Application.Gethistorical_graph({
                                                     member_id:memberId,
-                                                    key:el
+                                                    key:data["Goal"][index]
                                                 }).then(res => {
                                                    setGraphData(res.data)
                                                 })

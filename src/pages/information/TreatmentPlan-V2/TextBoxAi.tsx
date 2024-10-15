@@ -2,6 +2,7 @@
 import { Application } from "@/api"
 import GenerateWithAiModal from "@/pages/aiStudio/GenerateWithAiModal"
 import { useEffect, useRef, useState } from "react"
+import { BeatLoader } from "react-spinners"
 import { Button, TextArea } from "symphony-ui"
 
 interface TextBoxAiProps {
@@ -16,12 +17,15 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label}) => {
     const [showAiReport,setShowAiReport] = useState(false)
     const [,setPramt] = useState("")
     const [localVal,setLocalVal] = useState(value)
+    const [isLoading ,setIsLoading] = useState(false)
     const beGenerateWithAi = (pre:string) => {
+        setIsLoading(true)
         Application.UpdateTreatmentPlanWithAi({
             ai_generation_mode:pre,
             input_text:localVal.includes(",")? localVal.split(","):[localVal],
         }).then(res => {
             setLocalVal(res.data.map((e:any) => e))
+            setIsLoading(false)
         })
     }
     useEffect(() => {
@@ -40,7 +44,7 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label}) => {
                 <TextArea onBlur={() => {}} onChange={(e) => {
                    setLocalVal(e.target.value)
                 }} value={localVal} label={label} theme="Aurora" name="" inValid={false}  ></TextArea>
-                <div className="w-[32px] absolute top-8 right-6 h-[32px]">
+                <div className="w-[32px] absolute top-3 right-6 h-[32px]">
                     {isActiveAi  && 
                         <>
                             <Button onClick={() => {
@@ -48,9 +52,16 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label}) => {
                             }} theme="Aurora-pro">
                                 <img className="Aurora-icons-stars invisible" alt="" />
                             </Button>
-                            <img onClick={() => {
-                                setShowAiReport(true)
-                            }} className="Aurora-icons-stars w-[16px] left-2 cursor-pointer absolute top-1" alt="" />
+                            {isLoading?
+                            <div className="absolute w-[16px] flex pt-2 pl-[2px] top-1">
+                                <BeatLoader size={5} color="green"></BeatLoader>
+
+                            </div>
+                         :
+                         <img onClick={() => {
+                             setShowAiReport(true)
+                         }} className="Aurora-icons-stars w-[16px] left-2 cursor-pointer absolute top-1" alt="" />
+                            }
                             {showAiReport &&
                             <div className="absolute left-[-200px] top-10 z-40">
                                 <GenerateWithAiModal onSuccess={(val) => {

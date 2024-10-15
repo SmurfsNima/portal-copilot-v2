@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Application } from "@/api";
 import { PlanManagerModal } from "@/components";
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import { Button } from "symphony-ui";
 import BenchmarkModal from "../Treatment Plan/benchmarkModal";
 import TextBoxAi from "./TextBoxAi";
+import GenerateWithAiModal from "@/pages/aiStudio/GenerateWithAiModal";
 // import data from './data.json';
 
 interface Benchmark {
@@ -76,7 +77,7 @@ const GenerateNewPlan =() => {
             // navigate(-1)
         });
     }    
-
+    const modalAiGenerateRef = useRef(null)
     const resolveChangeTextFields =(value:string,index:number,key:string,doOrdos:string) => {
         console.log(value)
         setTratmentPlanData((pre:any) => {
@@ -84,6 +85,13 @@ const GenerateNewPlan =() => {
             old.treatment_plans[0][index][key][doOrdos] =value.includes(",")?[...value.split(",")][0]:[value][0]
             return old
         })
+    }
+    const updateTreatmentPalnData= (value:any) => {
+         setTratmentPlanData((pre:any) => {
+            const old = pre
+            old.treatment_plans[0] =value
+            return old
+        })       
     }
     const [isModalOpen, setIsModalOpen] = useState(false);
     useEffect(() => {
@@ -101,6 +109,7 @@ const GenerateNewPlan =() => {
 
     },[])    
     const [isloadingGenerate,setIsLoadingGenerate] = useState(false)
+    const [showGenerateWithAi,setShowGenerateWithAi] = useState(false)
     return (
         <>
         <div className="w-full flex justify-center px-4">
@@ -242,13 +251,14 @@ const GenerateNewPlan =() => {
                                     })}
                                 </div>
 
-                                <div className="dark:text-[#FFFFFFDE] mt-4 text-light-secandary-text gap-2 flex justify-between items-center text-[14px] font-medium">
+                                <div className="dark:text-[#FFFFFFDE] relative mt-4 text-light-secandary-text gap-2 flex justify-between items-center text-[14px] font-medium">
                                     <div className="w-full flex justify-start gap-2 items-center">
                                         <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
                                         Report Details
                                     </div>
                                     <Button onClick={() => {
-                                        setIsLoadingGenerate(true)
+                                        // setIsLoadingGenerate(true)
+                                        setShowGenerateWithAi(true)
                                     }} theme="Aurora-pro">
                                         {isloadingGenerate ?
                                         <div className="px-3 w-full flex justify-center items-center">
@@ -263,6 +273,23 @@ const GenerateNewPlan =() => {
                                         </>
                                         }
                                     </Button>
+                                    {showGenerateWithAi &&
+                                        <div className="absolute right-[140px] top-[30px] z-40">
+                                            <GenerateWithAiModal onSuccess={(val) => {
+                                                setShowGenerateWithAi(false)
+                                                setIsLoadingGenerate(true)
+                                                Application.UpdateTreatmentPlanWithAi({
+                                                    ai_generation_mode:val,
+                                                    input_text:treatmentPlanData?.treatment_plans[0],
+                                                }).then((res) => {
+                                                    // setLocalVal(res.data.map((e:any) => e))
+                                                    setIsLoadingGenerate(false)
+                                                    updateTreatmentPalnData(res.data)
+                                                })                          
+                                            }} refEl={modalAiGenerateRef}></GenerateWithAiModal>                                    
+                                        </div>
+                                    }
+
                                 </div>
 
                                 <div className="w-full border-b border-b-light-border-color dark:border-b-[#383838] pb-3 font-medium text-[14px] mt-6 text-light-secandary-text dark:text-[#FFFFFFDE] flex justify-start">
