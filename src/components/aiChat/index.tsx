@@ -117,12 +117,18 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
     })
   },[memberId])
   return (
-    <div className="w-full h-[424px]  mx-auto bg-white border-light-border-color dark:bg-black-primary border dark:border-main-border  rounded-md relative flex flex-col ">
+    <div className="w-full h-[410px]  mx-auto bg-white border-light-border-color dark:bg-black-primary border dark:border-main-border  rounded-md relative flex flex-col ">
       
-      <div className="p-4 space-y-4 max-h-[380px] overflow-y-auto">
-        {messages.map((msg) => (
+      <div className="p-4 space-y-4 max-h-[360px] overflow-y-auto">
+        {messages.map((msg,index:number) => (
           <>
             {msg.sender=='ai' ?
+              <>
+              {
+                index == messages.length-1 &&
+                  <div  ref={messagesEndRef}></div>
+                
+              }
               <div className='flex justify-start items-start gap-1'>
                 <div className='w-[40px] h-[40px] flex justify-center items-center rounded-full bg-light-min-color dark:bg-[#383838]'>
                   <img src="./images/clinic.png" alt="" />                 
@@ -132,7 +138,9 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
                   <div className='max-w-[500px] bg-white border-light-border-color dark:bg-[#272727] p-4 text-justify  mt-1 dark:border-[#383838] border text-light-secandary-text dark:text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tl-none ' style={{lineHeight:'26px'}}>{msg.text}</div>
                 </div>
               </div>
+              </>
             :
+            <>
               <div className='flex justify-end items-start gap-1'>
                 <div className='flex flex-col items-end'>
                   <div className='text-light-primary-text dark:text-[#FFFFFFDE] text-[12px]'>Coach <span className='text-light-primary-text dark:text-[#FFFFFF99] ml-1'>{msg.time}</span></div>
@@ -142,6 +150,12 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
                   <img className='rounded-full' src={`https://ui-avatars.com/api/?name=${'Coach'}`} alt="" />                 
                 </div>
               </div>
+              {
+                index == messages.length-1 &&
+                  <div  ref={messagesEndRef}></div>
+                
+              }              
+            </>
             }
           </>
           // <div key={msg.id} className={` relative flex ${msg.sender === 'user' ? 'justify-start' : 'justify-end'}`}>
@@ -156,7 +170,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
           //   </div>
           // </div>
         ))}
-        <div  ref={messagesEndRef}></div>
+        
       </div>
       <div className="w-[98%] bg-black-primar  absolute bottom-0 ml-2 mb-2    border dark:border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
         <input
