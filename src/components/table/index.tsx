@@ -48,7 +48,9 @@ const Table: React.FC<TableProps> = ({ classData }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [memberID, setMemberID] = useState<number>()
 
-  const pageSize = 6;
+  // calculate the height of table
+  const pageSize =  (window.innerHeight*.67)/65; // 100vh in pixels
+
   useEffect(() => {
     setData(classData);
   }, [classData]);
@@ -129,7 +131,7 @@ const Table: React.FC<TableProps> = ({ classData }) => {
               <TbFilterPlus className="w-5 h-5" />
               Apply Filter
             </Button> */}
-            <Button onClick={handleOpenModal} theme={theme}>
+            <Button onClick={handleOpenModal}  theme={theme}>
               <RiUserAddLine className="w-5 h-5" />
               Add Client{" "}
             </Button>

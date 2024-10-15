@@ -24,7 +24,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="text-light-primary-text dark:text-primary-text disabled:opacity-50 px-3"
+        className="text-light-primary-text dark:text-primary-text disabled:opacity-50 px-3 dark:border-none rounded-l-lg rounded  border border-lite-main-border"
       >
         &lt;
       </button>
@@ -33,7 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
           <button
             key={index}
             onClick={() => onPageChange(page)}
-            className={`   px-3 border-x text-[12px] text-light-primary-text dark:text-primary-text  border-x-main-border py-1  ${page === currentPage ? 'bg-light-blue-active darK:bg-main-border ' : 'bg-light-min-color dark:bg-black-primary'}`}
+            className={`   px-3 dark:border-none dark:border-x rounded-sm  border border-lite-main-border text-[12px] text-light-primary-text dark:text-primary-text  dark:border-x-main-border py-1  ${page === currentPage ? 'bg-light-btn-pagination-active darK:bg-main-border dark:bg-dark-btn-active ' : ' dark:bg-black-primary'}`}
           >
             {page}
           </button>
@@ -46,7 +46,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="text-light-primary-text dark:text-primary-text disabled:opacity-50 px-3 "
+        className="text-light-primary-text dark:text-primary-text disabled:opacity-50 px-3 dark:border-none  rounded-r-lg rounded  border border-lite-main-border"
       >
         &gt;
       </button>
