@@ -251,7 +251,7 @@ export const UploadLogo = () => {
   {buttonState === 'finish' && (
       <div className="flex justify-center items-center gap-1">
       <div className={`${theme}-icons-check`} />
-      Upload Your Logo
+      Uploaded Your Logo
     </div>
   )}
 </Button>
