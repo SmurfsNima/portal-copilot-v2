@@ -62,7 +62,7 @@ const GenerateNewPlan =() => {
     const [activeMenu,setActiveMenu] = useState('3 Month')
     const generatePaln =() => {
         setIsLoading(true)
-        setGenereStep("Generate")
+        
         Application.generateTreatmentPlan({
             member_id: Number(id),
             three_months_priority:Priorities3,
@@ -71,6 +71,7 @@ const GenerateNewPlan =() => {
         }).then(res => {
             console.log(res.data);
             // console.log(res)
+            setGenereStep("Generate")
             setIsLoading(false)
             if(!res.data.detail){
                 setTratmentPlanData(res.data)
