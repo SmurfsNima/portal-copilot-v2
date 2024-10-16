@@ -13,6 +13,10 @@ axios.interceptors.response.use((response) => {
     if(response.data.detail && response.data.detail !='Invalid token.' && response.data.detail !='Not Found'){
         toast.error(response.data.detail)
     }
+    if ( response.data && response.data.detail) {
+      // Handle the custom error provided in the response body
+      return Promise.reject(new Error(response.data.detail)); // Reject the promise to trigger the catch block
+    }    
     return response;
 }, (error) => {
     if (error.response && error.response.data) {

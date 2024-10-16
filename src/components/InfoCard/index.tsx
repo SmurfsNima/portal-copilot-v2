@@ -208,7 +208,7 @@ const InfoCard = () => {
         </div>
       ) : (
         <div className=" w-full flex justify-around">
-          <div className="text-sm text-light-primary-text dark:text-primary-text flex items-center justify-center flex-col">
+          <div className="text-sm text-light-primary-text invisible dark:text-primary-text flex items-center justify-center flex-col">
             <h3 className="mb-[10px]">Progress</h3>
             <div className="  flex items-center justify-center  gap-5">
             {Progress.map((item) => (
@@ -241,7 +241,7 @@ const InfoCard = () => {
               ))}
             </div>
           </div>
-          <div className="text-sm text-light-primary-text dark:text-primary-text flex items-center mr-5 justify-center flex-col">
+          <div className="text-sm invisible text-light-primary-text dark:text-primary-text flex items-center mr-5 justify-center flex-col">
             <h3 className="mb-[10px]">Plan Progress</h3>
             <HalfCycle percentage={Plan_Progress[0].Percentage} />
           </div>
