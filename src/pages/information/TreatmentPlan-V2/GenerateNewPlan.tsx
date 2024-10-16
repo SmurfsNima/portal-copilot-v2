@@ -128,6 +128,10 @@ const GenerateNewPlan =() => {
         })
         // return "scdc"
     }
+    const resolveDescriptText = () => {
+        return treatmentPlanData?.description_section["description"]
+        // return "scdc"
+    }    
     const updateNeedFocus= (value:any) => {
          setTratmentPlanData((pre:any) => {
             const old = pre
@@ -135,6 +139,13 @@ const GenerateNewPlan =() => {
             return old
         })       
     }
+    const updateDescription= (value:any) => {
+         setTratmentPlanData((pre:any) => {
+            const old = pre
+            old.description_section["description"] =value
+            return old
+        })       
+    }    
     return (
         <>
         <div className="w-full flex justify-center px-4">
@@ -251,12 +262,34 @@ const GenerateNewPlan =() => {
                             </div>
                             :    
                             <div className="w-full dark:bg-[#272727] border h-[350px] overflow-y-scroll border-light-border-color p-6 dark:border-[#383838] rounded-[6px]">
-                                <div className="dark:text-[#FFFFFFDE] text-light-secandary-text gap-2 flex justify-start items-center text-[14px] font-medium">
+                                <div className="dark:text-[#FFFFFFDE] mb-1 text-light-secandary-text gap-2 flex justify-start items-center text-[14px] font-medium">
                                     <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
                                     Client Condition Insights
                                 </div>
+                                <div>
+                                    {treatmentPlanData?.description_section?.description &&
+                                        <TextBoxAi isDescript label="" onChange={(e) => {
+                                            updateDescription(e)
+                                        }} value={resolveDescriptText()}></TextBoxAi>                                    
+                                    }
+                                </div>
+                                <div className="dark:text-[#FFFFFFDE] mt-4 mb-1 text-light-secandary-text gap-2 flex justify-start items-center text-[14px] font-medium">
+                                    <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
+                                    Needs Focus Benchmarks
+                                    <img
+                                        className=" transition-transform cursor-pointer w-5 h-5"
+                                        onClick={() => {setIsModalOpen(true)}}
+                                        src="./Themes/Aurora/icons/export-v2.svg"
+                                        alt=""
+                                    />                                    
+                                </div>  
+                                {treatmentPlanData?.description_section["need focus benchmarks"].length >0 &&
+                                        <TextBoxAi isNeedFocus label="" onChange={(e) => {
 
-                                <div className="dark:bg-[#1E1E1E] border mt-4 py-6 px-8 text-[12px] text-justify text-light-secandary-text dark:text-[#FFFFFFDE] border-light-border-color dark:border-[#383838] rounded-[6px] ">
+                                            updateNeedFocus(e)
+                                        }} value={resolveNeedFocusText()}></TextBoxAi>
+                                }                                   
+                                {/* <div className="dark:bg-[#1E1E1E] border mt-4 py-6 px-8 text-[12px] text-justify text-light-secandary-text dark:text-[#FFFFFFDE] border-light-border-color dark:border-[#383838] rounded-[6px] ">
                                     <div>{treatmentPlanData?.description_section?.description}</div>
                                     <div className="dark:bg-[#1E1E1E] flex items-center gap-1 mt-3 dark:text-[#FFFFFFDE] text-[12px]">Needs Focus Benchmarks:
                                         <img
@@ -273,8 +306,8 @@ const GenerateNewPlan =() => {
                                             updateNeedFocus(e)
                                         }} value={resolveNeedFocusText()}></TextBoxAi>
                                    }
-                                    <BenchmarkModal isOpen={isModalOpen} onClose={() => {setIsModalOpen(false)}} />
-                                </div>
+                                   </div> */}
+                                <BenchmarkModal isOpen={isModalOpen} onClose={() => {setIsModalOpen(false)}} />
 
                                 <div className="dark:text-[#FFFFFFDE] relative mt-4 text-light-secandary-text gap-2 flex justify-between items-center text-[14px] font-medium">
                                     <div className="w-full flex justify-start gap-2 items-center">

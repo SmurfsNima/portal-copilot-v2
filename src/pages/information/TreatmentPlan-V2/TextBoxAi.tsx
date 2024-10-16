@@ -11,9 +11,10 @@ interface TextBoxAiProps {
     label:string
     isNeedFocus?:boolean
     isRecomandation?:boolean
+    isDescript?:boolean
 }
 
-const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label,isNeedFocus}) => {
+const TextBoxAi:React.FC<TextBoxAiProps> = ({value,isDescript,onChange,label,isNeedFocus}) => {
     const [isActiveAi,setIsActiveAi] = useState(false)
     const modalAiGenerateRef = useRef(null)
     const [showAiReport,setShowAiReport] = useState(false)
@@ -35,6 +36,7 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label,isNeedFocus}) 
             onChange(localVal)
         }
     },[localVal])
+
     return (
         <>
             <div onMouseLeave={() => {
@@ -42,10 +44,10 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label,isNeedFocus}) 
                     setShowAiReport(false)
                 }} onMouseEnter={() => {
                      setIsActiveAi(true)
-                }} className={`${!isNeedFocus?'w-[450px]':'w-full'} relative pr-4`}>
+                }} className={`${!isNeedFocus && !isDescript?'w-[450px]':'w-full'} relative pr-4`}>
                 <TextArea onBlur={() => {}} onChange={(e) => {
                    setLocalVal(e.target.value)
-                }} value={localVal} label={label} theme={isNeedFocus?'Aurora-S':"Aurora"} name="" inValid={false}  ></TextArea>
+                }} value={localVal} label={label} theme={isNeedFocus || isDescript?'Aurora-S':"Aurora"} name="" inValid={false}  ></TextArea>
                 <div className="w-[32px] absolute top-3 right-6 h-[32px]">
                     {isActiveAi  && 
                         <>
@@ -66,7 +68,7 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label,isNeedFocus}) 
                             }
                             {showAiReport &&
                             <div className="absolute left-[-200px] top-10 z-40">
-                                <GenerateWithAiModal isLimite={isNeedFocus} onSuccess={(val) => {
+                                <GenerateWithAiModal isLimite={isNeedFocus||isDescript} onSuccess={(val) => {
                                     setShowAiReport(false)
                                     setPramt(val)
                                     beGenerateWithAi(val)

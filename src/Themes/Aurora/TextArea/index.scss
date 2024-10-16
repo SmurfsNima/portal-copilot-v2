@@ -29,7 +29,7 @@
   @apply leading-[19.36px] text-[12px] font-[500] text-light-secandary-text opacity-85 dark:text-white;
 }
 .Aurora-S-TextArea-input {
-  @apply focus:outline-none h-[2000px] px-5 w-full resize-none  rounded-[6px]  placeholder:leading-[27.25px]  placeholder:text-[16px]  placeholder:font-[300]   pb-[12px] pt-[10px] border border-light-border-color dark:border-[#383838]  placeholder:text-placeholder-color bg-white  dark:bg-[#1E1E1E];
+  @apply focus:outline-none text-light-secandary-text dark:text-primary-text h-[200px] px-5 w-full resize-none  rounded-[6px]  placeholder:leading-[27.25px]  placeholder:text-[16px]  placeholder:font-[300]   pb-[12px] pt-[10px] border border-light-border-color dark:border-[#383838]  placeholder:text-placeholder-color bg-white  dark:bg-[#1E1E1E];
 }
 
 .Aurora-S-TextArea-inValid {
