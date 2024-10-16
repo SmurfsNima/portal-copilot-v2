@@ -33,13 +33,24 @@ export const Tab = ({
         handleClick();
       }}
     >
-      <img
-        data-active={active === text}
-        className={`${theme}-icons-${text.replace(/\s+/g, '')} ${
-          !icon && "hidden"
-        } w-[16px] h-[16px]`}
-        alt=""
-      />
+      {text!='Copilot'?
+        <img
+          data-active={active === text}
+          className={`${theme}-icons-${text.replace(/\s+/g, '')} ${
+            !icon && "hidden"
+          } w-[16px] h-[16px]`}
+          alt=""
+        />
+      :
+        <img
+          data-active={active === text}
+          src="./Themes/Aurora/icons/messages-3.svg"
+          className={` ${
+            !icon && "hidden"
+          } w-[16px] h-[16px]`}
+          alt=""
+        />      
+      }
    
         {text}
       <div
