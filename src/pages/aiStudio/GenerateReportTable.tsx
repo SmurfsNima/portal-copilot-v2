@@ -46,7 +46,10 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,s
             Recommendation: updatedRecommendation
         });
     };    
-
+    const [reportIdCurrent,setReportID] = useState(reportId)
+    useEffect(() => {
+        setReportID(reportId)
+    },[reportId])
     const handleTargetGoalChange = (index:number, value:string) => {
         const updatedRecommendation = [...data["Target goal"]];
         updatedRecommendation[index] = value;
@@ -73,23 +76,8 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,s
         Application.ai_studio_update_weekly_data({
             member_id:memberId,
             data:data
-        }).then(() => {
-            // Application.downloadReportForGenerate({
-            //      member_id:memberId,
-            //     report_id:res.data.report_id
-            // }).then(resovle => {
-            // //    const pdf =  reportManager.generatePDFReport(resovle.data)
-            //     pdf(<WeaklyReport values={resovle.data} />).toBlob().then(pdfBlob => {
-            //         blobToBase64(pdfBlob).then(base64Pdf => {
-            //             console.log(base64Pdf)
-            //             Application.saveAiStadioReport({
-            //                 member_id : memberId,
-            //                 weekly_report_string:base64Pdf,
-            //                 report_id:res.data.report_id                         
-            //             })
-            //         });
-            //     });
-            // })
+        }).then((val) => {
+            setReportID(val.data.report_id)
         })
         publish("completeChanges",{})
         setISComplete(true)
@@ -121,7 +109,17 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,s
     },[showWeaklyData])
     const [acivaChart,setActiveChart] = useState("")
     const [graphData,setGraphData] = useState<any>({})
+    const sendEmail = () => {
+        if(isShareWithEmail){
+            Application.ShareWeaklyReport({
+                type: 'email',   
+                member_id:memberId,
+                report_id:reportIdCurrent
+            })        
 
+        }
+    }
+    const [isShareWithEmail,setIsShareWithEmail] = useState(false)
     return (
         <>
             {isComplete ?
@@ -135,12 +133,17 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,s
                                 <label className="text-[12px]" htmlFor="viasms">Via SMS</label>
                             </div>
                             <div className="flex justify-center gap-2 mt-2 items-center">
-                                <input id="viaEmail" className="w-4 rounded-[4px] h-4 bg-transparent" type="checkbox" />
+                                <input checked={isShareWithEmail} onClick={() =>{
+                                    setIsShareWithEmail(true)
+                                }} id="viaEmail" className="w-4 rounded-[4px] h-4 bg-transparent" type="checkbox" />
                                 <label className="text-[12px]" htmlFor="viaEmail">Via Mail</label>
                             </div>                            
                         </div>
                         <div className="flex justify-center mt-10">
-                            <Button onClick={onClose} theme="Aurora-pro">
+                            <Button onClick={() =>{
+                                sendEmail()
+                                onClose()
+                            }} theme="Aurora-pro">
                                 <img className="invert dark:invert-0" src={"./Themes/Aurora/icons/tick-square3.svg"} />
                                 Finish</Button>
                         </div>
