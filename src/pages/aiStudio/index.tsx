@@ -222,7 +222,7 @@ export const AiStudio = () => {
       <>
         {patients[0].member_id == 1 ?
           <div className="w-full flex flex-col gap-3 felx justify-center items-center h-[450px]">
-            <GridLoader size={15}  color="#787878" ></GridLoader>
+            <GridLoader size={15}  color="#7F39FB" ></GridLoader>
           </div>
         :
         <div className="w-full flex flex-col gap-3">
