@@ -412,7 +412,7 @@ export const AiStudio = () => {
               </div>
               <div className=" px-5">
                 <div className="border-light-border-color dark:border-black-third mb-4 border"></div>
-                  <ReportTable onResolved={(resolveData,reportId) => {
+                  <ReportTable email={activePatinet.Email} onResolved={(resolveData,reportId) => {
                     setGenerateReportGoolsData(resolveData)
                     setisCreateReportMode(true)
                     setCurrentReportId(reportId)

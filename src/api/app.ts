@@ -269,6 +269,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/update_treatment_plan_with_ai",data)
     return response       
   }
+
+  static ShareWeaklyReport(data:any){
+    const response = this.post("/ai_studio/message_to_client",data)
+    return response
+  }
 }
 
 

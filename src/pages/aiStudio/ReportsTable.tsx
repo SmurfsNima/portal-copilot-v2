@@ -4,17 +4,20 @@ import { Application } from "@/api";
 import { useEffect, useState, useRef } from "react";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
 import { useNavigate } from "react-router-dom";
+import ConfirmShareModal from "@/components/confirmShare";
 
 interface ReportTableProps {
   data: Array<any>;
   memberId: number;
   onUpdate: () => void;
+  email:string;
   onResolved: (data:any,reportId:string) => void;
 }
 const ReportTable: React.FC<ReportTableProps> = ({
   data,
   memberId,
-  onResolved
+  onResolved,
+  email
 }) => {
   // const handleDownload = (value: any) => {
   //   const link = document.createElement("a");
@@ -30,6 +33,7 @@ const ReportTable: React.FC<ReportTableProps> = ({
   const [shareReportId, setShareReportId] = useState<number | null>(null);
   const [showModal, setshowModal] = useState(true)
   const modalAiGenerateRef = useRef(null)
+  const [isOpenShare,setISOpenShare] = useState(false)
   useModalAutoClose({
     refrence:modalAiGenerateRef,
     close:() => {
@@ -107,7 +111,8 @@ const ReportTable: React.FC<ReportTableProps> = ({
                         />
                         <div className="relative"> <img
                           onClick={() => {setShareReportId(el.report_id)
-                           setshowModal(true)
+                          //  setshowModal(true)
+                          setISOpenShare(true)
                           }
                           }
                           className="cursor-pointer"
@@ -140,6 +145,14 @@ const ReportTable: React.FC<ReportTableProps> = ({
           )}
         </div>
       )}
+      <ConfirmShareModal title="Share File" content={`Are you sure you want to share this report with ‘${email}’?`} isOpen={isOpenShare} onClose={() => {setISOpenShare(false)}} onConfirm={()=>{
+        Application.ShareWeaklyReport({
+            type: 'email',   
+            member_id:memberId,
+            report_id:shareReportId
+        })
+        setISOpenShare(false)
+      }} ></ConfirmShareModal>
     </>
   );
 };
