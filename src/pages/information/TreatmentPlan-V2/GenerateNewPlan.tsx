@@ -120,7 +120,7 @@ const GenerateNewPlan =() => {
     const resolveNeedFocusText = () => {
         return treatmentPlanData?.description_section["need focus benchmarks"].map((el:any) => {
             return (
-                el.replace(',','')+'\n\n'
+                el+'\n\n'
             )
         })
         // return "scdc"
