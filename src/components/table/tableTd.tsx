@@ -45,15 +45,36 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "information.member_id",
     header: "Member ID",
+    cell: ({ row }) => {
+      return (
+        <div className="w-[120px] flex justify-center">
+          {row.original.information.member_id}
+        </div>
+      )
+    }
   },
   {
     accessorKey: "information.age",
     header: "Age",
+    cell: ({ row }) => {
+      return (
+        <div className="w-[120px]">
+          {row.original.information.age}
+        </div>
+      )
+    }    
   },
   {
     accessorKey: "information.sex",
     header: "Sex",
     enableSorting: false,
+    cell: ({ row }) => {
+      return (
+        <div className="w-[120px]">
+          {row.original.information.sex}
+        </div>
+      )
+    }    
   },
   // {
   //   accessorKey: "information.weight",
@@ -69,6 +90,13 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "information.enroll_date",
     header: "Enroll Date",
+    cell: ({ row }) => {
+      return (
+        <div className="w-[120px]">
+          {row.original.information.enroll_date}
+        </div>
+      )
+    }    
   },
   // {
   //   accessorKey: "information.last_followup",
@@ -78,10 +106,10 @@ export const columns: ColumnDef<Pationt>[] = [
     accessorKey: "information.status",
     header: "Status",
     enableSorting: true,
-
+    
     cell: ({ row }) => {
       return (
-        <div className="items-center justify-center flex ">
+        <div className="items-center justify-center w-[120px] flex ">
         <Badge theme={Theme()} status={row.original.information.status}>
           {row.original.information.status}
         </Badge>

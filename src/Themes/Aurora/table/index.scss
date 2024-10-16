@@ -2,7 +2,7 @@
   @apply overflow-x-auto border border-light-border-color dark:border-main-border -mt-2  bg-white dark:bg-black-primary rounded-[6px] text-primary-text opacity-85 mt-[-12px] 
 }
 .Aurora-Table-header{
-  @apply px-3 pt-3 pb-1 text-xs font-medium cursor-pointer 
+  @apply px-3 pt-3 pb-1 text-xs  font-medium cursor-pointer 
 }
 .Aurora-Table{
   @apply  border-collapse table-auto text-sm text-left rtl:text-right 
@@ -11,7 +11,7 @@
   @apply flex overflow-hidden  flex-row gap-2 justify-between flex-wrap space-y-0 pb-4 
 }
 .Aurora-Table-td{
-  @apply px-6 py-2 text-center text-nowrap text-xs w-[20vw]
+  @apply px-6 py-2 text-center text-nowrap text-xs
 }
 .Aurora-Table-search{
 @apply block p-2 ps-10 border-[#FFFFFF]  border-opacity-15 text-sm text-gray-900 border rounded-lg w-80 bg-[#121212] focus:ring-blue-500 focus:border-blue-500
