@@ -119,11 +119,26 @@ const Analysis = () => {
     },[avtiveMenu,analyseData,search,activeStatus])
     const resolveOnGoingData =() => {
         const resolved:any ={}
-        Object.keys(onGoingData).map((el) => {
-            if(el.toLowerCase().includes(search.toLowerCase()) ||  search ==''){
-                resolved[el] = onGoingData[el]
-            }
-        })
+        if(activeStatus == 'All'){
+            Object.keys(onGoingData).map((el) => {
+                if(el.toLowerCase().includes(search.toLowerCase()) ||  search ==''){
+                    resolved[el] = onGoingData[el]
+                }
+            })
+        }
+        if(activeStatus != 'All'){
+            Object.keys(onGoingData).map((el) => {
+                if(search != ''){
+                    if((el.toLowerCase().includes(search.toLowerCase()) &&  onGoingData[el].status == activeStatus)){
+                        resolved[el] = onGoingData[el]
+                    }
+                }else {
+                    if((onGoingData[el].status == activeStatus)){
+                        resolved[el] = onGoingData[el]
+                    }                    
+                }
+            })
+        }        
         return resolved
     }
     return (
