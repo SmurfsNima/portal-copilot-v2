@@ -9,7 +9,7 @@ import GenerateReportTable from "./GenerateReportTable";
 import ReportTable from "./ReportsTable";
 import GenerateWithAiModal from "./GenerateWithAiModal";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
-import { BeatLoader } from "react-spinners";
+import { BeatLoader,GridLoader } from "react-spinners";
 import { subscribe } from "@/utils/event";
 
 type menuItem = {
@@ -220,6 +220,11 @@ export const AiStudio = () => {
         </div>
       :
       <>
+        {patients[0].member_id == 1 ?
+          <div className="w-full flex flex-col gap-3 felx justify-center items-center h-[450px]">
+            <GridLoader size={15}  color="#787878" ></GridLoader>
+          </div>
+        :
         <div className="w-full flex flex-col gap-3">
           <div className="w-full flex items-center justify-between">
             <div className="w-[171px]">
@@ -391,7 +396,7 @@ export const AiStudio = () => {
                 </div>
 
                 <div>
-                  <Button onClick={() => {
+                  <Button disabled={patients[0].member_id == 1} onClick={() => {
                     setEditMode(false)
                     setGenerateReportGoolsData({"Type of progress":[]})
                     Application.getWeeklyReport({
@@ -417,6 +422,7 @@ export const AiStudio = () => {
             </div>
           )}
         </div>
+        }
 
         <div className="flex flex-col gap-[10px] justify-start ">
           <SearchBox changeHandler={(e) => setSearchQuery(e.target.value)} theme="Aurora" placeholder="Search for client..." />

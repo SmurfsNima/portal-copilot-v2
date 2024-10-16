@@ -35,7 +35,7 @@ console.log(memberID);
         cardActive === memberID
           ? "dark:border-brand-primary-color bg-light-border-color border-light-blue-active   dark:bg-black-secondary"
           : "dark:border-main-border border-light-border-color bg-white dark:bg-black-primary"
-      } cursor-pointer   px-3 py-2 border rounded-md relative mt-[6px] w-full  `}
+      } cursor-pointer ${memberID == 1?'hidden':'block'}  px-3 py-2 border rounded-md relative mt-[6px] w-full  `}
     >
       <div className="w-full flex justify-between items-start text-[10px]">
         <div className="flex gap-3 items-center">
