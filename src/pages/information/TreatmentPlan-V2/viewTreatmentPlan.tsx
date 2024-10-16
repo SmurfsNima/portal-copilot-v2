@@ -42,6 +42,21 @@ const ViewTreatmentPlan = () => {
             return old
         })       
     }    
+    const resolveNeedFocusText = () => {
+        return treatmentPlanData?.description_section["need focus benchmarks"].map((el:any) => {
+            return (
+                el.replace(',','')+'\n\n'
+            )
+        })
+        // return "scdc"
+    }
+    const updateNeedFocus= (value:any) => {
+         setTratmentPlanData((pre:any) => {
+            const old = pre
+            old.description_section["need focus benchmarks"] =value.includes(",")?[...value.split(",")][0]:[value]
+            return old
+        })       
+    }    
     useModalAutoClose({
         refrence:modalAiGenerateRef,
         close:() => {
@@ -83,14 +98,20 @@ const ViewTreatmentPlan = () => {
                                     alt=""
                                 />
                             </div>
+                            {treatmentPlanData?.description_section["need focus benchmarks"].length >0 &&
+                                <TextBoxAi isNeedFocus label="" onChange={(e) => {
+
+                                    updateNeedFocus(e)
+                                }} value={resolveNeedFocusText()}></TextBoxAi>
+                            }                            
                             <BenchmarkModal isOpen={isModalOpen} onClose={() => {setIsModalOpen(false)}} />
-                            {treatmentPlanData?.description_section["need focus benchmarks"].map((el:any) => {
+                            {/* {treatmentPlanData?.description_section["need focus benchmarks"].map((el:any) => {
                                 return (
                                     <div className="ml-4 flex justify-start items-center gap-2 mt-1">
                                         <span className="w-[3px] h-[3px] bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
                                     {el}</div>
                                 )
-                            })}
+                            })} */}
                         </div>
 
                         <div className="dark:text-[#FFFFFFDE] relative mt-4 text-light-secandary-text gap-2 flex justify-between items-center text-[14px] font-medium">

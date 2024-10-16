@@ -7,6 +7,6 @@
 .Aurora-Badge-container[data-status="normal"] ,.Aurora-Badge-container[data-status="Checked"] {
   @apply bg-[#06C78D];
 }
-.Aurora-Badge-container[data-status="critical"] ,.Aurora-Badge-container[data-status="Incompleted"]{
+.Aurora-Badge-container[data-status="critical"] ,.Aurora-Badge-container[data-status="Incomplete Data"]{
   @apply bg-[#FC5474];
 }

@@ -241,7 +241,7 @@ static downloadClinicReport(data:any){
   }  
 
   static getManualData = () => {
-    const response = this.post("/ai_studio/manual_data_entry")
+    const response = this.post("/ai_studio/manual_data_entry",{})
     return response    
   }
 

@@ -9,9 +9,10 @@ interface TextBoxAiProps {
     value:string
     onChange?:(val:string) => void
     label:string
+    isNeedFocus?:boolean
 }
 
-const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label}) => {
+const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label,isNeedFocus}) => {
     const [isActiveAi,setIsActiveAi] = useState(false)
     const modalAiGenerateRef = useRef(null)
     const [showAiReport,setShowAiReport] = useState(false)
@@ -40,10 +41,10 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label}) => {
                     setShowAiReport(false)
                 }} onMouseEnter={() => {
                      setIsActiveAi(true)
-                }} className="w-[450px] relative pr-4">
+                }} className={`${!isNeedFocus?'w-[450px]':'w-full'} relative pr-4`}>
                 <TextArea onBlur={() => {}} onChange={(e) => {
                    setLocalVal(e.target.value)
-                }} value={localVal} label={label} theme="Aurora" name="" inValid={false}  ></TextArea>
+                }} value={localVal} label={label} theme={isNeedFocus?'Aurora-S':"Aurora"} name="" inValid={false}  ></TextArea>
                 <div className="w-[32px] absolute top-3 right-6 h-[32px]">
                     {isActiveAi  && 
                         <>
