@@ -86,7 +86,7 @@ const TreatMentPlan = () => {
                                         <>
                                             <div className="flex justify-between items-center my-1">
                                             <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-2 w-[250px] text-[12px]">
-                                                {el.description.substring(0,40)+ '...'}
+                                                {el.t_title}
                                             </div>
                                             <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-2 w-[360px] flex justify-center items-center text-[12px]">
                                                 {el.formatted_date+" "+el.formatted_time}
