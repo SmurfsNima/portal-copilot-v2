@@ -77,6 +77,8 @@ const GenerateNewPlan =() => {
                 setTratmentPlanData(res.data)
             }
             // navigate(-1)
+        }).catch(()=> {
+            setIsLoading(false)
         });
     }    
     const modalAiGenerateRef = useRef(null)
@@ -361,7 +363,7 @@ const GenerateNewPlan =() => {
                             </div>
                         </Button>
                     }
-                    <Button onClick={() => {
+                    <Button disabled={isLoading} onClick={() => {
                         resolveNextStep()
                     }} theme="Aurora">
                         {isLoading?
