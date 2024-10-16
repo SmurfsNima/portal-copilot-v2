@@ -135,7 +135,7 @@ export const AiStudio = () => {
       SetReportsData(res.data)
     })
   },[activeMemberID])
-  const status: Array<string> = ["All", "Need to Check", "Checked","Incompleted"];
+  const status: Array<string> = ["All", "Need to Check", "Checked","Incomplete Data"];
   const [isCreateReportMode,setisCreateReportMode] = useState(false)
   const [isEditMode,setEditMode] = useState(false)
   const [currentReportId,setCurrentReportId] = useState("")
