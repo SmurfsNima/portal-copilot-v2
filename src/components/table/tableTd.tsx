@@ -45,6 +45,7 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "information.member_id",
     header: "Member ID",
+    enableSorting: false,
     cell: ({ row }) => {
       return (
         <div className="w-[120px] flex justify-center">
@@ -56,6 +57,7 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "information.age",
     header: "Age",
+    enableSorting: false,
     cell: ({ row }) => {
       return (
         <div className="w-[120px]">
@@ -90,6 +92,7 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "information.enroll_date",
     header: "Enroll Date",
+    enableSorting: false,
     cell: ({ row }) => {
       return (
         <div className="w-[120px]">
@@ -105,7 +108,7 @@ export const columns: ColumnDef<Pationt>[] = [
   {
     accessorKey: "information.status",
     header: "Status",
-    enableSorting: true,
+    enableSorting: false,
     
     cell: ({ row }) => {
       return (
