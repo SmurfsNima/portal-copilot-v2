@@ -27,12 +27,12 @@ const PatientList = () => {
     const fetchData = async () => {
       try {
         const patientResponse = await Application.getPatients();
-        const biomarkerResponse = await Application.getBiomarkers();
-        const DiagnosisResponse = await Application.getDiagnosis();
+        // const biomarkerResponse = await Application.getBiomarkers();
+        // const DiagnosisResponse = await Application.getDiagnosis();
         // setReports(patientResponse.data.general_report);
         console.log(patientResponse);
-        console.log(biomarkerResponse);
-        console.log("diagnosis" , DiagnosisResponse);
+        // console.log(biomarkerResponse);
+        // console.log("diagnosis" , DiagnosisResponse);
 
         const biomarkersByPatientId: { [key: number]: biomarker[] } = {};
         // biomarkerResponse.data.forEach((item: any) => {

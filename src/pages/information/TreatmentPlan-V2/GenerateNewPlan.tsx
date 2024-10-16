@@ -364,9 +364,15 @@ const GenerateNewPlan =() => {
                     <Button onClick={() => {
                         resolveNextStep()
                     }} theme="Aurora">
+                        {isLoading?
+                        <div className="w-full h-full flex justify-center items-center">
+                            <BeatLoader size={8} color="white"></BeatLoader>
+                        </div>
+                        :
                         <div className="w-[100px]">
                            {generateStep=='Generate'?'Save':'Next Step'} 
                         </div>
+                        }
                     </Button>
                 </div>
             </div>
