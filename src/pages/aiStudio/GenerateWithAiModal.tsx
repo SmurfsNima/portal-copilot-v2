@@ -1,15 +1,17 @@
-import { MutableRefObject, useState } from "react";
+import { MutableRefObject, useEffect, useState } from "react";
 
 interface GenerateWithAiModalProps {
     refEl:MutableRefObject<HTMLDivElement|null>;
-    onSuccess:(text:string) => void
+    onSuccess:(text:string) => void,
+    isLimite?:boolean
 }
 const GenerateWithAiModal:React.FC<GenerateWithAiModalProps> = ({
     refEl,
     onSuccess,
+    isLimite
 }) => {
     const [askAi,setAskAi] = useState("")
-    const [promps,] = useState([
+    const [promps,setpromps] = useState([
         {
             key:'Goal Alignment',
             icon:'../images/Analyse/refresh-left-square.svg'
@@ -51,9 +53,31 @@ const GenerateWithAiModal:React.FC<GenerateWithAiModalProps> = ({
         },
                                                     
     ])
+    useEffect(() => {
+        if(isLimite){
+            setpromps(
+                [
+            {
+                key:'Make Shorter',
+                icon:'./images/Analyse/maximize-2.svg'
+            },
+            {
+                key:'Simplify Language',
+                // icon:'./Themes/Aurora/icons/status-up.svg'
+                icon:'./images/Analyse/smallcaps.svg'
+            },
+            {
+                key:'Be More Specific',
+                icon:'./images/Analyse/search-status.svg'
+            },                
+                ]
+            )
+
+        }
+    },[isLimite])
     return (
         <>
-            <div ref={refEl} className="w-[205px] h-[190px] overflow-auto px-3 py-2 rounded-[6px] dark:bg-[#272727] border bg-gray-50 border-light-border-color dark:border-[#383838]">
+            <div ref={refEl} className={`w-[205px] ${isLimite?'h-[150px]':'h-[190px]'} overflow-auto px-3 py-2 rounded-[6px] dark:bg-[#272727] border bg-gray-50 border-light-border-color dark:border-[#383838]`}>
                 <div className="dark:bg-black-primary px-2 flex justify-between items-center border dark:border-main-border rounded-md -ml-1 ">
                     <input value={askAi} onChange={(e) => {
                         setAskAi(e.target.value)

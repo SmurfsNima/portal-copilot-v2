@@ -66,7 +66,7 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label,isNeedFocus}) 
                             }
                             {showAiReport &&
                             <div className="absolute left-[-200px] top-10 z-40">
-                                <GenerateWithAiModal onSuccess={(val) => {
+                                <GenerateWithAiModal isLimite={isNeedFocus} onSuccess={(val) => {
                                     setShowAiReport(false)
                                     setPramt(val)
                                     beGenerateWithAi(val)
