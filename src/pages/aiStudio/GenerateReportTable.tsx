@@ -23,7 +23,7 @@ interface GenerateReportTableProps {
     setSHowWeaklyData:(active:boolean) => void
 }
 
-const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,showWeaklyData,setSHowWeaklyData,onCloseChart,onShowChart,isEdit,setData,onClose,memberId}) => {
+const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,showWeaklyData,setSHowWeaklyData,onCloseChart,onShowChart,isEdit,setData,onClose,memberId}) => {
     const resolveStatusColor = (ststus:string) => {
         if(ststus == 'OK'){
             return '#03DAC5'
@@ -96,7 +96,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,showWeakly
     const saveChanges =() => {
         Application.AiStudioEditSavedReport({
             member_id:memberId,
-            report_id:'',
+            report_id:reportId,
             data:data
         })
         publish("completeChanges",{})
@@ -124,9 +124,9 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,showWeakly
         <>
             {isComplete ?
                 <>
-                    <div className=" text-light-secandary-textdark:text-[#FFFFFFDE]">
+                    <div className=" text-light-secandary-text dark:text-[#FFFFFFDE]">
                         <div className="text-center text-[14px]">Do you want send this report to client?</div>
-                        <div className="text-[12px] text-center mt-6 text-[#FFFFFF99]">By confirming this option, the report will be sent directly through your chosen channel</div>
+                        <div className="text-[12px] text-center mt-6 text-light-secandary-text dark:text-[#FFFFFF99]">By confirming this option, the report will be sent directly through your chosen channel</div>
                         <div className="text-center mt-4">
                             <div className="flex justify-center gap-2 items-center">
                                 <input id="viasms" className="w-4 h-4 rounded-[4px] bg-transparent" type="checkbox" />
@@ -242,7 +242,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,showWeakly
                                 <img className="invert dark:invert-0" src={"./Themes/Aurora/icons/tick-square3.svg"} />
                                 Save Changes</Button>                        
                             :
-                            <Button onClick={nextAction} theme="Aurora-pro">
+                            <Button disabled={data["Type of progress"].lenght == 0} onClick={nextAction} theme="Aurora-pro">
                                 <img className="invert dark:invert-0" src={"./Themes/Aurora/icons/tick-square3.svg"} />
                                 Next</Button>
                             }
