@@ -167,7 +167,7 @@ const GenerateNewPlan =() => {
                         <div className={`text-[12px] ${generateStep=='Client Goals'?'dark:text-primary-color text-light-blue-active':' text-light-primary-text dark:text-[#FFFFFF99]'} font-medium `}>Client Goals</div>
                     </div>
 
-                    <img className="w-[16px]" src="./Themes/Aurora/icons/nextStep.svg" alt="" />
+                    <img className="w-[16px] invert dark:invert-0" src="./Themes/Aurora/icons/nextStep.svg" alt="" />
 
                     
                     <div className="flex justify-center items-center gap-2">
@@ -175,7 +175,7 @@ const GenerateNewPlan =() => {
                         <div className={`text-[12px] ${generateStep=='Category Order'?'dark:text-primary-color text-light-blue-active':' text-light-primary-text dark:text-[#FFFFFF99]'} font-medium `}>Category Order</div>
                     </div>  
 
-                    <img className="w-[16px]" src="./Themes/Aurora/icons/nextStep.svg" alt="" />
+                    <img className="w-[16px] invert dark:invert-0" src="./Themes/Aurora/icons/nextStep.svg" alt="" />
                     
                     <div className="flex justify-center items-center gap-2">
                         <div className={`w-5 h-5 rounded-full ${generateStep=='Generate'?'dark:border-primary-color dark:text-primary-color text-light-blue-active border-light-blue-active':'text-light-primary-text border-light-primary-text dark:text-[#FFFFFF99]'} border flex justify-center items-center text-[12px] font-medium `}>3</div>
@@ -215,15 +215,15 @@ const GenerateNewPlan =() => {
                             <div onClick={() => {
                                 setActiveMenu('3 Month')
                             }} className={`  ${
-                                activeMenu === '3 Month' && "bg-[#272727] text-[#FFFFFFDE]"
-                            } rounded-md w-[105px] text-xs text-[#FFFFFF99] h-[24px] flex items-center justify-center cursor-pointer   `}>
+                                activeMenu === '3 Month' && "dark:bg-[#272727] bg-light-blue-active text-[#FFFFFFDE]"
+                            } rounded-md w-[105px] text-xs text-light-secandary-text dark:text-[#FFFFFF99] h-[24px] flex items-center justify-center cursor-pointer   `}>
                                 3 Month
                             </div>
                             <div onClick={() => {               
                                 setActiveMenu('6 Month')
                             }} className={`  ${
-                                activeMenu === '6 Month' && "bg-[#272727] text-[#FFFFFFDE]"
-                            } rounded-md w-[105px] text-xs text-[#FFFFFF99] h-[24px] flex items-center justify-center cursor-pointer   `}>
+                                activeMenu === '6 Month' && "dark:bg-[#272727] bg-light-blue-active text-[#FFFFFFDE]"
+                            } rounded-md w-[105px] text-xs text-light-secandary-text dark:text-[#FFFFFF99]  h-[24px] flex items-center justify-center cursor-pointer   `}>
                                 6 Month
                             </div>   
 

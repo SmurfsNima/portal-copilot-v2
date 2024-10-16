@@ -50,16 +50,16 @@ const BenchmarkModal: React.FC<BenchmarkModalProps> = ({ isOpen, onClose }) => {
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
       onClick={handleClickOutside}
     >
-      <div className="z-50 bg-black-secondary ml-[80px] text-primary-text p-4 rounded-lg shadow-lg w-[85%] max-h-[400px]   relative">
+      <div className="z-50 bg-gray-50 dark:bg-black-secondary ml-[80px] text-primary-text p-4 rounded-lg shadow-lg w-[85%] max-h-[400px]   relative">
         <button
           onClick={onClose}
-          className="text-secondary-text hover:text-primary-text text-xl absolute right-5 top-5"
+          className="dark:text-secondary-text text-light-secandary-text hover:text-primary-text text-xl absolute right-10 top-5"
         >
           ✕
         </button>
 
         <div className="h-[300px] overflow-y-scroll">
-          <table className="w-full text-sm mt-8 border-spacing-4   ">
+          <table className="w-full text-light-secandary-text dark:text-white text-sm mt-8 border-spacing-4   ">
             <thead>
               <tr className="text-sm font-medium ">
                 <th className="border-b border-third-text border-opacity-30 text-nowrap py-2 px-8 text-left border-r ">
