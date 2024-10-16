@@ -33,12 +33,12 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
           <button
             key={index}
             onClick={() => onPageChange(page)}
-            className={`   px-3 dark:border-none dark:border-x rounded-sm  border border-lite-main-border text-[12px] text-light-primary-text dark:text-primary-text  dark:border-x-main-border py-1  ${page === currentPage ? 'bg-light-btn-pagination-active darK:bg-main-border dark:bg-dark-btn-active ' : ' dark:bg-black-primary'}`}
+            className={`   px-3 h-[26px] w-[26px] dark:border-none dark:border-x rounded-sm  border border-lite-main-border text-[12px] text-light-primary-text dark:text-primary-text  dark:border-x-main-border py-1  ${page === currentPage ? 'bg-light-btn-pagination-active darK:bg-main-border dark:bg-dark-btn-active ' : ' dark:bg-black-primary'}`}
           >
             {page}
           </button>
         ) : (
-          <span key={index} className="px-3 py-1 text-secondary-text ">
+          <span key={index} className="px-3 w-[26px] h-[26px] py-1 text-secondary-text ">
             {page}
           </span>
         )
