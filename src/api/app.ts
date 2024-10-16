@@ -274,6 +274,10 @@ static downloadClinicReport(data:any){
     const response = this.post("/ai_studio/message_to_client",data)
     return response
   }
+  static ShareTreatMentPlanReport(data:any){
+    const response = this.post("/patients/share_treatment",data)
+    return response
+  }  
 }
 
 

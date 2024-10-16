@@ -1,8 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Application } from "@/api";
 import { InfoCard } from "@/components"
+import ConfirmShareModal from "@/components/confirmShare";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
-import { useEffect, useRef, useState } from "react";
+import { Pationt } from "@/model";
+import { AppContext } from "@/store/app";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
@@ -11,7 +14,12 @@ import { Button } from "symphony-ui"
 const TreatMentPlan = () => {
     const theme = useSelector((state: any) => state.theme.value.name);
     const { id } = useParams<{ id: string }>();
+    const [, setPatient] = useState<Pationt>();
+    const { getPatientById } = useContext(AppContext);
     const navigate = useNavigate()
+    useEffect(() => {
+        setPatient(getPatientById(Number(id)));
+    }, [id]);    
     const [historyData,setHistory] = useState([])
     // const [isCreateNew,setIsCreateNew] = useState(false)
     const [showReportModal,setSHowReportModal] = useState(-1)
@@ -34,6 +42,8 @@ const TreatMentPlan = () => {
             setIsLoading(false)
         });
     }
+    const [shareReportId, setShareReportId] = useState<number | null>(null);
+    const [isOpenShare,setISOpenShare] = useState(false)
     useEffect(() => {
         getHistory()
     },[])
@@ -124,6 +134,8 @@ const TreatMentPlan = () => {
                                                 }
                                                 <div className="relative"> <img
                                                 onClick={() => {
+                                                    setShareReportId(el.t_plan_id)
+                                                    setISOpenShare(true)
                                                 }
                                                 }
                                                 className="cursor-pointer"
@@ -153,6 +165,14 @@ const TreatMentPlan = () => {
                 }
                 </div>
             </div>
+            <ConfirmShareModal title="Share File" content={`Are you sure you want to share this report with ‘${''}’?`} isOpen={isOpenShare} onClose={() => {setISOpenShare(false)}} onConfirm={()=>{
+                Application.ShareTreatMentPlanReport({
+                    type: 'email',   
+                    member_id:id,
+                    report_id:shareReportId
+                })
+                setISOpenShare(false)
+            }} ></ConfirmShareModal>            
         </>
     )
 }
