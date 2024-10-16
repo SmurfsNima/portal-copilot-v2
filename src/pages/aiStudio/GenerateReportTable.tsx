@@ -6,7 +6,8 @@ import { publish } from "@/utils/event"
 import { useEffect, useState } from "react"
 import { FiExternalLink } from "react-icons/fi"
 // import { useNavigate } from "react-router-dom"
-import { Button, TextField,TextArea } from "symphony-ui"
+import { Button, TextField } from "symphony-ui"
+import TextBoxAi from "../information/TreatmentPlan-V2/TextBoxAi"
 // import { pdf } from "@react-pdf/renderer";
 // import { blobToBase64 } from "@/help"
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -103,11 +104,11 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,s
         onClose()
     }
     const getChartData =() => {
-        Application.WeaklyReportGraph({
-            member_id:memberId
-        }).then(res => {
-            console.log(res)
-        })
+        // Application.WeaklyReportGraph({
+        //     member_id:memberId
+        // }).then(res => {
+        //     console.log(res)
+        // })
     }
     // const [showWeaklyData,setSHowWeaklyData] = useState(false)
     useEffect(() => {
@@ -118,7 +119,8 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,s
             onCloseChart()
         }
     },[showWeaklyData])
-    const [,setGraphData] = useState({})
+    const [acivaChart,setActiveChart] = useState("")
+    const [graphData,setGraphData] = useState<any>({})
 
     return (
         <>
@@ -150,13 +152,13 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,s
                 <>
                 {/* <Outlet></Outlet> */}
                 <div className="w-full h-full bg-gray-50 dark:bg-[#1E1E1E] p-8 border-light-border-color dark:border-[#383838] border rounded-[6px]">
-                    <div className="text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] mb-8">‘Days Met Calories Target’ Historical Data</div>
+                    <div className="text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] mb-8">{acivaChart}</div>
                     <div className="w-full  dark:bg-[#1E1E1E] bg-gray-100 p-8 dark:border-[#383838] border rounded-[6px]">
                         <div className="mb-4 flex justify-start items-center gap-8">
                             <div className="dark:text-[#FFFFFF99] text-light-primary-text text-[12px]">Average Value: <span className="font-semibold text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">50</span></div>
                              <div className="dark:text-[#FFFFFF99] text-light-primary-text text-[12px]">Current Value: <span className="font-semibold text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">60</span></div>
                         </div>
-                        <MethylationChart labels={[]} values={[]}></MethylationChart>   
+                        <MethylationChart labels={graphData?.data?.label} values={graphData?.data?.value}></MethylationChart>   
 
                     </div>
 
@@ -215,6 +217,7 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,s
                                                 </div>
                                             <div className="w-[140px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[14px] font-medium"><FiExternalLink onClick={() =>{
                                                 setSHowWeaklyData(true)
+                                                setActiveChart(data["Goal"][index])
                                                 Application.Gethistorical_graph({
                                                     member_id:memberId,
                                                     key:data["Goal"][index]
@@ -222,8 +225,11 @@ const GenerateReportTable:React.FC<GenerateReportTableProps> = ({data,reportId,s
                                                    setGraphData(res.data)
                                                 })
                                                 }} className="cursor-pointer"></FiExternalLink></div>
-                                            <div className="w-[400px] text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
-                                                  <TextArea   theme="Aurora" name="" onBlur={()=>{}} onChange={(e)=>{handleRecomendChange(index,e.target.value)}} value={data["Recommendation"][index]} inValid={false}></TextArea>
+                                            <div className="w-[400px] relative text-light-secandary-text dark:text-[#FFFFFFDE] py-5 flex justify-center  text-[12px] font-medium">
+                                                  {/* <TextArea   theme="Aurora" name="" onBlur={()=>{}} onChange={(e)=>{handleRecomendChange(index,e.target.value)}} value={data["Recommendation"][index]} inValid={false}></TextArea> */}
+                                                <TextBoxAi label="" value={data["Recommendation"][index]} onChange={(e)=>{
+                                                    handleRecomendChange(index,e)
+                                                }}></TextBoxAi>
                                                 {/* <input type="text" onChange={(e) => {
                                                     handleRecomendChange(index,e.target.value)
                                                 }} className="w-full text-center bg-[#383838]" placeholder="-" value={data["Recommendation"][index]} /> */}

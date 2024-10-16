@@ -10,6 +10,7 @@ interface TextBoxAiProps {
     onChange?:(val:string) => void
     label:string
     isNeedFocus?:boolean
+    isRecomandation?:boolean
 }
 
 const TextBoxAi:React.FC<TextBoxAiProps> = ({value,onChange,label,isNeedFocus}) => {
