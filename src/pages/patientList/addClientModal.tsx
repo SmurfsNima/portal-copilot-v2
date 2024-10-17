@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Application } from '@/api';
+import { publish } from '@/utils/event';
 import  React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Button } from 'symphony-ui';
@@ -67,6 +68,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
           wearableDevice: wearableDevice,
           memberId:res.data.member_id
         })
+        publish("reloadPage",{})
         setMemberId(res.data.member_id)
       }
     })

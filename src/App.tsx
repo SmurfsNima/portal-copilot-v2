@@ -13,7 +13,7 @@ function App() {
     <>
       <div>
         <RouterProvider router={router} />
-        <ToastContainer />
+        <ToastContainer theme="dark" />
       </div>
     </>
   )

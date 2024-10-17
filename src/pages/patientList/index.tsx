@@ -100,6 +100,9 @@ const PatientList = () => {
     setRemoveName(value.detail.name)
     setISOpenConfirm(true)
   })
+  subscribe("reloadPage",() => {
+    setReloadData(true)
+  })
 
   return (
     <>
