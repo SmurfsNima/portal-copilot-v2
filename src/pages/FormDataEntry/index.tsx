@@ -43,12 +43,12 @@ const FormDataEntry = () => {
                     <>
                         <div className="dark:bg-[#2F2F2F] bg-gray-50 border-light-border-color rounded-[6px] flex justify-between mt-4">
                             <div className="text-[14px] font-medium dark:text-[#FFFFFFDE] px-6 py-3">{name}</div>
-                            <div className="text-[12px] flex items-center font-medium text-[#FFFFFFDE] gap-2 px-6 py-3">
+                            {/* <div className="text-[12px] flex items-center font-medium text-[#FFFFFFDE] gap-2 px-6 py-3">
                                 <span className="text-[12px] text-light-primary-text dark:text-[#FFFFFF61] opacity-[38%]"> <span className="text-[12px] text-light-secandary-text dark:text-[#FFFFFFDE]">Client Email:</span></span>
                                 ''</div>
                             <div className="text-[12px] flex items-center font-medium text-[#FFFFFFDE] gap-2 px-6 py-3">
                                 <span className="text-[12px] text-light-primary-text dark:text-[#FFFFFF61] opacity-[38%]"> <span className="text-[12px] text-light-secandary-text dark:text-[#FFFFFFDE]">Date:</span></span>
-                                ''</div>                        
+                                ''</div>                         */}
                         </div>
                         
                         <div className="dark:bg-[#2F2F2F] bg-gray-50 p-6  rounded-[6px] h-[400px] overflow-y-scroll mt-2">
