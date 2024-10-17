@@ -278,6 +278,11 @@ static downloadClinicReport(data:any){
     const response = this.post("/patients/share_treatment",data)
     return response
   }  
+
+  static getScors(memberId:any) {
+    const response = this.get(`/patients/${memberId}/health_score`)
+    return response    
+  }
 }
 
 

@@ -27,6 +27,12 @@ const InfoCard = () => {
     setPatient(getPatientById(Number(id)));
   }, [id]);
 
+  useEffect(() => {
+    Application.getScors(id).then((res) => {
+      console.log(res)
+    })
+  },[id])
+
   const [active] = useState("Progress");
   const colorMap = {
     1: "#03DAC5", // Nutrition
