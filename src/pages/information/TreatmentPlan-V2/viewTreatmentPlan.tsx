@@ -155,7 +155,7 @@ const ViewTreatmentPlan = () => {
                                         setIsLoadingGenerate(true)
                                         Application.UpdateTreatmentPlanWithAi({
                                             ai_generation_mode:val,
-                                            input_text:treatmentPlanData?.treatment_plans[0],
+                                            input_text:treatmentPlanData?.treatment_plans,
                                         }).then((res) => {
                                             // setLocalVal(res.data.map((e:any) => e))
                                             setIsLoadingGenerate(false)
