@@ -273,16 +273,20 @@ const GenerateNewPlan =() => {
                                         }} value={resolveDescriptText()}></TextBoxAi>                                    
                                     }
                                 </div>
-                                <div className="dark:text-[#FFFFFFDE] mt-4 mb-1 text-light-secandary-text gap-2 flex justify-start items-center text-[14px] font-medium">
-                                    <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
-                                    Needs Focus Benchmarks
-                                    <img
-                                        className=" transition-transform cursor-pointer w-5 h-5"
-                                        onClick={() => {setIsModalOpen(true)}}
-                                        src="./Themes/Aurora/icons/export-v2.svg"
-                                        alt=""
-                                    />                                    
-                                </div>  
+                                <div className="w-full flex mt-4 items-center pr-4 justify-between">
+                                    <div className="dark:text-[#FFFFFFDE]  mb-1 text-light-secandary-text gap-2 flex justify-start items-center text-[14px] font-medium">
+                                        <span className="w-1 h-1 bg-light-secandary-text rounded-full dark:bg-[#FFFFFFDE]"></span>
+                                        Needs Focus Benchmarks
+                                       
+                                        {/* <img
+                                            className=" transition-transform cursor-pointer w-5 h-5"
+                                            onClick={() => {setIsModalOpen(true)}}
+                                            src="./Themes/Aurora/icons/export-v2.svg"
+                                            alt=""
+                                        />                                     */}
+                                    </div>  
+                                    <div onClick={() => {setIsModalOpen(true)}} className="text-[12px] cursor-pointer text-primary-color font-medium">Benchmarks List</div>
+                                </div>
                                 {treatmentPlanData?.description_section["need focus benchmarks"].length >0 &&
                                         <TextBoxAi isNeedFocus label="" onChange={(e) => {
 

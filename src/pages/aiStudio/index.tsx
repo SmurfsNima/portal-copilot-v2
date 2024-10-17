@@ -9,7 +9,7 @@ import GenerateReportTable from "./GenerateReportTable";
 import ReportTable from "./ReportsTable";
 import GenerateWithAiModal from "./GenerateWithAiModal";
 import useModalAutoClose from "@/hooks/UseModalAutoClose";
-import { BeatLoader,GridLoader } from "react-spinners";
+import { BeatLoader } from "react-spinners";
 import { subscribe } from "@/utils/event";
 
 type menuItem = {
@@ -222,7 +222,7 @@ export const AiStudio = () => {
       <>
         {patients[0].member_id == 1 ?
           <div className="w-full flex flex-col gap-3 felx justify-center items-center h-[450px]">
-            <GridLoader size={15}  color="#7F39FB" ></GridLoader>
+            <BeatLoader size={10}  color="#0CBC84" ></BeatLoader>
           </div>
         :
         <div className="w-full flex flex-col gap-3">

@@ -48,35 +48,41 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,isDescript,onChange,label,isN
                 <TextArea onBlur={() => {}} onChange={(e) => {
                    setLocalVal(e.target.value)
                 }} value={localVal} label={label} theme={isNeedFocus || isDescript?'Aurora-S':"Aurora"} name="" inValid={false}  ></TextArea>
-                <div className="w-[32px] absolute top-3 right-6 h-[32px]">
+                <div className="w-[32px] absolute top-3 right-8 h-[32px]">
                     {isActiveAi  && 
                         <>
-                            <Button onClick={() => {
-                                setShowAiReport(true)
-                            }} theme="Aurora-pro">
-                                <img className="Aurora-icons-stars invisible" alt="" />
-                            </Button>
-                            {isLoading?
-                            <div className="absolute w-[16px] flex pt-2 pl-[2px] top-1">
-                                <BeatLoader size={5} color="green"></BeatLoader>
+                        {!isNeedFocus && 
+                        <>
+                                <Button onClick={() => {
+                                    setShowAiReport(true)
+                                }} theme="Aurora-pro">
+                                    <img className="Aurora-icons-stars invisible" alt="" />
+                                </Button>
+                                {isLoading?
+                                <div className="absolute w-[16px] flex pt-2 pl-[2px] top-1">
+                                    <BeatLoader size={5} color="green"></BeatLoader>
 
-                            </div>
-                         :
-                         <img onClick={() => {
-                             setShowAiReport(true)
-                         }} className="Aurora-icons-stars w-[16px] left-2 cursor-pointer absolute top-1" alt="" />
-                            }
-                            {showAiReport &&
-                            <div className="absolute left-[-200px] top-10 z-40">
-                                <GenerateWithAiModal isLimite={isNeedFocus||isDescript} onSuccess={(val) => {
-                                    setShowAiReport(false)
-                                    setPramt(val)
-                                    beGenerateWithAi(val)
-                                }} refEl={modalAiGenerateRef}></GenerateWithAiModal>
+                                </div>
+                            :
+                            <>
+                                <img onClick={() => {
+                                    setShowAiReport(true)
+                                }} className="Aurora-icons-stars w-[16px] left-2 cursor-pointer absolute top-1" alt="" />
+                            </>
+                                }
+                                {showAiReport &&
+                                <div className="absolute left-[-200px] top-10 z-40">
+                                    <GenerateWithAiModal isLimite={isNeedFocus||isDescript} onSuccess={(val) => {
+                                        setShowAiReport(false)
+                                        setPramt(val)
+                                        beGenerateWithAi(val)
+                                    }} refEl={modalAiGenerateRef}></GenerateWithAiModal>
 
-                            </div>
-                            }
-                        
+                                </div>
+                                }
+                            
+                        </>
+                        }
                         </>
                     }
                 </div>

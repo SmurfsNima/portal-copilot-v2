@@ -102,12 +102,12 @@ const GenerateWithAiModal:React.FC<GenerateWithAiModalProps> = ({
                 <div onClick={() => {
                     onSuccess("Translate")
                 }} className="text-[10px] text-[#FFFFFFDE] h-[34px] flex justify-start items-center border-b cursor-pointer border-b-[#383838]">Translate</div> */}
-               {promps.map((el) => {
+               {promps.map((el,index:number) => {
                     return (
                         <>
                             <div onClick={() => {
                                 onSuccess(el.key)
-                            }} className="text-[10px] text-light-secandary-text dark:text-[#FFFFFFDE] gap-2 h-[34px] flex justify-start items-center border-b cursor-pointer border-b-[#383838]">
+                            }} className={`text-[10px] text-light-secandary-text dark:text-[#FFFFFFDE] gap-2 h-[34px] flex justify-start items-center ${index == promps.length-1 ?'border-none':'border-b'} cursor-pointer border-b-[#383838]`}>
                                 <img className="invert dark:invert-0" src={el.icon} alt="" />
                             {el.key}</div>                        
                         </>
