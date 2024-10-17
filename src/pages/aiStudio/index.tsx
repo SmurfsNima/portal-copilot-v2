@@ -399,7 +399,7 @@ export const AiStudio = () => {
                 </div>
 
                 <div>
-                  <Button disabled={patients[0].member_id == 1} onClick={() => {
+                  <Button disabled={patients[0]?.member_id == 1} onClick={() => {
                     setEditMode(false)
                     setGenerateReportGoolsData({"Type of progress":[]})
                     Application.getWeeklyReport({
