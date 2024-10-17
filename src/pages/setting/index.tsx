@@ -31,8 +31,8 @@ export const Setting = () => {
       icon: "Upload icon"
     },
     {
-      text: "Staff",
-      icon: "stuffIcon"
+      text: "Integration",
+      icon: "Integration"
     }
     // {
     //   icon: "profile-2user",
