@@ -27,8 +27,8 @@ export const IntegrationPage = () => {
     ]
 
     return (
-        <div className="  w-full flex h-[535px] flex-col items-center justify-start pt-10 px-6  dark:bg-black-primary border dark:border-none rounded-md">
-            <div className={"px-6 py-4 space-y-2"}>
+        <div className="  w-full flex h-[535px] flex-col items-center gap-5 justify-start pt-10 px-10  dark:bg-black-primary border dark:border-none rounded-md">
+            <div className={" py-2 space-y-2"}>
                 <h1 className={"text-light-secandary-text dark:text-white"}>
                     IntegrationPage
                 </h1>
