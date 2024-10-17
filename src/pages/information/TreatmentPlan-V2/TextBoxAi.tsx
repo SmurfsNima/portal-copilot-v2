@@ -12,9 +12,10 @@ interface TextBoxAiProps {
     isNeedFocus?:boolean
     isRecomandation?:boolean
     isDescript?:boolean
+    isUpchange?:boolean
 }
 
-const TextBoxAi:React.FC<TextBoxAiProps> = ({value,isDescript,onChange,label,isNeedFocus}) => {
+const TextBoxAi:React.FC<TextBoxAiProps> = ({value,isDescript,isUpchange,onChange,label,isNeedFocus}) => {
     const [isActiveAi,setIsActiveAi] = useState(false)
     const modalAiGenerateRef = useRef(null)
     const [showAiReport,setShowAiReport] = useState(false)
@@ -36,7 +37,9 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,isDescript,onChange,label,isN
             onChange(localVal)
         }
     },[localVal])
-
+    useEffect(() => {
+        setLocalVal(value)
+    },[isUpchange])
     return (
         <>
             <div onMouseLeave={() => {

@@ -24,6 +24,7 @@ const ViewTreatmentPlan = () => {
             return old
         })
     }
+    const [isforceReload,setIsForceReload] = useState(false)   
     const [isloadingGenerate,setIsLoadingGenerate] = useState(false)
     useEffect(() => {
         setIsLoading(true)
@@ -39,9 +40,13 @@ const ViewTreatmentPlan = () => {
     const updateTreatmentPalnData= (value:any) => {
          setTratmentPlanData((pre:any) => {
             const old = pre
-            old.treatment_plans[0] =value
+            old.treatment_plans =value
             return old
         })       
+        setIsForceReload(true)
+        setTimeout(() => {
+            setIsForceReload(false)
+        }, 600);        
     }    
     const resolveNeedFocusText = () => {
         return treatmentPlanData?.description_section["need focus benchmarks"].map((el:any) => {
@@ -101,7 +106,7 @@ const ViewTreatmentPlan = () => {
                         </div>
                         <div>
                             {treatmentPlanData?.description_section?.description &&
-                                <TextBoxAi isDescript label="" onChange={(e) => {
+                                <TextBoxAi isUpchange={isforceReload} isDescript label="" onChange={(e) => {
                                     updateDescription(e)
                                 }} value={resolveDescriptText()}></TextBoxAi>                                    
                             }
@@ -121,7 +126,7 @@ const ViewTreatmentPlan = () => {
                             <div onClick={() => {setIsModalOpen(true)}} className="text-[12px] cursor-pointer text-primary-color font-medium">Benchmarks List</div>
                         </div>
                         {treatmentPlanData?.description_section["need focus benchmarks"].length >0 &&
-                                <TextBoxAi isNeedFocus label="" onChange={(e) => {
+                                <TextBoxAi isUpchange={isforceReload} isNeedFocus label="" onChange={(e) => {
 
                                     updateNeedFocus(e)
                                 }} value={resolveNeedFocusText()}></TextBoxAi>
@@ -178,7 +183,7 @@ const ViewTreatmentPlan = () => {
                                             <div className="flex w-[350px]"> <div className=" w-[90px] overflow-hidden">{el.subCategory}</div> <span className="ml-1">{el.area}</span></div>
                                             <div>
 
-                                                <TextBoxAi label="" onChange={(val) => {
+                                                <TextBoxAi isUpchange={isforceReload} label="" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"first12Weeks",'dos')
                                                 }} value={el.first12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
 
@@ -188,7 +193,7 @@ const ViewTreatmentPlan = () => {
                                             </div>
                                             <div className="w-[450px] pr-4">
                                                 <div>
-                                                <TextBoxAi label="" onChange={(val) => {
+                                                <TextBoxAi isUpchange={isforceReload} label="" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"second12Weeks",'dos')
                                                 }} value={el.second12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
 
