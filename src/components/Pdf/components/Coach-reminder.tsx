@@ -23,7 +23,7 @@ const CoachReminder = ({item,title,styles}:{item:any,title:string,styles:any})  
                     </View>
 
                     {/* Table Rows */}
-                    {item.map((el:any,index:number) => {
+                    {item?.map((el:any,index:number) => {
                         return (
                         <>
                             <View style={styles.tableRow} key={index}>

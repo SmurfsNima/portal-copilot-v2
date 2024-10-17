@@ -269,28 +269,35 @@ const ClinicReport = ({values}:{values:any}) => (
         </View>
 
         <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={16}></Footer>
-    </Page>                
+    </Page>   
+         
     <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
-        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-          <CoachReminder item={values["coach_reminders"].slice(0,1)} styles={styles} title='Coach Reminders'></CoachReminder>
-        </View>
+        {values["coach_reminders"]!= '' &&
+          <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+            <CoachReminder item={values["coach_reminders"].slice(0,1)} styles={styles} title='Coach Reminders'></CoachReminder>
+          </View>
+        }
 
         <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={17}></Footer>
     </Page>   
     <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
-        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-          <CoachReminder item={values["coach_reminders"].slice(1,2)} styles={styles} title=''></CoachReminder>
-        </View>
+         {values["coach_reminders"]!= '' && 
+          <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+            <CoachReminder item={values["coach_reminders"].slice(1,2)} styles={styles} title=''></CoachReminder>
+          </View>
+         }
 
         <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={18}></Footer>
     </Page>    
     <Page style={styles.body} wrap >
         <Header logo={values["logo"]}></Header>
-        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
-          <CoachReminder item={values["coach_reminders"].slice(1,2)} styles={styles} title=''></CoachReminder>
-        </View>
+         {values["coach_reminders"]!= '' && 
+          <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+            <CoachReminder item={values["coach_reminders"].slice(1,2)} styles={styles} title=''></CoachReminder>
+          </View>
+         }
 
         <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={19}></Footer>
     </Page>              
