@@ -129,11 +129,14 @@ export const AiStudio = () => {
   const [reloadData,setReloadData] = useState(false)
   const [reportsData,SetReportsData] = useState([])
   useEffect(() => {
-    Application.showReportList({
-      member_id:activeMemberID
-    }).then(res => {
-      SetReportsData(res.data)
-    })
+    if(activeMemberID!=null){
+
+      Application.showReportList({
+        member_id:activeMemberID
+      }).then(res => {
+        SetReportsData(res.data)
+      })
+    }
   },[activeMemberID])
   const status: Array<string> = ["All", "Need to Check", "Checked","Incomplete Data"];
   const [isCreateReportMode,setisCreateReportMode] = useState(false)
