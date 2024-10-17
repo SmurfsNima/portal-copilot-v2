@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { PlanManagerModal } from "@/components";
 import { Application } from "@/api";
 import { UploadLogo } from "./uploadLogo";
+import {IntegrationPage} from "./IntegrationPagePage.tsx";
 interface Benchmark {
   Benchmark: string;
   Value: number;
@@ -28,6 +29,10 @@ export const Setting = () => {
     {
       text: "Upload Your Logo",
       icon: "Upload icon"
+    },
+    {
+      text: "Integration",
+      icon: "Integration"
     }
     // {
     //   icon: "profile-2user",
@@ -69,13 +74,22 @@ export const Setting = () => {
         ))}
       </div>
       {
-        active === 0 ?(
+        active === 0 &&(
             <PlanManagerModal data={Priorities}></PlanManagerModal>
 
-        ): (
-          <UploadLogo></UploadLogo>
         )
-        
+      }
+      {
+        active === 1 && (
+            <UploadLogo></UploadLogo>
+        )
+
+      }
+      {
+        active === 2 &&(
+            <IntegrationPage></IntegrationPage>
+
+        )
       }
     </div>
   );
