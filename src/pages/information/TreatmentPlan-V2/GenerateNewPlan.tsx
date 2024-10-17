@@ -86,7 +86,7 @@ const GenerateNewPlan =() => {
         console.log(value)
         setTratmentPlanData((pre:any) => {
             const old = pre
-            old.treatment_plans[0][index][key][doOrdos] =value.includes(",")?value.split(","):[value]
+            old.treatment_plans[0][index][key][doOrdos] =value.includes(",")?value.split(","): typeof value != "string"?value:[value]
             return old
         })
     }
