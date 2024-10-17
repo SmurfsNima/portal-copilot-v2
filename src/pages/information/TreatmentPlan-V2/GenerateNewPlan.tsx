@@ -142,7 +142,7 @@ const GenerateNewPlan =() => {
     const updateDescription= (value:any) => {
          setTratmentPlanData((pre:any) => {
             const old = pre
-            old.description_section["description"] =value
+            old.description_section["description"] =value.toString();
             return old
         })       
     }    
