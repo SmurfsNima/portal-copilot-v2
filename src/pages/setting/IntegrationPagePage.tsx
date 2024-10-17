@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Link} from "react-router-dom";
+import {Button} from "symphony-ui";
 
 export const IntegrationPage = () => {
     const listDevice=[
@@ -44,10 +45,12 @@ export const IntegrationPage = () => {
                                 <img className={"w-8 h-8"} src={`/Themes/Aurora/icons/${item.icon}`}/>
                                 <h1 className={"text-light-secandary-text dark:text-white"}>{item.name}</h1>
                             </div>
-                            <Link to={item.link}
-                                  className={"border flex items-center justify-center px-2 py-1.5 rounded-md gap-2 dark:border-brand-primary-color"}>
-                                <img className={"w-4 h-4"} src={"/Themes/Aurora/icons/folder-connection.svg"}/>
-                                <p className={"text-light-secandary-text  dark:text-brand-primary-color text-xs "}>Connect</p>
+
+                            <Link to={item.link}>
+                                <Button theme={"Aurora-pro"}>
+                                    <img className={"w-4 h-4"} src={"/Themes/Aurora/icons/folder-connection.svg"}/>
+                                    <p className={"text-light-secandary-text  dark:text-brand-primary-color text-xs "}>Connect</p>
+                                </Button>
                             </Link>
                         </div>
 
