@@ -10,7 +10,7 @@ axios.interceptors.response.use((response) => {
         localStorage.clear()
         window.location.reload(); 
     }    
-    if(response.data.detail && response.data.detail !='Invalid token.' && response.data.detail !='Not Found'){
+    if(response.data.detail &&response.data.notif!=true &&response.data.detail !='Invalid token.' && response.data.detail !='Not Found'){
         toast.error(response.data.detail)
     }
     if ( response.data && response.data.detail) {
