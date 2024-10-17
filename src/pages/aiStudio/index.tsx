@@ -220,7 +220,7 @@ export const AiStudio = () => {
         </div>
       :
       <>
-        {patients[0].member_id == 1 ?
+        {patients[0]?.member_id == 1 ?
           <div className="w-full flex flex-col gap-3 felx justify-center items-center h-[450px]">
             <BeatLoader size={10}  color="#0CBC84" ></BeatLoader>
           </div>
