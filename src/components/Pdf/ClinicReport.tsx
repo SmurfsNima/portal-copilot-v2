@@ -317,7 +317,19 @@ const ClinicReport = ({values}:{values:any}) => (
         </View>
 
         <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={21}></Footer>
-    </Page>                    
+    </Page>       
+    <Page style={styles.body} wrap>
+        <Header logo={values["logo"]}></Header>
+        <View style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'8px'}}>
+          {/* <Recomendition data={values} ></Recomendition> */}
+          {/* <View>
+            <Text style={styles.title}>recommendation:</Text>
+          </View> */}
+          {renderSection(Object.fromEntries(Object.entries(values["recommendation"]).slice(2, 3)))}
+        </View>
+
+        <Footer  reportName='Benchmark Assessment Report- Coach'  styles={styles} pageNumber={22}></Footer>
+    </Page>                  
   </Document>
 );
 
