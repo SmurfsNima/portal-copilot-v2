@@ -29,7 +29,28 @@ const InfoCard = () => {
 
   useEffect(() => {
     Application.getScors(id).then((res) => {
-      console.log(res)
+      // console.log(res)
+      setScors(
+        [
+              {
+                ID:1,
+                title: 'Physiological',
+                Percentage : res.data.health_score_data.physical_health_score /10,
+            },
+            {
+                ID:2,
+                title: 'Emotional',
+                Percentage :  res.data.health_score_data.sleep_health_score /10,
+
+            },
+            {
+                ID:3,
+                title: 'Fitness',
+                Percentage :  res.data.health_score_data.body_health_score /10,
+
+            },
+        ]        
+      )
     })
   },[id])
 
@@ -98,7 +119,7 @@ const InfoCard = () => {
     },
 
  ]
- const Score = [
+ const [Score,setScors] = useState([
     {
         ID:1,
         title: 'Physiological',
@@ -117,7 +138,7 @@ const InfoCard = () => {
 
     },
     
- ]
+ ])
   return (
     <div className="bg-white dark:bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-light-border-color dark:border-main-border rounded-xl flex items gap-10  relative overflow-hidden h-[166px]">
       <div className="mt-5 flex gap-10 xl:gap-12">
