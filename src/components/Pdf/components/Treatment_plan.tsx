@@ -46,13 +46,13 @@ const Treatment_plan = ({item,title,styles}:{item:any,title:string,styles:any}) 
                                     </>
                                 )
                             })}
-                            {el.first12Weeks["dos"].map((val:any) => {
+                            {/* {el.first12Weeks["dos"].map((val:any) => {
                                 return(
                                     <>
                                         <Text style={styles.tableCell}>{val+"(dos)"}</Text>
                                     </>
                                 )
-                            })}                            
+                            })}                             */}
                         </View>
                         <View style={styles.tableCol}>      
                             {el.second12Weeks["dos"].map((val:any) => {

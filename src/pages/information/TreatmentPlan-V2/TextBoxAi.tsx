@@ -25,7 +25,7 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,isDescript,onChange,label,isN
         setIsLoading(true)
         Application.UpdateTreatmentPlanWithAi({
             ai_generation_mode:pre,
-            input_text:localVal.includes(",")? localVal.split(","):[localVal],
+            input_text: isDescript?[localVal] :localVal.includes(",")? localVal.split(","):[localVal],
         }).then(res => {
             setLocalVal(res.data.map((e:any) => e))
             setIsLoading(false)
