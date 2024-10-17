@@ -40,7 +40,7 @@ const GenerateNewPlan =() => {
     const resolveNextStep = () => {
         if(generateStep== 'Client Goals'){
             setGenereStep("Category Order")
-        }else {         
+        }else if(generateStep=='Category Order') {         
             generatePaln()
         }
         if(generateStep == 'Generate'){
