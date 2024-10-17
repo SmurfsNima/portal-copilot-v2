@@ -81,6 +81,22 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
       handleSend();
     }
   };
+const formatText = (text:string) => {
+  // First, replace the bold formatting *text* with <strong>text</strong>
+  const boldedText = text.replace(/\*(.*?)\*/g, (_match, p1) => `<strong>${p1}</strong>`);
+
+  // Then, split the text by \n to handle newlines
+  const lines = boldedText.split('\n');
+
+  // Return the formatted text as JSX
+  return lines.map((line, index) => (
+    <span key={index}>
+      {/* Use dangerouslySetInnerHTML to render HTML inside the span */}
+      <span dangerouslySetInnerHTML={{ __html: line }} />
+      <br />
+    </span>
+  ));
+};  
   const messagesEndRef = useRef<null | HTMLDivElement>(null)
   const scrollToBottom = () => {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -135,7 +151,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
                 </div>
                 <div>
                   <div className='text-light-primary-text dark:text-[#FFFFFFDE] text-[12px]'>AI-Copilot <span className='text-light-primary-text dark:text-[#FFFFFF99] ml-1'>{msg.time}</span></div>
-                  <div className='max-w-[500px] bg-white border-light-border-color dark:bg-[#272727] p-4 text-justify  mt-1 dark:border-[#383838] border text-light-secandary-text dark:text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tl-none ' style={{lineHeight:'26px'}}>{msg.text}</div>
+                  <div className='max-w-[500px] bg-white border-light-border-color dark:bg-[#272727] p-4 text-justify  mt-1 dark:border-[#383838] border text-light-secandary-text dark:text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tl-none ' style={{lineHeight:'26px'}}>{formatText(msg.text)}</div>
                 </div>
               </div>
               </>
@@ -144,7 +160,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
               <div className='flex justify-end items-start gap-1'>
                 <div className='flex flex-col items-end'>
                   <div className='text-light-primary-text dark:text-[#FFFFFFDE] text-[12px]'>Coach <span className='text-light-primary-text dark:text-[#FFFFFF99] ml-1'>{msg.time}</span></div>
-                  <div className='max-w-[500px] bg-white border-light-border-color dark:bg-[#272727] p-4 text-justify mt-1 dark:border-[#383838] border text-light-secandary-text dark:text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tr-none '>{msg.text}</div>
+                  <div className='max-w-[500px] bg-white border-light-border-color dark:bg-[#272727] p-4 text-justify mt-1 dark:border-[#383838] border text-light-secandary-text dark:text-[#FFFFFFDE] text-[12px] rounded-[20px] rounded-tr-none '>{formatText(msg.text)}</div>
                 </div>
                 <div className='w-[40px] h-[40px] overflow-hidden flex justify-center items-center rounded-full bg-[#383838]'>
                   <img className='rounded-full' src={`https://ui-avatars.com/api/?name=${'Coach'}`} alt="" />                 
