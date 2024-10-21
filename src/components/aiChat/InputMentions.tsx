@@ -108,10 +108,10 @@ const InputMentions:React.FC<InputMentionsProps> = ({value,onChange,onSubmit,cha
             (
                 <>
                     <div className="w-full absolute bottom-12 px-2">
-                        <div className="w-full px-4 py-2 max-h-[150px] overflow-y-scroll bg-black-primary border border-main-border rounded-[6px]">
+                        <div className="w-full px-4 py-2 max-h-[150px] overflow-y-scroll bg-white border-light-border-color dark:bg-black-primary border dark:border-main-border rounded-[6px]">
                          {suggestions.map((el:any) => {
                             return (
-                                <div onClick={() => handleSuggestionClick(el)} className="text-primary-color mb-1 cursor-pointer text-[10px]">
+                                <div onClick={() => handleSuggestionClick(el)} className="text-light-blue-active dark:text-primary-color mb-1 cursor-pointer text-[10px]">
                                     @{el.name}
                                 </div>
                             )
