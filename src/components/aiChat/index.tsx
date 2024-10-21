@@ -2,6 +2,7 @@
 import { Application } from '@/api';
 import React, { useEffect, useState ,useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import InputMentions from './InputMentions';
 
 type Message = {
   id: number;
@@ -28,6 +29,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
   const [conversationId, setConversationId] = useState<number>(1);
   useEffect(()=> console.log(conversationId), [conversationId]
   )
+  const [selectedBenchMarks,setSelectedBenchMarks] = useState<Array<string>>([])
   const handleSend = async() => {
     if (input.trim() && memberId!==null) {
       const newMessage: Message = {
@@ -43,7 +45,8 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
           text: newMessage.text,
           member_id: memberId,
           conversation_id: conversationId,
-
+          search:selectedBenchMarks.length>0 ?true:false,
+          benchmark_areas:selectedBenchMarks
         })
         console.log(res);
    
@@ -76,11 +79,7 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
       // }, 1000);
     }
   };
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleSend();
-    }
-  };
+
 const formatText = (text:string) => {
   // First, replace the bold formatting *text* with <strong>text</strong>
   const boldedText = text.replace(/\*(.*?)\*/g, (_match, p1) => `<strong>${p1}</strong>`);
@@ -188,17 +187,8 @@ const formatText = (text:string) => {
         ))}
         
       </div>
-      <div className="w-[98%] bg-black-primar  absolute bottom-0 ml-2 mb-2    border dark:border-main-border px-[6px] py-1 flex items-center gap-3 rounded-md">
-        <input
-          className="w-full border dark:border-main-border bg-white border-light-border-color dark:bg-black-secondary rounded-md outline-none pl-2 py-1 text-xs text-light-secandary-text dark:text-primary-text"
-          type="text"
-          placeholder="Write message here ..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyPress={handleKeyPress}
-        />
-        <img onClick={handleSend} src="/Themes/Aurora/icons/send.svg" alt="" />
-      </div>
+      <InputMentions changeBenchMarks={(val:Array<string>) => {setSelectedBenchMarks(val)}} onChange={setInput} onSubmit={handleSend} value={input}></InputMentions>
+   
       {/* <div className="p-4 border-t border-gray-700 flex space-x-2">
         <input
           type="text"
