@@ -279,6 +279,11 @@ static downloadClinicReport(data:any){
     return response
   }  
 
+  static treatment_by_knowledge(data:any){
+    const response = this.post("/treatment_by_knowledge",data)
+    return response
+  }  
+
   static getScors(memberId:any) {
     const response = this.get(`/patients/${memberId}/health_score`)
     return response    

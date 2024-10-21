@@ -4,11 +4,13 @@ interface GenerateWithAiModalProps {
     refEl:MutableRefObject<HTMLDivElement|null>;
     onSuccess:(text:string) => void,
     isLimite?:boolean
+    isBenchMark?:boolean
 }
 const GenerateWithAiModal:React.FC<GenerateWithAiModalProps> = ({
     refEl,
     onSuccess,
-    isLimite
+    isLimite,
+    isBenchMark
 }) => {
     const [askAi,setAskAi] = useState("")
     const [promps,setpromps] = useState([
@@ -90,6 +92,16 @@ const GenerateWithAiModal:React.FC<GenerateWithAiModalProps> = ({
                     </>
                     }
                 </div>
+                {isBenchMark && 
+                    <>
+                        <div onClick={() => {
+                             onSuccess('Generate by Knowledge')
+                        }} className={`text-[10px] text-light-secandary-text dark:text-[#FFFFFFDE] gap-2 h-[34px] flex justify-start items-center border-b cursor-pointer border-b-[#383838]`}>
+                            <img className="invert dark:invert-0" src={'./images/Analyse/folder-cloud.svg'} alt="" />
+                            Generate by Knowledge
+                        </div>                        
+                    </>
+                }
                 {/* <div>
                     <TextField theme="Aurora" inValid={false} name="" onBlur={() => {}} onChange={() => {}} type="text" value=""></TextField>
                 </div> */}

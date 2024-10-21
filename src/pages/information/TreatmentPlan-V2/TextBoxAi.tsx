@@ -13,9 +13,11 @@ interface TextBoxAiProps {
     isRecomandation?:boolean
     isDescript?:boolean
     isUpchange?:boolean
+    isBenchMark?:boolean
+    benchMark?:string
 }
 
-const TextBoxAi:React.FC<TextBoxAiProps> = ({value,isDescript,isUpchange,onChange,label,isNeedFocus}) => {
+const TextBoxAi:React.FC<TextBoxAiProps> = ({value,benchMark,isDescript,isBenchMark,isUpchange,onChange,label,isNeedFocus}) => {
     const [isActiveAi,setIsActiveAi] = useState(false)
     const modalAiGenerateRef = useRef(null)
     const [showAiReport,setShowAiReport] = useState(false)
@@ -24,13 +26,25 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,isDescript,isUpchange,onChang
     const [isLoading ,setIsLoading] = useState(false)
     const beGenerateWithAi = (pre:string) => {
         setIsLoading(true)
-        Application.UpdateTreatmentPlanWithAi({
-            ai_generation_mode:pre,
-            input_text: isDescript?[localVal] :localVal.includes(",")? localVal.split(","):[localVal],
-        }).then(res => {
-            setLocalVal(res.data.map((e:any) => e))
-            setIsLoading(false)
-        })
+        if(pre == 'Generate by Knowledge'){
+            Application.treatment_by_knowledge({
+                text:localVal[0],
+                benchmark_area:benchMark
+            }).then(res => {
+                setLocalVal(res.data)
+                setIsLoading(false)
+            }).finally(() => {
+                setIsLoading(false)
+            })
+        }else {
+            Application.UpdateTreatmentPlanWithAi({
+                ai_generation_mode:pre,
+                input_text: isDescript?[localVal] :localVal.includes(",")? localVal.split(","):[localVal],
+            }).then(res => {
+                setLocalVal(res.data.map((e:any) => e))
+                setIsLoading(false)
+            })
+        }
     }
     useEffect(() => {
         if(onChange){
@@ -75,7 +89,7 @@ const TextBoxAi:React.FC<TextBoxAiProps> = ({value,isDescript,isUpchange,onChang
                                 }
                                 {showAiReport &&
                                 <div className="absolute left-[-200px] top-10 z-40">
-                                    <GenerateWithAiModal isLimite={isNeedFocus||isDescript} onSuccess={(val) => {
+                                    <GenerateWithAiModal isBenchMark={isBenchMark} isLimite={isNeedFocus||isDescript} onSuccess={(val) => {
                                         setShowAiReport(false)
                                         setPramt(val)
                                         beGenerateWithAi(val)

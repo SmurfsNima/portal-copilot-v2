@@ -183,7 +183,7 @@ const ViewTreatmentPlan = () => {
                                             <div className="flex w-[350px]"> <div className=" w-[90px] overflow-hidden">{el.subCategory}</div> <span className="ml-1">{el.area}</span></div>
                                             <div>
 
-                                                <TextBoxAi isUpchange={isforceReload} label="" onChange={(val) => {
+                                                <TextBoxAi isBenchMark benchMark={el.area} isUpchange={isforceReload} label="" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"first12Weeks",'dos')
                                                 }} value={el.first12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
 
@@ -193,7 +193,7 @@ const ViewTreatmentPlan = () => {
                                             </div>
                                             <div className="w-[450px] pr-4">
                                                 <div>
-                                                <TextBoxAi isUpchange={isforceReload} label="" onChange={(val) => {
+                                                <TextBoxAi isBenchMark benchMark={el.area} isUpchange={isforceReload} label="" onChange={(val) => {
                                                     resolveChangeTextFields(val,index,"second12Weeks",'dos')
                                                 }} value={el.second12Weeks.dos.map((e:string) =>e)}></TextBoxAi>
 
