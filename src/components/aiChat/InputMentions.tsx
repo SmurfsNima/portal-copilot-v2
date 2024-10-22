@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Application } from "@/api";
+import { useConstructor } from "@/help";
 import { useState } from "react";
 
 interface InputMentionsProps {
@@ -31,6 +33,15 @@ const InputMentions:React.FC<InputMentionsProps> = ({value,onChange,onSubmit,cha
             onSubmit();
         }
     };  
+    const [myMentions,setMyMentions] = useState(mentions)
+    useConstructor(() => {
+        Application.get_benchmark_list().then(res => {
+            console.log(res)
+            setMyMentions(res.data.map((e:string,index:number) => {
+                return  { id:index , name: e }   
+            } ))
+        })
+    })
     const [suggestions, setSuggestions] = useState<any>([]);  
     const [isShowMentions,setIsShowMentions] = useState(false)
     const handelChange = (e:string) => {
@@ -49,13 +60,13 @@ const InputMentions:React.FC<InputMentionsProps> = ({value,onChange,onSubmit,cha
         // Find the last '@' and get the word after it
         const lastAtIndex = inputValue.lastIndexOf('@');
         if (lastAtIndex !== -1) {
-            setSuggestions(mentions)
+            setSuggestions(myMentions)
             setIsShowMentions(true)
             const mentionText = inputValue.slice(lastAtIndex + 1);
             // alert(mentionText)
             if (mentionText.length > 0) {
                 // Filter the users based on the mentionText
-                const filteredUsers = mentions.filter((men) =>
+                const filteredUsers = myMentions.filter((men) =>
                 men.name.toLowerCase().includes(mentionText.toLowerCase())
                 );
                 setSuggestions(filteredUsers);

@@ -288,6 +288,10 @@ static downloadClinicReport(data:any){
     const response = this.get(`/patients/${memberId}/health_score`)
     return response    
   }
+  static get_benchmark_list() {
+    const response = this.post(`/get_benchmark_list`,{})
+    return response    
+  }  
 }
 
 
