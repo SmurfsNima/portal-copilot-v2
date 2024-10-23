@@ -104,22 +104,22 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
     });
 
   };
-  // const handleValueChange = (areaIndex:number, benchmarkIndex:number,topLevelKey:string,value:number) => {
-  //   setAllData((prevState) => {
-  //     const updatedData = { ...prevState }; // Clone the current state
+  const handleValueChange = (areaIndex:number, benchmarkIndex:number,topLevelKey:string,value:number) => {
+    setAllData((prevState) => {
+      const updatedData = { ...prevState }; // Clone the current state
 
-  //     // Access the specific benchmark using the dynamic key
+      // Access the specific benchmark using the dynamic key
 
-  //     // Toggle the "checked" state
-  //     updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
-  //       benchmarkIndex
-  //     ].Value = value;
-  //     if(setDataGenerate){
-  //       setDataGenerate(updatedData)
-  //     }
-  //     return updatedData; // Return the updated state
-  //   });
-  // };  
+      // Toggle the "checked" state
+      updatedData[topLevelKey].BenchmarkAreas[areaIndex].Benchmarks[
+        benchmarkIndex
+      ].Value = value;
+      if(setDataGenerate){
+        setDataGenerate(updatedData)
+      }
+      return updatedData; // Return the updated state
+    });
+  };  
 
   const handleCheckBoxChangeParent = (areaIndex:number,topLevelKey:string,state:boolean) => {
     setAllData((prevState) => {
@@ -225,8 +225,8 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                               }}
                               className="mr-2 peer shrink-0 appearance-none w-5 h-5 rounded-md bg-black-primary border border-main-border checked:bg-brand-secondary-color checked:border-transparent checked:text-black checked:before:content-['✔'] checked:before:text-black checked:before:block checked:before:text-center"
                             />
-                            <div className="peer-checked:dark:text-primary-text peer-checked:text-light-secandary-text flex text-[10px] w-[350px]">
-                              {benchmark.Benchmark.substring(0, isgenerate?18:35)}
+                            <div className="peer-checked:dark:text-primary-text peer-checked:text-light-secandary-text flex text-[10px] w-[180px]">
+                              {benchmark.Benchmark.substring(0, isNewGenerate?18:35)}
                               {benchmark?.tag &&
                               <>
                                 {benchmark?.tag.length>0 &&
@@ -245,14 +245,18 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                               }
                             </div>
                           </label>
-                          {/* {
+                          {
                             benchmark.checked ?
                             <div className="w-full flex items-center justify-end ml-2">
-                              <span className="text-[10px] text-secondary-text mr-2">
-                                Level
-                              </span>
+                              {
+                                !isNewGenerate &&
+                                  <span className="text-[10px] text-secondary-text mr-2">
+                                    Level
+                                  </span>
+
+                              }
                               <div className="flex border border-main-border">
-                                {Array.from({ length: isgenerate?2: 3 }, (_, i) => (
+                                {Array.from({ length: isNewGenerate?0: 2 }, (_, i) => (
                                   <button
                                     key={i}
                                     onClick={() =>
@@ -272,7 +276,7 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
                             </div>
                             :
                             undefined
-                          } */}
+                          }
                         </li>
                       ))}
                     </ul>
