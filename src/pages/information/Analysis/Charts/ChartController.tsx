@@ -66,15 +66,15 @@ const ChartController:React.FC<ChartControllerProps> = ({
                         </div>
                         {
                             avtiveChart!= ''&&
-                                <div className="w-[1090px] h-[350px] px-6">
-                                    <div className="w-full h-[350px] border-light-border-color  dark:bg-[#1E1E1E] p-4 dark:border-[#383838] border rounded-[6px]">
+                                <div className=" w-[1090px] h-[350px] ">
+                                    <div className="w-full self-end justify-self-end  h-[350px] border-light-border-color  dark:bg-[#1E1E1E] p-4 dark:border-[#383838] border rounded-[6px]">
                                         <div className="text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] mb-4">{avtiveChart}</div>
                                         <div className="w-full h-[250px] dark:bg-[#1E1E1E] p-4 border-light-border-color dark:border-[#383838] border rounded-[6px]">
                                             <div className="mb-4 flex justify-start items-center gap-8">
                                                 <div className="dark:text-[#FFFFFF99]  text-light-primary-text text-[12px]">Average Value: <span className="font-semibold text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">{onGoingData[avtiveChart].avg}</span></div>
                                                 <div className="dark:text-[#FFFFFF99] text-light-primary-text text-[12px]">Current Value: <span className="font-semibold text-[14px]  text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">{onGoingData[avtiveChart].current_value}</span></div>
                                             </div>
-                                            <div>
+                                            <div >
                                                 <MethylationChart values={onGoingData[avtiveChart].data.value} labels={onGoingData[avtiveChart].data.label}></MethylationChart>   
 
                                             </div>

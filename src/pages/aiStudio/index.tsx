@@ -195,7 +195,7 @@ export const AiStudio = () => {
                 </div>
                 <Button onClick={() => {
                   setShowAiGenerateAi(true)
-                }} theme="Aurora">
+                }} theme="Aurora-pro">
                   {isloadingGenerate ?
                   <div className="px-3 w-full flex justify-center items-center">
                     <BeatLoader size={8} color="#7F39FB"></BeatLoader>
@@ -277,7 +277,7 @@ export const AiStudio = () => {
                         alt=""
                       />
                       General Condition
-                      <div className="h-[1px] w-full bg-light-border-color dark:bg-white dark:opacity-50" />
+                      <div className="h-[1px] w-full bg-light-border-color dark:bg-white/30" />
                     </div>
                     {isStateOpen && (
                       <div className="text-xs text-primary-text">
@@ -307,7 +307,7 @@ export const AiStudio = () => {
                         alt=""
                       />
                       Alert
-                      <div className="h-[1px] w-full bg-light-border-color dark:bg-white dark:opacity-50t" />
+                      <div className="h-[1px] w-full bg-light-border-color dark:bg-white/30 dark:opacity-50" />
                     </div>
                     {isAlertOpen && (
                       <div className="my-4">
@@ -334,7 +334,7 @@ export const AiStudio = () => {
                         alt=""
                       />
                       Limits & Contradiction
-                      <div className="h-[1px] w-full bg-light-border-color dark:bg-white dark:opacity-50" />
+                      <div className="h-[1px] w-full bg-light-border-color dark:bg-white/30 dark:opacity-50" />
                     </div>
                     {isEngagementOpen &&(
                       <div className="my-4">

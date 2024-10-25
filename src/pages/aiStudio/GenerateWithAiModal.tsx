@@ -34,7 +34,7 @@ const GenerateWithAiModal:React.FC<GenerateWithAiModalProps> = ({
         },
         {
             key:'Progressive Difficulty',
-            icon:'./images/Analyse/activity.svg'
+            icon:'./images/Analyse/status-up.svg'
         },                                
         // {
         //     key:'Make Longer',

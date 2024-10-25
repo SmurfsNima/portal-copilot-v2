@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 interface AccordionProps {
     title:string
     children?: React.ReactNode;
-    themes?:string
+    themes?:string;
+    time? : string
 }
 
-const Accordion:React.FC<AccordionProps> = ({title,children,themes}) => {
+const Accordion:React.FC<AccordionProps> = ({title,children,themes,time}) => {
     let theme =useSelector((state: any) => state.theme.value.name)
     if(themes){
         theme =themes
@@ -49,7 +50,7 @@ const Accordion:React.FC<AccordionProps> = ({title,children,themes}) => {
         <>
             <div data-isActive={isActive} onClick={handleClick} className={`${theme}-Accordion-container `}>
                 <div className="flex items-center gap-1">
-                <h2 className={`${theme}-Accordion-text`}>{title}</h2>
+                <h2 className={`${theme}-Accordion-text`}>{title} {time && <span className="text-brand-primary-color ml-2 text-xs">{time}</span>} </h2>
                 {/* <span className={`${theme}-graphicinfo-btn-number ${!number && "hidden"}`}>
                     ({number})
                 </span> */}

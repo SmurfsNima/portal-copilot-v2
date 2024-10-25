@@ -5,7 +5,7 @@ export const menus = [
         url:'/'
     },
     {
-        name:'Ai Studio',
+        name:'AI Studio',
         icon:'message-square',
         url:'/ai-studio'
     },

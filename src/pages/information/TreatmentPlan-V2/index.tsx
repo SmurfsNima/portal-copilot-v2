@@ -69,8 +69,8 @@ const TreatMentPlan = () => {
                     </div>
                     {
                         historyData.length ==0 ?
-                            <div className="text-center">
-                                <img src={"/images/EmptyState.png"} alt="Empty State" />
+                            <div className="text-center space-y-2 ">
+                                <img src="./Themes/Aurora/icons/EmptyState.svg" alt="Empty State" />
                                 <h1>No Result to Show</h1>
                             </div>
                         :
@@ -101,7 +101,7 @@ const TreatMentPlan = () => {
                                             <div className="text-light-secandary-text dark:text-[#FFFFFFDE] py-2 w-[360px] flex justify-center items-center text-[12px]">
                                                 {el.formatted_date+" "+el.formatted_time}
                                             </div>
-                                            <div className="text-[#FFFFFFDE] overflow-visible relative py-2 w-[300px] gap-3 flex justify-end px-5 items-center text-[12px]">
+                                            <div className="text-[#FFFFFFDE] overflow-visible relative py-2 w-[300px] gap-5 flex justify-end px-5 items-center text-[12px]">
                                                 <img
                                                 ref={showReportModalButtonRefrence}
                                                 onClick={() => {

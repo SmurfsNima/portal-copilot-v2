@@ -17,6 +17,15 @@ const AiChat: React.FC<AiChatProps> = ({memberID}) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [memberId,setMemberId] = useState<any>(memberID)
   const [input, setInput] = useState('');
+  const formatDate = (date: Date) => {
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
+
+  const [chatStartDate] = useState<string>(formatDate(new Date()));
+
   const { id } = useParams<{ id: string }>();
   useEffect(() => {
     setMemberId(memberID)
@@ -133,7 +142,9 @@ const formatText = (text:string) => {
   },[memberId])
   return (
     <div className="w-full h-[410px]  mx-auto bg-white border-light-border-color dark:bg-black-primary border dark:border-main-border  rounded-md relative flex flex-col ">
-      
+        <div className="p-4 text-center text-primary-text text-xs">
+        { messages.length > 1 && chatStartDate}
+      </div>
       <div className="p-4 space-y-4 max-h-[360px] overflow-y-auto">
         {messages.map((msg,index:number) => (
           <>

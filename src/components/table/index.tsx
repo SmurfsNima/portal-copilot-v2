@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import { TbFilterPlus } from "react-icons/tb";
-import { RiUserAddLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { SearchBox } from "@/components";
 import { columns } from "./tableTd.tsx";
@@ -132,9 +131,9 @@ const Table: React.FC<TableProps> = ({ classData }) => {
               Apply Filter
             </Button> */}
             <Button onClick={handleOpenModal}  theme={theme}>
-              <RiUserAddLine className="w-5 h-5" />
+             <img src="/public/Themes/Aurora/icons/user-add.svg" alt="" />
               Add Client{" "}
-            </Button>
+              </Button>
           </div>
           {isModalOpen && 
           <AddClientModal

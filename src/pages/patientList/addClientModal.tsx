@@ -227,7 +227,7 @@ const AddClientModal : React.FC<AddClientModalProps> = ({ isOpen, onClose, onSub
               data-width="full"
               // className="w-full text-[14px] bg-brand-primary-color text-black p-2 rounded hover:bg-teal-500"
             >
-              <div className=''>
+              <div className='font-medium'>
                 Add Client & Send Invitation
 
               </div>

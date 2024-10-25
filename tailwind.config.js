@@ -20,7 +20,7 @@ export default {
         'black-fourth': '#333333',
         "dark-btn-active":"#383838",
         // Border
-        'main-border': '#353535',
+        'main-border': '#383838',
         'lite-main-border': '#E5E5E5',
 
 

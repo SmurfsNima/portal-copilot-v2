@@ -26,13 +26,13 @@ const getStatusBgColorClass = (
       case "medium":
         return "bg-orange-status  text-black";
       case "excellent":
-        return "bg-blue-500 text-black";
+        return "bg-[#7F39FB] text-black";
       case "good":
-        return "bg-green-500 text-black";
+        return "bg-[#03DAC5] text-black";
       case "ok":
-        return "bg-yellow-500 text-black";        
+        return "bg-[#FBAD37] text-black";        
       case "needs focus":
-        return "bg-red-500 text-black";      
+        return "bg-[#FC5474] text-black";      
       case "incompleted":
         return "bg-red-500 text-black";    
       case "incomplete data":

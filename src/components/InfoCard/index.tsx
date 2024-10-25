@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import border from "../../assets/images/profile-img-border.svg";
-import { BiologicalCardInfo, MolecularCardInfo, Plan_Progress} from "./Data";
+import { BiologicalCardInfo, MolecularCardInfo, Plan_Progress } from "./Data";
 import { useParams } from "react-router-dom";
 import { AppContext } from "@/store/app";
 import { Pationt } from "@/model";
@@ -21,7 +21,7 @@ const InfoCard = () => {
   const [patient, setPatient] = useState<Pationt>();
   const { getPatientById } = useContext(AppContext);
   console.log(patient);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   useEffect(() => {
     setPatient(getPatientById(Number(id)));
@@ -30,36 +30,32 @@ const InfoCard = () => {
   useEffect(() => {
     Application.getScors(id).then((res) => {
       // console.log(res)
-      setScors(
-        [
-              {
-                ID:1,
-                title: 'Physiological',
-                Percentage : res.data.health_score_data.physical_health_score /10,
-            },
-            {
-                ID:2,
-                title: 'Emotional',
-                Percentage :  res.data.health_score_data.sleep_health_score /10,
-
-            },
-            {
-                ID:3,
-                title: 'Fitness',
-                Percentage :  res.data.health_score_data.body_health_score /10,
-
-            },
-        ]        
-      )
-    })
-  },[id])
+      setScors([
+        {
+          ID: 1,
+          title: "Physiological",
+          Percentage: res.data.health_score_data.physical_health_score / 10,
+        },
+        {
+          ID: 2,
+          title: "Emotional",
+          Percentage: res.data.health_score_data.sleep_health_score / 10,
+        },
+        {
+          ID: 3,
+          title: "Fitness",
+          Percentage: res.data.health_score_data.body_health_score / 10,
+        },
+      ]);
+    });
+  }, [id]);
 
   const [active] = useState("Progress");
   const colorMap = {
     1: "#03DAC5", // Nutrition
     2: "#FC5474", // Mind
     3: "#FBAD37", // Activity
-    4: "#7F39FB"  // Sleep
+    4: "#7F39FB", // Sleep
   };
   const [Physiologicalprogress, setPhysiologicalprogress] = useState<number>();
   const [Emotionalprogress, setEmotionalprogress] = useState<number>();
@@ -72,73 +68,66 @@ const InfoCard = () => {
       try {
         const response = await Application.getActivityByPatientId(Number(id));
         console.log(response);
-  
-        response.data.activities.forEach((activity:Activity) => {
+
+        response.data.activities.forEach((activity: Activity) => {
           switch (activity.category) {
-            case 'Fitness':
+            case "Fitness":
               setFitnessprogress(activity.value);
               setFitnessscore(activity.score);
               break;
-            case 'Physiological':
+            case "Physiological":
               setPhysiologicalprogress(activity.value);
               setPhysiologicalscore(activity.score);
               break;
-            case 'Emotional':
+            case "Emotional":
               setEmotionalprogress(activity.value);
               setEmotionalscore(activity.score);
               break;
             default:
-              console.warn('Unknown category:', activity.category);
+              console.warn("Unknown category:", activity.category);
           }
         });
-  
       } catch (error) {
         console.error("Failed to fetch activities:", error);
       }
     };
-  
+
     fetchActivities();
   }, [id]);
-   const Progress = [
+  const Progress = [
     {
-        ID:1,
-        title: 'Physiological',
-        Percentage : Physiologicalprogress,
+      ID: 1,
+      title: "Physiological",
+      Percentage: Physiologicalprogress,
     },
     {
-        ID:2,
-        title: 'Emotional',
-        Percentage : Emotionalprogress,
-
+      ID: 2,
+      title: "Emotional",
+      Percentage: Emotionalprogress,
     },
     {
-        ID:3,
-        title: 'Fitness',
-        Percentage : Fitnessprogress,
-
+      ID: 3,
+      title: "Fitness",
+      Percentage: Fitnessprogress,
     },
-
- ]
- const [Score,setScors] = useState([
+  ];
+  const [Score, setScors] = useState([
     {
-        ID:1,
-        title: 'Physiological',
-        Percentage : Physiologicalscore,
+      ID: 1,
+      title: "Physiological",
+      Percentage: Physiologicalscore,
     },
     {
-        ID:2,
-        title: 'Emotional',
-        Percentage : Emotionalscore,
-
+      ID: 2,
+      title: "Emotional",
+      Percentage: Emotionalscore,
     },
     {
-        ID:3,
-        title: 'Fitness',
-        Percentage : Fitnessscore,
-
+      ID: 3,
+      title: "Fitness",
+      Percentage: Fitnessscore,
     },
-    
- ])
+  ]);
   return (
     <div className="bg-white dark:bg-black-primary w-full lg:px-2 xl:px-3 2xl:px-4 py-2 border border-light-border-color dark:border-main-border rounded-xl flex items gap-10  relative overflow-hidden h-[166px]">
       <div className="mt-5 flex gap-10 xl:gap-12">
@@ -150,7 +139,11 @@ const InfoCard = () => {
           >
             <img
               className="absolute top-[4px] left-[4px] xl:top-[6px] xl:left-[6px] w-[78px] h-[88px] rounded-full xl:h-[105px] xl:w-[105px] object-cover"
-              src={patient?.information.picture != ''?patient?.information.picture :`https://ui-avatars.com/api/?name=${patient?.information.name}`}
+              src={
+                patient?.information.picture != ""
+                  ? patient?.information.picture
+                  : `https://ui-avatars.com/api/?name=${patient?.information.name}`
+              }
               alt=""
             />
           </div>
@@ -176,7 +169,10 @@ const InfoCard = () => {
                 Conditions:
               </h2>
               {patient.information.conditions.map((condition, index) => (
-                <div key={index} className="text-xs font-normal text-light-primary-text dark:text-primary-text">
+                <div
+                  key={index}
+                  className="text-xs font-normal text-light-primary-text dark:text-primary-text"
+                >
                   {index + 1}. {condition}
                 </div>
               ))}
@@ -184,11 +180,12 @@ const InfoCard = () => {
           ) : null}
         </div>
       </div>
+      <div className="h-[85%]  self-center w-[1px] bg-secondary-text "/>
 
       {/* Content based on active state */}
       {active === "Aging" ? (
         <div className=" w-full flex  gap-10">
-           <div className="flex items-center  mb-10 relative  ">
+          <div className="flex items-center  mb-10 relative  ">
             {BiologicalCardInfo.map((item, i) => (
               <ProgressCircle
                 key={i}
@@ -235,14 +232,15 @@ const InfoCard = () => {
         </div>
       ) : (
         <div className=" w-full flex justify-around">
-          <div className="text-sm text-light-primary-text invisible dark:text-primary-text flex items-center justify-center flex-col">
+          <div className="text-sm text-light-primary-text  dark:text-primary-text flex items-center justify-center flex-col">
             <h3 className="mb-[10px]">Progress</h3>
             <div className="  flex items-center justify-center  gap-5">
-            {Progress.map((item) => (
+              {Progress.map((item) => (
                 <CircularProgressBar
                   key={item.ID}
                   size={70}
-                  percentage={Number(item.Percentage?.toFixed(0))}                  percentageNum={item.Percentage || 0}
+                  percentage={Number(item.Percentage?.toFixed(0))}
+                  percentageNum={item.Percentage || 0}
                   progressColor={colorMap[item.ID as keyof typeof colorMap]}
                   speed={20}
                   titleC={item.title}
@@ -251,6 +249,8 @@ const InfoCard = () => {
               ))}
             </div>
           </div>
+          <div className="h-[85%]  self-center w-[1px] bg-secondary-text "/>
+
           <div className="text-sm text-light-primary-text dark:text-primary-text flex items-center justify-center flex-col">
             <h3 className="mb-[10px]">Score</h3>
             <div className=" flex items-center justify-center  gap-5">
@@ -263,21 +263,31 @@ const InfoCard = () => {
                   progressColor={colorMap[item.ID as keyof typeof colorMap]}
                   speed={20}
                   titleC={item.title}
-                  count={item.Percentage || 0 }
+                  count={item.Percentage || 0}
                 />
               ))}
             </div>
+            
           </div>
-          <div className="text-sm invisible text-light-primary-text dark:text-primary-text flex items-center mr-5 justify-center flex-col">
+          <div className="h-[85%]  self-center w-[1px] bg-secondary-text "/>
+
+          <div className="text-sm  text-light-primary-text dark:text-primary-text flex items-center mr-5 justify-center flex-col">
             <h3 className="mb-[10px]">Plan Progress</h3>
             <HalfCycle percentage={Plan_Progress[0].Percentage} />
           </div>
           <div className="absolute top-2 right-3">
-            <div onClick={() => {
-              navigate("/helthProfile/"+id+`?name=${patient?.information.name}&email=${''}`)
-            }} className="text-[#03DAC5] cursor-pointer text-[12px] flex items-center gap-2">
+            <div
+              onClick={() => {
+                navigate(
+                  "/helthProfile/" +
+                    id +
+                    `?name=${patient?.information.name}&email=${""}`
+                );
+              }}
+              className="text-[#03DAC5] cursor-pointer text-[12px] flex items-center gap-2"
+            >
               <FiExternalLink></FiExternalLink>
-              health profile 
+              health profile
             </div>
           </div>
         </div>

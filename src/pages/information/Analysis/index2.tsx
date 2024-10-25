@@ -156,7 +156,7 @@ const Analysis = () => {
                         setSearch(e.target.value)
                     }}
                     theme="Aurora"
-                    placeholder="search..."
+                    placeholder="| Quick alphabetical search for benchmarks"
                     />
                     <StatusMenu status={["All","Needs Focus","ok","Good","Excellent"]} activeStatus={activeStatus as any} onChange={((value) =>setActiveStatus(value))}></StatusMenu>
                 </div>

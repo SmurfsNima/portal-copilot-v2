@@ -168,23 +168,23 @@ const GenerateNewPlan =() => {
 
                 <div className="w-full h-[56px] flex justify-evenly border-light-border-color bg-white border dark:border-[#383838]  dark:bg-[#2F2F2F] rounded-[6px] mt-4">
                     <div className="flex justify-center items-center gap-2">
-                        <div className={`w-5 h-5 rounded-full ${generateStep=='Client Goals'?'dark:border-primary-color dark:text-primary-color text-light-blue-active border-light-blue-active':'text-light-primary-text border-light-primary-text dark:text-[#FFFFFF99]'} border flex justify-center items-center text-[12px] font-medium `}>1</div>
-                        <div className={`text-[12px] ${generateStep=='Client Goals'?'dark:text-primary-color text-light-blue-active':' text-light-primary-text dark:text-[#FFFFFF99]'} font-medium `}>Client Goals</div>
+                        <div className={`w-5 h-5 rounded-full ${generateStep=='Client Goals'?'dark:border-brand-primary-color dark:text-brand-primary-color text-light-blue-active border-light-blue-active':'text-light-primary-text border-light-primary-text dark:text-[#FFFFFF99]'} border flex justify-center items-center text-[12px] font-medium `}>1</div>
+                        <div className={`text-[12px] ${generateStep=='Client Goals'?'dark:text-brand-primary-color text-light-blue-active':' text-light-primary-text dark:text-[#FFFFFF99]'} font-medium `}>Client Goals</div>
                     </div>
 
                     <img className="w-[16px] invert dark:invert-0" src="./Themes/Aurora/icons/nextStep.svg" alt="" />
 
                     
                     <div className="flex justify-center items-center gap-2">
-                        <div className={`w-5 h-5 rounded-full ${generateStep=='Category Order'?'dark:border-primary-color dark:text-primary-color text-light-blue-active border-light-blue-active':'text-light-primary-text border-light-primary-text dark:text-[#FFFFFF99]'} border flex justify-center items-center text-[12px] font-medium `}>2</div>
-                        <div className={`text-[12px] ${generateStep=='Category Order'?'dark:text-primary-color text-light-blue-active':' text-light-primary-text dark:text-[#FFFFFF99]'} font-medium `}>Category Order</div>
+                        <div className={`w-5 h-5 rounded-full ${generateStep=='Category Order'?'dark:border-brand-primary-color dark:text-brand-primary-color text-light-blue-active border-light-blue-active':'text-light-primary-text border-light-primary-text dark:text-[#FFFFFF99]'} border flex justify-center items-center text-[12px] font-medium `}>2</div>
+                        <div className={`text-[12px] ${generateStep=='Category Order'?'dark:text-brand-primary-color border-brand-primary-color text-light-blue-active':' text-light-primary-text dark:text-[#FFFFFF99]'} font-medium `}>Category Order</div>
                     </div>  
 
                     <img className="w-[16px] invert dark:invert-0" src="./Themes/Aurora/icons/nextStep.svg" alt="" />
                     
                     <div className="flex justify-center items-center gap-2">
-                        <div className={`w-5 h-5 rounded-full ${generateStep=='Generate'?'dark:border-primary-color dark:text-primary-color text-light-blue-active border-light-blue-active':'text-light-primary-text border-light-primary-text dark:text-[#FFFFFF99]'} border flex justify-center items-center text-[12px] font-medium `}>3</div>
-                        <div className={`text-[12px] ${generateStep=='Generate'?'dark:text-primary-color text-light-blue-active':' text-light-primary-text dark:text-[#FFFFFF99]'} font-medium `}>Generate</div>
+                        <div className={`w-5 h-5 rounded-full ${generateStep=='Generate'?'dark:border-brand-primary-color dark:text-brand-primary-color text-light-blue-active border-light-blue-active':'text-light-primary-text border-light-primary-text dark:text-[#FFFFFF99]'} border flex justify-center items-center text-[12px] font-medium `}>3</div>
+                        <div className={`text-[12px] ${generateStep=='Generate'?'dark:text-brand-primary-color text-light-blue-active':' text-light-primary-text dark:text-[#FFFFFF99]'} font-medium `}>Generate</div>
                     </div>                                     
                 </div>
                 {
@@ -216,19 +216,19 @@ const GenerateNewPlan =() => {
                 {
                     generateStep == 'Category Order' &&
                     <div className="bg-white rounded-[6px]   h-[400px] mt-2  border border-light-border-color dark:bg-[#2F2F2F] dark:border-[#383838]">
-                        <div className="flex justify-center mt-3 items-center">
+                        <div className="flex justify-center mt-3  items-center">
                             <div onClick={() => {
                                 setActiveMenu('3 Month')
                             }} className={`  ${
                                 activeMenu === '3 Month' && "dark:bg-[#272727] bg-light-blue-active text-[#FFFFFFDE]"
-                            } rounded-md w-[105px] text-xs text-light-secandary-text dark:text-[#FFFFFF99] h-[24px] flex items-center justify-center cursor-pointer   `}>
+                            } rounded-md w-[105px] text-xs text-light-secandary-text dark:text-[#FFFFFF99] h-[32px] flex items-center justify-center cursor-pointer   `}>
                                 3 Month
                             </div>
                             <div onClick={() => {               
                                 setActiveMenu('6 Month')
                             }} className={`  ${
                                 activeMenu === '6 Month' && "dark:bg-[#272727] bg-light-blue-active text-[#FFFFFFDE]"
-                            } rounded-md w-[105px] text-xs text-light-secandary-text dark:text-[#FFFFFF99]  h-[24px] flex items-center justify-center cursor-pointer   `}>
+                            } rounded-md w-[105px] text-xs text-light-secandary-text dark:text-[#FFFFFF99]  h-[32px] flex items-center justify-center cursor-pointer   `}>
                                 6 Month
                             </div>   
 

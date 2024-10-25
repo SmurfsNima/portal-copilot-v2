@@ -56,7 +56,7 @@ const FormDataEntry = () => {
                                 return (
                                     <div className="dark:bg-[#272727] bg-gray-100 border-light-border-color w-full mt-2 rounded-[6px] p-6 border dark:border-[#383838]">
                                         <div className="w-[467px]">
-                                            <TextField label={el} inValid={false} name="" onBlur={()=>{}} onChange={() => {}} type="text" value={data[el]} theme="Aurora" />
+                                            <TextField disabled label={el} inValid={false} name="" onBlur={()=>{}} onChange={() => {}} type="text" value={data[el]} theme="Aurora" />
 
                                         </div>
                                     </div>

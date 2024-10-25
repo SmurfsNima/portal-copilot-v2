@@ -50,31 +50,31 @@ const BenchmarkModal: React.FC<BenchmarkModalProps> = ({ isOpen, onClose }) => {
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
       onClick={handleClickOutside}
     >
-      <div className="z-50 bg-gray-50 dark:bg-black-secondary ml-[80px] text-primary-text p-4 rounded-lg shadow-lg w-[85%] max-h-[400px]   relative">
+      <div className="z  bg-gray-50 dark:bg-black-secondary ml-[80px] text-primary-text p-4 rounded-lg shadow-lg w-[85%] max-h-[460px] h-full relative  ">
         <button
           onClick={onClose}
-          className="dark:text-secondary-text text-light-secandary-text hover:text-primary-text text-xl absolute right-10 top-5"
+          className="dark:text-secondary-text text-light-secandary-text hover:text-primary-text text-xl absolute top-2 right-5 "
         >
           ✕
         </button>
 
-        <div className="h-[300px] overflow-y-scroll">
+        <div className="h-[400px] overflow-y-scroll mt-10">
           <table className="w-full text-light-secandary-text dark:text-white text-sm mt-8 border-spacing-4   ">
             <thead>
-              <tr className="text-sm font-medium ">
-                <th className="border-b border-third-text border-opacity-30 text-nowrap py-2 px-8 text-left border-r ">
+              <tr className="text-sm ">
+                <th className="border-b border-third-text border-opacity-30 font-medium text-nowrap py-2 px-8 text-left border-r ">
                   Benchmark Areas
                 </th>
-                <th className="border-b border-third-text border-opacity-30  px-7 py-2 text-nowrap text-center border-r ">
+                <th className="border-b border-third-text border-opacity-30 font-medium px-7 py-2 text-nowrap text-center border-r ">
                   Test Level 1
                 </th>
-                <th className="border-b border-third-text border-opacity-30  px-7 py-2 text-nowrap text-center border-r ">
+                <th className="border-b border-third-text border-opacity-30 font-medium px-7 py-2 text-nowrap text-center border-r ">
                   Test Level 2
                 </th>
-                <th className="border-b border-third-text border-opacity-30   py-2 text-nowrap text-center border-r ">
+                <th className="border-b border-third-text border-opacity-30 font-medium  py-2 text-nowrap text-center border-r ">
                   Result
                 </th>
-                <th className="border-b border-third-text border-opacity-30  px-7 py-2 text-nowrap text-center">
+                <th className="border-b border-third-text border-opacity-30 font-medium px-7 py-2 text-nowrap text-center">
                   Benchmark Performance
                 </th>
               </tr>

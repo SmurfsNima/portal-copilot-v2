@@ -22,8 +22,8 @@ const ActivityMenu:React.FC<ActivityMenuProps> = ({onChangeMenuAction,activeMenu
                                 onChangeMenuAction(menu.name)
                             }}
                             className={` ${
-                                activeMenu === menu.name && "dark:bg-black-third border border-light-blue-active dark:border-none"
-                            } rounded-md w-[105px] h-[32px] flex items-center justify-center cursor-pointer   `}
+                                activeMenu === menu.name ? "dark:bg-black-third border  text-primary-text border-light-blue-active dark:border-none" : 'text-secondary-text'
+                            } rounded-md w-[105px] h-[32px] flex items-center  justify-center cursor-pointer   `}
                             >
                             {menu.name}
                             </div>                        
