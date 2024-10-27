@@ -11,6 +11,7 @@ import { useConstructor } from "@/help";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { BeatLoader } from "react-spinners";
+import LocationCombobox from "./LocationCombobox";
 
 interface FileData {
   name: string;
@@ -144,7 +145,7 @@ const HelthProfile = () => {
       </div>
       {isEditMode ? (
         <div className="w-full inset-0 z-10  flex items-center justify-center  px-8  bg-opacity-50">
-          <div className="dark:bg-black-secondary border border-light-border-color dark:border-none min-h-[276px] overflow-hidden relative text-light-secandary-text dark:text-primary-text p-6 rounded-lg w-full dark:shadow-lg ">
+          <div className="dark:bg-black-secondary border border-light-border-color dark:border-none min-h-[276px]  relative text-light-secandary-text dark:text-primary-text p-6 rounded-lg w-full dark:shadow-lg ">
             <div className="w-full flex justify-between">
               <div> Edit Health Profile</div>
               <Button
@@ -283,7 +284,7 @@ const HelthProfile = () => {
                   inValid={false}
                 ></TextField>
 
-                <TextField
+                {/* <TextField
                   {...formik.getFieldProps("location")}
                   label="Location:"
                   theme="Aurora"
@@ -291,7 +292,9 @@ const HelthProfile = () => {
                   name="location"
                   type="text"
                   inValid={false}
-                ></TextField>
+                ></TextField> */}
+                <LocationCombobox   value={formik.values.location}
+              onChange={(value) => formik.setFieldValue("location", value)} />
               </div>
             </div>
           </div>

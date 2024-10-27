@@ -102,6 +102,14 @@ const GenerateReportTable: React.FC<GenerateReportTableProps> = ({
     publish("completeChanges", {});
     onClose();
   };
+  useEffect(() => {
+    // Set default "OK" for empty statuses
+    const updatedStatus = data?.Status?.map((status: string) => (status === "" ? "OK" : status));
+    setData({
+      ...data,
+      Status: updatedStatus,
+    });
+  }, [data, setData]);
   const getChartData = () => {
     // Application.WeaklyReportGraph({
     //     member_id:memberId
@@ -190,28 +198,29 @@ const GenerateReportTable: React.FC<GenerateReportTableProps> = ({
             <>
               {/* <Outlet></Outlet> */}
               <div className="w-full h-full bg-gray-50 dark:bg-[#1E1E1E] p-8 border-light-border-color dark:border-[#383838] border rounded-[6px]">
-                <div className="text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] mb-8">
+                <div className="text-[15px] font-medium text-light-secandary-text dark:text-[#FFFFFFDE] mb-8">
                   {acivaChart}
                 </div>
                 <div className="w-full  dark:bg-[#1E1E1E] bg-gray-100 p-8 dark:border-[#383838] border rounded-[6px]">
                   <div className="mb-4 flex justify-start items-center gap-8">
                     <div className="dark:text-[#FFFFFF99] text-light-primary-text text-[12px]">
                       Average Value:{" "}
-                      <span className="font-semibold text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">
+                      <span className="font-medium text-[18px] text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">
                         50
                       </span>
                     </div>
                     <div className="dark:text-[#FFFFFF99] text-light-primary-text text-[12px]">
                       Current Value:{" "}
-                      <span className="font-semibold text-[14px] text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">
+                      <span className="font-medium text-[18px] text-light-secandary-text dark:text-[#FFFFFFDE] ml-2">
                         60
                       </span>
                     </div>
                   </div>
-                  <MethylationChart
+                  <div className="h-[297px]"> <MethylationChart
                     labels={graphData?.data?.label}
                     values={graphData?.data?.value}
-                  ></MethylationChart>
+                  ></MethylationChart></div>
+                 
                 </div>
               </div>
             </>
@@ -288,6 +297,37 @@ const GenerateReportTable: React.FC<GenerateReportTableProps> = ({
                           <div className="w-[200px] text-light-secandary-text dark:text-[#1E1E1E] py-5 px-4 flex justify-center  text-[8px] font-medium">
                             <div className="w-full  dark:bg-[#1E1E1E] min-h-[58px] p-2 flex justify-center rounded-[6px] border border-light-border-color dark:border-[#383838]">
                               <div>
+                              <div
+                                  onClick={() => {
+                                    handleStatusChange(index, "OK");
+                                  }}
+                                  className="flex mb-3 justify-center gap-2 items-center"
+                                >
+                                  <div
+                                    className={`w-4 h-4 ${
+                                      data["Status"][index] == "OK"
+                                        ? " bg-light-blue-active dark:bg-primary-color"
+                                        : "bg-white border-light-border-color border dark:border-none dark:bg-[#2F2F2F]"
+                                    } rounded-full flex justify-center items-center`}
+                                  >
+                                    <div className="w-2 h-2 rounded-full bg-white dark:bg-[#2F2F2F]"></div>
+                                  </div>
+                                  <span
+                                    className={`w-[53px] h-[16px] rounded-[16px] flex justify-center items-center ${
+                                      data["Status"][index] == "OK"
+                                        ? "text-light-secandary-text dark:text-[#1E1E1E]"
+                                        : "border dark:border-[#383838]  border-light-border-color text-light-secandary-text dark:text-[#FFFFFFDE]"
+                                    }`}
+                                    style={{
+                                      backgroundColor:
+                                        data["Status"][index] == "OK"
+                                          ? resolveStatusColor("OK")
+                                          : "unset",
+                                    }}
+                                  >
+                                    OK
+                                  </span>
+                                </div>
                                 <div
                                   onClick={() => {
                                     handleStatusChange(index, "Not OK");
@@ -320,37 +360,7 @@ const GenerateReportTable: React.FC<GenerateReportTableProps> = ({
                                   </span>
                                 </div>
 
-                                <div
-                                  onClick={() => {
-                                    handleStatusChange(index, "OK");
-                                  }}
-                                  className="flex mt-3 justify-center gap-2 items-center"
-                                >
-                                  <div
-                                    className={`w-4 h-4 ${
-                                      data["Status"][index] == "OK"
-                                        ? " bg-light-blue-active dark:bg-primary-color"
-                                        : "bg-white border-light-border-color border dark:border-none dark:bg-[#2F2F2F]"
-                                    } rounded-full flex justify-center items-center`}
-                                  >
-                                    <div className="w-2 h-2 rounded-full bg-white dark:bg-[#2F2F2F]"></div>
-                                  </div>
-                                  <span
-                                    className={`w-[53px] h-[16px] rounded-[16px] flex justify-center items-center ${
-                                      data["Status"][index] == "OK"
-                                        ? "text-light-secandary-text dark:text-[#1E1E1E]"
-                                        : "border dark:border-[#383838]  border-light-border-color text-light-secandary-text dark:text-[#FFFFFFDE]"
-                                    }`}
-                                    style={{
-                                      backgroundColor:
-                                        data["Status"][index] == "OK"
-                                          ? resolveStatusColor("OK")
-                                          : "unset",
-                                    }}
-                                  >
-                                    OK
-                                  </span>
-                                </div>
+                               
                               </div>
                             </div>
                           </div>
