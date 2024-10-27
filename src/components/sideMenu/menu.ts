@@ -10,7 +10,7 @@ export const menus = [
         url:'/ai-studio'
     },
     {
-        name:'Ai knowledge',
+        name:'AI Knowledge',
         icon:'trend-up',
         url:'/ai-knowlage'
     },      

@@ -318,8 +318,9 @@ const PlanManagerModal: React.FC<PlanManagerModalProps> = ({ data ,isNewGenerate
         {isNewGenerate ?
           <></>
       :
-        <div className="w-full flex justify-center mt-8">
+        <div className="w-full flex justify-center mt-8  ">
           <Button onClick={handleClick}
+          
           theme={"Aurora"}> 
               {
                 buttonState == 'initial' &&
